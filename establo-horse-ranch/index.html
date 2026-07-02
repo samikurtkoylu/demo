@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Establo Horse Ranch — Göreme'de At Turu · Kapadokya</title>
+<meta name="description" data-i18n="meta_desc" content="Göreme'de at çiftliği. Her sürüş ahırda başlar: at eşleştirmesi, kask, rehberli tek sıra düzeni. Sabah sisi veya gün batımı ışığında Kapadokya. Google 5.0★ · 53 yorum.">
+<script>
+/* Tema ön-yükleme — ilk boyamadan önce (FOUC yok): ?theme= → localStorage → sistem tercihi.
+   Establo varsayılanı AYDINLIK: kimlik "sabah sisi" — diğer beş at demosunun tümü koyu açılır, bu açılmaz. */
+(function(){
+  try{
+    var p = new URLSearchParams(location.search).get('theme');
+    var t = (p==='light'||p==='dark') ? p : null;
+    if(!t){ t = localStorage.getItem('establo_theme'); }
+    if(t!=='light' && t!=='dark'){
+      t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){ document.documentElement.setAttribute('data-theme','light'); }
+})();
+</script>
+<style>
+  /* ============ ESTABLO HORSE RANCH — "sabah ahırda başlar" kimliği ============
+     Palet: soğuk sabah sisi grisi + saman sarısı + koyu ahşap. Varsayılan tema AYDINLIK (sis).
+     Tipografi: slab serif (Rockwell) başlık + monospace "ahır günlüğü" etiketleri (Consolas).
+     İmza 1: süzülen sis katmanı (canvas, hero) — reduced-motion'da tek kare.
+     İmza 2: ahır kapısı X-traversi marka işareti (nav + footer + bölüm ayracı).
+     İmza 3: mono "KAYIT" günlük etiketleri — belgesel/pastoral ton.
+     Nav: 21st.dev "expandable tabs" portu — ikon sekmeler; aktif/hover sekmenin etiketi genişleyerek açılır. */
+  :root{
+    --bg:#edefe9; --bg-d:#e2e5dd; --card:#f7f8f4; --card-2:#eceee6;
+    --ink:#241d15; --muted:#5f584c; --soft:#8b8375;
+    --hay:#a37a16; --hay-b:#d9a83e; --hay-glow:rgba(217,168,62,.32);
+    --wood:#4a372a; --mist:#7e8f92;
+    --line:rgba(36,29,21,.15);
+    --nav-bg:rgba(237,239,233,.9); --pill:rgba(36,29,21,.05); --pill-line:rgba(36,29,21,.13);
+    --input-bg:rgba(255,255,255,.72);
+  }
+  html[data-theme="dark"]{
+    --bg:#171310; --bg-d:#100d0a; --card:#201a15; --card-2:#281f18;
+    --ink:#f0e9db; --muted:#b3a790; --soft:#8c8070;
+    --hay:#d9a83e; --hay-b:#e5bd5f; --hay-glow:rgba(217,168,62,.22);
+    --wood:#a4805c; --mist:#93a4a8;
+    --line:rgba(217,168,62,.16);
+    --nav-bg:rgba(16,13,10,.86); --pill:rgba(20,15,11,.5); --pill-line:rgba(240,233,219,.13);
+    --input-bg:rgba(16,13,10,.55);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{font-family:'Segoe UI','Helvetica Neue',system-ui,sans-serif;color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden;transition:background .45s,color .45s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:'Rockwell','Rockwell Nova','Sitka Heading',Georgia,serif;font-weight:700;line-height:1.05;letter-spacing:.004em}
+  h1 em,h2 em{font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-style:normal;font-weight:400;font-size:.9em;color:var(--hay);letter-spacing:-.01em}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:700;letter-spacing:.02em;line-height:1.18}
+  html[lang="zh-CN"] h1 em,html[lang="ko"] h1 em,html[lang="zh-CN"] h2 em,html[lang="ko"] h2 em{font-family:inherit;font-size:1em}
+  .mono{font-family:'Consolas','Cascadia Mono','Courier New',monospace}
+  .eyebrow{font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.72rem;font-weight:400;text-transform:uppercase;letter-spacing:.3em;color:var(--hay)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.12em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 30px}
+
+  /* ============ NAV — 21st.dev "expandable tabs" portu ============
+     İkon sekmeler cam şeritte durur; aktif (scroll-spy) veya hover sekmenin metin etiketi
+     max-width animasyonuyla genişler. Bugüne dek kullanılan kalıplardan (tubelight, dock,
+     gooey-pill, centered-split...) farklı: genişleyen-sekme davranışının vanilla portu. */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:13px 26px;transition:background .45s,box-shadow .45s;gap:14px}
+  nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+  .brand{display:flex;align-items:center;gap:11px;flex:none;color:#f4efe4;text-shadow:0 1px 12px rgba(10,10,8,.55)}
+  nav.scrolled .brand{color:var(--ink);text-shadow:none}
+  .brand .mark{width:34px;height:34px;flex:none;color:var(--hay-b);filter:drop-shadow(0 1px 6px rgba(10,10,8,.4))}
+  nav.scrolled .brand .mark{color:var(--hay);filter:none}
+  .brand .bt{font-family:'Rockwell','Rockwell Nova','Sitka Heading',Georgia,serif;font-weight:700;letter-spacing:.14em;font-size:.98rem;line-height:1.05;text-transform:uppercase}
+  .brand .bt small{display:block;font-family:'Consolas','Cascadia Mono','Courier New',monospace;text-transform:lowercase;letter-spacing:.18em;font-weight:400;font-size:.58rem;color:var(--hay-b);opacity:.95}
+  nav.scrolled .brand .bt small{color:var(--hay)}
+  .navlinks{display:flex;gap:4px;align-items:center;margin-left:auto;background:var(--pill);border:1px solid var(--pill-line);border-radius:13px;padding:5px;backdrop-filter:blur(10px)}
+  .navlinks a{display:inline-flex;align-items:center;padding:9px 11px;border-radius:9px;color:rgba(244,239,228,.85);transition:color .3s,background .3s}
+  nav.scrolled .navlinks a{color:var(--muted)}
+  .navlinks a svg{width:17px;height:17px;flex:none}
+  .navlinks a .tl{max-width:0;opacity:0;overflow:hidden;white-space:nowrap;margin-left:0;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;transition:max-width .45s cubic-bezier(.2,.7,.2,1),opacity .3s,margin-left .45s cubic-bezier(.2,.7,.2,1)}
+  html[lang="zh-CN"] .navlinks a .tl,html[lang="ko"] .navlinks a .tl{letter-spacing:.03em;font-size:.82rem}
+  .navlinks a:hover{color:#fff}
+  nav.scrolled .navlinks a:hover{color:var(--ink)}
+  .navlinks a:hover .tl,.navlinks a.active .tl{max-width:150px;opacity:1;margin-left:8px}
+  .navlinks a.active{background:var(--hay-glow);color:#fff}
+  nav.scrolled .navlinks a.active{color:var(--hay);background:var(--hay-glow)}
+  .nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--hay-b);color:#241d0a!important;padding:10px 16px;border-radius:9px;margin-left:6px;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;transition:.3s;flex:none}
+  .nav-cta:hover{background:var(--hay);color:#fff8ea!important}
+  .nav-cta svg{width:15px;height:15px}
+  html[lang="zh-CN"] .nav-cta,html[lang="ko"] .nav-cta{letter-spacing:.03em;font-size:.82rem}
+  /* dil + tema */
+  .langs{display:flex;align-items:center;gap:1px;flex:none}
+  .langs button{background:none;border:none;color:rgba(244,239,228,.75);font-size:.72rem;cursor:pointer;padding:5px 6px;transition:.25s;border-radius:3px;letter-spacing:.03em;font-family:'Consolas','Cascadia Mono','Courier New',monospace;text-shadow:0 1px 8px rgba(10,10,8,.5)}
+  nav.scrolled .langs button{color:var(--muted);text-shadow:none}
+  .langs button:hover{color:#fff}
+  nav.scrolled .langs button:hover{color:var(--ink)}
+  .langs button.active{color:var(--hay-b);font-weight:700}
+  nav.scrolled .langs button.active{color:var(--hay)}
+  .langs .sep{color:rgba(244,239,228,.3);font-size:.64rem}
+  nav.scrolled .langs .sep{color:var(--line)}
+  .theme-btn{background:none;border:1px solid rgba(244,239,228,.35);border-radius:9px;width:35px;height:35px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(244,239,228,.9);transition:.3s;flex:none}
+  nav.scrolled .theme-btn{color:var(--muted);border-color:var(--line)}
+  .theme-btn:hover{color:var(--hay-b);border-color:var(--hay-b)}
+  .theme-btn svg{width:16px;height:16px}
+  .theme-btn .ic-sun{display:none}.theme-btn .ic-moon{display:block}
+  html[data-theme="dark"] .theme-btn .ic-sun{display:block}
+  html[data-theme="dark"] .theme-btn .ic-moon{display:none}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;color:#f4efe4;filter:drop-shadow(0 1px 6px rgba(10,10,8,.5));flex:none}
+  nav.scrolled .menu-btn{color:var(--ink);filter:none}
+
+  /* ============ HERO ============ */
+  .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center;isolation:isolate}
+  .sky{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,#5b6a6e 0%,#93a4a8 38%,#c9c3ab 68%,#d9a83e 100%)}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center 42%;opacity:0;transition:opacity .8s}
+  .hero-photo.has-img{opacity:1;animation:kenburns 34s ease-in-out infinite alternate;transform-origin:60% 45%}
+  @keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.09)}}
+  /* foto sabit (her iki temada aynı) → scrim de sabit; üst şerit nav, alt şerit başlık için */
+  .hero-photo.has-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,15,12,.5),rgba(16,15,12,.08) 34%,rgba(16,15,12,.16) 60%,rgba(16,15,12,.58) 100%)}
+  #hero-gradient{position:absolute;inset:0;z-index:5;pointer-events:none;mix-blend-mode:overlay;opacity:.45;
+    --gradient-color-1:#5b6a6e; --gradient-color-2:#d9a83e; --gradient-color-3:#3a2c20; --gradient-color-4:#93a4a8}
+  .no-webgl #hero-gradient{display:none}
+  /* İMZA 1 — süzülen sis katmanı */
+  #fog{position:absolute;inset:0;width:100%;height:100%;z-index:7;pointer-events:none;mix-blend-mode:screen;opacity:.85}
+  .hero::after{content:"";position:absolute;inset:0;z-index:6;pointer-events:none;
+    background:radial-gradient(58% 52% at 22% 78%,rgba(16,15,12,.45),transparent 70%)}
+  .hero-inner{position:relative;z-index:10;width:100%;padding-top:106px;padding-bottom:8vh}
+  .hero .eyebrow{color:#e9c977;text-shadow:0 1px 12px rgba(10,10,8,.6)}
+  .hero h1{color:#f7f2e6;font-size:clamp(2.6rem,6.4vw,5.4rem);max-width:17ch;text-shadow:0 4px 40px rgba(10,10,8,.55);margin-top:20px}
+  .hero h1 em{color:#e9c977;text-shadow:0 2px 22px rgba(10,10,8,.6)}
+  .hero .lede{font-size:clamp(1.02rem,1.5vw,1.26rem);color:rgba(247,242,230,.94);max-width:56ch;margin-top:24px;font-weight:300;text-shadow:0 2px 18px rgba(10,10,8,.6)}
+  .hero-cta{display:flex;gap:18px;margin-top:34px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:#f7f2e6;color:#2a2014;padding:16px 30px;border-radius:4px;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.35s}
+  .btn-solid:hover{background:var(--hay-b);color:#241d0a;gap:16px}
+  .btn-line{color:#f7f2e6;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(247,242,230,.5);padding-bottom:4px;transition:.35s}
+  .btn-line:hover{border-color:var(--hay-b);color:#e9c977}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{letter-spacing:.04em}
+  .hero-proof{display:flex;align-items:center;gap:10px;margin-top:28px;font-size:.8rem;letter-spacing:.06em;color:rgba(247,242,230,.9);text-shadow:0 1px 10px rgba(10,10,8,.65)}
+  .hero-proof .stars5{color:var(--hay-b);letter-spacing:.12em}
+  .hero-src{position:absolute;right:22px;bottom:18px;z-index:10;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,242,230,.62);text-shadow:0 1px 8px rgba(10,10,8,.7)}
+  .scrollhint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:10;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(247,242,230,.65);display:flex;flex-direction:column;align-items:center;gap:8px;text-shadow:0 1px 8px rgba(10,10,8,.6)}
+  .scrollhint .l{width:1px;height:30px;background:linear-gradient(var(--hay-b),transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ============ STATS ============ */
+  .stats{background:var(--bg-d);border-bottom:1px solid var(--line);position:relative;z-index:2}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:46px 30px}
+  .stat{text-align:center}
+  .stat .n{font-family:'Rockwell','Rockwell Nova','Sitka Heading',Georgia,serif;font-weight:700;font-size:clamp(1.9rem,4.2vw,3rem);color:var(--hay);line-height:1}
+  .stat .l{font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin-top:10px}
+  html[lang="zh-CN"] .stat .l,html[lang="ko"] .stat .l{letter-spacing:.04em;font-size:.76rem}
+  .stat+.stat{border-left:1px solid var(--line)}
+  @media(max-width:680px){.stats .wrap{grid-template-columns:1fr 1fr;gap:30px 18px}.stat:nth-child(3){border-left:none}}
+
+  section{padding:114px 0;position:relative}
+  .sec-head{max-width:700px;margin-bottom:56px}
+  .sec-head .eyebrow{display:block;margin-bottom:18px}
+  .sec-head h2{font-size:clamp(2rem,4.4vw,3.4rem)}
+  .sec-head p{margin-top:20px;color:var(--muted);font-size:1.06rem;font-weight:300}
+
+  /* sis derinliği: düz bölümlere süzülen gri-saman mesh */
+  .story::before,.rides::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(40% 52% at 8% 18%,rgba(126,143,146,.14),transparent 62%),
+      radial-gradient(44% 50% at 92% 82%,rgba(217,168,62,.10),transparent 62%),
+      radial-gradient(30% 40% at 55% 45%,rgba(74,55,42,.07),transparent 60%);
+    background-size:180% 180%;animation:meshDrift 28s ease-in-out infinite alternate}
+  .story>.wrap,.rides>.wrap{position:relative;z-index:1}
+  @keyframes meshDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+
+  /* ============ STORY — çiftlik ============ */
+  .story{background:var(--bg)}
+  .story-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:0;align-items:stretch}
+  .story-visual{position:relative;min-height:520px;border-radius:5px;overflow:hidden;background:linear-gradient(160deg,#5b6a6e,#93a4a8 55%,#d9a83e);background-size:cover;background-position:center}
+  .story-visual .cap{position:absolute;left:20px;bottom:18px;z-index:3}
+  .story-text{background:var(--card);padding:58px;display:flex;flex-direction:column;justify-content:center;margin-left:-44px;z-index:2;border:1px solid var(--line);border-left:3px solid var(--hay-b);border-radius:5px}
+  .story-text .lead{font-family:'Rockwell','Rockwell Nova','Sitka Heading',Georgia,serif;font-weight:400;font-size:1.5rem;line-height:1.42;color:var(--ink);margin-bottom:24px}
+  html[lang="zh-CN"] .story-text .lead,html[lang="ko"] .story-text .lead{font-family:inherit;font-size:1.36rem}
+  .story-text p{color:var(--muted);margin-bottom:18px;font-weight:300}
+  .story-text .sign{margin-top:14px;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.86rem;letter-spacing:.1em;color:var(--hay)}
+  @media(max-width:880px){.story-grid{grid-template-columns:1fr}.story-text{margin-left:0;margin-top:-44px}.story-visual{min-height:340px}}
+
+  /* ============ İMZA 3 — AHIR GÜNLÜĞÜ (mono kayıt bloğu) ============ */
+  .ritual{background:var(--bg-d);overflow:hidden}
+  .ritual::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(46% 60% at 88% 12%,rgba(126,143,146,.15),transparent 62%),
+      radial-gradient(38% 46% at 6% 88%,rgba(217,168,62,.1),transparent 60%);
+    background-size:180% 180%;animation:meshDrift 32s ease-in-out infinite alternate}
+  .ritual>.wrap{position:relative;z-index:1}
+  .log{max-width:860px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--hay-b);border-radius:5px;padding:14px 46px 30px}
+  .le{display:grid;grid-template-columns:132px 1fr;gap:26px;padding:30px 0;border-top:1px dashed var(--line);align-items:start}
+  .le:first-child{border-top:none}
+  .le .no{font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.72rem;letter-spacing:.18em;color:var(--hay);padding-top:6px;text-transform:uppercase}
+  .le h3{font-size:1.32rem;margin-bottom:8px}
+  .le p{color:var(--muted);font-weight:300;font-size:.98rem;max-width:52ch}
+  .log-note{max-width:860px;margin-top:18px;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.74rem;letter-spacing:.08em;color:var(--soft)}
+  @media(max-width:680px){.log{padding:6px 26px 20px}.le{grid-template-columns:1fr;gap:8px;padding:24px 0}.le .no{padding-top:0}}
+
+  /* ============ RIDES — günün iki ucu ============ */
+  .rides{background:var(--bg)}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .rideC{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+  .rideC:hover{transform:translateY(-5px);box-shadow:0 20px 46px rgba(20,16,10,.18)}
+  html[data-theme="dark"] .rideC:hover{box-shadow:0 20px 46px rgba(0,0,0,.45)}
+  .rideC .rv{aspect-ratio:16/10;position:relative;background-size:cover;background-position:center;cursor:pointer}
+  .rv-sabah{background-image:linear-gradient(150deg,#5b6a6e,#93a4a8 55%,#c9c3ab)}
+  .rv-aksam{background-image:linear-gradient(150deg,#3a2c20,#8a6612 55%,#d9a83e)}
+  .rideC .rv::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(16,15,12,.3),transparent 44%)}
+  /* görsel üstü çip — TEMADAN BAĞIMSIZ okunur (sabit koyu scrim + açık metin) */
+  .chip{display:inline-flex;align-items:center;gap:7px;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#f6ecd6;background:rgba(20,15,9,.66);padding:7px 12px;border-radius:3px;backdrop-filter:blur(5px);text-shadow:0 1px 6px rgba(0,0,0,.6)}
+  html[lang="zh-CN"] .chip,html[lang="ko"] .chip{letter-spacing:.04em;font-size:.76rem}
+  .rideC .chip{position:absolute;top:16px;left:18px;z-index:2}
+  .rb{padding:32px 34px 36px}
+  .rb .tag{font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--hay)}
+  html[lang="zh-CN"] .rb .tag,html[lang="ko"] .rb .tag{letter-spacing:.06em}
+  .rb h3{font-size:clamp(1.5rem,2.6vw,2.1rem);margin:12px 0 14px}
+  .rb p{color:var(--muted);font-weight:300;margin-bottom:22px}
+  .ask{display:inline-flex;align-items:center;gap:9px;color:var(--hay);font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;border-bottom:1px solid transparent;padding-bottom:3px;transition:.3s}
+  .ask:hover{border-color:var(--hay);gap:14px}
+  html[lang="zh-CN"] .ask,html[lang="ko"] .ask{letter-spacing:.04em}
+  @media(max-width:880px){.duo{grid-template-columns:1fr}}
+
+  /* ============ KARELER — dürüst galeri (kaynak etiketli) ============ */
+  .gallery{background:var(--bg-d)}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .tile{position:relative;border-radius:5px;overflow:hidden;aspect-ratio:3/4;background-color:var(--card-2);background-size:cover;background-position:center;cursor:pointer;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(20,16,10,.22)}
+  .tile::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(16,15,12,.5),rgba(16,15,12,0) 44%);transition:.4s}
+  .tile:hover::before{background:linear-gradient(to top,rgba(16,15,12,.64),rgba(16,15,12,.12))}
+  .tile .cap{position:absolute;left:12px;bottom:12px;right:12px;z-index:2}
+  .tile::after{content:"\2922";position:absolute;top:10px;right:13px;z-index:2;color:#fff;font-size:1rem;opacity:0;transform:scale(.75);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  @media(max-width:860px){.tiles{grid-template-columns:1fr 1fr}}
+
+  /* ---- Lightbox ---- */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(14,12,8,.94);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:86vh;border-radius:5px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f0e9db;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s;z-index:2}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#d9c9a4;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+  html[lang="zh-CN"] .lb-cap,html[lang="ko"] .lb-cap{letter-spacing:.04em}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(30,24,16,.6);border:1px solid rgba(217,168,62,.3);color:#f0e9db;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .lb-nav:hover{background:var(--hay-b);border-color:var(--hay-b);color:#241d0a}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:1.2rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ============ GÜVEN ============ */
+  .ethos{background:var(--bg)}
+  .ethos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px}
+  .et .ic{width:36px;height:36px;color:var(--hay);margin-bottom:16px}
+  .et h3{font-size:1.16rem;margin-bottom:8px}
+  .et p{font-size:.94rem;color:var(--muted);font-weight:300}
+  @media(max-width:880px){.ethos-grid{grid-template-columns:1fr 1fr;gap:28px}}
+
+  /* ============ BOOK ============ */
+  .book{background:linear-gradient(180deg,var(--bg),var(--card-2));position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-130px;left:50%;transform:translateX(-50%);width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,var(--hay-glow),transparent 68%)}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.2rem,4.4vw,3.5rem)}
+  .book .lede{color:var(--muted);margin-top:20px;font-size:1.06rem;font-weight:300}
+  .wa{display:inline-flex;align-items:center;gap:11px;margin-top:26px;color:var(--ink);font-size:1.02rem;font-weight:600}
+  .wa svg{width:24px;height:24px;color:#3f9e4d}
+  .form{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:38px;backdrop-filter:blur(6px)}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--hay);margin-bottom:8px;font-weight:700}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{letter-spacing:.03em;font-size:.76rem}
+  .field input,.field select{width:100%;padding:14px 16px;border-radius:4px;border:1px solid var(--line);background:var(--input-bg);color:var(--ink);font-family:inherit;font-size:.95rem;color-scheme:light}
+  html[data-theme="dark"] .field input,html[data-theme="dark"] .field select{color-scheme:dark}
+  .field input::placeholder{color:var(--soft)}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--hay-b)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .submit{width:100%;background:var(--hay-b);color:#241d0a;border:none;padding:17px;border-radius:4px;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.35s;margin-top:8px}
+  .submit:hover{background:var(--hay);color:#fff8ea}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{letter-spacing:.04em}
+  @media(max-width:880px){.book-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--bg-d);color:var(--muted);padding:70px 0 32px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:48px}
+  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:18px;color:var(--ink)}
+  .foot-brand .mark{width:40px;height:40px;color:var(--hay)}
+  .foot-brand .bt{font-family:'Rockwell','Rockwell Nova','Sitka Heading',Georgia,serif;font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:1.05rem;line-height:1.15}
+  .foot-brand .bt small{display:block;font-family:'Consolas','Cascadia Mono','Courier New',monospace;text-transform:lowercase;letter-spacing:.18em;font-weight:400;font-size:.6rem;color:var(--hay)}
+  footer h4{font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--hay);margin-bottom:18px;font-weight:700}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{letter-spacing:.04em;font-size:.78rem}
+  footer ul{list-style:none}
+  footer li{margin-bottom:11px;font-size:.94rem;font-weight:300;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:var(--ink)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem}
+  .demo-badge{background:var(--hay-b);color:#241d0a;padding:5px 13px;border-radius:3px;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
+
+  .reveal{opacity:0;transform:translateY(34px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  .mobile-menu{position:fixed;inset:0;z-index:70;background:rgba(18,14,10,.97);backdrop-filter:blur(8px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:'Rockwell','Rockwell Nova','Sitka Heading',Georgia,serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:1.6rem;color:#f0e9db}
+  html[lang="zh-CN"] .mobile-menu a,html[lang="ko"] .mobile-menu a{font-family:inherit;text-transform:none}
+  .mobile-menu .close{position:absolute;top:24px;right:26px;background:none;border:none;color:#f0e9db;cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+  .mobile-menu .m-langs button{background:none;border:1px solid rgba(217,168,62,.35);color:#c8bda2;padding:8px 14px;border-radius:3px;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.82rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:#e9c977;border-color:var(--hay-b)}
+  .mobile-menu .m-theme{margin-top:6px;background:none;border:1px solid rgba(217,168,62,.35);color:#c8bda2;padding:9px 18px;border-radius:999px;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.82rem;cursor:pointer;display:inline-flex;align-items:center;gap:9px}
+  .mobile-menu .m-theme svg{width:16px;height:16px}
+  .mobile-menu .m-theme .ic-sun{display:none}.mobile-menu .m-theme .ic-moon{display:block}
+  html[data-theme="dark"] .mobile-menu .m-theme .ic-sun{display:block}
+  html[data-theme="dark"] .mobile-menu .m-theme .ic-moon{display:none}
+
+  @media(max-width:1020px){
+    .navlinks{display:none}.menu-btn{display:block}
+    .langs{display:none}
+  }
+  @media(max-width:760px){
+    section{padding:76px 0}
+    .story-text,.form{padding:32px}
+    .foot-grid{grid-template-columns:1fr;gap:32px}
+    .brand .bt{font-size:.84rem}
+    .scrollhint{display:none}
+    .hero-src{right:14px;bottom:12px}
+    /* mobil hero scrim dersi: başlık şeridi daha koyu */
+    .hero-photo.has-img::after{background:linear-gradient(180deg,rgba(16,15,12,.56),rgba(16,15,12,.14) 32%,rgba(16,15,12,.3) 56%,rgba(16,15,12,.68) 100%)}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* Signature yardımcıları: film grain + scroll progress (saman paleti) */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+  html[data-theme="light"] .grain{opacity:.038}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--mist),var(--hay-b));box-shadow:0 0 12px var(--hay-glow)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+</style>
+</head>
+<body>
+
+<!-- Signature: film grain + scroll ilerleme çubuğu -->
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- Marka işareti: ahır kapısı X-traversi (İMZA 2) -->
+<svg style="display:none" aria-hidden="true"><defs><g id="barnMark"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.2 3.2l17.6 17.6M20.8 3.2L3.2 20.8" fill="none" stroke="currentColor" stroke-width="1.4"/></g></defs></svg>
+
+<nav id="nav">
+  <a class="brand" href="#top" aria-label="Establo Horse Ranch">
+    <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><use href="#barnMark"/></svg>
+    <span class="bt">Establo<small data-i18n="brand_tag">horse ranch · göreme</small></span>
+  </a>
+  <div class="navlinks" id="navlinks">
+    <a href="#ciftlik">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 21V10l9-6 9 6v11"/><path d="M9 21v-7h6v7M9 14l6 7M15 14l-6 7"/></svg>
+      <span class="tl" data-i18n="nav_ciftlik">Çiftlik</span>
+    </a>
+    <a href="#surusler">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6.2 3.6C4.6 7 4.7 10.8 6.7 13.7a6.4 6.4 0 0 0 10.6 0c2-2.9 2.1-6.7.5-10.1"/><path d="M5.6 7.4l1.9.4M18.4 7.4l-1.9.4M6.5 11h1.9M17.5 11h-1.9"/></svg>
+      <span class="tl" data-i18n="nav_surusler">Sürüşler</span>
+    </a>
+    <a href="#kareler">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M3 17l5-4 3 2.5L16 11l5 5"/></svg>
+      <span class="tl" data-i18n="nav_kareler">Kareler</span>
+    </a>
+    <a href="#guven">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><path d="M9 11.5l2 2 4-4"/></svg>
+      <span class="tl" data-i18n="nav_guven">Güven</span>
+    </a>
+    <a class="nav-cta" href="#rezervasyon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 8.7 8.7 0 0 1-3.9-.9L3 20l1.2-5.3a8 8 0 0 1-1-3.9A8.4 8.4 0 0 1 11.7 2.5a8.4 8.4 0 0 1 9.3 9z"/></svg>
+      <span data-i18n="nav_book">Rezervasyon</span>
+    </a>
+  </div>
+  <div class="langs" role="group" aria-label="Dil / Language">
+    <button data-lang="tr" class="active">TR</button><span class="sep">|</span>
+    <button data-lang="en">EN</button><span class="sep">|</span>
+    <button data-lang="es">ES</button><span class="sep">|</span>
+    <button data-lang="zh-CN">中文</button><span class="sep">|</span>
+    <button data-lang="ko">한국어</button>
+  </div>
+  <button class="theme-btn" id="themeBtn" aria-label="Tema değiştir">
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+  <button class="menu-btn" aria-label="Menü" id="menuBtn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#ciftlik" data-i18n="nav_ciftlik">Çiftlik</a>
+  <a href="#surusler" data-i18n="nav_surusler">Sürüşler</a>
+  <a href="#kareler" data-i18n="nav_kareler">Kareler</a>
+  <a href="#guven" data-i18n="nav_guven">Güven</a>
+  <a href="#rezervasyon" data-i18n="nav_book">Rezervasyon</a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+  <button class="m-theme" id="themeBtnM" aria-label="Tema değiştir">
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <span data-i18n="theme_label">Aydınlık / Karanlık</span>
+  </button>
+</div>
+
+<header class="hero" id="top">
+  <div class="sky"></div>
+  <div class="hero-photo" id="heroPhoto"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <canvas id="fog" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Ahır günlüğü · Göreme, Kapadokya</span>
+      <h1 data-i18n="hero_title" data-i18n-html="1">Her sürüş <em>ahırda</em> başlar.</h1>
+      <p class="lede" data-i18n="hero_lede">Establo, İspanyolca "ahır" demek. Günün merkezi bizim için orası: at orada eyerlenir, misafir atıyla orada tanışır — sonra kapı açılır ve Göreme'nin toprak patikaları başlar.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#rezervasyon"><span data-i18n="hero_cta1">Yer ayırt</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#surusler" data-i18n="hero_cta2">Günün iki ucu</a>
+      </div>
+      <div class="hero-proof"><span class="stars5" aria-hidden="true">★★★★★</span><span data-i18n="hero_proof">Google'da 5.0 — 53 yorum</span></div>
+    </div>
+  </div>
+  <span class="hero-src" data-i18n="hero_src">foto: işletmenin Google profilinden</span>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Ahırdan bozkıra</span><span class="l"></span></div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n">5.0★</div><div class="l" data-i18n="stat1_l">Google puanı</div></div>
+    <div class="stat"><div class="n" data-count="53" data-suffix="">0</div><div class="l" data-i18n="stat2_l">Google yorumu</div></div>
+    <div class="stat"><div class="n" data-i18n="stat3_n">Göreme</div><div class="l" data-i18n="stat3_l">Kapadokya'nın kalbinde</div></div>
+    <div class="stat"><div class="n" data-i18n="stat4_n">Direkt</div><div class="l" data-i18n="stat4_l">WhatsApp ile rezervasyon</div></div>
+  </div>
+</div>
+
+<section class="story" id="ciftlik">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="story_eyebrow">Kayıt 00 — Çiftlik</span>
+      <h2 data-i18n="story_h" data-i18n-html="1">Adımız İspanyolca: <em>ahır.</em></h2>
+      <p data-i18n="story_sub">İddialı bir slogan değil, bir adres tarifi. İyi bir at turunun nerede başlayıp nerede bittiğini biliyoruz.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-visual reveal" id="storyImg">
+        <span class="cap chip" data-i18n="ph_story">Konsept görsel · eyerleme</span>
+      </div>
+      <div class="story-text reveal">
+        <p class="lead" data-i18n="story_lead">Bir sürüşün kalitesi, siz eyere oturmadan çok önce belli olur: ahırda, tımar fırçasının ve eyer kayışının başında.</p>
+        <p data-i18n="story_p1">Göreme'deyiz; kapımızdan çıkan toprak patikalar bozkıra ve kaya oluşumlarının arasına gider. Sürüşler rehber eşliğinde tek sıra ilerler, kask hepimiz için standarttır.</p>
+        <p data-i18n="story_p2">Google'da 53 misafirin bıraktığı tam 5.0 puan bizim için bir söz niteliğinde: ahırdaki özen, patikada da sürecek.</p>
+        <p class="sign" data-i18n="story_sign">— Establo Horse Ranch · Göreme</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ritual" id="ritual">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="rit_eyebrow">Ahır günlüğü</span>
+      <h2 data-i18n="rit_h" data-i18n-html="1">Üç <em>kayıt.</em></h2>
+      <p data-i18n="rit_sub">Bir Establo sürüşünün omurgası değişmez — gerisi ışığa, mevsime ve size göre şekillenir.</p>
+    </div>
+    <div class="log reveal">
+      <div class="le">
+        <span class="no" data-i18n="rit1_no">Kayıt 01 · Ahırda</span>
+        <div><h3 data-i18n="rit1_t">Atınla tanış</h3><p data-i18n="rit1_p">Atınız deneyiminize göre seçilir, kaskınız verilir, eyer kayışı son kez kontrol edilir. Acele eden olmaz.</p></div>
+      </div>
+      <div class="le">
+        <span class="no" data-i18n="rit2_no">Kayıt 02 · Patikada</span>
+        <div><h3 data-i18n="rit2_t">Tek sıra, rehber önde</h3><p data-i18n="rit2_p">Kapıdan toprak yola tek sıra çıkılır. Tempoyu rehber belirler; kimse arkada kalmaz, kimse aceleye getirilmez.</p></div>
+      </div>
+      <div class="le">
+        <span class="no" data-i18n="rit3_no">Kayıt 03 · Işıkta</span>
+        <div><h3 data-i18n="rit3_t">Bozkırın ışığı</h3><p data-i18n="rit3_p">Kayaların arasında ufuk açılır: sabah gri-mavi bir serinlik, akşam kor rengi bir ufuk. Fotoğraf için durmak serbest.</p></div>
+      </div>
+    </div>
+    <p class="log-note reveal" data-i18n="rit_note">// süre, rota ve güncel fiyat: WhatsApp'tan sorun — kısa sürede döneriz.</p>
+  </div>
+</section>
+
+<section class="rides" id="surusler">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="rides_eyebrow">Sürüşler</span>
+      <h2 data-i18n="rides_h" data-i18n-html="1">Günün <em>iki ucu.</em></h2>
+      <p data-i18n="rides_sub">Aynı patika, iki apayrı ışık. Saatler mevsime ve uygunluğa göre planlanır — tercihinizi yazın, birlikte netleştirelim.</p>
+    </div>
+    <div class="duo">
+      <div class="rideC reveal">
+        <div class="rv rv-sabah" data-img="ride-sabah.jpg" role="button" tabindex="0"><span class="chip" data-i18n="ride1_chip">Konsept görsel · sabah sisi</span></div>
+        <div class="rb">
+          <span class="tag" data-i18n="ride1_tag">Kayıt: Sabah</span>
+          <h3 data-i18n="ride1_h">Sis kalkarken</h3>
+          <p data-i18n="ride1_p">Günün ilk saatlerinde bozkır serin, patika sessizdir. Vadi sisi dağılırken kayaların rengi griden bala döner. Sabah insanıysanız, sürüşünüz bu.</p>
+          <a class="ask" href="https://wa.me/905442756938" target="_blank" rel="noopener"><span data-i18n="ride_ask">WhatsApp'tan sor</span> <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="rideC reveal">
+        <div class="rv rv-aksam" data-img="ride-aksam.jpg" role="button" tabindex="0"><span class="chip" data-i18n="ride2_chip">Konsept görsel · altın saat</span></div>
+        <div class="rb">
+          <span class="tag" data-i18n="ride2_tag">Kayıt: Akşam</span>
+          <h3 data-i18n="ride2_h">Kor rengi ufuk</h3>
+          <p data-i18n="ride2_p">Google profilimizdeki o kare: güneş alçalırken tek sıra ilerleyen grup, uzayan gölgeler, kor rengine dönen ufuk. Günün en cömert ışığında dönüş yolu.</p>
+          <a class="ask" href="https://wa.me/905442756938" target="_blank" rel="noopener"><span data-i18n="ride_ask">WhatsApp'tan sor</span> <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="kareler">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="kare_eyebrow">Kareler</span>
+      <h2 data-i18n="kare_h" data-i18n-html="1">Dürüst <em>kareler.</em></h2>
+      <p data-i18n="kare_sub">İlk kare işletmenin Google profilinden alındı; kalan üçü bu demo için hazırlanmış konsept görsellerdir. Yayına çıkarken yerlerini sizin kendi fotoğraflarınız alır.</p>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile" data-img="hero.jpg" role="button" tabindex="0"><span class="cap chip" data-i18n="ph_k1">Google profilinden · gün batımı</span></div>
+      <div class="tile" data-img="ride-sabah.jpg" role="button" tabindex="0"><span class="cap chip" data-i18n="ph_k2">Konsept · sabah sisi</span></div>
+      <div class="tile" data-img="story.jpg" role="button" tabindex="0"><span class="cap chip" data-i18n="ph_k3">Konsept · eyerleme</span></div>
+      <div class="tile" data-img="ride-aksam.jpg" role="button" tabindex="0"><span class="cap chip" data-i18n="ph_k4">Konsept · altın saat</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="ethos" id="guven">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="guven_eyebrow">Güven</span>
+      <h2 data-i18n="guven_h">Dört ayak üstünde dört söz.</h2>
+    </div>
+    <div class="ethos-grid">
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 13a7 7 0 0 1 14 0v3H5z"/><path d="M5 16h14M12 6V4M9 19h6"/></svg>
+        <h3 data-i18n="g1_h">Kask standart</h3>
+        <p data-i18n="g1_p">Sürüşe kasksız çıkılmaz — Google profilimizdeki karelerde de görürsünüz. Boyunuza uygun kask ahırda hazır.</p>
+      </div>
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="7" r="3.2"/><path d="M5.5 21c.6-4 3-6.5 6.5-6.5S17.9 17 18.5 21"/></svg>
+        <h3 data-i18n="g2_h">Rehber hep önde</h3>
+        <p data-i18n="g2_p">Grup tek sıra ilerler, rota rehberin avucunun içi gibi bildiği patikalardan geçer. Kimse patikada yalnız kalmaz.</p>
+      </div>
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><path d="M9.5 11.5l1.8 1.8 3.5-3.6"/></svg>
+        <h3 data-i18n="g3_h">At, binicisine göre</h3>
+        <p data-i18n="g3_p">İlk kez binene sakin bir at, deneyimliye daha istekli bir yol arkadaşı. Eşleştirme ahırda, aceleye gelmeden yapılır.</p>
+      </div>
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l2.5 5.3 5.5.7-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.5-.7z"/></svg>
+        <h3 data-i18n="g4_h">Google'da tam puan</h3>
+        <p data-i18n="g4_p">53 misafir, 5 üzerinden 5.0 bıraktı. Karnemiz açık — dilediğiniz an profilimizden okuyabilirsiniz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="rezervasyon">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="book_eyebrow">Rezervasyon</span>
+        <h2 style="margin-top:18px" data-i18n="book_h" data-i18n-html="1">Bir sabahı ya da <em>akşamı</em> ayırtın.</h2>
+        <p class="lede" data-i18n="book_lede">Formu doldurun; mesajınız hazır bir WhatsApp taslağı olarak açılır, göndermek size kalır. Saat, süre, fiyat — aklınızdaki her şeyi sorun.</p>
+        <a class="wa" href="https://wa.me/905442756938" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg>
+          +90 544 275 69 38
+        </a>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-date" data-i18n="label_date">Tarih</label><input type="date" id="f-date"></div>
+          <div class="field"><label for="f-count" data-i18n="label_people">Kişi</label>
+            <select id="f-count">
+              <option data-i18n="opt_1p">1 kişi</option><option data-i18n="opt_2p">2 kişi</option><option data-i18n="opt_3p">3 kişi</option><option data-i18n="opt_4p">4+ kişi</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-time" data-i18n="label_time">Saat tercihi</label>
+          <select id="f-time">
+            <option data-i18n="opt_t1">Sabah</option>
+            <option data-i18n="opt_t2">Akşamüstü</option>
+            <option data-i18n="opt_t3">Gün batımı</option>
+            <option data-i18n="opt_t4">Fark etmez</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-phone" data-i18n="label_phone">WhatsApp / Telefon</label>
+          <input type="tel" id="f-phone" data-i18n-ph="ph_phone" placeholder="Size ulaşabileceğimiz numara">
+        </div>
+        <button class="submit" type="button" onclick="sendBooking()" data-i18n="btn_submit">Sürüş talebi gönder</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><use href="#barnMark"/></svg>
+          <span class="bt">Establo<small data-i18n="brand_tag">horse ranch · göreme</small></span>
+        </div>
+        <p style="max-width:340px;font-weight:300" data-i18n="foot_about">Göreme'de at çiftliği. Sürüş ahırda başlar: atına özen, patikada rehber, her binicide kask.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#ciftlik" data-i18n="nav_ciftlik">Çiftlik</a></li>
+          <li><a href="#surusler" data-i18n="nav_surusler">Sürüşler</a></li>
+          <li><a href="#kareler" data-i18n="nav_kareler">Kareler</a></li>
+          <li><a href="#rezervasyon" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Göreme, Nevşehir</li>
+          <li><a href="https://wa.me/905442756938" target="_blank" rel="noopener">+90 544 275 69 38</a></li>
+          <li data-i18n="foot_google">Google 5.0★ · 53 yorum</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Establo Horse Ranch — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+// İnternet/CDN gerektirmez; her koşulda çalışır. Ayarlar talimatla uyumlu: lerp 0.085, wheelMultiplier 0.9
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 70;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
+<script>
+// ==================== i18n SÖZLÜĞÜ ====================
+const I18N = {
+  tr:{
+    meta_title:"Establo Horse Ranch — Göreme'de At Turu · Kapadokya",
+    meta_desc:"Göreme'de at çiftliği. Her sürüş ahırda başlar: at eşleştirmesi, kask, rehberli tek sıra düzeni. Sabah sisi veya gün batımı ışığında Kapadokya. Google 5.0★ · 53 yorum.",
+    brand_tag:"horse ranch · göreme",
+    nav_ciftlik:"Çiftlik",nav_surusler:"Sürüşler",nav_kareler:"Kareler",nav_guven:"Güven",nav_book:"Rezervasyon",
+    theme_label:"Aydınlık / Karanlık",
+    hero_eyebrow:"Ahır günlüğü · Göreme, Kapadokya",
+    hero_title:'Her sürüş <em>ahırda</em> başlar.',
+    hero_lede:'Establo, İspanyolca "ahır" demek. Günün merkezi bizim için orası: at orada eyerlenir, misafir atıyla orada tanışır — sonra kapı açılır ve Göreme\'nin toprak patikaları başlar.',
+    hero_cta1:"Yer ayırt",hero_cta2:"Günün iki ucu",hero_proof:"Google'da 5.0 — 53 yorum",
+    hero_src:"foto: işletmenin Google profilinden",scroll_hint:"Ahırdan bozkıra",
+    stat1_l:"Google puanı",stat2_l:"Google yorumu",stat3_n:"Göreme",stat3_l:"Kapadokya'nın kalbinde",stat4_n:"Direkt",stat4_l:"WhatsApp ile rezervasyon",
+    story_eyebrow:"Kayıt 00 — Çiftlik",story_h:'Adımız İspanyolca: <em>ahır.</em>',
+    story_sub:"İddialı bir slogan değil, bir adres tarifi. İyi bir at turunun nerede başlayıp nerede bittiğini biliyoruz.",
+    story_lead:"Bir sürüşün kalitesi, siz eyere oturmadan çok önce belli olur: ahırda, tımar fırçasının ve eyer kayışının başında.",
+    story_p1:"Göreme'deyiz; kapımızdan çıkan toprak patikalar bozkıra ve kaya oluşumlarının arasına gider. Sürüşler rehber eşliğinde tek sıra ilerler, kask hepimiz için standarttır.",
+    story_p2:"Google'da 53 misafirin bıraktığı tam 5.0 puan bizim için bir söz niteliğinde: ahırdaki özen, patikada da sürecek.",
+    story_sign:"— Establo Horse Ranch · Göreme",ph_story:"Konsept görsel · eyerleme",
+    rit_eyebrow:"Ahır günlüğü",rit_h:'Üç <em>kayıt.</em>',
+    rit_sub:"Bir Establo sürüşünün omurgası değişmez — gerisi ışığa, mevsime ve size göre şekillenir.",
+    rit1_no:"Kayıt 01 · Ahırda",rit1_t:"Atınla tanış",rit1_p:"Atınız deneyiminize göre seçilir, kaskınız verilir, eyer kayışı son kez kontrol edilir. Acele eden olmaz.",
+    rit2_no:"Kayıt 02 · Patikada",rit2_t:"Tek sıra, rehber önde",rit2_p:"Kapıdan toprak yola tek sıra çıkılır. Tempoyu rehber belirler; kimse arkada kalmaz, kimse aceleye getirilmez.",
+    rit3_no:"Kayıt 03 · Işıkta",rit3_t:"Bozkırın ışığı",rit3_p:"Kayaların arasında ufuk açılır: sabah gri-mavi bir serinlik, akşam kor rengi bir ufuk. Fotoğraf için durmak serbest.",
+    rit_note:"// süre, rota ve güncel fiyat: WhatsApp'tan sorun — kısa sürede döneriz.",
+    rides_eyebrow:"Sürüşler",rides_h:'Günün <em>iki ucu.</em>',
+    rides_sub:"Aynı patika, iki apayrı ışık. Saatler mevsime ve uygunluğa göre planlanır — tercihinizi yazın, birlikte netleştirelim.",
+    ride1_chip:"Konsept görsel · sabah sisi",ride1_tag:"Kayıt: Sabah",ride1_h:"Sis kalkarken",
+    ride1_p:"Günün ilk saatlerinde bozkır serin, patika sessizdir. Vadi sisi dağılırken kayaların rengi griden bala döner. Sabah insanıysanız, sürüşünüz bu.",
+    ride2_chip:"Konsept görsel · altın saat",ride2_tag:"Kayıt: Akşam",ride2_h:"Kor rengi ufuk",
+    ride2_p:"Google profilimizdeki o kare: güneş alçalırken tek sıra ilerleyen grup, uzayan gölgeler, kor rengine dönen ufuk. Günün en cömert ışığında dönüş yolu.",
+    ride_ask:"WhatsApp'tan sor",
+    kare_eyebrow:"Kareler",kare_h:'Dürüst <em>kareler.</em>',
+    kare_sub:"İlk kare işletmenin Google profilinden alındı; kalan üçü bu demo için hazırlanmış konsept görsellerdir. Yayına çıkarken yerlerini sizin kendi fotoğraflarınız alır.",
+    ph_k1:"Google profilinden · gün batımı",ph_k2:"Konsept · sabah sisi",ph_k3:"Konsept · eyerleme",ph_k4:"Konsept · altın saat",
+    guven_eyebrow:"Güven",guven_h:"Dört ayak üstünde dört söz.",
+    g1_h:"Kask standart",g1_p:"Sürüşe kasksız çıkılmaz — Google profilimizdeki karelerde de görürsünüz. Boyunuza uygun kask ahırda hazır.",
+    g2_h:"Rehber hep önde",g2_p:"Grup tek sıra ilerler, rota rehberin avucunun içi gibi bildiği patikalardan geçer. Kimse patikada yalnız kalmaz.",
+    g3_h:"At, binicisine göre",g3_p:"İlk kez binene sakin bir at, deneyimliye daha istekli bir yol arkadaşı. Eşleştirme ahırda, aceleye gelmeden yapılır.",
+    g4_h:"Google'da tam puan",g4_p:"53 misafir, 5 üzerinden 5.0 bıraktı. Karnemiz açık — dilediğiniz an profilimizden okuyabilirsiniz.",
+    book_eyebrow:"Rezervasyon",book_h:'Bir sabahı ya da <em>akşamı</em> ayırtın.',
+    book_lede:"Formu doldurun; mesajınız hazır bir WhatsApp taslağı olarak açılır, göndermek size kalır. Saat, süre, fiyat — aklınızdaki her şeyi sorun.",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_date:"Tarih",label_people:"Kişi",
+    opt_1p:"1 kişi",opt_2p:"2 kişi",opt_3p:"3 kişi",opt_4p:"4+ kişi",
+    label_time:"Saat tercihi",opt_t1:"Sabah",opt_t2:"Akşamüstü",opt_t3:"Gün batımı",opt_t4:"Fark etmez",
+    label_phone:"WhatsApp / Telefon",ph_phone:"Size ulaşabileceğimiz numara",btn_submit:"Sürüş talebi gönder",
+    foot_about:"Göreme'de at çiftliği. Sürüş ahırda başlar: atına özen, patikada rehber, her binicide kask.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Göreme, Nevşehir",foot_google:"Google 5.0★ · 53 yorum",
+    foot_rights:"© 2026 Establo Horse Ranch — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    wa_msg:"Merhaba Establo Horse Ranch! Sürüş için yer ayırtmak istiyorum:",
+    wa_name:"İsim",wa_date:"Tarih",wa_people:"Kişi",wa_time:"Saat tercihi",wa_phone:"Telefon",
+    alert_fill:"Lütfen adınızı, tarihi ve telefon numaranızı doldurun."
+  },
+  en:{
+    meta_title:"Establo Horse Ranch — Horseback Riding in Göreme · Cappadocia",
+    meta_desc:"Horse ranch in Göreme, Cappadocia. Every ride starts at the stable: horse matching, helmets, guided single-file rides through the steppe. Morning mist or sunset light. Google 5.0★ · 53 reviews.",
+    brand_tag:"horse ranch · göreme",
+    nav_ciftlik:"The Ranch",nav_surusler:"Rides",nav_kareler:"Photos",nav_guven:"Trust",nav_book:"Book",
+    theme_label:"Light / Dark",
+    hero_eyebrow:"Stable log · Göreme, Cappadocia",
+    hero_title:'Every ride starts <em>at the stable.</em>',
+    hero_lede:'"Establo" is Spanish for stable — and that is the centre of our day. Your horse is saddled there, you meet it there; then the gate opens onto the dirt trails of Göreme.',
+    hero_cta1:"Book a ride",hero_cta2:"Two ends of the day",hero_proof:"5.0 on Google — 53 reviews",
+    hero_src:"photo: from the ranch's Google profile",scroll_hint:"Stable to steppe",
+    stat1_l:"Google rating",stat2_l:"Google reviews",stat3_n:"Göreme",stat3_l:"In the heart of Cappadocia",stat4_n:"Direct",stat4_l:"Booking via WhatsApp",
+    story_eyebrow:"Log 00 — The Ranch",story_h:'Our name is Spanish for <em>stable.</em>',
+    story_sub:"Not a slogan — a statement of address. We know where a good ride begins and ends.",
+    story_lead:"The quality of a ride is decided long before you sit in the saddle: at the stable, over the grooming brush and the girth strap.",
+    story_p1:"We are in Göreme; the dirt trails from our gate run into the steppe and between the rock formations. Rides are guided, single file, and helmets are standard for everyone.",
+    story_p2:"The straight 5.0 rating left by 53 guests on Google reads like a promise to us: the care taken in the stable carries onto the trail.",
+    story_sign:"— Establo Horse Ranch · Göreme",ph_story:"Concept image · saddling",
+    rit_eyebrow:"Stable log",rit_h:'Three <em>entries.</em>',
+    rit_sub:"The backbone of an Establo ride never changes — the rest bends to the light, the season and you.",
+    rit1_no:"Log 01 · At the stable",rit1_t:"Meet your horse",rit1_p:"Your horse is chosen for your experience level, your helmet is fitted, the girth checked one last time. Nobody rushes.",
+    rit2_no:"Log 02 · On the trail",rit2_t:"Single file, guide in front",rit2_p:"We leave the gate in single file onto the dirt track. The guide sets the pace; no one is left behind, no one is hurried.",
+    rit3_no:"Log 03 · In the light",rit3_t:"The light of the steppe",rit3_p:"The horizon opens between the rocks: a grey-blue cool in the morning, an ember-red glow at dusk. Stopping for photos is welcome.",
+    rit_note:"// duration, route and current prices: ask us on WhatsApp — we reply quickly.",
+    rides_eyebrow:"Rides",rides_h:'Two ends <em>of the day.</em>',
+    rides_sub:"The same trail, two entirely different lights. Times depend on season and availability — tell us your preference and we'll sort it together.",
+    ride1_chip:"Concept image · morning mist",ride1_tag:"Log: Morning",ride1_h:"As the mist lifts",
+    ride1_p:"In the first hours of the day the steppe is cool and the trail is quiet. As the valley mist clears, the rocks turn from grey to honey. If you're a morning person, this is your ride.",
+    ride2_chip:"Concept image · golden hour",ride2_tag:"Log: Evening",ride2_h:"Ember horizon",
+    ride2_p:"The very frame from our Google profile: a single-file group as the sun drops, long shadows, a horizon turning ember-red. The ride home in the day's most generous light.",
+    ride_ask:"Ask on WhatsApp",
+    kare_eyebrow:"Photos",kare_h:'Honest <em>frames.</em>',
+    kare_sub:"The first frame comes from the ranch's Google profile; the other three are concept images prepared for this demo. On the live site they are replaced by your own photos.",
+    ph_k1:"From Google profile · sunset",ph_k2:"Concept · morning mist",ph_k3:"Concept · saddling",ph_k4:"Concept · golden hour",
+    guven_eyebrow:"Trust",guven_h:"Four promises on four legs.",
+    g1_h:"Helmets, always",g1_p:"No one rides without a helmet — you can see it in the photos on our Google profile. A helmet in your size is ready at the stable.",
+    g2_h:"Guide always in front",g2_p:"The group rides single file on trails the guide knows by heart. No one is ever alone on the track.",
+    g3_h:"Horse matched to rider",g3_p:"A calm horse for first-timers, a keener companion for experienced riders. Matching happens at the stable, unhurried.",
+    g4_h:"Perfect score on Google",g4_p:"53 guests left a straight 5.0 out of 5. Our report card is public — read it on our profile any time.",
+    book_eyebrow:"Booking",book_h:'Reserve a morning or <em>an evening.</em>',
+    book_lede:"Fill in the form and your message opens as a ready WhatsApp draft — sending is up to you. Times, duration, prices: ask us anything.",
+    label_name:"Your name",ph_name:"Name and surname",label_date:"Date",label_people:"Guests",
+    opt_1p:"1 person",opt_2p:"2 people",opt_3p:"3 people",opt_4p:"4+ people",
+    label_time:"Time preference",opt_t1:"Morning",opt_t2:"Late afternoon",opt_t3:"Sunset",opt_t4:"No preference",
+    label_phone:"WhatsApp / Phone",ph_phone:"A number we can reach you on",btn_submit:"Send ride request",
+    foot_about:"A horse ranch in Göreme. Every ride starts at the stable: care for the horse, a guide on the trail, a helmet on every rider.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Göreme, Nevşehir",foot_google:"Google 5.0★ · 53 reviews",
+    foot_rights:"© 2026 Establo Horse Ranch — All rights reserved.",foot_demo:"Sample / Demo Design",
+    wa_msg:"Hello Establo Horse Ranch! I'd like to book a ride:",
+    wa_name:"Name",wa_date:"Date",wa_people:"Guests",wa_time:"Time preference",wa_phone:"Phone",
+    alert_fill:"Please fill in your name, the date and your phone number."
+  },
+  es:{
+    meta_title:"Establo Horse Ranch — Paseos a caballo en Göreme · Capadocia",
+    meta_desc:"Rancho de caballos en Göreme, Capadocia. Cada paseo empieza en el establo: caballo a tu medida, casco y guía en fila india por la estepa. Niebla matinal o luz del atardecer. Google 5.0★ · 53 reseñas.",
+    brand_tag:"horse ranch · göreme",
+    nav_ciftlik:"El Rancho",nav_surusler:"Paseos",nav_kareler:"Fotos",nav_guven:"Confianza",nav_book:"Reservar",
+    theme_label:"Claro / Oscuro",
+    hero_eyebrow:"Diario del establo · Göreme, Capadocia",
+    hero_title:'Cada paseo empieza <em>en el establo.</em>',
+    hero_lede:"Sí, «establo» — en español, como suena. Ahí está el centro de nuestro día: allí se ensilla el caballo, allí lo conoces; luego se abre la puerta y empiezan los senderos de tierra de Göreme.",
+    hero_cta1:"Reserva tu paseo",hero_cta2:"Dos extremos del día",hero_proof:"5.0 en Google — 53 reseñas",
+    hero_src:"foto: del perfil de Google del rancho",scroll_hint:"Del establo a la estepa",
+    stat1_l:"Puntuación en Google",stat2_l:"Reseñas en Google",stat3_n:"Göreme",stat3_l:"En el corazón de Capadocia",stat4_n:"Directo",stat4_l:"Reserva por WhatsApp",
+    story_eyebrow:"Registro 00 — El Rancho",story_h:'Nuestro nombre lo dice todo: <em>establo.</em>',
+    story_sub:"No es un eslogan: es una dirección. Sabemos dónde empieza y dónde termina un buen paseo a caballo.",
+    story_lead:"La calidad de un paseo se decide mucho antes de montar: en el establo, junto al cepillo y la cincha.",
+    story_p1:"Estamos en Göreme; los senderos que salen de nuestra puerta cruzan la estepa y pasan entre las formaciones rocosas. Los paseos van guiados, en fila india, y el casco es estándar para todos.",
+    story_p2:"El 5.0 redondo que 53 huéspedes dejaron en Google es para nosotros una promesa: el cuidado del establo continúa en el sendero.",
+    story_sign:"— Establo Horse Ranch · Göreme",ph_story:"Imagen conceptual · ensillado",
+    rit_eyebrow:"Diario del establo",rit_h:'Tres <em>registros.</em>',
+    rit_sub:"La columna vertebral de un paseo en Establo no cambia — el resto se adapta a la luz, la estación y a ti.",
+    rit1_no:"Registro 01 · En el establo",rit1_t:"Conoce a tu caballo",rit1_p:"Elegimos tu caballo según tu experiencia, te damos el casco y revisamos la cincha una última vez. Aquí nadie tiene prisa.",
+    rit2_no:"Registro 02 · En el sendero",rit2_t:"Fila india, guía delante",rit2_p:"Salimos por la puerta en fila india al camino de tierra. El guía marca el ritmo; nadie se queda atrás, nadie va apurado.",
+    rit3_no:"Registro 03 · En la luz",rit3_t:"La luz de la estepa",rit3_p:"Entre las rocas se abre el horizonte: fresco gris azulado por la mañana, rojo brasa al atardecer. Parar a hacer fotos está permitido.",
+    rit_note:"// duración, ruta y precios actuales: pregúntanos por WhatsApp — respondemos pronto.",
+    rides_eyebrow:"Paseos",rides_h:'Dos extremos <em>del día.</em>',
+    rides_sub:"El mismo sendero, dos luces completamente distintas. Los horarios dependen de la estación y la disponibilidad — dinos tu preferencia y lo cuadramos juntos.",
+    ride1_chip:"Imagen conceptual · niebla matinal",ride1_tag:"Registro: Mañana",ride1_h:"Cuando se levanta la niebla",
+    ride1_p:"En las primeras horas la estepa está fresca y el sendero en silencio. Al disiparse la niebla del valle, las rocas pasan del gris al miel. Si eres de mañanas, este es tu paseo.",
+    ride2_chip:"Imagen conceptual · hora dorada",ride2_tag:"Registro: Tarde",ride2_h:"Horizonte de brasa",
+    ride2_p:"La foto de nuestro perfil de Google: el grupo en fila india mientras baja el sol, sombras largas y un horizonte color brasa. El regreso con la luz más generosa del día.",
+    ride_ask:"Pregunta por WhatsApp",
+    kare_eyebrow:"Fotos",kare_h:'Fotos <em>honestas.</em>',
+    kare_sub:"La primera imagen viene del perfil de Google del rancho; las otras tres son imágenes conceptuales preparadas para esta demo. En la web definitiva las sustituyen tus propias fotos.",
+    ph_k1:"Del perfil de Google · atardecer",ph_k2:"Conceptual · niebla matinal",ph_k3:"Conceptual · ensillado",ph_k4:"Conceptual · hora dorada",
+    guven_eyebrow:"Confianza",guven_h:"Cuatro promesas sobre cuatro patas.",
+    g1_h:"Casco siempre",g1_p:"Nadie monta sin casco — se ve en las fotos de nuestro perfil de Google. En el establo hay un casco de tu talla.",
+    g2_h:"Guía siempre delante",g2_p:"El grupo avanza en fila india por senderos que el guía conoce de memoria. Nadie se queda solo en el camino.",
+    g3_h:"Caballo según jinete",g3_p:"Un caballo tranquilo para quien monta por primera vez, uno con más brío para el jinete experto. La elección se hace en el establo, sin prisas.",
+    g4_h:"Puntuación perfecta en Google",g4_p:"53 huéspedes dejaron un 5.0 sobre 5. Nuestro boletín es público — léelo en nuestro perfil cuando quieras.",
+    book_eyebrow:"Reservas",book_h:'Reserva una mañana o <em>una tarde.</em>',
+    book_lede:"Rellena el formulario; tu mensaje se abre como borrador de WhatsApp listo para enviar — enviarlo depende de ti. Horarios, duración, precios: pregunta lo que quieras.",
+    label_name:"Tu nombre",ph_name:"Nombre y apellidos",label_date:"Fecha",label_people:"Personas",
+    opt_1p:"1 persona",opt_2p:"2 personas",opt_3p:"3 personas",opt_4p:"4+ personas",
+    label_time:"Preferencia horaria",opt_t1:"Mañana",opt_t2:"Media tarde",opt_t3:"Atardecer",opt_t4:"Indiferente",
+    label_phone:"WhatsApp / Teléfono",ph_phone:"Un número donde localizarte",btn_submit:"Enviar solicitud",
+    foot_about:"Un rancho de caballos en Göreme. Cada paseo empieza en el establo: cuidado del caballo, guía en el sendero y casco para cada jinete.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Göreme, Nevşehir",foot_google:"Google 5.0★ · 53 reseñas",
+    foot_rights:"© 2026 Establo Horse Ranch — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+    wa_msg:"¡Hola Establo Horse Ranch! Quiero reservar un paseo:",
+    wa_name:"Nombre",wa_date:"Fecha",wa_people:"Personas",wa_time:"Preferencia horaria",wa_phone:"Teléfono",
+    alert_fill:"Por favor, rellena tu nombre, la fecha y tu teléfono."
+  },
+  "zh-CN":{
+    meta_title:"Establo Horse Ranch — 格雷梅骑马之旅 · 卡帕多奇亚",
+    meta_desc:"位于卡帕多奇亚格雷梅的马场。每一次骑行都从马厩开始：按经验配马、佩戴头盔、向导带队单列前行。晨雾或日落光线中的卡帕多奇亚。Google 5.0★ · 53条评价。",
+    brand_tag:"horse ranch · göreme",
+    nav_ciftlik:"马场",nav_surusler:"骑行",nav_kareler:"照片",nav_guven:"安心",nav_book:"预约",
+    theme_label:"浅色 / 深色",
+    hero_eyebrow:"马厩日志 · 格雷梅 · 卡帕多奇亚",
+    hero_title:'每一次骑行，都从<em>马厩</em>开始。',
+    hero_lede:"Establo 在西班牙语里意为“马厩”——那里是我们一天的中心：马在那里备鞍，您在那里与它初见；然后大门打开，格雷梅的土路在眼前展开。",
+    hero_cta1:"预约骑行",hero_cta2:"一天的两端",hero_proof:"Google 5.0 分 — 53 条评价",
+    hero_src:"照片来自马场的 Google 商家资料",scroll_hint:"从马厩到草原",
+    stat1_l:"Google 评分",stat2_l:"Google 评价",stat3_n:"格雷梅",stat3_l:"卡帕多奇亚的中心",stat4_n:"直连",stat4_l:"WhatsApp 直接预约",
+    story_eyebrow:"记录 00 — 马场",story_h:'我们的名字，西班牙语意为<em>马厩</em>。',
+    story_sub:"这不是一句口号，而是一个地址：我们清楚一段好的骑行从哪里开始、在哪里结束。",
+    story_lead:"骑行的品质，早在您跨上马鞍之前就已决定——在马厩里，在刷毛和检查肚带的时刻。",
+    story_p1:"我们位于格雷梅；从门口出发的土路通向草原，穿行于奇岩之间。骑行全程由向导带队、单列前行，头盔是每个人的标配。",
+    story_p2:"53 位客人在 Google 留下了整整 5.0 分。这对我们像一句承诺：马厩里的用心，也要延续到小路上。",
+    story_sign:"— Establo Horse Ranch · 格雷梅",ph_story:"概念图 · 备鞍",
+    rit_eyebrow:"马厩日志",rit_h:'三条<em>记录</em>。',
+    rit_sub:"Establo 骑行的骨架从不改变——其余的交给光线、季节和您。",
+    rit1_no:"记录 01 · 在马厩",rit1_t:"与您的马相识",rit1_p:"根据您的经验挑选马匹，为您佩戴头盔，最后再检查一次肚带。这里没有人催促。",
+    rit2_no:"记录 02 · 在小路",rit2_t:"单列前行，向导在前",rit2_p:"出门后单列走上土路。速度由向导掌握；没有人掉队，也没有人被催赶。",
+    rit3_no:"记录 03 · 在光里",rit3_t:"草原的光",rit3_p:"岩石之间地平线展开：清晨是灰蓝色的凉意，傍晚是炭火色的天际。随时可以停下拍照。",
+    rit_note:"// 时长、路线与最新价格：请在 WhatsApp 上询问——我们会尽快回复。",
+    rides_eyebrow:"骑行",rides_h:'一天的<em>两端</em>。',
+    rides_sub:"同一条小路，两种截然不同的光。时间随季节与档期安排——告诉我们您的偏好，一起确定。",
+    ride1_chip:"概念图 · 晨雾",ride1_tag:"记录：清晨",ride1_h:"晨雾散去时",
+    ride1_p:"清晨的草原凉爽，小路安静。山谷的雾气散开时，岩石从灰色变成蜜色。如果您是早起的人，这就是属于您的骑行。",
+    ride2_chip:"概念图 · 黄金时刻",ride2_tag:"记录：黄昏",ride2_h:"炭火色的地平线",
+    ride2_p:"正是我们 Google 资料里的那张照片：夕阳西下时单列前行的队伍、拉长的影子、烧红的地平线。在一天中最慷慨的光线里踏上归途。",
+    ride_ask:"WhatsApp 咨询",
+    kare_eyebrow:"照片",kare_h:'诚实的<em>照片</em>。',
+    kare_sub:"第一张来自马场的 Google 商家资料；其余三张是为本演示准备的概念图。正式上线时将替换为您自己的照片。",
+    ph_k1:"Google 资料照片 · 日落",ph_k2:"概念图 · 晨雾",ph_k3:"概念图 · 备鞍",ph_k4:"概念图 · 黄金时刻",
+    guven_eyebrow:"安心",guven_h:"四蹄之上的四个承诺。",
+    g1_h:"头盔是标配",g1_p:"没有头盔不出发——在我们 Google 资料的照片里也能看到。马厩里备有适合您的头盔。",
+    g2_h:"向导始终在前",g2_p:"队伍单列前行，路线是向导烂熟于心的小路。没有人会独自留在路上。",
+    g3_h:"按骑手配马",g3_p:"初次骑马配沉稳的马，有经验的骑手配更有劲头的伙伴。配对在马厩里从容完成。",
+    g4_h:"Google 满分",g4_p:"53 位客人给出了 5.0 的满分。我们的成绩单是公开的——随时可在资料页查看。",
+    book_eyebrow:"预约",book_h:'预订一个清晨，或<em>一个黄昏</em>。',
+    book_lede:"填写表单，您的消息会生成一条现成的 WhatsApp 草稿——发送与否由您决定。时间、时长、价格，尽管问。",
+    label_name:"您的姓名",ph_name:"姓名",label_date:"日期",label_people:"人数",
+    opt_1p:"1 人",opt_2p:"2 人",opt_3p:"3 人",opt_4p:"4 人以上",
+    label_time:"时间偏好",opt_t1:"清晨",opt_t2:"午后",opt_t3:"日落",opt_t4:"均可",
+    label_phone:"WhatsApp / 电话",ph_phone:"方便联系您的号码",btn_submit:"发送骑行申请",
+    foot_about:"格雷梅的马场。骑行从马厩开始：善待马匹、向导带队、人人佩戴头盔。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"格雷梅，内夫谢希尔",foot_google:"Google 5.0★ · 53 条评价",
+    foot_rights:"© 2026 Establo Horse Ranch — 保留所有权利。",foot_demo:"示例 / 演示设计",
+    wa_msg:"您好 Establo Horse Ranch！我想预约骑行：",
+    wa_name:"姓名",wa_date:"日期",wa_people:"人数",wa_time:"时间偏好",wa_phone:"电话",
+    alert_fill:"请填写姓名、日期和电话号码。"
+  },
+  ko:{
+    meta_title:"Establo Horse Ranch — 괴레메 승마 투어 · 카파도키아",
+    meta_desc:"카파도키아 괴레메의 승마 목장. 모든 라이딩은 마구간에서 시작됩니다: 경험에 맞는 말 배정, 헬멧, 가이드와 한 줄 대형. 아침 안개 또는 석양빛 속의 카파도키아. Google 5.0★ · 리뷰 53개.",
+    brand_tag:"horse ranch · göreme",
+    nav_ciftlik:"목장",nav_surusler:"라이딩",nav_kareler:"사진",nav_guven:"신뢰",nav_book:"예약",
+    theme_label:"라이트 / 다크",
+    hero_eyebrow:"마구간 일지 · 괴레메, 카파도키아",
+    hero_title:'모든 라이딩은 <em>마구간</em>에서 시작됩니다.',
+    hero_lede:"Establo는 스페인어로 '마구간'이라는 뜻입니다. 우리의 하루는 그곳이 중심입니다: 말에 안장을 얹고, 손님이 자신의 말과 처음 인사하는 곳 — 그리고 문이 열리면 괴레메의 흙길이 시작됩니다.",
+    hero_cta1:"라이딩 예약",hero_cta2:"하루의 양 끝",hero_proof:"Google 5.0 — 리뷰 53개",
+    hero_src:"사진: 목장의 Google 프로필에서",scroll_hint:"마구간에서 초원으로",
+    stat1_l:"Google 평점",stat2_l:"Google 리뷰",stat3_n:"괴레메",stat3_l:"카파도키아의 중심",stat4_n:"다이렉트",stat4_l:"WhatsApp 바로 예약",
+    story_eyebrow:"기록 00 — 목장",story_h:'우리 이름은 스페인어로 <em>마구간.</em>',
+    story_sub:"슬로건이 아니라 주소입니다. 좋은 라이딩이 어디서 시작되고 끝나는지 우리는 압니다.",
+    story_lead:"라이딩의 품질은 안장에 오르기 훨씬 전에 정해집니다 — 마구간에서, 손질 브러시와 뱃대끈 앞에서.",
+    story_p1:"우리는 괴레메에 있습니다. 문앞에서 시작되는 흙길은 초원과 기암 사이로 이어집니다. 라이딩은 가이드와 함께 한 줄로 진행되며, 헬멧은 모두의 기본입니다.",
+    story_p2:"53명의 손님이 Google에 남긴 5.0 만점은 우리에게 약속과 같습니다: 마구간에서의 정성이 길 위에서도 이어진다는 것.",
+    story_sign:"— Establo Horse Ranch · 괴레메",ph_story:"콘셉트 이미지 · 안장 얹기",
+    rit_eyebrow:"마구간 일지",rit_h:'세 개의 <em>기록.</em>',
+    rit_sub:"Establo 라이딩의 뼈대는 변하지 않습니다 — 나머지는 빛과 계절, 그리고 당신에 맞춰집니다.",
+    rit1_no:"기록 01 · 마구간에서",rit1_t:"말과 인사하기",rit1_p:"경험에 맞춰 말을 배정하고, 헬멧을 드리고, 뱃대끈을 마지막으로 점검합니다. 서두르는 사람은 없습니다.",
+    rit2_no:"기록 02 · 흙길에서",rit2_t:"한 줄로, 가이드가 앞에",rit2_p:"문을 나서면 한 줄로 흙길에 오릅니다. 속도는 가이드가 정하고, 누구도 뒤처지거나 재촉당하지 않습니다.",
+    rit3_no:"기록 03 · 빛 속에서",rit3_t:"초원의 빛",rit3_p:"바위 사이로 지평선이 열립니다: 아침엔 회청색의 서늘함, 저녁엔 잉걸불 빛 하늘. 사진을 위해 멈추는 건 언제나 환영입니다.",
+    rit_note:"// 소요 시간, 코스, 최신 요금: WhatsApp으로 문의하세요 — 빠르게 답합니다.",
+    rides_eyebrow:"라이딩",rides_h:'하루의 <em>양 끝.</em>',
+    rides_sub:"같은 길, 전혀 다른 두 개의 빛. 시간은 계절과 일정에 따라 정해집니다 — 선호를 알려주시면 함께 맞춰드립니다.",
+    ride1_chip:"콘셉트 이미지 · 아침 안개",ride1_tag:"기록: 아침",ride1_h:"안개가 걷힐 때",
+    ride1_p:"이른 아침의 초원은 서늘하고 길은 고요합니다. 골짜기 안개가 걷히면 바위 빛깔이 회색에서 꿀색으로 바뀝니다. 아침형 인간이라면, 이 라이딩입니다.",
+    ride2_chip:"콘셉트 이미지 · 골든아워",ride2_tag:"기록: 저녁",ride2_h:"잉걸불 빛 지평선",
+    ride2_p:"우리 Google 프로필의 바로 그 장면: 해가 낮아질 때 한 줄로 나아가는 행렬, 길어지는 그림자, 붉게 물드는 지평선. 하루 중 가장 너그러운 빛 속의 귀갓길.",
+    ride_ask:"WhatsApp으로 문의",
+    kare_eyebrow:"사진",kare_h:'정직한 <em>사진들.</em>',
+    kare_sub:"첫 번째 사진은 목장의 Google 프로필에서 가져왔고, 나머지 셋은 이 데모를 위해 준비한 콘셉트 이미지입니다. 실제 사이트에서는 목장의 사진으로 교체됩니다.",
+    ph_k1:"Google 프로필 · 석양",ph_k2:"콘셉트 · 아침 안개",ph_k3:"콘셉트 · 안장 얹기",ph_k4:"콘셉트 · 골든아워",
+    guven_eyebrow:"신뢰",guven_h:"네 다리 위의 네 가지 약속.",
+    g1_h:"헬멧은 기본",g1_p:"헬멧 없이는 출발하지 않습니다 — Google 프로필 사진에서도 확인할 수 있습니다. 머리에 맞는 헬멧이 마구간에 준비되어 있습니다.",
+    g2_h:"가이드가 항상 앞에",g2_p:"그룹은 한 줄로 나아가고, 코스는 가이드가 훤히 아는 길입니다. 길 위에 혼자 남는 사람은 없습니다.",
+    g3_h:"말은 라이더에 맞게",g3_p:"처음 타는 분께는 차분한 말을, 경험자에게는 더 활기찬 동반자를. 배정은 마구간에서 서두르지 않고 이뤄집니다.",
+    g4_h:"Google 만점",g4_p:"53명의 손님이 5점 만점에 5.0을 남겼습니다. 성적표는 공개되어 있습니다 — 언제든 프로필에서 확인하세요.",
+    book_eyebrow:"예약",book_h:'아침 또는 <em>저녁</em>을 예약하세요.',
+    book_lede:"폼을 작성하면 메시지가 WhatsApp 초안으로 열립니다 — 보내는 건 당신의 몫입니다. 시간, 소요, 요금 등 무엇이든 물어보세요.",
+    label_name:"성함",ph_name:"성함",label_date:"날짜",label_people:"인원",
+    opt_1p:"1명",opt_2p:"2명",opt_3p:"3명",opt_4p:"4명 이상",
+    label_time:"시간 선호",opt_t1:"아침",opt_t2:"늦은 오후",opt_t3:"석양",opt_t4:"상관없음",
+    label_phone:"WhatsApp / 전화",ph_phone:"연락 가능한 번호",btn_submit:"라이딩 요청 보내기",
+    foot_about:"괴레메의 승마 목장. 라이딩은 마구간에서 시작됩니다: 말을 향한 정성, 길 위의 가이드, 모든 라이더의 헬멧.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"괴레메, 네브셰히르",foot_google:"Google 5.0★ · 리뷰 53개",
+    foot_rights:"© 2026 Establo Horse Ranch — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    wa_msg:"안녕하세요 Establo Horse Ranch! 라이딩을 예약하고 싶습니다:",
+    wa_name:"성함",wa_date:"날짜",wa_people:"인원",wa_time:"시간 선호",wa_phone:"전화",
+    alert_fill:"성함, 날짜, 전화번호를 입력해 주세요."
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  document.querySelectorAll('[data-count]').forEach(el=>{ if(el.dataset.done){ el.textContent = el.dataset.count + (el.getAttribute('data-suffix')||''); }});
+
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  try{ localStorage.setItem('establo_lang', lang); }catch(e){}
+}
+
+function initLang(){
+  let lang = null;
+  const url = new URLSearchParams(location.search).get('lang');
+  if(url && SUPPORTED.includes(url)) lang = url;
+  if(!lang){ try{ const s=localStorage.getItem('establo_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click', ()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+// ==================== TEMA (aydınlık/karanlık) ====================
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('establo_theme', t); }catch(e){}
+}
+function toggleTheme(){
+  const cur = document.documentElement.getAttribute('data-theme')==='light' ? 'light' : 'dark';
+  applyTheme(cur==='light' ? 'dark' : 'light');
+}
+document.getElementById('themeBtn').addEventListener('click', toggleTheme);
+document.getElementById('themeBtnM').addEventListener('click', toggleTheme);
+
+// ==================== MOBİL MENÜ ====================
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+// ==================== NAV SCROLL + SCROLL-SPY (expandable tabs) ====================
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScroll);onScroll();
+
+(function(){
+  const links = Array.from(document.querySelectorAll('#navlinks a[href^="#"]'));
+  const map = {};
+  links.forEach(a=>{ const id=a.getAttribute('href').slice(1); const sec=document.getElementById(id); if(sec) map[id]=a; });
+  const spy = new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const a = map[e.target.id];
+        if(a) a.classList.add('active');
+      }
+    });
+  },{rootMargin:'-38% 0px -55% 0px'});
+  Object.keys(map).forEach(id=>spy.observe(document.getElementById(id)));
+})();
+
+// ==================== REVEAL + COUNT ====================
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      if(e.target.querySelectorAll) e.target.querySelectorAll('[data-count]').forEach(runCount);
+      if(e.target.hasAttribute && e.target.hasAttribute('data-count')) runCount(e.target);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.2});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));
+
+function runCount(el){
+  if(el.dataset.done) return; el.dataset.done='1';
+  const target=parseInt(el.dataset.count,10);
+  const suffix=el.getAttribute('data-suffix')||'';
+  const dur=1400;const t0=performance.now();
+  function tick(now){
+    const p=Math.min((now-t0)/dur,1);const eased=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(eased*target)+suffix;
+    if(p<1)requestAnimationFrame(tick);else el.textContent=target+suffix;
+  }
+  requestAnimationFrame(tick);
+}
+
+// ==================== GÖRSEL YÜKLEME (varsa göster) ====================
+(function(){
+  const base='assets/images/';
+  function tryImg(el, file){
+    const img=new Image();
+    img.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; };
+    img.onerror=()=>{};
+    img.src=base+file;
+  }
+  const hero=document.getElementById('heroPhoto');
+  if(hero){ const hi=new Image(); hi.onload=()=>{ hero.style.backgroundImage=`url('${base}hero.jpg')`; hero.classList.add('has-img'); }; hi.onerror=()=>{}; hi.src=base+'hero.jpg'; }
+  const story=document.getElementById('storyImg');
+  if(story) tryImg(story,'story.jpg');
+  document.querySelectorAll('.tile[data-img], .rv[data-img]').forEach(t=>tryImg(t,t.getAttribute('data-img')));
+})();
+
+// ==================== İMZA 1 — SİS KATMANI (canvas, file:// güvenli) ====================
+// Hero fotoğrafının üstünde yavaşça süzülen sis bantları. Tema değişimini her karede okur;
+// prefers-reduced-motion'da tek statik kare çizer.
+(function(){
+  const c=document.getElementById('fog'); if(!c) return;
+  const ctx=c.getContext('2d'); if(!ctx) return;
+  let W=0,H=0;
+  function size(){ const r=c.parentElement.getBoundingClientRect(); W=c.width=Math.round(r.width)||innerWidth; H=c.height=Math.round(r.height)||innerHeight; }
+  size(); window.addEventListener('resize',size);
+  const blobs=[];
+  for(let i=0;i<7;i++){
+    blobs.push({
+      x:Math.random(), y:.4+Math.random()*.55,
+      r:.22+Math.random()*.34,
+      s:(.00016+Math.random()*.00028)*(i%2?1:-1),
+      o:.05+Math.random()*.075
+    });
+  }
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const dark=document.documentElement.getAttribute('data-theme')==='dark';
+    const col=dark?'150,168,172':'222,229,226';
+    for(const b of blobs){
+      b.x+=b.s; if(b.x>1.45)b.x=-.45; if(b.x<-.45)b.x=1.45;
+      const g=ctx.createRadialGradient(b.x*W,b.y*H,0,b.x*W,b.y*H,Math.max(40,b.r*W));
+      g.addColorStop(0,'rgba('+col+','+b.o+')');
+      g.addColorStop(1,'rgba('+col+',0)');
+      ctx.fillStyle=g;
+      ctx.beginPath(); ctx.arc(b.x*W,b.y*H,Math.max(40,b.r*W),0,7); ctx.fill();
+    }
+    if(!reduce) requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ==================== REZERVASYON → WHATSAPP (çok dilli) ====================
+const WHATSAPP = "905442756938";
+function sendBooking(){
+  const d = I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const date=document.getElementById('f-date').value;
+  const count=document.getElementById('f-count').value;
+  const time=document.getElementById('f-time').value;
+  const phone=document.getElementById('f-phone').value.trim();
+  if(!name||!date||!phone){ alert(d.alert_fill); return; }
+  const msg = encodeURIComponent(d.wa_msg)+"%0A%0A"+
+    encodeURIComponent(d.wa_name)+": "+encodeURIComponent(name)+"%0A"+
+    encodeURIComponent(d.wa_date)+": "+encodeURIComponent(date)+"%0A"+
+    encodeURIComponent(d.wa_people)+": "+encodeURIComponent(count)+"%0A"+
+    encodeURIComponent(d.wa_time)+": "+encodeURIComponent(time)+"%0A"+
+    encodeURIComponent(d.wa_phone)+": "+encodeURIComponent(phone);
+  window.open("https://wa.me/"+WHATSAPP+"?text="+msg,"_blank");
+}
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items = Array.from(document.querySelectorAll('.gallery .tile[data-img], .rv[data-img]'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  const capOf = t => { const l = t.querySelector('.cap') || t.querySelector('.chip'); return l ? l.textContent.trim() : ''; };
+  function show(i){ idx = (i + items.length) % items.length; const t = items[idx]; img.src = base + t.getAttribute('data-img'); cap.textContent = capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>{ t.addEventListener('click',()=>open(i)); t.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(i); } }); });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+// ==================== BAŞLAT ====================
+initLang();
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+</body>
+</html>
