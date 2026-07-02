@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Stone White Travel — Göreme ATV &amp; Jeep Safari | Kapadokya</title>
+<meta name="description" data-i18n="meta_desc" content="Göreme merkezli Stone White Travel ile Kapadokya'da ATV safari ve klasik Defender'larla jeep safari. Beyaz tüf yamaçları, gün batımı çıkışları, balon manzaralı foto durakları.">
+<script>
+/* Tema erken kilidi — beyaz/siyah flaş olmasın. ?theme=light|dark > localStorage > sistem */
+(function(){
+  var t=null;
+  try{ t=new URLSearchParams(location.search).get('theme'); }catch(e){}
+  if(t!=='light'&&t!=='dark'){ try{ t=localStorage.getItem('swt_theme'); }catch(e){} }
+  if(t!=='light'&&t!=='dark'){ t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'; }
+  document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<style>
+  /* ============ STONE WHITE TRAVEL — Kinetik Tipografi ============
+     Kimlik: beyaz tüf + yüksek kontrast + tek sıcak aksan (kor turuncu).
+     Koyu tema: gece tozu. Açık tema: tüf beyazı. Hero HER İKİ temada koyu kalır
+     (foto okunurluğu beyazlatılmaz; tasarım kararı). */
+  :root, html[data-theme="dark"]{
+    --bg:#161310; --bg2:#1d1915; --surface:#211c17; --card:#26201a;
+    --ink:#f3efe5; --mut:#b3a893; --acc:#ff5a1f; --acc-ink:#1a0d05;
+    --line:rgba(243,239,229,.14); --line2:rgba(243,239,229,.3);
+    --chipbg:rgba(20,15,10,.62); --shadow:rgba(0,0,0,.45);
+  }
+  html[data-theme="light"]{
+    --bg:#efe9dd; --bg2:#e6dfd0; --surface:#f7f3ea; --card:#faf7f0;
+    --ink:#191410; --mut:#6c6050; --acc:#bf3608; --acc-ink:#fff6ef;
+    --line:rgba(25,20,16,.16); --line2:rgba(25,20,16,.38);
+    --chipbg:rgba(20,15,10,.62); --shadow:rgba(60,45,30,.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  body{font-family:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+    color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden;
+    transition:background .4s,color .4s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  /* Kinetik display: Impact — Windows/macOS çekirdek font, CDN yok */
+  h1,h2,h3,.disp{font-family:'Impact','Haettenschweiler','Arial Black',sans-serif;font-weight:400;
+    text-transform:uppercase;line-height:.94;letter-spacing:.015em}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,html[lang="zh-CN"] .disp{font-family:'Microsoft YaHei','PingFang SC',sans-serif;font-weight:900;line-height:1.12}
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3,html[lang="ko"] .disp{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;font-weight:900;line-height:1.12}
+  .mono{font-family:'Consolas','Cascadia Mono','SF Mono','Courier New',monospace}
+  .eyebrow{font-family:'Consolas','Cascadia Mono','SF Mono','Courier New',monospace;
+    text-transform:uppercase;letter-spacing:.34em;font-size:.7rem;font-weight:700;color:var(--acc)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.12em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 30px}
+  img{max-width:100%;display:block}
+
+  /* ============ NAV — 21st.dev "tubelight navbar" vanilla portu ============
+     Koyu cam pill her iki temada sabit (kinetik kontrast); aktif linkin altında
+     kayan neon-tüp gösterge (JS transform + glow). Mobilde alt dock'a taşınır. */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+    padding:14px 26px;gap:16px;transition:background .4s,box-shadow .4s}
+  nav.scrolled{background:rgba(16,13,10,.78);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(243,239,229,.12)}
+  .brand{display:flex;align-items:center;gap:11px;flex:none;color:#f3efe5}
+  .brand img{width:34px;height:34px;border-radius:50%;border:2px solid rgba(243,239,229,.85);background:#fff}
+  .brand .bname{font-family:'Impact','Haettenschweiler','Arial Black',sans-serif;font-size:1.18rem;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .brand .bname small{display:block;font-family:'Consolas','Courier New',monospace;font-size:.56rem;letter-spacing:.42em;color:#ff7a45;margin-top:3px}
+  .navpill{position:relative;display:flex;align-items:center;gap:4px;background:rgba(16,13,10,.66);
+    border:1px solid rgba(243,239,229,.16);border-radius:999px;padding:5px;backdrop-filter:blur(12px)}
+  .navpill a{position:relative;z-index:2;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.74rem;
+    letter-spacing:.14em;text-transform:uppercase;color:#cfc6b2;padding:9px 16px;border-radius:999px;transition:color .3s}
+  html[lang="zh-CN"] .navpill a,html[lang="ko"] .navpill a{letter-spacing:.04em;font-size:.84rem}
+  .navpill a:hover{color:#f3efe5}
+  .navpill a.active{color:#ffb494}
+  .tube{position:absolute;z-index:1;top:5px;bottom:5px;left:0;width:60px;border-radius:999px;
+    background:rgba(255,90,31,.14);opacity:0;transition:transform .4s cubic-bezier(.3,.7,.2,1),width .4s cubic-bezier(.3,.7,.2,1),opacity .3s;pointer-events:none}
+  .tube::before{content:"";position:absolute;top:-1px;left:22%;right:22%;height:3px;border-radius:3px;
+    background:#ff5a1f;box-shadow:0 0 12px 2px rgba(255,90,31,.8),0 0 30px 6px rgba(255,90,31,.35)}
+  .tube.on{opacity:1}
+  .nav-right{display:flex;align-items:center;gap:10px;flex:none}
+  .langs{display:flex;align-items:center;gap:1px;background:rgba(16,13,10,.66);border:1px solid rgba(243,239,229,.16);
+    border-radius:999px;padding:4px 6px;backdrop-filter:blur(12px)}
+  .langs button{background:none;border:none;color:#a99d86;font-family:'Consolas','Courier New',monospace;font-size:.68rem;
+    cursor:pointer;padding:5px 6px;border-radius:999px;letter-spacing:.04em;transition:.25s}
+  .langs button:hover{color:#f3efe5}
+  .langs button.active{color:#ff7a45;font-weight:700}
+  .theme-btn{background:rgba(16,13,10,.66);border:1px solid rgba(243,239,229,.16);border-radius:999px;width:38px;height:38px;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;color:#e8e1d2;backdrop-filter:blur(12px);transition:.3s}
+  .theme-btn:hover{color:#ff7a45;border-color:rgba(255,90,31,.5)}
+  .theme-btn svg{width:17px;height:17px}
+  .theme-btn .ic-sun{display:none}
+  html[data-theme="light"] .theme-btn .ic-sun{display:block}
+  html[data-theme="light"] .theme-btn .ic-moon{display:none}
+  .nav-cta{background:#ff5a1f;color:#1a0d05!important;font-family:'Consolas','Courier New',monospace;font-size:.72rem;
+    font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:11px 18px;border-radius:999px;transition:.3s;flex:none}
+  .nav-cta:hover{background:#f3efe5}
+  .menu-btn{display:none;background:rgba(16,13,10,.66);border:1px solid rgba(243,239,229,.16);border-radius:999px;
+    width:38px;height:38px;align-items:center;justify-content:center;cursor:pointer;color:#f3efe5}
+
+  /* mobil alt dock — tubelight'ın kompakt hâli */
+  .dock{display:none;position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:65;
+    background:rgba(16,13,10,.82);border:1px solid rgba(243,239,229,.18);border-radius:999px;padding:6px;
+    backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.4);align-items:center;gap:2px}
+  .dock a{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:3px;color:#b6ab94;
+    font-family:'Consolas','Courier New',monospace;font-size:.54rem;letter-spacing:.06em;text-transform:uppercase;
+    padding:8px 13px;border-radius:999px;transition:color .3s;min-width:60px}
+  .dock a svg{width:17px;height:17px}
+  .dock a.active{color:#ffb494}
+  .dock .tube{top:6px;bottom:6px}
+  @media(max-width:960px){
+    .navpill,.nav-cta,.langs{display:none}
+    .menu-btn{display:flex}
+    .dock{display:flex}
+  }
+
+  /* mobil menü overlay */
+  .mobile-menu{position:fixed;inset:0;z-index:80;background:rgba(14,11,8,.97);backdrop-filter:blur(10px);
+    display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:'Impact','Haettenschweiler','Arial Black',sans-serif;font-size:2.3rem;color:#f3efe5;
+    text-transform:uppercase;letter-spacing:.02em}
+  html[lang="zh-CN"] .mobile-menu a,html[lang="ko"] .mobile-menu a{font-family:inherit;font-weight:900}
+  .mobile-menu a em{font-style:normal;color:#ff5a1f}
+  .mobile-menu .close{position:absolute;top:22px;right:24px;background:none;border:none;color:#f3efe5;cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+  .mobile-menu .m-langs button{background:none;border:1px solid rgba(243,239,229,.25);color:#b6ab94;padding:8px 14px;
+    border-radius:999px;font-family:'Consolas','Courier New',monospace;font-size:.8rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:#ff7a45;border-color:#ff5a1f}
+  .m-theme{margin-top:6px;background:none;border:1px solid rgba(243,239,229,.25);color:#b6ab94;padding:9px 18px;
+    border-radius:999px;font-family:'Consolas','Courier New',monospace;font-size:.74rem;letter-spacing:.1em;cursor:pointer;
+    display:flex;align-items:center;gap:8px}
+  .m-theme svg{width:15px;height:15px}
+
+  /* ============ HERO — her iki temada koyu (foto beyazlatılmaz) ============ */
+  .hero{position:relative;height:100vh;min-height:660px;overflow:hidden;display:flex;align-items:flex-end;
+    background:#131009;isolation:isolate}
+  .hero-bg{position:absolute;inset:0;z-index:1;background:url('assets/images/hero.jpg') center 38%/cover no-repeat;
+    animation:kenburns 36s ease-in-out infinite alternate;transform-origin:62% 45%}
+  @keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.10)}}
+  .hero-scrim{position:absolute;inset:0;z-index:2;
+    background:linear-gradient(180deg,rgba(15,11,7,.62) 0%,rgba(15,11,7,.18) 38%,rgba(15,11,7,.28) 62%,rgba(15,11,7,.82) 100%),
+    radial-gradient(70% 60% at 22% 78%,rgba(15,11,7,.55),transparent 70%)}
+  #hero-gradient{position:absolute;inset:0;z-index:3;pointer-events:none;mix-blend-mode:overlay;opacity:.5;
+    --gradient-color-1:#1c130c; --gradient-color-2:#ff5a1f; --gradient-color-3:#d8cdb8; --gradient-color-4:#5a4433}
+  .no-webgl #hero-gradient{display:none}
+  .hero-inner{position:relative;z-index:10;width:100%;padding-bottom:12vh}
+  .hero-eyebrow{display:flex;align-items:center;gap:14px;color:#e8e1d2;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase}
+  .hero-eyebrow::before{content:"";width:44px;height:2px;background:#ff5a1f}
+  .hero-eyebrow .coords{color:#9d917b;letter-spacing:.12em}
+  /* Kinetik makas tipografi — STONE dolu, WHITE kontur; scroll'da zıt yönlere kayar */
+  .hero-title{margin-top:20px;font-size:clamp(4.2rem,13.5vw,11.5rem);color:#f3efe5;display:block}
+  .hero-title .hw{display:block;will-change:transform}
+  .hero-title .hw.out{color:transparent;-webkit-text-stroke:3px #f3efe5;margin-top:-.06em}
+  @supports not (-webkit-text-stroke:1px black){.hero-title .hw.out{color:#f3efe5}}
+  .hero-line{margin-top:14px;color:#ff7a45;font-size:clamp(.78rem,1.4vw,1rem);letter-spacing:.3em;text-transform:uppercase;font-weight:700}
+  html[lang="zh-CN"] .hero-line,html[lang="ko"] .hero-line{letter-spacing:.1em}
+  .hero .lede{font-size:clamp(1rem,1.5vw,1.22rem);color:rgba(243,239,229,.88);max-width:52ch;margin-top:20px;font-weight:300;text-shadow:0 2px 20px rgba(0,0,0,.55)}
+  .hero-cta{display:flex;gap:18px;margin-top:34px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:#ff5a1f;color:#1a0d05;padding:17px 34px;border-radius:2px;
+    font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-weight:700;font-size:.84rem;letter-spacing:.14em;
+    text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.3s;border:none;cursor:pointer}
+  .btn-solid:hover{background:#f3efe5;gap:16px}
+  .btn-line{color:#f3efe5;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.84rem;letter-spacing:.14em;
+    text-transform:uppercase;border-bottom:2px solid rgba(243,239,229,.4);padding-bottom:5px;transition:.35s}
+  .btn-line:hover{border-color:#ff5a1f;color:#ff7a45}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{letter-spacing:.04em}
+  .scrollhint{position:absolute;bottom:26px;right:30px;z-index:10;font-family:'Consolas','Courier New',monospace;
+    font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(243,239,229,.6);
+    display:flex;align-items:center;gap:10px;writing-mode:vertical-rl}
+  .scrollhint .l{width:1px;height:40px;background:linear-gradient(#ff5a1f,transparent);animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ============ SIGNATURE — "TOZ BANDI": çift yönlü kinetik marquee ============ */
+  .band{position:relative;z-index:12;overflow:hidden;padding:34px 0;margin:-46px 0 -14px;pointer-events:none}
+  .band-rot{transform:rotate(-2deg);width:112%;margin-left:-6%}
+  .band-row{white-space:nowrap;overflow:hidden}
+  .band-row.solid{background:var(--acc);padding:10px 0;box-shadow:0 8px 30px var(--shadow)}
+  .band-row.ghost{padding:6px 0}
+  .band-track{display:inline-block;white-space:nowrap;animation:bandslide 30s linear infinite;will-change:transform}
+  .band-row.ghost .band-track{animation-direction:reverse;animation-duration:38s}
+  @keyframes bandslide{to{transform:translateX(-50%)}}
+  .band-txt{font-family:'Impact','Haettenschweiler','Arial Black',sans-serif;font-size:1.5rem;letter-spacing:.08em;
+    text-transform:uppercase;display:inline-block;padding-right:.6em}
+  .band-row.solid .band-txt{color:var(--acc-ink)}
+  .band-row.ghost .band-txt{color:transparent;-webkit-text-stroke:1.5px var(--line2);font-size:1.9rem}
+  @supports not (-webkit-text-stroke:1px black){.band-row.ghost .band-txt{color:var(--mut);opacity:.4}}
+
+  /* ============ STATS — IG sosyal kanıtı ============ */
+  .stats{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;z-index:5}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:54px 30px}
+  .stat .n{font-family:'Impact','Haettenschweiler','Arial Black',sans-serif;font-size:clamp(2.4rem,4.8vw,3.8rem);color:var(--ink);line-height:1;letter-spacing:.01em}
+  html[lang="zh-CN"] .stat .n,html[lang="ko"] .stat .n{font-family:inherit;font-weight:900}
+  .stat .n em{font-style:normal;color:var(--acc)}
+  .stat .l{font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:12px}
+  html[lang="zh-CN"] .stat .l,html[lang="ko"] .stat .l{letter-spacing:.04em}
+  .stat{border-left:3px solid var(--acc);padding-left:18px}
+  @media(max-width:680px){.stats .wrap{grid-template-columns:1fr 1fr;gap:34px 20px;padding:44px 30px}}
+
+  section{padding:110px 0;position:relative}
+  .sec-head{max-width:760px;margin-bottom:60px}
+  .sec-head .eyebrow{display:block;margin-bottom:16px}
+  .sec-head h2{font-size:clamp(2.6rem,6vw,4.6rem);color:var(--ink)}
+  .sec-head h2 em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--acc)}
+  @supports not (-webkit-text-stroke:1px black){.sec-head h2 em{color:var(--acc)}}
+  .sec-head p{margin-top:18px;color:var(--mut);font-size:1.06rem;font-weight:300;max-width:62ch}
+
+  /* ============ STORY / OFİS ============ */
+  .story{background:var(--bg)}
+  .story-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:60px;align-items:center}
+  .story-visual{position:relative}
+  .story-visual .ph{border-radius:3px;box-shadow:14px 14px 0 var(--acc);width:100%;aspect-ratio:4/5;object-fit:cover}
+  .story-visual .cap{margin-top:26px;font-family:'Consolas','Courier New',monospace;font-size:.66rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:8px}
+  .story-visual .cap svg{width:14px;height:14px;color:var(--acc);flex:none}
+  .story-text .lead{font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.45;color:var(--ink);font-weight:600;margin-bottom:22px}
+  .story-text p{color:var(--mut);margin-bottom:16px;font-weight:300}
+  .story-text .sign{margin-top:20px;font-family:'Consolas','Courier New',monospace;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+  @media(max-width:880px){.story-grid{grid-template-columns:1fr}.story-visual{max-width:440px}}
+
+  /* ============ TOURS — iki hat ============ */
+  .tours{background:var(--bg2)}
+  .tours-note{display:inline-flex;align-items:center;gap:10px;margin-top:18px;font-family:'Consolas','Courier New',monospace;
+    font-size:.72rem;letter-spacing:.08em;color:var(--mut);border:1px dashed var(--line2);padding:10px 16px;border-radius:3px}
+  .tours-note b{color:var(--acc)}
+  .tour{display:grid;grid-template-columns:1.06fr .94fr;gap:54px;align-items:center;padding:70px 0;border-top:1px solid var(--line);position:relative}
+  .tour:first-of-type{border-top:none;padding-top:40px}
+  .tour.flip .tour-visual{order:2}
+  .tour .idx{position:absolute;top:26px;right:0;z-index:0;font-family:'Impact','Haettenschweiler','Arial Black',sans-serif;
+    font-size:clamp(5.5rem,14vw,11rem);line-height:1;color:transparent;-webkit-text-stroke:2px var(--line);pointer-events:none;user-select:none}
+  @supports not (-webkit-text-stroke:1px black){.tour .idx{color:var(--line)}}
+  .tour.flip .idx{right:auto;left:0}
+  .tour-visual{position:relative;z-index:2;border-radius:3px;overflow:hidden;cursor:pointer;box-shadow:0 24px 60px var(--shadow)}
+  .tour-visual img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  .tour-visual:hover img{transform:scale(1.04)}
+  /* foto üstü chip: tema değişkeninden MİRAS ALMAZ — her temada koyu scrim + açık metin */
+  .tour-visual .chip{position:absolute;top:16px;left:16px;z-index:3;background:rgba(16,12,8,.66);color:#ffd9c4;
+    font-family:'Consolas','Courier New',monospace;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;
+    padding:8px 13px;border-radius:2px;backdrop-filter:blur(6px);border-left:3px solid #ff5a1f}
+  .tour-visual::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;z-index:2;pointer-events:none;
+    background:linear-gradient(to top,rgba(14,10,7,.5),transparent)}
+  .tour-body{position:relative;z-index:2}
+  .tour-body .tag{font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--acc);font-weight:700}
+  html[lang="zh-CN"] .tour-body .tag,html[lang="ko"] .tour-body .tag{letter-spacing:.06em}
+  .tour-body h3{font-size:clamp(2.4rem,5vw,4rem);margin:14px 0 18px;color:var(--ink)}
+  .tour-body p{color:var(--mut);font-weight:300;margin-bottom:24px;max-width:50ch}
+  .feat{list-style:none;margin-bottom:28px}
+  .feat li{display:flex;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+    font-size:.92rem;color:var(--ink)}
+  .feat li::before{content:"—";color:var(--acc);font-weight:700;flex:none}
+  .tour-cta{display:inline-flex;align-items:center;gap:10px;font-family:'Consolas','Cascadia Mono','Courier New',monospace;
+    font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);font-weight:700;
+    border-bottom:2px solid var(--acc);padding-bottom:5px;transition:.3s}
+  .tour-cta:hover{color:var(--acc);gap:16px}
+  @media(max-width:880px){.tour,.tour.flip{grid-template-columns:1fr;gap:28px;padding:52px 0}.tour.flip .tour-visual{order:0}}
+
+  /* panodan devamı */
+  .extra{margin-top:40px;border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:3px;
+    padding:26px 30px;background:var(--surface)}
+  .extra h4{font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.7rem;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--acc);margin-bottom:10px}
+  .extra p{color:var(--mut);font-size:.95rem;font-weight:300;max-width:none}
+
+  /* ============ GALLERY ============ */
+  .gallery{background:var(--bg)}
+  .tiles{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+  .tile{position:relative;border-radius:3px;overflow:hidden;cursor:pointer;background:var(--bg2)}
+  .tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .tile:hover img{transform:scale(1.05)}
+  .tile.t1{grid-column:span 7;aspect-ratio:16/9}
+  .tile.t2{grid-column:span 5;aspect-ratio:4/3}
+  .tile.t3{grid-column:span 5;aspect-ratio:1/1}
+  .tile.t4{grid-column:span 7;aspect-ratio:16/10}
+  .tile::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;z-index:1;pointer-events:none;
+    background:linear-gradient(to top,rgba(14,10,7,.66),transparent);transition:.35s}
+  .tile .cap{position:absolute;left:16px;bottom:14px;z-index:2;color:#f3efe5;font-family:'Consolas','Courier New',monospace;
+    font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .tile .zoom{position:absolute;top:12px;right:14px;z-index:2;color:#fff;opacity:0;transform:scale(.8);transition:.3s;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+  .tile:hover .zoom{opacity:.95;transform:scale(1)}
+  @media(max-width:760px){.tile.t1,.tile.t2,.tile.t3,.tile.t4{grid-column:span 12}}
+  .gal-note{margin-top:22px;font-family:'Consolas','Courier New',monospace;font-size:.66rem;letter-spacing:.1em;color:var(--mut)}
+
+  /* Lightbox */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(12,9,6,.95);backdrop-filter:blur(8px);display:none;
+    align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:84vh;border-radius:4px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:14px;right:24px;background:none;border:none;color:#f3efe5;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.8;transition:.25s}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#d8cdb8;font-family:'Consolas','Courier New',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(30,24,18,.6);border:1px solid rgba(243,239,229,.2);
+    color:#f3efe5;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .lb-nav:hover{background:#ff5a1f;color:#1a0d05;border-color:#ff5a1f}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:1.2rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ============ BOOK ============ */
+  .book{background:var(--bg2);position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-140px;right:-80px;width:480px;height:480px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,90,31,.16),transparent 66%);pointer-events:none}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.8rem,6vw,4.8rem);color:var(--ink)}
+  .book h2 em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--acc)}
+  @supports not (-webkit-text-stroke:1px black){.book h2 em{color:var(--acc)}}
+  .book .lede{color:var(--mut);margin-top:18px;font-size:1.05rem;font-weight:300;max-width:48ch}
+  .wa{display:inline-flex;align-items:center;gap:12px;margin-top:30px;color:var(--ink);font-weight:600;font-size:1.05rem;
+    border:1px solid var(--line2);padding:14px 22px;border-radius:3px;transition:.3s}
+  .wa:hover{border-color:#25d366}
+  .wa svg{width:24px;height:24px;color:#25d366;flex:none}
+  .ig-line{display:flex;align-items:center;gap:10px;margin-top:18px;color:var(--mut);font-family:'Consolas','Courier New',monospace;font-size:.78rem;letter-spacing:.08em}
+  .ig-line svg{width:16px;height:16px;color:var(--acc);flex:none}
+  .form{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:36px;box-shadow:0 20px 50px var(--shadow)}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.66rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--acc);margin-bottom:8px;font-weight:700}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{letter-spacing:.04em}
+  .field input,.field select{width:100%;padding:14px 16px;border-radius:2px;border:1px solid var(--line2);
+    background:var(--surface);color:var(--ink);font-family:inherit;font-size:.95rem;color-scheme:dark}
+  html[data-theme="light"] .field input,html[data-theme="light"] .field select{color-scheme:light}
+  .field input::placeholder{color:var(--mut);opacity:.75}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--acc)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .submit{width:100%;background:var(--acc);color:var(--acc-ink);border:none;padding:18px;border-radius:2px;
+    font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-weight:700;font-size:.84rem;letter-spacing:.14em;
+    text-transform:uppercase;cursor:pointer;transition:.3s;margin-top:8px}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{letter-spacing:.04em}
+  .submit:hover{opacity:.85;transform:translateY(-1px)}
+  @media(max-width:880px){.book-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--bg);color:var(--mut);padding:70px 0 110px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1.2fr;gap:44px;margin-bottom:44px}
+  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:18px;color:var(--ink)}
+  .foot-brand img{width:40px;height:40px;border-radius:50%;border:2px solid var(--line2);background:#fff}
+  .foot-brand .bname{font-family:'Impact','Haettenschweiler','Arial Black',sans-serif;font-size:1.35rem;letter-spacing:.05em;text-transform:uppercase;line-height:1}
+  .foot-brand .bname small{display:block;font-family:'Consolas','Courier New',monospace;font-size:.56rem;letter-spacing:.42em;color:var(--acc);margin-top:3px}
+  footer h4{font-family:'Consolas','Cascadia Mono','Courier New',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px;font-size:.92rem;font-weight:300;overflow-wrap:break-word}
+  footer a:hover{color:var(--ink)}
+  .foot-note{font-size:.78rem;margin-top:14px;opacity:.75}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-family:'Consolas','Courier New',monospace;font-size:.72rem;letter-spacing:.06em}
+  .demo-badge{background:var(--acc);color:var(--acc-ink);padding:5px 13px;border-radius:2px;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:32px}}
+
+  .reveal{opacity:0;transform:translateY(34px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:760px){
+    section{padding:80px 0}
+    .form{padding:26px}
+    .hero-inner{padding-bottom:14vh}
+    .scrollhint{display:none}
+    .hero-eyebrow .coords{display:none}
+    .band-txt{font-size:1.15rem}
+    .band-row.ghost .band-txt{font-size:1.45rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s!important}
+    .reveal{opacity:1;transform:none}
+    .band-track{transform:none}
+  }
+
+  /* film grain + scroll progress (signature katmanı, şablondan) */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--acc),#ffb494);box-shadow:0 0 12px rgba(255,90,31,.55)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  /* koyu bölümlere mesh derinliği */
+  .story::before,.book::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(40% 52% at 10% 16%,rgba(255,90,31,.07),transparent 60%),
+      radial-gradient(44% 50% at 90% 80%,rgba(216,205,184,.06),transparent 62%);
+    background-size:180% 180%;animation:meshDrift 28s ease-in-out infinite alternate}
+  .story>.wrap,.book>.wrap{position:relative;z-index:2}
+  @keyframes meshDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<nav id="nav" aria-label="Ana menü">
+  <a class="brand" href="#top" aria-label="Stone White Travel">
+    <img src="assets/images/logo.png" alt="Stone White Travel logosu" width="34" height="34">
+    <span class="bname">STONE WHITE<small>TRAVEL · GÖREME</small></span>
+  </a>
+  <div class="navpill" id="navpill">
+    <span class="tube" id="tube" aria-hidden="true"></span>
+    <a href="#story" data-spy="story" data-i18n="nav_story">Ofis</a>
+    <a href="#tours" data-spy="tours" data-i18n="nav_tours">Turlar</a>
+    <a href="#gallery" data-spy="gallery" data-i18n="nav_gallery">Galeri</a>
+    <a href="#book" data-spy="book" data-i18n="nav_book">Rezervasyon</a>
+  </div>
+  <div class="nav-right">
+    <div class="langs" role="group" aria-label="Dil / Language">
+      <button data-lang="tr" class="active">TR</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="es">ES</button>
+      <button data-lang="zh-CN">中文</button>
+      <button data-lang="ko">한국어</button>
+    </div>
+    <button class="theme-btn" data-theme-toggle aria-label="Tema değiştir" data-i18n-aria="theme_label">
+      <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+    <a class="nav-cta" href="https://wa.me/905384746363" target="_blank" rel="noopener">WhatsApp</a>
+    <button class="menu-btn" aria-label="Menü" id="menuBtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#story"><em>01</em> <span data-i18n="nav_story">Ofis</span></a>
+  <a href="#tours"><em>02</em> <span data-i18n="nav_tours">Turlar</span></a>
+  <a href="#gallery"><em>03</em> <span data-i18n="nav_gallery">Galeri</span></a>
+  <a href="#book"><em>04</em> <span data-i18n="nav_book">Rezervasyon</span></a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+  <button class="m-theme" data-theme-toggle>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <span data-i18n="theme_label">Aydınlık / karanlık</span>
+  </button>
+</div>
+
+<header class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="wrap">
+      <p class="hero-eyebrow mono"><span data-i18n="hero_eyebrow">Göreme · Kapadokya</span> <span class="coords">38.64N — 34.83E</span></p>
+      <h1 class="hero-title">
+        <span class="hw solid" id="hw1">STONE</span>
+        <span class="hw out" id="hw2">WHITE</span>
+      </h1>
+      <p class="hero-line mono" data-i18n="hero_line">ATV Safari × Jeep Safari</p>
+      <p class="lede" data-i18n="hero_lede">İsmimiz bu taştan: Kapadokya'nın beyaz tüfü. Gündüz ATV konvoyuyla yamaçlarına çıkarsınız, akşam klasik Defender'la dibine inersiniz. Toz kalkar — gerisi fotoğraflara kalır.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#book"><span data-i18n="hero_cta1">Yerini ayırt</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#tours" data-i18n="hero_cta2">İki hattı gör</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Toza in</span><span class="l"></span></div>
+</header>
+
+<!-- SIGNATURE: TOZ BANDI — çift yönlü kinetik marquee -->
+<div class="band" aria-hidden="true">
+  <div class="band-rot">
+    <div class="band-row solid"><div class="band-track" id="bandA"></div></div>
+    <div class="band-row ghost"><div class="band-track" id="bandB"></div></div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat reveal"><div class="n"><span data-count="9465">0</span><em>+</em></div><div class="l" data-i18n="stat1_l">Instagram takipçisi — @stonewhitetravel</div></div>
+    <div class="stat reveal"><div class="n"><span data-count="332">0</span></div><div class="l" data-i18n="stat2_l">Paylaşılmış tur karesi</div></div>
+    <div class="stat reveal"><div class="n"><span data-count="2">0</span></div><div class="l" data-i18n="stat3_l">Tur hattı — ATV &amp; Jeep</div></div>
+    <div class="stat reveal"><div class="n disp" data-i18n="stat4_n">GÖREME</div><div class="l" data-i18n="stat4_l">Merkez ofis — panolar kapıda</div></div>
+  </div>
+</div>
+
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="story_eyebrow">Ofis</span>
+      <h2 data-i18n="story_h" data-i18n-html="1">Taş beyaz,<br><em>toz gerçek.</em></h2>
+    </div>
+    <div class="story-grid">
+      <div class="story-visual reveal">
+        <img class="ph lb-item" src="assets/images/story.jpg" alt="Stone White Travel Göreme ofisi — kapıda tur panoları" data-cap-i18n="story_cap">
+        <p class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-4.7-7-11a7 7 0 0 1 14 0c0 6.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-i18n="story_cap">Göreme ofisi · Google Maps fotoğrafı</span></p>
+      </div>
+      <div class="story-text reveal">
+        <p class="lead" data-i18n="story_lead">Göreme'de kapısında tur panoları dizili bir ofis; arkasında dokuz bini aşkın kişilik bir Instagram topluluğu.</p>
+        <p data-i18n="story_p1">Stone White Travel, Göreme merkezde çalışan yerel bir tur ekibi. Kapıdaki panolar ne diyorsa onu yapıyoruz: ATV, jeep safari, balon, hamam, kültür turları. Bu sayfadaki her kare de o turlardan — stüdyo yok, stok fotoğraf yok.</p>
+        <p data-i18n="story_p2">İki ana hattımız var: beyaz tüf yamaçlarına çıkan ATV konvoyları ve klasik Defender'larla vadi diplerine inen jeep safari. Hangisi size göre, emin değilseniz WhatsApp'tan yazın; tarihinize göre dürüstçe söyleyelim.</p>
+        <p class="sign" data-i18n="story_sign">— Stone White Travel · Göreme</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tours" id="tours">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="tours_eyebrow">Turlar</span>
+      <h2 data-i18n="tours_h" data-i18n-html="1">İki hat.<br><em>Aynı toz.</em></h2>
+      <p data-i18n="tours_sub">ATV'de gaz sizde; Defender'da direksiyon bizde. İkisi de peri bacalarının arasından geçer.</p>
+      <div class="tours-note mono"><b>ℹ</b> <span data-i18n="tours_note">Süre ve güncel fiyat WhatsApp'tan teyit edilir — yazın, net cevap alın.</span></div>
+    </div>
+
+    <article class="tour reveal">
+      <span class="idx" aria-hidden="true">01</span>
+      <div class="tour-visual lb-item" data-img="ride-1.jpg" data-cap-i18n="t1_h" role="button" tabindex="0" aria-label="ATV Safari fotoğrafını büyüt">
+        <img src="assets/images/ride-1.jpg" alt="Kapadokya'da vadiye bakan sırtta ATV konvoyu" loading="lazy">
+        <span class="chip" data-i18n="t1_chip">Gün batımı seçeneği</span>
+      </div>
+      <div class="tour-body">
+        <span class="tag" data-i18n="t1_tag">01 — Gaz sizde</span>
+        <h3 data-i18n="t1_h">ATV Safari</h3>
+        <p data-i18n="t1_p">Konvoy hâlinde beyaz tüf yamaçlarına çıkıyoruz. Rehber önde, siz kendi ATV'nizde — tempo gruba göre ayarlanır. Vadiye bakan tepelerde motorlar susar, fotoğraf konuşur.</p>
+        <ul class="feat">
+          <li data-i18n="t1_f1">Kasklar bizden, kısa alışma turuyla başlarız</li>
+          <li data-i18n="t1_f2">Rehber eşliğinde konvoy — kimse geride kalmaz</li>
+          <li data-i18n="t1_f3">Vadi manzaralı tepelerde foto durakları</li>
+          <li data-i18n="t1_f4">Gün batımı çıkışı — panodaki klasik</li>
+        </ul>
+        <a class="tour-cta" href="#book"><span data-i18n="tour_cta">Müsaitlik sor</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <article class="tour flip reveal">
+      <span class="idx" aria-hidden="true">02</span>
+      <div class="tour-visual lb-item" data-img="ride-2.jpg" data-cap-i18n="t2_h" role="button" tabindex="0" aria-label="Jeep Safari fotoğrafını büyüt">
+        <img src="assets/images/ride-2.jpg" alt="Peri bacalarının arasında klasik kızıl Land Rover Defender" loading="lazy">
+        <span class="chip" data-i18n="t2_chip">Klasik Defender filosu</span>
+      </div>
+      <div class="tour-body">
+        <span class="tag" data-i18n="t2_tag">02 — Direksiyon bizde</span>
+        <h3 data-i18n="t2_h">Jeep Safari</h3>
+        <p data-i18n="t2_p">Klasik Defender'larla peri bacalarının dibindeki toprak yollara giriyoruz. En iyi kareler araç durunca çıkar — biz de sık sık dururuz. Hava uygunsa sabah durağında balonlar tam üstünüzde olur.</p>
+        <ul class="feat">
+          <li data-i18n="t2_f1">Fotoğraflardaki klasik Defender filosu</li>
+          <li data-i18n="t2_f2">Peri bacası diplerinde toprak rotalar</li>
+          <li data-i18n="t2_f3">Balon manzaralı sabah durağı (hava uygunsa)</li>
+          <li data-i18n="t2_f4">Her durakta fotoğraf vakti</li>
+        </ul>
+        <a class="tour-cta" href="#book"><span data-i18n="tour_cta">Müsaitlik sor</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <div class="extra reveal">
+      <h4 data-i18n="extra_h">Panoda daha var</h4>
+      <p data-i18n="extra_p">Kapıdaki panonun devamı: balon turu · Türk hamamı · Türk gecesi · Red / Green kültür turları · at turu. Hepsi için ofise uğrayın ya da WhatsApp'tan sorun.</p>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="gallery_eyebrow">Galeri</span>
+      <h2 data-i18n="gallery_h" data-i18n-html="1">Tozdan<br><em>kareler.</em></h2>
+      <p data-i18n="gallery_sub">Hepsi gerçek turlardan — kareler işletmenin Google, Instagram ve Tripadvisor profillerindeki fotoğraflara dayanıyor.</p>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile t1 lb-item" data-img="gallery-1.jpg" data-cap-i18n="g1_cap" role="button" tabindex="0" aria-label="Fotoğrafı büyüt"><img src="assets/images/gallery-1.jpg" alt="Turuncu Defender ve arkasında yükselen sıcak hava balonu" loading="lazy"><span class="cap" data-i18n="g1_cap">Turuncu Defender · balon saati</span><span class="zoom" aria-hidden="true">⤢</span></div>
+      <div class="tile t2 lb-item" data-img="gallery-2.jpg" data-cap-i18n="g2_cap" role="button" tabindex="0" aria-label="Fotoğrafı büyüt"><img src="assets/images/gallery-2.jpg" alt="Beyaz tüf düzlüğünde sıralanmış ATV konvoyu ve peri bacaları" loading="lazy"><span class="cap" data-i18n="g2_cap">ATV konvoyu · peri bacaları</span><span class="zoom" aria-hidden="true">⤢</span></div>
+      <div class="tile t3 lb-item" data-img="gallery-3.jpg" data-cap-i18n="g3_cap" role="button" tabindex="0" aria-label="Fotoğrafı büyüt"><img src="assets/images/gallery-3.jpg" alt="Defender'ın içinden yola bakış" loading="lazy"><span class="cap" data-i18n="g3_cap">Defender'ın içinden · yolda</span><span class="zoom" aria-hidden="true">⤢</span></div>
+      <div class="tile t4 lb-item" data-img="gallery-4.jpg" data-cap-i18n="g4_cap" role="button" tabindex="0" aria-label="Fotoğrafı büyüt"><img src="assets/images/gallery-4.jpg" alt="Sıralanmış Defender filosu ve arkalarında sıcak hava balonu" loading="lazy"><span class="cap" data-i18n="g4_cap">Defender filosu · sabah ışığı</span><span class="zoom" aria-hidden="true">⤢</span></div>
+    </div>
+    <p class="gal-note mono" data-i18n="gal_note">Kaynak: Google Maps · Instagram @stonewhitetravel · Tripadvisor</p>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="book_eyebrow">Rezervasyon</span>
+        <h2 style="margin-top:16px" data-i18n="book_h" data-i18n-html="1">Sıradaki çıkışa <em>yazıl.</em></h2>
+        <p class="lede" data-i18n="book_lede">Tarihinizi ve kaç kişi olduğunuzu gönderin; müsaitlik ve güncel fiyatla WhatsApp'tan dönelim. Soru sormak serbest — cevabımız net olur.</p>
+        <a class="wa" href="https://wa.me/905384746363" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg>
+          +90 538 474 63 63
+        </a>
+        <p class="ig-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg> <span data-i18n="book_ig">Instagram: @stonewhitetravel — 9.4K takipçi, kareler her gün düşüyor</span></p>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız" autocomplete="name">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-date" data-i18n="label_date">Tarih</label><input type="date" id="f-date"></div>
+          <div class="field"><label for="f-count" data-i18n="label_people">Kişi</label>
+            <select id="f-count">
+              <option data-i18n="opt_p1">1-2 kişi</option><option data-i18n="opt_p2">3-5 kişi</option><option data-i18n="opt_p3">6+ kişi / grup</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-tour" data-i18n="label_tour">Tur</label>
+          <select id="f-tour">
+            <option data-i18n="opt_t1">ATV Safari</option>
+            <option data-i18n="opt_t2">ATV Safari — Gün Batımı</option>
+            <option data-i18n="opt_t3">Jeep Safari (Defender)</option>
+            <option data-i18n="opt_t4">Diğer — balon / hamam / kültür turu</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-phone" data-i18n="label_phone">WhatsApp / Telefon</label>
+          <input type="tel" id="f-phone" data-i18n-ph="ph_phone" placeholder="Size ulaşabileceğimiz numara" autocomplete="tel">
+        </div>
+        <button class="submit" type="button" onclick="sendBooking()" data-i18n="btn_submit">WhatsApp'tan gönder</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="assets/images/logo.png" alt="Stone White Travel logosu" width="40" height="40">
+          <span class="bname">STONE WHITE<small>TRAVEL · GÖREME</small></span>
+        </div>
+        <p style="max-width:340px;font-weight:300" data-i18n="foot_about">Göreme merkezli ATV ve jeep safari ekibi. Beyaz tüf yamaçları, klasik Defender'lar ve gün batımı tozu.</p>
+        <p class="foot-note" data-i18n="foot_photos">Fotoğraflar işletmenin kendi Google, Instagram ve Tripadvisor profillerinden alınmıştır.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#story" data-i18n="nav_story">Ofis</a></li>
+          <li><a href="#tours" data-i18n="nav_tours">Turlar</a></li>
+          <li><a href="#gallery" data-i18n="nav_gallery">Galeri</a></li>
+          <li><a href="#book" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Göreme, Nevşehir — merkez ofis</li>
+          <li><a href="https://wa.me/905384746363" target="_blank" rel="noopener">+90 538 474 63 63 · WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/stonewhitetravel/" target="_blank" rel="noopener">Instagram · @stonewhitetravel</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Stone White Travel — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<!-- mobil tubelight dock -->
+<div class="dock" id="dock" aria-label="Hızlı gezinme">
+  <span class="tube" id="dockTube" aria-hidden="true"></span>
+  <a href="#story" data-spy="story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span data-i18n="nav_story">Ofis</span></a>
+  <a href="#tours" data-spy="tours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/><path d="M6.5 15l2-6h5l4 6M11 9V6h3"/></svg><span data-i18n="nav_tours">Turlar</span></a>
+  <a href="#gallery" data-spy="gallery"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="nav_gallery">Galeri</span></a>
+  <a href="#book" data-spy="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><span data-i18n="nav_book">Rezerve</span></a>
+</div>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+// İnternet/CDN gerektirmez; her koşulda çalışır. Ayarlar talimatla uyumlu: lerp 0.085, wheelMultiplier 0.9
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  // input/textarea/select/button ve data-lenis-prevent alanlarında smooth engelle
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    // kullanıcı manuel scroll'da current'ı senkronla
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  // dokunmatik ve klavye native kalsın; scroll pozisyonunu senkronla
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  // anchor linkleri yumuşak kaydır
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 70;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
+
+<script>
+// ==================== i18n SÖZLÜĞÜ — 5 dil ====================
+const I18N = {
+  tr:{
+    meta_title:"Stone White Travel — Göreme ATV & Jeep Safari | Kapadokya",
+    meta_desc:"Göreme merkezli Stone White Travel ile Kapadokya'da ATV safari ve klasik Defender'larla jeep safari. Beyaz tüf yamaçları, gün batımı çıkışları, balon manzaralı foto durakları.",
+    nav_story:"Ofis",nav_tours:"Turlar",nav_gallery:"Galeri",nav_book:"Rezervasyon",
+    theme_label:"Aydınlık / karanlık",
+    hero_eyebrow:"Göreme · Kapadokya",hero_line:"ATV Safari × Jeep Safari",
+    hero_lede:"İsmimiz bu taştan: Kapadokya'nın beyaz tüfü. Gündüz ATV konvoyuyla yamaçlarına çıkarsınız, akşam klasik Defender'la dibine inersiniz. Toz kalkar — gerisi fotoğraflara kalır.",
+    hero_cta1:"Yerini ayırt",hero_cta2:"İki hattı gör",scroll_hint:"Toza in",
+    stat1_l:"Instagram takipçisi — @stonewhitetravel",stat2_l:"Paylaşılmış tur karesi",stat3_l:"Tur hattı — ATV & Jeep",
+    stat4_n:"GÖREME",stat4_l:"Merkez ofis — panolar kapıda",
+    story_eyebrow:"Ofis",story_h:"Taş beyaz,<br><em>toz gerçek.</em>",
+    story_lead:"Göreme'de kapısında tur panoları dizili bir ofis; arkasında dokuz bini aşkın kişilik bir Instagram topluluğu.",
+    story_p1:"Stone White Travel, Göreme merkezde çalışan yerel bir tur ekibi. Kapıdaki panolar ne diyorsa onu yapıyoruz: ATV, jeep safari, balon, hamam, kültür turları. Bu sayfadaki her kare de o turlardan — stüdyo yok, stok fotoğraf yok.",
+    story_p2:"İki ana hattımız var: beyaz tüf yamaçlarına çıkan ATV konvoyları ve klasik Defender'larla vadi diplerine inen jeep safari. Hangisi size göre, emin değilseniz WhatsApp'tan yazın; tarihinize göre dürüstçe söyleyelim.",
+    story_sign:"— Stone White Travel · Göreme",story_cap:"Göreme ofisi · Google Maps fotoğrafı",
+    tours_eyebrow:"Turlar",tours_h:"İki hat.<br><em>Aynı toz.</em>",
+    tours_sub:"ATV'de gaz sizde; Defender'da direksiyon bizde. İkisi de peri bacalarının arasından geçer.",
+    tours_note:"Süre ve güncel fiyat WhatsApp'tan teyit edilir — yazın, net cevap alın.",
+    t1_tag:"01 — Gaz sizde",t1_h:"ATV Safari",t1_chip:"Gün batımı seçeneği",
+    t1_p:"Konvoy hâlinde beyaz tüf yamaçlarına çıkıyoruz. Rehber önde, siz kendi ATV'nizde — tempo gruba göre ayarlanır. Vadiye bakan tepelerde motorlar susar, fotoğraf konuşur.",
+    t1_f1:"Kasklar bizden, kısa alışma turuyla başlarız",t1_f2:"Rehber eşliğinde konvoy — kimse geride kalmaz",
+    t1_f3:"Vadi manzaralı tepelerde foto durakları",t1_f4:"Gün batımı çıkışı — panodaki klasik",
+    t2_tag:"02 — Direksiyon bizde",t2_h:"Jeep Safari",t2_chip:"Klasik Defender filosu",
+    t2_p:"Klasik Defender'larla peri bacalarının dibindeki toprak yollara giriyoruz. En iyi kareler araç durunca çıkar — biz de sık sık dururuz. Hava uygunsa sabah durağında balonlar tam üstünüzde olur.",
+    t2_f1:"Fotoğraflardaki klasik Defender filosu",t2_f2:"Peri bacası diplerinde toprak rotalar",
+    t2_f3:"Balon manzaralı sabah durağı (hava uygunsa)",t2_f4:"Her durakta fotoğraf vakti",
+    tour_cta:"Müsaitlik sor",
+    extra_h:"Panoda daha var",
+    extra_p:"Kapıdaki panonun devamı: balon turu · Türk hamamı · Türk gecesi · Red / Green kültür turları · at turu. Hepsi için ofise uğrayın ya da WhatsApp'tan sorun.",
+    gallery_eyebrow:"Galeri",gallery_h:"Tozdan<br><em>kareler.</em>",
+    gallery_sub:"Hepsi gerçek turlardan — kareler işletmenin Google, Instagram ve Tripadvisor profillerindeki fotoğraflara dayanıyor.",
+    g1_cap:"Turuncu Defender · balon saati",g2_cap:"ATV konvoyu · peri bacaları",g3_cap:"Defender'ın içinden · yolda",g4_cap:"Defender filosu · sabah ışığı",
+    gal_note:"Kaynak: Google Maps · Instagram @stonewhitetravel · Tripadvisor",
+    book_eyebrow:"Rezervasyon",book_h:"Sıradaki çıkışa <em>yazıl.</em>",
+    book_lede:"Tarihinizi ve kaç kişi olduğunuzu gönderin; müsaitlik ve güncel fiyatla WhatsApp'tan dönelim. Soru sormak serbest — cevabımız net olur.",
+    book_ig:"Instagram: @stonewhitetravel — 9.4K takipçi, kareler her gün düşüyor",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_date:"Tarih",label_people:"Kişi",
+    opt_p1:"1-2 kişi",opt_p2:"3-5 kişi",opt_p3:"6+ kişi / grup",
+    label_tour:"Tur",opt_t1:"ATV Safari",opt_t2:"ATV Safari — Gün Batımı",opt_t3:"Jeep Safari (Defender)",opt_t4:"Diğer — balon / hamam / kültür turu",
+    label_phone:"WhatsApp / Telefon",ph_phone:"Size ulaşabileceğimiz numara",btn_submit:"WhatsApp'tan gönder",
+    foot_about:"Göreme merkezli ATV ve jeep safari ekibi. Beyaz tüf yamaçları, klasik Defender'lar ve gün batımı tozu.",
+    foot_photos:"Fotoğraflar işletmenin kendi Google, Instagram ve Tripadvisor profillerinden alınmıştır.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Göreme, Nevşehir — merkez ofis",
+    foot_rights:"© 2026 Stone White Travel — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    wa_msg:"Merhaba Stone White Travel! Tur için müsaitlik soracaktım:",
+    wa_name:"Ad",wa_date:"Tarih",wa_people:"Kişi",wa_tour:"Tur",wa_phone:"Telefon",
+    alert_fill:"Lütfen adınızı, tarihi ve telefon numaranızı yazın."
+  },
+  en:{
+    meta_title:"Stone White Travel — ATV & Jeep Safari in Göreme | Cappadocia",
+    meta_desc:"ATV safari and classic-Defender jeep safari in Cappadocia with Stone White Travel, based in central Göreme. White tuff slopes, sunset rides, balloon-view photo stops.",
+    nav_story:"Office",nav_tours:"Tours",nav_gallery:"Gallery",nav_book:"Book",
+    theme_label:"Light / dark mode",
+    hero_eyebrow:"Göreme · Cappadocia",hero_line:"ATV Safari × Jeep Safari",
+    hero_lede:"Our name comes from this rock: Cappadocia's white tuff. By day you climb its slopes in an ATV convoy; by evening you drop into the valleys in a classic Defender. The dust rises — the rest ends up in your photos.",
+    hero_cta1:"Save your seat",hero_cta2:"See both lines",scroll_hint:"Into the dust",
+    stat1_l:"Instagram followers — @stonewhitetravel",stat2_l:"Tour photos shared",stat3_l:"Tour lines — ATV & Jeep",
+    stat4_n:"GÖREME",stat4_l:"Central office — tour boards at the door",
+    story_eyebrow:"Office",story_h:"White stone,<br><em>real dust.</em>",
+    story_lead:"An office in Göreme with tour boards lined up at the door — and an Instagram community of over nine thousand behind it.",
+    story_p1:"Stone White Travel is a local tour crew working out of central Göreme. Whatever the boards at the door say, that's what we do: ATV, jeep safari, balloons, hammam, culture tours. Every photo on this page comes from those tours — no studio, no stock.",
+    story_p2:"We run two main lines: ATV convoys up the white tuff slopes, and jeep safaris down into the valleys in classic Defenders. Not sure which one is for you? Message us on WhatsApp and we'll tell you straight, based on your dates.",
+    story_sign:"— Stone White Travel · Göreme",story_cap:"Göreme office · Google Maps photo",
+    tours_eyebrow:"Tours",tours_h:"Two lines.<br><em>Same dust.</em>",
+    tours_sub:"On the ATV, you hold the throttle; in the Defender, we hold the wheel. Both run between the fairy chimneys.",
+    tours_note:"Duration and current price are confirmed on WhatsApp — write us, get a straight answer.",
+    t1_tag:"01 — You ride",t1_h:"ATV Safari",t1_chip:"Sunset option",
+    t1_p:"We head up the white tuff slopes in convoy. Guide in front, you on your own ATV — the pace follows the group. On the ridges above the valley, engines go quiet and the cameras take over.",
+    t1_f1:"Helmets provided, we start with a short practice loop",t1_f2:"Guided convoy — nobody gets left behind",
+    t1_f3:"Photo stops on valley-view ridges",t1_f4:"Sunset departure — the classic on the board",
+    t2_tag:"02 — We drive",t2_h:"Jeep Safari",t2_chip:"Classic Defender fleet",
+    t2_p:"We take classic Defenders onto the dirt tracks at the foot of the fairy chimneys. The best shots happen when the car stops — so we stop often. Weather permitting, balloons rise right above you at the morning viewpoint.",
+    t2_f1:"The classic Defender fleet from the photos",t2_f2:"Dirt routes at the base of the fairy chimneys",
+    t2_f3:"Balloon-view morning stop (weather permitting)",t2_f4:"Photo time at every stop",
+    tour_cta:"Ask availability",
+    extra_h:"More on the board",
+    extra_p:"The rest of the board at the door: balloon tour · Turkish bath · Turkish night · Red / Green culture tours · horse riding. Drop by the office or ask on WhatsApp.",
+    gallery_eyebrow:"Gallery",gallery_h:"Frames from<br><em>the dust.</em>",
+    gallery_sub:"All from real tours — frames based on photos from the business's own Google, Instagram and Tripadvisor profiles.",
+    g1_cap:"Orange Defender · balloon hour",g2_cap:"ATV convoy · fairy chimneys",g3_cap:"Inside the Defender · en route",g4_cap:"Defender fleet · morning light",
+    gal_note:"Source: Google Maps · Instagram @stonewhitetravel · Tripadvisor",
+    book_eyebrow:"Booking",book_h:"Get on the <em>next run.</em>",
+    book_lede:"Send your date and group size; we'll reply on WhatsApp with availability and the current price. Questions welcome — our answers are straight.",
+    book_ig:"Instagram: @stonewhitetravel — 9.4K followers, new frames drop daily",
+    label_name:"Your name",ph_name:"Your full name",label_date:"Date",label_people:"Guests",
+    opt_p1:"1-2 people",opt_p2:"3-5 people",opt_p3:"6+ people / group",
+    label_tour:"Tour",opt_t1:"ATV Safari",opt_t2:"ATV Safari — Sunset",opt_t3:"Jeep Safari (Defender)",opt_t4:"Other — balloon / hammam / culture tour",
+    label_phone:"WhatsApp / Phone",ph_phone:"A number we can reach you on",btn_submit:"Send via WhatsApp",
+    foot_about:"ATV and jeep safari crew based in central Göreme. White tuff slopes, classic Defenders and sunset dust.",
+    foot_photos:"Photos are taken from the business's own Google, Instagram and Tripadvisor profiles.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Göreme, Nevşehir — central office",
+    foot_rights:"© 2026 Stone White Travel — All rights reserved.",foot_demo:"Sample / Demo Design",
+    wa_msg:"Hello Stone White Travel! I'd like to ask about availability:",
+    wa_name:"Name",wa_date:"Date",wa_people:"Guests",wa_tour:"Tour",wa_phone:"Phone",
+    alert_fill:"Please enter your name, date and phone number."
+  },
+  es:{
+    meta_title:"Stone White Travel — ATV y Jeep Safari en Göreme | Capadocia",
+    meta_desc:"Safari en ATV y jeep safari en Defender clásico por Capadocia con Stone White Travel, en el centro de Göreme. Laderas de toba blanca, salidas al atardecer, paradas con vistas a los globos.",
+    nav_story:"Oficina",nav_tours:"Tours",nav_gallery:"Galería",nav_book:"Reservar",
+    theme_label:"Modo claro / oscuro",
+    hero_eyebrow:"Göreme · Capadocia",hero_line:"ATV Safari × Jeep Safari",
+    hero_lede:"Nuestro nombre viene de esta roca: la toba blanca de Capadocia. De día subes sus laderas en convoy de ATV; al atardecer bajas a los valles en un Defender clásico. El polvo se levanta — el resto queda en tus fotos.",
+    hero_cta1:"Reserva tu plaza",hero_cta2:"Ver las dos líneas",scroll_hint:"Hacia el polvo",
+    stat1_l:"Seguidores en Instagram — @stonewhitetravel",stat2_l:"Fotos de tours publicadas",stat3_l:"Líneas de tour — ATV y Jeep",
+    stat4_n:"GÖREME",stat4_l:"Oficina central — carteles en la puerta",
+    story_eyebrow:"Oficina",story_h:"Piedra blanca,<br><em>polvo real.</em>",
+    story_lead:"Una oficina en Göreme con carteles de tours alineados en la puerta — y detrás, una comunidad de Instagram de más de nueve mil personas.",
+    story_p1:"Stone White Travel es un equipo local que trabaja en el centro de Göreme. Lo que dicen los carteles de la puerta es lo que hacemos: ATV, jeep safari, globos, hammam, tours culturales. Cada foto de esta página sale de esos tours — sin estudio, sin fotos de stock.",
+    story_p2:"Tenemos dos líneas principales: convoyes de ATV que suben las laderas de toba blanca y jeep safaris que bajan a los valles en Defender clásicos. ¿No sabes cuál va contigo? Escríbenos por WhatsApp y te lo decimos con franqueza según tus fechas.",
+    story_sign:"— Stone White Travel · Göreme",story_cap:"Oficina de Göreme · foto de Google Maps",
+    tours_eyebrow:"Tours",tours_h:"Dos líneas.<br><em>El mismo polvo.</em>",
+    tours_sub:"En el ATV, el acelerador es tuyo; en el Defender, el volante es nuestro. Ambos pasan entre las chimeneas de hadas.",
+    tours_note:"La duración y el precio actual se confirman por WhatsApp — escribe y recibe una respuesta clara.",
+    t1_tag:"01 — Tú conduces",t1_h:"ATV Safari",t1_chip:"Opción al atardecer",
+    t1_p:"Subimos en convoy por las laderas de toba blanca. El guía delante, tú en tu propio ATV — el ritmo lo marca el grupo. En las crestas sobre el valle los motores callan y hablan las cámaras.",
+    t1_f1:"Cascos incluidos, empezamos con una vuelta de práctica",t1_f2:"Convoy guiado — nadie se queda atrás",
+    t1_f3:"Paradas de fotos en crestas con vistas al valle",t1_f4:"Salida al atardecer — el clásico del cartel",
+    t2_tag:"02 — Nosotros conducimos",t2_h:"Jeep Safari",t2_chip:"Flota de Defender clásicos",
+    t2_p:"Entramos con Defender clásicos en los caminos de tierra al pie de las chimeneas de hadas. Las mejores fotos salen cuando el coche se detiene — por eso paramos a menudo. Si el tiempo acompaña, en la parada matinal los globos suben justo sobre ti.",
+    t2_f1:"La flota de Defender clásicos de las fotos",t2_f2:"Rutas de tierra al pie de las chimeneas de hadas",
+    t2_f3:"Parada matinal con vistas a los globos (si el tiempo lo permite)",t2_f4:"Tiempo para fotos en cada parada",
+    tour_cta:"Consultar disponibilidad",
+    extra_h:"Hay más en el cartel",
+    extra_p:"El resto del cartel de la puerta: tour en globo · baño turco · noche turca · tours culturales Red / Green · paseo a caballo. Pásate por la oficina o pregunta por WhatsApp.",
+    gallery_eyebrow:"Galería",gallery_h:"Fotos desde<br><em>el polvo.</em>",
+    gallery_sub:"Todas de tours reales — imágenes basadas en fotos de los propios perfiles de Google, Instagram y Tripadvisor del negocio.",
+    g1_cap:"Defender naranja · hora de los globos",g2_cap:"Convoy de ATV · chimeneas de hadas",g3_cap:"Dentro del Defender · en ruta",g4_cap:"Flota de Defender · luz matinal",
+    gal_note:"Fuente: Google Maps · Instagram @stonewhitetravel · Tripadvisor",
+    book_eyebrow:"Reserva",book_h:"Súbete a la <em>próxima salida.</em>",
+    book_lede:"Envía tu fecha y cuántos sois; te respondemos por WhatsApp con disponibilidad y precio actual. Pregunta lo que quieras — respondemos claro.",
+    book_ig:"Instagram: @stonewhitetravel — 9.4K seguidores, fotos nuevas cada día",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_date:"Fecha",label_people:"Personas",
+    opt_p1:"1-2 personas",opt_p2:"3-5 personas",opt_p3:"6+ personas / grupo",
+    label_tour:"Tour",opt_t1:"ATV Safari",opt_t2:"ATV Safari — Atardecer",opt_t3:"Jeep Safari (Defender)",opt_t4:"Otro — globo / hammam / tour cultural",
+    label_phone:"WhatsApp / Teléfono",ph_phone:"Un número donde localizarte",btn_submit:"Enviar por WhatsApp",
+    foot_about:"Equipo de ATV y jeep safari en el centro de Göreme. Laderas de toba blanca, Defender clásicos y polvo al atardecer.",
+    foot_photos:"Las fotos proceden de los propios perfiles de Google, Instagram y Tripadvisor del negocio.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Göreme, Nevşehir — oficina central",
+    foot_rights:"© 2026 Stone White Travel — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+    wa_msg:"¡Hola Stone White Travel! Quisiera consultar disponibilidad:",
+    wa_name:"Nombre",wa_date:"Fecha",wa_people:"Personas",wa_tour:"Tour",wa_phone:"Teléfono",
+    alert_fill:"Por favor, escribe tu nombre, la fecha y tu teléfono."
+  },
+  "zh-CN":{
+    meta_title:"Stone White Travel — 格雷梅 ATV 与吉普车之旅 | 卡帕多奇亚",
+    meta_desc:"Stone White Travel 位于格雷梅市中心，提供卡帕多奇亚 ATV 沙滩车之旅和经典卫士吉普车之旅。白色凝灰岩坡道、日落车队、热气球观景拍照点。",
+    nav_story:"门店",nav_tours:"行程",nav_gallery:"相册",nav_book:"预订",
+    theme_label:"明暗模式切换",
+    hero_eyebrow:"格雷梅 · 卡帕多奇亚",hero_line:"ATV 之旅 × 吉普车之旅",
+    hero_lede:"我们的名字来自这片岩石：卡帕多奇亚的白色凝灰岩。白天乘 ATV 车队登上坡顶，傍晚坐经典卫士吉普驶入谷底。尘土扬起——剩下的都留在照片里。",
+    hero_cta1:"预留座位",hero_cta2:"查看两条线路",scroll_hint:"驶入尘土",
+    stat1_l:"Instagram 粉丝 — @stonewhitetravel",stat2_l:"已分享的行程照片",stat3_l:"行程线路 — ATV 与吉普",
+    stat4_n:"格雷梅",stat4_l:"市中心门店 — 行程牌就在门口",
+    story_eyebrow:"门店",story_h:"白色的石头，<br><em>真实的尘土。</em>",
+    story_lead:"格雷梅的一家门店，门口排满行程牌；背后是九千多人的 Instagram 社区。",
+    story_p1:"Stone White Travel 是一支扎根格雷梅市中心的本地团队。门口牌子上写什么，我们就做什么：ATV、吉普车之旅、热气球、土耳其浴、文化路线。本页每一张照片都来自这些行程——没有摆拍棚，没有图库照片。",
+    story_p2:"我们有两条主线：开上白色凝灰岩坡道的 ATV 车队，以及乘经典卫士深入谷底的吉普车之旅。不确定哪条适合你？在 WhatsApp 上告诉我们日期，我们如实建议。",
+    story_sign:"— Stone White Travel · 格雷梅",story_cap:"格雷梅门店 · 谷歌地图照片",
+    tours_eyebrow:"行程",tours_h:"两条线路，<br><em>同一片尘土。</em>",
+    tours_sub:"ATV 上油门在你手里；卫士里方向盘交给我们。两条线都穿行在精灵烟囱之间。",
+    tours_note:"时长与最新价格请通过 WhatsApp 确认——留言即得明确答复。",
+    t1_tag:"01 — 你来驾驶",t1_h:"ATV 之旅",t1_chip:"日落场次可选",
+    t1_p:"我们列队驶上白色凝灰岩坡道。向导在前，你驾驶自己的 ATV——节奏跟随全队。在俯瞰山谷的坡顶，引擎熄声，相机接管。",
+    t1_f1:"头盔由我们提供，先做一小圈热身练习",t1_f2:"向导领队列队行进——不落下任何人",
+    t1_f3:"在山谷观景坡顶设拍照停留",t1_f4:"日落场次——门口牌上的经典",
+    t2_tag:"02 — 我们驾驶",t2_h:"吉普车之旅",t2_chip:"经典卫士车队",
+    t2_p:"我们驾驶经典卫士驶入精灵烟囱脚下的土路。最好的照片都在停车时诞生——所以我们常常停车。天气允许时，清晨观景点的热气球就在你头顶升起。",
+    t2_f1:"照片里的经典卫士车队",t2_f2:"精灵烟囱脚下的土路线路",
+    t2_f3:"清晨热气球观景停留（视天气而定）",t2_f4:"每个停靠点都有拍照时间",
+    tour_cta:"询问可预订日期",
+    extra_h:"牌子上还有更多",
+    extra_p:"门口牌子的其余内容：热气球之旅 · 土耳其浴 · 土耳其之夜 · 红线/绿线文化路线 · 骑马。欢迎来门店或在 WhatsApp 上咨询。",
+    gallery_eyebrow:"相册",gallery_h:"来自尘土的<br><em>画面。</em>",
+    gallery_sub:"全部来自真实行程——画面基于商家自己的谷歌、Instagram 和 Tripadvisor 主页照片。",
+    g1_cap:"橙色卫士 · 热气球时刻",g2_cap:"ATV车队 · 精灵烟囱",g3_cap:"卫士车内 · 行进中",g4_cap:"卫士车队 · 清晨光线",
+    gal_note:"来源：谷歌地图 · Instagram @stonewhitetravel · Tripadvisor",
+    book_eyebrow:"预订",book_h:"赶上<em>下一班车队。</em>",
+    book_lede:"发来日期和人数，我们会在 WhatsApp 上回复可预订情况和最新价格。欢迎提问——我们的回答很直接。",
+    book_ig:"Instagram：@stonewhitetravel — 9.4K 粉丝，每天更新照片",
+    label_name:"您的姓名",ph_name:"您的全名",label_date:"日期",label_people:"人数",
+    opt_p1:"1-2 人",opt_p2:"3-5 人",opt_p3:"6 人以上 / 团队",
+    label_tour:"行程",opt_t1:"ATV 之旅",opt_t2:"ATV 之旅 — 日落场",opt_t3:"吉普车之旅（卫士）",opt_t4:"其他 — 热气球 / 土耳其浴 / 文化路线",
+    label_phone:"WhatsApp / 电话",ph_phone:"方便联系您的号码",btn_submit:"通过 WhatsApp 发送",
+    foot_about:"扎根格雷梅市中心的 ATV 与吉普车之旅团队。白色凝灰岩坡道、经典卫士与日落尘土。",
+    foot_photos:"照片取自商家自己的谷歌、Instagram 和 Tripadvisor 主页。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"格雷梅，内夫谢希尔 — 市中心门店",
+    foot_rights:"© 2026 Stone White Travel — 版权所有。",foot_demo:"示例 / 演示设计",
+    wa_msg:"您好 Stone White Travel！我想咨询行程可预订情况：",
+    wa_name:"姓名",wa_date:"日期",wa_people:"人数",wa_tour:"行程",wa_phone:"电话",
+    alert_fill:"请填写您的姓名、日期和电话号码。"
+  },
+  ko:{
+    meta_title:"Stone White Travel — 괴레메 ATV & 지프 사파리 | 카파도키아",
+    meta_desc:"괴레메 중심가의 Stone White Travel과 함께하는 카파도키아 ATV 사파리와 클래식 디펜더 지프 사파리. 하얀 응회암 언덕, 일몰 라이딩, 열기구 전망 포토 스톱.",
+    nav_story:"오피스",nav_tours:"투어",nav_gallery:"갤러리",nav_book:"예약",
+    theme_label:"라이트 / 다크 모드",
+    hero_eyebrow:"괴레메 · 카파도키아",hero_line:"ATV 사파리 × 지프 사파리",
+    hero_lede:"우리 이름은 이 바위에서 왔습니다: 카파도키아의 하얀 응회암. 낮에는 ATV 행렬로 언덕을 오르고, 저녁에는 클래식 디펜더로 계곡 아래로 내려갑니다. 흙먼지가 일고—나머지는 사진에 남습니다.",
+    hero_cta1:"자리 예약",hero_cta2:"두 라인 보기",scroll_hint:"흙먼지 속으로",
+    stat1_l:"인스타그램 팔로워 — @stonewhitetravel",stat2_l:"공유된 투어 사진",stat3_l:"투어 라인 — ATV & 지프",
+    stat4_n:"괴레메",stat4_l:"중심가 오피스 — 문 앞의 투어 안내판",
+    story_eyebrow:"오피스",story_h:"하얀 돌,<br><em>진짜 흙먼지.</em>",
+    story_lead:"괴레메에서 문 앞에 투어 안내판이 줄지어 선 오피스—그 뒤에는 구천 명이 넘는 인스타그램 커뮤니티가 있습니다.",
+    story_p1:"Stone White Travel은 괴레메 중심가에서 일하는 현지 투어 팀입니다. 문 앞 안내판에 적힌 그대로 합니다: ATV, 지프 사파리, 열기구, 하맘, 문화 투어. 이 페이지의 모든 사진도 그 투어에서 나왔습니다—스튜디오도, 스톡 사진도 없습니다.",
+    story_p2:"메인 라인은 두 가지입니다: 하얀 응회암 언덕을 오르는 ATV 행렬과, 클래식 디펜더로 계곡 아래로 내려가는 지프 사파리. 어느 쪽이 맞을지 모르겠다면 WhatsApp으로 문의하세요; 날짜에 맞춰 솔직하게 알려드립니다.",
+    story_sign:"— Stone White Travel · 괴레메",story_cap:"괴레메 오피스 · 구글 지도 사진",
+    tours_eyebrow:"투어",tours_h:"두 라인,<br><em>같은 흙먼지.</em>",
+    tours_sub:"ATV에서는 스로틀이 당신 손에; 디펜더에서는 핸들이 우리 손에. 둘 다 요정 굴뚝 사이를 달립니다.",
+    tours_note:"소요 시간과 최신 요금은 WhatsApp으로 확인해 드립니다—문의하시면 명확한 답을 드립니다.",
+    t1_tag:"01 — 당신이 달린다",t1_h:"ATV 사파리",t1_chip:"일몰 옵션",
+    t1_p:"행렬을 이뤄 하얀 응회암 언덕을 오릅니다. 가이드가 앞에서, 당신은 자신의 ATV로—속도는 그룹에 맞춥니다. 계곡이 내려다보이는 능선에서 엔진이 멈추고 카메라가 말합니다.",
+    t1_f1:"헬멧 제공, 짧은 연습 주행으로 시작",t1_f2:"가이드 인솔 행렬—아무도 뒤처지지 않습니다",
+    t1_f3:"계곡 전망 능선에서 포토 스톱",t1_f4:"일몰 출발—안내판의 클래식",
+    t2_tag:"02 — 우리가 달린다",t2_h:"지프 사파리",t2_chip:"클래식 디펜더 플릿",
+    t2_p:"클래식 디펜더로 요정 굴뚝 발치의 흙길에 들어섭니다. 최고의 사진은 차가 멈출 때 나옵니다—그래서 자주 멈춥니다. 날씨가 좋으면 아침 전망 포인트에서 열기구가 바로 머리 위로 떠오릅니다.",
+    t2_f1:"사진 속 그 클래식 디펜더 플릿",t2_f2:"요정 굴뚝 발치의 흙길 루트",
+    t2_f3:"열기구 전망 아침 스톱 (날씨 허용 시)",t2_f4:"모든 정차 지점에서 사진 시간",
+    tour_cta:"예약 가능 여부 문의",
+    extra_h:"안내판엔 더 있습니다",
+    extra_p:"문 앞 안내판의 나머지: 열기구 투어 · 터키식 목욕 · 터키의 밤 · 레드/그린 문화 투어 · 승마. 오피스에 들르거나 WhatsApp으로 문의하세요.",
+    gallery_eyebrow:"갤러리",gallery_h:"흙먼지에서 건진<br><em>장면들.</em>",
+    gallery_sub:"모두 실제 투어에서—업체의 구글, 인스타그램, 트립어드바이저 프로필 사진을 바탕으로 한 장면들입니다.",
+    g1_cap:"오렌지 디펜더 · 열기구 시간",g2_cap:"ATV 콘보이 · 요정 굴뚝",g3_cap:"디펜더 안에서 · 이동 중",g4_cap:"디펜더 라인업 · 아침 빛",
+    gal_note:"출처: 구글 지도 · 인스타그램 @stonewhitetravel · 트립어드바이저",
+    book_eyebrow:"예약",book_h:"다음 출발에 <em>이름을 올리세요.</em>",
+    book_lede:"날짜와 인원을 보내주시면 WhatsApp으로 예약 가능 여부와 최신 요금을 알려드립니다. 질문 환영—답은 명확하게 드립니다.",
+    book_ig:"인스타그램: @stonewhitetravel — 팔로워 9.4K, 매일 새 사진",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_date:"날짜",label_people:"인원",
+    opt_p1:"1-2명",opt_p2:"3-5명",opt_p3:"6명 이상 / 단체",
+    label_tour:"투어",opt_t1:"ATV 사파리",opt_t2:"ATV 사파리 — 일몰",opt_t3:"지프 사파리 (디펜더)",opt_t4:"기타 — 열기구 / 하맘 / 문화 투어",
+    label_phone:"WhatsApp / 전화",ph_phone:"연락 가능한 번호",btn_submit:"WhatsApp으로 보내기",
+    foot_about:"괴레메 중심가의 ATV & 지프 사파리 팀. 하얀 응회암 언덕, 클래식 디펜더, 그리고 일몰의 흙먼지.",
+    foot_photos:"사진은 업체의 구글, 인스타그램, 트립어드바이저 프로필에서 가져왔습니다.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"괴레메, 네브셰히르 — 중심가 오피스",
+    foot_rights:"© 2026 Stone White Travel — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    wa_msg:"안녕하세요 Stone White Travel! 투어 예약 가능 여부를 문의합니다:",
+    wa_name:"성함",wa_date:"날짜",wa_people:"인원",wa_tour:"투어",wa_phone:"전화",
+    alert_fill:"성함, 날짜, 전화번호를 입력해 주세요."
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-aria');
+    if(dict[key]!==undefined) el.setAttribute('aria-label', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  document.querySelectorAll('[data-count]').forEach(el=>{ if(el.dataset.done){ el.textContent = fmtNum(parseInt(el.dataset.count,10)); }});
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  try{ localStorage.setItem('swt_lang', lang); }catch(e){}
+  // tubelight göstergeleri yeniden ölç (metin genişliği değişti)
+  requestAnimationFrame(()=>{ positionTube(); positionDockTube(); });
+}
+function initLang(){
+  let lang = null;
+  try{ const url = new URLSearchParams(location.search).get('lang'); if(url && SUPPORTED.includes(url)) lang = url; }catch(e){}
+  if(!lang){ try{ const s=localStorage.getItem('swt_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click', ()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+// ==================== TEMA ====================
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('swt_theme', t); }catch(e){}
+}
+document.querySelectorAll('[data-theme-toggle]').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    const cur = document.documentElement.getAttribute('data-theme')==='light' ? 'dark' : 'light';
+    applyTheme(cur);
+  });
+});
+
+// ==================== MOBİL MENÜ ====================
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+// ==================== NAV SCROLL ====================
+const nav=document.getElementById('nav');
+const onScrollNav=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScrollNav,{passive:true});onScrollNav();
+
+// ==================== TOZ BANDI — marquee içerik ====================
+(function(){
+  const words = "ATV SAFARI ✦ JEEP SAFARI ✦ GÖREME ✦ SUNSET RIDE ✦ CAPPADOCIA ✦ DUST & STONE ✦ ";
+  const seg = "<span class='band-txt'>"+words.repeat(3)+"</span>";
+  document.getElementById('bandA').innerHTML = seg+seg; // -50% kayma için birebir çift kopya
+  document.getElementById('bandB').innerHTML = seg+seg;
+})();
+
+// ==================== KİNETİK HERO — makas parallax ====================
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return;
+  const w1=document.getElementById('hw1'), w2=document.getElementById('hw2');
+  let ticking=false;
+  function upd(){
+    ticking=false;
+    const y=Math.min(window.scrollY, window.innerHeight);
+    w1.style.transform='translateX('+(-y*0.14)+'px)';
+    w2.style.transform='translateX('+(y*0.10)+'px)';
+  }
+  window.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(upd); } },{passive:true});
+})();
+
+// ==================== TUBELIGHT NAV + SCROLL-SPY ====================
+const spySections = ['story','tours','gallery','book'].map(id=>document.getElementById(id));
+let activeSpy = null;
+function positionTube(){
+  const tube=document.getElementById('tube');
+  const link=document.querySelector('#navpill a[data-spy="'+activeSpy+'"]');
+  if(!link||!activeSpy){ tube.classList.remove('on'); return; }
+  tube.style.transform='translateX('+link.offsetLeft+'px)';
+  tube.style.width=link.offsetWidth+'px';
+  tube.classList.add('on');
+}
+function positionDockTube(){
+  const tube=document.getElementById('dockTube');
+  const link=document.querySelector('#dock a[data-spy="'+activeSpy+'"]');
+  if(!link||!activeSpy){ tube.classList.remove('on'); return; }
+  tube.style.transform='translateX('+link.offsetLeft+'px)';
+  tube.style.width=link.offsetWidth+'px';
+  tube.classList.add('on');
+}
+function setActiveSpy(id){
+  if(activeSpy===id) return;
+  activeSpy=id;
+  document.querySelectorAll('[data-spy]').forEach(a=>a.classList.toggle('active', a.getAttribute('data-spy')===id));
+  positionTube(); positionDockTube();
+}
+(function(){
+  function onScrollSpy(){
+    const mid = window.scrollY + window.innerHeight*0.42;
+    let cur=null;
+    spySections.forEach(s=>{ if(s && s.offsetTop<=mid) cur=s.id; });
+    setActiveSpy(cur);
+  }
+  window.addEventListener('scroll',onScrollSpy,{passive:true});
+  window.addEventListener('resize',()=>{ positionTube(); positionDockTube(); });
+  onScrollSpy();
+})();
+
+// ==================== REVEAL + SAYAÇLAR ====================
+function fmtNum(n){
+  const loc = currentLang==='tr' ? 'tr-TR' : currentLang;
+  try{ return n.toLocaleString(loc); }catch(e){ return String(n); }
+}
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      if(e.target.querySelectorAll) e.target.querySelectorAll('[data-count]').forEach(runCount);
+      if(e.target.hasAttribute && e.target.hasAttribute('data-count')) runCount(e.target);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.18});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));
+function runCount(el){
+  if(el.dataset.done) return; el.dataset.done='1';
+  const target=parseInt(el.dataset.count,10);
+  const dur=1500;const t0=performance.now();
+  function tick(now){
+    const p=Math.min((now-t0)/dur,1);const eased=1-Math.pow(1-p,3);
+    el.textContent=fmtNum(Math.floor(eased*target));
+    if(p<1)requestAnimationFrame(tick);else el.textContent=fmtNum(target);
+  }
+  requestAnimationFrame(tick);
+}
+
+// ==================== REZERVASYON → WHATSAPP (çok dilli) ====================
+const WHATSAPP = "905384746363";
+function sendBooking(){
+  const d = I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const date=document.getElementById('f-date').value;
+  const count=document.getElementById('f-count').value;
+  const tour=document.getElementById('f-tour').value;
+  const phone=document.getElementById('f-phone').value.trim();
+  if(!name||!date||!phone){ alert(d.alert_fill); return; }
+  const msg = encodeURIComponent(d.wa_msg)+"%0A%0A"+
+    encodeURIComponent(d.wa_name)+": "+encodeURIComponent(name)+"%0A"+
+    encodeURIComponent(d.wa_date)+": "+encodeURIComponent(date)+"%0A"+
+    encodeURIComponent(d.wa_people)+": "+encodeURIComponent(count)+"%0A"+
+    encodeURIComponent(d.wa_tour)+": "+encodeURIComponent(tour)+"%0A"+
+    encodeURIComponent(d.wa_phone)+": "+encodeURIComponent(phone);
+  window.open("https://wa.me/"+WHATSAPP+"?text="+msg,"_blank");
+}
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items = Array.from(document.querySelectorAll('.lb-item'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  function srcOf(t){ return t.getAttribute('data-img') ? base+t.getAttribute('data-img') : (t.tagName==='IMG'? t.getAttribute('src') : ''); }
+  function capOf(t){
+    const k = t.getAttribute('data-cap-i18n');
+    if(k && I18N[currentLang][k]) return I18N[currentLang][k].replace(/<[^>]*>/g,' ');
+    return '';
+  }
+  function show(i){ idx = (i + items.length) % items.length; const t = items[idx]; img.src = srcOf(t); cap.textContent = capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>{
+    t.addEventListener('click',()=>open(i));
+    t.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(i); } });
+  });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+// ==================== BAŞLAT ====================
+initLang();
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+
+</body>
+</html>

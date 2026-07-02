@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Avanos Horse Ranch — Kapadokya'da At Turu · Avanos</title>
+<meta name="description" data-i18n="meta_desc" content="Avanos'ta, Kızılırmak'ın kıyısında at çiftliği. Şafakta balonların altında, gün batımında altın ışıkta at turu. Google 4.6★ · 440 yorum.">
+<script>
+/* Tema ön-yükleme — ilk boyamadan önce (FOUC yok): ?theme= → localStorage → sistem tercihi */
+(function(){
+  try{
+    var p = new URLSearchParams(location.search).get('theme');
+    var t = (p==='light'||p==='dark') ? p : null;
+    if(!t){ t = localStorage.getItem('ahr_theme'); }
+    if(t!=='light' && t!=='dark'){
+      t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){ document.documentElement.setAttribute('data-theme','dark'); }
+})();
+</script>
+<style>
+  /* ============ AVANOS HORSE RANCH — Kızılırmak kimliği ============
+     Palet: kızıl toprak bakırı + akşam altını + serin nehir yeşili.
+     Tipografi: kondanse grotesk (Bahnschrift/Arial Narrow) + italik serif aksan (Georgia).
+     İmza: "Kızılırmak Şeridi" — akan nehir bandı (SVG dash-flow). */
+  :root{
+    --bg:#1a110a; --bg-d:#120b06; --card:#231609; --card-2:#2b1b0c;
+    --ink:#f5e9d5; --muted:#c9ab8a; --soft:#a98f70;
+    --copper:#c75b2d; --copper-l:#e58a4e; --gold:#e6a54e; --gold-ink:#e6a54e;
+    --river:#8fb8a2; --river-d:#4e7d68;
+    --line:rgba(230,165,78,.17);
+    --ethos-bg:#f2e7d3; --ethos-ink:#241505; --ethos-muted:#6d5943; --ethos-acc:#b04c20;
+    --nav-bg:rgba(18,11,6,.82); --pill:rgba(24,14,7,.42); --pill-line:rgba(245,233,213,.12);
+    --input-bg:rgba(18,11,6,.55);
+  }
+  html[data-theme="light"]{
+    --bg:#f7efe1; --bg-d:#efe2cc; --card:#fdf8ee; --card-2:#f6ecda;
+    --ink:#2c1a0d; --muted:#7c6248; --soft:#96795c;
+    --copper:#b04c20; --copper-l:#c25c2b; --gold:#e6a54e; --gold-ink:#9a6317;
+    --river:#3e7a60; --river-d:#3e7a60;
+    --line:rgba(44,26,13,.16);
+    --ethos-bg:#251609; --ethos-ink:#f3e8d4; --ethos-muted:#c8ad8d; --ethos-acc:#e6a54e;
+    --nav-bg:rgba(247,239,225,.88); --pill:rgba(44,26,13,.06); --pill-line:rgba(44,26,13,.12);
+    --input-bg:rgba(255,255,255,.66);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{font-family:'Segoe UI','Helvetica Neue',system-ui,sans-serif;color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden;transition:background .45s,color .45s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:'Bahnschrift','Arial Narrow','Avenir Next Condensed','Helvetica Neue',sans-serif;
+    font-stretch:87%;font-weight:700;line-height:1.02;letter-spacing:.012em;text-transform:uppercase}
+  h1 em,h2 em{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;color:var(--gold)}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:700;text-transform:none;letter-spacing:.02em;line-height:1.18}
+  html[lang="zh-CN"] h1 em,html[lang="ko"] h1 em,html[lang="zh-CN"] h2 em,html[lang="ko"] h2 em{font-style:normal;font-family:inherit}
+  .eyebrow{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.4em;color:var(--copper-l)}
+  html[data-theme="light"] .eyebrow{color:var(--copper)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.16em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 30px}
+
+  /* ============ NAV — 21st.dev "tubelight navbar" portu (glass pill + kayan ışık) ============ */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;transition:background .45s,box-shadow .45s;gap:14px}
+  nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+  .brand{display:flex;align-items:center;gap:11px;flex:none;color:#f7ecd9}
+  nav.scrolled .brand{color:var(--ink)}
+  .brand img{width:38px;height:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px rgba(230,165,78,.55)}
+  .brand .bt{font-family:'Bahnschrift','Arial Narrow',sans-serif;font-stretch:87%;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.92rem;line-height:1.1}
+  .brand .bt small{display:block;font-family:Georgia,serif;font-style:italic;text-transform:none;letter-spacing:.04em;font-weight:400;font-size:.62rem;color:var(--gold);opacity:.95}
+  .navlinks{display:flex;gap:4px;align-items:center;margin-left:auto;background:var(--pill);border:1px solid var(--pill-line);border-radius:999px;padding:5px 8px;backdrop-filter:blur(10px)}
+  .navlinks a{position:relative;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,233,213,.78);padding:8px 13px;border-radius:999px;transition:color .3s}
+  nav.scrolled .navlinks a{color:var(--muted)}
+  html[lang="zh-CN"] .navlinks a,html[lang="ko"] .navlinks a{text-transform:none;letter-spacing:.03em;font-size:.86rem}
+  .navlinks a:hover{color:#fff}
+  nav.scrolled .navlinks a:hover{color:var(--ink)}
+  .navlinks a::before{content:"";position:absolute;left:22%;right:22%;top:-2px;height:2px;border-radius:2px;background:var(--gold);
+    box-shadow:0 0 10px 2px rgba(230,165,78,.75),0 0 26px 6px rgba(230,165,78,.28);opacity:0;transform:scaleX(.4);transition:.35s}
+  .navlinks a.active{color:var(--gold)}
+  nav.scrolled .navlinks a.active{color:var(--gold-ink)}
+  .navlinks a.active::before{opacity:1;transform:scaleX(1)}
+  .nav-cta{border:1px solid var(--copper-l);color:var(--copper-l)!important;margin-left:4px;font-weight:600}
+  .nav-cta:hover{background:var(--copper);color:#fff!important}
+  .nav-cta::before{display:none}
+  /* dil + tema */
+  .langs{display:flex;align-items:center;gap:1px;flex:none}
+  .langs button{background:none;border:none;color:rgba(245,233,213,.65);font-size:.74rem;cursor:pointer;padding:5px 6px;transition:.25s;border-radius:3px;letter-spacing:.03em;font-family:inherit}
+  nav.scrolled .langs button{color:var(--muted)}
+  .langs button:hover{color:#fff}
+  nav.scrolled .langs button:hover{color:var(--ink)}
+  .langs button.active{color:var(--gold);font-weight:700}
+  nav.scrolled .langs button.active{color:var(--gold-ink)}
+  .langs .sep{color:rgba(245,233,213,.25);font-size:.66rem}
+  nav.scrolled .langs .sep{color:var(--line)}
+  .theme-btn{background:none;border:1px solid var(--pill-line);border-radius:50%;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(245,233,213,.85);transition:.3s;flex:none}
+  nav.scrolled .theme-btn{color:var(--muted);border-color:var(--line)}
+  .theme-btn:hover{color:var(--gold);border-color:var(--gold)}
+  .theme-btn svg{width:17px;height:17px}
+  .theme-btn .ic-sun{display:none}.theme-btn .ic-moon{display:block}
+  html[data-theme="dark"] .theme-btn .ic-sun{display:block}
+  html[data-theme="dark"] .theme-btn .ic-moon{display:none}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;color:#f7ecd9;flex:none}
+  nav.scrolled .menu-btn{color:var(--ink)}
+
+  /* ============ HERO ============ */
+  .hero{position:relative;height:100vh;min-height:660px;overflow:hidden;display:flex;align-items:center;isolation:isolate}
+  .sky{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,#120b06 0%,#3a1c0e 34%,#8a3c1b 62%,#c75b2d 80%,#e6a54e 100%)}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center 38%;opacity:0;transition:opacity .8s}
+  .hero-photo.has-img{opacity:1;animation:kenburns 36s ease-in-out infinite alternate;transform-origin:55% 45%}
+  @keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.09)}}
+  .hero-photo.has-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,8,4,.52),rgba(14,8,4,.10) 42%,rgba(14,8,4,.44) 88%)}
+  #hero-gradient{position:absolute;inset:0;z-index:5;pointer-events:none;mix-blend-mode:overlay;opacity:.4;
+    --gradient-color-1:#84341a; --gradient-color-2:#c75b2d; --gradient-color-3:#e6a54e; --gradient-color-4:#4e7d68}
+  .no-webgl #hero-gradient{display:none}
+  .hero::after{content:"";position:absolute;inset:0;z-index:6;pointer-events:none;
+    background:radial-gradient(60% 55% at 26% 80%,rgba(14,8,4,.5),transparent 70%),linear-gradient(180deg,rgba(14,8,4,.3) 0%,transparent 38%,rgba(14,8,4,.42) 100%)}
+  .hero-inner{position:relative;z-index:10;width:100%;padding-top:108px;padding-bottom:9vh}
+  .hero .eyebrow{color:#f0c384;text-shadow:0 1px 14px rgba(0,0,0,.5)}
+  /* açık temada da foto üstünde açık bakır kalsın (genel light-eyebrow kuralı #b04c20'ye düşürüyordu) */
+  html[data-theme="light"] .hero .eyebrow{color:#e58a4e}
+  .hero h1{color:#fdf4e3;font-size:clamp(2.7rem,6.6vw,5.6rem);max-width:16ch;text-shadow:0 4px 44px rgba(0,0,0,.5);margin-top:20px}
+  .hero h1 em{color:#f2c079}
+  .hero .lede{font-size:clamp(1.02rem,1.55vw,1.28rem);color:rgba(250,240,222,.92);max-width:52ch;margin-top:24px;font-weight:300;text-shadow:0 2px 20px rgba(0,0,0,.55)}
+  .hero-cta{display:flex;gap:18px;margin-top:36px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:#fdf4e3;color:#2a1409;padding:16px 32px;border-radius:3px;font-weight:700;font-size:.84rem;letter-spacing:.13em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.35s}
+  .btn-solid:hover{background:var(--gold);color:#241203;gap:16px}
+  .btn-line{color:#fdf4e3;font-size:.84rem;letter-spacing:.13em;text-transform:uppercase;border-bottom:1px solid rgba(250,240,222,.5);padding-bottom:4px;transition:.35s}
+  .btn-line:hover{border-color:var(--gold);color:var(--gold)}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{text-transform:none;letter-spacing:.04em}
+  .hero-proof{display:flex;align-items:center;gap:10px;margin-top:30px;font-size:.8rem;letter-spacing:.06em;color:rgba(250,240,222,.85);text-shadow:0 1px 12px rgba(0,0,0,.6)}
+  .hero-proof .stars5{color:var(--gold);letter-spacing:.12em}
+  .scrollhint{position:absolute;bottom:104px;left:50%;transform:translateX(-50%);z-index:10;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(250,240,222,.6);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scrollhint .l{width:1px;height:32px;background:linear-gradient(var(--gold),transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ============ İMZA — KIZILIRMAK ŞERİDİ (akan nehir bandı) ============ */
+  .river-band{position:absolute;left:0;right:0;bottom:-2px;z-index:9;pointer-events:none;line-height:0}
+  .river-band svg{width:100%;height:96px;display:block}
+  .river-fill{color:var(--bg-d)}
+  .river-line{fill:none;stroke-width:2.2;stroke-linecap:round;opacity:.9}
+  .rl-copper{stroke:#c75b2d;stroke-dasharray:10 16;animation:riverflow 11s linear infinite}
+  .rl-gold{stroke:#e6a54e;stroke-width:1.6;stroke-dasharray:4 18;animation:riverflow 8s linear infinite reverse;opacity:.85}
+  .rl-river{stroke:#6d9c85;stroke-width:1.4;stroke-dasharray:2 14;animation:riverflow 15s linear infinite;opacity:.7}
+  @keyframes riverflow{to{stroke-dashoffset:-312}}
+  .river-sep{pointer-events:none;line-height:0;margin:-4px 0}
+  .river-sep svg{width:100%;height:54px;display:block}
+
+  /* ============ STATS ============ */
+  .stats{background:var(--bg-d);border-bottom:1px solid var(--line);position:relative;z-index:2}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:48px 30px}
+  .stat{text-align:center}
+  .stat .n{font-family:'Bahnschrift','Arial Narrow',sans-serif;font-stretch:87%;font-weight:700;font-size:clamp(2.1rem,4.4vw,3.3rem);color:var(--gold-ink);line-height:1}
+  .stat .l{font-size:.7rem;letter-spacing:.17em;text-transform:uppercase;color:var(--soft);margin-top:10px}
+  html[lang="zh-CN"] .stat .l,html[lang="ko"] .stat .l{text-transform:none;letter-spacing:.05em}
+  .stat+.stat{border-left:1px solid var(--line)}
+  @media(max-width:680px){.stats .wrap{grid-template-columns:1fr 1fr;gap:32px 18px}.stat:nth-child(3){border-left:none}}
+
+  section{padding:118px 0;position:relative}
+  .sec-head{max-width:680px;margin-bottom:60px}
+  .sec-head .eyebrow{display:block;margin-bottom:18px}
+  .sec-head h2{font-size:clamp(2.1rem,4.5vw,3.5rem)}
+  .sec-head p{margin-top:20px;color:var(--muted);font-size:1.08rem;font-weight:300}
+
+  /* ============ STORY ============ */
+  .story{background:var(--bg)}
+  .story::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(38% 52% at 10% 20%,rgba(199,91,45,.13),transparent 60%),
+      radial-gradient(44% 50% at 90% 80%,rgba(230,165,78,.10),transparent 62%),
+      radial-gradient(30% 40% at 60% 40%,rgba(78,125,104,.10),transparent 60%);
+    background-size:180% 180%;animation:meshDrift 26s ease-in-out infinite alternate}
+  .story>.wrap{position:relative;z-index:1}
+  @keyframes meshDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+  .story-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:0;align-items:stretch}
+  .story-visual{position:relative;min-height:540px;border-radius:4px;overflow:hidden;background:linear-gradient(160deg,#3a1c0e,#8a3c1b 60%,#c75b2d);background-size:cover;background-position:center}
+  .story-visual .cap{position:absolute;left:20px;bottom:18px;z-index:3}
+  .story-text{background:var(--card);padding:60px;display:flex;flex-direction:column;justify-content:center;margin-left:-44px;z-index:2;border:1px solid var(--line);border-left:3px solid var(--copper);border-radius:4px}
+  .story-text .lead{font-family:Georgia,serif;font-size:1.62rem;line-height:1.42;font-style:italic;color:var(--ink);margin-bottom:24px}
+  html[lang="zh-CN"] .story-text .lead,html[lang="ko"] .story-text .lead{font-style:normal;font-family:inherit;font-size:1.4rem}
+  .story-text p{color:var(--muted);margin-bottom:18px;font-weight:300}
+  .story-text .sign{margin-top:16px;font-family:Georgia,serif;font-size:1.22rem;color:var(--copper-l);font-style:italic}
+  html[data-theme="light"] .story-text .sign{color:var(--copper)}
+  @media(max-width:880px){.story-grid{grid-template-columns:1fr}.story-text{margin-left:0;margin-top:-44px}.story-visual{min-height:360px}}
+
+  /* ============ RIDES ============ */
+  .rides{background:var(--bg-d)}
+  .rides::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(40% 55% at 88% 14%,rgba(199,91,45,.12),transparent 62%),
+      radial-gradient(36% 44% at 8% 82%,rgba(78,125,104,.12),transparent 60%);
+    background-size:180% 180%;animation:meshDrift 30s ease-in-out infinite alternate}
+  .rides>.wrap{position:relative;z-index:1}
+  .ride{display:grid;grid-template-columns:.95fr 1.05fr;gap:50px;align-items:center;padding:52px 0;border-top:1px solid var(--line)}
+  .ride:last-child{border-bottom:1px solid var(--line)}
+  .ride.flip{grid-template-columns:1.05fr .95fr}
+  .ride.flip .ride-visual{order:2}
+  .ride-visual{height:372px;border-radius:4px;position:relative;overflow:hidden;background-size:cover;background-position:center;cursor:pointer;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+  .ride-visual:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.35)}
+  /* DİKKAT: 'background' shorthand'i .ride-visual'daki cover/center'ı sıfırlıyordu (auto + 0 0
+     → foto sol-üstten doğal boyutta kırpılıyor, 390px mobilde biniciler kesiliyordu). Longhand şart. */
+  .rv1{background-image:linear-gradient(150deg,#3a1c0e,#8a3c1b 55%,#e6a54e)}
+  .rv2{background-image:linear-gradient(150deg,#241203,#84341a 50%,#e58a4e)}
+  .rv3{background-image:linear-gradient(150deg,#1c130b,#4e7d68 60%,#c9ab8a)}
+  /* görsel üstü çip — TEMADAN BAĞIMSIZ okunur (sabit koyu scrim + açık metin) */
+  .chip{display:inline-flex;align-items:center;gap:7px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#fdf2df;background:rgba(16,9,4,.62);padding:7px 13px;border-radius:3px;backdrop-filter:blur(5px);text-shadow:0 1px 6px rgba(0,0,0,.6)}
+  html[lang="zh-CN"] .chip,html[lang="ko"] .chip{text-transform:none;letter-spacing:.05em}
+  .ride-visual .chip{position:absolute;top:18px;left:20px;z-index:2}
+  .ride-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(14,8,4,.34),transparent 46%)}
+  .ride-body .tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--copper-l);font-weight:600}
+  html[data-theme="light"] .ride-body .tag{color:var(--copper)}
+  .ride-body h3{font-size:clamp(1.7rem,3.3vw,2.6rem);margin:12px 0 8px;color:var(--ink)}
+  .ride-body .dur{font-family:Georgia,serif;font-style:italic;font-size:1rem;color:var(--gold-ink);margin-bottom:18px}
+  html[lang="zh-CN"] .ride-body .dur,html[lang="ko"] .ride-body .dur{font-style:normal;font-family:inherit}
+  .ride-body p{color:var(--muted);font-weight:300;margin-bottom:22px;max-width:48ch}
+  .ask{display:inline-flex;align-items:center;gap:9px;color:var(--copper-l);font-size:.84rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;border-bottom:1px solid transparent;padding-bottom:3px;transition:.3s}
+  html[data-theme="light"] .ask{color:var(--copper)}
+  .ask:hover{border-color:var(--copper-l);gap:14px}
+  html[lang="zh-CN"] .ask,html[lang="ko"] .ask{text-transform:none;letter-spacing:.04em}
+  @media(max-width:880px){.ride,.ride.flip{grid-template-columns:1fr;gap:24px}.ride.flip .ride-visual{order:0}.ride-visual{height:250px}}
+
+  /* ============ IG BANDI — sosyal kanıt (her iki temada sabit "nehir akşamı" paneli) ============ */
+  .igband{padding:0;background:var(--bg-d)}
+  .ig-panel{position:relative;overflow:hidden;background:linear-gradient(135deg,#170d06 0%,#3f1d0d 46%,#84341a 100%);border-top:1px solid rgba(230,165,78,.25);border-bottom:1px solid rgba(230,165,78,.25)}
+  .ig-panel::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(42% 70% at 82% 26%,rgba(230,165,78,.2),transparent 60%),radial-gradient(30% 55% at 12% 80%,rgba(109,156,133,.16),transparent 60%);
+    background-size:170% 170%;animation:meshDrift 22s ease-in-out infinite alternate}
+  .ig-inner{position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr auto;gap:44px;align-items:center;padding:64px 30px}
+  .ig-count-wrap{text-align:left}
+  .ig-count{font-family:'Bahnschrift','Arial Narrow',sans-serif;font-stretch:87%;font-weight:700;font-size:clamp(3rem,7vw,5.2rem);line-height:1;color:#f2c079;text-shadow:0 0 34px rgba(230,165,78,.35)}
+  .ig-count-l{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,233,213,.75);margin-top:8px}
+  html[lang="zh-CN"] .ig-count-l,html[lang="ko"] .ig-count-l{text-transform:none;letter-spacing:.06em}
+  .ig-mid h3{font-size:clamp(1.4rem,2.6vw,2.1rem);color:#fdf4e3;max-width:24ch}
+  .ig-mid p{color:rgba(245,233,213,.75);font-weight:300;margin-top:12px;max-width:52ch}
+  .ig-btn{display:inline-flex;align-items:center;gap:11px;border:1px solid #e6a54e;color:#f2c079;padding:15px 28px;border-radius:999px;font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;transition:.35s;white-space:nowrap}
+  .ig-btn:hover{background:#e6a54e;color:#241203}
+  .ig-btn svg{width:19px;height:19px}
+  html[lang="zh-CN"] .ig-btn,html[lang="ko"] .ig-btn{text-transform:none;letter-spacing:.04em}
+  @media(max-width:880px){.ig-inner{grid-template-columns:1fr;gap:26px;text-align:left;padding:54px 30px}}
+
+  /* ============ ETHOS — ters tema bandı ============ */
+  .ethos{background:var(--ethos-bg);color:var(--ethos-ink)}
+  .ethos .eyebrow{color:var(--ethos-acc)}
+  .ethos .sec-head h2{color:var(--ethos-ink)}
+  .ethos .sec-head p{color:var(--ethos-muted)}
+  .ethos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:38px}
+  .et .ic{width:38px;height:38px;color:var(--ethos-acc);margin-bottom:16px}
+  .et h3{font-size:1.2rem;margin-bottom:8px;color:var(--ethos-ink)}
+  .et p{font-size:.94rem;color:var(--ethos-muted);font-weight:300}
+  @media(max-width:880px){.ethos-grid{grid-template-columns:1fr 1fr;gap:30px}}
+
+  /* ============ GALLERY — editoryel masonry (CSS columns) ============ */
+  .gallery{background:var(--bg)}
+  .tiles{columns:3;column-gap:16px}
+  .tile{position:relative;border-radius:5px;overflow:hidden;margin-bottom:16px;break-inside:avoid;background-color:var(--card-2);background-size:cover;background-position:center;cursor:pointer;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+  .t43{aspect-ratio:4/3}.t34{aspect-ratio:3/4}.t11{aspect-ratio:1/1}.t169{aspect-ratio:16/9}
+  .tile::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(14,8,4,.48),rgba(14,8,4,0) 42%);transition:.4s}
+  .tile:hover::before{background:linear-gradient(to top,rgba(14,8,4,.62),rgba(14,8,4,.12))}
+  .tile .cap{position:absolute;left:14px;bottom:13px;z-index:2}
+  .tile::after{content:"\2922";position:absolute;top:11px;right:14px;z-index:2;color:#fff;font-size:1rem;opacity:0;transform:scale(.75);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  @media(max-width:860px){.tiles{columns:2}}
+  @media(max-width:500px){.tiles{columns:1}}
+
+  /* ---- Lightbox ---- */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(12,7,3,.94);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:86vh;border-radius:5px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f5e9d5;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s;z-index:2}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#e9d6b8;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+  html[lang="zh-CN"] .lb-cap,html[lang="ko"] .lb-cap{text-transform:none;letter-spacing:.04em}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(26,17,10,.6);border:1px solid rgba(230,165,78,.3);color:#f5e9d5;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .lb-nav:hover{background:var(--copper);border-color:var(--copper)}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:1.2rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ============ BOOK ============ */
+  .book{background:linear-gradient(180deg,var(--bg),var(--card-2));position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-130px;left:50%;transform:translateX(-50%);width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(230,165,78,.16),transparent 68%)}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.3rem,4.5vw,3.7rem);color:var(--ink)}
+  .book .lede{color:var(--muted);margin-top:20px;font-size:1.08rem;font-weight:300}
+  .wa{display:inline-flex;align-items:center;gap:11px;margin-top:28px;color:var(--ink);font-size:1.02rem;font-weight:600}
+  .wa svg{width:24px;height:24px;color:#4fae5c}
+  .form{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:38px;backdrop-filter:blur(6px)}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--copper-l);margin-bottom:8px;font-weight:700}
+  html[data-theme="light"] .field label{color:var(--copper)}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{text-transform:none;letter-spacing:.03em}
+  .field input,.field select{width:100%;padding:14px 16px;border-radius:3px;border:1px solid var(--line);background:var(--input-bg);color:var(--ink);font-family:inherit;font-size:.95rem;color-scheme:dark}
+  html[data-theme="light"] .field input,html[data-theme="light"] .field select{color-scheme:light}
+  .field input::placeholder{color:var(--soft)}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--copper)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .submit{width:100%;background:var(--copper);color:#fff6e8;border:none;padding:17px;border-radius:3px;font-family:inherit;font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.35s;margin-top:8px}
+  .submit:hover{background:var(--gold);color:#241203}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{text-transform:none;letter-spacing:.04em}
+  @media(max-width:880px){.book-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--bg-d);color:var(--muted);padding:70px 0 32px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:48px}
+  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:18px;color:var(--ink)}
+  .foot-brand img{width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px rgba(230,165,78,.5)}
+  .foot-brand .bt{font-family:'Bahnschrift','Arial Narrow',sans-serif;font-stretch:87%;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:1.05rem;line-height:1.15}
+  .foot-brand .bt small{display:block;font-family:Georgia,serif;font-style:italic;text-transform:none;font-weight:400;font-size:.68rem;color:var(--gold-ink)}
+  footer h4{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--copper-l);margin-bottom:18px;font-weight:700}
+  html[data-theme="light"] footer h4{color:var(--copper)}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{text-transform:none;letter-spacing:.04em}
+  footer ul{list-style:none}
+  footer li{margin-bottom:11px;font-size:.94rem;font-weight:300;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:var(--ink)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem}
+  .demo-badge{background:var(--copper);color:#fff6e8;padding:5px 13px;border-radius:3px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+
+  .reveal{opacity:0;transform:translateY(34px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  .mobile-menu{position:fixed;inset:0;z-index:70;background:rgba(15,9,4,.97);backdrop-filter:blur(8px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:26px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:'Bahnschrift','Arial Narrow',sans-serif;font-stretch:87%;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:1.7rem;color:#f5e9d5}
+  html[lang="zh-CN"] .mobile-menu a,html[lang="ko"] .mobile-menu a{font-family:inherit;text-transform:none}
+  .mobile-menu .close{position:absolute;top:24px;right:26px;background:none;border:none;color:#f5e9d5;cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+  .mobile-menu .m-langs button{background:none;border:1px solid rgba(230,165,78,.3);color:#c9ab8a;padding:8px 14px;border-radius:3px;font-family:inherit;font-size:.85rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:#f2c079;border-color:var(--copper)}
+  .mobile-menu .m-theme{margin-top:6px;background:none;border:1px solid rgba(230,165,78,.3);color:#c9ab8a;padding:9px 18px;border-radius:999px;font-family:inherit;font-size:.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:9px}
+  .mobile-menu .m-theme svg{width:16px;height:16px}
+  .mobile-menu .m-theme .ic-sun{display:none}.mobile-menu .m-theme .ic-moon{display:block}
+  html[data-theme="dark"] .mobile-menu .m-theme .ic-sun{display:block}
+  html[data-theme="dark"] .mobile-menu .m-theme .ic-moon{display:none}
+
+  @media(max-width:960px){
+    .navlinks{display:none}.menu-btn{display:block}
+    .langs{display:none}
+  }
+  @media(max-width:760px){
+    section{padding:78px 0}
+    .story-text,.form{padding:34px}
+    .foot-grid{grid-template-columns:1fr;gap:32px}
+    .brand .bt{font-size:.8rem}
+    .scrollhint{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* Signature yardımcıları: film grain + scroll progress (şablon 2026 katmanı, Kızılırmak paletiyle) */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+  html[data-theme="light"] .grain{opacity:.035}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--copper),var(--gold));box-shadow:0 0 12px rgba(230,165,78,.5)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+</style>
+</head>
+<body>
+
+<!-- Signature: film grain + scroll ilerleme çubuğu -->
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a class="brand" href="#" aria-label="Avanos Horse Ranch">
+    <img src="assets/images/logo.png" alt="Avanos Horse Ranch logosu" width="38" height="38">
+    <span class="bt">Avanos Horse Ranch<small data-i18n="brand_tag">Kızılırmak'ın kıyısında</small></span>
+  </a>
+  <div class="navlinks" id="navlinks">
+    <a href="#story" data-i18n="nav_story">Çiftlik</a>
+    <a href="#rides" data-i18n="nav_rides">Sürüşler</a>
+    <a href="#ethos" data-i18n="nav_ethos">Neden Biz</a>
+    <a href="#gallery" data-i18n="nav_gallery">Galeri</a>
+    <a class="nav-cta" href="#book" data-i18n="nav_book">Rezervasyon</a>
+  </div>
+  <div class="langs" role="group" aria-label="Dil / Language">
+    <button data-lang="tr" class="active">TR</button><span class="sep">|</span>
+    <button data-lang="en">EN</button><span class="sep">|</span>
+    <button data-lang="es">ES</button><span class="sep">|</span>
+    <button data-lang="zh-CN">中文</button><span class="sep">|</span>
+    <button data-lang="ko">한국어</button>
+  </div>
+  <button class="theme-btn" id="themeBtn" aria-label="Tema değiştir">
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+  <button class="menu-btn" aria-label="Menü" id="menuBtn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#story" data-i18n="nav_story">Çiftlik</a>
+  <a href="#rides" data-i18n="nav_rides">Sürüşler</a>
+  <a href="#ethos" data-i18n="nav_ethos">Neden Biz</a>
+  <a href="#gallery" data-i18n="nav_gallery">Galeri</a>
+  <a href="#book" data-i18n="nav_book">Rezervasyon</a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+  <button class="m-theme" id="themeBtnM" aria-label="Tema değiştir">
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <span data-i18n="theme_label">Aydınlık / Karanlık</span>
+  </button>
+</div>
+
+<header class="hero">
+  <div class="sky"></div>
+  <div class="hero-photo" id="heroPhoto"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Avanos · Kapadokya — Kızılırmak'ın kıyısında</span>
+      <h1 data-i18n="hero_title" data-i18n-html="1">Kızıl nehrin ülkesinde,<br><em>eyerde bir akşam.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Avanos, Kızılırmak'ın kıyısına kurulmuş bir at kasabası; biz de onun kızıl toprağında sürüyoruz. Şafakta balonlar yükselirken, akşam gün batarken — atın adımı, ışığın rengi, bir de siz.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#book"><span data-i18n="hero_cta1">Yerini ayırt</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#rides" data-i18n="hero_cta2">Sürüşleri gör</a>
+      </div>
+      <div class="hero-proof"><span class="stars5" aria-hidden="true">★★★★★</span><span data-i18n="hero_proof">Google'da 4.6 — 440 yorum</span></div>
+    </div>
+  </div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Nehre doğru</span><span class="l"></span></div>
+  <!-- İMZA: Kızılırmak Şeridi — akan nehir bandı -->
+  <div class="river-band" aria-hidden="true">
+    <svg viewBox="0 0 1440 96" preserveAspectRatio="none">
+      <path class="river-fill" fill="currentColor" d="M0,54 C160,30 300,74 480,58 C660,42 780,70 960,54 C1140,38 1300,66 1440,48 L1440,96 L0,96 Z"/>
+      <path class="river-line rl-copper" d="M0,50 C160,26 300,70 480,54 C660,38 780,66 960,50 C1140,34 1300,62 1440,44"/>
+      <path class="river-line rl-gold" d="M0,60 C170,40 320,80 500,64 C680,48 800,76 980,60 C1150,46 1310,70 1440,56"/>
+      <path class="river-line rl-river" d="M0,42 C150,22 310,60 490,46 C670,32 790,58 970,44 C1150,30 1310,54 1440,38"/>
+    </svg>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n">4.6★</div><div class="l" data-i18n="stat_rating">Google puanı</div></div>
+    <div class="stat"><div class="n" data-count="440" data-suffix="">0</div><div class="l" data-i18n="stat_reviews">Google yorumu</div></div>
+    <div class="stat"><div class="n" data-count="66" data-suffix="K">0</div><div class="l" data-i18n="stat_ig">Instagram takipçisi</div></div>
+    <div class="stat"><div class="n">Avanos</div><div class="l" data-i18n="stat_town">Kızılırmak'ın kıyısında</div></div>
+  </div>
+</div>
+
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="story_eyebrow">Çiftlik</span>
+      <h2 data-i18n="story_h" data-i18n-html="1">Nehrin kasabasında <em>bir at çiftliği.</em></h2>
+      <p data-i18n="story_sub">Kapadokya'nın adı "Güzel Atlar Diyarı"ndan gelir; Avanos'un adıysa hep nehirle anılır. Çiftliğimiz, ikisinin kesiştiği yerde.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-visual reveal" id="storyImg">
+        <span class="cap chip" data-i18n="ph_story">Çiftlikte bir sabah · atlarımızdan biri</span>
+      </div>
+      <div class="story-text reveal">
+        <p class="lead" data-i18n="story_lead">Misafirlerimizin çoğu hayatında ilk kez ata biniyor — ve attan inerken "neden bunca yıl beklemişim" diye soruyor.</p>
+        <p data-i18n="story_p1">Atlarımıza ailemiz gibi bakarız; hangisinin sabırlı, hangisinin oyunbaz olduğunu adı gibi biliriz. İlk kez binene en uysalını, deneyimli biniciye en heveslisini veririz — eşleştirmeyi şansa bırakmayız.</p>
+        <p data-i18n="story_p2">Arkamızda 440'ı aşkın Google yorumu ve 4.6 puan var. Ama bizim için asıl karne, sürüş bitip misafir attan inerken yüzünde gördüğümüz ifade.</p>
+        <p class="sign" data-i18n="story_sign">— Avanos Horse Ranch ekibi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rides" id="rides">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="rides_eyebrow">Sürüşler</span>
+      <h2 data-i18n="rides_h" data-i18n-html="1">Nehrin ışığına göre <em>üç sürüş.</em></h2>
+      <p data-i18n="rides_sub">Rotalar hava ve mevsime göre planlanır. Süre ve güncel fiyat için WhatsApp'tan yazmanız yeterli — kısa sürede döneriz.</p>
+    </div>
+    <div class="ride reveal">
+      <div class="ride-visual rv1" data-img="ride-1.jpg"><span class="chip" data-i18n="ride1_time">akşamüstü · altın saat</span></div>
+      <div class="ride-body">
+        <span class="tag" data-i18n="ride1_tag">En sevilen</span>
+        <h3 data-i18n="ride1_h">Gün Batımı Sürüşü</h3>
+        <div class="dur" data-i18n="ride1_dur">Kızıl toprak bakıra dönerken</div>
+        <p data-i18n="ride1_p">Gün alçaldıkça Avanos'un kızıl toprağı bakıra döner. Sırtımızı güneşe verip patikaya çıkıyoruz; dönüş yolunda gökyüzü önce altın, sonra kor rengi. Fotoğraf isteyenler için günün en cömert saati.</p>
+        <a class="ask" href="https://wa.me/905454552671" target="_blank" rel="noopener"><span data-i18n="ride_ask">WhatsApp'tan sor</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="ride flip reveal">
+      <div class="ride-visual rv2" data-img="ride-2.jpg"><span class="chip" data-i18n="ride2_time">gün doğumu · balonlar</span></div>
+      <div class="ride-body">
+        <span class="tag" data-i18n="ride2_tag">Şafak</span>
+        <h3 data-i18n="ride2_h">Şafak &amp; Balonlar</h3>
+        <div class="dur" data-i18n="ride2_dur">Balonlar yükselirken eyerde</div>
+        <p data-i18n="ride2_p">Kapadokya sabahının klasiği: gün ağarırken ata biniyorsunuz, ufukta balonlar birer birer yükseliyor. Aşağıda atın sakin adımı, yukarıda renklenen bir gökyüzü — Avanos'ta güne böyle başlanır.</p>
+        <a class="ask" href="https://wa.me/905454552671" target="_blank" rel="noopener"><span data-i18n="ride_ask">WhatsApp'tan sor</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="ride reveal">
+      <div class="ride-visual rv3" data-img="ride-3.jpg"><span class="chip" data-i18n="ride3_time">peri bacaları arasında</span></div>
+      <div class="ride-body">
+        <span class="tag" data-i18n="ride3_tag">Keşif</span>
+        <h3 data-i18n="ride3_h">Vadi Yolculuğu</h3>
+        <div class="dur" data-i18n="ride3_dur">Patikalar, kayalar, açık bozkır</div>
+        <p data-i18n="ride3_p">Peri bacalarının ve kaya vadilerinin arasından geçen patikalarda, küçük bir grupla keşfe çıkıyoruz. Rehber önden gider, tempo gruba göre ayarlanır; yol boyu durup fotoğraf çekmek serbest.</p>
+        <a class="ask" href="https://wa.me/905454552671" target="_blank" rel="noopener"><span data-i18n="ride_ask">WhatsApp'tan sor</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IG SOSYAL KANIT BANDI -->
+<section class="igband" aria-label="Instagram">
+  <div class="river-sep" aria-hidden="true">
+    <svg viewBox="0 0 1440 54" preserveAspectRatio="none">
+      <path class="river-line rl-copper" d="M0,28 C180,12 340,44 520,30 C700,16 840,42 1020,28 C1200,14 1330,38 1440,26"/>
+      <path class="river-line rl-gold" d="M0,36 C190,22 350,50 530,38 C710,26 850,48 1030,36 C1210,24 1340,44 1440,34"/>
+    </svg>
+  </div>
+  <div class="ig-panel">
+    <div class="wrap ig-inner">
+      <div class="ig-count-wrap reveal">
+        <div class="ig-count" data-count="66" data-suffix=".000" data-suffix-i18n="ig_suffix">0</div>
+        <div class="ig-count-l" data-i18n="ig_followers">takipçi</div>
+      </div>
+      <div class="ig-mid reveal">
+        <h3 data-i18n="ig_h">Instagram'da 66.000 kişi bu atları izliyor.</h3>
+        <p data-i18n="ig_p">Sürüşlerden kareler, çiftlikten yeni yüzler ve misafir videoları — 260 gönderiyle @avanoshorseranch'te.</p>
+      </div>
+      <div class="reveal">
+        <a class="ig-btn" href="https://instagram.com/avanoshorseranch" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="ig_btn">@avanoshorseranch</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ethos" id="ethos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="ethos_eyebrow">Neden Biz</span>
+      <h2 data-i18n="ethos_h">Dört ayak üstünde güven.</h2>
+    </div>
+    <div class="ethos-grid">
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><path d="M9.5 11.5l1.8 1.8 3.5-3.6"/></svg>
+        <h3 data-i18n="ethos1_h">İyi bakılan, sakin atlar</h3>
+        <p data-i18n="ethos1_p">Mutlu at, güvenli sürüş demektir. Atlarımızın bakımı ve huzuru işimizin ilk maddesi — misafirlerin yorumlarında en çok bu geçer.</p>
+      </div>
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12h3l2-7 4 14 3-10 2 3h4"/></svg>
+        <h3 data-i18n="ethos2_h">İlk kez binenlere uygun</h3>
+        <p data-i18n="ethos2_p">Deneyim şartı yok. En uysal atlarımız ilk kez binenlere ayrılır; temel eğitimi binmeden önce yerde veririz.</p>
+      </div>
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="7" r="3.2"/><path d="M5.5 21c.6-4 3-6.5 6.5-6.5S17.9 17 18.5 21"/></svg>
+        <h3 data-i18n="ethos3_h">Rehber hep grupla</h3>
+        <p data-i18n="ethos3_p">Kimse patikada tek başına bırakılmaz; rotayı bilen bir rehber baştan sona grupla birlikte sürer.</p>
+      </div>
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.5-2.5h5L16 6"/></svg>
+        <h3 data-i18n="ethos4_h">Fotoğraf çekimli sürüşler</h3>
+        <p data-i18n="ethos4_p">Eyer üstünde özel çekim isteyenlere ayrı seanslar: gün batımı, balonlu şafak, hatta meşale ışığında gece kareleri.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="gallery_eyebrow">Galeri</span>
+      <h2 data-i18n="gallery_h" data-i18n-html="1">Hepsi <em>burada</em> çekildi.</h2>
+      <p data-i18n="gallery_sub">Bu karelerin tamamı işletmenin Google ve Instagram profillerinden alındı — stok yok, kurgu yok.</p>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile t34" data-img="gallery-1.jpg" role="button" tabindex="0"><span class="cap chip" data-i18n="ph_g1">Şafak · balonlar</span></div>
+      <div class="tile t34" data-img="gallery-2.jpg" role="button" tabindex="0"><span class="cap chip" data-i18n="ph_g2">Peri bacaları arasında</span></div>
+      <div class="tile t34" data-img="gallery-3.jpg" role="button" tabindex="0"><span class="cap chip" data-i18n="ph_g3">Patikada · altın saat</span></div>
+      <div class="tile t11" data-img="gallery-4.jpg" role="button" tabindex="0"><span class="cap chip" data-i18n="ph_g4">Meşale ışığında özel çekim</span></div>
+      <div class="tile t34" data-img="gallery-5.jpg" role="button" tabindex="0"><span class="cap chip" data-i18n="ph_g5">Gün batımı yolu</span></div>
+      <div class="tile t43" data-img="gallery-6.jpg" role="button" tabindex="0"><span class="cap chip" data-i18n="ph_g6">Çiftlikte</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="book_eyebrow">Rezervasyon</span>
+        <h2 style="margin-top:18px" data-i18n="book_h" data-i18n-html="1">Bir akşamı <em>ayırtın.</em></h2>
+        <p class="lede" data-i18n="book_lede">Formu doldurun, mesajınız WhatsApp'tan bize düşsün. Tarih, süre, fiyat — aklınızdaki her şeyi sorun; kısa sürede döneriz.</p>
+        <a class="wa" href="https://wa.me/905454552671" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg>
+          +90 545 455 26 71
+        </a>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-date" data-i18n="label_date">Tarih</label><input type="date" id="f-date"></div>
+          <div class="field"><label for="f-count" data-i18n="label_people">Kişi</label>
+            <select id="f-count">
+              <option data-i18n="opt_1p">1 kişi</option><option data-i18n="opt_2p">2 kişi</option><option data-i18n="opt_3p">3 kişi</option><option data-i18n="opt_4p">4+ kişi</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-ride" data-i18n="label_ride">Sürüş</label>
+          <select id="f-ride">
+            <option data-i18n="opt_ride1">Gün Batımı Sürüşü</option>
+            <option data-i18n="opt_ride2">Şafak &amp; Balonlar</option>
+            <option data-i18n="opt_ride3">Vadi Yolculuğu</option>
+            <option data-i18n="opt_ride4">Fotoğraf Çekimli Sürüş</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-phone" data-i18n="label_phone">WhatsApp / Telefon</label>
+          <input type="tel" id="f-phone" data-i18n-ph="ph_phone" placeholder="Size ulaşabileceğimiz numara">
+        </div>
+        <button class="submit" type="button" onclick="sendBooking()" data-i18n="btn_submit">Sürüş talebi gönder</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="assets/images/logo.png" alt="Avanos Horse Ranch logosu" width="44" height="44">
+          <span class="bt">Avanos Horse Ranch<small data-i18n="brand_tag">Kızılırmak'ın kıyısında</small></span>
+        </div>
+        <p style="max-width:340px;font-weight:300" data-i18n="foot_about">Avanos'ta, Kızılırmak'ın kıyısında bir at çiftliği. Şafaktan gün batımına, iyi bakılan atlarla Kapadokya.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#story" data-i18n="nav_story">Çiftlik</a></li>
+          <li><a href="#rides" data-i18n="nav_rides">Sürüşler</a></li>
+          <li><a href="#gallery" data-i18n="nav_gallery">Galeri</a></li>
+          <li><a href="#book" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Avanos, Nevşehir</li>
+          <li><a href="https://wa.me/905454552671" target="_blank" rel="noopener">+90 545 455 26 71</a></li>
+          <li><a href="https://instagram.com/avanoshorseranch" target="_blank" rel="noopener">@avanoshorseranch</a></li>
+          <li data-i18n="foot_google">Google 4.6★ · 440 yorum</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Avanos Horse Ranch — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+// İnternet/CDN gerektirmez; her koşulda çalışır. Ayarlar talimatla uyumlu: lerp 0.085, wheelMultiplier 0.9
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 70;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
+<script>
+// ==================== i18n SÖZLÜĞÜ ====================
+const I18N = {
+  tr:{
+    meta_title:"Avanos Horse Ranch — Kapadokya'da At Turu · Avanos",
+    meta_desc:"Avanos'ta, Kızılırmak'ın kıyısında at çiftliği. Şafakta balonların altında, gün batımında altın ışıkta at turu. Google 4.6★ · 440 yorum.",
+    brand_tag:"Kızılırmak'ın kıyısında",
+    nav_story:"Çiftlik",nav_rides:"Sürüşler",nav_ethos:"Neden Biz",nav_gallery:"Galeri",nav_book:"Rezervasyon",
+    theme_label:"Aydınlık / Karanlık",
+    hero_eyebrow:"Avanos · Kapadokya — Kızılırmak'ın kıyısında",
+    hero_title:'Kızıl nehrin ülkesinde,<br><em>eyerde bir akşam.</em>',
+    hero_lede:"Avanos, Kızılırmak'ın kıyısına kurulmuş bir at kasabası; biz de onun kızıl toprağında sürüyoruz. Şafakta balonlar yükselirken, akşam gün batarken — atın adımı, ışığın rengi, bir de siz.",
+    hero_cta1:"Yerini ayırt",hero_cta2:"Sürüşleri gör",hero_proof:"Google'da 4.6 — 440 yorum",scroll_hint:"Nehre doğru",
+    stat_rating:"Google puanı",stat_reviews:"Google yorumu",stat_ig:"Instagram takipçisi",stat_town:"Kızılırmak'ın kıyısında",
+    story_eyebrow:"Çiftlik",story_h:'Nehrin kasabasında <em>bir at çiftliği.</em>',
+    story_sub:'Kapadokya\'nın adı "Güzel Atlar Diyarı"ndan gelir; Avanos\'un adıysa hep nehirle anılır. Çiftliğimiz, ikisinin kesiştiği yerde.',
+    story_lead:'Misafirlerimizin çoğu hayatında ilk kez ata biniyor — ve attan inerken "neden bunca yıl beklemişim" diye soruyor.',
+    story_p1:"Atlarımıza ailemiz gibi bakarız; hangisinin sabırlı, hangisinin oyunbaz olduğunu adı gibi biliriz. İlk kez binene en uysalını, deneyimli biniciye en heveslisini veririz — eşleştirmeyi şansa bırakmayız.",
+    story_p2:"Arkamızda 440'ı aşkın Google yorumu ve 4.6 puan var. Ama bizim için asıl karne, sürüş bitip misafir attan inerken yüzünde gördüğümüz ifade.",
+    story_sign:"— Avanos Horse Ranch ekibi",ph_story:"Çiftlikte bir sabah · atlarımızdan biri",
+    rides_eyebrow:"Sürüşler",rides_h:'Nehrin ışığına göre <em>üç sürüş.</em>',
+    rides_sub:"Rotalar hava ve mevsime göre planlanır. Süre ve güncel fiyat için WhatsApp'tan yazmanız yeterli — kısa sürede döneriz.",
+    ride1_time:"akşamüstü · altın saat",ride1_tag:"En sevilen",ride1_h:"Gün Batımı Sürüşü",ride1_dur:"Kızıl toprak bakıra dönerken",
+    ride1_p:"Gün alçaldıkça Avanos'un kızıl toprağı bakıra döner. Sırtımızı güneşe verip patikaya çıkıyoruz; dönüş yolunda gökyüzü önce altın, sonra kor rengi. Fotoğraf isteyenler için günün en cömert saati.",
+    ride2_time:"gün doğumu · balonlar",ride2_tag:"Şafak",ride2_h:"Şafak & Balonlar",ride2_dur:"Balonlar yükselirken eyerde",
+    ride2_p:"Kapadokya sabahının klasiği: gün ağarırken ata biniyorsunuz, ufukta balonlar birer birer yükseliyor. Aşağıda atın sakin adımı, yukarıda renklenen bir gökyüzü — Avanos'ta güne böyle başlanır.",
+    ride3_time:"peri bacaları arasında",ride3_tag:"Keşif",ride3_h:"Vadi Yolculuğu",ride3_dur:"Patikalar, kayalar, açık bozkır",
+    ride3_p:"Peri bacalarının ve kaya vadilerinin arasından geçen patikalarda, küçük bir grupla keşfe çıkıyoruz. Rehber önden gider, tempo gruba göre ayarlanır; yol boyu durup fotoğraf çekmek serbest.",
+    ride_ask:"WhatsApp'tan sor",
+    ig_h:"Instagram'da 66.000 kişi bu atları izliyor.",
+    ig_p:"Sürüşlerden kareler, çiftlikten yeni yüzler ve misafir videoları — 260 gönderiyle @avanoshorseranch'te.",
+    ig_btn:"@avanoshorseranch",ig_followers:"takipçi",ig_suffix:".000",
+    ethos_eyebrow:"Neden Biz",ethos_h:"Dört ayak üstünde güven.",
+    ethos1_h:"İyi bakılan, sakin atlar",ethos1_p:"Mutlu at, güvenli sürüş demektir. Atlarımızın bakımı ve huzuru işimizin ilk maddesi — misafirlerin yorumlarında en çok bu geçer.",
+    ethos2_h:"İlk kez binenlere uygun",ethos2_p:"Deneyim şartı yok. En uysal atlarımız ilk kez binenlere ayrılır; temel eğitimi binmeden önce yerde veririz.",
+    ethos3_h:"Rehber hep grupla",ethos3_p:"Kimse patikada tek başına bırakılmaz; rotayı bilen bir rehber baştan sona grupla birlikte sürer.",
+    ethos4_h:"Fotoğraf çekimli sürüşler",ethos4_p:"Eyer üstünde özel çekim isteyenlere ayrı seanslar: gün batımı, balonlu şafak, hatta meşale ışığında gece kareleri.",
+    gallery_eyebrow:"Galeri",gallery_h:'Hepsi <em>burada</em> çekildi.',
+    gallery_sub:"Bu karelerin tamamı işletmenin Google ve Instagram profillerinden alındı — stok yok, kurgu yok.",
+    ph_g1:"Şafak · balonlar",ph_g2:"Peri bacaları arasında",ph_g3:"Patikada · altın saat",ph_g4:"Meşale ışığında özel çekim",ph_g5:"Gün batımı yolu",ph_g6:"Çiftlikte",
+    book_eyebrow:"Rezervasyon",book_h:'Bir akşamı <em>ayırtın.</em>',
+    book_lede:"Formu doldurun, mesajınız WhatsApp'tan bize düşsün. Tarih, süre, fiyat — aklınızdaki her şeyi sorun; kısa sürede döneriz.",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_date:"Tarih",label_people:"Kişi",
+    opt_1p:"1 kişi",opt_2p:"2 kişi",opt_3p:"3 kişi",opt_4p:"4+ kişi",
+    label_ride:"Sürüş",opt_ride1:"Gün Batımı Sürüşü",opt_ride2:"Şafak & Balonlar",opt_ride3:"Vadi Yolculuğu",opt_ride4:"Fotoğraf Çekimli Sürüş",
+    label_phone:"WhatsApp / Telefon",ph_phone:"Size ulaşabileceğimiz numara",btn_submit:"Sürüş talebi gönder",
+    foot_about:"Avanos'ta, Kızılırmak'ın kıyısında bir at çiftliği. Şafaktan gün batımına, iyi bakılan atlarla Kapadokya.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Avanos, Nevşehir",foot_google:"Google 4.6★ · 440 yorum",
+    foot_rights:"© 2026 Avanos Horse Ranch — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    wa_msg:"Merhaba Avanos Horse Ranch! Sürüş için yer ayırtmak istiyorum:",wa_name:"Ad",wa_date:"Tarih",wa_people:"Kişi",wa_ride:"Sürüş",wa_phone:"Telefon",
+    alert_fill:"Lütfen adınızı, tarihi ve telefon numaranızı girin."
+  },
+  en:{
+    meta_title:"Avanos Horse Ranch — Horseback Riding in Cappadocia · Avanos",
+    meta_desc:"A horse ranch in Avanos, on the banks of the Kızılırmak river. Ride under the balloons at dawn or through golden light at sunset. 4.6★ on Google · 440 reviews.",
+    brand_tag:"On the banks of the Red River",
+    nav_story:"The Ranch",nav_rides:"Rides",nav_ethos:"Why Us",nav_gallery:"Gallery",nav_book:"Book",
+    theme_label:"Light / Dark",
+    hero_eyebrow:"Avanos · Cappadocia — on the Red River",
+    hero_title:'In the land of the red river,<br><em>an evening in the saddle.</em>',
+    hero_lede:"Avanos is a horse town built on the banks of the Kızılırmak — the Red River — and we ride its red earth. Balloons rising at dawn, copper light at sunset: the horse's rhythm, the colour of the sky, and you.",
+    hero_cta1:"Reserve your ride",hero_cta2:"See the rides",hero_proof:"4.6 on Google — 440 reviews",scroll_hint:"Down to the river",
+    stat_rating:"Google rating",stat_reviews:"Google reviews",stat_ig:"Instagram followers",stat_town:"On the Red River",
+    story_eyebrow:"The Ranch",story_h:'A horse ranch <em>in the river town.</em>',
+    story_sub:'Cappadocia\'s name comes from "the Land of Beautiful Horses"; Avanos has always been named after its river. Our ranch sits where the two meet.',
+    story_lead:'Most of our guests are riding for the first time in their lives — and as they dismount, they ask why they waited so long.',
+    story_p1:"We care for our horses like family; we know which one is patient and which one is playful the way we know their names. First-timers get our gentlest horse, experienced riders the keenest — we never leave the match to chance.",
+    story_p2:"Behind us stand more than 440 Google reviews and a 4.6 rating. But the report card we care about most is the look on a guest's face as they climb down from the saddle.",
+    story_sign:"— The Avanos Horse Ranch team",ph_story:"A morning at the ranch · one of our horses",
+    rides_eyebrow:"Rides",rides_h:'Three rides, <em>by the river\'s light.</em>',
+    rides_sub:"Routes are planned around weather and season. For duration and current prices, just message us on WhatsApp — we reply quickly.",
+    ride1_time:"late afternoon · golden hour",ride1_tag:"Most loved",ride1_h:"Sunset Ride",ride1_dur:"As the red earth turns to copper",
+    ride1_p:"As the sun sinks, the red earth of Avanos turns to copper. We head up the trail with the sun at our backs; on the way home the sky goes gold, then ember-red. The most generous hour of the day for photographs.",
+    ride2_time:"sunrise · balloons",ride2_tag:"Dawn",ride2_h:"Dawn & Balloons",ride2_dur:"In the saddle as the balloons rise",
+    ride2_p:"The classic Cappadocia morning: you mount as the day breaks, and balloons lift off one by one along the horizon. Below, the calm rhythm of your horse; above, a sky filling with colour — that's how mornings begin in Avanos.",
+    ride3_time:"among the fairy chimneys",ride3_tag:"Explore",ride3_h:"Valley Journey",ride3_dur:"Trails, rock and open steppe",
+    ride3_p:"An exploration in a small group, along trails winding between fairy chimneys and rock valleys. The guide leads, the pace follows the group — and stopping for photos is always allowed.",
+    ride_ask:"Ask on WhatsApp",
+    ig_h:"66,000 people follow these horses on Instagram.",
+    ig_p:"Frames from the rides, new faces from the ranch and guest videos — 260 posts at @avanoshorseranch.",
+    ig_btn:"@avanoshorseranch",ig_followers:"followers",ig_suffix:",000",
+    ethos_eyebrow:"Why Us",ethos_h:"Trust, on four legs.",
+    ethos1_h:"Well-kept, calm horses",ethos1_p:"A happy horse means a safe ride. Our horses' care and calm come first — it's what guests mention most in their reviews.",
+    ethos2_h:"Great for first-timers",ethos2_p:"No experience needed. Our gentlest horses are reserved for first-time riders, and the basics are taught on the ground before you mount.",
+    ethos3_h:"A guide with the group",ethos3_p:"No one is left alone on the trail; a guide who knows the route rides with the group from start to finish.",
+    ethos4_h:"Photo-shoot rides",ethos4_p:"Dedicated sessions for riders who want photos from the saddle: sunset, balloon-filled dawns, even torch-lit night shots.",
+    gallery_eyebrow:"Gallery",gallery_h:'All of it was shot <em>right here.</em>',
+    gallery_sub:"Every frame here comes from the ranch's own Google and Instagram profiles — no stock, no staging.",
+    ph_g1:"Dawn · balloons",ph_g2:"Among the fairy chimneys",ph_g3:"On the trail · golden hour",ph_g4:"Torch-lit photo session",ph_g5:"The sunset road",ph_g6:"At the ranch",
+    book_eyebrow:"Booking",book_h:'Reserve <em>an evening.</em>',
+    book_lede:"Fill in the form and your message lands in our WhatsApp. Dates, duration, prices — ask us anything; we reply quickly.",
+    label_name:"Your name",ph_name:"Your full name",label_date:"Date",label_people:"Guests",
+    opt_1p:"1 person",opt_2p:"2 people",opt_3p:"3 people",opt_4p:"4+ people",
+    label_ride:"Ride",opt_ride1:"Sunset Ride",opt_ride2:"Dawn & Balloons",opt_ride3:"Valley Journey",opt_ride4:"Photo-Shoot Ride",
+    label_phone:"WhatsApp / Phone",ph_phone:"A number we can reach you on",btn_submit:"Send ride request",
+    foot_about:"A horse ranch in Avanos, on the banks of the Kızılırmak. Cappadocia from dawn to sunset, on well-kept horses.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Avanos, Nevşehir",foot_google:"Google 4.6★ · 440 reviews",
+    foot_rights:"© 2026 Avanos Horse Ranch — All rights reserved.",foot_demo:"Sample / Demo Design",
+    wa_msg:"Hello Avanos Horse Ranch! I'd like to reserve a ride:",wa_name:"Name",wa_date:"Date",wa_people:"Guests",wa_ride:"Ride",wa_phone:"Phone",
+    alert_fill:"Please enter your name, date and phone number."
+  },
+  es:{
+    meta_title:"Avanos Horse Ranch — Paseos a Caballo en Capadocia · Avanos",
+    meta_desc:"Un rancho de caballos en Avanos, a orillas del río Kızılırmak. Cabalga bajo los globos al amanecer o en la luz dorada del atardecer. 4.6★ en Google · 440 reseñas.",
+    brand_tag:"A orillas del Río Rojo",
+    nav_story:"El Rancho",nav_rides:"Paseos",nav_ethos:"Por qué nosotros",nav_gallery:"Galería",nav_book:"Reservar",
+    theme_label:"Claro / Oscuro",
+    hero_eyebrow:"Avanos · Capadocia — a orillas del Río Rojo",
+    hero_title:'En la tierra del río rojo,<br><em>un atardecer en la silla.</em>',
+    hero_lede:"Avanos es un pueblo de caballos levantado a orillas del Kızılırmak, el Río Rojo; y nosotros cabalgamos su tierra roja. Globos que se elevan al alba, luz de cobre al atardecer: el paso del caballo, el color del cielo y tú.",
+    hero_cta1:"Reserva tu paseo",hero_cta2:"Ver los paseos",hero_proof:"4.6 en Google — 440 reseñas",scroll_hint:"Hacia el río",
+    stat_rating:"Nota en Google",stat_reviews:"Reseñas en Google",stat_ig:"Seguidores en Instagram",stat_town:"A orillas del Río Rojo",
+    story_eyebrow:"El Rancho",story_h:'Un rancho de caballos <em>en el pueblo del río.</em>',
+    story_sub:'El nombre de Capadocia viene de la "Tierra de los Hermosos Caballos"; el de Avanos siempre se ha ligado a su río. Nuestro rancho está donde ambos se cruzan.',
+    story_lead:'La mayoría de nuestros huéspedes monta por primera vez en su vida — y al bajar del caballo preguntan por qué esperaron tanto.',
+    story_p1:"Cuidamos a nuestros caballos como familia; sabemos cuál es paciente y cuál es juguetón igual que sabemos sus nombres. Al principiante le damos el más dócil, al jinete experto el más brioso — nunca dejamos la elección al azar.",
+    story_p2:"Nos avalan más de 440 reseñas en Google y una nota de 4.6. Pero nuestro verdadero boletín es la cara del huésped al bajarse de la silla.",
+    story_sign:"— El equipo de Avanos Horse Ranch",ph_story:"Una mañana en el rancho · uno de nuestros caballos",
+    rides_eyebrow:"Paseos",rides_h:'Tres paseos, <em>según la luz del río.</em>',
+    rides_sub:"Las rutas se planifican según el clima y la estación. Para duración y precios actuales, escríbenos por WhatsApp — respondemos pronto.",
+    ride1_time:"tarde · hora dorada",ride1_tag:"El favorito",ride1_h:"Paseo del Atardecer",ride1_dur:"Cuando la tierra roja se vuelve cobre",
+    ride1_p:"Al caer el sol, la tierra roja de Avanos se vuelve cobre. Salimos al sendero con el sol a la espalda; de regreso el cielo pasa del oro al rojo brasa. La hora más generosa del día para las fotos.",
+    ride2_time:"amanecer · globos",ride2_tag:"Alba",ride2_h:"Alba & Globos",ride2_dur:"En la silla mientras suben los globos",
+    ride2_p:"El clásico de las mañanas de Capadocia: montas al despuntar el día y los globos se elevan uno a uno en el horizonte. Abajo, el paso sereno del caballo; arriba, un cielo llenándose de color — así empieza la mañana en Avanos.",
+    ride3_time:"entre chimeneas de hadas",ride3_tag:"Explorar",ride3_h:"Viaje por los Valles",ride3_dur:"Senderos, rocas y estepa abierta",
+    ride3_p:"Una exploración en grupo pequeño por senderos que serpentean entre chimeneas de hadas y valles de roca. El guía va delante, el ritmo lo marca el grupo — y parar a hacer fotos siempre está permitido.",
+    ride_ask:"Pregunta por WhatsApp",
+    ig_h:"66.000 personas siguen a estos caballos en Instagram.",
+    ig_p:"Momentos de los paseos, caras nuevas del rancho y vídeos de huéspedes — 260 publicaciones en @avanoshorseranch.",
+    ig_btn:"@avanoshorseranch",ig_followers:"seguidores",ig_suffix:".000",
+    ethos_eyebrow:"Por qué nosotros",ethos_h:"Confianza sobre cuatro patas.",
+    ethos1_h:"Caballos tranquilos y bien cuidados",ethos1_p:"Un caballo feliz es un paseo seguro. El cuidado y la calma de nuestros caballos son lo primero — es lo que más mencionan las reseñas.",
+    ethos2_h:"Ideal para principiantes",ethos2_p:"No hace falta experiencia. Nuestros caballos más dóciles se reservan para quienes montan por primera vez, y lo básico se enseña en tierra antes de subir.",
+    ethos3_h:"Guía siempre con el grupo",ethos3_p:"Nadie se queda solo en el sendero; un guía que conoce la ruta cabalga con el grupo de principio a fin.",
+    ethos4_h:"Paseos con sesión de fotos",ethos4_p:"Sesiones aparte para quien quiere fotos desde la silla: atardeceres, amaneceres con globos e incluso tomas nocturnas a la luz de antorchas.",
+    gallery_eyebrow:"Galería",gallery_h:'Todo se fotografió <em>aquí mismo.</em>',
+    gallery_sub:"Cada imagen viene de los perfiles de Google e Instagram del propio rancho — sin stock, sin montajes.",
+    ph_g1:"Alba · globos",ph_g2:"Entre chimeneas de hadas",ph_g3:"En el sendero · hora dorada",ph_g4:"Sesión con antorchas",ph_g5:"El camino del atardecer",ph_g6:"En el rancho",
+    book_eyebrow:"Reserva",book_h:'Reserva <em>un atardecer.</em>',
+    book_lede:"Rellena el formulario y tu mensaje llegará a nuestro WhatsApp. Fechas, duración, precios — pregúntanos lo que quieras; respondemos pronto.",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_date:"Fecha",label_people:"Personas",
+    opt_1p:"1 persona",opt_2p:"2 personas",opt_3p:"3 personas",opt_4p:"4+ personas",
+    label_ride:"Paseo",opt_ride1:"Paseo del Atardecer",opt_ride2:"Alba & Globos",opt_ride3:"Viaje por los Valles",opt_ride4:"Paseo con Sesión de Fotos",
+    label_phone:"WhatsApp / Teléfono",ph_phone:"Un número donde localizarte",btn_submit:"Enviar solicitud",
+    foot_about:"Un rancho de caballos en Avanos, a orillas del Kızılırmak. Capadocia del alba al atardecer, sobre caballos bien cuidados.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Avanos, Nevşehir",foot_google:"Google 4.6★ · 440 reseñas",
+    foot_rights:"© 2026 Avanos Horse Ranch — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+    wa_msg:"¡Hola Avanos Horse Ranch! Quisiera reservar un paseo:",wa_name:"Nombre",wa_date:"Fecha",wa_people:"Personas",wa_ride:"Paseo",wa_phone:"Teléfono",
+    alert_fill:"Por favor, introduce tu nombre, la fecha y tu número de teléfono."
+  },
+  "zh-CN":{
+    meta_title:"Avanos Horse Ranch — 卡帕多奇亚阿瓦诺斯骑马体验",
+    meta_desc:"位于阿瓦诺斯、红河（Kızılırmak）河畔的马场。清晨在热气球下骑行，傍晚沐浴金色夕阳。谷歌 4.6★ · 440 条评价。",
+    brand_tag:"红河之畔",
+    nav_story:"马场",nav_rides:"骑行",nav_ethos:"为何选我们",nav_gallery:"相册",nav_book:"预订",
+    theme_label:"浅色 / 深色",
+    hero_eyebrow:"阿瓦诺斯 · 卡帕多奇亚 — 红河之畔",
+    hero_title:'在红河的土地上，<br><em>马鞍上的黄昏。</em>',
+    hero_lede:"阿瓦诺斯是一座建在红河（Kızılırmak）岸边的马镇，我们就骑行在这片红色的土地上。清晨热气球升起，傍晚夕阳西下——马蹄的节奏、天空的色彩，还有你。",
+    hero_cta1:"预订骑行",hero_cta2:"查看骑行",hero_proof:"谷歌 4.6 分 — 440 条评价",scroll_hint:"向河而行",
+    stat_rating:"谷歌评分",stat_reviews:"谷歌评价",stat_ig:"Instagram 粉丝",stat_town:"红河之畔",
+    story_eyebrow:"马场",story_h:'河畔小镇上的<em>一座马场。</em>',
+    story_sub:'卡帕多奇亚之名源自「美丽骏马之地」；而阿瓦诺斯的名字始终与河流相连。我们的马场，就在两者交汇之处。',
+    story_lead:'我们的客人大多是人生第一次骑马——下马时总会问：为什么等了这么多年才来。',
+    story_p1:"我们像对待家人一样照料马匹；哪匹有耐心、哪匹爱玩闹，我们如数家珍。初学者骑最温顺的马，老练的骑手配最有劲头的——我们从不把搭配交给运气。",
+    story_p2:"我们身后有 440 多条谷歌评价和 4.6 的评分。但对我们来说，真正的成绩单，是客人下马那一刻脸上的表情。",
+    story_sign:"— Avanos Horse Ranch 团队",ph_story:"马场的清晨 · 我们的一匹马",
+    rides_eyebrow:"骑行",rides_h:'随河的光线，<em>三种骑行。</em>',
+    rides_sub:"路线依天气和季节安排。时长与最新价格请通过 WhatsApp 询问——我们会尽快回复。",
+    ride1_time:"傍晚 · 黄金时刻",ride1_tag:"最受欢迎",ride1_h:"日落骑行",ride1_dur:"红土渐成铜色之时",
+    ride1_p:"太阳西沉，阿瓦诺斯的红土渐渐染上铜色。我们背对夕阳踏上小径；归途中天空先是金色，随后如炭火般绯红。这是一天中最适合拍照的时刻。",
+    ride2_time:"日出 · 热气球",ride2_tag:"黎明",ride2_h:"黎明与热气球",ride2_dur:"热气球升起时，你在马背上",
+    ride2_p:"卡帕多奇亚经典的清晨：天刚破晓你已上马，地平线上热气球一只只升起。脚下是马儿从容的步伐，头顶是渐渐染色的天空——阿瓦诺斯的一天就这样开始。",
+    ride3_time:"精灵烟囱之间",ride3_tag:"探索",ride3_h:"山谷之旅",ride3_dur:"小径、岩石与开阔草原",
+    ride3_p:"沿着蜿蜒于精灵烟囱和岩石山谷间的小径，小队出发去探索。向导在前领路，节奏随队伍调整；途中随时可以停下拍照。",
+    ride_ask:"WhatsApp 咨询",
+    ig_h:"Instagram 上有 66,000 人关注这些马。",
+    ig_p:"骑行瞬间、马场新面孔和客人视频——260 篇帖子，尽在 @avanoshorseranch。",
+    ig_btn:"@avanoshorseranch",ig_followers:"粉丝",ig_suffix:",000",
+    ethos_eyebrow:"为何选我们",ethos_h:"四蹄之上的信任。",
+    ethos1_h:"精心照料的温顺马匹",ethos1_p:"快乐的马意味着安全的骑行。马匹的照料与安宁是我们工作的第一条——也是客人评价中提到最多的。",
+    ethos2_h:"适合初次骑马者",ethos2_p:"无需任何经验。最温顺的马专门留给初学者，上马前先在地面教好基础要领。",
+    ethos3_h:"向导全程随队",ethos3_p:"没有人会独自留在小径上；熟悉路线的向导从头到尾与队伍同行。",
+    ethos4_h:"拍摄主题骑行",ethos4_p:"为想在马背上留影的客人提供专门场次：日落、热气球清晨，甚至火把之夜。",
+    gallery_eyebrow:"相册",gallery_h:'每一张都摄于<em>这里。</em>',
+    gallery_sub:"这里的每一帧都来自马场自己的谷歌和 Instagram 主页——没有图库照片，没有摆拍。",
+    ph_g1:"黎明 · 热气球",ph_g2:"精灵烟囱之间",ph_g3:"小径上 · 黄金时刻",ph_g4:"火把下的拍摄",ph_g5:"日落之路",ph_g6:"在马场",
+    book_eyebrow:"预订",book_h:'预订<em>一个黄昏。</em>',
+    book_lede:"填好表单，您的信息会直达我们的 WhatsApp。日期、时长、价格——尽管问，我们会尽快回复。",
+    label_name:"您的姓名",ph_name:"您的全名",label_date:"日期",label_people:"人数",
+    opt_1p:"1 人",opt_2p:"2 人",opt_3p:"3 人",opt_4p:"4 人以上",
+    label_ride:"骑行",opt_ride1:"日落骑行",opt_ride2:"黎明与热气球",opt_ride3:"山谷之旅",opt_ride4:"拍摄主题骑行",
+    label_phone:"WhatsApp / 电话",ph_phone:"方便联系您的号码",btn_submit:"发送骑行申请",
+    foot_about:"阿瓦诺斯红河畔的马场。从黎明到日落，骑着精心照料的马，看卡帕多奇亚。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"阿瓦诺斯，内夫谢希尔",foot_google:"谷歌 4.6★ · 440 条评价",
+    foot_rights:"© 2026 Avanos Horse Ranch — 版权所有。",foot_demo:"示例 / 演示设计",
+    wa_msg:"您好 Avanos Horse Ranch！我想预订骑行：",wa_name:"姓名",wa_date:"日期",wa_people:"人数",wa_ride:"骑行",wa_phone:"电话",
+    alert_fill:"请填写您的姓名、日期和电话号码。"
+  },
+  ko:{
+    meta_title:"Avanos Horse Ranch — 카파도키아 아바노스 승마 투어",
+    meta_desc:"아바노스, 크즐으르막(붉은 강) 기슭의 승마 목장. 새벽에는 열기구 아래에서, 해질녘에는 황금빛 속에서 말을 탑니다. 구글 4.6★ · 리뷰 440개.",
+    brand_tag:"붉은 강 기슭에서",
+    nav_story:"목장",nav_rides:"라이딩",nav_ethos:"우리의 약속",nav_gallery:"갤러리",nav_book:"예약",
+    theme_label:"라이트 / 다크",
+    hero_eyebrow:"아바노스 · 카파도키아 — 붉은 강 기슭",
+    hero_title:'붉은 강의 땅에서,<br><em>안장 위의 저녁.</em>',
+    hero_lede:"아바노스는 크즐으르막, 곧 '붉은 강' 기슭에 세워진 말의 마을입니다. 우리는 그 붉은 땅 위를 달립니다. 새벽엔 열기구가 떠오르고, 저녁엔 해가 집니다 — 말의 걸음, 하늘의 빛깔, 그리고 당신.",
+    hero_cta1:"자리 예약하기",hero_cta2:"라이딩 보기",hero_proof:"구글 4.6 — 리뷰 440개",scroll_hint:"강을 향해",
+    stat_rating:"구글 평점",stat_reviews:"구글 리뷰",stat_ig:"인스타그램 팔로워",stat_town:"붉은 강 기슭",
+    story_eyebrow:"목장",story_h:'강의 마을에 자리한 <em>승마 목장.</em>',
+    story_sub:'카파도키아라는 이름은 「아름다운 말들의 땅」에서 왔고, 아바노스의 이름은 언제나 강과 함께 불립니다. 우리 목장은 그 둘이 만나는 곳에 있습니다.',
+    story_lead:'손님 대부분이 태어나 처음 말을 탑니다 — 그리고 내릴 때쯤엔 "왜 이제야 왔을까" 하고 묻습니다.',
+    story_p1:"우리는 말을 가족처럼 돌봅니다. 어느 말이 참을성 있고 어느 말이 장난기 많은지, 이름처럼 훤히 압니다. 처음 타는 분께는 가장 순한 말을, 능숙한 분께는 가장 기운찬 말을 — 짝짓기를 운에 맡기지 않습니다.",
+    story_p2:"구글 리뷰 440여 개와 평점 4.6이 우리 뒤에 있습니다. 하지만 진짜 성적표는, 라이딩을 마친 손님이 안장에서 내려올 때의 표정입니다.",
+    story_sign:"— Avanos Horse Ranch 팀",ph_story:"목장의 아침 · 우리 말 중 한 마리",
+    rides_eyebrow:"라이딩",rides_h:'강의 빛을 따라, <em>세 가지 라이딩.</em>',
+    rides_sub:"코스는 날씨와 계절에 맞춰 준비됩니다. 소요 시간과 최신 요금은 WhatsApp으로 물어보세요 — 빠르게 답해 드립니다.",
+    ride1_time:"늦은 오후 · 골든아워",ride1_tag:"가장 사랑받는",ride1_h:"일몰 라이딩",ride1_dur:"붉은 땅이 구릿빛으로 물들 때",
+    ride1_p:"해가 기울면 아바노스의 붉은 땅이 구릿빛으로 물듭니다. 해를 등지고 오솔길에 오르면, 돌아오는 길엔 하늘이 금빛에서 숯불빛으로 바뀝니다. 사진을 원한다면 하루 중 가장 너그러운 시간입니다.",
+    ride2_time:"일출 · 열기구",ride2_tag:"새벽",ride2_h:"새벽 & 열기구",ride2_dur:"열기구가 떠오를 때, 안장 위에서",
+    ride2_p:"카파도키아 아침의 클래식: 동이 틀 때 말에 오르면, 지평선 위로 열기구가 하나둘 떠오릅니다. 아래에는 말의 차분한 걸음, 위에는 색으로 물드는 하늘 — 아바노스의 아침은 이렇게 시작됩니다.",
+    ride3_time:"요정 굴뚝 사이로",ride3_tag:"탐험",ride3_h:"계곡 여정",ride3_dur:"오솔길, 바위, 탁 트인 초원",
+    ride3_p:"요정 굴뚝과 바위 계곡 사이로 난 오솔길을 따라 소규모로 탐험을 떠납니다. 가이드가 앞장서고 속도는 일행에 맞춥니다. 가는 길에 멈춰 사진을 찍는 것도 언제든 환영입니다.",
+    ride_ask:"WhatsApp으로 문의",
+    ig_h:"인스타그램에서 66,000명이 이 말들을 지켜봅니다.",
+    ig_p:"라이딩의 순간들, 목장의 새 얼굴들, 손님들의 영상 — 게시물 260개, @avanoshorseranch에서.",
+    ig_btn:"@avanoshorseranch",ig_followers:"팔로워",ig_suffix:",000",
+    ethos_eyebrow:"우리의 약속",ethos_h:"네 발 위의 신뢰.",
+    ethos1_h:"잘 돌본 순한 말들",ethos1_p:"행복한 말이 안전한 라이딩을 만듭니다. 말의 돌봄과 평온이 우리 일의 첫 번째 원칙 — 손님 리뷰에 가장 자주 등장하는 것도 이것입니다.",
+    ethos2_h:"처음 타는 분께 알맞게",ethos2_p:"경험이 없어도 됩니다. 가장 순한 말은 처음 타는 분들을 위해 남겨 두고, 기본기는 오르기 전에 땅에서 알려 드립니다.",
+    ethos3_h:"가이드는 늘 일행과 함께",ethos3_p:"누구도 오솔길에 혼자 남겨지지 않습니다. 길을 아는 가이드가 처음부터 끝까지 일행과 함께 달립니다.",
+    ethos4_h:"촬영이 있는 라이딩",ethos4_p:"안장 위에서 인생 사진을 원하는 분들을 위한 별도 세션: 일몰, 열기구가 뜬 새벽, 심지어 횃불 아래의 밤 촬영까지.",
+    gallery_eyebrow:"갤러리",gallery_h:'전부 <em>여기서</em> 찍었습니다.',
+    gallery_sub:"이곳의 모든 사진은 목장의 구글·인스타그램 프로필에서 가져왔습니다 — 스톡 사진도, 연출도 없습니다.",
+    ph_g1:"새벽 · 열기구",ph_g2:"요정 굴뚝 사이",ph_g3:"오솔길 · 골든아워",ph_g4:"횃불 아래 촬영",ph_g5:"일몰의 길",ph_g6:"목장에서",
+    book_eyebrow:"예약",book_h:'<em>저녁 하나</em>를 예약하세요.',
+    book_lede:"폼을 채우면 메시지가 우리 WhatsApp으로 도착합니다. 날짜, 시간, 요금 — 무엇이든 물어보세요. 빠르게 답해 드립니다.",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_date:"날짜",label_people:"인원",
+    opt_1p:"1명",opt_2p:"2명",opt_3p:"3명",opt_4p:"4명 이상",
+    label_ride:"라이딩",opt_ride1:"일몰 라이딩",opt_ride2:"새벽 & 열기구",opt_ride3:"계곡 여정",opt_ride4:"촬영이 있는 라이딩",
+    label_phone:"WhatsApp / 전화",ph_phone:"연락 가능한 번호",btn_submit:"라이딩 요청 보내기",
+    foot_about:"아바노스, 크즐으르막 기슭의 승마 목장. 새벽부터 일몰까지, 잘 돌본 말과 함께하는 카파도키아.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"아바노스, 네브셰히르",foot_google:"구글 4.6★ · 리뷰 440개",
+    foot_rights:"© 2026 Avanos Horse Ranch — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    wa_msg:"안녕하세요 Avanos Horse Ranch! 라이딩을 예약하고 싶습니다:",wa_name:"성함",wa_date:"날짜",wa_people:"인원",wa_ride:"라이딩",wa_phone:"전화",
+    alert_fill:"성함, 날짜, 전화번호를 입력해 주세요."
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  document.querySelectorAll('[data-suffix-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-suffix-i18n');
+    if(dict[key]!==undefined){ el.setAttribute('data-suffix', dict[key]); }
+  });
+  document.querySelectorAll('[data-count]').forEach(el=>{ if(el.dataset.done){ el.textContent = el.dataset.count + (el.getAttribute('data-suffix')||''); }});
+
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  try{ localStorage.setItem('ahr_lang', lang); }catch(e){}
+}
+
+function initLang(){
+  let lang = null;
+  const url = new URLSearchParams(location.search).get('lang');
+  if(url && SUPPORTED.includes(url)) lang = url;
+  if(!lang){ try{ const s=localStorage.getItem('ahr_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click', ()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+// ==================== TEMA (aydınlık/karanlık) ====================
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('ahr_theme', t); }catch(e){}
+}
+function toggleTheme(){
+  const cur = document.documentElement.getAttribute('data-theme')==='light' ? 'light' : 'dark';
+  applyTheme(cur==='light' ? 'dark' : 'light');
+}
+document.getElementById('themeBtn').addEventListener('click', toggleTheme);
+document.getElementById('themeBtnM').addEventListener('click', toggleTheme);
+
+// ==================== MOBİL MENÜ ====================
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+// ==================== NAV SCROLL + SCROLL-SPY (tubelight) ====================
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScroll);onScroll();
+
+(function(){
+  const links = Array.from(document.querySelectorAll('#navlinks a[href^="#"]'));
+  const map = {};
+  links.forEach(a=>{ const id=a.getAttribute('href').slice(1); const sec=document.getElementById(id); if(sec) map[id]=a; });
+  const spy = new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const a = map[e.target.id];
+        if(a) a.classList.add('active');
+      }
+    });
+  },{rootMargin:'-38% 0px -55% 0px'});
+  Object.keys(map).forEach(id=>spy.observe(document.getElementById(id)));
+})();
+
+// ==================== REVEAL + COUNT ====================
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      if(e.target.querySelectorAll) e.target.querySelectorAll('[data-count]').forEach(runCount);
+      if(e.target.hasAttribute && e.target.hasAttribute('data-count')) runCount(e.target);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.2});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));
+
+function runCount(el){
+  if(el.dataset.done) return; el.dataset.done='1';
+  const target=parseInt(el.dataset.count,10);
+  const suffix=el.getAttribute('data-suffix')||'';
+  const dur=1400;const t0=performance.now();
+  function tick(now){
+    const p=Math.min((now-t0)/dur,1);const eased=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(eased*target)+suffix;
+    if(p<1)requestAnimationFrame(tick);else el.textContent=target+suffix;
+  }
+  requestAnimationFrame(tick);
+}
+
+// ==================== GÖRSEL YÜKLEME (varsa göster) ====================
+(function(){
+  const base='assets/images/';
+  function tryImg(el, file){
+    const img=new Image();
+    img.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; };
+    img.onerror=()=>{};
+    img.src=base+file;
+  }
+  const hero=document.getElementById('heroPhoto');
+  if(hero){ const hi=new Image(); hi.onload=()=>{ hero.style.backgroundImage=`url('${base}hero.jpg')`; hero.classList.add('has-img'); }; hi.onerror=()=>{}; hi.src=base+'hero.jpg'; }
+  const story=document.getElementById('storyImg');
+  if(story) tryImg(story,'story.jpg');
+  document.querySelectorAll('.tile[data-img], .ride-visual[data-img]').forEach(t=>tryImg(t,t.getAttribute('data-img')));
+})();
+
+// ==================== REZERVASYON → WHATSAPP (çok dilli) ====================
+const WHATSAPP = "905454552671";
+function sendBooking(){
+  const d = I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const date=document.getElementById('f-date').value;
+  const count=document.getElementById('f-count').value;
+  const ride=document.getElementById('f-ride').value;
+  const phone=document.getElementById('f-phone').value.trim();
+  if(!name||!date||!phone){ alert(d.alert_fill); return; }
+  const msg = d.wa_msg+"%0A%0A"+
+    d.wa_name+": "+encodeURIComponent(name)+"%0A"+
+    d.wa_date+": "+encodeURIComponent(date)+"%0A"+
+    d.wa_people+": "+encodeURIComponent(count)+"%0A"+
+    d.wa_ride+": "+encodeURIComponent(ride)+"%0A"+
+    d.wa_phone+": "+encodeURIComponent(phone);
+  window.open("https://wa.me/"+WHATSAPP+"?text="+msg,"_blank");
+}
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items = Array.from(document.querySelectorAll('.gallery .tile[data-img], .ride-visual[data-img]'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  const capOf = t => { const l = t.querySelector('.cap') || t.querySelector('.chip'); return l ? l.textContent.trim() : ''; };
+  function show(i){ idx = (i + items.length) % items.length; const t = items[idx]; img.src = base + t.getAttribute('data-img'); cap.textContent = capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>{ t.addEventListener('click',()=>open(i)); t.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(i); } }); });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+// ==================== BAŞLAT ====================
+initLang();
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+</body>
+</html>

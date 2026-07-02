@@ -1,0 +1,1750 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Private Turkish Bath and SPA Goreme | Private Hammam & Spa</title>
+  <meta name="description" content="Göreme'de özel hamam, kese köpük, masaj ve dinlenme ritüeli. WhatsApp ile hızlı rezervasyon.">
+  <script>
+    (function(){
+      try{
+        const params = new URLSearchParams(window.location.search);
+        const themeParam = params.get("theme");
+        const savedTheme = localStorage.getItem("ptb-theme");
+        const systemTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        const theme = themeParam === "light" || themeParam === "dark" ? themeParam : (savedTheme || systemTheme);
+        document.documentElement.dataset.theme = theme;
+        if(themeParam === "light" || themeParam === "dark") localStorage.setItem("ptb-theme", theme);
+      }catch(error){
+        document.documentElement.dataset.theme = "dark";
+      }
+    })();
+  </script>
+  <style>
+    :root{
+      --taban:#120f0d;
+      --basalt:#25211d;
+      --stone:#8f7d68;
+      --marble:#d6c3a5;
+      --honey:#d99c6a;
+      --copper:#a9653d;
+      --mint:#73938d;
+      --paper:#f2eadc;
+      --ink:#16110e;
+      --muted:rgba(242,234,220,.7);
+      --line:rgba(242,234,220,.16);
+      --shadow:0 28px 80px rgba(0,0,0,.42);
+      --max:1180px;
+      --spot-x:42%;
+      --spot-y:58%;
+    }
+    html[data-theme="light"]{
+      --taban:#f4efe6;
+      --basalt:#e6dac9;
+      --stone:#8f7d68;
+      --marble:#7a634f;
+      --honey:#a9653d;
+      --copper:#8d5538;
+      --mint:#4f756f;
+      --paper:#1d1713;
+      --ink:#1d1713;
+      --muted:rgba(29,23,19,.68);
+      --line:rgba(29,23,19,.14);
+      --shadow:0 28px 70px rgba(91,66,43,.18);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--taban);
+      color:var(--paper);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Noto Sans KR", sans-serif;
+      line-height:1.55;
+      letter-spacing:0;
+      overflow-x:hidden;
+    }
+    img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    .grain{
+      pointer-events:none;
+      position:fixed;
+      inset:0;
+      z-index:60;
+      opacity:.07;
+      mix-blend-mode:soft-light;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+    html[data-theme="light"] .grain{opacity:.045;mix-blend-mode:multiply}
+    .nav{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:50;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:18px clamp(18px,4vw,48px);
+      color:var(--paper);
+      background:linear-gradient(180deg,rgba(18,15,13,.72),rgba(18,15,13,0));
+      backdrop-filter:blur(10px);
+    }
+    html[data-theme="light"] .nav{
+      color:#f8efe1;
+      background:linear-gradient(180deg,rgba(18,15,13,.58),rgba(18,15,13,0));
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+      font-weight:760;
+      letter-spacing:.02em;
+    }
+    .brand-mark{
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      border:1px solid rgba(217,156,106,.7);
+      position:relative;
+      box-shadow:0 0 0 6px rgba(217,156,106,.08);
+      flex:0 0 auto;
+    }
+    .brand-mark:before,.brand-mark:after{
+      content:"";
+      position:absolute;
+      left:8px;
+      right:8px;
+      height:1px;
+      background:var(--honey);
+      border-radius:99px;
+    }
+    .brand-mark:before{top:12px}
+    .brand-mark:after{top:20px}
+    .brand-logo{
+      width:38px;
+      height:38px;
+      border-radius:10px;
+      object-fit:cover;
+      flex:0 0 auto;
+      box-shadow:0 0 0 1px rgba(217,156,106,.4), 0 6px 18px rgba(0,0,0,.3);
+    }
+    .footer-brand{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .footer-brand img{
+      width:28px;
+      height:28px;
+      border-radius:8px;
+    }
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:4px;
+      position:relative;
+      isolation:isolate;
+      padding:4px;
+      border:1px solid rgba(242,234,220,.12);
+      border-radius:999px;
+      background:rgba(18,15,13,.36);
+      backdrop-filter:blur(16px);
+      box-shadow:0 18px 46px rgba(0,0,0,.18), inset 0 1px 0 rgba(248,239,225,.08);
+      font-size:13px;
+      color:rgba(242,234,220,.78);
+    }
+    .nav-indicator{
+      position:absolute;
+      top:4px;
+      bottom:4px;
+      left:var(--nav-indicator-x,4px);
+      width:var(--nav-indicator-w,0px);
+      border-radius:999px;
+      opacity:var(--nav-indicator-opacity,1);
+      background:
+        radial-gradient(circle at 50% 0%,rgba(248,239,225,.24),transparent 58%),
+        linear-gradient(135deg,rgba(217,156,106,.34),rgba(115,147,141,.2));
+      box-shadow:0 0 22px rgba(217,156,106,.26), inset 0 1px 0 rgba(248,239,225,.18);
+      transition:left .28s ease,width .28s ease,opacity .2s ease;
+      pointer-events:none;
+      z-index:0;
+    }
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      min-width:0;
+    }
+    .nav-links a{
+      position:relative;
+      z-index:1;
+      min-height:34px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      padding:0 14px;
+      transition:color .2s ease, background .2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a[aria-current="true"]{color:#fff8ea}
+    .nav-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:34px;
+      padding:0 15px;
+      border:1px solid rgba(217,156,106,.48);
+      border-radius:999px;
+      color:var(--paper);
+      background:rgba(18,15,13,.58);
+      box-shadow:inset 0 1px 0 rgba(248,239,225,.09);
+    }
+    html[data-theme="light"] .nav-cta,
+    html[data-theme="light"] .lang-select,
+    html[data-theme="light"] .lang-cycle,
+    html[data-theme="light"] .theme-toggle{
+      color:#f8efe1;
+      background:rgba(18,15,13,.42);
+      border-color:rgba(248,239,225,.22);
+    }
+    html[data-theme="light"] .nav-links,
+    html[data-theme="light"] .mobile-dock{
+      color:rgba(248,239,225,.72);
+      background:rgba(18,15,13,.44);
+      border-color:rgba(248,239,225,.14);
+    }
+    .control-row{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .lang-select{
+      appearance:none;
+      -webkit-appearance:none;
+      min-height:38px;
+      max-width:88px;
+      border:1px solid rgba(242,234,220,.16);
+      border-radius:999px;
+      background:rgba(18,15,13,.68);
+      color:var(--paper);
+      padding:0 34px 0 13px;
+      font-size:13px;
+      font-weight:800;
+      outline:none;
+      cursor:pointer;
+    }
+    .lang-select:focus{border-color:rgba(217,156,106,.82);box-shadow:0 0 0 3px rgba(217,156,106,.14)}
+    .lang-cycle{
+      display:none;
+      width:42px;
+      height:38px;
+      border-radius:999px;
+      border:1px solid rgba(242,234,220,.16);
+      background:rgba(18,15,13,.68);
+      color:var(--paper);
+      font-size:12px;
+      font-weight:900;
+      place-items:center;
+      cursor:pointer;
+    }
+    .lang-cycle:focus{outline:none;border-color:rgba(217,156,106,.82);box-shadow:0 0 0 3px rgba(217,156,106,.14)}
+    .theme-toggle{
+      width:38px;
+      height:38px;
+      border-radius:999px;
+      border:1px solid rgba(242,234,220,.16);
+      background:rgba(18,15,13,.68);
+      color:var(--paper);
+      display:inline-grid;
+      place-items:center;
+      cursor:pointer;
+      position:relative;
+      overflow:hidden;
+    }
+    .theme-toggle:focus{outline:none;border-color:rgba(217,156,106,.82);box-shadow:0 0 0 3px rgba(217,156,106,.14)}
+    .mobile-dock{
+      display:none;
+    }
+    .mobile-dock a{
+      position:relative;
+      min-height:40px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      color:rgba(248,239,225,.72);
+      font-size:12px;
+      font-weight:820;
+      transition:color .2s ease, background .2s ease;
+    }
+    .mobile-dock a:before{
+      content:"";
+      width:5px;
+      height:5px;
+      margin-right:7px;
+      border-radius:50%;
+      background:rgba(217,156,106,.48);
+      box-shadow:0 0 0 rgba(217,156,106,0);
+      transition:box-shadow .2s ease, background .2s ease;
+    }
+    .mobile-dock a.is-active{
+      color:#fff8ea;
+      background:rgba(217,156,106,.18);
+    }
+    .mobile-dock a.is-active:before{
+      background:#f2bd8a;
+      box-shadow:0 0 18px rgba(217,156,106,.62);
+    }
+    .theme-icon{
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      background:var(--honey);
+      box-shadow:0 0 18px rgba(217,156,106,.45);
+      position:relative;
+    }
+    .theme-icon:after{
+      content:"";
+      position:absolute;
+      inset:-2px -2px -2px 7px;
+      border-radius:50%;
+      background:rgba(18,15,13,.92);
+      transition:transform .25s ease, opacity .25s ease;
+    }
+    html[data-theme="light"] .theme-icon:after{
+      transform:translateX(18px);
+      opacity:0;
+    }
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+    .hero{
+      min-height:100svh;
+      position:relative;
+      display:grid;
+      align-items:end;
+      padding:128px clamp(20px,5vw,70px) 56px;
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-3;
+      background:url("assets/images/hero.jpg") center/cover no-repeat;
+      transform:scale(1.04);
+      animation:kenburns 32s ease-in-out infinite alternate;
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      background:
+        radial-gradient(circle at 18% 62%,rgba(103,142,138,.28),transparent 28%),
+        linear-gradient(90deg,rgba(18,15,13,.94),rgba(18,15,13,.64) 34%,rgba(18,15,13,.14) 72%),
+        linear-gradient(0deg,rgba(18,15,13,.98),rgba(18,15,13,.12) 42%,rgba(18,15,13,.7));
+    }
+    html[data-theme="light"] .hero:after{
+      background:
+        radial-gradient(circle at 18% 62%,rgba(103,142,138,.24),transparent 28%),
+        linear-gradient(90deg,rgba(18,15,13,.82),rgba(18,15,13,.5) 38%,rgba(18,15,13,.12) 74%),
+        linear-gradient(0deg,rgba(18,15,13,.72),rgba(18,15,13,.08) 44%,rgba(18,15,13,.52));
+    }
+    .steam-canvas{
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      width:100%;
+      height:100%;
+      opacity:.58;
+      mix-blend-mode:screen;
+      pointer-events:none;
+    }
+    .hero-spotlight{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      opacity:.82;
+      mix-blend-mode:screen;
+      background:
+        radial-gradient(620px circle at var(--spot-x) var(--spot-y),rgba(217,156,106,.14),transparent 44%),
+        radial-gradient(430px circle at calc(var(--spot-x) + 12%) calc(var(--spot-y) + 6%),rgba(115,147,141,.12),transparent 52%);
+    }
+    .hero-inner{
+      width:min(var(--max),100%);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 330px;
+      gap:40px;
+      align-items:end;
+      position:relative;
+      z-index:2;
+    }
+    .eyebrow{
+      color:var(--honey);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      margin-bottom:18px;
+    }
+    .hero .eyebrow,.hero h1,.hero .lead{color:#f8efe1}
+    h1,h2,h3,p{margin:0}
+    h1{
+      max-width:880px;
+      font-family:"Cormorant Garamond", Georgia, serif;
+      font-size:clamp(48px,9vw,118px);
+      line-height:.86;
+      font-weight:520;
+      text-wrap:balance;
+    }
+    .lead{
+      max-width:650px;
+      margin-top:24px;
+      color:rgba(242,234,220,.82);
+      font-size:clamp(17px,2vw,22px);
+    }
+    html[data-theme="light"] .lead,
+    html[data-theme="light"] .section-head p,
+    html[data-theme="light"] .muted,
+    html[data-theme="light"] .ritual-copy p,
+    html[data-theme="light"] .service p,
+    html[data-theme="light"] .closing p{
+      color:rgba(29,23,19,.68);
+    }
+    html[data-theme="light"] .hero .lead{color:rgba(248,239,225,.84)}
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:34px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:0 20px;
+      border-radius:999px;
+      border:1px solid rgba(242,234,220,.18);
+      background:rgba(242,234,220,.07);
+      color:var(--paper);
+      font-weight:760;
+      position:relative;
+      overflow:hidden;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:after{
+      content:"";
+      position:absolute;
+      inset:-70% -40%;
+      background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.22),transparent 62%);
+      transform:translateX(-70%) rotate(8deg);
+      transition:transform .65s ease;
+    }
+    .btn:hover:after{transform:translateX(70%) rotate(8deg)}
+    .btn span{position:relative;z-index:1}
+    .btn:hover{transform:translateY(-2px);border-color:rgba(217,156,106,.68)}
+    .btn.primary{background:var(--honey);color:#1b120d;border-color:transparent}
+    .hero .btn:not(.primary){
+      color:#f8efe1;
+      border-color:rgba(248,239,225,.2);
+      background:rgba(248,239,225,.08);
+    }
+    .pulse-card{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:rgba(18,15,13,.5);
+      backdrop-filter:blur(18px);
+      border-radius:8px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+    html[data-theme="light"] .pulse-card,
+    html[data-theme="light"] .form-panel{
+      background:rgba(255,250,241,.72);
+      backdrop-filter:blur(18px);
+    }
+    html[data-theme="light"] .hero .pulse-card{
+      color:#f8efe1;
+      background:rgba(18,15,13,.38);
+      border-color:rgba(248,239,225,.18);
+    }
+    .pulse-card:before,.form-panel:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      pointer-events:none;
+      opacity:.5;
+      mix-blend-mode:screen;
+      background:linear-gradient(120deg,transparent 12%,rgba(217,156,106,.18),transparent 38%,rgba(115,147,141,.14),transparent 68%);
+      transform:translateX(-72%);
+      animation:sheen 8.5s ease-in-out infinite;
+    }
+    .pulse-card > *,.form-panel > *{position:relative;z-index:1}
+    .pulse-card .label{
+      color:rgba(242,234,220,.62);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+    }
+    .pulse-card strong{
+      display:block;
+      margin-top:9px;
+      font-size:36px;
+      line-height:1;
+      font-family:"Cormorant Garamond", Georgia, serif;
+      font-weight:560;
+    }
+    .pulse-card p{
+      margin-top:10px;
+      color:rgba(242,234,220,.72);
+      font-size:14px;
+    }
+    html[data-theme="light"] .pulse-card .label,
+    html[data-theme="light"] .pulse-card p{color:rgba(29,23,19,.62)}
+    html[data-theme="light"] .hero .pulse-card .label,
+    html[data-theme="light"] .hero .pulse-card p{color:rgba(248,239,225,.68)}
+    section{
+      padding:96px clamp(20px,5vw,70px);
+      position:relative;
+    }
+    .wrap{width:min(var(--max),100%);margin:0 auto}
+    .section-head{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(260px,420px);
+      gap:36px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+    h2{
+      font-family:"Cormorant Garamond", Georgia, serif;
+      font-size:clamp(38px,6vw,78px);
+      line-height:.92;
+      font-weight:520;
+      text-wrap:balance;
+    }
+    html[lang="zh-CN"] h1,
+    html[lang="ko"] h1,
+    html[lang="zh-CN"] h2,
+    html[lang="ko"] h2{
+      font-family:"Noto Sans SC","Noto Sans KR",Inter,ui-sans-serif,system-ui,sans-serif;
+      font-weight:680;
+      line-height:1.08;
+      text-wrap:balance;
+    }
+    html[lang="zh-CN"] h1,
+    html[lang="ko"] h1{
+      font-size:clamp(44px,6.4vw,84px);
+      overflow-wrap:anywhere;
+    }
+    .section-head p,.muted{color:rgba(242,234,220,.68)}
+    .story{
+      background:
+        radial-gradient(circle at 80% 20%,rgba(217,156,106,.12),transparent 28%),
+        linear-gradient(180deg,var(--taban),#1a1512 70%,var(--taban));
+    }
+    html[data-theme="light"] .story{
+      background:
+        radial-gradient(circle at 80% 20%,rgba(169,101,61,.14),transparent 28%),
+        linear-gradient(180deg,#f4efe6,#eaddcc 72%,#f4efe6);
+    }
+    .story-grid{
+      display:grid;
+      grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+      gap:48px;
+      align-items:center;
+    }
+    .portrait{
+      min-height:620px;
+      border-radius:8px;
+      overflow:hidden;
+      position:relative;
+      background:url("assets/images/story.jpg") center/cover no-repeat;
+      box-shadow:var(--shadow);
+    }
+    .portrait:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border:1px solid rgba(242,234,220,.14);
+      border-radius:8px;
+      pointer-events:none;
+    }
+    .ritual-copy{
+      display:grid;
+      gap:26px;
+    }
+    .ritual-copy p{
+      color:rgba(242,234,220,.74);
+      font-size:18px;
+      max-width:660px;
+    }
+    .steps{
+      display:grid;
+      gap:14px;
+      margin-top:10px;
+    }
+    .step{
+      display:grid;
+      grid-template-columns:82px 1fr;
+      gap:18px;
+      padding:18px 0;
+      border-top:1px solid var(--line);
+    }
+    .step:last-child{border-bottom:1px solid var(--line)}
+    .time{
+      color:var(--honey);
+      font-weight:800;
+      font-size:13px;
+      letter-spacing:.08em;
+    }
+    .step h3{font-size:18px;margin-bottom:4px}
+    .step p{font-size:14px;color:rgba(242,234,220,.62)}
+    .services{
+      background:#171310;
+    }
+    html[data-theme="light"] .services{background:#eadfce}
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+    .service{
+      min-height:520px;
+      border-radius:8px;
+      overflow:hidden;
+      position:relative;
+      background:var(--basalt);
+      display:flex;
+      align-items:flex-end;
+      box-shadow:0 20px 60px rgba(0,0,0,.24);
+    }
+    .service:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:var(--img) center/cover no-repeat;
+      transition:transform .55s ease, filter .55s ease;
+    }
+    .service:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg,rgba(18,15,13,.1),rgba(18,15,13,.36) 42%,rgba(18,15,13,.96)),
+        radial-gradient(circle at 50% 82%,rgba(18,15,13,.72),transparent 46%);
+    }
+    .service:hover:before{transform:scale(1.045);filter:saturate(1.04)}
+    .service-body{
+      position:relative;
+      z-index:1;
+      width:100%;
+      padding:24px;
+      color:#f8efe1;
+      text-shadow:0 2px 18px rgba(0,0,0,.76);
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:28px;
+      padding:0 10px;
+      border-radius:999px;
+      border:1px solid rgba(248,239,225,.24);
+      color:#f2bd8a;
+      background:rgba(18,15,13,.56);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+    .service h3{
+      font-family:"Cormorant Garamond", Georgia, serif;
+      font-size:34px;
+      line-height:1;
+      font-weight:560;
+      margin-bottom:10px;
+      color:#fff8ea;
+    }
+    .service p{color:rgba(248,239,225,.82)}
+    html[data-theme="light"] .service h3{color:#fff8ea}
+    html[data-theme="light"] .service p{color:rgba(248,239,225,.82)}
+    html[data-theme="light"] .service .tag{
+      color:#f2bd8a;
+      background:rgba(18,15,13,.62);
+      border-color:rgba(248,239,225,.24);
+    }
+    .booking{
+      background:
+        linear-gradient(180deg,#171310,var(--taban)),
+        radial-gradient(circle at 12% 15%,rgba(115,147,141,.12),transparent 24%);
+    }
+    html[data-theme="light"] .booking{
+      background:
+        linear-gradient(180deg,#eadfce,#f4efe6),
+        radial-gradient(circle at 12% 15%,rgba(79,117,111,.12),transparent 24%);
+    }
+    .booking-grid{
+      display:grid;
+      grid-template-columns:minmax(0,.8fr) minmax(320px,1fr);
+      gap:42px;
+      align-items:start;
+    }
+    .facts{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:28px;
+    }
+    .fact{
+      border-top:1px solid var(--line);
+      padding-top:16px;
+    }
+    .fact strong{
+      display:block;
+      color:var(--honey);
+      font-size:28px;
+      font-family:"Cormorant Garamond", Georgia, serif;
+      font-weight:560;
+    }
+    .fact span{color:rgba(242,234,220,.62);font-size:13px}
+    .form-panel{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:rgba(242,234,220,.055);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+    }
+    .field{display:grid;gap:7px}
+    .field.full{grid-column:1/-1}
+    label{font-size:12px;color:rgba(242,234,220,.68);font-weight:760}
+    input,select,textarea{
+      width:100%;
+      min-height:48px;
+      border:1px solid rgba(242,234,220,.16);
+      border-radius:8px;
+      background:rgba(18,15,13,.72);
+      color:var(--paper);
+      padding:12px 13px;
+      outline:none;
+    }
+    html[data-theme="light"] label{color:rgba(29,23,19,.7)}
+    html[data-theme="light"] .fact span{color:rgba(29,23,19,.62)}
+    html[data-theme="light"] .pulse-card .label{color:rgba(29,23,19,.62)}
+    html[data-theme="light"] input,
+    html[data-theme="light"] select,
+    html[data-theme="light"] textarea{
+      background:rgba(255,250,241,.72);
+      color:var(--paper);
+      border-color:rgba(29,23,19,.16);
+    }
+    textarea{min-height:96px;resize:vertical}
+    input:focus,select:focus,textarea:focus{border-color:rgba(217,156,106,.8);box-shadow:0 0 0 3px rgba(217,156,106,.13)}
+    .form-panel .btn{width:100%;margin-top:16px}
+    .status{min-height:22px;margin-top:12px;color:var(--honey);font-size:13px}
+    .reveal{
+      opacity:0;
+      transform:translateY(28px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal.is-visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+    .service.reveal:nth-child(2){transition-delay:.08s}
+    .service.reveal:nth-child(3){transition-delay:.16s}
+    .closing{
+      min-height:72svh;
+      display:grid;
+      align-items:end;
+      background:
+        linear-gradient(0deg,rgba(18,15,13,.9),rgba(18,15,13,0) 54%),
+        linear-gradient(90deg,rgba(18,15,13,.94),rgba(18,15,13,.3) 58%,rgba(18,15,13,.88)),
+        url("assets/images/kapanis.jpg") center/cover no-repeat;
+    }
+    html[data-theme="light"] .closing{
+      color:#f8efe1;
+      background:
+        linear-gradient(0deg,rgba(18,15,13,.86),rgba(18,15,13,0) 54%),
+        linear-gradient(90deg,rgba(18,15,13,.82),rgba(18,15,13,.26) 58%,rgba(18,15,13,.76)),
+        url("assets/images/kapanis.jpg") center/cover no-repeat;
+    }
+    html[data-theme="light"] .closing p{color:rgba(248,239,225,.9)}
+    .closing h2{max-width:800px}
+    .closing p{max-width:560px;margin-top:18px;color:rgba(242,234,220,.88);font-size:18px}
+    footer{
+      padding:34px clamp(20px,5vw,70px);
+      color:rgba(242,234,220,.58);
+      border-top:1px solid var(--line);
+      background:#100d0b;
+    }
+    html[data-theme="light"] footer{background:#e2d5c2;color:rgba(29,23,19,.6)}
+    .footer-inner{
+      width:min(var(--max),100%);
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      font-size:13px;
+    }
+    @keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.1) translate3d(-1.2%,.8%,0)}}
+    @keyframes sheen{
+      0%,36%{transform:translateX(-78%)}
+      64%,100%{transform:translateX(78%)}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}
+      .reveal{opacity:1!important;transform:none!important}
+      .steam-canvas,.hero-spotlight{display:none}
+    }
+    @media (max-width:900px){
+      .nav-links a:not(.nav-cta){display:none}
+      .nav-indicator{display:none}
+      .hero{padding-top:116px}
+      .hero-inner,.section-head,.story-grid,.booking-grid{grid-template-columns:1fr}
+      .pulse-card{max-width:360px}
+      .service-grid{grid-template-columns:1fr}
+      .service{min-height:430px}
+      .portrait{min-height:520px}
+    }
+    @media (max-width:560px){
+      body{padding-bottom:70px}
+      .nav{display:grid;grid-template-columns:minmax(0,1fr) auto;padding:12px;gap:8px;justify-content:stretch;align-items:center}
+      .brand{gap:10px}
+      .brand span{max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .nav-right{display:flex;justify-self:end;align-items:center;gap:0;min-width:auto}
+      .nav-links{display:none}
+      .nav-right .control-row{gap:4px}
+      .lang-select{display:none}
+      .lang-cycle{display:grid;width:40px;height:34px}
+      .theme-toggle{width:34px;height:34px}
+      .mobile-dock{
+        position:fixed;
+        left:14px;
+        right:14px;
+        bottom:max(12px,env(safe-area-inset-bottom));
+        z-index:55;
+        display:grid;
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:4px;
+        padding:4px;
+        border:1px solid rgba(242,234,220,.12);
+        border-radius:999px;
+        background:rgba(18,15,13,.56);
+        backdrop-filter:blur(18px);
+        box-shadow:0 18px 54px rgba(0,0,0,.36), inset 0 1px 0 rgba(248,239,225,.08);
+      }
+      .hero{padding:108px 18px 34px}
+      h1{font-size:clamp(40px,12.5vw,52px);line-height:.94;max-width:100%;overflow-wrap:normal}
+      html[lang="zh-CN"] h1,
+      html[lang="ko"] h1{font-size:clamp(32px,10vw,42px);line-height:1.08;overflow-wrap:anywhere}
+      .lead{font-size:16px;max-width:min(100%,330px)}
+      section{padding:70px 18px}
+      .form-grid,.facts{grid-template-columns:1fr}
+      .step{grid-template-columns:1fr;gap:8px}
+      .portrait{min-height:430px}
+      .footer-inner{display:grid}
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <nav class="nav" aria-label="Ana menü" data-i18n-aria-label="navAria">
+    <a class="brand" href="#top" aria-label="Private Turkish Bath and SPA Goreme">
+      <img class="brand-logo" src="assets/images/logo.png" alt="" aria-hidden="true">
+      <span>Private Turkish Bath and SPA</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <a class="nav-tab" href="#ritual" data-nav-target="ritual" data-i18n="navRitual">Ritüel</a>
+        <a class="nav-tab" href="#services" data-nav-target="services" data-i18n="navPackages">Paketler</a>
+        <a class="nav-tab" href="#book" data-nav-target="book" data-i18n="navBooking">Rezervasyon</a>
+        <a class="nav-cta" href="https://wa.me/905553108882" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <div class="control-row">
+        <label class="sr-only" for="langSelect" data-i18n="langLabel">Dil seç</label>
+        <select class="lang-select" id="langSelect" aria-label="Dil seç" data-i18n-aria-label="langLabel">
+          <option value="tr">TR</option>
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+          <option value="zh">中文</option>
+          <option value="ko">한국어</option>
+        </select>
+        <button class="lang-cycle" id="langCycle" type="button" aria-label="Dil seç" data-i18n-aria-label="langLabel">TR</button>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Aydınlık modu aç" data-i18n-aria-label="themeToggle">
+          <span class="theme-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-dock" aria-label="Hızlı menü" data-i18n-aria-label="navAria">
+    <a href="#ritual" data-nav-target="ritual" data-i18n="navRitual">Ritüel</a>
+    <a href="#services" data-nav-target="services" data-i18n="navPackages">Paketler</a>
+    <a href="#book" data-nav-target="book" data-i18n="navBooking">Rezervasyon</a>
+  </div>
+
+  <header class="hero" id="top">
+    <canvas class="steam-canvas" aria-hidden="true"></canvas>
+    <div class="hero-spotlight" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow" data-i18n="heroEyebrow">Göreme · private hammam · spa</div>
+        <h1 data-i18n="heroTitle">Kesme taş bir konakta yavaşlayan hamam ritüeli.</h1>
+        <p class="lead" data-i18n="heroLead">Göreme’de özel hamam, kese köpük, masaj ve dinlenme molasını tek akışta toplayan sakin bir spa deneyimi. Rezervasyon talebi doğrudan WhatsApp’a düşer.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#book"><span data-i18n="heroPrimary">Rezervasyon iste</span></a>
+          <a class="btn" href="#services"><span data-i18n="heroSecondary">Paketlere bak</span></a>
+        </div>
+      </div>
+      <aside class="pulse-card" aria-label="İşletme sinyali" data-i18n-aria-label="signalAria">
+        <div class="label" data-i18n="signalLabel">Google puanı</div>
+        <strong>4.9</strong>
+        <p data-i18n="signalText">Google’da 7 misafir yorumunun ortalaması. Özel kullanımlı (private) hamam ve spa deneyimi.</p>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="story" id="ritual">
+      <div class="wrap story-grid reveal">
+        <div class="portrait" aria-label="Spa salonu ve dinlenme alanı" data-i18n-aria-label="portraitAria"></div>
+        <div class="ritual-copy">
+          <div>
+            <div class="eyebrow" data-i18n="storyEyebrow">Sessiz akış</div>
+            <h2 data-i18n="storyTitle">Bir liste değil, sırayla açılan bir ritüel.</h2>
+          </div>
+          <p data-i18n="storyText">Kapadokya günleri hızlı geçer: balon saati, vadiler, turlar, otel dönüşü. Bu sayfa misafire “ne var?” değil, “nasıl rahatlayacağım?” sorusunun cevabını verir.</p>
+          <div class="steps">
+            <div class="step">
+              <div class="time" data-i18n="step1Time">01 · giriş</div>
+              <div>
+                <h3 data-i18n="step1Title">Hazırlık ve ısınma</h3>
+                <p data-i18n="step1Text">Peştamal, buhar ve sıcak taşla beden ritme alınır.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="time" data-i18n="step2Time">02 · arınma</div>
+              <div>
+                <h3 data-i18n="step2Title">Kese köpük</h3>
+                <p data-i18n="step2Text">Göbek taşında kese ve köpük — klasik Türk hamamının bilinen akışı.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="time" data-i18n="step3Time">03 · dinlenme</div>
+              <div>
+                <h3 data-i18n="step3Title">Masaj ve çay molası</h3>
+                <p data-i18n="step3Text">Masaj opsiyonu, dinlenme köşesi ve WhatsApp rezervasyonu aynı akışta biter.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow" data-i18n="servicesEyebrow">Paketler</div>
+            <h2 data-i18n="servicesTitle">Misafirin hızlı anlayacağı üç seçenek.</h2>
+          </div>
+          <p data-i18n="servicesText">Turist için paket isimleri sade, içerik görünür, karar yolu kısa. Form doldurulunca seçilen paket WhatsApp mesajına otomatik yazılır.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service reveal" style="--img:url('assets/images/ritual-1.jpg')">
+            <div class="service-body">
+              <span class="tag" data-i18n="service1Tag">Göbek taşı</span>
+              <h3 data-i18n="service1Title">Klasik hamam</h3>
+              <p data-i18n="service1Text">Buhar, sıcak taş, kese ve köpük. Kısa program isteyen çiftler ve solo misafirler için.</p>
+            </div>
+          </article>
+          <article class="service reveal" style="--img:url('assets/images/ritual-2.jpg')">
+            <div class="service-body">
+              <span class="tag" data-i18n="service2Tag">Masaj odası</span>
+              <h3 data-i18n="service2Title">Hamam + masaj</h3>
+              <p data-i18n="service2Text">Ritüelin ardından taş duvarlı masaj odasında masaj. Tur sonrası toparlanma için en anlaşılır premium paket.</p>
+            </div>
+          </article>
+          <article class="service reveal" style="--img:url('assets/images/ritual-3.jpg')">
+            <div class="service-body">
+              <span class="tag" data-i18n="service3Tag">Private</span>
+              <h3 data-i18n="service3Title">Çift ritüeli</h3>
+              <p data-i18n="service3Text">Özel saat, gül yapraklı havuz ve çay molası. Balon uçuşu veya vadi turu sonrası kapanış deneyimi.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="book">
+      <div class="wrap booking-grid reveal">
+        <div>
+          <div class="eyebrow" data-i18n="bookingEyebrow">WhatsApp rezervasyon</div>
+          <h2 data-i18n="bookingTitle">Tek mesajla saat sor.</h2>
+          <p class="muted" style="margin-top:18px" data-i18n="bookingText">Bu form ödeme almaz; misafirin tarih, kişi sayısı ve paket seçimini düzenli bir WhatsApp mesajına çevirir.</p>
+          <div class="facts">
+            <div class="fact">
+              <strong data-i18n="fact1Title">Göreme</strong>
+              <span data-i18n="fact1Text">Konum odağı</span>
+            </div>
+            <div class="fact">
+              <strong data-i18n="fact2Title">5 dil</strong>
+              <span data-i18n="fact2Text">Turist dili</span>
+            </div>
+            <div class="fact">
+              <strong data-i18n="fact3Title">WhatsApp</strong>
+              <span data-i18n="fact3Text">Hızlı dönüş</span>
+            </div>
+            <div class="fact">
+              <strong data-i18n="fact4Title">Private</strong>
+              <span data-i18n="fact4Text">Sakin paket dili</span>
+            </div>
+          </div>
+        </div>
+        <form class="form-panel" id="bookingForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name" data-i18n="nameLabel">Ad</label>
+              <input id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="date" data-i18n="dateLabel">Tarih</label>
+              <input id="date" name="date" type="date" required>
+            </div>
+            <div class="field">
+              <label for="people" data-i18n="peopleLabel">Kişi sayısı</label>
+              <select id="people" name="people">
+                <option data-option="people1">1 kişi</option>
+                <option data-option="people2">2 kişi</option>
+                <option data-option="people3">3 kişi</option>
+                <option data-option="people4">4+ kişi</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="package" data-i18n="packageLabel">Paket</label>
+              <select id="package" name="package">
+                <option data-option="package1">Klasik hamam</option>
+                <option data-option="package2">Hamam + masaj</option>
+                <option data-option="package3">Çift ritüeli</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="note" data-i18n="noteLabel">Not</label>
+              <textarea id="note" name="note" placeholder="Otel adı, tercih edilen saat veya özel not" data-i18n-placeholder="notePlaceholder"></textarea>
+            </div>
+          </div>
+          <button class="btn primary" type="submit"><span data-i18n="submitButton">WhatsApp mesajı hazırla</span></button>
+          <div class="status" id="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="wrap reveal">
+        <div class="eyebrow" data-i18n="closingEyebrow">Turdan sonra</div>
+        <h2 data-i18n="closingTitle">Kapadokya’nın tozu dışarıda kalır.</h2>
+        <p data-i18n="closingText">Hamam, masaj ve dinlenme molası tek sakin akışta toplanır; misafir ne seçeceğini görür ve saatini WhatsApp üzerinden sorar.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">
+        <img src="assets/images/logo.png" alt="Private Turkish Bath and Spa logosu">
+        <span data-i18n="footerText">Private Turkish Bath and SPA Goreme · Göreme, Kapadokya</span>
+      </span>
+      <a href="tel:+905553108882">+90 555 310 88 82</a>
+    </div>
+  </footer>
+
+  <script>
+    const WHATSAPP = "905553108882";
+    const form = document.getElementById("bookingForm");
+    const status = document.getElementById("status");
+    const langSelect = document.getElementById("langSelect");
+    const langCycle = document.getElementById("langCycle");
+    const themeToggle = document.getElementById("themeToggle");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const navLinks = document.querySelector(".nav-links");
+    const navIndicator = document.querySelector(".nav-indicator");
+    const desktopNavItems = Array.from(document.querySelectorAll(".nav-links [data-nav-target]"));
+    const allNavItems = Array.from(document.querySelectorAll("[data-nav-target]"));
+    const navSectionIds = ["ritual", "services", "book"];
+    let activeNavTarget = "ritual";
+    let navTicking = false;
+    const i18n = {
+      tr: {
+        title: "Private Turkish Bath and SPA Goreme | Private Hammam & Spa",
+        description: "Göreme'de özel hamam, kese köpük, masaj ve dinlenme ritüeli. WhatsApp ile hızlı rezervasyon.",
+        navAria: "Ana menü",
+        langLabel: "Dil seç",
+        themeToggle: "Aydınlık modu aç",
+        themeToggleLight: "Karanlık modu aç",
+        navRitual: "Ritüel",
+        navPackages: "Paketler",
+        navBooking: "Rezervasyon",
+        heroEyebrow: "Göreme · private hammam · spa",
+        heroTitle: "Kesme taş bir konakta yavaşlayan hamam ritüeli.",
+        heroLead: "Göreme’de özel hamam, kese köpük, masaj ve dinlenme molasını tek akışta toplayan sakin bir spa deneyimi. Rezervasyon talebi doğrudan WhatsApp’a düşer.",
+        heroPrimary: "Rezervasyon iste",
+        heroSecondary: "Paketlere bak",
+        signalAria: "İşletme sinyali",
+        signalLabel: "Google puanı",
+        signalText: "Google’da 7 misafir yorumunun ortalaması. Özel kullanımlı (private) hamam ve spa deneyimi.",
+        portraitAria: "Spa salonu ve dinlenme alanı",
+        storyEyebrow: "Sessiz akış",
+        storyTitle: "Bir liste değil, sırayla açılan bir ritüel.",
+        storyText: "Kapadokya günleri hızlı geçer: balon saati, vadiler, turlar, otel dönüşü. Bu sayfa misafire “ne var?” değil, “nasıl rahatlayacağım?” sorusunun cevabını verir.",
+        step1Time: "01 · giriş",
+        step1Title: "Hazırlık ve ısınma",
+        step1Text: "Peştamal, buhar ve sıcak taşla beden ritme alınır.",
+        step2Time: "02 · arınma",
+        step2Title: "Kese köpük",
+        step2Text: "Göbek taşında kese ve köpük — klasik Türk hamamının bilinen akışı.",
+        step3Time: "03 · dinlenme",
+        step3Title: "Masaj ve çay molası",
+        step3Text: "Masaj opsiyonu, dinlenme köşesi ve WhatsApp rezervasyonu aynı akışta biter.",
+        servicesEyebrow: "Paketler",
+        servicesTitle: "Misafirin hızlı anlayacağı üç seçenek.",
+        servicesText: "Turist için paket isimleri sade, içerik görünür, karar yolu kısa. Form doldurulunca seçilen paket WhatsApp mesajına otomatik yazılır.",
+        service1Tag: "Göbek taşı",
+        service1Title: "Klasik hamam",
+        service1Text: "Buhar, sıcak taş, kese ve köpük. Kısa program isteyen çiftler ve solo misafirler için.",
+        service2Tag: "Masaj odası",
+        service2Title: "Hamam + masaj",
+        service2Text: "Ritüelin ardından taş duvarlı masaj odasında masaj. Tur sonrası toparlanma için en anlaşılır premium paket.",
+        service3Tag: "Private",
+        service3Title: "Çift ritüeli",
+        service3Text: "Özel saat, gül yapraklı havuz ve çay molası. Balon uçuşu veya vadi turu sonrası kapanış deneyimi.",
+        bookingEyebrow: "WhatsApp rezervasyon",
+        bookingTitle: "Tek mesajla saat sor.",
+        bookingText: "Bu form ödeme almaz; misafirin tarih, kişi sayısı ve paket seçimini düzenli bir WhatsApp mesajına çevirir.",
+        fact1Title: "Göreme",
+        fact1Text: "Konum odağı",
+        fact2Title: "5 dil",
+        fact2Text: "Turist dili",
+        fact3Title: "WhatsApp",
+        fact3Text: "Hızlı dönüş",
+        fact4Title: "Private",
+        fact4Text: "Sakin paket dili",
+        nameLabel: "Ad",
+        dateLabel: "Tarih",
+        peopleLabel: "Kişi sayısı",
+        packageLabel: "Paket",
+        noteLabel: "Not",
+        notePlaceholder: "Otel adı, tercih edilen saat veya özel not",
+        submitButton: "WhatsApp mesajı hazırla",
+        people1: "1 kişi",
+        people2: "2 kişi",
+        people3: "3 kişi",
+        people4: "4+ kişi",
+        package1: "Klasik hamam",
+        package2: "Hamam + masaj",
+        package3: "Çift ritüeli",
+        closingEyebrow: "Turdan sonra",
+        closingTitle: "Kapadokya’nın tozu dışarıda kalır.",
+        closingText: "Hamam, masaj ve dinlenme molası tek sakin akışta toplanır; misafir ne seçeceğini görür ve saatini WhatsApp üzerinden sorar.",
+        footerText: "Private Turkish Bath and SPA Goreme · Göreme, Kapadokya",
+        requiredStatus: "Ad ve tarih gerekli.",
+        readyStatus: "WhatsApp mesajı hazır.",
+        waIntro: "Merhaba, Private Turkish Bath and SPA Goreme icin rezervasyon sormak istiyorum.",
+        waName: "Ad",
+        waDate: "Tarih",
+        waPeople: "Kisi sayisi",
+        waPackage: "Paket",
+        waNote: "Not"
+      },
+      en: {
+        title: "Private Turkish Bath and SPA Goreme | Private Hammam & Spa",
+        description: "Private hammam, scrub foam, massage and rest ritual in Goreme. Fast reservation by WhatsApp.",
+        navAria: "Main menu",
+        langLabel: "Choose language",
+        themeToggle: "Turn on light mode",
+        themeToggleLight: "Turn on dark mode",
+        navRitual: "Ritual",
+        navPackages: "Packages",
+        navBooking: "Booking",
+        heroEyebrow: "Goreme · private hammam · spa",
+        heroTitle: "A hammam ritual that slows down in a stone mansion.",
+        heroLead: "A quiet private spa experience in Goreme: hammam, scrub foam, massage and a rest pause in one clear flow. Booking requests go straight to WhatsApp.",
+        heroPrimary: "Request booking",
+        heroSecondary: "View packages",
+        signalAria: "Business signal",
+        signalLabel: "Google rating",
+        signalText: "The average of 7 guest reviews on Google. A private-use hammam and spa experience.",
+        portraitAria: "Spa lounge and rest area",
+        storyEyebrow: "Quiet flow",
+        storyTitle: "Not a list, a ritual that opens step by step.",
+        storyText: "Cappadocia days move quickly: balloon time, valleys, tours, hotel return. This page answers not “what is available?” but “how will I relax?”",
+        step1Time: "01 · arrival",
+        step1Title: "Preparation and warmth",
+        step1Text: "Pestemal, steam and warm stone bring the body into the rhythm.",
+        step2Time: "02 · cleanse",
+        step2Title: "Scrub foam",
+        step2Text: "Scrub and foam on the heated marble platform — the classic Turkish bath flow.",
+        step3Time: "03 · rest",
+        step3Title: "Massage and tea pause",
+        step3Text: "Massage options, a resting corner and WhatsApp booking finish in one flow.",
+        servicesEyebrow: "Packages",
+        servicesTitle: "Three choices travelers understand fast.",
+        servicesText: "Package names are simple, contents are visible, and the decision path is short. The selected package is written into the WhatsApp message automatically.",
+        service1Tag: "Marble platform",
+        service1Title: "Classic hammam",
+        service1Text: "Steam, warm stone, scrub and foam. For couples and solo guests who want a shorter ritual.",
+        service2Tag: "Massage room",
+        service2Title: "Hammam + massage",
+        service2Text: "Massage in the stone-walled massage room after the ritual. The clearest premium package for recovery after tours.",
+        service3Tag: "Private",
+        service3Title: "Couple ritual",
+        service3Text: "Private time, a rose-petal pool and a tea pause. A quiet ending after balloons or valley tours.",
+        bookingEyebrow: "WhatsApp booking",
+        bookingTitle: "Ask for a time with one message.",
+        bookingText: "This form does not take payment; it turns the guest's date, party size and package into an organized WhatsApp message.",
+        fact1Title: "Goreme",
+        fact1Text: "Location focus",
+        fact2Title: "5 languages",
+        fact2Text: "Traveler-friendly",
+        fact3Title: "WhatsApp",
+        fact3Text: "Fast reply",
+        fact4Title: "Private",
+        fact4Text: "Calm package language",
+        nameLabel: "Name",
+        dateLabel: "Date",
+        peopleLabel: "People",
+        packageLabel: "Package",
+        noteLabel: "Note",
+        notePlaceholder: "Hotel name, preferred time or special note",
+        submitButton: "Prepare WhatsApp message",
+        people1: "1 person",
+        people2: "2 people",
+        people3: "3 people",
+        people4: "4+ people",
+        package1: "Classic hammam",
+        package2: "Hammam + massage",
+        package3: "Couple ritual",
+        closingEyebrow: "After the tour",
+        closingTitle: "The dust of Cappadocia stays outside.",
+        closingText: "Hammam, massage and rest are gathered into one calm flow; the guest sees what to choose and asks for a time on WhatsApp.",
+        footerText: "Private Turkish Bath and SPA Goreme · Goreme, Cappadocia",
+        requiredStatus: "Name and date are required.",
+        readyStatus: "WhatsApp message is ready.",
+        waIntro: "Hello, I would like to ask for a reservation at Private Turkish Bath and SPA Goreme.",
+        waName: "Name",
+        waDate: "Date",
+        waPeople: "People",
+        waPackage: "Package",
+        waNote: "Note"
+      },
+      es: {
+        title: "Private Turkish Bath and SPA Goreme | Hammam privado",
+        description: "Hammam privado, exfoliacion con espuma, masaje y descanso en Goreme. Reserva rapida por WhatsApp.",
+        navAria: "Menu principal",
+        langLabel: "Elegir idioma",
+        themeToggle: "Activar modo claro",
+        themeToggleLight: "Activar modo oscuro",
+        navRitual: "Ritual",
+        navPackages: "Paquetes",
+        navBooking: "Reserva",
+        heroEyebrow: "Goreme · hammam privado · spa",
+        heroTitle: "Un ritual de hammam que baja el ritmo en una casona de piedra.",
+        heroLead: "Una experiencia tranquila de spa privado en Goreme: hammam, espuma, masaje y descanso en un solo recorrido claro. La solicitud llega directamente a WhatsApp.",
+        heroPrimary: "Pedir reserva",
+        heroSecondary: "Ver paquetes",
+        signalAria: "Senal del negocio",
+        signalLabel: "Puntuacion en Google",
+        signalText: "Promedio de 7 resenas de huespedes en Google. Un hammam y spa de uso privado.",
+        portraitAria: "Salon del spa y zona de descanso",
+        storyEyebrow: "Flujo silencioso",
+        storyTitle: "No es una lista, es un ritual paso a paso.",
+        storyText: "Los dias en Capadocia pasan rapido: globos, valles, tours y regreso al hotel. Esta pagina responde “como voy a relajarme?”.",
+        step1Time: "01 · llegada",
+        step1Title: "Preparacion y calor",
+        step1Text: "Pestemal, vapor y piedra caliente preparan el cuerpo.",
+        step2Time: "02 · limpieza",
+        step2Title: "Exfoliacion con espuma",
+        step2Text: "Exfoliacion y espuma sobre el marmol caliente: el flujo clasico del bano turco.",
+        step3Time: "03 · descanso",
+        step3Title: "Masaje y pausa de te",
+        step3Text: "Opciones de masaje, zona de descanso y reserva por WhatsApp en un solo flujo.",
+        servicesEyebrow: "Paquetes",
+        servicesTitle: "Tres opciones que el viajero entiende rapido.",
+        servicesText: "Nombres simples, contenido visible y una decision corta. El paquete elegido se escribe automaticamente en WhatsApp.",
+        service1Tag: "Marmol caliente",
+        service1Title: "Hammam clasico",
+        service1Text: "Vapor, piedra caliente, exfoliacion y espuma. Para parejas o viajeros solos que quieren un ritual corto.",
+        service2Tag: "Sala de masaje",
+        service2Title: "Hammam + masaje",
+        service2Text: "Masaje en la sala de paredes de piedra despues del ritual. Un paquete premium claro para recuperarse tras los tours.",
+        service3Tag: "Privado",
+        service3Title: "Ritual para pareja",
+        service3Text: "Hora privada, piscina con petalos de rosa y pausa de te. Un cierre calmado despues de globos o valles.",
+        bookingEyebrow: "Reserva por WhatsApp",
+        bookingTitle: "Pregunta la hora con un mensaje.",
+        bookingText: "Este formulario no cobra; convierte fecha, personas y paquete en un mensaje ordenado de WhatsApp.",
+        fact1Title: "Goreme",
+        fact1Text: "Ubicacion clara",
+        fact2Title: "5 idiomas",
+        fact2Text: "Para viajeros",
+        fact3Title: "WhatsApp",
+        fact3Text: "Respuesta rapida",
+        fact4Title: "Privado",
+        fact4Text: "Lenguaje tranquilo",
+        nameLabel: "Nombre",
+        dateLabel: "Fecha",
+        peopleLabel: "Personas",
+        packageLabel: "Paquete",
+        noteLabel: "Nota",
+        notePlaceholder: "Hotel, hora preferida o nota especial",
+        submitButton: "Preparar mensaje de WhatsApp",
+        people1: "1 persona",
+        people2: "2 personas",
+        people3: "3 personas",
+        people4: "4+ personas",
+        package1: "Hammam clasico",
+        package2: "Hammam + masaje",
+        package3: "Ritual para pareja",
+        closingEyebrow: "Despues del tour",
+        closingTitle: "El polvo de Capadocia queda fuera.",
+        closingText: "Hammam, masaje y descanso se unen en un flujo tranquilo; el visitante elige y pregunta la hora por WhatsApp.",
+        footerText: "Private Turkish Bath and SPA Goreme · Goreme, Capadocia",
+        requiredStatus: "Nombre y fecha son obligatorios.",
+        readyStatus: "Mensaje de WhatsApp listo.",
+        waIntro: "Hola, quiero consultar una reserva para Private Turkish Bath and SPA Goreme.",
+        waName: "Nombre",
+        waDate: "Fecha",
+        waPeople: "Personas",
+        waPackage: "Paquete",
+        waNote: "Nota"
+      },
+      zh: {
+        title: "Private Turkish Bath and SPA Goreme | 私人土耳其浴",
+        description: "格雷梅私人土耳其浴、泡沫去角质、按摩与休息体验。可通过 WhatsApp 快速预约。",
+        navAria: "主菜单",
+        langLabel: "选择语言",
+        themeToggle: "开启浅色模式",
+        themeToggleLight: "开启深色模式",
+        navRitual: "仪式",
+        navPackages: "套餐",
+        navBooking: "预约",
+        heroEyebrow: "格雷梅 · 私人土耳其浴 · SPA",
+        heroTitle: "在一座石造宅邸中慢下来的土耳其浴仪式。",
+        heroLead: "在格雷梅体验安静的私人 SPA：土耳其浴、泡沫护理、按摩和休息，被整理成清晰的一条预约流程。预约请求会直接发送到 WhatsApp。",
+        heroPrimary: "请求预约",
+        heroSecondary: "查看套餐",
+        signalAria: "商家信号",
+        signalLabel: "Google 评分",
+        signalText: "来自 Google 上 7 条客人评论的平均分。私人专属的土耳其浴与 SPA 体验。",
+        portraitAria: "水疗休息区照片",
+        storyEyebrow: "安静流程",
+        storyTitle: "不是清单，而是一步步展开的仪式。",
+        storyText: "卡帕多奇亚的行程很快：热气球、山谷、游览、回到酒店。这个页面回答的是“我如何放松下来？”。",
+        step1Time: "01 · 抵达",
+        step1Title: "准备与暖身",
+        step1Text: "浴巾、蒸汽和温热石面，让身体进入节奏。",
+        step2Time: "02 · 洁净",
+        step2Title: "泡沫去角质",
+        step2Text: "在加热的大理石浴台上进行去角质和泡沫护理——经典土耳其浴的流程。",
+        step3Time: "03 · 休息",
+        step3Title: "按摩与茶歇",
+        step3Text: "按摩选项、休息角落和 WhatsApp 预约集中在同一流程。",
+        servicesEyebrow: "套餐",
+        servicesTitle: "游客能快速理解的三个选择。",
+        servicesText: "套餐名称简单、内容清楚、决策路径短。所选套餐会自动写入 WhatsApp 消息。",
+        service1Tag: "大理石浴台",
+        service1Title: "经典土耳其浴",
+        service1Text: "蒸汽、温热石面、去角质和泡沫。适合想要短流程的情侣或单人游客。",
+        service2Tag: "按摩室",
+        service2Title: "土耳其浴 + 按摩",
+        service2Text: "仪式后在石墙按摩室进行按摩。适合游览后恢复的清晰高级套餐。",
+        service3Tag: "私人",
+        service3Title: "双人仪式",
+        service3Text: "私人时段、洒满玫瑰花瓣的水池和茶歇。热气球或山谷游之后的平静收尾。",
+        bookingEyebrow: "WhatsApp 预约",
+        bookingTitle: "用一条消息询问时间。",
+        bookingText: "此表单不收款；它会把日期、人数和套餐整理成 WhatsApp 消息。",
+        fact1Title: "格雷梅",
+        fact1Text: "位置清晰",
+        fact2Title: "5 种语言",
+        fact2Text: "方便游客",
+        fact3Title: "WhatsApp",
+        fact3Text: "快速回复",
+        fact4Title: "私人",
+        fact4Text: "安静套餐表达",
+        nameLabel: "姓名",
+        dateLabel: "日期",
+        peopleLabel: "人数",
+        packageLabel: "套餐",
+        noteLabel: "备注",
+        notePlaceholder: "酒店名称、偏好时间或特别备注",
+        submitButton: "生成 WhatsApp 消息",
+        people1: "1 人",
+        people2: "2 人",
+        people3: "3 人",
+        people4: "4+ 人",
+        package1: "经典土耳其浴",
+        package2: "土耳其浴 + 按摩",
+        package3: "双人仪式",
+        closingEyebrow: "游览之后",
+        closingTitle: "把卡帕多奇亚的尘土留在门外。",
+        closingText: "土耳其浴、按摩和休息被整理成安静流程；游客看清选择，并通过 WhatsApp 询问时间。",
+        footerText: "Private Turkish Bath and SPA Goreme · 格雷梅，卡帕多奇亚",
+        requiredStatus: "请填写姓名和日期。",
+        readyStatus: "WhatsApp 消息已准备好。",
+        waIntro: "你好，我想咨询 Private Turkish Bath and SPA Goreme 的预约。",
+        waName: "姓名",
+        waDate: "日期",
+        waPeople: "人数",
+        waPackage: "套餐",
+        waNote: "备注"
+      },
+      ko: {
+        title: "Private Turkish Bath and SPA Goreme | 프라이빗 하맘 & 스파",
+        description: "괴레메의 프라이빗 하맘, 스크럽 폼, 마사지와 휴식 리추얼. WhatsApp으로 빠르게 예약 문의.",
+        navAria: "메인 메뉴",
+        langLabel: "언어 선택",
+        themeToggle: "라이트 모드 켜기",
+        themeToggleLight: "다크 모드 켜기",
+        navRitual: "리추얼",
+        navPackages: "패키지",
+        navBooking: "예약",
+        heroEyebrow: "괴레메 · 프라이빗 하맘 · 스파",
+        heroTitle: "돌로 지은 저택에서 천천히 풀리는 하맘 리추얼.",
+        heroLead: "괴레메에서 즐기는 조용한 프라이빗 스파 경험: 하맘, 스크럽 폼, 마사지, 휴식을 하나의 흐름으로 정리했습니다. 예약 요청은 WhatsApp으로 바로 연결됩니다.",
+        heroPrimary: "예약 문의",
+        heroSecondary: "패키지 보기",
+        signalAria: "업체 신호",
+        signalLabel: "구글 평점",
+        signalText: "구글에 남겨진 7개의 게스트 리뷰 평균입니다. 프라이빗 전용 하맘과 스파 경험.",
+        portraitAria: "스파 라운지와 휴식 공간 사진",
+        storyEyebrow: "조용한 흐름",
+        storyTitle: "목록이 아니라 단계별로 열리는 리추얼.",
+        storyText: "카파도키아의 하루는 빠르게 지나갑니다: 벌룬, 계곡, 투어, 호텔 복귀. 이 페이지는 “무엇이 있나요?”보다 “어떻게 쉬나요?”에 답합니다.",
+        step1Time: "01 · 도착",
+        step1Title: "준비와 온기",
+        step1Text: "페슈테말, 스팀, 따뜻한 돌이 몸을 천천히 리듬에 맞춥니다.",
+        step2Time: "02 · 클렌징",
+        step2Title: "스크럽 폼",
+        step2Text: "따뜻한 대리석 위에서 스크럽과 폼 — 전통 터키식 하맘의 흐름입니다.",
+        step3Time: "03 · 휴식",
+        step3Title: "마사지와 차",
+        step3Text: "마사지 옵션, 휴식 공간, WhatsApp 예약이 한 흐름 안에서 마무리됩니다.",
+        servicesEyebrow: "패키지",
+        servicesTitle: "여행자가 빠르게 이해하는 세 가지 선택.",
+        servicesText: "패키지 이름은 단순하고 구성은 명확하며 결정 경로는 짧습니다. 선택한 패키지는 WhatsApp 메시지에 자동으로 들어갑니다.",
+        service1Tag: "대리석 스톤",
+        service1Title: "클래식 하맘",
+        service1Text: "스팀, 따뜻한 돌, 스크럽과 폼. 짧은 리추얼을 원하는 커플과 혼자 여행자에게 적합합니다.",
+        service2Tag: "마사지 룸",
+        service2Title: "하맘 + 마사지",
+        service2Text: "리추얼 후 돌벽 마사지 룸에서 마사지. 투어 후 회복에 적합한 프리미엄 패키지입니다.",
+        service3Tag: "프라이빗",
+        service3Title: "커플 리추얼",
+        service3Text: "프라이빗 시간, 장미 꽃잎 풀, 차 한 잔. 벌룬이나 계곡 투어 후 차분한 마무리입니다.",
+        bookingEyebrow: "WhatsApp 예약",
+        bookingTitle: "한 메시지로 시간을 문의하세요.",
+        bookingText: "이 폼은 결제를 받지 않습니다. 날짜, 인원, 패키지를 정리된 WhatsApp 메시지로 바꿉니다.",
+        fact1Title: "괴레메",
+        fact1Text: "명확한 위치",
+        fact2Title: "5개 언어",
+        fact2Text: "여행자 친화적",
+        fact3Title: "WhatsApp",
+        fact3Text: "빠른 답변",
+        fact4Title: "프라이빗",
+        fact4Text: "차분한 패키지 언어",
+        nameLabel: "이름",
+        dateLabel: "날짜",
+        peopleLabel: "인원",
+        packageLabel: "패키지",
+        noteLabel: "메모",
+        notePlaceholder: "호텔 이름, 선호 시간 또는 특별 요청",
+        submitButton: "WhatsApp 메시지 만들기",
+        people1: "1명",
+        people2: "2명",
+        people3: "3명",
+        people4: "4명 이상",
+        package1: "클래식 하맘",
+        package2: "하맘 + 마사지",
+        package3: "커플 리추얼",
+        closingEyebrow: "투어 후",
+        closingTitle: "카파도키아의 먼지는 문 밖에 둡니다.",
+        closingText: "하맘, 마사지, 휴식이 하나의 조용한 흐름으로 정리됩니다. 여행자는 선택을 보고 WhatsApp으로 시간을 문의합니다.",
+        footerText: "Private Turkish Bath and SPA Goreme · 괴레메, 카파도키아",
+        requiredStatus: "이름과 날짜가 필요합니다.",
+        readyStatus: "WhatsApp 메시지가 준비되었습니다.",
+        waIntro: "안녕하세요, Private Turkish Bath and SPA Goreme 예약을 문의하고 싶습니다.",
+        waName: "이름",
+        waDate: "날짜",
+        waPeople: "인원",
+        waPackage: "패키지",
+        waNote: "메모"
+      }
+    };
+
+    const langCodes = ["tr", "en", "es", "zh", "ko"];
+    const langLabels = { tr: "TR", en: "EN", es: "ES", zh: "中文", ko: "KO" };
+    const urlLang = new URLSearchParams(window.location.search).get("lang");
+    const savedLang = localStorage.getItem("ptb-lang");
+    let activeLang = langCodes.includes(urlLang) ? urlLang : (langCodes.includes(savedLang) ? savedLang : "tr");
+
+    function text(key){
+      return (i18n[activeLang] && i18n[activeLang][key]) || i18n.tr[key] || "";
+    }
+
+    function moveNavIndicator(item){
+      if(!navLinks || !navIndicator || !item){
+        return;
+      }
+      const linkRect = item.getBoundingClientRect();
+      const navRect = navLinks.getBoundingClientRect();
+      const navHidden = getComputedStyle(navLinks).display === "none" || linkRect.width === 0;
+      if(navHidden){
+        navLinks.style.setProperty("--nav-indicator-opacity", "0");
+        return;
+      }
+      navLinks.style.setProperty("--nav-indicator-x", (linkRect.left - navRect.left) + "px");
+      navLinks.style.setProperty("--nav-indicator-w", linkRect.width + "px");
+      navLinks.style.setProperty("--nav-indicator-opacity", "1");
+    }
+
+    function syncNav(target){
+      activeNavTarget = navSectionIds.includes(target) ? target : "ritual";
+      allNavItems.forEach(function(item){
+        const isActive = item.dataset.navTarget === activeNavTarget;
+        item.classList.toggle("is-active", isActive);
+        if(item.closest(".nav-links")){
+          if(isActive) item.setAttribute("aria-current", "true");
+          else item.removeAttribute("aria-current");
+        }
+      });
+      const activeDesktopItem = desktopNavItems.find(function(item){
+        return item.dataset.navTarget === activeNavTarget;
+      });
+      moveNavIndicator(activeDesktopItem);
+    }
+
+    function updateNavFromScroll(){
+      let current = "ritual";
+      navSectionIds.forEach(function(id){
+        const section = document.getElementById(id);
+        if(section && section.getBoundingClientRect().top <= window.innerHeight * 0.38){
+          current = id;
+        }
+      });
+      syncNav(current);
+    }
+
+    function requestNavUpdate(){
+      if(navTicking) return;
+      navTicking = true;
+      window.requestAnimationFrame(function(){
+        updateNavFromScroll();
+        navTicking = false;
+      });
+    }
+
+    function applyLanguage(lang, updateUrl){
+      activeLang = langCodes.includes(lang) ? lang : "tr";
+      localStorage.setItem("ptb-lang", activeLang);
+      document.documentElement.lang = activeLang === "zh" ? "zh-CN" : activeLang;
+      document.title = text("title");
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if(metaDescription) metaDescription.setAttribute("content", text("description"));
+      document.querySelectorAll("[data-i18n]").forEach(function(node){
+        node.textContent = text(node.dataset.i18n);
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(function(node){
+        node.setAttribute("placeholder", text(node.dataset.i18nPlaceholder));
+      });
+      document.querySelectorAll("[data-i18n-aria-label]").forEach(function(node){
+        node.setAttribute("aria-label", text(node.dataset.i18nAriaLabel));
+      });
+      document.querySelectorAll("[data-option]").forEach(function(option){
+        option.textContent = text(option.dataset.option);
+      });
+      langSelect.value = activeLang;
+      langCycle.textContent = langLabels[activeLang] || activeLang.toUpperCase();
+      updateThemeLabel();
+      window.requestAnimationFrame(function(){ syncNav(activeNavTarget); });
+      if(updateUrl){
+        const url = new URL(window.location.href);
+        url.searchParams.set("lang", activeLang);
+        history.replaceState(null, "", url);
+      }
+    }
+
+    function updateThemeLabel(){
+      const isLight = document.documentElement.dataset.theme === "light";
+      const label = isLight ? text("themeToggleLight") : text("themeToggle");
+      themeToggle.setAttribute("aria-label", label);
+    }
+
+    langSelect.addEventListener("change", function(){
+      applyLanguage(langSelect.value, true);
+    });
+
+    langCycle.addEventListener("click", function(){
+      const index = langCodes.indexOf(activeLang);
+      const nextLang = langCodes[(index + 1) % langCodes.length];
+      applyLanguage(nextLang, true);
+    });
+
+    function toggleTheme(){
+      const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+      document.documentElement.dataset.theme = nextTheme;
+      localStorage.setItem("ptb-theme", nextTheme);
+      updateThemeLabel();
+    }
+
+    themeToggle.addEventListener("click", toggleTheme);
+
+    desktopNavItems.forEach(function(item){
+      item.addEventListener("pointerenter", function(){ moveNavIndicator(item); });
+      item.addEventListener("focus", function(){ moveNavIndicator(item); });
+    });
+    if(navLinks){
+      navLinks.addEventListener("pointerleave", function(){ syncNav(activeNavTarget); });
+    }
+    allNavItems.forEach(function(item){
+      item.addEventListener("click", function(){ syncNav(item.dataset.navTarget); });
+    });
+    window.addEventListener("scroll", requestNavUpdate, { passive:true });
+    window.addEventListener("resize", function(){
+      window.requestAnimationFrame(function(){ syncNav(activeNavTarget); });
+    });
+
+    applyLanguage(activeLang, Boolean(urlLang));
+    updateNavFromScroll();
+
+    const hero = document.querySelector(".hero");
+    if(hero && !reduceMotion){
+      hero.addEventListener("pointermove", function(event){
+        const rect = hero.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 100;
+        const y = ((event.clientY - rect.top) / rect.height) * 100;
+        document.documentElement.style.setProperty("--spot-x", x.toFixed(2) + "%");
+        document.documentElement.style.setProperty("--spot-y", y.toFixed(2) + "%");
+      });
+    }
+
+    const revealItems = document.querySelectorAll(".reveal");
+    if("IntersectionObserver" in window && !reduceMotion){
+      const revealObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
+      revealItems.forEach(function(item){ revealObserver.observe(item); });
+    } else {
+      revealItems.forEach(function(item){ item.classList.add("is-visible"); });
+    }
+
+    (function initSteam(){
+      const canvas = document.querySelector(".steam-canvas");
+      if(!canvas || reduceMotion) return;
+      const ctx = canvas.getContext("2d", { alpha: true });
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+      let frame = 0;
+
+      function resize(){
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = Math.max(1, canvas.clientWidth);
+        height = Math.max(1, canvas.clientHeight);
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function draw(time){
+        frame = window.requestAnimationFrame(draw);
+        ctx.clearRect(0, 0, width, height);
+        ctx.globalCompositeOperation = "lighter";
+        const t = time * 0.00022;
+        for(let i = 0; i < 18; i += 1){
+          const lane = i / 17;
+          const baseX = width * (0.04 + lane * 0.92);
+          const drift = Math.sin(t * 3.4 + i * 1.7) * 52 + Math.sin(t * 1.4 + i) * 28;
+          const startY = height * (0.72 + Math.sin(i * 2.1) * 0.08);
+          const endY = height * (0.18 + Math.cos(i) * 0.08);
+          const alpha = 0.035 + (Math.sin(t * 4 + i) + 1) * 0.018;
+          ctx.beginPath();
+          ctx.moveTo(baseX + drift, startY);
+          ctx.bezierCurveTo(
+            baseX - 80 + drift * 0.4,
+            height * 0.58,
+            baseX + 120 - drift * 0.25,
+            height * 0.38,
+            baseX + drift * 0.15,
+            endY
+          );
+          ctx.strokeStyle = "rgba(215, 196, 166, " + alpha.toFixed(3) + ")";
+          ctx.lineWidth = 1.2 + (i % 4) * 0.45;
+          ctx.stroke();
+        }
+        ctx.globalCompositeOperation = "source-over";
+      }
+
+      resize();
+      window.addEventListener("resize", resize, { passive: true });
+      frame = window.requestAnimationFrame(draw);
+      document.addEventListener("visibilitychange", function(){
+        if(document.hidden && frame) window.cancelAnimationFrame(frame);
+        if(!document.hidden) frame = window.requestAnimationFrame(draw);
+      });
+    })();
+
+    form.addEventListener("submit", function(event){
+      event.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get("name") || "").trim();
+      const date = String(data.get("date") || "").trim();
+      if(!name || !date){
+        status.textContent = text("requiredStatus");
+        return;
+      }
+      const message = [
+        text("waIntro"),
+        text("waName") + ": " + name,
+        text("waDate") + ": " + date,
+        text("waPeople") + ": " + data.get("people"),
+        text("waPackage") + ": " + data.get("package"),
+        text("waNote") + ": " + (String(data.get("note") || "").trim() || "-")
+      ].join("\n");
+      const url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(message);
+      status.textContent = text("readyStatus");
+      window.open(url, "_blank", "noopener");
+    });
+  </script>
+</body>
+</html>
