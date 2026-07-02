@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Ottoman Horse Ranch — Göreme'de At Sırtında Kapadokya</title>
+<meta name="description" data-i18n="meta_desc" content="Göreme'de Ottoman Horse Ranch ile Kapadokya vadilerinde at sırtında şafak ve gün batımı sürüşleri. Rezervasyon ve sorular için Instagram'dan yazın.">
+<style>
+  /* ============ TEMA TOKENLARI — Osmanlı esintisi: bordo mürekkep · eskitilmiş altın · kırık beyaz · haki ============ */
+  :root{
+    --bg:#1a1014;--bg2:#140b0f;--card:#241419;--card2:#2b1a20;
+    --tx:#f1e7d2;--tx2:#b8a68b;
+    --bordo:#93273a;--bordo-d:#5d1826;
+    --gold:#c9a24b;--gold-l:#e2c078;
+    --haki:#8a8560;
+    --line:rgba(201,162,75,.22);
+    --navbg:rgba(20,11,15,.86);
+    --scrim:rgba(18,8,11,.55);
+    --shadow:0 22px 60px rgba(0,0,0,.45);
+  }
+  html[data-theme="light"]{
+    --bg:#f4ecda;--bg2:#ebdfc4;--card:#faf4e6;--card2:#f1e7d0;
+    --tx:#2e161d;--tx2:#71604c;
+    --bordo:#6e1b2a;--bordo-d:#4c101d;
+    --gold:#8f6f24;--gold-l:#6e551a;
+    --haki:#6d6742;
+    --line:rgba(110,27,42,.22);
+    --navbg:rgba(248,241,226,.9);
+    --scrim:rgba(18,8,11,.55);
+    --shadow:0 22px 50px rgba(78,38,22,.18);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  body{font-family:'Candara','Optima','Gill Sans','Segoe UI',system-ui,sans-serif;color:var(--tx);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.68;overflow-x:hidden;transition:background .45s,color .45s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:'Bodoni MT','Didot','Playfair Display',Georgia,'Times New Roman',serif;font-weight:500;line-height:1.06;letter-spacing:.002em}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:600}
+  .eyebrow{font-family:'Candara','Optima',sans-serif;text-transform:uppercase;letter-spacing:.44em;font-size:.68rem;font-weight:600;color:var(--gold)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.16em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 30px}
+  img{max-width:100%}
+
+  /* ============ SIGNATURE 1 — İznik lale bordürü (bölüm geçişleri) ============ */
+  .bordur{height:16px;background-repeat:repeat-x;background-position:center;background-size:auto 14px;opacity:.55;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='14' viewBox='0 0 56 14'%3E%3Cg fill='none' stroke='%23c9a24b' stroke-width='1'%3E%3Cpath d='M28 12 C24 9 24 5 28 2 C32 5 32 9 28 12 Z'/%3E%3Cpath d='M28 12 C21 11 16 9 12 7 M28 12 C35 11 40 9 44 7'/%3E%3Ccircle cx='6' cy='7' r='1.4'/%3E%3Ccircle cx='50' cy='7' r='1.4'/%3E%3C/g%3E%3C/svg%3E")}
+  html[data-theme="light"] .bordur{opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='14' viewBox='0 0 56 14'%3E%3Cg fill='none' stroke='%236e1b2a' stroke-width='1'%3E%3Cpath d='M28 12 C24 9 24 5 28 2 C32 5 32 9 28 12 Z'/%3E%3Cpath d='M28 12 C21 11 16 9 12 7 M28 12 C35 11 40 9 44 7'/%3E%3Ccircle cx='6' cy='7' r='1.4'/%3E%3Ccircle cx='50' cy='7' r='1.4'/%3E%3C/g%3E%3C/svg%3E")}
+  .bordur-wrap{display:flex;align-items:center;gap:18px;padding:0 30px;max-width:1200px;margin:0 auto}
+  .bordur-wrap .bordur{flex:1}
+  .bordur-wrap .tugra-mini{flex:none;width:30px;height:30px;color:var(--gold);opacity:.8}
+
+  /* ============ SIGNATURE 2 — tuğra ruhlu at monogramı ============ */
+  .tugra{color:var(--gold)}
+  .hero-tugra{position:absolute;right:4vw;bottom:8vh;width:min(330px,32vw);height:auto;z-index:7;opacity:.16;pointer-events:none;
+    filter:drop-shadow(0 0 26px rgba(201,162,75,.25));animation:tugraIn 2.4s cubic-bezier(.2,.7,.2,1) both .6s}
+  @keyframes tugraIn{from{opacity:0;transform:translateY(26px)}to{opacity:.16;transform:none}}
+
+  /* ============ film grain + scroll progress (signature katmanı) ============ */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--bordo),var(--gold));box-shadow:0 0 12px rgba(201,162,75,.5)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+  /* ============ NAV — 21st.dev "centered logo / split navbar" portu: orta madalyon + kayan tezhip elması ============ */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;transition:background .5s,box-shadow .5s;gap:14px}
+  nav.scrolled{background:var(--navbg);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+  .nav-side{display:flex;gap:26px;align-items:center;flex:1}
+  .nav-side.right{justify-content:flex-end}
+  .nav-side a.nl{position:relative;font-family:'Candara','Optima',sans-serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#e8dcc2;transition:color .3s;padding:6px 0}
+  html[data-theme="light"] nav.scrolled .nav-side a.nl{color:var(--tx2)}
+  html[lang="zh-CN"] .nav-side a.nl,html[lang="ko"] .nav-side a.nl{text-transform:none;letter-spacing:.04em;font-size:.88rem}
+  .nav-side a.nl:hover{color:var(--gold-l)}
+  /* aktif bölüm: altında tezhip elması (scroll-spy) */
+  .nav-side a.nl::after{content:"";position:absolute;left:50%;bottom:-6px;width:7px;height:7px;transform:translateX(-50%) rotate(45deg) scale(0);
+    background:var(--gold);box-shadow:0 0 8px rgba(201,162,75,.8);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .nav-side a.nl.active{color:var(--gold-l)}
+  .nav-side a.nl.active::after{transform:translateX(-50%) rotate(45deg) scale(1)}
+  .medal{flex:none;display:flex;flex-direction:column;align-items:center;gap:5px}
+  .medal .ring{width:52px;height:52px;border-radius:50%;border:1px solid var(--gold);padding:3px;background:rgba(20,10,13,.35);transition:transform .4s}
+  .medal:hover .ring{transform:rotate(8deg)}
+  .medal .ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+  .medal .word{font-family:'Bodoni MT','Didot',Georgia,serif;font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:#e8dcc2;white-space:nowrap}
+  html[data-theme="light"] nav.scrolled .medal .word{color:var(--tx)}
+  .medal.noimg .ring{display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Bodoni MT',Georgia,serif;font-size:1.15rem}
+  .nav-tools{display:flex;align-items:center;gap:10px;flex:none}
+  .langs{display:flex;align-items:center;gap:1px;flex:none}
+  .langs button{background:none;border:none;color:#cbbc9e;font-family:'Candara','Optima',sans-serif;font-size:.74rem;cursor:pointer;padding:5px 6px;transition:.25s;border-radius:3px;letter-spacing:.03em}
+  html[data-theme="light"] nav.scrolled .langs button{color:var(--tx2)}
+  .langs button:hover{color:var(--gold-l)}
+  .langs button.active{color:var(--gold-l);font-weight:700}
+  /* açık temada scroll ÖNCESİ nav şeffaf, altında koyu hero foto var — aktif/hover renkleri açık altında sabitle (QC düzeltmesi 2026-07-02) */
+  html[data-theme="light"] nav:not(.scrolled) .langs button.active,
+  html[data-theme="light"] nav:not(.scrolled) .langs button:hover,
+  html[data-theme="light"] nav:not(.scrolled) .nav-side a.nl.active,
+  html[data-theme="light"] nav:not(.scrolled) .nav-side a.nl:hover{color:#e2c078}
+  html[data-theme="light"] nav:not(.scrolled) .nav-side a.nl.active::after{background:#e2c078}
+  .langs .sep{color:var(--line);font-size:.68rem}
+  .theme-btn{background:none;border:1px solid var(--line);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#e8dcc2;transition:.3s;flex:none}
+  html[data-theme="light"] nav.scrolled .theme-btn{color:var(--tx2)}
+  .theme-btn:hover{border-color:var(--gold);color:var(--gold-l)}
+  .theme-btn svg{width:16px;height:16px}
+  .theme-btn .ic-sun{display:none}
+  html[data-theme="light"] .theme-btn .ic-sun{display:block}
+  html[data-theme="light"] .theme-btn .ic-moon{display:none}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;color:#e8dcc2;flex:none;padding:4px}
+  html[data-theme="light"] nav.scrolled .menu-btn{color:var(--tx)}
+
+  /* mobil menü — tezhip çerçeveli perde */
+  .mobile-menu{position:fixed;inset:0;z-index:70;background:var(--bg2);display:none;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+  .mobile-menu::before{content:"";position:absolute;inset:14px;border:1px solid var(--line);pointer-events:none}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:'Bodoni MT','Didot',Georgia,serif;font-size:1.8rem;color:var(--tx)}
+  html[lang="zh-CN"] .mobile-menu a,html[lang="ko"] .mobile-menu a{font-family:inherit}
+  .mobile-menu .close{position:absolute;top:26px;right:30px;background:none;border:none;color:var(--tx);cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;justify-content:center}
+  .mobile-menu .m-langs button{background:none;border:1px solid var(--line);color:var(--tx2);padding:8px 13px;border-radius:3px;font-family:'Candara',sans-serif;font-size:.84rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:var(--gold-l);border-color:var(--gold)}
+  .mobile-menu .bordur{width:min(320px,70vw);margin-top:6px}
+
+  /* ============ HERO ============ */
+  .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center;isolation:isolate;background:#160c10}
+  .hero-fallback{position:absolute;inset:0;z-index:0;background:
+    radial-gradient(70% 60% at 72% 24%,rgba(201,162,75,.28),transparent 62%),
+    linear-gradient(178deg,#12080b 0%,#2a1016 38%,#5d1826 66%,#93273a 84%,#c9a24b 108%)}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center;opacity:0;transition:opacity .8s}
+  .hero-photo.has-img{opacity:1;animation:kenburns 36s ease-in-out infinite alternate;transform-origin:55% 42%}
+  @keyframes kenburns{from{transform:scale(1.03)}to{transform:scale(1.10)}}
+  #hero-gradient{position:absolute;inset:0;z-index:6;pointer-events:none;mix-blend-mode:overlay;opacity:.62;
+    --gradient-color-1:#3a1218; --gradient-color-2:#93273a; --gradient-color-3:#c9a24b; --gradient-color-4:#6d6742}
+  .no-webgl #hero-gradient{display:none}
+  .hero::after{content:"";position:absolute;inset:0;z-index:8;pointer-events:none;
+    background:radial-gradient(64% 60% at 26% 78%,rgba(16,7,10,.62),transparent 70%),linear-gradient(180deg,rgba(16,7,10,.44) 0%,transparent 42%,rgba(16,7,10,.6) 100%)}
+  .hero-inner{position:relative;z-index:10;width:100%;padding-bottom:9vh}
+  .hero .eyebrow{color:var(--gold-l);text-shadow:0 1px 14px rgba(0,0,0,.55)}
+  html[data-theme="light"] .hero .eyebrow{color:#e2c078}
+  .hero h1{color:#f6efdd;font-size:clamp(2.7rem,7.2vw,6rem);max-width:15ch;text-shadow:0 4px 46px rgba(0,0,0,.55)}
+  .hero h1 em{font-style:italic;color:#e2c078}
+  .hero .lede{font-size:clamp(1.02rem,1.55vw,1.28rem);color:rgba(244,236,221,.92);max-width:50ch;margin-top:24px;font-weight:300;text-shadow:0 2px 22px rgba(0,0,0,.6)}
+  .hero-cta{display:flex;gap:18px;margin-top:36px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:#f1e7d2;color:#2e161d;padding:16px 32px;border-radius:2px;font-family:'Candara','Optima',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.13em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.35s;border:1px solid transparent}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{text-transform:none;letter-spacing:.03em}
+  .btn-solid:hover{background:var(--gold-l);gap:15px}
+  .btn-solid svg{width:17px;height:17px}
+  .btn-line{color:#f1e7d2;font-family:'Candara','Optima',sans-serif;font-size:.85rem;letter-spacing:.13em;text-transform:uppercase;border-bottom:1px solid rgba(241,231,210,.5);padding-bottom:4px;transition:.4s}
+  .btn-line:hover{border-color:var(--gold-l);color:var(--gold-l)}
+  .dm-hint{margin-top:16px;font-size:.8rem;color:rgba(244,236,221,.72);letter-spacing:.05em;display:flex;align-items:center;gap:7px}
+  .dm-hint svg{width:13px;height:13px;color:var(--gold-l);flex:none}
+  .scrollhint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:10;font-family:'Candara',sans-serif;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,236,221,.6);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scrollhint .l{width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+  /* ≤600px: gün batımının en parlak bandı başlığın arkasına düşüyor — metin bölgesine lokal radyal scrim (tam-hero ::after içinde, kenar dikişi yok) + sert kontur gölgesi (QC düzeltmesi 2026-07-02) */
+  @media(max-width:600px){
+    .hero::after{background:
+      radial-gradient(150% 36% at 36% 36%,rgba(16,7,10,.66),rgba(16,7,10,.28) 58%,transparent 80%),
+      radial-gradient(64% 60% at 26% 78%,rgba(16,7,10,.62),transparent 70%),
+      linear-gradient(180deg,rgba(16,7,10,.44) 0%,transparent 42%,rgba(16,7,10,.6) 100%)}
+    .hero h1{text-shadow:0 2px 6px rgba(0,0,0,.8),0 0 2px rgba(0,0,0,.9),0 5px 30px rgba(0,0,0,.55)}
+    .hero h1 em{color:#efd28c}
+    .hero .lede{text-shadow:0 1px 4px rgba(0,0,0,.7),0 2px 18px rgba(0,0,0,.55)}
+  }
+
+  /* ============ STATS ============ */
+  .stats{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:44px 30px}
+  .stat{text-align:center}
+  .stat .n{font-family:'Bodoni MT','Didot',Georgia,serif;font-size:clamp(2rem,4.2vw,3.1rem);color:var(--gold);line-height:1}
+  html[data-theme="light"] .stat .n{color:var(--bordo)}
+  .stat .l{font-family:'Candara',sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tx2);margin-top:10px}
+  html[lang="zh-CN"] .stat .l,html[lang="ko"] .stat .l{text-transform:none;letter-spacing:.05em}
+  .stat+.stat{border-left:1px solid var(--line)}
+  @media(max-width:680px){.stats .wrap{grid-template-columns:1fr 1fr;gap:32px 20px}.stat:nth-child(3){border-left:none}}
+
+  section{padding:112px 0;position:relative}
+  .sec-head{max-width:680px;margin-bottom:60px}
+  .sec-head .eyebrow{display:block;margin-bottom:18px}
+  .sec-head h2{font-size:clamp(2.2rem,4.6vw,3.5rem);color:var(--tx)}
+  .sec-head p{margin-top:20px;color:var(--tx2);font-size:1.08rem;font-weight:300}
+
+  /* ============ STORY ============ */
+  .story{background:var(--bg)}
+  .story::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(38% 52% at 12% 18%,rgba(147,39,58,.14),transparent 60%),
+      radial-gradient(44% 50% at 88% 78%,rgba(201,162,75,.10),transparent 62%),
+      radial-gradient(34% 40% at 62% 42%,rgba(109,103,66,.10),transparent 60%);
+    background-size:180% 180%;animation:meshDrift 26s ease-in-out infinite alternate}
+  .story>.wrap{position:relative;z-index:1}
+  @keyframes meshDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+  .story-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:0;align-items:stretch}
+  .story-visual{position:relative;min-height:560px;overflow:hidden;background:linear-gradient(165deg,#2a1016,#5d1826 55%,#93273a);background-size:cover;background-position:center;border:1px solid var(--line);padding:0}
+  .story-visual::before{content:"";position:absolute;inset:12px;border:1px solid rgba(201,162,75,.4);z-index:2;pointer-events:none}
+  .story-visual::after{content:"";position:absolute;inset:16px;border:1px solid rgba(201,162,75,.18);z-index:2;pointer-events:none}
+  .story-visual .ph-label{position:absolute;left:26px;bottom:24px;font-family:'Candara',sans-serif;font-size:.72rem;letter-spacing:.1em;color:rgba(244,236,221,.85);z-index:3;display:flex;align-items:center;gap:7px;background:rgba(18,8,11,.5);padding:6px 11px;border-radius:2px;backdrop-filter:blur(4px)}
+  .story-visual .ph-label svg{width:14px;height:14px;opacity:.85}
+  .story-text{background:var(--card);padding:60px;display:flex;flex-direction:column;justify-content:center;margin-left:-44px;margin-top:44px;margin-bottom:44px;z-index:2;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .story-text .lead{font-family:'Bodoni MT','Didot',Georgia,serif;font-size:1.65rem;line-height:1.42;font-style:italic;color:var(--tx);margin-bottom:22px}
+  html[lang="zh-CN"] .story-text .lead,html[lang="ko"] .story-text .lead{font-style:normal;font-family:inherit}
+  .story-text p{color:var(--tx2);margin-bottom:16px;font-weight:300}
+  .story-text .sign{margin-top:16px;display:flex;align-items:center;gap:12px;color:var(--gold);font-family:'Bodoni MT',Georgia,serif;font-size:1.15rem;font-style:italic}
+  .story-text .sign svg{width:34px;height:34px;flex:none}
+  @media(max-width:880px){.story-grid{grid-template-columns:1fr}.story-text{margin:-40px 18px 0;padding:38px}.story-visual{min-height:380px}}
+
+  /* ============ RIDES ============ */
+  .rides{background:var(--bg2)}
+  .rides::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(40% 50% at 86% 14%,rgba(147,39,58,.12),transparent 60%),
+      radial-gradient(42% 48% at 10% 82%,rgba(201,162,75,.09),transparent 62%);
+    background-size:180% 180%;animation:meshDrift 30s ease-in-out infinite alternate}
+  .rides>.wrap{position:relative;z-index:1}
+  .ride{display:grid;grid-template-columns:0.95fr 1.05fr;gap:48px;align-items:center;padding:52px 0;border-top:1px solid var(--line)}
+  .ride:last-child{border-bottom:1px solid var(--line)}
+  .ride.flip .ride-visual{order:2}
+  .ride-visual{height:360px;position:relative;overflow:hidden;background-size:cover;background-position:center;border:1px solid var(--line)}
+  /* İznik köşe süsü — ince çift çizgili köşeler */
+  .ride-visual .corner{position:absolute;width:26px;height:26px;z-index:3;pointer-events:none;color:rgba(226,192,120,.85)}
+  .ride-visual .corner svg{width:100%;height:100%;display:block}
+  .corner.tl{top:9px;left:9px}.corner.tr{top:9px;right:9px;transform:rotate(90deg)}
+  .corner.br{bottom:9px;right:9px;transform:rotate(180deg)}.corner.bl{bottom:9px;left:9px;transform:rotate(270deg)}
+  .rv1{background-image:linear-gradient(160deg,#12080b,#5d1826 55%,#c9a24b)}
+  .rv2{background-image:linear-gradient(160deg,#2a1016,#93273a 55%,#e2c078)}
+  .rv3{background-image:linear-gradient(160deg,#1a1014,#6d6742 60%,#c9a24b)}
+  .ride-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(16,7,10,.38),transparent 45%)}
+  .ride-visual .time{position:absolute;top:18px;left:20px;font-family:'Candara',sans-serif;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,236,221,.95);z-index:2;background:rgba(16,7,10,.55);padding:6px 12px;border-radius:2px;backdrop-filter:blur(4px)}
+  html[lang="zh-CN"] .ride-visual .time,html[lang="ko"] .ride-visual .time{text-transform:none;letter-spacing:.05em}
+  .ride-body .tag{font-family:'Candara',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:8px}
+  .ride-body .tag::before{content:"";width:6px;height:6px;background:var(--bordo);transform:rotate(45deg);display:inline-block}
+  html[lang="zh-CN"] .ride-body .tag,html[lang="ko"] .ride-body .tag{text-transform:none;letter-spacing:.06em}
+  .ride-body h3{font-size:clamp(1.8rem,3.4vw,2.6rem);margin:12px 0 14px;color:var(--tx)}
+  .ride-body p{color:var(--tx2);font-weight:300;margin-bottom:24px;max-width:48ch}
+  .dmchip{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);padding:11px 18px;border-radius:2px;font-family:'Candara',sans-serif;font-size:.82rem;letter-spacing:.06em;color:var(--tx);transition:.35s}
+  .dmchip svg{width:16px;height:16px;color:var(--gold);flex:none}
+  .dmchip:hover{border-color:var(--gold);color:var(--gold-l);transform:translateY(-2px)}
+  @media(max-width:880px){.ride,.ride.flip{grid-template-columns:1fr;gap:24px}.ride.flip .ride-visual{order:0}.ride-visual{height:250px}}
+
+  /* ============ VALUES / ETHOS ============ */
+  .values{background:var(--bg)}
+  .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line)}
+  .vl{padding:38px 30px;border-right:1px solid var(--line);position:relative;background:var(--card);transition:background .4s}
+  .vl:last-child{border-right:none}
+  .vl:hover{background:var(--card2)}
+  .vl .ic{width:36px;height:36px;color:var(--gold);margin-bottom:18px}
+  .vl h3{font-size:1.22rem;margin-bottom:10px;color:var(--tx)}
+  .vl p{font-size:.92rem;color:var(--tx2);font-weight:300}
+  @media(max-width:880px){.values-grid{grid-template-columns:1fr 1fr}.vl{border-bottom:1px solid var(--line)}.vl:nth-child(2n){border-right:none}.vl:nth-child(3),.vl:nth-child(4){border-bottom:none}}
+  @media(max-width:480px){.values-grid{grid-template-columns:1fr}.vl{border-right:none}.vl:nth-child(3){border-bottom:1px solid var(--line)}}
+
+  /* ============ GALLERY ============ */
+  .gallery{background:var(--bg2)}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:14px}
+  .tile{position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px;background-size:cover;background-position:center;background-color:#2a161c;cursor:pointer;transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s;border:1px solid var(--line)}
+  .tile.wide{grid-column:span 2;aspect-ratio:2/1}
+  .tile.sq{aspect-ratio:4/3}
+  .tile:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .tile .ph-label{position:relative;z-index:3;font-family:'Candara',sans-serif;font-size:.76rem;letter-spacing:.05em;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.8);display:flex;align-items:center;gap:6px}
+  .tile .ph-label svg{width:14px;height:14px;opacity:.9}
+  .tile::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(16,7,10,.62),rgba(16,7,10,0) 50%);transition:.4s}
+  .tile::after{content:"\2922";position:absolute;top:12px;right:15px;z-index:3;color:#fff;font-size:1.05rem;opacity:0;transform:scale(.75);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .tile:hover::before{background:linear-gradient(to top,rgba(16,7,10,.7),rgba(16,7,10,.15))}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  @media(max-width:820px){.tiles{grid-template-columns:1fr 1fr}.tile.wide{grid-column:span 2}}
+  @media(max-width:460px){.tiles{grid-template-columns:1fr}.tile.wide{grid-column:span 1;aspect-ratio:16/10}}
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(14,6,9,.95);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:86vh;box-shadow:0 24px 90px rgba(0,0,0,.7);border:1px solid var(--line)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f1e7d2;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s;z-index:2}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#f1e7d2;font-family:'Candara',sans-serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+  html[lang="zh-CN"] .lb-cap,html[lang="ko"] .lb-cap{text-transform:none;letter-spacing:.04em}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(30,14,19,.6);border:1px solid var(--line);color:#f1e7d2;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .lb-nav:hover{background:var(--bordo);border-color:var(--bordo)}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:1.2rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ============ BOOK (Instagram DM akışı) ============ */
+  .book{background:linear-gradient(180deg,var(--bg),var(--bg2));position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,75,.16),transparent 66%)}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.4rem,4.6vw,3.7rem);color:var(--tx)}
+  .book h2 em{font-style:italic;color:var(--gold)}
+  .book .lede{color:var(--tx2);margin-top:20px;font-size:1.06rem;font-weight:300}
+  .ig-line{display:inline-flex;align-items:center;gap:11px;margin-top:26px;color:var(--tx);font-family:'Candara',sans-serif;font-size:.98rem;border:1px solid var(--line);padding:13px 20px;border-radius:2px;transition:.35s}
+  .ig-line:hover{border-color:var(--gold);color:var(--gold-l);transform:translateY(-2px)}
+  .ig-line svg{width:21px;height:21px;color:var(--gold);flex:none}
+  .form{background:var(--card);border:1px solid var(--line);padding:36px;box-shadow:var(--shadow);position:relative}
+  .form::before{content:"";position:absolute;inset:9px;border:1px solid rgba(201,162,75,.25);pointer-events:none}
+  .form>*{position:relative}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-family:'Candara',sans-serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{text-transform:none;letter-spacing:.04em}
+  .field input,.field select,.field textarea{width:100%;padding:13px 15px;border-radius:2px;border:1px solid var(--line);background:var(--bg);color:var(--tx);font-family:inherit;font-size:.95rem}
+  .field textarea{resize:vertical;min-height:64px}
+  .field input::placeholder,.field textarea::placeholder{color:var(--tx2);opacity:.7}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .submit{width:100%;background:var(--bordo);color:#f6efdd;border:none;padding:16px;border-radius:2px;font-family:'Candara',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.35s;margin-top:6px;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{text-transform:none;letter-spacing:.03em}
+  .submit:hover{background:var(--bordo-d)}
+  .submit svg{width:17px;height:17px}
+  /* DM sonuç paneli */
+  .dm-panel{display:none;margin-top:18px;border:1px solid var(--gold);background:var(--bg);padding:20px}
+  .dm-panel.show{display:block}
+  .dm-panel h4{font-family:'Candara',sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  html[lang="zh-CN"] .dm-panel h4,html[lang="ko"] .dm-panel h4{text-transform:none;letter-spacing:.05em}
+  .dm-status{font-size:.85rem;color:var(--tx);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .dm-status.ok{color:#8fbf7a}
+  html[data-theme="light"] .dm-status.ok{color:#3e7a2c}
+  .dm-msg{width:100%;background:var(--card2);border:1px dashed var(--line);color:var(--tx);font-family:inherit;font-size:.88rem;padding:12px;min-height:120px;user-select:all;-webkit-user-select:all}
+  .dm-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .dm-actions .a{flex:1;min-width:150px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:2px;font-family:'Candara',sans-serif;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.3s;border:1px solid var(--line);background:none;color:var(--tx)}
+  html[lang="zh-CN"] .dm-actions .a,html[lang="ko"] .dm-actions .a{text-transform:none;letter-spacing:.03em}
+  .dm-actions .a:hover{border-color:var(--gold);color:var(--gold-l)}
+  .dm-actions .a.primary{background:var(--bordo);border-color:var(--bordo);color:#f6efdd}
+  .dm-actions .a.primary:hover{background:var(--bordo-d);color:#f6efdd}
+  .dm-actions .a svg{width:15px;height:15px}
+  .dm-note{margin-top:10px;font-size:.78rem;color:var(--tx2)}
+  @media(max-width:880px){.book-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--bg2);color:var(--tx2);padding:64px 0 30px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:44px}
+  .foot-brand{display:flex;align-items:center;gap:13px;margin-bottom:18px}
+  .foot-brand img{width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);padding:2px;object-fit:cover}
+  .foot-brand .fb-name{font-family:'Bodoni MT','Didot',Georgia,serif;font-size:1.35rem;color:var(--tx);line-height:1.15}
+  .foot-brand .fb-sub{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+  footer h4{font-family:'Candara',sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{text-transform:none;letter-spacing:.05em}
+  footer ul{list-style:none}
+  footer li{margin-bottom:11px;font-size:.94rem;font-weight:300;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:var(--gold-l)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:'Candara',sans-serif;font-size:.78rem}
+  .demo-badge{background:var(--bordo);color:#f6efdd;padding:5px 13px;border-radius:2px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+
+  .reveal{opacity:0;transform:translateY(34px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:1020px){.nav-side{gap:16px}.nav-side a.nl{font-size:.72rem}}
+  @media(max-width:860px){
+    .nav-side{display:none}.langs{display:none}.menu-btn{display:block}
+    nav{justify-content:space-between}
+    .medal{flex-direction:row;gap:10px}
+    .medal .ring{width:40px;height:40px}
+    .medal .word{font-size:.56rem;letter-spacing:.22em}
+    section{padding:78px 0}
+    .story-text,.form{padding:32px}
+    .foot-grid{grid-template-columns:1fr;gap:32px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s!important}
+    .reveal{opacity:1;transform:none}
+    .hero-photo.has-img{animation:none!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- Signature katmanı: film grain + scroll ilerleme -->
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- Tuğra ruhlu at monogramı — SVG tanımı (signature element) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="tugraAt" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <!-- beyze: sola salınan çift kavis -->
+      <path d="M52 74 C18 78 8 58 20 46 C30 36 46 40 50 50"/>
+      <path d="M50 68 C28 70 20 58 28 50"/>
+      <!-- tuğ: üç dikey flama -->
+      <path d="M58 44 C57 30 59 18 63 10"/>
+      <path d="M70 44 C69 28 71 16 75 8"/>
+      <path d="M82 46 C81 32 83 22 87 14"/>
+      <!-- at başı ve yele: sağa bakan zarif profil -->
+      <path d="M50 50 C54 46 58 44 64 44 C74 44 82 48 88 56 C94 64 98 74 108 78 C104 82 98 82 92 80 C90 86 84 90 76 90 C62 90 52 82 50 70 Z"/>
+      <path d="M64 44 C62 38 64 32 68 28 C69 34 72 38 76 40"/>
+      <circle cx="84" cy="58" r="1.6" fill="currentColor"/>
+    </g>
+  </defs>
+</svg>
+
+<nav id="nav" aria-label="Ana menü">
+  <div class="nav-side left">
+    <a class="nl" href="#hikaye" data-i18n="nav_story">Hikâye</a>
+    <a class="nl" href="#suruslar" data-i18n="nav_rides">Sürüşler</a>
+    <a class="nl" href="#degerler" data-i18n="nav_values">İlkeler</a>
+  </div>
+  <a class="medal" href="#top" aria-label="Ottoman Horse Ranch — başa dön">
+    <span class="ring"><img src="assets/images/logo.png" alt="Ottoman Horse Ranch logosu" onerror="this.parentElement.parentElement.classList.add('noimg');this.remove();this.dataset.x=1"></span>
+    <span class="word">Ottoman Horse Ranch</span>
+  </a>
+  <div class="nav-side right">
+    <a class="nl" href="#galeri" data-i18n="nav_gallery">Galeri</a>
+    <a class="nl" href="#iletisim" data-i18n="nav_book">Rezervasyon</a>
+    <div class="nav-tools">
+      <div class="langs" role="group" aria-label="Dil / Language">
+        <button data-lang="tr" class="active">TR</button><span class="sep">·</span>
+        <button data-lang="en">EN</button><span class="sep">·</span>
+        <button data-lang="es">ES</button><span class="sep">·</span>
+        <button data-lang="zh-CN">中文</button><span class="sep">·</span>
+        <button data-lang="ko">한국어</button>
+      </div>
+      <button class="theme-btn" id="themeBtn" aria-label="Tema değiştir / Toggle theme">
+        <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"/></svg>
+      </button>
+    </div>
+  </div>
+  <button class="menu-btn" aria-label="Menü" id="menuBtn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <svg class="tugra" width="52" height="52" viewBox="0 0 120 120" aria-hidden="true"><use href="#tugraAt"/></svg>
+  <a href="#hikaye" data-i18n="nav_story">Hikâye</a>
+  <a href="#suruslar" data-i18n="nav_rides">Sürüşler</a>
+  <a href="#degerler" data-i18n="nav_values">İlkeler</a>
+  <a href="#galeri" data-i18n="nav_gallery">Galeri</a>
+  <a href="#iletisim" data-i18n="nav_book">Rezervasyon</a>
+  <div class="bordur" aria-hidden="true"></div>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+    <button id="mThemeBtn" aria-label="Tema / Theme">◐</button>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="hero-fallback" aria-hidden="true"></div>
+  <div class="hero-photo" id="heroPhoto" role="img" aria-label="Kapadokya vadilerinde gün batımında at sırtında sürüş — Ottoman Horse Ranch"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <svg class="tugra hero-tugra" viewBox="0 0 120 120" aria-hidden="true"><use href="#tugraAt"/></svg>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Göreme · Kapadokya</span>
+      <h1 style="margin-top:22px" data-i18n="hero_title" data-i18n-html="1">Bu vadilerin dili,<br><em>nal sesidir.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Peri bacalarının arasında, atın adımına ayarlanmış bir tempo. Ne motor gürültüsü ne program telaşı — Göreme'nin tozlu patikalarında sakin, sahici bir yolculuk.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="https://www.instagram.com/cappadociaottomanranch/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="hero_cta1">Instagram'dan yazın</span>
+        </a>
+        <a class="btn-line" href="#suruslar" data-i18n="hero_cta2">Sürüşleri gör</a>
+      </div>
+      <p class="dm-hint"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg><span data-i18n="hero_dm_hint">@cappadociaottomanranch · rezervasyon ve sorular DM'den</span></p>
+    </div>
+  </div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Vadiye in</span><span class="l"></span></div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n">4.5★</div><div class="l" data-i18n="stat_rating">Google puanı</div></div>
+    <div class="stat"><div class="n" data-count="48">0</div><div class="l" data-i18n="stat_reviews">Google yorumu</div></div>
+    <div class="stat"><div class="n" data-count="938">0</div><div class="l" data-i18n="stat_posts">Instagram gönderisi</div></div>
+    <div class="stat"><div class="n" data-count="3096">0</div><div class="l" data-i18n="stat_followers">Instagram takipçisi</div></div>
+  </div>
+</div>
+
+<section class="story" id="hikaye">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="story_eyebrow">Hikâye</span>
+      <h2 data-i18n="story_h">Bu toprağın eski adı: Güzel Atlar Diyarı.</h2>
+      <p data-i18n="story_sub">Kapadokya'ya kadim çağlarda böyle denmiş. Göreme'deki çiftliğimizde o ad, her sabah yeniden eyerleniyor.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-visual reveal" id="storyImg">
+        <span class="ph-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="ph_story">Atlarımız · altın saat</span></span>
+      </div>
+      <div class="story-text reveal">
+        <p class="lead" data-i18n="story_lead">Atı yalnızca binilecek bir şey gibi görmüyoruz; yolculuğun kendisi o.</p>
+        <p data-i18n="story_p1">Ottoman Horse Ranch, Göreme'nin hemen dışında, vadilere açılan patikaların başında duruyor. Günün her saati başka bir ışık; her sürüşte başka bir gökyüzü.</p>
+        <p data-i18n="story_p2">Ne yaptığımızı görmek için uzağa gitmenize gerek yok: Instagram'da 938 kare — atlarımız, misafirlerimiz, gün batımları. Aklınıza takılan ne olursa DM'den sorun.</p>
+        <p class="sign"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#tugraAt"/></svg><span data-i18n="story_sign">Ottoman Horse Ranch</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bordur-wrap" aria-hidden="true"><div class="bordur"></div><svg class="tugra-mini" viewBox="0 0 120 120"><use href="#tugraAt"/></svg><div class="bordur"></div></div>
+
+<section class="rides" id="suruslar">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="rides_eyebrow">Sürüşler</span>
+      <h2 data-i18n="rides_h">Gün, eyerden üç kez güzel görünür.</h2>
+      <p data-i18n="rides_sub">Şafakta, altın saatte ve vadilerin derinliğinde. Tarih, müsaitlik ve güncel fiyat için Instagram DM yeterli.</p>
+    </div>
+    <div class="ride reveal">
+      <div class="ride-visual rv1" data-img="ride-1.jpg">
+        <span class="corner tl" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="corner tr" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="corner br" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="corner bl" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="time" data-i18n="ride1_time">şafak</span>
+      </div>
+      <div class="ride-body">
+        <span class="tag" data-i18n="ride1_tag">Gün doğarken</span>
+        <h3 data-i18n="ride1_h">Şafak Sürüşü</h3>
+        <p data-i18n="ride1_p">Gün ilk ışığını peri bacalarına düşürürken siz eyerdesiniz. Vadi henüz sessiz; şanslı sabahlarda balonlar ufuktan yükselir.</p>
+        <a class="dmchip" href="https://www.instagram.com/cappadociaottomanranch/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="dm_chip">Fiyat &amp; müsaitlik — DM'den sorun</span>
+        </a>
+      </div>
+    </div>
+    <div class="ride flip reveal">
+      <div class="ride-visual rv2" data-img="ride-2.jpg">
+        <span class="corner tl" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="corner tr" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="corner br" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="corner bl" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="time" data-i18n="ride2_time">altın saat</span>
+      </div>
+      <div class="ride-body">
+        <span class="tag" data-i18n="ride2_tag">Gün batarken</span>
+        <h3 data-i18n="ride2_h">Gün Batımı Sürüşü</h3>
+        <p data-i18n="ride2_p">Kayalar akşam güneşiyle bakıra döner, gölgeler uzar, tempo kendiliğinden yavaşlar. Günün fotoğrafı en çok bu saatte çekilir.</p>
+        <a class="dmchip" href="https://www.instagram.com/cappadociaottomanranch/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="dm_chip">Fiyat &amp; müsaitlik — DM'den sorun</span>
+        </a>
+      </div>
+    </div>
+    <div class="ride reveal">
+      <div class="ride-visual rv3" data-img="ride-3.jpg">
+        <span class="corner tl" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="corner tr" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="corner br" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="corner bl" aria-hidden="true"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 25V8C1 4 4 1 8 1h17"/><path d="M5 25V10c0-3 2-5 5-5h15"/></svg></span>
+        <span class="time" data-i18n="ride3_time">uzun rota</span>
+      </div>
+      <div class="ride-body">
+        <span class="tag" data-i18n="ride3_tag">Acele etmeyenlere</span>
+        <h3 data-i18n="ride3_h">Vadi Yolculuğu</h3>
+        <p data-i18n="ride3_p">Daha uzun bir rota, daha derin bir sessizlik. Patikalar vadiden vadiye kıvrılırken zaman, atın adımına uyar.</p>
+        <a class="dmchip" href="https://www.instagram.com/cappadociaottomanranch/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="dm_chip">Fiyat &amp; müsaitlik — DM'den sorun</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bordur-wrap" aria-hidden="true"><div class="bordur"></div><svg class="tugra-mini" viewBox="0 0 120 120"><use href="#tugraAt"/></svg><div class="bordur"></div></div>
+
+<section class="values" id="degerler">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="values_eyebrow">İlkeler</span>
+      <h2 data-i18n="values_h">Dört ilke, tek ölçü: atın iyiliği.</h2>
+    </div>
+    <div class="values-grid reveal">
+      <div class="vl">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><path d="M9.5 11.5l1.8 1.8 3.5-3.6"/></svg>
+        <h3 data-i18n="v1_h">Önce atlar</h3>
+        <p data-i18n="v1_p">Bakımlı, sakin ve dinlenmiş atlarla sürersiniz — pazarlığı olmayan ilk kuralımız.</p>
+      </div>
+      <div class="vl">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12h3l2-7 4 14 3-10 2 3h4"/></svg>
+        <h3 data-i18n="v2_h">Sakin tempo</h3>
+        <p data-i18n="v2_p">Sürüşler atın doğal yürüyüşünde ilerler; ilk kez binenler için de rahat bir ritim.</p>
+      </div>
+      <div class="vl">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <h3 data-i18n="v3_h">Vadilerin kapısında</h3>
+        <p data-i18n="v3_p">Çiftlik Göreme'nin hemen dışında; patikalar doğrudan vadilere açılır.</p>
+      </div>
+      <div class="vl">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.3 9 9 0 0 1-3.9-.9L3 20l1.2-5.2a8 8 0 0 1-1-3.9A8.4 8.4 0 0 1 11.7 2.6a8.5 8.5 0 0 1 9.3 8.9z"/></svg>
+        <h3 data-i18n="v4_h">DM her zaman açık</h3>
+        <p data-i18n="v4_p">Soru, tarih, müsaitlik — hepsi Instagram DM'den: @cappadociaottomanranch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galeri">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="gallery_eyebrow">Galeri</span>
+      <h2 data-i18n="gallery_h">Vadilerden kareler.</h2>
+      <p data-i18n="gallery_sub">Bir kısmı konsept görseldir; site yayına girerken işletmenin kendi kareleriyle değişir.</p>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile wide" data-img="gallery-1.jpg"><span class="ph-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="ph_g1">Vadide sürüş</span></span></div>
+      <div class="tile sq" data-img="gallery-2.jpg"><span class="ph-label"><span data-i18n="ph_g2">Atlarımız</span></span></div>
+      <div class="tile sq" data-img="gallery-3.jpg"><span class="ph-label"><span data-i18n="ph_g3">Peri bacaları</span></span></div>
+      <div class="tile sq" data-img="gallery-4.jpg"><span class="ph-label"><span data-i18n="ph_g4">Altın saat</span></span></div>
+      <div class="tile sq" data-img="gallery-5.jpg"><span class="ph-label"><span data-i18n="ph_g5">Patikada</span></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="book" id="iletisim">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="book_eyebrow">Rezervasyon</span>
+        <h2 style="margin-top:18px" data-i18n="book_h" data-i18n-html="1">Yerinizi <em>DM'le</em> ayırtın.</h2>
+        <p class="lede" data-i18n="book_lede">Formu doldurun: mesajınız hazırlanır, panoya kopyalanır ve Instagram profilimiz açılır. Tek yapmanız gereken "Mesaj" düğmesine dokunup yapıştırmak.</p>
+        <a class="ig-line" href="https://www.instagram.com/cappadociaottomanranch/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>
+          @cappadociaottomanranch
+        </a>
+        <p class="dm-note" data-i18n="ig_note">Rezervasyon ve sorular Instagram DM üzerinden alınır.</p>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-date" data-i18n="label_date">Tarih</label><input type="date" id="f-date"></div>
+          <div class="field"><label for="f-count" data-i18n="label_people">Kişi</label>
+            <select id="f-count">
+              <option data-i18n="opt_1p">1 kişi</option><option data-i18n="opt_2p">2 kişi</option><option data-i18n="opt_3p">3 kişi</option><option data-i18n="opt_4p">4+ kişi</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-ride" data-i18n="label_ride">Sürüş</label>
+          <select id="f-ride">
+            <option data-i18n="opt_ride1">Şafak Sürüşü</option>
+            <option data-i18n="opt_ride2">Gün Batımı Sürüşü</option>
+            <option data-i18n="opt_ride3">Vadi Yolculuğu</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-note" data-i18n="label_note">Notunuz (isteğe bağlı)</label>
+          <textarea id="f-note" data-i18n-ph="ph_note" placeholder="İlk kez mi bineceksiniz? Özel bir isteğiniz var mı?"></textarea>
+        </div>
+        <button class="submit" type="button" onclick="prepareDM()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="btn_submit">DM mesajını hazırla</span>
+        </button>
+        <div class="dm-panel" id="dmPanel" aria-live="polite">
+          <h4 data-i18n="dm_title">Mesajınız hazır</h4>
+          <div class="dm-status" id="dmStatus"></div>
+          <textarea class="dm-msg" id="dmMsg" readonly aria-label="Hazırlanan DM mesajı"></textarea>
+          <div class="dm-actions">
+            <button class="a" type="button" onclick="copyDM()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+              <span data-i18n="dm_copy">Tekrar kopyala</span>
+            </button>
+            <a class="a primary" href="https://www.instagram.com/cappadociaottomanranch/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>
+              <span data-i18n="dm_open">Instagram'ı aç</span>
+            </a>
+          </div>
+          <p class="dm-note" data-i18n="dm_hint">Profil açılınca "Mesaj" düğmesine dokunun ve kopyalanan metni yapıştırın.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="assets/images/logo.png" alt="Ottoman Horse Ranch logosu" onerror="this.style.display='none'">
+          <div>
+            <div class="fb-name">Ottoman Horse Ranch</div>
+            <div class="fb-sub">Göreme · Cappadocia</div>
+          </div>
+        </div>
+        <p style="max-width:330px;font-weight:300" data-i18n="foot_about">Göreme'de, peri bacalarının arasında at sırtında sürüşler. Bordo akşamlar, altın sabahlar.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#hikaye" data-i18n="nav_story">Hikâye</a></li>
+          <li><a href="#suruslar" data-i18n="nav_rides">Sürüşler</a></li>
+          <li><a href="#galeri" data-i18n="nav_gallery">Galeri</a></li>
+          <li><a href="#iletisim" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Göreme, Nevşehir</li>
+          <li><a href="https://www.instagram.com/cappadociaottomanranch/" target="_blank" rel="noopener">Instagram · @cappadociaottomanranch</a></li>
+          <li data-i18n="foot_dm">Rezervasyon: Instagram DM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Ottoman Horse Ranch — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+// lerp 0.085, wheelMultiplier 0.9 — input/select/button'da devre dışı, reduced-motion'a saygılı
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 70;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
+<script>
+// ==================== i18n SÖZLÜĞÜ — Ottoman Horse Ranch (5 dil) ====================
+const I18N = {
+  tr:{
+    meta_title:"Ottoman Horse Ranch — Göreme'de At Sırtında Kapadokya",
+    meta_desc:"Göreme'de Ottoman Horse Ranch ile Kapadokya vadilerinde at sırtında şafak ve gün batımı sürüşleri. Rezervasyon ve sorular için Instagram'dan yazın.",
+    nav_story:"Hikâye",nav_rides:"Sürüşler",nav_values:"İlkeler",nav_gallery:"Galeri",nav_book:"Rezervasyon",
+    hero_eyebrow:"Göreme · Kapadokya",
+    hero_title:'Bu vadilerin dili,<br><em>nal sesidir.</em>',
+    hero_lede:"Peri bacalarının arasında, atın adımına ayarlanmış bir tempo. Ne motor gürültüsü ne program telaşı — Göreme'nin tozlu patikalarında sakin, sahici bir yolculuk.",
+    hero_cta1:"Instagram'dan yazın",hero_cta2:"Sürüşleri gör",
+    hero_dm_hint:"@cappadociaottomanranch · rezervasyon ve sorular DM'den",
+    scroll_hint:"Vadiye in",
+    stat_rating:"Google puanı",stat_reviews:"Google yorumu",stat_posts:"Instagram gönderisi",stat_followers:"Instagram takipçisi",
+    story_eyebrow:"Hikâye",story_h:"Bu toprağın eski adı: Güzel Atlar Diyarı.",
+    story_sub:"Kapadokya'ya kadim çağlarda böyle denmiş. Göreme'deki çiftliğimizde o ad, her sabah yeniden eyerleniyor.",
+    story_lead:"Atı yalnızca binilecek bir şey gibi görmüyoruz; yolculuğun kendisi o.",
+    story_p1:"Ottoman Horse Ranch, Göreme'nin hemen dışında, vadilere açılan patikaların başında duruyor. Günün her saati başka bir ışık; her sürüşte başka bir gökyüzü.",
+    story_p2:"Ne yaptığımızı görmek için uzağa gitmenize gerek yok: Instagram'da 938 kare — atlarımız, misafirlerimiz, gün batımları. Aklınıza takılan ne olursa DM'den sorun.",
+    story_sign:"Ottoman Horse Ranch",ph_story:"Atlarımız · altın saat",
+    rides_eyebrow:"Sürüşler",rides_h:"Gün, eyerden üç kez güzel görünür.",
+    rides_sub:"Şafakta, altın saatte ve vadilerin derinliğinde. Tarih, müsaitlik ve güncel fiyat için Instagram DM yeterli.",
+    ride1_time:"şafak",ride1_tag:"Gün doğarken",ride1_h:"Şafak Sürüşü",
+    ride1_p:"Gün ilk ışığını peri bacalarına düşürürken siz eyerdesiniz. Vadi henüz sessiz; şanslı sabahlarda balonlar ufuktan yükselir.",
+    ride2_time:"altın saat",ride2_tag:"Gün batarken",ride2_h:"Gün Batımı Sürüşü",
+    ride2_p:"Kayalar akşam güneşiyle bakıra döner, gölgeler uzar, tempo kendiliğinden yavaşlar. Günün fotoğrafı en çok bu saatte çekilir.",
+    ride3_time:"uzun rota",ride3_tag:"Acele etmeyenlere",ride3_h:"Vadi Yolculuğu",
+    ride3_p:"Daha uzun bir rota, daha derin bir sessizlik. Patikalar vadiden vadiye kıvrılırken zaman, atın adımına uyar.",
+    dm_chip:"Fiyat & müsaitlik — DM'den sorun",
+    values_eyebrow:"İlkeler",values_h:"Dört ilke, tek ölçü: atın iyiliği.",
+    v1_h:"Önce atlar",v1_p:"Bakımlı, sakin ve dinlenmiş atlarla sürersiniz — pazarlığı olmayan ilk kuralımız.",
+    v2_h:"Sakin tempo",v2_p:"Sürüşler atın doğal yürüyüşünde ilerler; ilk kez binenler için de rahat bir ritim.",
+    v3_h:"Vadilerin kapısında",v3_p:"Çiftlik Göreme'nin hemen dışında; patikalar doğrudan vadilere açılır.",
+    v4_h:"DM her zaman açık",v4_p:"Soru, tarih, müsaitlik — hepsi Instagram DM'den: @cappadociaottomanranch.",
+    gallery_eyebrow:"Galeri",gallery_h:"Vadilerden kareler.",
+    gallery_sub:"Bir kısmı konsept görseldir; site yayına girerken işletmenin kendi kareleriyle değişir.",
+    ph_g1:"Vadide sürüş",ph_g2:"Atlarımız",ph_g3:"Peri bacaları",ph_g4:"Altın saat",ph_g5:"Patikada",
+    book_eyebrow:"Rezervasyon",book_h:'Yerinizi <em>DM\'le</em> ayırtın.',
+    book_lede:'Formu doldurun: mesajınız hazırlanır, panoya kopyalanır ve Instagram profilimiz açılır. Tek yapmanız gereken "Mesaj" düğmesine dokunup yapıştırmak.',
+    ig_note:"Rezervasyon ve sorular Instagram DM üzerinden alınır.",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_date:"Tarih",label_people:"Kişi",
+    opt_1p:"1 kişi",opt_2p:"2 kişi",opt_3p:"3 kişi",opt_4p:"4+ kişi",
+    label_ride:"Sürüş",opt_ride1:"Şafak Sürüşü",opt_ride2:"Gün Batımı Sürüşü",opt_ride3:"Vadi Yolculuğu",
+    label_note:"Notunuz (isteğe bağlı)",ph_note:"İlk kez mi bineceksiniz? Özel bir isteğiniz var mı?",
+    btn_submit:"DM mesajını hazırla",
+    dm_title:"Mesajınız hazır",dm_copy:"Tekrar kopyala",dm_open:"Instagram'ı aç",
+    dm_copied:"Mesaj panoya kopyalandı ✓",
+    dm_fail:"Otomatik kopyalanamadı — aşağıdaki metne dokunup kopyalayın.",
+    dm_hint:'Profil açılınca "Mesaj" düğmesine dokunun ve kopyalanan metni yapıştırın.',
+    alert_fill:"Lütfen adınızı ve tarihi girin.",
+    msg_hello:"Merhaba Ottoman Horse Ranch!",msg_name:"Ad",msg_date:"Tarih",msg_people:"Kişi",msg_ride:"Sürüş",msg_note:"Not",
+    msg_tail:"Müsaitlik ve fiyat bilgisi alabilir miyim?",
+    foot_about:"Göreme'de, peri bacalarının arasında at sırtında sürüşler. Bordo akşamlar, altın sabahlar.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Göreme, Nevşehir",foot_dm:"Rezervasyon: Instagram DM",
+    foot_rights:"© 2026 Ottoman Horse Ranch — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım"
+  },
+  en:{
+    meta_title:"Ottoman Horse Ranch — Cappadocia on Horseback, Göreme",
+    meta_desc:"Sunrise and sunset horseback rides through Cappadocia's valleys with Ottoman Horse Ranch in Göreme. Message us on Instagram for bookings and questions.",
+    nav_story:"Story",nav_rides:"Rides",nav_values:"Our way",nav_gallery:"Gallery",nav_book:"Book",
+    hero_eyebrow:"Göreme · Cappadocia",
+    hero_title:'These valleys speak<br><em>in hoofbeats.</em>',
+    hero_lede:"A pace set by the horse's stride, among the fairy chimneys. No engine noise, no rushed itinerary — a calm, genuine journey along Göreme's dusty trails.",
+    hero_cta1:"Message us on Instagram",hero_cta2:"See the rides",
+    hero_dm_hint:"@cappadociaottomanranch · bookings and questions via DM",
+    scroll_hint:"Into the valley",
+    stat_rating:"Google rating",stat_reviews:"Google reviews",stat_posts:"Instagram posts",stat_followers:"Instagram followers",
+    story_eyebrow:"Story",story_h:"This land's old name: Land of Beautiful Horses.",
+    story_sub:"That is what Cappadocia was called in ancient times. At our ranch in Göreme, the name gets saddled up again every morning.",
+    story_lead:"We don't see the horse as something you merely ride; it is the journey itself.",
+    story_p1:"Ottoman Horse Ranch sits just outside Göreme, where the trails open into the valleys. Every hour of the day brings different light; every ride, a different sky.",
+    story_p2:"You don't have to go far to see what we do: 938 frames on Instagram — our horses, our guests, our sunsets. Whatever you're wondering, just ask in a DM.",
+    story_sign:"Ottoman Horse Ranch",ph_story:"Our horses · golden hour",
+    rides_eyebrow:"Rides",rides_h:"From the saddle, the day is beautiful three times.",
+    rides_sub:"At dawn, at golden hour, and deep in the valleys. For dates, availability and current prices, an Instagram DM is all it takes.",
+    ride1_time:"dawn",ride1_tag:"As day breaks",ride1_h:"Sunrise Ride",
+    ride1_p:"You're in the saddle as the first light touches the fairy chimneys. The valley is still quiet; on lucky mornings, balloons rise on the horizon.",
+    ride2_time:"golden hour",ride2_tag:"As the sun sets",ride2_h:"Sunset Ride",
+    ride2_p:"The rocks turn copper in the evening sun, shadows stretch, and the pace slows on its own. This is the hour the day's best photo gets taken.",
+    ride3_time:"long route",ride3_tag:"For the unhurried",ride3_h:"Valley Journey",
+    ride3_p:"A longer route, a deeper quiet. As the trails wind from valley to valley, time falls in step with the horse.",
+    dm_chip:"Price & availability — ask via DM",
+    values_eyebrow:"Our way",values_h:"Four principles, one measure: the horse's wellbeing.",
+    v1_h:"Horses first",v1_p:"You ride well-cared-for, calm, rested horses — our first, non-negotiable rule.",
+    v2_h:"Unhurried pace",v2_p:"Rides move at the horse's natural walk; a comfortable rhythm even for first-timers.",
+    v3_h:"At the valleys' gate",v3_p:"The ranch sits just outside Göreme; the trails open straight into the valleys.",
+    v4_h:"DMs always open",v4_p:"Questions, dates, availability — all via Instagram DM: @cappadociaottomanranch.",
+    gallery_eyebrow:"Gallery",gallery_h:"Frames from the valleys.",
+    gallery_sub:"Some images are concept visuals; they'll be replaced with the ranch's own photos when the site goes live.",
+    ph_g1:"Riding the valley",ph_g2:"Our horses",ph_g3:"Fairy chimneys",ph_g4:"Golden hour",ph_g5:"On the trail",
+    book_eyebrow:"Booking",book_h:'Reserve your ride <em>by DM.</em>',
+    book_lede:'Fill in the form: your message is composed, copied to your clipboard, and our Instagram profile opens. All you do is tap "Message" and paste.',
+    ig_note:"Bookings and questions are handled via Instagram DM.",
+    label_name:"Your name",ph_name:"Your full name",label_date:"Date",label_people:"Guests",
+    opt_1p:"1 person",opt_2p:"2 people",opt_3p:"3 people",opt_4p:"4+ people",
+    label_ride:"Ride",opt_ride1:"Sunrise Ride",opt_ride2:"Sunset Ride",opt_ride3:"Valley Journey",
+    label_note:"Note (optional)",ph_note:"First time riding? Any special requests?",
+    btn_submit:"Prepare my DM",
+    dm_title:"Your message is ready",dm_copy:"Copy again",dm_open:"Open Instagram",
+    dm_copied:"Copied to clipboard ✓",
+    dm_fail:"Couldn't copy automatically — tap the text below and copy it.",
+    dm_hint:'When the profile opens, tap "Message" and paste the copied text.',
+    alert_fill:"Please enter your name and a date.",
+    msg_hello:"Hello Ottoman Horse Ranch!",msg_name:"Name",msg_date:"Date",msg_people:"Guests",msg_ride:"Ride",msg_note:"Note",
+    msg_tail:"Could you tell me about availability and prices?",
+    foot_about:"Horseback rides among the fairy chimneys of Göreme. Bordeaux evenings, golden mornings.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Göreme, Nevşehir",foot_dm:"Bookings: Instagram DM",
+    foot_rights:"© 2026 Ottoman Horse Ranch — All rights reserved.",foot_demo:"Sample / Demo Design"
+  },
+  es:{
+    meta_title:"Ottoman Horse Ranch — Capadocia a caballo, Göreme",
+    meta_desc:"Paseos a caballo al amanecer y al atardecer por los valles de Capadocia con Ottoman Horse Ranch en Göreme. Escríbenos por Instagram para reservas y preguntas.",
+    nav_story:"Historia",nav_rides:"Paseos",nav_values:"Nuestra forma",nav_gallery:"Galería",nav_book:"Reservar",
+    hero_eyebrow:"Göreme · Capadocia",
+    hero_title:'Estos valles hablan<br><em>con cascos de caballo.</em>',
+    hero_lede:"Un ritmo marcado por el paso del caballo, entre las chimeneas de hadas. Sin ruido de motores ni prisas: un viaje sereno y auténtico por los senderos polvorientos de Göreme.",
+    hero_cta1:"Escríbenos por Instagram",hero_cta2:"Ver los paseos",
+    hero_dm_hint:"@cappadociaottomanranch · reservas y preguntas por DM",
+    scroll_hint:"Hacia el valle",
+    stat_rating:"Puntuación Google",stat_reviews:"Reseñas de Google",stat_posts:"Publicaciones de Instagram",stat_followers:"Seguidores en Instagram",
+    story_eyebrow:"Historia",story_h:"El nombre antiguo de esta tierra: Tierra de los Hermosos Caballos.",
+    story_sub:"Así llamaban a Capadocia en la antigüedad. En nuestro rancho de Göreme, ese nombre vuelve a ensillarse cada mañana.",
+    story_lead:"No vemos el caballo como algo que simplemente se monta; él es el viaje.",
+    story_p1:"Ottoman Horse Ranch está a las afueras de Göreme, donde los senderos se abren hacia los valles. Cada hora del día trae una luz distinta; cada paseo, otro cielo.",
+    story_p2:"No hace falta ir lejos para ver lo que hacemos: 938 fotos en Instagram — nuestros caballos, nuestros huéspedes, nuestros atardeceres. Lo que quieras saber, pregúntalo por DM.",
+    story_sign:"Ottoman Horse Ranch",ph_story:"Nuestros caballos · hora dorada",
+    rides_eyebrow:"Paseos",rides_h:"Desde la silla, el día es hermoso tres veces.",
+    rides_sub:"Al alba, en la hora dorada y en lo profundo de los valles. Para fechas, disponibilidad y precios actuales, basta un DM de Instagram.",
+    ride1_time:"alba",ride1_tag:"Al despuntar el día",ride1_h:"Paseo del Amanecer",
+    ride1_p:"Estás en la silla cuando la primera luz toca las chimeneas de hadas. El valle aún está en silencio; en las mañanas afortunadas, los globos se elevan en el horizonte.",
+    ride2_time:"hora dorada",ride2_tag:"Al caer el sol",ride2_h:"Paseo del Atardecer",
+    ride2_p:"Las rocas se vuelven cobre con el sol de la tarde, las sombras se alargan y el ritmo se calma solo. Es la hora de la mejor foto del día.",
+    ride3_time:"ruta larga",ride3_tag:"Para quien no tiene prisa",ride3_h:"Viaje por los Valles",
+    ride3_p:"Una ruta más larga, un silencio más profundo. Mientras los senderos serpentean de valle en valle, el tiempo se acompasa al caballo.",
+    dm_chip:"Precio y disponibilidad — pregunta por DM",
+    values_eyebrow:"Nuestra forma",values_h:"Cuatro principios, una medida: el bienestar del caballo.",
+    v1_h:"Primero los caballos",v1_p:"Montas caballos cuidados, tranquilos y descansados: nuestra primera regla innegociable.",
+    v2_h:"Ritmo sereno",v2_p:"Los paseos avanzan al paso natural del caballo; un ritmo cómodo incluso para principiantes.",
+    v3_h:"A la puerta de los valles",v3_p:"El rancho está a las afueras de Göreme; los senderos se abren directamente a los valles.",
+    v4_h:"DM siempre abierto",v4_p:"Preguntas, fechas, disponibilidad — todo por DM de Instagram: @cappadociaottomanranch.",
+    gallery_eyebrow:"Galería",gallery_h:"Instantes de los valles.",
+    gallery_sub:"Algunas imágenes son visuales de concepto; al publicar la web se sustituirán por las fotos propias del rancho.",
+    ph_g1:"Cabalgando el valle",ph_g2:"Nuestros caballos",ph_g3:"Chimeneas de hadas",ph_g4:"Hora dorada",ph_g5:"En el sendero",
+    book_eyebrow:"Reserva",book_h:'Reserva tu paseo <em>por DM.</em>',
+    book_lede:'Rellena el formulario: tu mensaje se redacta, se copia al portapapeles y se abre nuestro perfil de Instagram. Solo tienes que tocar "Enviar mensaje" y pegar.',
+    ig_note:"Las reservas y preguntas se gestionan por DM de Instagram.",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_date:"Fecha",label_people:"Personas",
+    opt_1p:"1 persona",opt_2p:"2 personas",opt_3p:"3 personas",opt_4p:"4+ personas",
+    label_ride:"Paseo",opt_ride1:"Paseo del Amanecer",opt_ride2:"Paseo del Atardecer",opt_ride3:"Viaje por los Valles",
+    label_note:"Nota (opcional)",ph_note:"¿Primera vez a caballo? ¿Alguna petición especial?",
+    btn_submit:"Preparar mi DM",
+    dm_title:"Tu mensaje está listo",dm_copy:"Copiar de nuevo",dm_open:"Abrir Instagram",
+    dm_copied:"Copiado al portapapeles ✓",
+    dm_fail:"No se pudo copiar automáticamente: toca el texto de abajo y cópialo.",
+    dm_hint:'Cuando se abra el perfil, toca "Enviar mensaje" y pega el texto copiado.',
+    alert_fill:"Por favor, introduce tu nombre y una fecha.",
+    msg_hello:"¡Hola Ottoman Horse Ranch!",msg_name:"Nombre",msg_date:"Fecha",msg_people:"Personas",msg_ride:"Paseo",msg_note:"Nota",
+    msg_tail:"¿Podrían indicarme disponibilidad y precios?",
+    foot_about:"Paseos a caballo entre las chimeneas de hadas de Göreme. Tardes burdeos, mañanas doradas.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Göreme, Nevşehir",foot_dm:"Reservas: DM de Instagram",
+    foot_rights:"© 2026 Ottoman Horse Ranch — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo"
+  },
+  "zh-CN":{
+    meta_title:"Ottoman Horse Ranch — 格雷梅马背上的卡帕多奇亚",
+    meta_desc:"在格雷梅与 Ottoman Horse Ranch 一起骑马穿越卡帕多奇亚山谷，日出与日落骑行。预订与咨询请通过 Instagram 私信联系。",
+    nav_story:"故事",nav_rides:"骑行",nav_values:"理念",nav_gallery:"相册",nav_book:"预订",
+    hero_eyebrow:"格雷梅 · 卡帕多奇亚",
+    hero_title:'这些山谷的语言，<br><em>是马蹄声。</em>',
+    hero_lede:"在精灵烟囱之间，以马的步伐为节奏。没有引擎轰鸣，没有赶行程的匆忙——在格雷梅的尘土小径上，一段宁静而真实的旅程。",
+    hero_cta1:"Instagram 私信我们",hero_cta2:"查看骑行",
+    hero_dm_hint:"@cappadociaottomanranch · 预订与咨询请发私信",
+    scroll_hint:"走进山谷",
+    stat_rating:"谷歌评分",stat_reviews:"谷歌评论",stat_posts:"Instagram 帖子",stat_followers:"Instagram 粉丝",
+    story_eyebrow:"故事",story_h:"这片土地的古名：美丽骏马之地。",
+    story_sub:"古时的卡帕多奇亚便是这样被称呼的。在我们格雷梅的牧场，这个名字每天清晨都被重新装上马鞍。",
+    story_lead:"我们不把马看作只是骑乘的工具；它本身就是旅程。",
+    story_p1:"Ottoman Horse Ranch 位于格雷梅近郊，正是小径通向山谷的起点。一天中的每个时辰都有不同的光线；每次骑行，都有另一片天空。",
+    story_p2:"想了解我们，不必走远：Instagram 上有 938 张照片——我们的马、我们的客人、我们的日落。有任何疑问，发私信问就好。",
+    story_sign:"Ottoman Horse Ranch",ph_story:"我们的马 · 黄金时刻",
+    rides_eyebrow:"骑行",rides_h:"在马鞍上，一天有三次最美。",
+    rides_sub:"黎明、黄金时刻，以及山谷深处。日期、名额与最新价格，一条 Instagram 私信即可。",
+    ride1_time:"黎明",ride1_tag:"破晓时分",ride1_h:"日出骑行",
+    ride1_p:"当第一缕光洒在精灵烟囱上时，您已在马背上。山谷仍然安静；幸运的清晨，热气球会从地平线升起。",
+    ride2_time:"黄金时刻",ride2_tag:"日落时分",ride2_h:"日落骑行",
+    ride2_p:"岩石在夕阳下泛起铜色，影子拉长，节奏自然放缓。一天中最好的照片，多半在这个时辰拍下。",
+    ride3_time:"长线路",ride3_tag:"献给不赶时间的人",ride3_h:"山谷之旅",
+    ride3_p:"更长的线路，更深的宁静。小径在山谷之间蜿蜒，时间与马的步伐同频。",
+    dm_chip:"价格与名额——私信咨询",
+    values_eyebrow:"理念",values_h:"四条原则，一个标准：马的福祉。",
+    v1_h:"马匹优先",v1_p:"您骑乘的是被悉心照料、性情温和且得到充分休息的马——这是我们不容商量的第一条规矩。",
+    v2_h:"从容的节奏",v2_p:"骑行以马的自然步伐前进；即使初次骑马，也是舒适的节奏。",
+    v3_h:"山谷的门口",v3_p:"牧场就在格雷梅近郊；小径直接通向山谷。",
+    v4_h:"私信随时欢迎",v4_p:"问题、日期、名额——都通过 Instagram 私信：@cappadociaottomanranch。",
+    gallery_eyebrow:"相册",gallery_h:"山谷里的画面。",
+    gallery_sub:"部分为概念图；网站正式上线时将替换为牧场自己的照片。",
+    ph_g1:"山谷骑行",ph_g2:"我们的马",ph_g3:"精灵烟囱",ph_g4:"黄金时刻",ph_g5:"小径之上",
+    book_eyebrow:"预订",book_h:'通过<em>私信</em>预订您的骑行。',
+    book_lede:'填写表单：您的消息会自动生成并复制到剪贴板，同时打开我们的 Instagram 主页。您只需点击"发消息"并粘贴。',
+    ig_note:"预订与咨询均通过 Instagram 私信处理。",
+    label_name:"您的姓名",ph_name:"您的全名",label_date:"日期",label_people:"人数",
+    opt_1p:"1 人",opt_2p:"2 人",opt_3p:"3 人",opt_4p:"4 人以上",
+    label_ride:"骑行",opt_ride1:"日出骑行",opt_ride2:"日落骑行",opt_ride3:"山谷之旅",
+    label_note:"备注（可选）",ph_note:"第一次骑马吗？有什么特别需求？",
+    btn_submit:"生成私信内容",
+    dm_title:"您的消息已就绪",dm_copy:"再次复制",dm_open:"打开 Instagram",
+    dm_copied:"已复制到剪贴板 ✓",
+    dm_fail:"自动复制失败——请长按下方文字手动复制。",
+    dm_hint:'主页打开后，点击"发消息"并粘贴刚才复制的内容。',
+    alert_fill:"请填写您的姓名和日期。",
+    msg_hello:"您好，Ottoman Horse Ranch！",msg_name:"姓名",msg_date:"日期",msg_people:"人数",msg_ride:"骑行",msg_note:"备注",
+    msg_tail:"请问名额和价格如何？",
+    foot_about:"在格雷梅的精灵烟囱之间骑马。酒红色的黄昏，金色的清晨。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"格雷梅，内夫谢希尔",foot_dm:"预订：Instagram 私信",
+    foot_rights:"© 2026 Ottoman Horse Ranch — 版权所有。",foot_demo:"示例 / 演示设计"
+  },
+  ko:{
+    meta_title:"Ottoman Horse Ranch — 괴레메, 말 위에서 만나는 카파도키아",
+    meta_desc:"괴레메의 Ottoman Horse Ranch와 함께 카파도키아 계곡을 말을 타고 달리는 일출·일몰 라이딩. 예약과 문의는 Instagram DM으로.",
+    nav_story:"이야기",nav_rides:"라이딩",nav_values:"원칙",nav_gallery:"갤러리",nav_book:"예약",
+    hero_eyebrow:"괴레메 · 카파도키아",
+    hero_title:'이 계곡의 언어는<br><em>말발굽 소리입니다.</em>',
+    hero_lede:"요정 굴뚝 사이, 말의 걸음에 맞춘 속도. 엔진 소음도, 빠듯한 일정도 없이—괴레메의 흙길을 따라가는 고요하고 진실한 여정.",
+    hero_cta1:"Instagram으로 문의",hero_cta2:"라이딩 보기",
+    hero_dm_hint:"@cappadociaottomanranch · 예약과 문의는 DM으로",
+    scroll_hint:"계곡으로",
+    stat_rating:"구글 평점",stat_reviews:"구글 리뷰",stat_posts:"인스타그램 게시물",stat_followers:"인스타그램 팔로워",
+    story_eyebrow:"이야기",story_h:"이 땅의 옛 이름: 아름다운 말들의 땅.",
+    story_sub:"고대에 카파도키아는 그렇게 불렸습니다. 괴레메의 우리 목장에서 그 이름은 매일 아침 다시 안장을 얹습니다.",
+    story_lead:"말은 그저 올라타는 대상이 아닙니다. 말이 곧 여정입니다.",
+    story_p1:"Ottoman Horse Ranch는 괴레메 바로 외곽, 계곡으로 이어지는 오솔길 초입에 있습니다. 시간마다 다른 빛, 라이딩마다 다른 하늘.",
+    story_p2:"우리가 어떤 곳인지 멀리 갈 필요 없이 Instagram의 938장의 사진에서 보실 수 있습니다—우리의 말, 손님들, 그리고 노을. 궁금한 건 무엇이든 DM으로 물어보세요.",
+    story_sign:"Ottoman Horse Ranch",ph_story:"우리의 말들 · 골든아워",
+    rides_eyebrow:"라이딩",rides_h:"안장 위에서 하루는 세 번 아름답습니다.",
+    rides_sub:"새벽, 골든아워, 그리고 계곡 깊은 곳. 날짜·예약 가능 여부·최신 가격은 Instagram DM 하나면 충분합니다.",
+    ride1_time:"새벽",ride1_tag:"동틀 무렵",ride1_h:"일출 라이딩",
+    ride1_p:"첫 빛이 요정 굴뚝에 닿을 때 당신은 이미 안장 위에 있습니다. 계곡은 아직 고요하고, 운 좋은 아침이면 지평선에서 열기구가 떠오릅니다.",
+    ride2_time:"골든아워",ride2_tag:"해질 무렵",ride2_h:"일몰 라이딩",
+    ride2_p:"바위가 저녁 햇살에 구릿빛으로 물들고, 그림자가 길어지며, 속도는 저절로 느려집니다. 하루 최고의 사진은 대개 이 시간에 찍힙니다.",
+    ride3_time:"긴 코스",ride3_tag:"서두르지 않는 이들에게",ride3_h:"계곡 여정",
+    ride3_p:"더 긴 코스, 더 깊은 고요. 오솔길이 계곡에서 계곡으로 굽이치는 동안 시간은 말의 걸음에 맞춰집니다.",
+    dm_chip:"가격·예약 문의 — DM으로",
+    values_eyebrow:"원칙",values_h:"네 가지 원칙, 하나의 기준: 말의 안녕.",
+    v1_h:"말이 먼저",v1_p:"잘 보살핌 받고, 차분하며, 충분히 쉰 말과 함께 달립니다—타협하지 않는 첫 번째 규칙입니다.",
+    v2_h:"느긋한 속도",v2_p:"라이딩은 말의 자연스러운 걸음으로 진행됩니다. 처음 타는 분께도 편안한 리듬입니다.",
+    v3_h:"계곡의 문 앞",v3_p:"목장은 괴레메 바로 외곽에 있으며, 오솔길이 곧장 계곡으로 이어집니다.",
+    v4_h:"DM은 언제나 열려 있습니다",v4_p:"질문, 날짜, 예약—모두 Instagram DM으로: @cappadociaottomanranch.",
+    gallery_eyebrow:"갤러리",gallery_h:"계곡에서 담은 장면들.",
+    gallery_sub:"일부는 콘셉트 이미지이며, 사이트 오픈 시 목장의 실제 사진으로 교체됩니다.",
+    ph_g1:"계곡 라이딩",ph_g2:"우리의 말들",ph_g3:"요정 굴뚝",ph_g4:"골든아워",ph_g5:"오솔길에서",
+    book_eyebrow:"예약",book_h:'<em>DM</em>으로 자리를 예약하세요.',
+    book_lede:'폼을 작성하면 메시지가 만들어져 클립보드에 복사되고, 우리 Instagram 프로필이 열립니다. "메시지" 버튼을 누르고 붙여넣기만 하면 됩니다.',
+    ig_note:"예약과 문의는 Instagram DM으로 받습니다.",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_date:"날짜",label_people:"인원",
+    opt_1p:"1명",opt_2p:"2명",opt_3p:"3명",opt_4p:"4명 이상",
+    label_ride:"라이딩",opt_ride1:"일출 라이딩",opt_ride2:"일몰 라이딩",opt_ride3:"계곡 여정",
+    label_note:"메모 (선택)",ph_note:"처음 타시나요? 특별한 요청이 있으신가요?",
+    btn_submit:"DM 메시지 만들기",
+    dm_title:"메시지가 준비되었습니다",dm_copy:"다시 복사",dm_open:"Instagram 열기",
+    dm_copied:"클립보드에 복사됨 ✓",
+    dm_fail:"자동 복사에 실패했습니다. 아래 텍스트를 길게 눌러 복사해 주세요.",
+    dm_hint:'프로필이 열리면 "메시지" 버튼을 누르고 복사한 내용을 붙여넣으세요.',
+    alert_fill:"성함과 날짜를 입력해 주세요.",
+    msg_hello:"안녕하세요, Ottoman Horse Ranch!",msg_name:"이름",msg_date:"날짜",msg_people:"인원",msg_ride:"라이딩",msg_note:"메모",
+    msg_tail:"예약 가능 여부와 가격을 알려주시겠어요?",
+    foot_about:"괴레메의 요정 굴뚝 사이를 말과 함께. 버건디빛 저녁과 황금빛 아침.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"괴레메, 네브셰히르",foot_dm:"예약: Instagram DM",
+    foot_rights:"© 2026 Ottoman Horse Ranch — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인"
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  document.querySelectorAll('[data-count]').forEach(el=>{ if(el.dataset.done){ el.textContent = fmtNum(parseInt(el.dataset.count,10)); }});
+  document.querySelectorAll('.langs button, .m-langs button[data-lang]').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  try{ localStorage.setItem('ohr_lang', lang); }catch(e){}
+}
+
+function initLang(){
+  let lang = null;
+  const url = new URLSearchParams(location.search).get('lang');
+  if(url && SUPPORTED.includes(url)) lang = url;
+  if(!lang){ try{ const s=localStorage.getItem('ohr_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+
+document.querySelectorAll('.langs button, .m-langs button[data-lang]').forEach(b=>{
+  b.addEventListener('click', ()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+// ==================== TEMA (aydınlık / karanlık) ====================
+// ?theme=light|dark → localStorage → prefers-color-scheme → dark
+function applyTheme(t){
+  if(t!=='light' && t!=='dark') t='dark';
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('ohr_theme', t); }catch(e){}
+}
+function initTheme(){
+  let t = null;
+  const url = new URLSearchParams(location.search).get('theme');
+  if(url==='light'||url==='dark') t = url;
+  if(!t){ try{ const s=localStorage.getItem('ohr_theme'); if(s==='light'||s==='dark') t=s; }catch(e){} }
+  if(!t) t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+  applyTheme(t);
+}
+function toggleTheme(){
+  applyTheme(document.documentElement.getAttribute('data-theme')==='dark' ? 'light' : 'dark');
+}
+document.getElementById('themeBtn').addEventListener('click', toggleTheme);
+document.getElementById('mThemeBtn').addEventListener('click', toggleTheme);
+initTheme();
+
+// ==================== MOBİL MENÜ ====================
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+// ==================== NAV SCROLL + SCROLL-SPY (tezhip elması) ====================
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScroll);onScroll();
+
+(function(){
+  const links = Array.from(document.querySelectorAll('.nav-side a.nl'));
+  const map = {};
+  links.forEach(a=>{ const id=a.getAttribute('href').slice(1); map[id]=a; });
+  const spy = new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const a = map[e.target.id];
+        if(a) a.classList.add('active');
+      }
+    });
+  },{rootMargin:'-38% 0px -54% 0px'});
+  ['hikaye','suruslar','degerler','galeri','iletisim'].forEach(id=>{
+    const s=document.getElementById(id); if(s) spy.observe(s);
+  });
+})();
+
+// ==================== REVEAL + SAYAÇLAR ====================
+function fmtNum(n){
+  try{ return n.toLocaleString(currentLang==='zh-CN'?'zh-CN':currentLang); }catch(e){ return String(n); }
+}
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      if(e.target.querySelectorAll) e.target.querySelectorAll('[data-count]').forEach(runCount);
+      if(e.target.hasAttribute && e.target.hasAttribute('data-count')) runCount(e.target);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.2});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));
+
+function runCount(el){
+  if(el.dataset.done) return; el.dataset.done='1';
+  const target=parseInt(el.dataset.count,10);
+  const dur=1500;const t0=performance.now();
+  function tick(now){
+    const p=Math.min((now-t0)/dur,1);const eased=1-Math.pow(1-p,3);
+    el.textContent=fmtNum(Math.floor(eased*target));
+    if(p<1)requestAnimationFrame(tick);else el.textContent=fmtNum(target);
+  }
+  requestAnimationFrame(tick);
+}
+
+// ==================== GÖRSEL YÜKLEME (varsa göster) ====================
+(function(){
+  const base='assets/images/';
+  function tryImg(el, file){
+    const img=new Image();
+    img.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; el.style.backgroundSize='cover'; el.style.backgroundPosition='center'; const l=el.querySelector('.ph-label'); if(l) l.style.display='none'; };
+    img.onerror=()=>{};
+    img.src=base+file;
+  }
+  const hero=document.getElementById('heroPhoto');
+  if(hero){ const hi=new Image(); hi.onload=()=>{ hero.style.backgroundImage=`url('${base}hero.jpg')`; hero.classList.add('has-img'); }; hi.onerror=()=>{}; hi.src=base+'hero.jpg'; }
+  const story=document.getElementById('storyImg');
+  if(story) tryImg(story,'story.jpg');
+  document.querySelectorAll('.tile[data-img], .ride-visual[data-img]').forEach(t=>tryImg(t,t.getAttribute('data-img')));
+})();
+
+// ==================== REZERVASYON → INSTAGRAM DM (çok dilli, panoya kopyala) ====================
+// NOT: Maps'te telefon kayıtlı olmadığı için birincil kanal Instagram DM'dir.
+// İşletmeden telefon numarası alınınca wa.me akışına dönülebilir: aşağıdaki WHATSAPP
+// sabitine numarayı yazıp (ülke kodu + numara, örn. 905321234567) formu wa.me'ye yönlendirmek yeterli.
+const WHATSAPP = "905000000000"; // ← placeholder; telefon alınınca güncelle
+const IG_URL = "https://www.instagram.com/cappadociaottomanranch/";
+
+function buildDMText(){
+  const d = I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const date=document.getElementById('f-date').value;
+  const count=document.getElementById('f-count').value;
+  const ride=document.getElementById('f-ride').value;
+  const note=document.getElementById('f-note').value.trim();
+  if(!name||!date){ alert(d.alert_fill); return null; }
+  let msg = d.msg_hello + "\n\n" +
+    d.msg_name + ": " + name + "\n" +
+    d.msg_date + ": " + date + "\n" +
+    d.msg_people + ": " + count + "\n" +
+    d.msg_ride + ": " + ride + "\n";
+  if(note) msg += d.msg_note + ": " + note + "\n";
+  msg += "\n" + d.msg_tail;
+  return msg;
+}
+
+// file:// altında navigator.clipboard çoğu tarayıcıda kapalıdır (secure context değil);
+// user-gesture içinde execCommand('copy') fallback'i çalışır. O da olmazsa metin seçilebilir kalır.
+function copyText(txt){
+  if(navigator.clipboard && window.isSecureContext){
+    return navigator.clipboard.writeText(txt).then(()=>true).catch(()=>legacyCopy(txt));
+  }
+  return Promise.resolve(legacyCopy(txt));
+}
+function legacyCopy(txt){
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=txt; ta.setAttribute('readonly','');
+    ta.style.position='fixed'; ta.style.left='-9999px';
+    document.body.appendChild(ta);
+    ta.select(); ta.setSelectionRange(0, txt.length);
+    const ok=document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  }catch(e){ return false; }
+}
+function setDMStatus(ok){
+  const d=I18N[currentLang];
+  const st=document.getElementById('dmStatus');
+  st.textContent = ok ? d.dm_copied : d.dm_fail;
+  st.classList.toggle('ok', !!ok);
+}
+function prepareDM(){
+  const msg = buildDMText();
+  if(msg===null) return;
+  const panel=document.getElementById('dmPanel');
+  const ta=document.getElementById('dmMsg');
+  ta.value = msg;
+  panel.classList.add('show');
+  copyText(msg).then(ok=>{
+    setDMStatus(ok);
+    // kopyalama denemesinden sonra IG profilini yeni sekmede aç (user-gesture içinde)
+    window.open(IG_URL, "_blank", "noopener");
+    panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+}
+function copyDM(){
+  const ta=document.getElementById('dmMsg');
+  if(!ta.value) return;
+  copyText(ta.value).then(setDMStatus);
+}
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items = Array.from(document.querySelectorAll('.gallery .tile[data-img], .ride-visual[data-img]'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  const capOf = t => { const l = t.querySelector('.ph-label') || t.querySelector('.time'); return l ? l.textContent.trim() : ''; };
+  function show(i){ idx = (i + items.length) % items.length; const t = items[idx]; img.src = base + t.getAttribute('data-img'); cap.textContent = capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>{ t.addEventListener('click',()=>open(i)); });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+// ==================== BAŞLAT ====================
+initLang();
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+</body>
+</html>

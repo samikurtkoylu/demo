@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d1410" id="metaTheme">
+<title data-i18n="meta_title">Horse Paradise — Göreme At Turları | Kapadokya'da At Sırtında</title>
+<meta name="description" data-i18n="meta_desc" content="Göreme'de Horse Paradise ile at sırtında Kapadokya: balon vakti sabah sürüşleri, altın saat ve vadi rotaları. Google'da 127 yorumda 4.9. WhatsApp'tan yerinizi sorun.">
+<style>
+  /* ============ TEMA DEĞİŞKENLERİ — vadi yeşili · bal ışığı · toprak ============ */
+  :root, html[data-theme="dark"]{
+    --bg0:#0d1410;          /* en derin orman */
+    --bg1:#111b14;
+    --bg2:#16231a;
+    --deep:#0a100c;
+    --card:#182619;
+    --text:#f0ead6;
+    --muted:#a9b69b;
+    --honey:#e3a94d;
+    --honey-2:#f2c778;
+    --leaf:#8db07a;
+    --earth:#c08552;
+    --line:rgba(227,169,77,.16);
+    --glass:rgba(13,20,16,.55);
+    --field:rgba(10,16,12,.55);
+    --btn-ink:#1c1408;
+    --shadow:rgba(0,0,0,.45);
+  }
+  html[data-theme="light"]{
+    --bg0:#f5f1e2;          /* bahçe sabahı fildişi */
+    --bg1:#eee9d6;
+    --bg2:#e7e1c9;
+    --deep:#ece6d2;
+    --card:#fbf8ec;
+    --text:#26331f;
+    --muted:#5d6b50;
+    --honey:#96650e;
+    --honey-2:#7e5410;
+    --leaf:#44693f;
+    --earth:#8a5427;
+    --line:rgba(90,74,32,.20);
+    --glass:rgba(248,244,230,.68);
+    --field:#ffffff;
+    --btn-ink:#fdf9ee;
+    --shadow:rgba(70,60,30,.18);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  body{font-family:'Segoe UI','Gill Sans','Trebuchet MS',system-ui,sans-serif;color:var(--text);background:var(--bg0);
+    -webkit-font-smoothing:antialiased;line-height:1.68;overflow-x:hidden;transition:background .45s,color .45s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:'Palatino Linotype','Book Antiqua',Palatino,Georgia,serif;font-weight:500;line-height:1.08;letter-spacing:-.005em}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:600}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.34em;font-size:.68rem;font-weight:600;color:var(--honey)}
+  .eyebrow svg{width:17px;height:17px;flex:none}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.14em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 30px}
+
+  /* ============ SIGNATURE 1 — film grain + bal rengi scroll çubuğu ============ */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--leaf),var(--honey));box-shadow:0 0 12px rgba(227,169,77,.5)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+  /* ============ NAV — "Kanopi" (21st.dev fluid/gooey pill portu) ============ */
+  .brand{position:fixed;top:16px;left:26px;z-index:66;display:flex;align-items:center;gap:11px;padding:8px 14px 8px 10px;border-radius:999px;transition:background .4s,box-shadow .4s}
+  .brand.scrolled{background:var(--glass);backdrop-filter:blur(12px);box-shadow:0 4px 24px var(--shadow)}
+  /* Scroll öncesi marka hero fotoğrafının üstünde durur: açık temada koyu yeşil metin fotoda eriyordu — hafif koyu scrim + açık metin, her iki temada okunur */
+  .brand:not(.scrolled){background:rgba(12,16,10,.34);backdrop-filter:blur(8px)}
+  .brand:not(.scrolled) .bt b{color:#f6efdc}
+  .brand svg{width:30px;height:30px;flex:none;color:var(--honey)}
+  .brand .bt{display:flex;flex-direction:column;line-height:1.05}
+  .brand .bt b{font-family:'Palatino Linotype','Book Antiqua',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.02em;color:var(--text)}
+  .brand .bt span{font-size:.56rem;letter-spacing:.42em;text-transform:uppercase;color:var(--honey);margin-top:2px}
+  .hero .brand-on-hero{color:#f6efdc}
+  .canopy{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:65;display:flex;align-items:center;padding:6px;border-radius:999px;
+    background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);box-shadow:0 8px 30px var(--shadow)}
+  .canopy-links{position:relative;display:flex;align-items:center}
+  .canopy-links a{position:relative;z-index:2;padding:9px 17px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:color .3s;white-space:nowrap}
+  html[lang="zh-CN"] .canopy-links a,html[lang="ko"] .canopy-links a{text-transform:none;letter-spacing:.02em;font-size:.88rem}
+  .canopy-links a:hover{color:var(--text)}
+  .canopy-links a.active{color:var(--honey-2)}
+  html[data-theme="light"] .canopy-links a.active{color:var(--honey)}
+  .blob{position:absolute;top:3px;bottom:3px;left:0;z-index:1;width:0;opacity:0;background:radial-gradient(120% 130% at 30% 20%,rgba(227,169,77,.28),rgba(141,176,122,.16));
+    border:1px solid rgba(227,169,77,.35);transition:transform .55s cubic-bezier(.3,1.4,.35,1),width .55s cubic-bezier(.3,1.4,.35,1),opacity .3s;
+    animation:blobMorph 7s ease-in-out infinite}
+  @keyframes blobMorph{0%,100%{border-radius:56% 44% 62% 38%/52% 58% 42% 48%}50%{border-radius:44% 56% 40% 60%/58% 44% 56% 42%}}
+  .ctrls{position:fixed;top:16px;right:26px;z-index:66;display:flex;align-items:center;gap:8px}
+  .langs{display:flex;align-items:center;gap:1px;padding:5px 8px;border-radius:999px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(12px)}
+  .langs button{background:none;border:none;color:var(--muted);font-family:inherit;font-size:.72rem;cursor:pointer;padding:4px 7px;transition:.25s;border-radius:999px;letter-spacing:.03em}
+  .langs button:hover{color:var(--text)}
+  .langs button.active{color:var(--btn-ink);background:var(--honey);font-weight:600}
+  .theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(12px);color:var(--honey);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;flex:none}
+  .theme-btn:hover{color:var(--honey-2);transform:rotate(12deg)}
+  .theme-btn svg{width:19px;height:19px}
+  .theme-btn .ic-sun{display:none}
+  html[data-theme="light"] .theme-btn .ic-sun{display:block}
+  html[data-theme="light"] .theme-btn .ic-moon{display:none}
+  /* mobil: üst mini bar + alt çakıl barı */
+  .m-lang-wrap{position:relative;display:none}
+  .m-lang-chip{height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(12px);color:var(--text);font-family:inherit;font-size:.74rem;font-weight:600;letter-spacing:.06em;cursor:pointer}
+  .m-lang-sheet{position:absolute;top:48px;right:0;display:none;flex-direction:column;min-width:130px;padding:8px;border-radius:16px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(16px);box-shadow:0 12px 34px var(--shadow)}
+  .m-lang-sheet.open{display:flex}
+  .m-lang-sheet button{background:none;border:none;color:var(--muted);font-family:inherit;font-size:.86rem;padding:9px 12px;text-align:left;cursor:pointer;border-radius:10px}
+  .m-lang-sheet button.active{color:var(--btn-ink);background:var(--honey);font-weight:600}
+  .pebble-bar{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:66;display:none;align-items:center;padding:6px;border-radius:26px;
+    background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(16px);box-shadow:0 10px 34px var(--shadow)}
+  .pebble-links{position:relative;display:flex;align-items:center}
+  .pebble-links a{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:3px;width:62px;padding:8px 0 6px;color:var(--muted);transition:color .3s}
+  .pebble-links a svg{width:19px;height:19px}
+  .pebble-links a span{font-size:.56rem;letter-spacing:.04em}
+  .pebble-links a.active{color:var(--honey-2)}
+  html[data-theme="light"] .pebble-links a.active{color:var(--honey)}
+  .pebble-links .blob{top:4px;bottom:4px}
+  @media(max-width:1150px){.canopy-links a{padding:9px 12px;font-size:.72rem}}
+  @media(max-width:1000px){.langs{display:none}.m-lang-wrap{display:block}}
+  @media(max-width:860px){
+    .canopy{display:none}
+    .pebble-bar{display:flex}
+    .brand{top:10px;left:12px}
+    .ctrls{top:10px;right:12px}
+  }
+
+  /* ============ HERO — bal ışığı bahçesi ============ */
+  .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center;isolation:isolate;background:linear-gradient(180deg,#101a13 0%,#1c2b1e 45%,#4c5a33 74%,#c99a4b 96%)}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center 38%;opacity:0;transition:opacity .8s}
+  .hero-photo.has-img{opacity:1;animation:kenburns 36s ease-in-out infinite alternate;transform-origin:55% 35%}
+  @keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.09)}}
+  #hero-gradient{position:absolute;inset:0;z-index:5;pointer-events:none;mix-blend-mode:overlay;opacity:.55;
+    --gradient-color-1:#1c2b1f; --gradient-color-2:#e3a94d; --gradient-color-3:#5c8153; --gradient-color-4:#8a5427}
+  .no-webgl #hero-gradient{display:none}
+  /* SIGNATURE 2 — altın saat ışık huzmeleri */
+  .rays{position:absolute;inset:-18% -8%;z-index:6;pointer-events:none;mix-blend-mode:screen;opacity:.55}
+  .rays::before,.rays::after{content:"";position:absolute;inset:0;transform-origin:76% -6%}
+  .rays::before{background:conic-gradient(from 196deg at 76% -6%,transparent 0deg,rgba(255,214,140,.30) 5deg,transparent 11deg,transparent 19deg,rgba(255,196,110,.20) 25deg,transparent 32deg,transparent 43deg,rgba(255,222,158,.24) 49deg,transparent 57deg);
+    animation:raysway 17s ease-in-out infinite alternate}
+  .rays::after{background:conic-gradient(from 205deg at 76% -6%,transparent 0deg,rgba(255,206,120,.14) 9deg,transparent 18deg,transparent 30deg,rgba(255,226,170,.12) 38deg,transparent 47deg);
+    animation:raysway 23s ease-in-out infinite alternate-reverse}
+  @keyframes raysway{from{transform:rotate(-4deg)}to{transform:rotate(5deg)}}
+  /* SIGNATURE 3 — bal tozu / polen taneleri */
+  .pollen{position:absolute;inset:0;z-index:7;pointer-events:none;overflow:hidden}
+  .mote{position:absolute;bottom:-2vh;border-radius:50%;background:radial-gradient(circle,#ffe4a8 0%,rgba(255,214,140,.55) 55%,transparent 75%);
+    animation:rise linear infinite}
+  @keyframes rise{
+    0%{transform:translate(0,0);opacity:0}
+    12%{opacity:var(--mo,.5)}
+    82%{opacity:var(--mo,.5)}
+    100%{transform:translate(var(--dx,20px),-108vh);opacity:0}
+  }
+  /* okunabilirlik scrim'i — temadan bağımsız */
+  .hero::after{content:"";position:absolute;inset:0;z-index:8;pointer-events:none;
+    background:radial-gradient(70% 68% at 26% 74%,rgba(10,15,11,.66),transparent 72%),linear-gradient(180deg,rgba(10,15,11,.42) 0%,transparent 38%,rgba(10,15,11,.55) 100%)}
+  .hero-inner{position:relative;z-index:10;width:100%;padding-bottom:12vh}
+  .hero .eyebrow{color:#f2c778}
+  .hero h1{color:#f8f2df;font-size:clamp(2.6rem,6.8vw,5.6rem);max-width:15ch;margin-top:20px;text-shadow:0 4px 44px rgba(0,0,0,.5)}
+  .hero h1 em{font-style:italic;color:#f2c778}
+  .hero .lede{font-size:clamp(1.02rem,1.5vw,1.26rem);color:rgba(246,240,222,.92);max-width:52ch;margin-top:22px;font-weight:300;text-shadow:0 2px 22px rgba(0,0,0,.55)}
+  .rating-badge{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:10px 18px;border-radius:999px;
+    background:rgba(12,17,12,.5);border:1px solid rgba(242,199,120,.4);backdrop-filter:blur(8px);color:#f6efdc;transition:.3s}
+  .rating-badge:hover{border-color:#f2c778;background:rgba(12,17,12,.68)}
+  .rating-badge .rstars{color:#f2c778;letter-spacing:2px;font-size:.92rem}
+  .rating-badge b{font-family:'Palatino Linotype',Georgia,serif;font-size:1.16rem;color:#ffe4a8}
+  .rating-badge span{font-size:.8rem;color:rgba(246,240,222,.85)}
+  .hero-cta{display:flex;gap:18px;margin-top:32px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:var(--honey);color:var(--btn-ink);padding:16px 32px;border-radius:999px;font-weight:600;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.35s;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  .hero .btn-solid{background:#e3a94d;color:#1c1408}
+  .hero .btn-solid:hover{background:#f2c778;gap:16px}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{text-transform:none;letter-spacing:.03em}
+  .btn-solid:hover{background:var(--honey-2);gap:16px}
+  .btn-line{color:#f6efdc;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(246,240,222,.45);padding-bottom:4px;transition:.4s}
+  .btn-line:hover{border-color:#f2c778;color:#f2c778}
+  .scrollhint{position:absolute;bottom:86px;left:50%;transform:translateX(-50%);z-index:10;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(246,240,222,.6);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scrollhint .l{width:1px;height:32px;background:linear-gradient(#f2c778,transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+  /* SIGNATURE 4 — hero altı vadi sırtı */
+  .hero-valley{position:absolute;left:0;right:0;bottom:-1px;z-index:9;width:100%;height:72px;pointer-events:none}
+  .hero-valley path{fill:var(--deep);transition:fill .45s}
+
+  /* ============ VADİ GEÇİŞLERİ (bölümler arası organik sırt) ============ */
+  .valley-top{position:absolute;top:-1px;left:0;width:100%;height:64px;transform:scaleY(-1) scaleX(-1);pointer-events:none}
+  .valley-top path{transition:fill .45s}
+
+  /* ============ STATS ============ */
+  .stats{background:var(--deep);transition:background .45s}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:52px 30px 56px}
+  .stat{text-align:center}
+  .stat .n{font-family:'Palatino Linotype','Book Antiqua',Georgia,serif;font-size:clamp(2rem,4.2vw,3.1rem);color:var(--honey);line-height:1}
+  .stat .l{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+  html[lang="zh-CN"] .stat .l,html[lang="ko"] .stat .l{text-transform:none;letter-spacing:.05em}
+  .stat+.stat{border-left:1px solid var(--line)}
+  @media(max-width:680px){.stats .wrap{grid-template-columns:1fr 1fr;gap:34px 20px}.stat:nth-child(3){border-left:none}}
+
+  section{padding:110px 0;position:relative;transition:background .45s}
+  .sec-head{max-width:680px;margin-bottom:60px}
+  .sec-head .eyebrow{margin-bottom:18px}
+  .sec-head h2{font-size:clamp(2.1rem,4.4vw,3.4rem)}
+  .sec-head p{margin-top:18px;color:var(--muted);font-size:1.06rem;font-weight:300}
+
+  /* ============ STORY ============ */
+  .story{background:var(--bg1);padding-top:150px}
+  .story::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(38% 52% at 10% 20%,rgba(141,176,122,.12),transparent 60%),
+      radial-gradient(44% 50% at 90% 80%,rgba(227,169,77,.10),transparent 62%);
+    background-size:180% 180%;animation:meshDrift 26s ease-in-out infinite alternate}
+  .story>.wrap{position:relative;z-index:1}
+  @keyframes meshDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+  .story-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch}
+  .story-visual{position:relative;min-height:520px;border-radius:18px 60px 18px 18px;overflow:hidden;background:linear-gradient(160deg,#22331f,#4c5a33 60%,#c99a4b);background-size:cover;background-position:center}
+  .story-visual .ph-label{position:absolute;left:20px;bottom:18px;font-size:.7rem;letter-spacing:.08em;color:#f4edd8;z-index:3;display:flex;align-items:center;gap:7px;background:rgba(12,16,10,.55);padding:7px 13px;border-radius:999px;backdrop-filter:blur(6px)}
+  .story-visual .ph-label svg{width:14px;height:14px;opacity:.85}
+  .story-text{background:var(--card);padding:60px;display:flex;flex-direction:column;justify-content:center;margin-left:-44px;margin-top:44px;margin-bottom:44px;z-index:2;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px var(--shadow)}
+  .story-text .lead{font-family:'Palatino Linotype','Book Antiqua',Georgia,serif;font-size:1.55rem;line-height:1.42;font-style:italic;color:var(--text);margin-bottom:22px}
+  html[lang="zh-CN"] .story-text .lead,html[lang="ko"] .story-text .lead{font-style:normal}
+  .story-text p{color:var(--muted);margin-bottom:16px;font-weight:300}
+  .story-text .sign{margin-top:14px;font-family:'Palatino Linotype',Georgia,serif;font-size:1.2rem;color:var(--honey);font-style:italic}
+  @media(max-width:860px){.story-grid{grid-template-columns:1fr}.story-text{margin:-40px 16px 0;padding:38px}.story-visual{min-height:340px;border-radius:18px}}
+
+  /* ============ RIDES — üç ışık ============ */
+  .rides{background:var(--bg0);padding-top:150px}
+  .rides::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(40% 50% at 88% 16%,rgba(227,169,77,.09),transparent 62%),
+      radial-gradient(36% 44% at 8% 80%,rgba(141,176,122,.10),transparent 60%);
+    background-size:180% 180%;animation:meshDrift 30s ease-in-out infinite alternate}
+  .rides>.wrap{position:relative;z-index:1}
+  .ride-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .ride-card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+  .ride-card:hover{transform:translateY(-6px);box-shadow:0 26px 60px var(--shadow)}
+  .ride-visual{height:230px;position:relative;overflow:hidden;background-size:cover;background-position:center;cursor:pointer}
+  .rv1{background:linear-gradient(155deg,#101a13,#3c4b2e 55%,#e3a94d)}
+  .rv2{background:linear-gradient(155deg,#22331f,#6b5a2e 55%,#f2c778)}
+  .rv3{background:linear-gradient(155deg,#16231a,#4c5a33 55%,#c08552)}
+  .ride-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,9,.42),transparent 45%)}
+  .ride-visual .time{position:absolute;top:16px;left:16px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#f4edd8;z-index:2;background:rgba(12,16,10,.55);padding:6px 12px;border-radius:999px;backdrop-filter:blur(5px)}
+  html[lang="zh-CN"] .ride-visual .time,html[lang="ko"] .ride-visual .time{text-transform:none;letter-spacing:.04em}
+  .ride-body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+  .ride-body .tag{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--leaf)}
+  html[lang="zh-CN"] .ride-body .tag,html[lang="ko"] .ride-body .tag{text-transform:none;letter-spacing:.04em}
+  .ride-body h3{font-size:1.6rem;margin:10px 0 12px;color:var(--text)}
+  .ride-body p{color:var(--muted);font-weight:300;font-size:.95rem;margin-bottom:20px;flex:1}
+  .ride-cta{display:inline-flex;align-items:center;gap:8px;color:var(--honey);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;transition:.3s}
+  .ride-cta:hover{gap:13px;color:var(--honey-2)}
+  html[lang="zh-CN"] .ride-cta,html[lang="ko"] .ride-cta{text-transform:none;letter-spacing:.03em}
+  .rides-note{margin-top:34px;padding:18px 24px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:.92rem;display:flex;gap:12px;align-items:flex-start}
+  .rides-note svg{width:18px;height:18px;flex:none;color:var(--honey);margin-top:3px}
+  @media(max-width:960px){.ride-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}}
+
+  /* ============ WHY — cennetin kanıtları ============ */
+  .why{background:var(--bg2);padding-top:150px}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  .why-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 26px;transition:transform .45s,box-shadow .45s}
+  .why-card:hover{transform:translateY(-4px);box-shadow:0 18px 44px var(--shadow)}
+  .why-card .ic{width:40px;height:40px;color:var(--honey);margin-bottom:16px}
+  .why-card h3{font-size:1.22rem;margin-bottom:8px;color:var(--text)}
+  .why-card p{font-size:.9rem;color:var(--muted);font-weight:300}
+  @media(max-width:960px){.why-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.why-grid{grid-template-columns:1fr}}
+
+  /* ============ GALLERY ============ */
+  .gallery{background:var(--bg1);padding-top:150px}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:210px;gap:14px}
+  .tile{border-radius:14px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;background-size:cover;background-position:center;background-color:#1e2b1e;cursor:pointer;transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s}
+  html[data-theme="light"] .tile{background-color:#d9d3ba}
+  .tile.big{grid-column:span 2;grid-row:span 2}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px var(--shadow)}
+  .tile .ph-label{position:relative;z-index:3;font-size:.72rem;letter-spacing:.05em;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.8);display:flex;align-items:center;gap:6px}
+  .tile .ph-label svg{width:13px;height:13px;opacity:.9}
+  .tile::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(10,14,9,.62),rgba(10,14,9,0) 48%);transition:.4s}
+  .tile::after{content:"\2922";position:absolute;top:10px;right:13px;z-index:3;color:#fff;font-size:1rem;opacity:0;transform:scale(.75);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .tile:hover::before{background:linear-gradient(to top,rgba(10,14,9,.7),rgba(10,14,9,.14))}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  @media(max-width:820px){.tiles{grid-template-columns:1fr 1fr;grid-auto-rows:160px}.tile.big{grid-column:span 2;grid-row:span 1}.tile:last-child{grid-column:span 2}}
+  @media(max-width:460px){.tiles{grid-template-columns:1fr;grid-auto-rows:210px}.tile.big,.tile:last-child{grid-column:span 1;grid-row:span 1}}
+
+  /* ---- Lightbox ---- */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(8,12,8,.94);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:86vh;border-radius:8px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f4edd8;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s;z-index:2}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#e8dfc4;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
+  html[lang="zh-CN"] .lb-cap,html[lang="ko"] .lb-cap{text-transform:none;letter-spacing:.04em}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(18,24,16,.6);border:1px solid rgba(227,169,77,.3);color:#f4edd8;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:.25s;z-index:2}
+  .lb-nav:hover{background:#e3a94d;color:#1c1408;border-color:#e3a94d}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:1.2rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ============ BOOK ============ */
+  .book{background:linear-gradient(180deg,var(--bg0),var(--bg2));overflow:hidden}
+  .book::before{content:"";position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(227,169,77,.16),transparent 68%)}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.3rem,4.4vw,3.6rem);color:var(--text)}
+  .book h2 em{font-style:italic;color:var(--honey)}
+  .book .lede{color:var(--muted);margin-top:20px;font-size:1.06rem;font-weight:300}
+  .wa{display:inline-flex;align-items:center;gap:11px;margin-top:26px;color:var(--text);font-size:1.05rem;font-weight:600;padding:12px 20px;border:1px solid var(--line);border-radius:999px;transition:.3s}
+  .wa:hover{border-color:var(--honey);box-shadow:0 8px 26px var(--shadow)}
+  .wa svg{width:22px;height:22px;color:#4fae5c;flex:none}
+  .form{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:38px;box-shadow:0 24px 60px var(--shadow)}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--honey);margin-bottom:8px;font-weight:600}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{text-transform:none;letter-spacing:.03em}
+  .field input,.field select{width:100%;padding:14px 16px;border-radius:10px;border:1px solid var(--line);background:var(--field);color:var(--text);font-family:inherit;font-size:.95rem}
+  .field input::placeholder{color:var(--muted);opacity:.75}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--honey)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .submit{width:100%;background:var(--honey);color:var(--btn-ink);border:none;padding:17px;border-radius:999px;font-family:inherit;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.35s;margin-top:8px}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{text-transform:none;letter-spacing:.03em}
+  .submit:hover{background:var(--honey-2)}
+  @media(max-width:860px){.book-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* ============ FOOTER — temadan bağımsız derin orman ============ */
+  footer{background:#0b120d;color:#9aa88c;padding:70px 0 32px}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:48px}
+  .foot-brand{display:flex;align-items:center;gap:12px;font-family:'Palatino Linotype','Book Antiqua',Georgia,serif;font-size:1.4rem;color:#efe9d4;margin-bottom:16px}
+  .foot-brand svg{width:30px;height:30px;color:#e3a94d;flex:none}
+  footer h4{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#e3a94d;margin-bottom:18px}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{text-transform:none;letter-spacing:.04em}
+  footer ul{list-style:none}
+  footer li{margin-bottom:11px;font-size:.93rem;font-weight:300;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:#efe9d4}
+  .foot-bottom{border-top:1px solid rgba(227,169,77,.14);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.76rem}
+  .demo-badge{background:#e3a94d;color:#1c1408;padding:5px 13px;border-radius:999px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  @media(max-width:860px){footer{padding-bottom:110px}}
+
+  .reveal{opacity:0;transform:translateY(34px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:760px){
+    section{padding:80px 0}
+    .story,.rides,.why,.gallery{padding-top:118px}
+    .form{padding:30px 22px}
+    .foot-grid{grid-template-columns:1fr;gap:32px}
+    .brand .bt b{font-size:.94rem}
+    .brand svg{width:26px;height:26px}
+    .hero h1{font-size:clamp(2.3rem,9.5vw,3.2rem)}
+    .scrollhint{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s!important}
+    .reveal{opacity:1;transform:none}
+    .blob{transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- Signature: film grain + bal rengi scroll çubuğu -->
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- NAV — "Kanopi": 21st.dev fluid/gooey pill kalıbının vanilla portu.
+     Seçim nedeni: bahçe/cennet kimliği organik, yumuşak bir gösterge istiyordu;
+     tubelight / glass-dock / dot-rail / floating önceki demolarda kullanıldı — burada aktif bağlantının
+     altında bölümden bölüme "süzülen", kenarları nefes alan organik bir damla (blob) var. -->
+<a class="brand" href="#top" id="brand" aria-label="Horse Paradise — başa dön">
+  <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M32 54c-11-1-19-10-19-22 0-10 8-19 19-19s19 9 19 19c0 12-8 21-19 22" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M20 47l-4 6M44 47l4 6" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M32 13V7m0 0c-3 0-5-2-5-4 3 0 5 1 5 4zm0 0c3 0 5-2 5-4-3 0-5 1-5 4z" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+  <span class="bt"><b>Horse Paradise</b><span>Göreme</span></span>
+</a>
+
+<nav class="canopy" aria-label="Ana menü">
+  <div class="canopy-links" id="canopyLinks">
+    <span class="blob" id="canopyBlob" aria-hidden="true"></span>
+    <a href="#story" data-sec="story" data-i18n="nav_story">Hikâye</a>
+    <a href="#rides" data-sec="rides" data-i18n="nav_rides">Sürüşler</a>
+    <a href="#why" data-sec="why" data-i18n="nav_why">Neden Biz</a>
+    <a href="#gallery" data-sec="gallery" data-i18n="nav_gallery">Galeri</a>
+    <a href="#book" data-sec="book" data-i18n="nav_book">Rezervasyon</a>
+  </div>
+</nav>
+
+<div class="ctrls">
+  <div class="langs" role="group" aria-label="Dil / Language">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+  <div class="m-lang-wrap">
+    <button class="m-lang-chip" id="mLangChip" aria-haspopup="true" aria-expanded="false" aria-label="Dil / Language">TR</button>
+    <div class="m-lang-sheet" id="mLangSheet">
+      <button data-lang="tr" class="active">Türkçe</button>
+      <button data-lang="en">English</button>
+      <button data-lang="es">Español</button>
+      <button data-lang="zh-CN">中文</button>
+      <button data-lang="ko">한국어</button>
+    </div>
+  </div>
+  <button class="theme-btn" id="themeBtn" aria-label="Aydınlık / karanlık tema">
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 13.5A8 8 0 1 1 10.5 4a6.5 6.5 0 0 0 9.5 9.5z"/></svg>
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3L19 19M19 5l-1.7 1.7M6.7 17.3L5 19"/></svg>
+  </button>
+</div>
+
+<!-- Mobil alt "çakıl barı" — aynı organik blob göstergesiyle -->
+<nav class="pebble-bar" aria-label="Alt menü">
+  <div class="pebble-links" id="pebbleLinks">
+    <span class="blob" id="pebbleBlob" aria-hidden="true"></span>
+    <a href="#story" data-sec="story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21c-5-3-8-6.5-8-11C4 6 7 3 12 3s8 3 8 7c0 4.5-3 8-8 11z"/><path d="M12 21V9"/></svg><span data-i18n="mnav_story">Hikâye</span></a>
+    <a href="#rides" data-sec="rides"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 20c-4.5-.5-8-4-8-9 0-4 3.5-7.5 8-7.5s8 3.5 8 7.5c0 5-3.5 8.5-8 9"/><path d="M7 18l-1.6 2.4M17 18l1.6 2.4"/></svg><span data-i18n="mnav_rides">Sürüş</span></a>
+    <a href="#why" data-sec="why"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3l2.5 5.4 5.9.6-4.4 4 1.2 5.8L12 15.9 6.8 18.8 8 13 3.6 9l5.9-.6z"/></svg><span data-i18n="mnav_why">Neden</span></a>
+    <a href="#gallery" data-sec="gallery"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="mnav_gallery">Galeri</span></a>
+    <a href="#book" data-sec="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.2L4 21l1.9-5A8 8 0 1 1 21 12z"/></svg><span data-i18n="mnav_book">Rezerve</span></a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-photo" id="heroPhoto"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <div class="rays" aria-hidden="true"></div>
+  <div class="pollen" id="pollen" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M32 54c-11-1-19-10-19-22 0-10 8-19 19-19s19 9 19 19c0 12-8 21-19 22" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg><span data-i18n="hero_eyebrow">Horse Paradise · Göreme</span></span>
+      <h1 data-i18n="hero_title" data-i18n-html="1">Balonların altında,<br><em>atların cennetinde.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Göreme'nin patikalarında, bal rengi ışıkta at sırtı yolculuklar. Adı iddialı bir çiftlik — ve o adı Google'da 4.9'a taşıyan 127 misafir.</p>
+      <a class="rating-badge" href="https://www.google.com/maps/place/Horse+Paradise/data=!4m7!3m6!1s0x152a67c8b8cab377:0x3563d9256894c66a!8m2!3d38.6643061!4d34.8324546!16s%2Fg%2F11p5f7c81g" target="_blank" rel="noopener">
+        <span class="rstars" aria-hidden="true">★★★★★</span><b>4.9</b><span data-i18n="hero_badge">127 Google yorumu</span>
+      </a>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#book"><span data-i18n="hero_cta1">WhatsApp'tan yaz</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#rides" data-i18n="hero_cta2">Sürüşleri gör</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Bahçeye in</span><span class="l"></span></div>
+  <svg class="hero-valley" viewBox="0 0 1440 72" preserveAspectRatio="none" aria-hidden="true"><path d="M0 72V38C120 14 260 52 420 40 580 28 690 58 860 44 1030 30 1160 56 1300 40c60-7 100-12 140-4v36z"/></svg>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n">4.9★</div><div class="l" data-i18n="stat_rating">Google puanı</div></div>
+    <div class="stat"><div class="n" data-count="127" data-suffix="">0</div><div class="l" data-i18n="stat_reviews">Misafir yorumu</div></div>
+    <div class="stat"><div class="n" data-count="3" data-suffix-i18n="stat_lights_suffix" data-suffix=" ışık">0</div><div class="l" data-i18n="stat_lights">Şafak · altın saat · gündüz</div></div>
+    <div class="stat"><div class="n" style="font-size:clamp(1.6rem,3.4vw,2.4rem)" data-i18n="stat_loc_v">Göreme</div><div class="l" data-i18n="stat_loc">Kapadokya'nın kalbinde</div></div>
+  </div>
+</div>
+
+<section class="story" id="story">
+  <svg class="valley-top" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path d="M0 64V34C140 10 300 48 470 36 640 24 760 54 930 40 1100 26 1250 50 1440 32v32z" style="fill:var(--deep)"/></svg>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M32 54c-11-1-19-10-19-22 0-10 8-19 19-19s19 9 19 19c0 12-8 21-19 22" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg><span data-i18n="story_eyebrow">Hikâye</span></span>
+      <h2 data-i18n="story_h">Adı cesur, sebebi basit.</h2>
+      <p data-i18n="story_sub">Kapadokya'nın kadim adı "Güzel Atlar Diyarı". Göreme'de bir çiftliğe "Horse Paradise" demek, o mirası her sabah yeniden hak etmeyi göze almaktır.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-visual reveal" id="storyImg">
+        <span class="ph-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="ph_story">Çiftlikten bir kare</span></span>
+      </div>
+      <div class="story-text reveal">
+        <p class="lead" data-i18n="story_lead">Bir yere "cennet" adını vermek kolay; o adı misafirlerin yorumlarına yazdırmak değil.</p>
+        <p data-i18n="story_p1">Çiftliğimiz Göreme'de. Atlarımız günü padoklarda, açık havada geçirir; sürüş saati geldiğinde sizi eyerlenmiş, sakin ve hazır karşılarlar.</p>
+        <p data-i18n="story_p2">Rotalar Göreme çevresindeki vadilerden geçer. Sabah çıkışlarında gökyüzünde çoğu gün balonlar süzülür; akşama doğru kayalar bal rengine döner. Hangi ışığı seçerseniz seçin, temposunu atlar belirler.</p>
+        <p class="sign" data-i18n="story_sign">— Horse Paradise ekibi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rides" id="rides">
+  <svg class="valley-top" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path d="M0 64V30C160 8 320 46 490 34 660 22 790 52 960 38 1130 24 1280 48 1440 30v34z" style="fill:var(--bg1)"/></svg>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M32 54c-11-1-19-10-19-22 0-10 8-19 19-19s19 9 19 19c0 12-8 21-19 22" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg><span data-i18n="rides_eyebrow">Sürüşler</span></span>
+      <h2 data-i18n="rides_h">Üç ayrı ışık, tek cennet.</h2>
+      <p data-i18n="rides_sub">Süreler ve güncel fiyatlar mevsime ve rotaya göre planlanır — WhatsApp'tan sorduğunuzda birlikte netleştiririz.</p>
+    </div>
+    <div class="ride-grid">
+      <article class="ride-card reveal">
+        <div class="ride-visual rv1" data-img="ride-1.jpg" data-pos="center 42%"><span class="time" data-i18n="ride1_time">sabah · balon vakti</span></div>
+        <div class="ride-body">
+          <span class="tag" data-i18n="ride1_tag">Gökyüzü kalabalıkken</span>
+          <h3 data-i18n="ride1_h">Balon Vakti Sürüşü</h3>
+          <p data-i18n="ride1_p">Sabahın ilk saatlerinde eyerdesiniz; balonların uçtuğu günlerde rota o manzaranın tam altından geçer. Galerideki kareler kurgu değil — misafir sabahları böyle görünüyor.</p>
+          <a class="ride-cta" href="#book"><span data-i18n="ride_cta">Uygunluk sor</span> <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="ride-card reveal">
+        <div class="ride-visual rv2" data-img="ride-2.jpg" data-pos="center 40%"><span class="time" data-i18n="ride2_time">akşamüstü · altın saat</span></div>
+        <div class="ride-body">
+          <span class="tag" data-i18n="ride2_tag">En yumuşak ışık</span>
+          <h3 data-i18n="ride2_h">Altın Saat Sürüşü</h3>
+          <p data-i18n="ride2_p">Gün alçalırken peri bacalarının arasından geçiyoruz; tüf kayalar bal rengine döner, gölgeler uzar. Günün en fotojenik saati.</p>
+          <a class="ride-cta" href="#book"><span data-i18n="ride_cta">Uygunluk sor</span> <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="ride-card reveal">
+        <div class="ride-visual rv3" data-img="ride-3.jpg" data-pos="center 48%"><span class="time" data-i18n="ride3_time">gündüz · vadi yolu</span></div>
+        <div class="ride-body">
+          <span class="tag" data-i18n="ride3_tag">Patikaların ritmi</span>
+          <h3 data-i18n="ride3_h">Vadi Yolculuğu</h3>
+          <p data-i18n="ride3_p">Göreme çevresindeki vadi patikalarında, rehber eşliğinde sakin bir konvoy. Açık gökyüzü, geniş manzara ve atların adımına bırakılmış bir tempo.</p>
+          <a class="ride-cta" href="#book"><span data-i18n="ride_cta">Uygunluk sor</span> <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+    <div class="rides-note reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
+      <span data-i18n="rides_note">Programı birlikte kurarız: deneyim seviyenizi yazın, size uygun saati ve rotayı önerelim.</span>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <svg class="valley-top" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path d="M0 64V36C150 12 310 50 480 38 650 26 780 54 950 40 1120 26 1270 52 1440 34v30z" style="fill:var(--bg0)"/></svg>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M32 54c-11-1-19-10-19-22 0-10 8-19 19-19s19 9 19 19c0 12-8 21-19 22" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg><span data-i18n="why_eyebrow">Neden Horse Paradise</span></span>
+      <h2 data-i18n="why_h">Cennetin dört kanıtı.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l2.5 5.4 5.9.6-4.4 4 1.2 5.8L12 15.9 6.8 18.8 8 13 3.6 9l5.9-.6z"/></svg>
+        <h3 data-i18n="why1_h">127 yorumda 4.9</h3>
+        <p data-i18n="why1_p">Google'da misafirlerin bıraktığı karne. Cümleyi biz kurmuyoruz; puan ortada, yorumlar açık.</p>
+      </div>
+      <div class="why-card reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0v3H4z"/><path d="M9 16v2.5M15 16v2.5M12 5V3"/></svg>
+        <h3 data-i18n="why2_h">Kasklar hazır</h3>
+        <p data-i18n="why2_p">Dileyen misafir sürüşe kaskla çıkar — sürüş fotoğraflarındaki binicilerde gördüğünüz gibi, ekipman çiftlikte hazırdır.</p>
+      </div>
+      <div class="why-card reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
+        <h3 data-i18n="why3_h">Rehber eşliğinde</h3>
+        <p data-i18n="why3_p">Konvoy yalnız bırakılmaz; rota boyunca patikaları ve atları tanıyan bir rehber öndedir.</p>
+      </div>
+      <div class="why-card reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3a7 7 0 0 1 7 7c0 3-2 5-4.5 6.5L14 21h-4l-.5-4.5C7 15 5 13 5 10a7 7 0 0 1 7-7z"/><path d="M10 21h4"/></svg>
+        <h3 data-i18n="why4_h">Balon vakti sabahlar</h3>
+        <p data-i18n="why4_p">Sabah çıkışları, balonların gökte olduğu erken saatlere denk gelir — galerideki kareler o sabahlardan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <svg class="valley-top" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true"><path d="M0 64V32C170 10 330 48 500 36 670 24 800 52 970 38 1140 24 1290 48 1440 32v32z" style="fill:var(--bg2)"/></svg>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M32 54c-11-1-19-10-19-22 0-10 8-19 19-19s19 9 19 19c0 12-8 21-19 22" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg><span data-i18n="gallery_eyebrow">Galeri</span></span>
+      <h2 data-i18n="gallery_h">Cennetten kareler.</h2>
+      <p data-i18n="gallery_sub">Kurgu değil: tüm kareler Horse Paradise'ın Google Maps profilinde çiftliğin ve misafirlerin paylaştığı fotoğraflardan seçildi.</p>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile big" data-img="gallery-1.jpg" data-pos="center 30%"><span class="ph-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="ph_g1">Eyerden: balon sabahı</span></span></div>
+      <div class="tile" data-img="gallery-2.jpg"><span class="ph-label"><span data-i18n="ph_g2">Akşam göğünde balon</span></span></div>
+      <div class="tile" data-img="gallery-3.jpg"><span class="ph-label"><span data-i18n="ph_g3">Şafakta Göreme vadileri</span></span></div>
+      <div class="tile" data-img="gallery-4.jpg"><span class="ph-label"><span data-i18n="ph_g4">Kalkış alanında sabah</span></span></div>
+      <div class="tile" data-img="gallery-5.jpg" data-pos="center 42%"><span class="ph-label"><span data-i18n="ph_g5">Padok üstünde balon</span></span></div>
+      <div class="tile" data-img="gallery-6.jpg" data-pos="center 14%"><span class="ph-label"><span data-i18n="ph_g6">Vadi yolunda</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M32 54c-11-1-19-10-19-22 0-10 8-19 19-19s19 9 19 19c0 12-8 21-19 22" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg><span data-i18n="book_eyebrow">Rezervasyon</span></span>
+        <h2 style="margin-top:18px" data-i18n="book_h" data-i18n-html="1">Bir sabahı <em>ayırtın.</em></h2>
+        <p class="lede" data-i18n="book_lede">Formu doldurun; mesajınız hazır hâlde WhatsApp'ta açılır, göndermeden önce düzenleyebilirsiniz. Ya da doğrudan yazın:</p>
+        <a class="wa" href="https://wa.me/905303498275" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg>
+          +90 530 349 82 75
+        </a>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-date" data-i18n="label_date">Tarih</label><input type="date" id="f-date"></div>
+          <div class="field"><label for="f-count" data-i18n="label_people">Kişi</label>
+            <select id="f-count">
+              <option data-i18n="opt_1p">1 kişi</option><option data-i18n="opt_2p">2 kişi</option><option data-i18n="opt_3p">3 kişi</option><option data-i18n="opt_4p">4+ kişi</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-ride" data-i18n="label_ride">Sürüş</label>
+          <select id="f-ride">
+            <option data-i18n="opt_ride1">Balon Vakti Sürüşü</option>
+            <option data-i18n="opt_ride2">Altın Saat Sürüşü</option>
+            <option data-i18n="opt_ride3">Vadi Yolculuğu</option>
+            <option data-i18n="opt_ride4">Kararsızım — siz önerin</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-phone" data-i18n="label_phone">WhatsApp / Telefon</label>
+          <input type="tel" id="f-phone" data-i18n-ph="ph_phone" placeholder="Size ulaşabileceğimiz numara">
+        </div>
+        <button class="submit" type="button" onclick="sendBooking()" data-i18n="btn_submit">WhatsApp'ta aç</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M32 54c-11-1-19-10-19-22 0-10 8-19 19-19s19 9 19 19c0 12-8 21-19 22" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M20 47l-4 6M44 47l4 6" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+          Horse Paradise
+        </div>
+        <p style="max-width:340px;font-weight:300" data-i18n="foot_about">Göreme'de, adının hakkını vermeye çalışan bir at çiftliği: balon vakti sabahlar, altın saat akşamlar, vadi patikaları.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#story" data-i18n="nav_story">Hikâye</a></li>
+          <li><a href="#rides" data-i18n="nav_rides">Sürüşler</a></li>
+          <li><a href="#gallery" data-i18n="nav_gallery">Galeri</a></li>
+          <li><a href="#book" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Göreme, Nevşehir</li>
+          <li><a href="https://wa.me/905303498275" target="_blank" rel="noopener">+90 530 349 82 75</a></li>
+          <li data-i18n="foot_rating">Google'da 4.9★ · 127 yorum</li>
+          <li data-i18n="foot_hours">Sürüş saatleri mevsime göre — WhatsApp'tan sorun</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Horse Paradise — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 70;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
+<script>
+// ==================== i18n SÖZLÜĞÜ ====================
+const I18N = {
+  tr:{
+    meta_title:"Horse Paradise — Göreme At Turları | Kapadokya'da At Sırtında",
+    meta_desc:"Göreme'de Horse Paradise ile at sırtında Kapadokya: balon vakti sabah sürüşleri, altın saat ve vadi rotaları. Google'da 127 yorumda 4.9. WhatsApp'tan yerinizi sorun.",
+    nav_story:"Hikâye",nav_rides:"Sürüşler",nav_why:"Neden Biz",nav_gallery:"Galeri",nav_book:"Rezervasyon",
+    mnav_story:"Hikâye",mnav_rides:"Sürüş",mnav_why:"Neden",mnav_gallery:"Galeri",mnav_book:"Rezerve",
+    hero_eyebrow:"Horse Paradise · Göreme",
+    hero_title:'Balonların altında,<br><em>atların cennetinde.</em>',
+    hero_lede:"Göreme'nin patikalarında, bal rengi ışıkta at sırtı yolculuklar. Adı iddialı bir çiftlik — ve o adı Google'da 4.9'a taşıyan 127 misafir.",
+    hero_badge:"127 Google yorumu",
+    hero_cta1:"WhatsApp'tan yaz",hero_cta2:"Sürüşleri gör",scroll_hint:"Bahçeye in",
+    stat_rating:"Google puanı",stat_reviews:"Misafir yorumu",
+    stat_lights:"Şafak · altın saat · gündüz",stat_lights_suffix:" ışık",
+    stat_loc_v:"Göreme",stat_loc:"Kapadokya'nın kalbinde",
+    story_eyebrow:"Hikâye",story_h:"Adı cesur, sebebi basit.",
+    story_sub:'Kapadokya\'nın kadim adı "Güzel Atlar Diyarı". Göreme\'de bir çiftliğe "Horse Paradise" demek, o mirası her sabah yeniden hak etmeyi göze almaktır.',
+    story_lead:'Bir yere "cennet" adını vermek kolay; o adı misafirlerin yorumlarına yazdırmak değil.',
+    story_p1:"Çiftliğimiz Göreme'de. Atlarımız günü padoklarda, açık havada geçirir; sürüş saati geldiğinde sizi eyerlenmiş, sakin ve hazır karşılarlar.",
+    story_p2:"Rotalar Göreme çevresindeki vadilerden geçer. Sabah çıkışlarında gökyüzünde çoğu gün balonlar süzülür; akşama doğru kayalar bal rengine döner. Hangi ışığı seçerseniz seçin, temposunu atlar belirler.",
+    story_sign:"— Horse Paradise ekibi",ph_story:"Çiftlikten bir kare",
+    rides_eyebrow:"Sürüşler",rides_h:"Üç ayrı ışık, tek cennet.",
+    rides_sub:"Süreler ve güncel fiyatlar mevsime ve rotaya göre planlanır — WhatsApp'tan sorduğunuzda birlikte netleştiririz.",
+    ride1_time:"sabah · balon vakti",ride1_tag:"Gökyüzü kalabalıkken",ride1_h:"Balon Vakti Sürüşü",
+    ride1_p:"Sabahın ilk saatlerinde eyerdesiniz; balonların uçtuğu günlerde rota o manzaranın tam altından geçer. Galerideki kareler kurgu değil — misafir sabahları böyle görünüyor.",
+    ride2_time:"akşamüstü · altın saat",ride2_tag:"En yumuşak ışık",ride2_h:"Altın Saat Sürüşü",
+    ride2_p:"Gün alçalırken peri bacalarının arasından geçiyoruz; tüf kayalar bal rengine döner, gölgeler uzar. Günün en fotojenik saati.",
+    ride3_time:"gündüz · vadi yolu",ride3_tag:"Patikaların ritmi",ride3_h:"Vadi Yolculuğu",
+    ride3_p:"Göreme çevresindeki vadi patikalarında, rehber eşliğinde sakin bir konvoy. Açık gökyüzü, geniş manzara ve atların adımına bırakılmış bir tempo.",
+    ride_cta:"Uygunluk sor",
+    rides_note:"Programı birlikte kurarız: deneyim seviyenizi yazın, size uygun saati ve rotayı önerelim.",
+    why_eyebrow:"Neden Horse Paradise",why_h:"Cennetin dört kanıtı.",
+    why1_h:"127 yorumda 4.9",why1_p:"Google'da misafirlerin bıraktığı karne. Cümleyi biz kurmuyoruz; puan ortada, yorumlar açık.",
+    why2_h:"Kasklar hazır",why2_p:"Dileyen misafir sürüşe kaskla çıkar — sürüş fotoğraflarındaki binicilerde gördüğünüz gibi, ekipman çiftlikte hazırdır.",
+    why3_h:"Rehber eşliğinde",why3_p:"Konvoy yalnız bırakılmaz; rota boyunca patikaları ve atları tanıyan bir rehber öndedir.",
+    why4_h:"Balon vakti sabahlar",why4_p:"Sabah çıkışları, balonların gökte olduğu erken saatlere denk gelir — galerideki kareler o sabahlardan.",
+    gallery_eyebrow:"Galeri",gallery_h:"Cennetten kareler.",
+    gallery_sub:"Kurgu değil: tüm kareler Horse Paradise'ın Google Maps profilinde çiftliğin ve misafirlerin paylaştığı fotoğraflardan seçildi.",
+    ph_g1:"Eyerden: balon sabahı",ph_g2:"Akşam göğünde balon",ph_g3:"Şafakta Göreme vadileri",ph_g4:"Kalkış alanında sabah",ph_g5:"Padok üstünde balon",ph_g6:"Vadi yolunda",
+    book_eyebrow:"Rezervasyon",book_h:'Bir sabahı <em>ayırtın.</em>',
+    book_lede:"Formu doldurun; mesajınız hazır hâlde WhatsApp'ta açılır, göndermeden önce düzenleyebilirsiniz. Ya da doğrudan yazın:",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_date:"Tarih",label_people:"Kişi",
+    opt_1p:"1 kişi",opt_2p:"2 kişi",opt_3p:"3 kişi",opt_4p:"4+ kişi",
+    label_ride:"Sürüş",opt_ride1:"Balon Vakti Sürüşü",opt_ride2:"Altın Saat Sürüşü",opt_ride3:"Vadi Yolculuğu",opt_ride4:"Kararsızım — siz önerin",
+    label_phone:"WhatsApp / Telefon",ph_phone:"Size ulaşabileceğimiz numara",btn_submit:"WhatsApp'ta aç",
+    foot_about:"Göreme'de, adının hakkını vermeye çalışan bir at çiftliği: balon vakti sabahlar, altın saat akşamlar, vadi patikaları.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Göreme, Nevşehir",
+    foot_rating:"Google'da 4.9★ · 127 yorum",foot_hours:"Sürüş saatleri mevsime göre — WhatsApp'tan sorun",
+    foot_rights:"© 2026 Horse Paradise — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    wa_msg:"Merhaba Horse Paradise! Sürüş için uygunluk sormak istiyorum:",wa_name:"Ad",wa_date:"Tarih",wa_people:"Kişi",wa_ride:"Sürüş",wa_phone:"Telefon",
+    alert_fill:"Lütfen adınızı, tarihi ve telefon numaranızı girin."
+  },
+  en:{
+    meta_title:"Horse Paradise — Horseback Riding in Göreme, Cappadocia",
+    meta_desc:"Ride Cappadocia with Horse Paradise in Göreme: balloon-hour morning rides, golden hour and valley trails. Rated 4.9 from 127 Google reviews. Ask for your spot on WhatsApp.",
+    nav_story:"Story",nav_rides:"Rides",nav_why:"Why Us",nav_gallery:"Gallery",nav_book:"Book",
+    mnav_story:"Story",mnav_rides:"Rides",mnav_why:"Why",mnav_gallery:"Gallery",mnav_book:"Book",
+    hero_eyebrow:"Horse Paradise · Göreme",
+    hero_title:'Under the balloons,<br><em>in a paradise of horses.</em>',
+    hero_lede:"Horseback journeys on Göreme's trails in honey-coloured light. A farm with a bold name — and 127 guests who carried that name to 4.9 on Google.",
+    hero_badge:"127 Google reviews",
+    hero_cta1:"Write on WhatsApp",hero_cta2:"See the rides",scroll_hint:"Into the garden",
+    stat_rating:"Google rating",stat_reviews:"Guest reviews",
+    stat_lights:"Dawn · golden hour · daytime",stat_lights_suffix:" lights",
+    stat_loc_v:"Göreme",stat_loc:"In the heart of Cappadocia",
+    story_eyebrow:"Story",story_h:"A bold name, a simple reason.",
+    story_sub:'Cappadocia\'s ancient name means "Land of Beautiful Horses." Calling a farm in Göreme "Horse Paradise" means daring to earn that legacy every morning.',
+    story_lead:'Naming a place "paradise" is easy; getting guests to write it in their reviews is not.',
+    story_p1:"Our farm is in Göreme. The horses spend their days outdoors in the paddocks; when it's time to ride, they meet you saddled, calm and ready.",
+    story_p2:"The routes wind through the valleys around Göreme. On morning rides, balloons drift overhead most days; towards evening the rocks turn the colour of honey. Whichever light you choose, the horses set the pace.",
+    story_sign:"— The Horse Paradise team",ph_story:"A frame from the farm",
+    rides_eyebrow:"Rides",rides_h:"Three lights, one paradise.",
+    rides_sub:"Durations and current prices are planned by season and route — ask on WhatsApp and we'll settle it together.",
+    ride1_time:"morning · balloon hour",ride1_tag:"When the sky is crowded",ride1_h:"Balloon-Hour Ride",
+    ride1_p:"You're in the saddle in the early morning; on flying days the route passes right beneath the balloons. The gallery shots aren't staged — this is what guest mornings look like.",
+    ride2_time:"late afternoon · golden hour",ride2_tag:"The softest light",ride2_h:"Golden Hour Ride",
+    ride2_p:"As the sun sinks we pass among the fairy chimneys; the tuff rocks turn honey-coloured and the shadows stretch. The most photogenic hour of the day.",
+    ride3_time:"daytime · valley trail",ride3_tag:"The rhythm of the trails",ride3_h:"Valley Journey",
+    ride3_p:"A calm convoy on the valley trails around Göreme, led by a guide. Open sky, wide views, and a pace left to the horses' stride.",
+    ride_cta:"Ask availability",
+    rides_note:"We build the plan together: tell us your experience level and we'll suggest the right hour and route.",
+    why_eyebrow:"Why Horse Paradise",why_h:"Four proofs of paradise.",
+    why1_h:"4.9 from 127 reviews",why1_p:"A report card written by guests on Google. We don't write the sentence; the score and the reviews are public.",
+    why2_h:"Helmets ready",why2_p:"Any guest who wishes rides with a helmet — as you can see on the riders in the ride photos, the gear is ready at the farm.",
+    why3_h:"Guide-led rides",why3_p:"The convoy is never left alone; a guide who knows the trails and the horses rides ahead.",
+    why4_h:"Balloon-hour mornings",why4_p:"Morning departures fall in the early hours when balloons are in the sky — the gallery frames come from those mornings.",
+    gallery_eyebrow:"Gallery",gallery_h:"Frames from paradise.",
+    gallery_sub:"Nothing staged: every frame is selected from photos shared by the farm and its guests on Horse Paradise's Google Maps profile.",
+    ph_g1:"From the saddle: balloon morning",ph_g2:"A balloon in the evening sky",ph_g3:"Göreme valleys at dawn",ph_g4:"Morning at the launch field",ph_g5:"A balloon over the paddock",ph_g6:"On the valley trail",
+    book_eyebrow:"Booking",book_h:'Reserve a <em>morning.</em>',
+    book_lede:"Fill in the form; your message opens ready in WhatsApp and you can edit it before sending. Or write directly:",
+    label_name:"Your name",ph_name:"Your full name",label_date:"Date",label_people:"Guests",
+    opt_1p:"1 person",opt_2p:"2 people",opt_3p:"3 people",opt_4p:"4+ people",
+    label_ride:"Ride",opt_ride1:"Balloon-Hour Ride",opt_ride2:"Golden Hour Ride",opt_ride3:"Valley Journey",opt_ride4:"Not sure — you suggest",
+    label_phone:"WhatsApp / Phone",ph_phone:"A number we can reach you on",btn_submit:"Open in WhatsApp",
+    foot_about:"A horse farm in Göreme trying to live up to its name: balloon-hour mornings, golden-hour evenings, valley trails.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Göreme, Nevşehir",
+    foot_rating:"4.9★ on Google · 127 reviews",foot_hours:"Ride times vary by season — ask on WhatsApp",
+    foot_rights:"© 2026 Horse Paradise — All rights reserved.",foot_demo:"Sample / Demo Design",
+    wa_msg:"Hello Horse Paradise! I'd like to ask about availability for a ride:",wa_name:"Name",wa_date:"Date",wa_people:"Guests",wa_ride:"Ride",wa_phone:"Phone",
+    alert_fill:"Please enter your name, date and phone number."
+  },
+  es:{
+    meta_title:"Horse Paradise — Paseos a Caballo en Göreme, Capadocia",
+    meta_desc:"Cabalga Capadocia con Horse Paradise en Göreme: paseos matinales a la hora de los globos, hora dorada y senderos del valle. 4.9 con 127 reseñas en Google. Pregunta por WhatsApp.",
+    nav_story:"Historia",nav_rides:"Paseos",nav_why:"Por qué",nav_gallery:"Galería",nav_book:"Reservar",
+    mnav_story:"Historia",mnav_rides:"Paseos",mnav_why:"Por qué",mnav_gallery:"Galería",mnav_book:"Reservar",
+    hero_eyebrow:"Horse Paradise · Göreme",
+    hero_title:'Bajo los globos,<br><em>en un paraíso de caballos.</em>',
+    hero_lede:"Viajes a caballo por los senderos de Göreme, bajo una luz color miel. Una granja con un nombre atrevido — y 127 huéspedes que lo llevaron al 4.9 en Google.",
+    hero_badge:"127 reseñas en Google",
+    hero_cta1:"Escribe por WhatsApp",hero_cta2:"Ver los paseos",scroll_hint:"Baja al jardín",
+    stat_rating:"Puntuación Google",stat_reviews:"Reseñas de huéspedes",
+    stat_lights:"Alba · hora dorada · día",stat_lights_suffix:" luces",
+    stat_loc_v:"Göreme",stat_loc:"En el corazón de Capadocia",
+    story_eyebrow:"Historia",story_h:"Un nombre audaz, una razón simple.",
+    story_sub:'El nombre antiguo de Capadocia significa "Tierra de los Hermosos Caballos". Llamar "Horse Paradise" a una granja de Göreme es atreverse a merecer ese legado cada mañana.',
+    story_lead:'Llamar "paraíso" a un lugar es fácil; lograr que los huéspedes lo escriban en sus reseñas, no.',
+    story_p1:"Nuestra granja está en Göreme. Los caballos pasan el día al aire libre en los corrales; a la hora del paseo te reciben ensillados, tranquilos y listos.",
+    story_p2:"Las rutas recorren los valles que rodean Göreme. En las salidas matinales, casi todos los días los globos flotan sobre tu cabeza; hacia la tarde las rocas se vuelven color miel. Elijas la luz que elijas, el ritmo lo marcan los caballos.",
+    story_sign:"— El equipo de Horse Paradise",ph_story:"Una imagen de la granja",
+    rides_eyebrow:"Paseos",rides_h:"Tres luces, un solo paraíso.",
+    rides_sub:"Las duraciones y los precios actuales se planifican según la temporada y la ruta — pregunta por WhatsApp y lo concretamos juntos.",
+    ride1_time:"mañana · hora de los globos",ride1_tag:"Con el cielo lleno",ride1_h:"Paseo a la Hora de los Globos",
+    ride1_p:"Estás en la silla a primera hora; los días de vuelo, la ruta pasa justo bajo los globos. Las fotos de la galería no son un montaje: así se ven las mañanas de los huéspedes.",
+    ride2_time:"tarde · hora dorada",ride2_tag:"La luz más suave",ride2_h:"Paseo de la Hora Dorada",
+    ride2_p:"Mientras cae el sol pasamos entre las chimeneas de hadas; la toba se vuelve color miel y las sombras se alargan. La hora más fotogénica del día.",
+    ride3_time:"día · sendero del valle",ride3_tag:"El ritmo de los senderos",ride3_h:"Viaje por el Valle",
+    ride3_p:"Un convoy tranquilo por los senderos de los valles de Göreme, con guía. Cielo abierto, vistas amplias y un paso al ritmo de los caballos.",
+    ride_cta:"Consultar disponibilidad",
+    rides_note:"Armamos el plan juntos: cuéntanos tu nivel de experiencia y te sugerimos la hora y la ruta adecuadas.",
+    why_eyebrow:"Por qué Horse Paradise",why_h:"Cuatro pruebas del paraíso.",
+    why1_h:"4.9 con 127 reseñas",why1_p:"Un boletín escrito por los huéspedes en Google. La frase no la escribimos nosotros; la nota y las reseñas son públicas.",
+    why2_h:"Cascos listos",why2_p:"Quien lo desee cabalga con casco — como ves en los jinetes de las fotos de los paseos, el equipo está listo en la granja.",
+    why3_h:"Con guía al frente",why3_p:"El convoy nunca va solo; delante cabalga un guía que conoce los senderos y los caballos.",
+    why4_h:"Mañanas de globos",why4_p:"Las salidas matinales coinciden con las primeras horas, cuando los globos están en el cielo — las fotos de la galería son de esas mañanas.",
+    gallery_eyebrow:"Galería",gallery_h:"Imágenes del paraíso.",
+    gallery_sub:"Nada de montajes: cada imagen procede de las fotos que la granja y sus huéspedes compartieron en el perfil de Google Maps de Horse Paradise.",
+    ph_g1:"Desde la silla: mañana de globos",ph_g2:"Un globo en el cielo del atardecer",ph_g3:"Los valles de Göreme al alba",ph_g4:"Mañana en el campo de despegue",ph_g5:"Un globo sobre el corral",ph_g6:"En el sendero del valle",
+    book_eyebrow:"Reserva",book_h:'Reserva una <em>mañana.</em>',
+    book_lede:"Rellena el formulario; tu mensaje se abre listo en WhatsApp y puedes editarlo antes de enviarlo. O escribe directamente:",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_date:"Fecha",label_people:"Personas",
+    opt_1p:"1 persona",opt_2p:"2 personas",opt_3p:"3 personas",opt_4p:"4+ personas",
+    label_ride:"Paseo",opt_ride1:"Paseo a la Hora de los Globos",opt_ride2:"Paseo de la Hora Dorada",opt_ride3:"Viaje por el Valle",opt_ride4:"No lo sé — sugiéranme",
+    label_phone:"WhatsApp / Teléfono",ph_phone:"Un número donde localizarte",btn_submit:"Abrir en WhatsApp",
+    foot_about:"Una granja de caballos en Göreme que intenta honrar su nombre: mañanas de globos, tardes de hora dorada, senderos del valle.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Göreme, Nevşehir",
+    foot_rating:"4.9★ en Google · 127 reseñas",foot_hours:"Los horarios varían según la temporada — pregunta por WhatsApp",
+    foot_rights:"© 2026 Horse Paradise — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+    wa_msg:"¡Hola Horse Paradise! Quisiera consultar disponibilidad para un paseo:",wa_name:"Nombre",wa_date:"Fecha",wa_people:"Personas",wa_ride:"Paseo",wa_phone:"Teléfono",
+    alert_fill:"Por favor, introduce tu nombre, la fecha y tu número de teléfono."
+  },
+  "zh-CN":{
+    meta_title:"Horse Paradise — 格雷梅骑马 · 卡帕多奇亚马背之旅",
+    meta_desc:"在格雷梅与 Horse Paradise 一起骑马游卡帕多奇亚：热气球时刻的清晨骑行、黄金时刻与山谷小径。谷歌 127 条评论 4.9 分。通过 WhatsApp 咨询。",
+    nav_story:"故事",nav_rides:"骑行",nav_why:"为什么",nav_gallery:"相册",nav_book:"预订",
+    mnav_story:"故事",mnav_rides:"骑行",mnav_why:"理由",mnav_gallery:"相册",mnav_book:"预订",
+    hero_eyebrow:"Horse Paradise · 格雷梅",
+    hero_title:'热气球之下，<br><em>骏马的天堂之中。</em>',
+    hero_lede:"在格雷梅的小径上，沐浴蜜色光线的马背之旅。一个名字大胆的马场——127 位客人在谷歌上把它托到了 4.9 分。",
+    hero_badge:"127 条谷歌评论",
+    hero_cta1:"WhatsApp 联系",hero_cta2:"查看骑行",scroll_hint:"走进花园",
+    stat_rating:"谷歌评分",stat_reviews:"客人评论",
+    stat_lights:"黎明 · 黄金时刻 · 白天",stat_lights_suffix:" 种光线",
+    stat_loc_v:"格雷梅",stat_loc:"卡帕多奇亚的心脏",
+    story_eyebrow:"故事",story_h:"名字大胆，理由简单。",
+    story_sub:'卡帕多奇亚的古名意为「美丽骏马之地」。在格雷梅给一家马场取名 "Horse Paradise"，就是敢于每天清晨重新赢得这份传承。',
+    story_lead:'给一个地方起名「天堂」很容易；让客人把它写进评论里，才难。',
+    story_p1:"我们的马场位于格雷梅。马儿白天在围场里露天活动；到了骑行时间，它们已备好鞍，安静而从容地迎接您。",
+    story_p2:"路线穿行于格雷梅周边的山谷。清晨出发时，多数日子头顶有热气球飘过；临近傍晚，岩石渐渐染上蜂蜜色。无论选择哪种光线，节奏都由马儿掌握。",
+    story_sign:"— Horse Paradise 团队",ph_story:"马场一景",
+    rides_eyebrow:"骑行",rides_h:"三种光线，同一个天堂。",
+    rides_sub:"时长与最新价格按季节和路线安排——通过 WhatsApp 咨询，我们一起确定。",
+    ride1_time:"清晨 · 热气球时刻",ride1_tag:"当天空热闹时",ride1_h:"热气球时刻骑行",
+    ride1_p:"清晨时分您已在马背上；放飞的日子，路线正好从热气球下方经过。相册里的照片并非摆拍——客人的清晨就是这样。",
+    ride2_time:"傍晚 · 黄金时刻",ride2_tag:"最柔和的光",ride2_h:"黄金时刻骑行",
+    ride2_p:"夕阳西下时，我们穿行于精灵烟囱之间；凝灰岩染上蜜色，影子被拉长。一天中最上镜的时刻。",
+    ride3_time:"白天 · 山谷小径",ride3_tag:"小径的节奏",ride3_h:"山谷之旅",
+    ride3_p:"在格雷梅周边的山谷小径上，由向导带领的从容队列。开阔的天空、辽阔的景致，节奏交给马儿的步伐。",
+    ride_cta:"咨询空位",
+    rides_note:"行程我们一起定：告诉我们您的骑行经验，我们为您推荐合适的时间和路线。",
+    why_eyebrow:"为什么选 Horse Paradise",why_h:"天堂的四个凭证。",
+    why1_h:"127 条评论 4.9 分",why1_p:"这是客人在谷歌上写下的成绩单。话不是我们说的；分数和评论都是公开的。",
+    why2_h:"头盔备好",why2_p:"愿意佩戴的客人都可以戴头盔骑行——正如骑行照片中的骑手，装备在马场随时备好。",
+    why3_h:"向导带队",why3_p:"队伍不会独行；熟悉小径和马匹的向导始终在前面带路。",
+    why4_h:"热气球时刻的清晨",why4_p:"清晨出发正逢热气球升空的时段——相册里的画面就来自那些早晨。",
+    gallery_eyebrow:"相册",gallery_h:"天堂掠影。",
+    gallery_sub:"毫无摆拍：所有照片均选自 Horse Paradise 谷歌地图主页上马场与客人分享的照片。",
+    ph_g1:"鞍上视角 · 热气球的早晨",ph_g2:"暮色中的热气球",ph_g3:"黎明的格雷梅山谷",ph_g4:"起飞场的清晨",ph_g5:"围场上空的热气球",ph_g6:"山谷小径上",
+    book_eyebrow:"预订",book_h:'预订一个<em>清晨。</em>',
+    book_lede:"填写表单，消息会在 WhatsApp 中备好打开，发送前可以修改。也可以直接联系：",
+    label_name:"您的姓名",ph_name:"您的全名",label_date:"日期",label_people:"人数",
+    opt_1p:"1 人",opt_2p:"2 人",opt_3p:"3 人",opt_4p:"4 人以上",
+    label_ride:"骑行",opt_ride1:"热气球时刻骑行",opt_ride2:"黄金时刻骑行",opt_ride3:"山谷之旅",opt_ride4:"不确定——请推荐",
+    label_phone:"WhatsApp / 电话",ph_phone:"方便联系您的号码",btn_submit:"在 WhatsApp 打开",
+    foot_about:"格雷梅一家努力不负其名的马场：热气球时刻的清晨、黄金时刻的傍晚、山谷的小径。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"格雷梅，内夫谢希尔",
+    foot_rating:"谷歌 4.9★ · 127 条评论",foot_hours:"骑行时间随季节而变——请通过 WhatsApp 咨询",
+    foot_rights:"© 2026 Horse Paradise — 版权所有。",foot_demo:"示例 / 演示设计",
+    wa_msg:"您好 Horse Paradise！我想咨询骑行的空位：",wa_name:"姓名",wa_date:"日期",wa_people:"人数",wa_ride:"骑行",wa_phone:"电话",
+    alert_fill:"请填写您的姓名、日期和电话号码。"
+  },
+  ko:{
+    meta_title:"Horse Paradise — 괴레메 승마 · 카파도키아 말 위의 여정",
+    meta_desc:"괴레메의 Horse Paradise와 함께 말을 타고 카파도키아를: 열기구 시간의 아침 라이딩, 골든아워와 계곡 트레일. 구글 리뷰 127개, 평점 4.9. WhatsApp으로 문의하세요.",
+    nav_story:"이야기",nav_rides:"라이딩",nav_why:"이유",nav_gallery:"갤러리",nav_book:"예약",
+    mnav_story:"이야기",mnav_rides:"라이딩",mnav_why:"이유",mnav_gallery:"갤러리",mnav_book:"예약",
+    hero_eyebrow:"Horse Paradise · 괴레메",
+    hero_title:'열기구 아래,<br><em>말들의 천국에서.</em>',
+    hero_lede:"꿀빛 햇살 속 괴레메의 오솔길을 달리는 승마 여정. 이름이 대담한 농장—그리고 그 이름을 구글 4.9점으로 끌어올린 127명의 손님.",
+    hero_badge:"구글 리뷰 127개",
+    hero_cta1:"WhatsApp으로 문의",hero_cta2:"라이딩 보기",scroll_hint:"정원으로",
+    stat_rating:"구글 평점",stat_reviews:"손님 리뷰",
+    stat_lights:"새벽 · 골든아워 · 낮",stat_lights_suffix:"가지 빛",
+    stat_loc_v:"괴레메",stat_loc:"카파도키아의 심장",
+    story_eyebrow:"이야기",story_h:"대담한 이름, 단순한 이유.",
+    story_sub:'카파도키아의 옛 이름은 「아름다운 말들의 땅」. 괴레메의 농장에 "Horse Paradise"라는 이름을 붙이는 것은, 매일 아침 그 유산을 다시 증명하겠다는 다짐입니다.',
+    story_lead:'어떤 곳에 「천국」이라 이름 붙이기는 쉽습니다. 손님들이 리뷰에 그렇게 쓰게 만들기는 어렵습니다.',
+    story_p1:"저희 농장은 괴레메에 있습니다. 말들은 낮 동안 야외 패덕에서 지내다가, 라이딩 시간이 되면 안장을 얹은 채 차분하게 당신을 맞이합니다.",
+    story_p2:"루트는 괴레메 주변 계곡을 지납니다. 아침 라이딩에는 대부분의 날 머리 위로 열기구가 떠다니고, 저녁이 가까워지면 바위가 꿀빛으로 물듭니다. 어떤 빛을 고르든, 속도는 말이 정합니다.",
+    story_sign:"— Horse Paradise 팀",ph_story:"농장의 한 장면",
+    rides_eyebrow:"라이딩",rides_h:"세 가지 빛, 하나의 천국.",
+    rides_sub:"소요 시간과 최신 요금은 계절과 루트에 따라 정해집니다 — WhatsApp으로 문의하시면 함께 확정합니다.",
+    ride1_time:"아침 · 열기구 시간",ride1_tag:"하늘이 붐빌 때",ride1_h:"열기구 시간 라이딩",
+    ride1_p:"이른 아침 안장 위에 오릅니다. 비행이 있는 날이면 루트가 열기구 바로 아래를 지납니다. 갤러리 사진은 연출이 아닙니다 — 손님들의 아침이 실제로 이렇습니다.",
+    ride2_time:"늦은 오후 · 골든아워",ride2_tag:"가장 부드러운 빛",ride2_h:"골든아워 라이딩",
+    ride2_p:"해가 기울 때 요정 굴뚝 사이를 지납니다. 응회암이 꿀빛으로 물들고 그림자가 길어집니다. 하루 중 가장 사진이 잘 나오는 시간.",
+    ride3_time:"낮 · 계곡 트레일",ride3_tag:"오솔길의 리듬",ride3_h:"계곡 여정",
+    ride3_p:"괴레메 주변 계곡 오솔길을 가이드와 함께 걷는 차분한 행렬. 트인 하늘, 넓은 풍경, 말의 걸음에 맡긴 속도.",
+    ride_cta:"예약 가능 문의",
+    rides_note:"일정은 함께 만듭니다: 승마 경험을 알려주시면 알맞은 시간과 루트를 제안해 드립니다.",
+    why_eyebrow:"왜 Horse Paradise인가",why_h:"천국의 네 가지 증거.",
+    why1_h:"리뷰 127개, 4.9점",why1_p:"구글에 손님들이 남긴 성적표입니다. 문장은 우리가 쓴 것이 아닙니다. 점수와 리뷰는 공개되어 있습니다.",
+    why2_h:"헬멧 준비 완료",why2_p:"원하는 손님은 헬멧을 쓰고 라이딩합니다 — 라이딩 사진 속 기수들처럼, 장비는 농장에 준비되어 있습니다.",
+    why3_h:"가이드 동행",why3_p:"행렬은 홀로 두지 않습니다. 오솔길과 말을 아는 가이드가 늘 앞장섭니다.",
+    why4_h:"열기구 시간의 아침",why4_p:"아침 출발은 열기구가 하늘에 떠 있는 이른 시간대와 겹칩니다 — 갤러리의 장면들이 그 아침들입니다.",
+    gallery_eyebrow:"갤러리",gallery_h:"천국의 장면들.",
+    gallery_sub:"연출이 아닙니다: 모든 사진은 Horse Paradise의 구글 지도 프로필에 농장과 손님들이 공유한 사진에서 골랐습니다.",
+    ph_g1:"안장 위에서: 열기구 아침",ph_g2:"저녁 하늘의 열기구",ph_g3:"새벽의 괴레메 계곡",ph_g4:"이륙장의 아침",ph_g5:"패덕 위의 열기구",ph_g6:"계곡 트레일에서",
+    book_eyebrow:"예약",book_h:'<em>아침</em>을 예약하세요.',
+    book_lede:"폼을 채우면 메시지가 WhatsApp에 준비된 채 열리고, 보내기 전에 수정할 수 있습니다. 또는 바로 연락하세요:",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_date:"날짜",label_people:"인원",
+    opt_1p:"1명",opt_2p:"2명",opt_3p:"3명",opt_4p:"4명 이상",
+    label_ride:"라이딩",opt_ride1:"열기구 시간 라이딩",opt_ride2:"골든아워 라이딩",opt_ride3:"계곡 여정",opt_ride4:"모르겠어요 — 추천해주세요",
+    label_phone:"WhatsApp / 전화",ph_phone:"연락 가능한 번호",btn_submit:"WhatsApp에서 열기",
+    foot_about:"이름값을 하려 애쓰는 괴레메의 승마 농장: 열기구 시간의 아침, 골든아워의 저녁, 계곡의 오솔길.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"괴레메, 네브셰히르",
+    foot_rating:"구글 4.9★ · 리뷰 127개",foot_hours:"라이딩 시간은 계절에 따라 다릅니다 — WhatsApp으로 문의",
+    foot_rights:"© 2026 Horse Paradise — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    wa_msg:"안녕하세요 Horse Paradise! 라이딩 예약 가능 여부를 문의합니다:",wa_name:"성함",wa_date:"날짜",wa_people:"인원",wa_ride:"라이딩",wa_phone:"전화",
+    alert_fill:"성함, 날짜, 전화번호를 입력해 주세요."
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  document.querySelectorAll('[data-suffix-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-suffix-i18n');
+    if(dict[key]!==undefined){ el.setAttribute('data-suffix', dict[key]); }
+  });
+  document.querySelectorAll('[data-count]').forEach(el=>{ if(el.dataset.done){ el.textContent = el.dataset.count + (el.getAttribute('data-suffix')||''); }});
+
+  document.querySelectorAll('.langs button, .m-lang-sheet button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  const chip = document.getElementById('mLangChip');
+  if(chip) chip.textContent = (lang==='zh-CN')?'中文':(lang==='ko')?'한국어':lang.toUpperCase();
+  try{ localStorage.setItem('hp_lang', lang); }catch(e){}
+  requestAnimationFrame(positionBlobs);
+}
+
+function initLang(){
+  let lang = null;
+  const url = new URLSearchParams(location.search).get('lang');
+  if(url && SUPPORTED.includes(url)) lang = url;
+  if(!lang){ try{ const s=localStorage.getItem('hp_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+
+document.querySelectorAll('.langs button, .m-lang-sheet button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    applyLang(b.getAttribute('data-lang'));
+    const sheet=document.getElementById('mLangSheet');
+    if(sheet) sheet.classList.remove('open');
+    const chip=document.getElementById('mLangChip');
+    if(chip) chip.setAttribute('aria-expanded','false');
+  });
+});
+
+// mobil dil paneli
+(function(){
+  const chip=document.getElementById('mLangChip'), sheet=document.getElementById('mLangSheet');
+  if(!chip||!sheet) return;
+  chip.addEventListener('click', e=>{ e.stopPropagation(); const o=sheet.classList.toggle('open'); chip.setAttribute('aria-expanded', o?'true':'false'); });
+  document.addEventListener('click', e=>{ if(!sheet.contains(e.target) && e.target!==chip){ sheet.classList.remove('open'); chip.setAttribute('aria-expanded','false'); } });
+})();
+
+// ==================== TEMA (aydınlık / karanlık) ====================
+function applyTheme(t){
+  if(t!=='light' && t!=='dark') t='dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const mt=document.getElementById('metaTheme');
+  if(mt) mt.setAttribute('content', t==='light' ? '#f5f1e2' : '#0d1410');
+  try{ localStorage.setItem('hp_theme', t); }catch(e){}
+  requestAnimationFrame(positionBlobs);
+}
+function initTheme(){
+  let t=null;
+  const url=new URLSearchParams(location.search).get('theme');
+  if(url==='light'||url==='dark') t=url;
+  if(!t){ try{ const s=localStorage.getItem('hp_theme'); if(s==='light'||s==='dark') t=s; }catch(e){} }
+  if(!t) t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+  applyTheme(t);
+}
+document.getElementById('themeBtn').addEventListener('click', ()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  applyTheme(cur==='light' ? 'dark' : 'light');
+});
+
+// ==================== KANOPİ NAV — organik blob göstergesi + scroll-spy ====================
+function positionBlobInto(linksEl, blobEl){
+  if(!linksEl||!blobEl) return;
+  const act=linksEl.querySelector('a.active');
+  if(!act){ blobEl.style.opacity='0'; return; }
+  blobEl.style.opacity='1';
+  blobEl.style.width=act.offsetWidth+'px';
+  blobEl.style.transform='translateX('+act.offsetLeft+'px)';
+}
+function positionBlobs(){
+  positionBlobInto(document.getElementById('canopyLinks'), document.getElementById('canopyBlob'));
+  positionBlobInto(document.getElementById('pebbleLinks'), document.getElementById('pebbleBlob'));
+}
+function setActiveSec(id){
+  document.querySelectorAll('#canopyLinks a, #pebbleLinks a').forEach(a=>{
+    a.classList.toggle('active', a.getAttribute('data-sec')===id);
+  });
+  positionBlobs();
+}
+(function(){
+  const secs=['story','rides','why','gallery','book'].map(id=>document.getElementById(id)).filter(Boolean);
+  const spy=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting) setActiveSec(e.target.id); });
+  },{rootMargin:'-38% 0px -55% 0px'});
+  secs.forEach(s=>spy.observe(s));
+  // hero'dayken gösterge gizli
+  const hero=document.getElementById('top');
+  if(hero){
+    const hspy=new IntersectionObserver(es=>{
+      es.forEach(e=>{ if(e.isIntersecting && e.intersectionRatio>.5) setActiveSec('__none__'); });
+    },{threshold:[.5]});
+    hspy.observe(hero);
+  }
+  window.addEventListener('resize', positionBlobs);
+  window.addEventListener('load', positionBlobs);
+})();
+
+// brand pill'e scrolled cam zemin
+(function(){
+  const b=document.getElementById('brand');
+  const on=()=>b.classList.toggle('scrolled', window.scrollY>40);
+  window.addEventListener('scroll',on);on();
+})();
+
+// ==================== POLEN / BAL TOZU (signature) ====================
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const box=document.getElementById('pollen');
+  if(!box) return;
+  for(let i=0;i<22;i++){
+    const m=document.createElement('span');
+    m.className='mote';
+    const s=Math.random()*5+2;
+    m.style.width=s+'px'; m.style.height=s+'px';
+    m.style.left=(Math.random()*100)+'%';
+    m.style.setProperty('--mo',(Math.random()*.35+.25).toFixed(2));
+    m.style.setProperty('--dx',(Math.random()*120-60).toFixed(0)+'px');
+    m.style.animationDuration=(Math.random()*14+12).toFixed(1)+'s';
+    m.style.animationDelay=(-Math.random()*20).toFixed(1)+'s';
+    box.appendChild(m);
+  }
+})();
+
+// ==================== REVEAL + SAYAÇ ====================
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      if(e.target.querySelectorAll) e.target.querySelectorAll('[data-count]').forEach(runCount);
+      if(e.target.hasAttribute && e.target.hasAttribute('data-count')) runCount(e.target);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.2});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));
+
+function runCount(el){
+  if(el.dataset.done) return; el.dataset.done='1';
+  const target=parseInt(el.dataset.count,10);
+  const suffix=el.getAttribute('data-suffix')||'';
+  const dur=1400;const t0=performance.now();
+  function tick(now){
+    const p=Math.min((now-t0)/dur,1);const eased=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(eased*target)+suffix;
+    if(p<1)requestAnimationFrame(tick);else el.textContent=target+suffix;
+  }
+  requestAnimationFrame(tick);
+}
+
+// ==================== GÖRSEL YÜKLEME ====================
+(function(){
+  const base='assets/images/';
+  function tryImg(el, file){
+    const img=new Image();
+    // NOT: .rv1/.rv2/.rv3 'background' KISAYOLU size/position'ı sıfırlar — inline cover ŞART
+    // data-pos: dikey kaynak karelerde doğru bandı göstermek için slot bazlı odak (yoksa center)
+    img.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; el.style.backgroundSize='cover'; el.style.backgroundPosition=el.dataset.pos||'center'; };
+    img.onerror=()=>{};
+    img.src=base+file;
+  }
+  const hero=document.getElementById('heroPhoto');
+  if(hero){ const hi=new Image(); hi.onload=()=>{ hero.style.backgroundImage=`url('${base}hero.jpg')`; hero.classList.add('has-img'); }; hi.onerror=()=>{}; hi.src=base+'hero.jpg'; }
+  const story=document.getElementById('storyImg');
+  if(story) tryImg(story,'story.jpg');
+  document.querySelectorAll('.tile[data-img], .ride-visual[data-img]').forEach(t=>tryImg(t,t.getAttribute('data-img')));
+})();
+
+// ==================== REZERVASYON → WHATSAPP (çok dilli) ====================
+const WHATSAPP = "905303498275"; // Horse Paradise — Maps'ten teyitli numara
+function sendBooking(){
+  const d = I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const date=document.getElementById('f-date').value;
+  const count=document.getElementById('f-count').value;
+  const ride=document.getElementById('f-ride').value;
+  const phone=document.getElementById('f-phone').value.trim();
+  if(!name||!date||!phone){ alert(d.alert_fill); return; }
+  const msg = encodeURIComponent(d.wa_msg)+"%0A%0A"+
+    encodeURIComponent(d.wa_name)+": "+encodeURIComponent(name)+"%0A"+
+    encodeURIComponent(d.wa_date)+": "+encodeURIComponent(date)+"%0A"+
+    encodeURIComponent(d.wa_people)+": "+encodeURIComponent(count)+"%0A"+
+    encodeURIComponent(d.wa_ride)+": "+encodeURIComponent(ride)+"%0A"+
+    encodeURIComponent(d.wa_phone)+": "+encodeURIComponent(phone);
+  window.open("https://wa.me/"+WHATSAPP+"?text="+msg,"_blank");
+}
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items = Array.from(document.querySelectorAll('.gallery .tile[data-img], .ride-visual[data-img]'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  const capOf = t => { const l = t.querySelector('.ph-label') || t.querySelector('.time'); return l ? l.textContent.trim() : ''; };
+  function show(i){ idx = (i + items.length) % items.length; const t = items[idx]; img.src = base + t.getAttribute('data-img'); const c=capOf(t); cap.textContent = c; img.alt = c; }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>{ t.addEventListener('click',()=>open(i)); });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+// ==================== BAŞLAT ====================
+initTheme();
+initLang();
+setTimeout(positionBlobs, 150);
+setTimeout(positionBlobs, 600);
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+</body>
+</html>
