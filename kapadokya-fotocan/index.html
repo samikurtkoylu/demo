@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Kapadokya Fotocan — Göreme Fotoğraf Çekimleri · Uçan Elbise, Düğün, Şafak</title>
+<meta name="description" data-i18n="meta_desc" content="Göreme'de şafak vakti balonların altında fotoğraf çekimi: uçan elbise, düğün & çift, klasik araba, atlarla şafak. Instagram'da 22.000 kişi izliyor.">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M4 10 V4 H10 M22 4 H28 V10 M28 22 V28 H22 M10 28 H4 V22" fill="none" stroke="%23a05e68" stroke-width="3"/><circle cx="16" cy="16" r="4.5" fill="%23a05e68"/></svg>'>
+<style>
+  /* ============ KAPADOKYA FOTOCAN — Açık Editoryal · Şafak Pasteli ============ */
+  :root{
+    --bg:#faf5ef; --bg-2:#f3eae2; --card:#ffffff; --mat:#fffdfa;
+    --text:#382f33; --muted:#8b797d; --soft:#b3a2a4;
+    --accent:#a05e68; --accent-2:#c2848b; --sky:#7fa3c2; --sky-soft:#dce7f1;
+    --gold:#c99a62; --line:rgba(56,47,51,.13); --line-soft:rgba(56,47,51,.07);
+    --btn-bg:#382f33; --btn-fg:#faf5ef; --shadow:0 24px 70px rgba(90,62,60,.16);
+    color-scheme:light;
+  }
+  [data-theme="dark"]{
+    --bg:#211a20; --bg-2:#2a2129; --card:#2c232b; --mat:#322830;
+    --text:#f1e8e4; --muted:#b4a2a6; --soft:#8b797d;
+    --accent:#d9a3ab; --accent-2:#c2848b; --sky:#93b8d6; --sky-soft:#3a3440;
+    --gold:#d4a76c; --line:rgba(241,232,228,.15); --line-soft:rgba(241,232,228,.07);
+    --btn-bg:#f1e8e4; --btn-fg:#211a20; --shadow:0 24px 70px rgba(0,0,0,.45);
+    color-scheme:dark;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-padding-top:80px}
+  body{font-family:'Avenir Next','Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden;transition:background .5s,color .5s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:'Didot','Bodoni MT','Playfair Display',Georgia,serif;font-weight:500;line-height:1.06;letter-spacing:-.005em}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:600;line-height:1.22}
+  .mono{font-family:'Consolas','SF Mono','Courier New',monospace;letter-spacing:.16em;font-size:.62rem;text-transform:uppercase}
+  html[lang="zh-CN"] .mono,html[lang="ko"] .mono{letter-spacing:.08em}
+  .eyebrow{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.4em;color:var(--accent)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.15em}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 30px}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--btn-bg);color:var(--btn-fg);padding:10px 18px;z-index:200}
+  .skip:focus{left:12px;top:12px}
+
+  /* ---------- Signature katmanı: grain + scroll progress ---------- */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.04;mix-blend-mode:overlay}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--accent-2),var(--sky));box-shadow:0 0 10px rgba(194,132,139,.4)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+  /* ---------- NAV — 21st.dev portu: "focus-frame" vizör köşeli menü ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;
+    gap:14px;padding:16px 30px;transition:background .45s,box-shadow .45s}
+  nav.scrolled{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+  @supports not (background:color-mix(in srgb,red 50%,blue)){nav.scrolled{background:var(--bg)}}
+  .brand{display:flex;align-items:center;gap:11px;flex:none;color:var(--text)}
+  .brand svg{width:30px;height:30px;color:var(--accent);flex:none}
+  .brand .bt{display:flex;flex-direction:column;line-height:1.05}
+  .brand .bt .over{font-size:.52rem;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .brand .bt .name{font-family:'Didot','Bodoni MT',Georgia,serif;font-size:1.32rem;letter-spacing:.03em}
+  .navlinks{display:flex;gap:6px;align-items:center;margin-left:auto}
+  .flink{position:relative;padding:9px 13px;font-size:.72rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+  html[lang="zh-CN"] .flink,html[lang="ko"] .flink{letter-spacing:.04em;font-size:.82rem}
+  .flink::before,.flink::after{content:"";position:absolute;width:9px;height:9px;border:1.5px solid var(--accent);opacity:0;transition:.3s;pointer-events:none}
+  .flink::before{top:1px;left:1px;border-right:none;border-bottom:none;transform:translate(6px,6px)}
+  .flink::after{bottom:1px;right:1px;border-left:none;border-top:none;transform:translate(-6px,-6px)}
+  .flink:hover,.flink.active{color:var(--text)}
+  .flink:hover::before,.flink:hover::after,.flink.active::before,.flink.active::after{opacity:1;transform:translate(0,0)}
+  .navtools{display:flex;align-items:center;gap:8px;flex:none}
+  .langs{display:flex;align-items:center;gap:1px}
+  .langs button{background:none;border:none;color:var(--muted);font-family:inherit;font-size:.72rem;font-weight:600;cursor:pointer;padding:6px 6px;border-radius:3px;transition:.25s;letter-spacing:.02em}
+  .langs button:hover{color:var(--text)}
+  .langs button.active{color:var(--accent)}
+  .theme-btn{background:none;border:1px solid var(--line);border-radius:50%;width:34px;height:34px;display:grid;place-items:center;cursor:pointer;color:var(--text);transition:.3s;flex:none}
+  .theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .theme-btn svg{width:16px;height:16px}
+  .theme-btn .moon{display:none}
+  [data-theme="dark"] .theme-btn .sun{display:none}
+  [data-theme="dark"] .theme-btn .moon{display:block}
+  .nav-cta{border:1px solid var(--accent);color:var(--accent);padding:9px 18px;border-radius:2px;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:.3s;flex:none}
+  .nav-cta:hover{background:var(--accent);color:var(--bg)}
+  html[lang="zh-CN"] .nav-cta,html[lang="ko"] .nav-cta{letter-spacing:.04em}
+  @media(max-width:1060px){.navlinks{display:none}.nav-cta{display:none}}
+
+  /* mobil alt dock — focus-frame aktif köşeleri */
+  .dock{display:none}
+  @media(max-width:1060px){
+    .dock{display:flex;position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:95;
+      background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(14px);
+      border:1px solid var(--line);border-radius:16px;padding:8px 10px;gap:4px;box-shadow:0 14px 40px rgba(40,25,30,.18)}
+    @supports not (background:color-mix(in srgb,red 50%,blue)){.dock{background:var(--card)}}
+    .dock a{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 12px;color:var(--muted);transition:.3s}
+    .dock a svg{width:17px;height:17px}
+    .dock a span{font-size:.55rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+    html[lang="zh-CN"] .dock a span,html[lang="ko"] .dock a span{letter-spacing:.02em;font-size:.62rem}
+    .dock a::before,.dock a::after{content:"";position:absolute;width:8px;height:8px;border:1.5px solid var(--accent);opacity:0;transition:.3s}
+    .dock a::before{top:0;left:0;border-right:none;border-bottom:none;transform:translate(5px,5px)}
+    .dock a::after{bottom:0;right:0;border-left:none;border-top:none;transform:translate(-5px,-5px)}
+    .dock a.active{color:var(--accent)}
+    .dock a.active::before,.dock a.active::after{opacity:1;transform:translate(0,0)}
+  }
+
+  /* ---------- HERO — açık editoryal split + vizör çerçevesi ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;isolation:isolate;
+    padding:130px 0 90px;background:var(--bg)}
+  #hero-gradient{position:absolute;inset:0;z-index:0;pointer-events:none;mix-blend-mode:multiply;opacity:.5;
+    --gradient-color-1:#f3dcd6; --gradient-color-2:#dde9f3; --gradient-color-3:#eec4bc; --gradient-color-4:#f8ecdc}
+  [data-theme="dark"] #hero-gradient{mix-blend-mode:screen;opacity:.14}
+  .no-webgl #hero-gradient{display:none}
+  .hero .ghost{position:absolute;bottom:-2vw;left:-1vw;z-index:0;font-family:'Didot','Bodoni MT',Georgia,serif;
+    font-size:19vw;line-height:.8;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px var(--text);opacity:.05;pointer-events:none;user-select:none}
+  .side-tag{position:absolute;right:22px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;z-index:1;color:var(--soft)}
+  @media(max-width:1060px){.side-tag{display:none}}
+  .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(34px,5vw,72px);align-items:center;width:100%}
+  .hero-copy .eyebrow{display:block;margin-bottom:22px}
+  .hero-copy h1{font-size:clamp(2.7rem,5.6vw,4.9rem);max-width:13ch}
+  .hero-copy h1 em{font-style:italic;color:var(--accent)}
+  html[lang="zh-CN"] .hero-copy h1 em,html[lang="ko"] .hero-copy h1 em{font-style:normal}
+  .hero-copy .lede{margin-top:26px;font-size:clamp(1rem,1.4vw,1.16rem);color:var(--muted);max-width:46ch;font-weight:400}
+  .hero-cta{display:flex;gap:20px;margin-top:38px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:var(--btn-bg);color:var(--btn-fg);padding:15px 32px;border-radius:2px;font-weight:600;font-size:.8rem;
+    letter-spacing:.13em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.35s;border:none;cursor:pointer;font-family:inherit}
+  .btn-solid:hover{background:var(--accent);color:#fff;gap:16px}
+  .btn-line{color:var(--text);font-size:.8rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+    border-bottom:1px solid var(--line);padding-bottom:4px;transition:.35s}
+  .btn-line:hover{border-color:var(--accent);color:var(--accent)}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{letter-spacing:.04em}
+
+  /* vizör çerçevesi — signature */
+  .vf{position:relative;max-width:470px;margin-left:auto}
+  .vf-mat{background:var(--mat);padding:14px 14px 12px;box-shadow:var(--shadow);border:1px solid var(--line-soft)}
+  .vf-shot{position:relative;overflow:hidden}
+  .vf-shot img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .vf-grid{position:absolute;inset:0;pointer-events:none;opacity:.4;mix-blend-mode:overlay;transition:opacity .5s;background:
+    linear-gradient(to right,transparent calc(38.2% - .5px),rgba(255,255,255,.9) calc(38.2% - .5px),rgba(255,255,255,.9) calc(38.2% + .5px),transparent calc(38.2% + .5px)),
+    linear-gradient(to right,transparent calc(61.8% - .5px),rgba(255,255,255,.9) calc(61.8% - .5px),rgba(255,255,255,.9) calc(61.8% + .5px),transparent calc(61.8% + .5px)),
+    linear-gradient(to bottom,transparent calc(38.2% - .5px),rgba(255,255,255,.9) calc(38.2% - .5px),rgba(255,255,255,.9) calc(38.2% + .5px),transparent calc(38.2% + .5px)),
+    linear-gradient(to bottom,transparent calc(61.8% - .5px),rgba(255,255,255,.9) calc(61.8% - .5px),rgba(255,255,255,.9) calc(61.8% + .5px),transparent calc(61.8% + .5px))}
+  .vf:hover .vf-grid{opacity:.75}
+  .vf-dot{position:absolute;left:61.8%;top:38.2%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;
+    background:var(--accent-2);box-shadow:0 0 0 0 rgba(194,132,139,.55);animation:afPulse 2.8s ease-out infinite}
+  @keyframes afPulse{0%{box-shadow:0 0 0 0 rgba(194,132,139,.55)}70%{box-shadow:0 0 0 16px rgba(194,132,139,0)}100%{box-shadow:0 0 0 0 rgba(194,132,139,0)}}
+  .vf-c{position:absolute;width:26px;height:26px;border:2px solid var(--accent);z-index:3}
+  .vf-c.tl{top:-9px;left:-9px;border-right:none;border-bottom:none}
+  .vf-c.tr{top:-9px;right:-9px;border-left:none;border-bottom:none}
+  .vf-c.bl{bottom:-9px;left:-9px;border-right:none;border-top:none}
+  .vf-c.br{bottom:-9px;right:-9px;border-left:none;border-top:none}
+  .vf-meta{display:flex;justify-content:space-between;gap:10px;padding-top:11px;color:var(--muted)}
+  .vf-rot{transform:rotate(1.2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .vf:hover .vf-rot{transform:rotate(0)}
+  @media(max-width:960px){
+    .hero{padding:112px 0 70px}
+    .hero-grid{grid-template-columns:1fr;gap:44px}
+    .vf{margin:0 auto;max-width:400px}
+    .hero .ghost{font-size:26vw;bottom:-3vw}
+  }
+  .scrollhint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;color:var(--soft);
+    display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scrollhint .l{width:1px;height:32px;background:linear-gradient(var(--accent-2),transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+  @media(max-width:960px){.scrollhint{display:none}}
+
+  /* ---------- STATS ---------- */
+  .stats{background:var(--bg-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:44px 30px}
+  .stat{text-align:center}
+  .stat .n{font-family:'Didot','Bodoni MT',Georgia,serif;font-size:clamp(2rem,4vw,3rem);color:var(--accent);line-height:1}
+  .stat .n small{font-size:.55em}
+  .stat .l{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:9px}
+  html[lang="zh-CN"] .stat .l,html[lang="ko"] .stat .l{text-transform:none;letter-spacing:.05em}
+  .stat+.stat{border-left:1px solid var(--line)}
+  @media(max-width:680px){.stats .wrap{grid-template-columns:1fr 1fr;gap:30px 16px}.stat:nth-child(3){border-left:none}}
+
+  section{padding:110px 0;position:relative}
+  .sec-head{max-width:680px;margin-bottom:58px}
+  .sec-head .secnum{display:flex;align-items:center;gap:12px;margin-bottom:16px;color:var(--accent)}
+  .sec-head .secnum .rule{width:44px;height:1px;background:var(--accent-2);opacity:.6}
+  .sec-head h2{font-size:clamp(2.1rem,4.2vw,3.3rem)}
+  .sec-head p{margin-top:18px;color:var(--muted);font-size:1.05rem}
+
+  /* ---------- ÇEKİM KONSEPTLERİ ---------- */
+  .shoots{background:var(--bg)}
+  .shoot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  @media(max-width:1060px){.shoot-grid{grid-template-columns:1fr 1fr;gap:30px 22px}}
+  @media(max-width:600px){.shoot-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+  .shoot{display:flex;flex-direction:column}
+  .shoot .num{color:var(--soft);margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline}
+  .shoot .num .tag{color:var(--accent)}
+  .shoot-visual{position:relative;overflow:hidden;background:var(--bg-2)}
+  .shoot-visual img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .shoot:hover .shoot-visual img{transform:scale(1.05)}
+  .shoot-visual .light{position:absolute;left:12px;bottom:10px;color:#fff;background:rgba(30,20,24,.45);backdrop-filter:blur(5px);padding:5px 10px;border-radius:2px}
+  .shoot-visual::before,.shoot-visual::after{content:"";position:absolute;width:18px;height:18px;border:2px solid #fff;opacity:0;transition:.35s;z-index:2;mix-blend-mode:difference}
+  .shoot-visual::before{top:10px;left:10px;border-right:none;border-bottom:none;transform:translate(8px,8px)}
+  .shoot-visual::after{bottom:10px;right:10px;border-left:none;border-top:none;transform:translate(-8px,-8px)}
+  .shoot:hover .shoot-visual::before,.shoot:hover .shoot-visual::after{opacity:1;transform:translate(0,0)}
+  .shoot h3{font-size:1.45rem;margin-top:18px}
+  .shoot p{color:var(--muted);font-size:.92rem;margin-top:8px;flex:1}
+  .shoot .s-cta{margin-top:14px;font-size:.72rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);
+    display:inline-flex;align-items:center;gap:8px;transition:gap .3s}
+  .shoot .s-cta:hover{gap:13px}
+  html[lang="zh-CN"] .shoot .s-cta,html[lang="ko"] .shoot .s-cta{letter-spacing:.04em}
+
+  /* ---------- GALERİ ---------- */
+  .gallery{background:var(--bg-2)}
+  .masonry{columns:3;column-gap:22px}
+  @media(max-width:1000px){.masonry{columns:2}}
+  @media(max-width:560px){.masonry{columns:1;max-width:440px;margin:0 auto}}
+  .gitem{position:relative;overflow:hidden;margin-bottom:22px;break-inside:avoid;background:var(--card);cursor:zoom-in}
+  .gitem img{width:100%;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+  .gitem:hover img{transform:scale(1.04)}
+  .gitem figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 12px;color:#fff;
+    background:linear-gradient(transparent,rgba(25,16,20,.66));font-size:.78rem;letter-spacing:.04em;
+    opacity:0;transform:translateY(8px);transition:.45s}
+  .gitem:hover figcaption{opacity:1;transform:translateY(0)}
+  .gitem::before,.gitem::after{content:"";position:absolute;width:20px;height:20px;border:2px solid #fff;opacity:0;transition:.35s;z-index:2;mix-blend-mode:difference}
+  .gitem::before{top:12px;left:12px;border-right:none;border-bottom:none;transform:translate(8px,8px)}
+  .gitem::after{bottom:12px;right:12px;border-left:none;border-top:none;transform:translate(-8px,-8px)}
+  .gitem:hover::before,.gitem:hover::after{opacity:1;transform:translate(0,0)}
+
+  /* ---------- HİKÂYE ---------- */
+  .story{background:var(--bg)}
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,72px);align-items:center}
+  @media(max-width:900px){.story-grid{grid-template-columns:1fr}}
+  .story-copy .lead{font-family:'Didot','Bodoni MT',Georgia,serif;font-size:clamp(1.4rem,2.4vw,1.85rem);line-height:1.42;font-style:italic;color:var(--text);margin:20px 0 24px}
+  html[lang="zh-CN"] .story-copy .lead,html[lang="ko"] .story-copy .lead{font-style:normal}
+  .story-copy p{color:var(--muted);margin-bottom:16px}
+  .story-copy .sign{margin-top:10px;color:var(--accent);font-family:'Didot',Georgia,serif;font-style:italic;font-size:1.15rem}
+  html[lang="zh-CN"] .story-copy .sign,html[lang="ko"] .story-copy .sign{font-style:normal}
+  .story .vf{max-width:520px;margin:0 auto}
+  .story .vf-shot img{aspect-ratio:3/2}
+
+  /* ---------- INSTAGRAM BANDI ---------- */
+  .igband{background:linear-gradient(120deg,color-mix(in srgb,var(--accent-2) 18%,var(--bg-2)),color-mix(in srgb,var(--sky) 16%,var(--bg-2)));
+    border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  @supports not (background:color-mix(in srgb,red 50%,blue)){.igband{background:var(--bg-2)}}
+  .igband .wrap{display:flex;align-items:center;justify-content:space-between;gap:30px;padding-top:76px;padding-bottom:76px;flex-wrap:wrap}
+  .igband h2{font-size:clamp(1.8rem,3.4vw,2.6rem);max-width:16ch}
+  .igband p{color:var(--muted);margin-top:12px;max-width:44ch}
+  .ig-btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--accent);color:var(--accent);
+    padding:14px 26px;border-radius:2px;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:.3s;flex:none}
+  .ig-btn:hover{background:var(--accent);color:var(--bg)}
+  .ig-btn svg{width:17px;height:17px}
+  html[lang="zh-CN"] .ig-btn,html[lang="ko"] .ig-btn{letter-spacing:.04em}
+
+  /* ---------- REZERVASYON ---------- */
+  .booking{background:var(--bg)}
+  .book-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,80px);align-items:start}
+  @media(max-width:900px){.book-grid{grid-template-columns:1fr}}
+  .contact-list{display:flex;flex-direction:column;gap:22px;margin-top:34px}
+  .c-item{display:flex;gap:14px;align-items:flex-start}
+  .c-item svg{width:19px;height:19px;color:var(--accent);flex:none;margin-top:3px}
+  .c-item .cl{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);font-weight:600}
+  html[lang="zh-CN"] .c-item .cl,html[lang="ko"] .c-item .cl{letter-spacing:.06em}
+  .c-item .cv{font-size:1.02rem;color:var(--text)}
+  .c-item a.cv:hover{color:var(--accent)}
+  form{background:var(--card);border:1px solid var(--line-soft);padding:clamp(24px,3.6vw,44px);box-shadow:var(--shadow)}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:620px){.frow{grid-template-columns:1fr}}
+  .fgroup{margin-bottom:18px}
+  label{display:block;font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  html[lang="zh-CN"] label,html[lang="ko"] label{letter-spacing:.06em}
+  input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:2px;color:var(--text);
+    font-family:inherit;font-size:.95rem;padding:13px 14px;transition:border .3s;appearance:none;-webkit-appearance:none}
+  select{background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="%238b797d" stroke-width="1.5"/></svg>');
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+  textarea{min-height:96px;resize:vertical}
+  .fhint{font-size:.78rem;color:var(--soft);margin-top:12px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--bg-2);border-top:1px solid var(--line-soft);padding:46px 0 110px}
+  @media(min-width:1061px){footer{padding-bottom:46px}}
+  .foot-grid{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot-note{display:flex;align-items:center;gap:14px;flex-wrap:wrap;color:var(--soft);font-size:.8rem}
+  .demo-badge{border:1px solid var(--line);border-radius:2px;padding:4px 10px;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .vf-dot{animation:none}
+    .scrollhint .l{animation:none}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#cekimler">İçeriğe geç</a>
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<nav id="topnav" aria-label="Ana menü">
+  <a class="brand" href="#" aria-label="Kapadokya Fotocan — başa dön">
+    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 10 V4 H10 M22 4 H28 V10 M28 22 V28 H22 M10 28 H4 V22" stroke="currentColor" stroke-width="2.6"/><circle cx="16" cy="16" r="4.6" fill="currentColor"/></svg>
+    <span class="bt"><span class="over">KAPADOKYA</span><span class="name">Fotocan</span></span>
+  </a>
+  <div class="navlinks" id="navlinks">
+    <a class="flink" href="#cekimler" data-i18n="nav_shoots">Konseptler</a>
+    <a class="flink" href="#galeri" data-i18n="nav_gallery">Portfolyo</a>
+    <a class="flink" href="#hikaye" data-i18n="nav_story">Hikâye</a>
+    <a class="flink" href="#rezervasyon" data-i18n="nav_book">Rezervasyon</a>
+  </div>
+  <div class="navtools">
+    <div class="langs" role="group" aria-label="Dil seçimi">
+      <button type="button" data-lang="tr">TR</button>
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="es">ES</button>
+      <button type="button" data-lang="zh-CN">中文</button>
+      <button type="button" data-lang="ko">한국어</button>
+    </div>
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Tema değiştir">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11z"/></svg>
+    </button>
+    <a class="nav-cta" href="https://wa.me/905050365050" target="_blank" rel="noopener" data-i18n="nav_cta">WhatsApp</a>
+  </div>
+</nav>
+
+<div class="dock" aria-label="Alt menü">
+  <a href="#cekimler"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg><span data-i18n="nav_shoots">Konseptler</span></a>
+  <a href="#galeri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="4" width="16" height="16"/><path d="M4 15l4-4 5 5 3-3 4 4"/><circle cx="9.5" cy="8.5" r="1.3"/></svg><span data-i18n="nav_gallery">Portfolyo</span></a>
+  <a href="#hikaye"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h14v16H5z"/><path d="M9 4v16M13 9h3M13 12h3"/></svg><span data-i18n="nav_story">Hikâye</span></a>
+  <a href="#rezervasyon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="15"/><path d="M8 3v4M16 3v4M4 10h16"/></svg><span data-i18n="nav_book">Rezervasyon</span></a>
+</div>
+
+<header class="hero" id="top">
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <div class="ghost" aria-hidden="true">Fotocan</div>
+  <div class="side-tag mono" aria-hidden="true">38°38′N — GÖREME · CAPPADOCIA</div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Göreme · Kapadokya</span>
+      <h1 data-i18n-html="hero_title">Balonların altında,<br><em>size ait bir kare.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Şafağın pastel ışığında uçan elbiseler, gelinlikler, klasik arabalar ve atlar. Kapadokya Fotocan vizöründen, hikâyeniz Göreme'nin gökyüzüyle buluşuyor.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#rezervasyon" data-i18n="hero_cta1">Çekim planla</a>
+        <a class="btn-line" href="#galeri" data-i18n="hero_cta2">Portfolyoyu gör</a>
+      </div>
+    </div>
+    <div class="vf">
+      <span class="vf-c tl" aria-hidden="true"></span><span class="vf-c tr" aria-hidden="true"></span>
+      <span class="vf-c bl" aria-hidden="true"></span><span class="vf-c br" aria-hidden="true"></span>
+      <div class="vf-mat vf-rot">
+        <div class="vf-shot">
+          <img src="assets/images/hero.jpg" alt="Şafakta balonların altında kırmızı uçan elbiseyle çekim — Göreme" data-i18n-alt="alt_hero">
+          <div class="vf-grid" aria-hidden="true"></div>
+          <div class="vf-dot" aria-hidden="true"></div>
+        </div>
+        <div class="vf-meta mono"><span data-i18n="hero_meta">GÖREME — UÇAN ELBİSE · ŞAFAK</span><span>© FOTOCAN</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scrollhint"><span class="mono" data-i18n="scroll_hint">Kaydır</span><span class="l"></span></div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat reveal"><div class="n">22<small>B</small></div><div class="l" data-i18n="stat1_l">Instagram takipçisi</div></div>
+    <div class="stat reveal"><div class="n">714</div><div class="l" data-i18n="stat2_l">paylaşılan kare</div></div>
+    <div class="stat reveal"><div class="n">5.0</div><div class="l" data-i18n="stat3_l">Google puanı</div></div>
+    <div class="stat reveal"><div class="n">04</div><div class="l" data-i18n="stat4_l">imza konsept</div></div>
+  </div>
+</div>
+
+<section class="shoots" id="cekimler">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="secnum mono"><span>[ 01 ]</span><span class="rule"></span><span class="eyebrow" data-i18n="sh_eyebrow">Çekim Konseptleri</span></div>
+      <h2 data-i18n="sh_h">Dört konsept, tek şafak.</h2>
+      <p data-i18n="sh_sub">Aşağıdaki her kare kendi portfolyomuzdan. Hangisi sizin hikâyeniz?</p>
+    </div>
+    <div class="shoot-grid">
+      <article class="shoot reveal">
+        <div class="num mono"><span>01</span><span class="tag" data-i18n="s1_tag">En ikonik</span></div>
+        <div class="shoot-visual"><img src="assets/images/hero.jpg" loading="lazy" alt="Uçan elbise çekimi" data-i18n-alt="s1_h"><span class="light mono" data-i18n="s1_light">şafak ışığı</span></div>
+        <h3 data-i18n="s1_h">Uçan Elbise</h3>
+        <p data-i18n="s1_p">Kayalıkların üzerinde savrulan kumaş, arkanızda yükselen balonlar. Kapadokya'nın en çok konuşulan karesi.</p>
+        <a class="s-cta" href="#rezervasyon" data-type="o1"><span data-i18n="s_cta">Bu konsepti sor</span> →</a>
+      </article>
+      <article class="shoot reveal">
+        <div class="num mono"><span>02</span><span class="tag" data-i18n="s2_tag">Çiftler</span></div>
+        <div class="shoot-visual"><img src="assets/images/wedding.jpg" loading="lazy" alt="Düğün ve çift çekimi" data-i18n-alt="s2_h"><span class="light mono" data-i18n="s2_light">altın saat</span></div>
+        <h3 data-i18n="s2_h">Düğün &amp; Çift</h3>
+        <p data-i18n="s2_p">Gelinlik, duvak ve vadiye bakan iki silüet. Büyük gününüz, dergi kapağı sakinliğinde.</p>
+        <a class="s-cta" href="#rezervasyon" data-type="o2"><span data-i18n="s_cta">Bu konsepti sor</span> →</a>
+      </article>
+      <article class="shoot reveal">
+        <div class="num mono"><span>03</span><span class="tag" data-i18n="s3_tag">Retro</span></div>
+        <div class="shoot-visual"><img src="assets/images/car-pink.jpg" loading="lazy" alt="Klasik araba çekimi" data-i18n-alt="s3_h"><span class="light mono" data-i18n="s3_light">gün batımı</span></div>
+        <h3 data-i18n="s3_h">Klasik Araba</h3>
+        <p data-i18n="s3_p">Pastel bir kabriyole, eşarp ve güneş gözlüğü. Altmışların zarafeti, Göreme'nin ışığında.</p>
+        <a class="s-cta" href="#rezervasyon" data-type="o3"><span data-i18n="s_cta">Bu konsepti sor</span> →</a>
+      </article>
+      <article class="shoot reveal">
+        <div class="num mono"><span>04</span><span class="tag" data-i18n="s4_tag">Doğa</span></div>
+        <div class="shoot-visual"><img src="assets/images/horses-walk.jpg" loading="lazy" alt="Atlarla şafak çekimi" data-i18n-alt="s4_h"><span class="light mono" data-i18n="s4_light">sabah ışığı</span></div>
+        <h3 data-i18n="s4_h">Atlarla Şafak</h3>
+        <p data-i18n="s4_p">Güzel atlar diyarında, balonların altında yürüyen atlar arasında bir kare.</p>
+        <a class="s-cta" href="#rezervasyon" data-type="o4"><span data-i18n="s_cta">Bu konsepti sor</span> →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galeri">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="secnum mono"><span>[ 02 ]</span><span class="rule"></span><span class="eyebrow" data-i18n="gal_eyebrow">Portfolyo</span></div>
+      <h2 data-i18n="gal_h">Vizörden seçkiler.</h2>
+      <p data-i18n="gal_sub">Tüm kareler Instagram arşivimizden — @kapadokya.fotograf.</p>
+    </div>
+    <div class="masonry">
+      <figure class="gitem reveal"><img src="assets/images/silhouette.jpg" loading="lazy" alt="Şafakta düğün silüeti" data-i18n-alt="g1"><figcaption data-i18n="g1">Şafakta düğün silüeti</figcaption></figure>
+      <figure class="gitem reveal"><img src="assets/images/car-drive.jpg" loading="lazy" alt="Klasik araba, altın saat" data-i18n-alt="g2"><figcaption data-i18n="g2">Klasik araba · altın saat</figcaption></figure>
+      <figure class="gitem reveal"><img src="assets/images/white-dress.jpg" loading="lazy" alt="Beyaz elbise, balonlu gökyüzü" data-i18n-alt="g3"><figcaption data-i18n="g3">Beyaz elbise, balonlu gökyüzü</figcaption></figure>
+      <figure class="gitem reveal"><img src="assets/images/horses-field.jpg" loading="lazy" alt="Atlar ve balonlar" data-i18n-alt="g4"><figcaption data-i18n="g4">Atlar ve balonlar</figcaption></figure>
+      <figure class="gitem reveal"><img src="assets/images/wedding.jpg" loading="lazy" alt="Vadiye karşı düğün" data-i18n-alt="g5"><figcaption data-i18n="g5">Vadiye karşı düğün</figcaption></figure>
+      <figure class="gitem reveal"><img src="assets/images/car-classic.jpg" loading="lazy" alt="Pembe kabriyole detayı" data-i18n-alt="g6"><figcaption data-i18n="g6">Pembe kabriyole detayı</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="hikaye">
+  <div class="wrap story-grid">
+    <div class="story-copy reveal">
+      <div class="secnum mono" style="display:flex;align-items:center;gap:12px;color:var(--accent)"><span>[ 03 ]</span><span style="width:44px;height:1px;background:var(--accent-2);opacity:.6"></span><span class="eyebrow" data-i18n="st_eyebrow">Hikâye</span></div>
+      <p class="lead" data-i18n="st_lead">“En iyi kare, güneş tepeleri aşmadan önceki birkaç dakikada saklıdır.”</p>
+      <p data-i18n="st_p1">Kapadokya Fotocan, Göreme'de şafağı bekleyerek çalışır: balonların gökyüzünü doldurduğu o kısa aralıkta ışık pastel, vadiler sessizdir. Kare o an çekilir.</p>
+      <p data-i18n="st_p2">Poz vermeyi bilmenize gerek yok. Elbisenin savruluşundan bakışınızın yönüne kadar her adımda yönlendiriliyorsunuz; siz sadece ânı yaşıyorsunuz.</p>
+      <div class="sign" data-i18n="st_note">— Kapadokya Fotocan, Göreme</div>
+    </div>
+    <div class="vf reveal">
+      <span class="vf-c tl" aria-hidden="true"></span><span class="vf-c tr" aria-hidden="true"></span>
+      <span class="vf-c bl" aria-hidden="true"></span><span class="vf-c br" aria-hidden="true"></span>
+      <div class="vf-mat">
+        <div class="vf-shot">
+          <img src="assets/images/silhouette.jpg" loading="lazy" alt="Şafakta düğün silüeti, balonlar" data-i18n-alt="g1">
+          <div class="vf-grid" aria-hidden="true"></div>
+          <div class="vf-dot" aria-hidden="true"></div>
+        </div>
+        <div class="vf-meta mono"><span data-i18n="st_meta">GÖREME — DÜĞÜN · ŞAFAK</span><span>© FOTOCAN</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="igband">
+  <div class="wrap">
+    <div class="reveal">
+      <h2 data-i18n="ig_h">Instagram'da izleyin</h2>
+      <p data-i18n="ig_p">22.000 kişi Kapadokya'yı bu karelerden izliyor. 714 kare ve büyüyen bir arşiv.</p>
+    </div>
+    <a class="ig-btn reveal" href="https://instagram.com/kapadokya.fotograf" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>
+      <span data-i18n="ig_btn">@kapadokya.fotograf'ı aç</span>
+    </a>
+  </div>
+</div>
+
+<section class="booking" id="rezervasyon">
+  <div class="wrap book-grid">
+    <div class="reveal">
+      <div class="secnum mono" style="display:flex;align-items:center;gap:12px;color:var(--accent)"><span>[ 04 ]</span><span style="width:44px;height:1px;background:var(--accent-2);opacity:.6"></span><span class="eyebrow" data-i18n="bk_eyebrow">Rezervasyon</span></div>
+      <h2 style="font-size:clamp(2.1rem,4.2vw,3.3rem);margin-top:16px" data-i18n="bk_h">Şafakta yeriniz hazır mı?</h2>
+      <p style="margin-top:18px;color:var(--muted)" data-i18n="bk_sub">Formu doldurun; mesajınız WhatsApp'ta hazır açılır, tarihi birlikte netleştirelim.</p>
+      <div class="contact-list">
+        <div class="c-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 16.5v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.5 5.2 2 2 0 0 1 4.5 3h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.6 10.75a16 16 0 0 0 4.65 4.65l1.15-1.15a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          <div><div class="cl" data-i18n="c_wa_l">WhatsApp</div><a class="cv" href="https://wa.me/905050365050" target="_blank" rel="noopener">+90 505 036 50 50</a></div>
+        </div>
+        <div class="c-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>
+          <div><div class="cl" data-i18n="c_ig_l">Instagram</div><a class="cv" href="https://instagram.com/kapadokya.fotograf" target="_blank" rel="noopener">@kapadokya.fotograf</a></div>
+        </div>
+        <div class="c-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <div><div class="cl" data-i18n="c_loc_l">Konum</div><span class="cv" data-i18n="c_loc">Göreme, Nevşehir — Kapadokya</span></div>
+        </div>
+      </div>
+    </div>
+    <form id="bookForm" class="reveal" novalidate>
+      <div class="frow">
+        <div class="fgroup">
+          <label for="f-name" data-i18n="f_name">Adınız</label>
+          <input type="text" id="f-name" name="name" autocomplete="name" data-i18n-ph="f_name_ph" placeholder="Adınız Soyadınız" required>
+        </div>
+        <div class="fgroup">
+          <label for="f-date" data-i18n="f_date">Çekim tarihi</label>
+          <input type="date" id="f-date" name="date">
+        </div>
+      </div>
+      <div class="fgroup">
+        <label for="f-type" data-i18n="f_type">Konsept</label>
+        <select id="f-type" name="type">
+          <option value="o1" data-i18n="o1">Uçan Elbise</option>
+          <option value="o2" data-i18n="o2">Düğün &amp; Çift</option>
+          <option value="o3" data-i18n="o3">Klasik Araba</option>
+          <option value="o4" data-i18n="o4">Atlarla Şafak</option>
+          <option value="o5" data-i18n="o5">Kararsızım / Diğer</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label for="f-note" data-i18n="f_note">Notunuz</label>
+        <textarea id="f-note" name="note" data-i18n-ph="f_note_ph" placeholder="Kişi sayısı, saat tercihi, hayalinizdeki kare…"></textarea>
+      </div>
+      <button type="submit" class="btn-solid" style="width:100%;justify-content:center" data-i18n="f_send">WhatsApp'ta gönder</button>
+      <p class="fhint" data-i18n="f_hint">Gönder'e bastığınızda mesaj WhatsApp'ta açılır — göndermeden düzenleyebilirsiniz.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <a class="brand" href="#top" aria-label="Kapadokya Fotocan">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 10 V4 H10 M22 4 H28 V10 M28 22 V28 H22 M10 28 H4 V22" stroke="currentColor" stroke-width="2.6"/><circle cx="16" cy="16" r="4.6" fill="currentColor"/></svg>
+      <span class="bt"><span class="over">KAPADOKYA</span><span class="name">Fotocan</span></span>
+    </a>
+    <div class="foot-note">
+      <span data-i18n="foot_rights">© 2026 Kapadokya Fotocan — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== i18n SÖZLÜĞÜ (TR / EN / ES / zh-CN / ko) ====================
+const I18N = {
+  tr:{
+    meta_title:"Kapadokya Fotocan — Göreme Fotoğraf Çekimleri · Uçan Elbise, Düğün, Şafak",
+    meta_desc:"Göreme'de şafak vakti balonların altında fotoğraf çekimi: uçan elbise, düğün & çift, klasik araba, atlarla şafak. Instagram'da 22.000 kişi izliyor.",
+    nav_shoots:"Konseptler",nav_gallery:"Portfolyo",nav_story:"Hikâye",nav_book:"Rezervasyon",nav_cta:"WhatsApp",
+    hero_eyebrow:"Göreme · Kapadokya",
+    hero_title:'Balonların altında,<br><em>size ait bir kare.</em>',
+    hero_lede:"Şafağın pastel ışığında uçan elbiseler, gelinlikler, klasik arabalar ve atlar. Kapadokya Fotocan vizöründen, hikâyeniz Göreme'nin gökyüzüyle buluşuyor.",
+    hero_cta1:"Çekim planla",hero_cta2:"Portfolyoyu gör",
+    hero_meta:"GÖREME — UÇAN ELBİSE · ŞAFAK",alt_hero:"Şafakta balonların altında kırmızı uçan elbiseyle çekim — Göreme",
+    scroll_hint:"Kaydır",
+    stat1_l:"Instagram takipçisi",stat2_l:"paylaşılan kare",stat3_l:"Google puanı",stat4_l:"imza konsept",
+    sh_eyebrow:"Çekim Konseptleri",sh_h:"Dört konsept, tek şafak.",sh_sub:"Aşağıdaki her kare kendi portfolyomuzdan. Hangisi sizin hikâyeniz?",
+    s1_tag:"En ikonik",s1_h:"Uçan Elbise",s1_p:"Kayalıkların üzerinde savrulan kumaş, arkanızda yükselen balonlar. Kapadokya'nın en çok konuşulan karesi.",s1_light:"şafak ışığı",
+    s2_tag:"Çiftler",s2_h:"Düğün & Çift",s2_p:"Gelinlik, duvak ve vadiye bakan iki silüet. Büyük gününüz, dergi kapağı sakinliğinde.",s2_light:"altın saat",
+    s3_tag:"Retro",s3_h:"Klasik Araba",s3_p:"Pastel bir kabriyole, eşarp ve güneş gözlüğü. Altmışların zarafeti, Göreme'nin ışığında.",s3_light:"gün batımı",
+    s4_tag:"Doğa",s4_h:"Atlarla Şafak",s4_p:"Güzel atlar diyarında, balonların altında yürüyen atlar arasında bir kare.",s4_light:"sabah ışığı",
+    s_cta:"Bu konsepti sor",
+    gal_eyebrow:"Portfolyo",gal_h:"Vizörden seçkiler.",gal_sub:"Tüm kareler Instagram arşivimizden — @kapadokya.fotograf.",
+    g1:"Şafakta düğün silüeti",g2:"Klasik araba · altın saat",g3:"Beyaz elbise, balonlu gökyüzü",g4:"Atlar ve balonlar",g5:"Vadiye karşı düğün",g6:"Pembe kabriyole detayı",
+    st_eyebrow:"Hikâye",st_lead:"“En iyi kare, güneş tepeleri aşmadan önceki birkaç dakikada saklıdır.”",
+    st_p1:"Kapadokya Fotocan, Göreme'de şafağı bekleyerek çalışır: balonların gökyüzünü doldurduğu o kısa aralıkta ışık pastel, vadiler sessizdir. Kare o an çekilir.",
+    st_p2:"Poz vermeyi bilmenize gerek yok. Elbisenin savruluşundan bakışınızın yönüne kadar her adımda yönlendiriliyorsunuz; siz sadece ânı yaşıyorsunuz.",
+    st_note:"— Kapadokya Fotocan, Göreme",st_meta:"GÖREME — DÜĞÜN · ŞAFAK",
+    ig_h:"Instagram'da izleyin",ig_p:"22.000 kişi Kapadokya'yı bu karelerden izliyor. 714 kare ve büyüyen bir arşiv.",ig_btn:"@kapadokya.fotograf'ı aç",
+    bk_eyebrow:"Rezervasyon",bk_h:"Şafakta yeriniz hazır mı?",bk_sub:"Formu doldurun; mesajınız WhatsApp'ta hazır açılır, tarihi birlikte netleştirelim.",
+    f_name:"Adınız",f_name_ph:"Adınız Soyadınız",f_date:"Çekim tarihi",f_type:"Konsept",f_note:"Notunuz",
+    f_note_ph:"Kişi sayısı, saat tercihi, hayalinizdeki kare…",f_send:"WhatsApp'ta gönder",
+    f_hint:"Gönder'e bastığınızda mesaj WhatsApp'ta açılır — göndermeden düzenleyebilirsiniz.",
+    o1:"Uçan Elbise",o2:"Düğün & Çift",o3:"Klasik Araba",o4:"Atlarla Şafak",o5:"Kararsızım / Diğer",
+    c_wa_l:"WhatsApp",c_ig_l:"Instagram",c_loc_l:"Konum",c_loc:"Göreme, Nevşehir — Kapadokya",
+    foot_rights:"© 2026 Kapadokya Fotocan — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    wa_greet:"Merhaba Kapadokya Fotocan! Web sitenizden yazıyorum.",wa_name:"İsim",wa_date:"Tarih",wa_type:"Konsept",wa_note:"Not"
+  },
+  en:{
+    meta_title:"Cappadocia Fotocan — Göreme Photo Shoots · Flying Dress, Wedding, Sunrise",
+    meta_desc:"Photo shoots under the balloons at dawn in Göreme: flying dress, wedding & couples, classic car, horses at dawn. 22,000 followers on Instagram.",
+    nav_shoots:"Concepts",nav_gallery:"Portfolio",nav_story:"Story",nav_book:"Booking",nav_cta:"WhatsApp",
+    hero_eyebrow:"Göreme · Cappadocia",
+    hero_title:'Under the balloons,<br><em>a frame of your own.</em>',
+    hero_lede:"Flying dresses, wedding gowns, classic cars and horses in the pastel light of dawn. Through the Fotocan viewfinder, your story meets the sky of Göreme.",
+    hero_cta1:"Plan a shoot",hero_cta2:"See the portfolio",
+    hero_meta:"GÖREME — FLYING DRESS · DAWN",alt_hero:"Flying dress photo shoot under hot air balloons at dawn — Göreme",
+    scroll_hint:"Scroll",
+    stat1_l:"Instagram followers",stat2_l:"frames shared",stat3_l:"Google rating",stat4_l:"signature concepts",
+    sh_eyebrow:"Shoot Concepts",sh_h:"Four concepts, one sunrise.",sh_sub:"Every frame below is from our own portfolio. Which one is your story?",
+    s1_tag:"Most iconic",s1_h:"Flying Dress",s1_p:"Fabric streaming over the rocks, balloons rising behind you. Cappadocia's most talked-about frame.",s1_light:"dawn light",
+    s2_tag:"Couples",s2_h:"Wedding & Couples",s2_p:"A gown, a veil and two silhouettes facing the valley. Your big day, calm as a magazine cover.",s2_light:"golden hour",
+    s3_tag:"Retro",s3_h:"Classic Car",s3_p:"A pastel convertible, a headscarf and sunglasses. Sixties elegance in Göreme light.",s3_light:"sunset",
+    s4_tag:"Nature",s4_h:"Horses at Dawn",s4_p:"In the land of beautiful horses — a frame among horses walking under the balloons.",s4_light:"morning light",
+    s_cta:"Ask about this concept",
+    gal_eyebrow:"Portfolio",gal_h:"Selections from the viewfinder.",gal_sub:"All frames are from our Instagram archive — @kapadokya.fotograf.",
+    g1:"Wedding silhouette at dawn",g2:"Classic car · golden hour",g3:"White dress, balloon sky",g4:"Horses and balloons",g5:"Wedding above the valley",g6:"Pink convertible detail",
+    st_eyebrow:"Story",st_lead:"“The best frame hides in the few minutes before the sun clears the ridge.”",
+    st_p1:"Cappadocia Fotocan works by waiting for first light in Göreme: in that short window when balloons fill the sky, the light turns pastel and the valleys stay quiet. That is when the frame is taken.",
+    st_p2:"You don't need to know how to pose. From the sweep of the dress to where you look, you are guided at every step — you simply live the moment.",
+    st_note:"— Cappadocia Fotocan, Göreme",st_meta:"GÖREME — WEDDING · DAWN",
+    ig_h:"Follow on Instagram",ig_p:"22,000 people watch Cappadocia through these frames. 714 posts and a growing archive.",ig_btn:"Open @kapadokya.fotograf",
+    bk_eyebrow:"Booking",bk_h:"Is your place ready at dawn?",bk_sub:"Fill in the form; your message opens ready in WhatsApp and we set the date together.",
+    f_name:"Your name",f_name_ph:"Full name",f_date:"Shoot date",f_type:"Concept",f_note:"Your note",
+    f_note_ph:"Group size, preferred time, your dream frame…",f_send:"Send via WhatsApp",
+    f_hint:"Pressing send opens the message in WhatsApp — you can edit before sending.",
+    o1:"Flying Dress",o2:"Wedding & Couples",o3:"Classic Car",o4:"Horses at Dawn",o5:"Not sure / Other",
+    c_wa_l:"WhatsApp",c_ig_l:"Instagram",c_loc_l:"Location",c_loc:"Göreme, Nevşehir — Cappadocia",
+    foot_rights:"© 2026 Cappadocia Fotocan — All rights reserved.",foot_demo:"Sample / Demo Design",
+    wa_greet:"Hello Cappadocia Fotocan! I'm writing from your website.",wa_name:"Name",wa_date:"Date",wa_type:"Concept",wa_note:"Note"
+  },
+  es:{
+    meta_title:"Capadocia Fotocan — Sesiones de fotos en Göreme · Vestido volador, boda, amanecer",
+    meta_desc:"Sesiones de fotos bajo los globos al amanecer en Göreme: vestido volador, bodas y parejas, coche clásico, caballos. 22.000 seguidores en Instagram.",
+    nav_shoots:"Conceptos",nav_gallery:"Portafolio",nav_story:"Historia",nav_book:"Reservas",nav_cta:"WhatsApp",
+    hero_eyebrow:"Göreme · Capadocia",
+    hero_title:'Bajo los globos,<br><em>un retrato solo tuyo.</em>',
+    hero_lede:"Vestidos voladores, trajes de novia, coches clásicos y caballos en la luz pastel del amanecer. A través del visor de Fotocan, tu historia se encuentra con el cielo de Göreme.",
+    hero_cta1:"Planear sesión",hero_cta2:"Ver portafolio",
+    hero_meta:"GÖREME — VESTIDO VOLADOR · AMANECER",alt_hero:"Sesión con vestido volador bajo los globos al amanecer — Göreme",
+    scroll_hint:"Desliza",
+    stat1_l:"seguidores en Instagram",stat2_l:"fotos publicadas",stat3_l:"puntuación en Google",stat4_l:"conceptos insignia",
+    sh_eyebrow:"Conceptos",sh_h:"Cuatro conceptos, un amanecer.",sh_sub:"Cada foto es de nuestro propio portafolio. ¿Cuál es tu historia?",
+    s1_tag:"El más icónico",s1_h:"Vestido volador",s1_p:"La tela ondeando sobre las rocas, los globos elevándose detrás de ti. La foto más comentada de Capadocia.",s1_light:"luz del alba",
+    s2_tag:"Parejas",s2_h:"Boda y parejas",s2_p:"Un vestido, un velo y dos siluetas frente al valle. Tu gran día, sereno como una portada.",s2_light:"hora dorada",
+    s3_tag:"Retro",s3_h:"Coche clásico",s3_p:"Un descapotable pastel, pañuelo y gafas de sol. La elegancia de los sesenta con la luz de Göreme.",s3_light:"atardecer",
+    s4_tag:"Naturaleza",s4_h:"Caballos al amanecer",s4_p:"En la tierra de los caballos hermosos: una foto entre caballos que caminan bajo los globos.",s4_light:"luz de la mañana",
+    s_cta:"Preguntar por este concepto",
+    gal_eyebrow:"Portafolio",gal_h:"Selecciones desde el visor.",gal_sub:"Todas las fotos son de nuestro archivo de Instagram — @kapadokya.fotograf.",
+    g1:"Silueta nupcial al amanecer",g2:"Coche clásico · hora dorada",g3:"Vestido blanco, cielo de globos",g4:"Caballos y globos",g5:"Boda sobre el valle",g6:"Detalle del descapotable rosa",
+    st_eyebrow:"Historia",st_lead:"«La mejor foto se esconde en los minutos previos a que el sol cruce las colinas.»",
+    st_p1:"Capadocia Fotocan trabaja esperando el amanecer en Göreme: en ese breve intervalo en que los globos llenan el cielo, la luz es pastel y los valles guardan silencio. Ahí nace la foto.",
+    st_p2:"No necesitas saber posar. Desde el vuelo del vestido hasta tu mirada, te guiamos en cada paso; tú solo vives el momento.",
+    st_note:"— Capadocia Fotocan, Göreme",st_meta:"GÖREME — BODA · AMANECER",
+    ig_h:"Síguenos en Instagram",ig_p:"22.000 personas miran Capadocia a través de estas fotos. 714 publicaciones y un archivo que crece.",ig_btn:"Abrir @kapadokya.fotograf",
+    bk_eyebrow:"Reservas",bk_h:"¿Tu lugar al amanecer está listo?",bk_sub:"Completa el formulario; tu mensaje se abre listo en WhatsApp y fijamos la fecha juntos.",
+    f_name:"Tu nombre",f_name_ph:"Nombre y apellido",f_date:"Fecha de la sesión",f_type:"Concepto",f_note:"Tu nota",
+    f_note_ph:"Número de personas, hora preferida, la foto de tus sueños…",f_send:"Enviar por WhatsApp",
+    f_hint:"Al pulsar enviar, el mensaje se abre en WhatsApp: puedes editarlo antes de enviarlo.",
+    o1:"Vestido volador",o2:"Boda y parejas",o3:"Coche clásico",o4:"Caballos al amanecer",o5:"No estoy seguro / Otro",
+    c_wa_l:"WhatsApp",c_ig_l:"Instagram",c_loc_l:"Ubicación",c_loc:"Göreme, Nevşehir — Capadocia",
+    foot_rights:"© 2026 Capadocia Fotocan — Todos los derechos reservados.",foot_demo:"Diseño de muestra / demo",
+    wa_greet:"¡Hola Capadocia Fotocan! Escribo desde su sitio web.",wa_name:"Nombre",wa_date:"Fecha",wa_type:"Concepto",wa_note:"Nota"
+  },
+  "zh-CN":{
+    meta_title:"卡帕多奇亚 Fotocan — 格雷梅旅拍 · 飘纱裙、婚纱、日出热气球",
+    meta_desc:"格雷梅日出时分，在热气球下拍摄：飘纱裙、婚纱情侣、复古老爷车、骏马旅拍。Instagram 上有 22,000 位粉丝。",
+    nav_shoots:"拍摄主题",nav_gallery:"作品集",nav_story:"故事",nav_book:"预约",nav_cta:"WhatsApp",
+    hero_eyebrow:"格雷梅 · 卡帕多奇亚",
+    hero_title:'热气球之下，<br><em>只属于你的一帧。</em>',
+    hero_lede:"晨曦的粉彩光线里：飘纱裙、婚纱、复古老爷车与骏马。透过 Fotocan 的取景器，你的故事与格雷梅的天空相遇。",
+    hero_cta1:"预约拍摄",hero_cta2:"查看作品集",
+    hero_meta:"格雷梅 — 飘纱裙 · 日出",alt_hero:"日出时分，热气球下的飘纱裙旅拍 — 格雷梅",
+    scroll_hint:"下滑",
+    stat1_l:"Instagram 粉丝",stat2_l:"已发布作品",stat3_l:"Google 评分",stat4_l:"签名主题",
+    sh_eyebrow:"拍摄主题",sh_h:"四个主题，同一个日出。",sh_sub:"以下每一帧都来自我们自己的作品集。哪一个是你的故事？",
+    s1_tag:"最具代表",s1_h:"飘纱裙",s1_p:"裙摆在岩石上方飞舞，热气球在身后升起。卡帕多奇亚最受瞩目的一帧。",s1_light:"晨光",
+    s2_tag:"情侣",s2_h:"婚纱 & 情侣",s2_p:"婚纱、头纱和面向山谷的两道剪影。你的大日子，如杂志封面般宁静。",s2_light:"黄金时刻",
+    s3_tag:"复古",s3_h:"老爷车",s3_p:"粉彩敞篷车、丝巾与墨镜。六十年代的优雅，遇上格雷梅的光。",s3_light:"日落",
+    s4_tag:"自然",s4_h:"骏马日出",s4_p:"在骏马之乡，热气球下漫步的马群之间，留下一帧。",s4_light:"晨间光线",
+    s_cta:"咨询这个主题",
+    gal_eyebrow:"作品集",gal_h:"取景器里的精选。",gal_sub:"所有作品均来自我们的 Instagram — @kapadokya.fotograf。",
+    g1:"日出婚纱剪影",g2:"老爷车 · 黄金时刻",g3:"白裙与热气球天空",g4:"骏马与热气球",g5:"山谷之上的婚纱",g6:"粉色敞篷车细节",
+    st_eyebrow:"故事",st_lead:"“最好的一帧，藏在太阳越过山脊前的那几分钟。”",
+    st_p1:"Fotocan 的工作方式是在格雷梅等待第一缕晨光：热气球布满天空的短暂窗口里，光线是粉彩的，山谷是安静的。快门就在那一刻按下。",
+    st_p2:"你不需要会摆姿势。从裙摆的方向到目光的落点，每一步都有引导——你只管享受当下。",
+    st_note:"— Kapadokya Fotocan · 格雷梅",st_meta:"格雷梅 — 婚纱 · 日出",
+    ig_h:"在 Instagram 关注",ig_p:"22,000 人通过这些照片看卡帕多奇亚。714 帧，持续更新的档案。",ig_btn:"打开 @kapadokya.fotograf",
+    bk_eyebrow:"预约",bk_h:"日出时分，你的位置准备好了吗？",bk_sub:"填写表单，消息会在 WhatsApp 中自动生成，我们一起确定日期。",
+    f_name:"你的姓名",f_name_ph:"姓名",f_date:"拍摄日期",f_type:"主题",f_note:"备注",
+    f_note_ph:"人数、偏好时间、你梦想中的画面……",f_send:"通过 WhatsApp 发送",
+    f_hint:"点击发送后，消息将在 WhatsApp 中打开——发送前可以修改。",
+    o1:"飘纱裙",o2:"婚纱 & 情侣",o3:"老爷车",o4:"骏马日出",o5:"还没想好 / 其他",
+    c_wa_l:"WhatsApp",c_ig_l:"Instagram",c_loc_l:"位置",c_loc:"格雷梅，内夫谢希尔 — 卡帕多奇亚",
+    foot_rights:"© 2026 Kapadokya Fotocan — 版权所有。",foot_demo:"示例 / 演示设计",
+    wa_greet:"你好 Kapadokya Fotocan！我从你们的网站联系。",wa_name:"姓名",wa_date:"日期",wa_type:"主题",wa_note:"备注"
+  },
+  ko:{
+    meta_title:"카파도키아 포토잔 — 괴레메 스냅 촬영 · 플라잉드레스, 웨딩, 일출",
+    meta_desc:"괴레메의 일출, 열기구 아래에서의 스냅 촬영: 플라잉드레스, 웨딩·커플, 클래식카, 말과 일출. 인스타그램 팔로워 22,000명.",
+    nav_shoots:"촬영 콘셉트",nav_gallery:"포트폴리오",nav_story:"스토리",nav_book:"예약",nav_cta:"WhatsApp",
+    hero_eyebrow:"괴레메 · 카파도키아",
+    hero_title:'열기구 아래,<br><em>당신만의 한 컷.</em>',
+    hero_lede:"새벽의 파스텔 빛 속 플라잉드레스, 웨딩드레스, 클래식카, 그리고 말. 포토잔의 뷰파인더를 통해 당신의 이야기가 괴레메의 하늘과 만납니다.",
+    hero_cta1:"촬영 예약",hero_cta2:"포트폴리오 보기",
+    hero_meta:"괴레메 — 플라잉드레스 · 일출",alt_hero:"새벽 열기구 아래 플라잉드레스 촬영 — 괴레메",
+    scroll_hint:"스크롤",
+    stat1_l:"인스타그램 팔로워",stat2_l:"업로드된 컷",stat3_l:"구글 평점",stat4_l:"시그니처 콘셉트",
+    sh_eyebrow:"촬영 콘셉트",sh_h:"네 가지 콘셉트, 하나의 일출.",sh_sub:"아래 모든 컷은 저희 포트폴리오에서 가져왔습니다. 어떤 것이 당신의 이야기인가요?",
+    s1_tag:"가장 아이코닉",s1_h:"플라잉드레스",s1_p:"바위 위로 흩날리는 드레스 자락, 등 뒤로 떠오르는 열기구. 카파도키아에서 가장 화제가 되는 한 컷.",s1_light:"새벽 빛",
+    s2_tag:"커플",s2_h:"웨딩 & 커플",s2_p:"드레스와 베일, 계곡을 바라보는 두 실루엣. 당신의 가장 큰 날을 잡지 화보처럼.",s2_light:"골든아워",
+    s3_tag:"레트로",s3_h:"클래식카",s3_p:"파스텔 컨버터블, 스카프와 선글라스. 60년대의 우아함과 괴레메의 빛.",s3_light:"일몰",
+    s4_tag:"자연",s4_h:"말과 일출",s4_p:"아름다운 말의 땅에서, 열기구 아래를 걷는 말들 사이의 한 컷.",s4_light:"아침 빛",
+    s_cta:"이 콘셉트 문의",
+    gal_eyebrow:"포트폴리오",gal_h:"뷰파인더 셀렉션.",gal_sub:"모든 컷은 인스타그램 아카이브에서 — @kapadokya.fotograf.",
+    g1:"일출 웨딩 실루엣",g2:"클래식카 · 골든아워",g3:"화이트 드레스와 열기구",g4:"말과 열기구",g5:"계곡 위의 웨딩",g6:"핑크 컨버터블 디테일",
+    st_eyebrow:"스토리",st_lead:"“최고의 한 컷은 해가 능선을 넘기 전 몇 분 속에 숨어 있습니다.”",
+    st_p1:"포토잔은 괴레메에서 첫 빛을 기다리며 작업합니다. 열기구가 하늘을 채우는 짧은 시간, 빛은 파스텔이 되고 계곡은 고요해집니다. 셔터는 바로 그 순간에 눌립니다.",
+    st_p2:"포즈를 몰라도 괜찮습니다. 드레스 자락의 방향부터 시선까지 모든 단계를 안내해 드립니다. 당신은 그 순간을 즐기기만 하면 됩니다.",
+    st_note:"— Kapadokya Fotocan · 괴레메",st_meta:"괴레메 — 웨딩 · 일출",
+    ig_h:"인스타그램에서 보기",ig_p:"22,000명이 이 사진들로 카파도키아를 봅니다. 714컷, 계속 자라는 아카이브.",ig_btn:"@kapadokya.fotograf 열기",
+    bk_eyebrow:"예약",bk_h:"새벽, 당신의 자리는 준비되었나요?",bk_sub:"폼을 작성하면 메시지가 WhatsApp에 자동으로 열립니다. 날짜는 함께 정해요.",
+    f_name:"이름",f_name_ph:"성함",f_date:"촬영 날짜",f_type:"콘셉트",f_note:"메모",
+    f_note_ph:"인원, 선호 시간, 꿈꾸는 장면…",f_send:"WhatsApp으로 보내기",
+    f_hint:"보내기를 누르면 WhatsApp에서 메시지가 열립니다. 전송 전에 수정할 수 있어요.",
+    o1:"플라잉드레스",o2:"웨딩 & 커플",o3:"클래식카",o4:"말과 일출",o5:"고민 중 / 기타",
+    c_wa_l:"WhatsApp",c_ig_l:"Instagram",c_loc_l:"위치",c_loc:"괴레메, 네브셰히르 — 카파도키아",
+    foot_rights:"© 2026 Kapadokya Fotocan — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    wa_greet:"안녕하세요 Kapadokya Fotocan! 웹사이트에서 연락드립니다.",wa_name:"이름",wa_date:"날짜",wa_type:"콘셉트",wa_note:"메모"
+  }
+};
+
+// ==================== DİL YÖNETİMİ (?lang= + localStorage) ====================
+let currentLang = "tr";
+function applyLang(lang){
+  if(!I18N[lang]) lang = "tr";
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k = el.getAttribute("data-i18n");
+    if(dict[k] !== undefined){
+      if(el.tagName === "META"){ el.setAttribute("content", dict[k]); }
+      else if(el.tagName === "TITLE"){ document.title = dict[k]; }
+      else{ el.textContent = dict[k]; }
+    }
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach(el=>{
+    const k = el.getAttribute("data-i18n-html");
+    if(dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>{
+    const k = el.getAttribute("data-i18n-ph");
+    if(dict[k] !== undefined) el.setAttribute("placeholder", dict[k]);
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach(el=>{
+    const k = el.getAttribute("data-i18n-alt");
+    if(dict[k] !== undefined) el.setAttribute("alt", dict[k]);
+  });
+  document.querySelectorAll(".langs button").forEach(b=>{
+    b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+  });
+  try{ localStorage.setItem("fotocan-lang", lang); }catch(e){}
+}
+(function(){
+  const p = new URLSearchParams(location.search).get("lang");
+  let saved = null; try{ saved = localStorage.getItem("fotocan-lang"); }catch(e){}
+  applyLang(p || saved || "tr");
+  document.querySelectorAll(".langs button").forEach(b=>{
+    b.addEventListener("click", ()=> applyLang(b.getAttribute("data-lang")));
+  });
+})();
+
+// ==================== TEMA (?theme= + localStorage + prefers-color-scheme) ====================
+(function(){
+  const root = document.documentElement;
+  function setTheme(t){
+    if(t === "dark") root.setAttribute("data-theme","dark");
+    else root.removeAttribute("data-theme");
+    try{ localStorage.setItem("fotocan-theme", t); }catch(e){}
+  }
+  const p = new URLSearchParams(location.search).get("theme");
+  let saved = null; try{ saved = localStorage.getItem("fotocan-theme"); }catch(e){}
+  // Açık editoryal konsept: varsayılan AÇIK; sistem koyu tercihini yalnızca kayıt yoksa dinle
+  const sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  setTheme(p === "dark" || p === "light" ? p : (saved || (sysDark ? "dark" : "light")));
+  document.getElementById("themeBtn").addEventListener("click", ()=>{
+    setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  });
+})();
+
+// ==================== NAV scrolled + scroll-spy (focus-frame aktif köşe) ====================
+(function(){
+  const nav = document.getElementById("topnav");
+  function onScroll(){ nav.classList.toggle("scrolled", window.scrollY > 40); }
+  window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+  const ids = ["cekimler","galeri","hikaye","rezervasyon"];
+  const links = [...document.querySelectorAll('.navlinks .flink, .dock a')];
+  function spy(){
+    let active = "";
+    for(const id of ids){
+      const el = document.getElementById(id);
+      if(el && el.getBoundingClientRect().top <= window.innerHeight * .45) active = id;
+    }
+    links.forEach(a=> a.classList.toggle("active", a.getAttribute("href") === "#" + active));
+  }
+  window.addEventListener("scroll", spy, {passive:true}); spy();
+})();
+
+// ==================== REVEAL ====================
+(function(){
+  const els = document.querySelectorAll(".reveal");
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)){
+    els.forEach(el=> el.classList.add("in")); return;
+  }
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, {threshold:.12, rootMargin:"0px 0px -6% 0px"});
+  els.forEach(el=> io.observe(el));
+})();
+
+// ==================== Konsept kartı → formda konsepti seç ====================
+document.querySelectorAll(".s-cta[data-type]").forEach(a=>{
+  a.addEventListener("click", ()=>{
+    const sel = document.getElementById("f-type");
+    if(sel) sel.value = a.getAttribute("data-type");
+  });
+});
+
+// ==================== REZERVASYON → WHATSAPP (çok dilli) ====================
+const WHATSAPP = "905050365050";
+document.getElementById("bookForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const d = I18N[currentLang];
+  const name = document.getElementById("f-name").value.trim();
+  const date = document.getElementById("f-date").value;
+  const typeKey = document.getElementById("f-type").value;
+  const note = document.getElementById("f-note").value.trim();
+  let lines = [d.wa_greet];
+  if(name) lines.push(d.wa_name + ": " + name);
+  if(date) lines.push(d.wa_date + ": " + date);
+  lines.push(d.wa_type + ": " + (d[typeKey] || ""));
+  if(note) lines.push(d.wa_note + ": " + note);
+  const msg = encodeURIComponent(lines.join("\n"));
+  window.open("https://wa.me/" + WHATSAPP + "?text=" + msg, "_blank");
+});
+</script>
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+// İnternet/CDN gerektirmez; her koşulda çalışır. Ayarlar talimatla uyumlu: lerp 0.085, wheelMultiplier 0.9
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  // input/textarea/select/button ve data-lenis-prevent alanlarında smooth engelle
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    // kullanıcı manuel scroll'da current'ı senkronla
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  // dokunmatik ve klavye native kalsın; scroll pozisyonunu senkronla
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  // anchor linkleri yumuşak kaydır
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 70;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+</body>
+</html>
