@@ -53,7 +53,7 @@
       --shadow:0 28px 70px rgba(91,66,43,.18);
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    /* scroll-behavior:smooth KALDIRILDI — gömülü smooth-scroll motoru (dosya sonunda) ile çakışır */
     body{
       margin:0;
       background:var(--taban);
@@ -1746,5 +1746,88 @@
       window.open(url, "_blank", "noopener");
     });
   </script>
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+// Şablondan (sablonlar/at-turu-5dil) birebir port; lerp 0.085, wheelMultiplier 0.9
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  // input/textarea/select/button ve data-lenis-prevent alanlarında smooth engelle
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    // kullanıcı manuel scroll'da current'ı senkronla
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  // dokunmatik ve klavye native kalsın; scroll pozisyonunu senkronla
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  // anchor linkleri yumuşak kaydır
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 70;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
 </body>
 </html>
