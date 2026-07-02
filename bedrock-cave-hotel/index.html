@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Bedrock Cave Hotel — Göreme'de Kayaya Oyulmuş Odalar | Kapadokya</title>
+<meta name="description" data-i18n="meta_desc" content="Göreme'nin merkezinde kayaya oyulmuş mağara ve taş odalar, balonlara bakan bir teras. Bedrock Cave Hotel — telefonla veya Instagram'dan doğrudan rezervasyon.">
+<script>
+/* Tema FOUC önleme: URL > localStorage > sistem > karanlık */
+(function(){try{
+  var q=new URLSearchParams(location.search).get('theme');
+  var s=null;try{s=localStorage.getItem('bedrock_theme')}catch(e){}
+  var m=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';
+  var t=(q==='light'||q==='dark')?q:((s==='light'||s==='dark')?s:m);
+  document.documentElement.setAttribute('data-theme',t);
+}catch(e){document.documentElement.setAttribute('data-theme','dark')}})();
+</script>
+<style>
+  /* ============ BEDROCK CAVE HOTEL — "Taş ve Yıldız Gecesi" (Sinematik Sessizlik · konaklama yorumu) ============ */
+  :root{
+    --bg:#0f131d;            /* bazalt gecesi */
+    --bg-2:#0a0d15;          /* daha derin gece */
+    --surface:#171d2c;       /* oda paneli */
+    --text:#ece5d4;          /* sıcak taş beyazı */
+    --muted:#98a0b4;         /* soğuk gri-mavi */
+    --amber:#e0a458;         /* oda ışığı */
+    --amber-2:#f0c185;       /* pencere parıltısı */
+    --btn-fg:#1a1408;
+    --line:rgba(236,229,212,.14);
+    --nav-bg:rgba(12,15,24,.86);
+    --field-bg:rgba(18,23,36,.72);
+    --chip-bg:rgba(10,13,21,.55);
+    --glow:rgba(224,164,88,.32);
+  }
+  html[data-theme="light"]{
+    --bg:#f0eadd;            /* tüf sabahı */
+    --bg-2:#e6ddc9;
+    --surface:#faf6ec;
+    --text:#262b3a;          /* bazalt mürekkep */
+    --muted:#5c6374;
+    --amber:#a2691f;
+    --amber-2:#8a5717;
+    --btn-fg:#fbf7ee;
+    --line:rgba(38,43,58,.15);
+    --nav-bg:rgba(243,238,228,.9);
+    --field-bg:rgba(255,255,255,.72);
+    --chip-bg:rgba(24,20,10,.55);
+    --glow:rgba(162,105,31,.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  body{font-family:'Segoe UI','Gill Sans',system-ui,sans-serif;color:var(--text);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.68;overflow-x:hidden;transition:background .5s,color .5s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:'Cormorant Garamond','Palatino Linotype','Book Antiqua',Georgia,serif;font-weight:500;line-height:1.06;letter-spacing:0}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:600}
+  .eyebrow{font-family:'Segoe UI','Gill Sans',sans-serif;text-transform:uppercase;letter-spacing:.4em;font-size:.66rem;font-weight:600;color:var(--amber)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.14em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 30px}
+
+  /* ---------- NAV — 21st.dev "Limelight" portu: aktif linke tepeden düşen sıcak ışık huzmesi ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;transition:.5s;gap:14px}
+  nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+  .brand{display:flex;align-items:center;gap:11px;font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;font-size:1.22rem;letter-spacing:.05em;flex:none;color:#f2eee2}
+  nav.scrolled .brand{color:var(--text)}
+  .brand img{width:34px;height:34px;border-radius:8px;display:block;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+  .brand .b-sub{display:block;font-family:'Segoe UI',sans-serif;font-size:.56rem;letter-spacing:.34em;text-transform:uppercase;color:var(--amber-2);opacity:.95}
+  nav:not(.scrolled) .brand .b-sub{color:#f0c185}
+  .navlinks{display:flex;gap:4px;align-items:center;margin-left:auto;position:relative;padding-top:6px}
+  .navlinks a{font-family:'Segoe UI','Gill Sans',sans-serif;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:#d9d3c4;transition:.3s;padding:9px 13px;position:relative;z-index:2}
+  nav.scrolled .navlinks a{color:var(--muted)}
+  html[lang="zh-CN"] .navlinks a,html[lang="ko"] .navlinks a{text-transform:none;letter-spacing:.03em;font-size:.86rem}
+  .navlinks a:hover{color:#fff}
+  nav.scrolled .navlinks a:hover{color:var(--text)}
+  .navlinks a.active{color:var(--amber-2)}
+  nav:not(.scrolled) .navlinks a.active{color:#f5cd93}
+  /* limelight huzmesi: tepedeki lamba çizgisi + aşağı açılan koni */
+  .limelight{position:absolute;top:-4px;left:0;width:70px;height:52px;pointer-events:none;opacity:0;transition:transform .5s cubic-bezier(.3,.7,.2,1),width .5s cubic-bezier(.3,.7,.2,1),opacity .45s;z-index:1}
+  .limelight.on{opacity:1}
+  .limelight::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:26px;height:3px;border-radius:3px;background:var(--amber-2);box-shadow:0 0 14px 3px var(--glow),0 0 4px var(--amber-2)}
+  .limelight::after{content:"";position:absolute;inset:3px 0 0 0;clip-path:polygon(38% 0,62% 0,100% 100%,0 100%);background:linear-gradient(180deg,var(--glow),transparent 92%);filter:blur(3px)}
+  .nav-cta{border:1px solid var(--amber);color:var(--amber-2)!important;padding:9px 20px;border-radius:3px;font-size:.72rem!important;transition:.35s;margin-left:8px}
+  .nav-cta:hover{background:var(--amber);color:var(--btn-fg)!important}
+  nav:not(.scrolled) .nav-cta{border-color:#e6b876;color:#f5cd93!important}
+  nav:not(.scrolled) .nav-cta:hover{background:#e6b876;color:#1a1408!important}
+  .langs{display:flex;align-items:center;gap:1px;flex:none}
+  .langs button{background:none;border:none;color:#cfc9ba;font-family:'Segoe UI',sans-serif;font-size:.74rem;cursor:pointer;padding:5px 6px;transition:.25s;border-radius:3px;letter-spacing:.03em}
+  nav.scrolled .langs button{color:var(--muted)}
+  .langs button:hover{color:#fff}
+  nav.scrolled .langs button:hover{color:var(--text)}
+  .langs button.active{color:var(--amber-2);font-weight:700}
+  nav:not(.scrolled) .langs button.active{color:#f5cd93}
+  .langs .sep{color:var(--line);font-size:.68rem}
+  .theme-btn{background:none;border:1px solid var(--line);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#e8e2d2;transition:.3s;flex:none}
+  nav.scrolled .theme-btn{color:var(--text)}
+  .theme-btn:hover{border-color:var(--amber);color:var(--amber-2)}
+  .theme-btn svg{width:16px;height:16px}
+  .theme-btn .ic-sun{display:none}
+  html[data-theme="light"] .theme-btn .ic-sun{display:block}
+  html[data-theme="light"] .theme-btn .ic-moon{display:none}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;color:#f2eee2;flex:none}
+  nav.scrolled .menu-btn{color:var(--text)}
+
+  /* ---------- MOBİL DOCK (limelight'ın cebe inen hâli) ---------- */
+  .dock{display:none;position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:65;background:var(--nav-bg);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:18px;padding:10px 8px 8px;gap:2px;box-shadow:0 10px 34px rgba(0,0,0,.35)}
+  .dock a{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 11px;color:var(--muted);font-size:.56rem;letter-spacing:.06em;text-transform:uppercase;border-radius:12px;transition:.3s}
+  html[lang="zh-CN"] .dock a,html[lang="ko"] .dock a{text-transform:none;letter-spacing:.02em;font-size:.62rem}
+  .dock a svg{width:19px;height:19px}
+  .dock a.active{color:var(--amber-2)}
+  .dock .limelight{top:-7px;height:44px}
+  .dock .limelight::before{width:20px}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:flex-end;isolation:isolate;background:#0b0e17}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center 38%;opacity:0;transition:opacity .8s}
+  .hero-photo.has-img{opacity:1;animation:kenburns 36s ease-in-out infinite alternate;transform-origin:55% 42%}
+  @keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.09)}}
+  .stars{position:absolute;inset:0 0 46% 0;z-index:2;opacity:.8;pointer-events:none}
+  html[data-theme="light"] .stars{opacity:.35}
+  .star{position:absolute;background:#f4efe2;border-radius:50%;animation:twinkle 4.4s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.85}}
+  #hero-gradient{position:absolute;inset:0;z-index:3;pointer-events:none;mix-blend-mode:overlay;opacity:.55;
+    --gradient-color-1:#141b2c; --gradient-color-2:#3c4256; --gradient-color-3:#e0a458; --gradient-color-4:#6d5a7d}
+  .no-webgl #hero-gradient{display:none}
+  /* okunabilirlik scrim'i — iki temada da koyu foto üstüne sabit açık metin (tema değişkeni DEĞİL) */
+  .hero::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+    background:linear-gradient(180deg,rgba(8,10,17,.52) 0%,rgba(8,10,17,.08) 34%,rgba(8,10,17,.16) 58%,rgba(8,10,17,.78) 100%)}
+  .hero-inner{position:relative;z-index:10;width:100%;padding-bottom:13vh}
+  .hero .eyebrow{color:#f5d5a4;text-shadow:0 1px 6px rgba(0,0,0,.65);background:rgba(8,10,17,.38);padding:7px 14px;border-radius:3px;backdrop-filter:blur(4px);display:inline-block}
+  .hero h1{color:#f6f1e4;font-size:clamp(2.7rem,6.6vw,5.6rem);max-width:16ch;text-shadow:0 4px 44px rgba(0,0,0,.55);margin-top:20px}
+  .hero h1 em{font-style:italic;color:#f2c17f}
+  .hero .lede{font-size:clamp(1.02rem,1.5vw,1.26rem);color:rgba(244,239,228,.92);max-width:52ch;margin-top:22px;font-weight:300;text-shadow:0 2px 22px rgba(0,0,0,.6)}
+  .hero-cta{display:flex;gap:18px;margin-top:34px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:#e9b76b;color:#1a1408;padding:15px 32px;border-radius:3px;font-family:'Segoe UI','Gill Sans',sans-serif;font-weight:600;font-size:.84rem;letter-spacing:.13em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.35s}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{text-transform:none;letter-spacing:.03em}
+  .btn-solid:hover{background:#f2c98a;gap:15px}
+  .btn-line{color:#f4efe2;font-family:'Segoe UI','Gill Sans',sans-serif;font-size:.84rem;letter-spacing:.13em;text-transform:uppercase;border-bottom:1px solid rgba(244,239,226,.5);padding-bottom:4px;transition:.4s;text-shadow:0 1px 14px rgba(0,0,0,.5)}
+  .btn-line:hover{border-color:#f2c17f;color:#f2c17f}
+  .scrollhint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:10;font-family:'Segoe UI',sans-serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(244,239,226,.6);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scrollhint .l{width:1px;height:32px;background:linear-gradient(#f2c17f,transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ---------- KANIT BANDI ---------- */
+  .stats{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:42px 30px}
+  .stat{text-align:center}
+  .stat .n{font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--amber);line-height:1.1}
+  .stat .l{font-family:'Segoe UI',sans-serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  html[lang="zh-CN"] .stat .l,html[lang="ko"] .stat .l{text-transform:none;letter-spacing:.05em}
+  .stat+.stat{border-left:1px solid var(--line)}
+  @media(max-width:680px){.stats .wrap{grid-template-columns:1fr 1fr;gap:30px 18px}.stat:nth-child(3){border-left:none}}
+
+  section{padding:110px 0;position:relative}
+  .sec-head{max-width:680px;margin-bottom:58px}
+  .sec-head .eyebrow{display:block;margin-bottom:16px}
+  .sec-head h2{font-size:clamp(2.1rem,4.4vw,3.4rem)}
+  .sec-head p{margin-top:18px;color:var(--muted);font-size:1.06rem;font-weight:300}
+
+  /* ---------- SESSİZLİK — signature: "Gece Penceresi" kemerli taş çerçeve ---------- */
+  .silence{background:var(--bg);overflow:hidden}
+  .silence::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(40% 50% at 14% 22%,var(--glow),transparent 62%),
+               radial-gradient(42% 48% at 88% 76%,rgba(109,90,125,.14),transparent 64%);
+    background-size:170% 170%;animation:meshDrift 28s ease-in-out infinite alternate;opacity:.7}
+  html[data-theme="light"] .silence::before{opacity:.45}
+  @keyframes meshDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+  .silence>.wrap{position:relative;z-index:1}
+  .silence-grid{display:grid;grid-template-columns:0.92fr 1.08fr;gap:64px;align-items:center}
+  .window-wrap{position:relative;display:flex;justify-content:center;padding:26px 0 0}
+  /* yıldız serpintisi — pencerenin arkasındaki gece */
+  .window-wrap::before{content:"";position:absolute;inset:-10px -22px;z-index:0;border-radius:24px;
+    background-image:radial-gradient(1.6px 1.6px at 12% 20%,var(--amber-2) 50%,transparent 51%),
+      radial-gradient(1.2px 1.2px at 78% 12%,var(--text) 50%,transparent 51%),
+      radial-gradient(1px 1px at 90% 55%,var(--amber-2) 50%,transparent 51%),
+      radial-gradient(1.4px 1.4px at 5% 70%,var(--text) 50%,transparent 51%),
+      radial-gradient(1px 1px at 60% 4%,var(--text) 50%,transparent 51%),
+      radial-gradient(1.2px 1.2px at 30% 6%,var(--amber-2) 50%,transparent 51%),
+      radial-gradient(1px 1px at 96% 30%,var(--text) 50%,transparent 51%);
+    opacity:.55}
+  html[data-theme="light"] .window-wrap::before{opacity:.35}
+  .window-frame{position:relative;z-index:1;width:min(420px,100%);aspect-ratio:4/5;border-radius:210px 210px 10px 10px;overflow:hidden;
+    border:1px solid var(--line);background:var(--surface) center/cover no-repeat;
+    box-shadow:0 30px 70px rgba(0,0,0,.42),0 0 0 10px var(--bg),0 0 46px 6px var(--glow);cursor:pointer;transition:box-shadow .5s}
+  .window-frame:hover{box-shadow:0 34px 80px rgba(0,0,0,.5),0 0 0 10px var(--bg),0 0 68px 12px var(--glow)}
+  .window-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,20,.18),transparent 30%,transparent 72%,rgba(10,12,20,.4));pointer-events:none}
+  .window-frame .ph-label{position:absolute;left:0;right:0;bottom:16px;text-align:center;z-index:3;font-family:'Segoe UI',sans-serif;font-size:.7rem;letter-spacing:.1em;color:rgba(246,241,228,.92);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+  .window-ledge{width:min(460px,96%);height:12px;margin:-2px auto 0;border-radius:0 0 14px 14px;background:linear-gradient(180deg,var(--surface),var(--bg-2));border:1px solid var(--line);border-top:none;position:relative;z-index:2}
+  .story-chip{margin-top:18px;text-align:center;font-family:'Segoe UI',sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  html[lang="zh-CN"] .story-chip,html[lang="ko"] .story-chip{text-transform:none;letter-spacing:.04em}
+  .silence-text .lead{font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;font-size:clamp(1.4rem,2.2vw,1.75rem);line-height:1.42;font-style:italic;color:var(--text);margin-bottom:22px}
+  html[lang="zh-CN"] .silence-text .lead,html[lang="ko"] .silence-text .lead{font-style:normal}
+  .silence-text p{color:var(--muted);margin-bottom:16px;font-weight:300;max-width:52ch}
+  @media(max-width:900px){.silence-grid{grid-template-columns:1fr;gap:44px}.window-wrap{order:2}}
+
+  /* ---------- ODALAR ---------- */
+  .rooms{background:var(--bg-2)}
+  .rooms::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(36% 46% at 86% 16%,var(--glow),transparent 60%);
+    background-size:170% 170%;animation:meshDrift 24s ease-in-out infinite alternate;opacity:.5}
+  .rooms>.wrap{position:relative;z-index:1}
+  .room-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .room-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+  .room-card:hover{transform:translateY(-5px);box-shadow:0 22px 50px rgba(0,0,0,.35)}
+  .room-img{aspect-ratio:4/3;background:var(--bg) center/cover no-repeat;position:relative;border-radius:90px 90px 0 0;overflow:hidden;cursor:pointer;margin:10px 10px 0}
+  .room-img .tag{position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:2;font-family:'Segoe UI',sans-serif;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#f6f1e4;background:var(--chip-bg);padding:6px 13px;border-radius:20px;backdrop-filter:blur(5px);white-space:nowrap}
+  html[lang="zh-CN"] .room-img .tag,html[lang="ko"] .room-img .tag{text-transform:none;letter-spacing:.05em}
+  .room-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,17,.22),transparent 34%)}
+  .room-img .ph-label{position:absolute;inset:auto 0 12px;text-align:center;font-size:.68rem;color:rgba(246,241,228,.85);z-index:2;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+  .room-body{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
+  .room-body h3{font-size:1.5rem;color:var(--text)}
+  .room-body .feats{margin:10px 0 12px;font-family:'Segoe UI',sans-serif;font-size:.72rem;letter-spacing:.08em;color:var(--amber);text-transform:uppercase}
+  html[lang="zh-CN"] .room-body .feats,html[lang="ko"] .room-body .feats{text-transform:none;letter-spacing:.03em}
+  .room-body p{color:var(--muted);font-weight:300;font-size:.95rem;flex:1}
+  .room-body .room-cta{margin-top:18px;display:inline-flex;align-items:center;gap:8px;color:var(--amber-2);font-family:'Segoe UI',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:3px;align-self:flex-start;transition:.3s}
+  html[lang="zh-CN"] .room-body .room-cta,html[lang="ko"] .room-body .room-cta{text-transform:none;letter-spacing:.03em}
+  .room-body .room-cta:hover{border-color:var(--amber)}
+  @media(max-width:900px){.room-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+
+  /* ---------- TERAS ---------- */
+  .terrace{background:var(--bg)}
+  .terrace-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .terrace-visual{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:5/4;background:var(--surface) center/cover no-repeat;cursor:pointer;box-shadow:0 26px 60px rgba(0,0,0,.35)}
+  .terrace-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,10,17,.42),transparent 44%)}
+  .terrace-visual .time{position:absolute;top:18px;left:20px;z-index:2;font-family:'Segoe UI',sans-serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#f6f1e4;background:var(--chip-bg);padding:6px 13px;border-radius:20px;backdrop-filter:blur(5px)}
+  html[lang="zh-CN"] .terrace-visual .time,html[lang="ko"] .terrace-visual .time{text-transform:none;letter-spacing:.05em}
+  .terrace-visual .ph-label{position:absolute;left:20px;bottom:16px;z-index:2;font-size:.7rem;color:rgba(246,241,228,.9);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+  .terrace-text p{color:var(--muted);font-weight:300;margin-bottom:16px;max-width:50ch}
+  .terrace-text .t-note{font-size:.86rem;color:var(--amber);border-left:2px solid var(--amber);padding-left:14px;margin-top:22px;max-width:44ch}
+  @media(max-width:900px){.terrace-grid{grid-template-columns:1fr;gap:36px}}
+
+  /* ---------- GALERİ ---------- */
+  .gallery{background:var(--bg-2)}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tile{aspect-ratio:4/3;border-radius:10px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;background:var(--surface) center/cover no-repeat;cursor:pointer;transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+  .tile .ph-label{position:relative;z-index:3;font-family:'Segoe UI',sans-serif;font-size:.74rem;letter-spacing:.05em;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.78);display:flex;align-items:center;gap:6px}
+  .tile::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(8,10,17,.6),rgba(8,10,17,0) 46%);transition:.4s}
+  .tile::after{content:"\2922";position:absolute;top:11px;right:14px;z-index:3;color:#fff;font-size:1rem;opacity:0;transform:scale(.75);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .tile:hover::before{background:linear-gradient(to top,rgba(8,10,17,.68),rgba(8,10,17,.14))}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  @media(max-width:820px){.tiles{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.tiles{grid-template-columns:1fr}.tile{aspect-ratio:16/10}}
+  .gallery-src{margin-top:20px;font-size:.78rem;color:var(--muted);font-weight:300}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(8,9,15,.94);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:86vh;border-radius:6px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f4efe2;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s;z-index:5}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#e8e2d2;font-family:'Segoe UI',sans-serif;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase}
+  html[lang="zh-CN"] .lb-cap,html[lang="ko"] .lb-cap{text-transform:none;letter-spacing:.04em}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(18,20,30,.6);border:1px solid rgba(236,229,212,.2);color:#f4efe2;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:.25s;z-index:5}
+  .lb-nav:hover{background:#e0a458;color:#1a1408;border-color:#e0a458}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:1.2rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ---------- KONUM ---------- */
+  .location{background:var(--bg)}
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .loc-text p{color:var(--muted);font-weight:300;margin-bottom:18px;max-width:50ch}
+  .loc-facts{list-style:none;margin:22px 0}
+  .loc-facts li{display:flex;gap:12px;align-items:flex-start;color:var(--text);font-weight:300;font-size:.96rem;margin-bottom:12px}
+  .loc-facts svg{width:17px;height:17px;color:var(--amber);flex:none;margin-top:4px}
+  .btn-ghost{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--amber);color:var(--amber-2);padding:13px 26px;border-radius:3px;font-family:'Segoe UI',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;transition:.35s;cursor:pointer;background:none}
+  html[lang="zh-CN"] .btn-ghost,html[lang="ko"] .btn-ghost{text-transform:none;letter-spacing:.03em}
+  .btn-ghost:hover{background:var(--amber);color:var(--btn-fg)}
+  .loc-visual{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;background:var(--surface) center/cover no-repeat;cursor:pointer;box-shadow:0 26px 60px rgba(0,0,0,.3)}
+  .loc-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,10,17,.4),transparent 40%)}
+  .loc-visual .ph-label{position:absolute;left:20px;bottom:16px;z-index:2;font-size:.7rem;color:rgba(246,241,228,.9);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+  @media(max-width:900px){.loc-grid{grid-template-columns:1fr;gap:36px}}
+
+  /* ---------- INSTAGRAM BANDI ---------- */
+  .igband{background:linear-gradient(135deg,var(--bg-2),var(--surface));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:64px 0}
+  .ig-inner{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+  .ig-left{display:flex;align-items:center;gap:20px}
+  .ig-left .ig-ic{width:52px;height:52px;border-radius:14px;background:var(--glow);display:flex;align-items:center;justify-content:center;color:var(--amber-2);flex:none}
+  .ig-left .ig-ic svg{width:26px;height:26px}
+  .ig-left h3{font-size:clamp(1.3rem,2.4vw,1.8rem);color:var(--text)}
+  .ig-left p{color:var(--muted);font-weight:300;font-size:.94rem;margin-top:4px}
+
+  /* ---------- REZERVASYON ---------- */
+  .book{background:linear-gradient(180deg,var(--bg),var(--bg-2));position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 66%)}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.2rem,4.4vw,3.5rem);color:var(--text)}
+  .book h2 em{font-style:italic;color:var(--amber)}
+  .book .lede{color:var(--muted);margin-top:18px;font-size:1.05rem;font-weight:300;max-width:48ch}
+  .call-card{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px 28px}
+  .call-card .cc-label{font-family:'Segoe UI',sans-serif;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+  html[lang="zh-CN"] .call-card .cc-label,html[lang="ko"] .call-card .cc-label{text-transform:none;letter-spacing:.05em}
+  .call-card a.phone{display:flex;align-items:center;gap:13px;font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;font-size:clamp(1.6rem,3vw,2.1rem);color:var(--text);transition:.3s}
+  .call-card a.phone:hover{color:var(--amber-2)}
+  .call-card a.phone svg{width:26px;height:26px;color:var(--amber);flex:none}
+  .call-card .alt{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);display:flex;gap:12px;flex-wrap:wrap}
+  .call-card .alt a{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:var(--amber-2);border:1px solid var(--line);padding:9px 16px;border-radius:20px;transition:.3s}
+  .call-card .alt a:hover{border-color:var(--amber)}
+  .call-card .alt a svg{width:15px;height:15px}
+  .book-note{margin-top:18px;font-size:.84rem;color:var(--muted);font-weight:300;border-left:2px solid var(--amber);padding-left:14px;max-width:46ch}
+  .form{background:var(--field-bg);border:1px solid var(--line);border-radius:12px;padding:34px;backdrop-filter:blur(6px)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-family:'Segoe UI',sans-serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:7px}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{text-transform:none;letter-spacing:.04em}
+  .field input,.field select{width:100%;padding:13px 15px;border-radius:4px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-family:inherit;font-size:.94rem}
+  .field input::placeholder{color:var(--muted);opacity:.75}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--amber)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .submit{width:100%;background:var(--amber);color:var(--btn-fg);border:none;padding:16px;border-radius:4px;font-family:'Segoe UI',sans-serif;font-weight:600;font-size:.84rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.35s;margin-top:6px}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{text-transform:none;letter-spacing:.03em}
+  .submit:hover{filter:brightness(1.12)}
+  .sent-panel{display:none;margin-top:18px;border-top:1px solid var(--line);padding-top:18px}
+  .sent-panel.show{display:block}
+  .sent-panel .sp-h{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;font-family:'Segoe UI',sans-serif}
+  html[lang="zh-CN"] .sent-panel .sp-h,html[lang="ko"] .sent-panel .sp-h{text-transform:none;letter-spacing:.04em}
+  .sent-panel textarea{width:100%;min-height:120px;background:var(--surface);border:1px solid var(--line);border-radius:4px;color:var(--text);font-family:inherit;font-size:.86rem;padding:12px;resize:vertical}
+  .sent-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .sent-actions button,.sent-actions a{display:inline-flex;align-items:center;gap:7px;font-family:'Segoe UI',sans-serif;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px;border-radius:20px;border:1px solid var(--amber);color:var(--amber-2);background:none;cursor:pointer;transition:.3s}
+  html[lang="zh-CN"] .sent-actions button,html[lang="ko"] .sent-actions button,html[lang="zh-CN"] .sent-actions a,html[lang="ko"] .sent-actions a{text-transform:none;letter-spacing:.03em}
+  .sent-actions button:hover,.sent-actions a:hover{background:var(--amber);color:var(--btn-fg)}
+  .sent-actions svg{width:14px;height:14px}
+  @media(max-width:900px){.book-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--bg-2);color:var(--muted);padding:66px 0 30px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:44px}
+  .foot-brand{display:flex;align-items:center;gap:12px;font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;font-size:1.4rem;color:var(--text);margin-bottom:16px}
+  .foot-brand img{width:38px;height:38px;border-radius:9px}
+  footer h4{font-family:'Segoe UI',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:16px}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{text-transform:none;letter-spacing:.04em}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px;font-size:.93rem;font-weight:300;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:var(--text)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:'Segoe UI',sans-serif;font-size:.76rem}
+  .demo-badge{background:var(--amber);color:var(--btn-fg);padding:5px 13px;border-radius:3px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+
+  .reveal{opacity:0;transform:translateY(32px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- MOBİL MENÜ ---------- */
+  .mobile-menu{position:fixed;inset:0;z-index:70;background:var(--nav-bg);backdrop-filter:blur(14px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:'Cormorant Garamond','Palatino Linotype',Georgia,serif;font-size:1.8rem;color:var(--text)}
+  .mobile-menu .close{position:absolute;top:22px;right:24px;background:none;border:none;color:var(--text);cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;justify-content:center}
+  .mobile-menu .m-langs button{background:none;border:1px solid var(--line);color:var(--muted);padding:8px 13px;border-radius:4px;font-family:'Segoe UI',sans-serif;font-size:.84rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:var(--amber-2);border-color:var(--amber)}
+
+  @media(max-width:760px){
+    .navlinks{display:none}.menu-btn{display:block}
+    .langs{display:none}
+    .dock{display:flex}
+    body{padding-bottom:0}
+    footer{padding-bottom:96px}
+    section{padding:76px 0}
+    .form{padding:26px}
+    .foot-grid{grid-template-columns:1fr;gap:30px}
+    /* mobil hero scrim güçlendirme — başlık her temada okunur */
+    .hero::after{background:linear-gradient(180deg,rgba(8,10,17,.6) 0%,rgba(8,10,17,.2) 30%,rgba(8,10,17,.42) 58%,rgba(8,10,17,.86) 100%)}
+    .hero-inner{padding-bottom:15vh}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* ---------- SIGNATURE KATMANI: film grain + scroll ilerleme ---------- */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--amber),var(--amber-2));box-shadow:0 0 12px var(--glow)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a class="brand" href="#" aria-label="Bedrock Cave Hotel">
+    <img src="assets/images/logo.png" alt="Bedrock Cave Hotel logosu" onerror="this.style.display='none'">
+    <span>Bedrock<span class="b-sub">Cave Hotel · Göreme</span></span>
+  </a>
+  <div class="navlinks" id="navlinks">
+    <span class="limelight" id="limelight" aria-hidden="true"></span>
+    <a href="#silence" data-i18n="nav_silence" data-spy="silence">Sessizlik</a>
+    <a href="#rooms" data-i18n="nav_rooms" data-spy="rooms">Odalar</a>
+    <a href="#terrace" data-i18n="nav_terrace" data-spy="terrace">Teras</a>
+    <a href="#gallery" data-i18n="nav_gallery" data-spy="gallery">Galeri</a>
+    <a href="#location" data-i18n="nav_location" data-spy="location">Konum</a>
+    <a class="nav-cta" href="#book" data-i18n="nav_book">Rezervasyon</a>
+  </div>
+  <div class="langs" role="group" aria-label="Dil / Language">
+    <button data-lang="tr" class="active">TR</button><span class="sep">|</span>
+    <button data-lang="en">EN</button><span class="sep">|</span>
+    <button data-lang="es">ES</button><span class="sep">|</span>
+    <button data-lang="zh-CN">中文</button><span class="sep">|</span>
+    <button data-lang="ko">한국어</button>
+  </div>
+  <button class="theme-btn" id="themeBtn" aria-label="Tema değiştir">
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+  <button class="menu-btn" aria-label="Menü" id="menuBtn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#silence" data-i18n="nav_silence">Sessizlik</a>
+  <a href="#rooms" data-i18n="nav_rooms">Odalar</a>
+  <a href="#terrace" data-i18n="nav_terrace">Teras</a>
+  <a href="#gallery" data-i18n="nav_gallery">Galeri</a>
+  <a href="#location" data-i18n="nav_location">Konum</a>
+  <a href="#book" data-i18n="nav_book">Rezervasyon</a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+</div>
+
+<!-- Mobil limelight dock -->
+<div class="dock" id="dock" aria-label="Bölümler">
+  <span class="limelight" id="limelightDock" aria-hidden="true"></span>
+  <a href="#silence" data-spy="silence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span data-i18n="dock_silence">Sessizlik</span></a>
+  <a href="#rooms" data-spy="rooms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M3 18h18M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/></svg><span data-i18n="dock_rooms">Odalar</span></a>
+  <a href="#terrace" data-spy="terrace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="9" r="3.4"/><path d="M12 2v1.6M4.9 4.9l1.2 1.2M2 12h1.8M20.2 12H22M17.9 6.1l1.2-1.2M3 17h18M6 21h12"/></svg><span data-i18n="dock_terrace">Teras</span></a>
+  <a href="#gallery" data-spy="gallery"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="dock_gallery">Galeri</span></a>
+  <a href="#book" data-spy="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><span data-i18n="dock_book">Ara</span></a>
+</div>
+
+<header class="hero">
+  <div class="hero-photo" id="heroPhoto"></div>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Göreme · Kapadokya</span>
+      <h1 data-i18n="hero_title" data-i18n-html="1">Gece taşa yazılır,<br><em>sabah gökyüzüne.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Kayaya oyulmuş odalarda tüf, sesi yutar; şafakta aynı taşın terasından balonlar tek tek yükselir. Göreme'nin tam ortasında sessiz bir sığınak.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="tel:+903842712368"><span data-i18n="hero_cta1">Müsaitlik sorun</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#rooms" data-i18n="hero_cta2">Odaları görün</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Taşın içine inin</span><span class="l"></span></div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n" data-i18n="stat1_n">4,6★</div><div class="l" data-i18n="stat1_l">Google puanı</div></div>
+    <div class="stat"><div class="n" data-i18n="stat2_n">Merkez</div><div class="l" data-i18n="stat2_l">Göreme'nin ortasında</div></div>
+    <div class="stat"><div class="n" data-i18n="stat3_n">Mağara & taş</div><div class="l" data-i18n="stat3_l">Kayaya oyulmuş odalar</div></div>
+    <div class="stat"><div class="n" data-i18n="stat4_n">Şafak</div><div class="l" data-i18n="stat4_l">Terastan balon manzarası</div></div>
+  </div>
+</div>
+
+<section class="silence" id="silence">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="silence_eyebrow">Sessizlik</span>
+      <h2 data-i18n="silence_h">Tüf kayası, sesi yutar.</h2>
+      <p data-i18n="silence_sub">Odalarımızın çoğu betonla değil, Göreme'nin kendi kayasıyla çevrili. Taş; serinliği, loş ışığı ve sessizliği kendiliğinden getirir.</p>
+    </div>
+    <div class="silence-grid">
+      <div class="window-wrap reveal">
+        <div>
+          <div class="window-frame" id="storyImg" data-img="story.jpg" role="img" aria-label="Oda penceresinden şafak balonları">
+            <span class="ph-label" data-i18n="ph_story">Oda penceresinden · şafak balonları</span>
+          </div>
+          <div class="window-ledge" aria-hidden="true"></div>
+          <div class="story-chip" data-i18n="story_chip">Konsept görsel — işletmenin fotoğrafından rötuşlandı</div>
+        </div>
+      </div>
+      <div class="silence-text reveal">
+        <p class="lead" data-i18n="silence_lead">Kapı kapandığında kasabanın uğultusu dışarıda kalır — geriye taşın sessizliği ve pencerenin ışığı kalır.</p>
+        <p data-i18n="silence_p1">Duvarlar elle oyulmuş; nişler, kemerler ve raflar kayanın içinden çıkma. Yerde el dokuması kilimler, başucunuzda sıcak aplik ışığı. Tüf taşı yazın serin, kışın ılık tutar — klimanın değil, kayanın konforu.</p>
+        <p data-i18n="silence_p2">Sabah erken uyanırsanız perdeyi aralayın: şanslı günlerde balonlar, pencerenizin çerçevesinden tek tek geçer. Göreme'de sabahın en iyi koltuğu, yatağınız olabilir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rooms" id="rooms">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="rooms_eyebrow">Odalar</span>
+      <h2 data-i18n="rooms_h">Her oda, kayanın kendi el yazısı.</h2>
+      <p data-i18n="rooms_sub">Birbirinin aynısı iki oda yok; her duvarı tüfün dokusu şekillendirmiş. Fiyat ve müsaitlik için bize doğrudan ulaşın.</p>
+    </div>
+    <div class="room-grid">
+      <div class="room-card reveal">
+        <div class="room-img" data-img="room-1.jpg"><span class="tag" data-i18n="room1_tag">Kayaya oyma</span><span class="ph-label" data-i18n="ph_room1">Mağara oda fotoğrafı</span></div>
+        <div class="room-body">
+          <h3 data-i18n="room1_h">Mağara Oda</h3>
+          <div class="feats" data-i18n="room1_c">Oyma nişler · Kilim · Doğal serinlik</div>
+          <p data-i18n="room1_p">Elle oyulmuş duvarlar, taş nişler ve yerde el dokuması kilim. Akşam ışığında tüf, bal rengine döner.</p>
+          <a class="room-cta" href="tel:+903842712368" data-i18n="room_cta">Müsaitlik sorun</a>
+        </div>
+      </div>
+      <div class="room-card reveal">
+        <div class="room-img" data-img="room-2.jpg"><span class="tag" data-i18n="room2_tag">Kaya raflı</span><span class="ph-label" data-i18n="ph_room2">Nişli mağara oda fotoğrafı</span></div>
+        <div class="room-body">
+          <h3 data-i18n="room2_h">Nişli Mağara Oda</h3>
+          <div class="feats" data-i18n="room2_c">Aplik ışığı · Kaya rafları · Testiler</div>
+          <p data-i18n="room2_p">Başucunuzda aplikler, kayadan raflarda toprak testiler. Taşın dokusu duvar kâğıdı değil — gerçek.</p>
+          <a class="room-cta" href="tel:+903842712368" data-i18n="room_cta">Müsaitlik sorun</a>
+        </div>
+      </div>
+      <div class="room-card reveal">
+        <div class="room-img" data-img="room-3.jpg"><span class="tag" data-i18n="room3_tag">Kesme taş</span><span class="ph-label" data-i18n="ph_room3">Taş oda fotoğrafı</span></div>
+        <div class="room-body">
+          <h3 data-i18n="room3_h">Ahşap Tavanlı Taş Oda</h3>
+          <div class="feats" data-i18n="room3_c">El boyaması tavan · Kesme taş · Pencere ışığı</div>
+          <p data-i18n="room3_p">Kesme taş duvarlar, el boyaması ahşap tavan ve mavi perdeler. Mağara serinliği yerine konak sıcaklığı.</p>
+          <a class="room-cta" href="tel:+903842712368" data-i18n="room_cta">Müsaitlik sorun</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="terrace" id="terrace">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="terrace_eyebrow">Teras</span>
+      <h2 data-i18n="terrace_h">05.40 — gökyüzü dolmaya başlar.</h2>
+    </div>
+    <div class="terrace-grid">
+      <div class="terrace-visual reveal" data-img="terrace.jpg">
+        <span class="time" data-i18n="terrace_time">Gün batımı · terastan</span>
+        <span class="ph-label" data-i18n="ph_terrace">Teras fotoğrafı</span>
+      </div>
+      <div class="terrace-text reveal">
+        <p data-i18n="terrace_p1">Göreme'nin damları üzerinde balonlar tek tek yükselirken teras sizindir. Peri bacaları bir yanda, kasabanın uyanışı diğer yanda — kahvaltıdan önce günün en iyi karesi burada çekilir.</p>
+        <p data-i18n="terrace_p2">Aynı teras akşam gün batımıyla turuncuya döner; gece ise yıldız saymak için kasabanın en sakin köşelerinden biridir.</p>
+        <p class="t-note" data-i18n="terrace_note">Kahvaltı ve ikram detaylarını telefonla sorabilirsiniz — anlatmayı severiz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="gallery_eyebrow">Galeri</span>
+      <h2 data-i18n="gallery_h">Taşın hâlleri.</h2>
+      <p data-i18n="gallery_sub">Gündüz terası, gece Göreme'si, kemerli odalar ve traverten banyolar.</p>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile" data-img="gallery-1.jpg"><span class="ph-label"><span data-i18n="ph_g1">Teras · gündüz</span></span></div>
+      <div class="tile" data-img="gallery-2.jpg"><span class="ph-label"><span data-i18n="ph_g2">Peri bacaları komşuluğu</span></span></div>
+      <div class="tile" data-img="gallery-3.jpg"><span class="ph-label"><span data-i18n="ph_g3">Göreme · gece</span></span></div>
+      <div class="tile" data-img="gallery-4.jpg"><span class="ph-label"><span data-i18n="ph_g4">Kemerli mağara oda</span></span></div>
+      <div class="tile" data-img="bath.jpg"><span class="ph-label"><span data-i18n="ph_g5">Traverten banyo</span></span></div>
+      <div class="tile" data-img="hero.jpg"><span class="ph-label"><span data-i18n="ph_g6">Şafakta balonlar · terastan</span></span></div>
+    </div>
+    <p class="gallery-src" data-i18n="gallery_src">Kareler, işletmenin Google ve Tripadvisor'daki gerçek fotoğraflarından derlendi.</p>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="location" id="location">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div class="loc-text reveal">
+        <span class="eyebrow" data-i18n="loc_eyebrow">Konum</span>
+        <h2 style="margin-top:16px" data-i18n="loc_h">Göreme'nin tam ortasında.</h2>
+        <p style="margin-top:18px" data-i18n="loc_p">Kasabanın restoranları, dükkânları ve vadi yürüyüş yolları birkaç adım ötede; peri bacaları hemen komşunuz. Gün pencerede başlar, terasta biter — arası yürüyerek gezilir.</p>
+        <ul class="loc-facts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg><span data-i18n="loc_f1">Göreme merkez, Nevşehir — Kapadokya'nın kalbi</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><span>0384 271 23 68</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg><span>@bedrockcavehotel</span></li>
+        </ul>
+        <a class="btn-ghost" href="https://www.google.com/maps/place/Bedrock+Cave+Hotel/@38.6422139,34.8304556,17z" target="_blank" rel="noopener"><span data-i18n="loc_btn">Google Maps'te açın</span> <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="loc-visual reveal" data-img="gallery-2.jpg">
+        <span class="ph-label" data-i18n="ph_loc">Otelin çevresi · peri bacaları</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="igband">
+  <div class="wrap">
+    <div class="ig-inner reveal">
+      <div class="ig-left">
+        <span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg></span>
+        <div>
+          <h3>@bedrockcavehotel</h3>
+          <p data-i18n="ig_p">Instagram'da 13.000 kişi bizi takip ediyor — odalar, teras ve Göreme sabahları.</p>
+        </div>
+      </div>
+      <a class="btn-ghost" href="https://www.instagram.com/bedrockcavehotel/" target="_blank" rel="noopener"><span data-i18n="ig_btn">Profili açın</span> <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="book_eyebrow">Rezervasyon</span>
+        <h2 style="margin-top:16px" data-i18n="book_h" data-i18n-html="1">Aracısız, <em>doğrudan bizden.</em></h2>
+        <p class="lede" data-i18n="book_lede">En hızlısı telefon — sorunuzu sorun, cevabını evin sahibinden alın. Dilerseniz formu doldurun; mesajınız hazırlansın, Instagram DM ile gönderin.</p>
+        <div class="call-card">
+          <div class="cc-label" data-i18n="book_call">Hemen arayın</div>
+          <a class="phone" href="tel:+903842712368">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
+            0384 271 23 68
+          </a>
+          <div class="alt">
+            <a href="https://ig.me/m/bedrockcavehotel" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg><span data-i18n="book_ig">Instagram DM yazın</span></a>
+          </div>
+        </div>
+        <p class="book-note" data-i18n="book_note">Not: Numaramız sabit hattır; WhatsApp yerine arama ya da Instagram DM daha hızlı yanıt bulur.</p>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-in" data-i18n="label_in">Giriş</label><input type="date" id="f-in"></div>
+          <div class="field"><label for="f-out" data-i18n="label_out">Çıkış</label><input type="date" id="f-out"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-count" data-i18n="label_people">Kişi</label>
+            <select id="f-count">
+              <option data-i18n="opt_1p">1 kişi</option><option data-i18n="opt_2p">2 kişi</option><option data-i18n="opt_3p">3 kişi</option><option data-i18n="opt_4p">4+ kişi</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-room" data-i18n="label_room">Oda tercihi</label>
+            <select id="f-room">
+              <option data-i18n="opt_room0">Fark etmez</option>
+              <option data-i18n="opt_room1">Mağara Oda</option>
+              <option data-i18n="opt_room2">Nişli Mağara Oda</option>
+              <option data-i18n="opt_room3">Ahşap Tavanlı Taş Oda</option>
+            </select>
+          </div>
+        </div>
+        <button class="submit" type="button" onclick="buildBooking()" data-i18n="btn_submit">Mesajı hazırla</button>
+        <div class="sent-panel" id="sentPanel">
+          <div class="sp-h" data-i18n="sent_h">Mesajınız hazır — kopyalayıp dilediğiniz kanaldan gönderin:</div>
+          <textarea id="sentMsg" readonly aria-label="Hazırlanan mesaj"></textarea>
+          <div class="sent-actions">
+            <button type="button" id="copyBtn" onclick="copyMsg()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span data-i18n="sent_copy">Kopyala</span></button>
+            <a href="https://ig.me/m/bedrockcavehotel" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg><span data-i18n="sent_ig">Instagram DM</span></a>
+            <a href="#" id="waBtn" target="_blank" rel="noopener" style="display:none"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg><span data-i18n="sent_wa">WhatsApp</span></a>
+            <a href="tel:+903842712368"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><span data-i18n="sent_call">Arayın</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="assets/images/logo.png" alt="Bedrock Cave Hotel logosu" onerror="this.style.display='none'">
+          Bedrock Cave Hotel
+        </div>
+        <p style="max-width:340px;font-weight:300" data-i18n="foot_about">Göreme'nin merkezinde kayaya oyulmuş odalar, balonlara bakan bir teras ve taşın sessizliği.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#silence" data-i18n="nav_silence">Sessizlik</a></li>
+          <li><a href="#rooms" data-i18n="nav_rooms">Odalar</a></li>
+          <li><a href="#terrace" data-i18n="nav_terrace">Teras</a></li>
+          <li><a href="#gallery" data-i18n="nav_gallery">Galeri</a></li>
+          <li><a href="#book" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Göreme, Nevşehir</li>
+          <li><a href="tel:+903842712368">0384 271 23 68</a></li>
+          <li><a href="https://www.instagram.com/bedrockcavehotel/" target="_blank" rel="noopener">Instagram · @bedrockcavehotel</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Bedrock Cave Hotel — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 66;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
+<script>
+// ==================== i18n SÖZLÜĞÜ ====================
+const I18N = {
+  tr:{
+    meta_title:"Bedrock Cave Hotel — Göreme'de Kayaya Oyulmuş Odalar | Kapadokya",
+    meta_desc:"Göreme'nin merkezinde kayaya oyulmuş mağara ve taş odalar, balonlara bakan bir teras. Bedrock Cave Hotel — telefonla veya Instagram'dan doğrudan rezervasyon.",
+    nav_silence:"Sessizlik",nav_rooms:"Odalar",nav_terrace:"Teras",nav_gallery:"Galeri",nav_location:"Konum",nav_book:"Rezervasyon",
+    dock_silence:"Sessizlik",dock_rooms:"Odalar",dock_terrace:"Teras",dock_gallery:"Galeri",dock_book:"Ara",
+    hero_eyebrow:"Göreme · Kapadokya",
+    hero_title:'Gece taşa yazılır,<br><em>sabah gökyüzüne.</em>',
+    hero_lede:"Kayaya oyulmuş odalarda tüf, sesi yutar; şafakta aynı taşın terasından balonlar tek tek yükselir. Göreme'nin tam ortasında sessiz bir sığınak.",
+    hero_cta1:"Müsaitlik sorun",hero_cta2:"Odaları görün",scroll_hint:"Taşın içine inin",
+    stat1_n:"4,6★",stat1_l:"Google puanı",stat2_n:"Merkez",stat2_l:"Göreme'nin ortasında",
+    stat3_n:"Mağara & taş",stat3_l:"Kayaya oyulmuş odalar",stat4_n:"Şafak",stat4_l:"Terastan balon manzarası",
+    silence_eyebrow:"Sessizlik",silence_h:"Tüf kayası, sesi yutar.",
+    silence_sub:"Odalarımızın çoğu betonla değil, Göreme'nin kendi kayasıyla çevrili. Taş; serinliği, loş ışığı ve sessizliği kendiliğinden getirir.",
+    silence_lead:"Kapı kapandığında kasabanın uğultusu dışarıda kalır — geriye taşın sessizliği ve pencerenin ışığı kalır.",
+    silence_p1:"Duvarlar elle oyulmuş; nişler, kemerler ve raflar kayanın içinden çıkma. Yerde el dokuması kilimler, başucunuzda sıcak aplik ışığı. Tüf taşı yazın serin, kışın ılık tutar — klimanın değil, kayanın konforu.",
+    silence_p2:"Sabah erken uyanırsanız perdeyi aralayın: şanslı günlerde balonlar, pencerenizin çerçevesinden tek tek geçer. Göreme'de sabahın en iyi koltuğu, yatağınız olabilir.",
+    ph_story:"Oda penceresinden · şafak balonları",story_chip:"Konsept görsel — işletmenin fotoğrafından rötuşlandı",
+    rooms_eyebrow:"Odalar",rooms_h:"Her oda, kayanın kendi el yazısı.",
+    rooms_sub:"Birbirinin aynısı iki oda yok; her duvarı tüfün dokusu şekillendirmiş. Fiyat ve müsaitlik için bize doğrudan ulaşın.",
+    room1_tag:"Kayaya oyma",room1_h:"Mağara Oda",room1_c:"Oyma nişler · Kilim · Doğal serinlik",
+    room1_p:"Elle oyulmuş duvarlar, taş nişler ve yerde el dokuması kilim. Akşam ışığında tüf, bal rengine döner.",
+    room2_tag:"Kaya raflı",room2_h:"Nişli Mağara Oda",room2_c:"Aplik ışığı · Kaya rafları · Testiler",
+    room2_p:"Başucunuzda aplikler, kayadan raflarda toprak testiler. Taşın dokusu duvar kâğıdı değil — gerçek.",
+    room3_tag:"Kesme taş",room3_h:"Ahşap Tavanlı Taş Oda",room3_c:"El boyaması tavan · Kesme taş · Pencere ışığı",
+    room3_p:"Kesme taş duvarlar, el boyaması ahşap tavan ve mavi perdeler. Mağara serinliği yerine konak sıcaklığı.",
+    room_cta:"Müsaitlik sorun",
+    ph_room1:"Mağara oda fotoğrafı",ph_room2:"Nişli mağara oda fotoğrafı",ph_room3:"Taş oda fotoğrafı",
+    terrace_eyebrow:"Teras",terrace_h:"05.40 — gökyüzü dolmaya başlar.",
+    terrace_time:"Gün batımı · terastan",ph_terrace:"Teras fotoğrafı",
+    terrace_p1:"Göreme'nin damları üzerinde balonlar tek tek yükselirken teras sizindir. Peri bacaları bir yanda, kasabanın uyanışı diğer yanda — kahvaltıdan önce günün en iyi karesi burada çekilir.",
+    terrace_p2:"Aynı teras akşam gün batımıyla turuncuya döner; gece ise yıldız saymak için kasabanın en sakin köşelerinden biridir.",
+    terrace_note:"Kahvaltı ve ikram detaylarını telefonla sorabilirsiniz — anlatmayı severiz.",
+    gallery_eyebrow:"Galeri",gallery_h:"Taşın hâlleri.",
+    gallery_sub:"Gündüz terası, gece Göreme'si, kemerli odalar ve traverten banyolar.",
+    ph_g1:"Teras · gündüz",ph_g2:"Peri bacaları komşuluğu",ph_g3:"Göreme · gece",ph_g4:"Kemerli mağara oda",ph_g5:"Traverten banyo",ph_g6:"Şafakta balonlar · terastan",
+    gallery_src:"Kareler, işletmenin Google ve Tripadvisor'daki gerçek fotoğraflarından derlendi.",
+    loc_eyebrow:"Konum",loc_h:"Göreme'nin tam ortasında.",
+    loc_p:"Kasabanın restoranları, dükkânları ve vadi yürüyüş yolları birkaç adım ötede; peri bacaları hemen komşunuz. Gün pencerede başlar, terasta biter — arası yürüyerek gezilir.",
+    loc_f1:"Göreme merkez, Nevşehir — Kapadokya'nın kalbi",
+    loc_btn:"Google Maps'te açın",ph_loc:"Otelin çevresi · peri bacaları",
+    ig_p:"Instagram'da 13.000 kişi bizi takip ediyor — odalar, teras ve Göreme sabahları.",ig_btn:"Profili açın",
+    book_eyebrow:"Rezervasyon",book_h:'Aracısız, <em>doğrudan bizden.</em>',
+    book_lede:"En hızlısı telefon — sorunuzu sorun, cevabını evin sahibinden alın. Dilerseniz formu doldurun; mesajınız hazırlansın, Instagram DM ile gönderin.",
+    book_call:"Hemen arayın",book_ig:"Instagram DM yazın",
+    book_note:"Not: Numaramız sabit hattır; WhatsApp yerine arama ya da Instagram DM daha hızlı yanıt bulur.",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_in:"Giriş",label_out:"Çıkış",label_people:"Kişi",label_room:"Oda tercihi",
+    opt_1p:"1 kişi",opt_2p:"2 kişi",opt_3p:"3 kişi",opt_4p:"4+ kişi",
+    opt_room0:"Fark etmez",opt_room1:"Mağara Oda",opt_room2:"Nişli Mağara Oda",opt_room3:"Ahşap Tavanlı Taş Oda",
+    btn_submit:"Mesajı hazırla",
+    sent_h:"Mesajınız hazır — kopyalayıp dilediğiniz kanaldan gönderin:",
+    sent_copy:"Kopyala",sent_copied:"Kopyalandı ✓",sent_ig:"Instagram DM",sent_wa:"WhatsApp",sent_call:"Arayın",
+    wa_msg:"Merhaba Bedrock Cave Hotel, konaklama için sormak istiyorum:",
+    wa_name:"Ad",wa_in:"Giriş",wa_out:"Çıkış",wa_people:"Kişi",wa_room:"Oda",
+    alert_fill:"Lütfen adınızı ve giriş/çıkış tarihlerinizi girin.",
+    foot_about:"Göreme'nin merkezinde kayaya oyulmuş odalar, balonlara bakan bir teras ve taşın sessizliği.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Göreme, Nevşehir",
+    foot_rights:"© 2026 Bedrock Cave Hotel — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    theme_aria:"Tema değiştir"
+  },
+  en:{
+    meta_title:"Bedrock Cave Hotel — Rock-Carved Rooms in Göreme | Cappadocia",
+    meta_desc:"Cave and stone rooms carved into the rock in the centre of Göreme, with a terrace facing the balloons. Bedrock Cave Hotel — book directly by phone or Instagram.",
+    nav_silence:"Silence",nav_rooms:"Rooms",nav_terrace:"Terrace",nav_gallery:"Gallery",nav_location:"Location",nav_book:"Book",
+    dock_silence:"Silence",dock_rooms:"Rooms",dock_terrace:"Terrace",dock_gallery:"Gallery",dock_book:"Call",
+    hero_eyebrow:"Göreme · Cappadocia",
+    hero_title:'The night is written in stone,<br><em>the morning in the sky.</em>',
+    hero_lede:"In rooms carved from the rock, the tuff swallows sound; at dawn, balloons rise one by one past the terrace of that same stone. A quiet refuge in the very centre of Göreme.",
+    hero_cta1:"Ask availability",hero_cta2:"See the rooms",scroll_hint:"Step into the stone",
+    stat1_n:"4.6★",stat1_l:"Google rating",stat2_n:"Centre",stat2_l:"Heart of Göreme",
+    stat3_n:"Cave & stone",stat3_l:"Rock-carved rooms",stat4_n:"Dawn",stat4_l:"Balloon view from the terrace",
+    silence_eyebrow:"Silence",silence_h:"Tuff rock swallows sound.",
+    silence_sub:"Most of our rooms are wrapped not in concrete but in Göreme's own rock. Stone brings coolness, soft light and silence all by itself.",
+    silence_lead:"When the door closes, the hum of the town stays outside — what remains is the silence of the stone and the light of the window.",
+    silence_p1:"The walls are carved by hand; niches, arches and shelves grow out of the rock itself. Handwoven kilims on the floor, a warm reading light by your bed. Tuff keeps rooms cool in summer and mild in winter — the comfort of rock, not of air conditioning.",
+    silence_p2:"If you wake early, part the curtain: on lucky mornings the balloons drift one by one across your window frame. In Göreme, the best seat for sunrise may be your own bed.",
+    ph_story:"From the room window · dawn balloons",story_chip:"Concept visual — retouched from the hotel's own photo",
+    rooms_eyebrow:"Rooms",rooms_h:"Every room is the rock's own handwriting.",
+    rooms_sub:"No two rooms are alike; each wall was shaped by the texture of the tuff. Contact us directly for rates and availability.",
+    room1_tag:"Carved in rock",room1_h:"Cave Room",room1_c:"Carved niches · Kilim · Natural coolness",
+    room1_p:"Hand-carved walls, stone niches and a handwoven kilim on the floor. In the evening light the tuff turns the colour of honey.",
+    room2_tag:"Rock shelves",room2_h:"Niche Cave Room",room2_c:"Reading lights · Rock shelves · Clay jugs",
+    room2_p:"Sconces by your bed, clay jugs on shelves cut from the rock. The texture of the stone is not wallpaper — it's real.",
+    room3_tag:"Cut stone",room3_h:"Stone Room with Painted Ceiling",room3_c:"Hand-painted ceiling · Cut stone · Window light",
+    room3_p:"Cut-stone walls, a hand-painted wooden ceiling and blue curtains. Mansion warmth instead of cave coolness.",
+    room_cta:"Ask availability",
+    ph_room1:"Cave room photo",ph_room2:"Niche cave room photo",ph_room3:"Stone room photo",
+    terrace_eyebrow:"Terrace",terrace_h:"05:40 — the sky begins to fill.",
+    terrace_time:"Sunset · from the terrace",ph_terrace:"Terrace photo",
+    terrace_p1:"The terrace is yours as the balloons rise one by one over the rooftops of Göreme. Fairy chimneys on one side, the waking town on the other — the best shot of the day is taken here before breakfast.",
+    terrace_p2:"In the evening the same terrace turns orange with the sunset; at night it's one of the calmest corners in town for counting stars.",
+    terrace_note:"Ask us by phone about breakfast and refreshments — we love to tell.",
+    gallery_eyebrow:"Gallery",gallery_h:"The many moods of the stone.",
+    gallery_sub:"The terrace by day, Göreme by night, arched rooms and travertine bathrooms.",
+    ph_g1:"Terrace · daytime",ph_g2:"Among the fairy chimneys",ph_g3:"Göreme · night",ph_g4:"Arched cave room",ph_g5:"Travertine bathroom",ph_g6:"Balloons at dawn · from the terrace",
+    gallery_src:"Photos are gathered from the hotel's real photos on Google and Tripadvisor.",
+    loc_eyebrow:"Location",loc_h:"In the very centre of Göreme.",
+    loc_p:"The town's restaurants, shops and valley trails are a few steps away; the fairy chimneys are your neighbours. The day starts at the window and ends on the terrace — everything in between is walkable.",
+    loc_f1:"Göreme centre, Nevşehir — the heart of Cappadocia",
+    loc_btn:"Open in Google Maps",ph_loc:"Around the hotel · fairy chimneys",
+    ig_p:"13,000 people follow us on Instagram — rooms, the terrace and Göreme mornings.",ig_btn:"Open profile",
+    book_eyebrow:"Booking",book_h:'No middlemen — <em>directly from us.</em>',
+    book_lede:"The phone is fastest — ask your question and get the answer from the host. Or fill in the form; your message is prepared, send it by Instagram DM.",
+    book_call:"Call now",book_ig:"Message on Instagram",
+    book_note:"Note: our number is a landline; a call or an Instagram DM gets a faster reply than WhatsApp.",
+    label_name:"Your name",ph_name:"Your full name",label_in:"Check-in",label_out:"Check-out",label_people:"Guests",label_room:"Room preference",
+    opt_1p:"1 guest",opt_2p:"2 guests",opt_3p:"3 guests",opt_4p:"4+ guests",
+    opt_room0:"No preference",opt_room1:"Cave Room",opt_room2:"Niche Cave Room",opt_room3:"Stone Room with Painted Ceiling",
+    btn_submit:"Prepare my message",
+    sent_h:"Your message is ready — copy it and send through any channel:",
+    sent_copy:"Copy",sent_copied:"Copied ✓",sent_ig:"Instagram DM",sent_wa:"WhatsApp",sent_call:"Call",
+    wa_msg:"Hello Bedrock Cave Hotel, I'd like to ask about a stay:",
+    wa_name:"Name",wa_in:"Check-in",wa_out:"Check-out",wa_people:"Guests",wa_room:"Room",
+    alert_fill:"Please enter your name and check-in/check-out dates.",
+    foot_about:"Rock-carved rooms in the centre of Göreme, a terrace facing the balloons, and the silence of the stone.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Göreme, Nevşehir",
+    foot_rights:"© 2026 Bedrock Cave Hotel — All rights reserved.",foot_demo:"Sample / Demo Design",
+    theme_aria:"Toggle theme"
+  },
+  es:{
+    meta_title:"Bedrock Cave Hotel — Habitaciones excavadas en la roca en Göreme | Capadocia",
+    meta_desc:"Habitaciones cueva y de piedra excavadas en la roca en el centro de Göreme, con una terraza frente a los globos. Bedrock Cave Hotel — reserva directa por teléfono o Instagram.",
+    nav_silence:"Silencio",nav_rooms:"Habitaciones",nav_terrace:"Terraza",nav_gallery:"Galería",nav_location:"Ubicación",nav_book:"Reservar",
+    dock_silence:"Silencio",dock_rooms:"Habitac.",dock_terrace:"Terraza",dock_gallery:"Galería",dock_book:"Llamar",
+    hero_eyebrow:"Göreme · Capadocia",
+    hero_title:'La noche se escribe en la piedra,<br><em>la mañana en el cielo.</em>',
+    hero_lede:"En habitaciones excavadas en la roca, la toba absorbe el sonido; al alba, los globos se elevan uno a uno frente a la terraza de esa misma piedra. Un refugio silencioso en pleno centro de Göreme.",
+    hero_cta1:"Consultar disponibilidad",hero_cta2:"Ver las habitaciones",scroll_hint:"Entra en la piedra",
+    stat1_n:"4,6★",stat1_l:"Valoración en Google",stat2_n:"Centro",stat2_l:"Corazón de Göreme",
+    stat3_n:"Cueva y piedra",stat3_l:"Habitaciones excavadas",stat4_n:"Alba",stat4_l:"Globos desde la terraza",
+    silence_eyebrow:"Silencio",silence_h:"La toba absorbe el sonido.",
+    silence_sub:"La mayoría de nuestras habitaciones no están rodeadas de hormigón, sino de la propia roca de Göreme. La piedra trae por sí sola el frescor, la luz tenue y el silencio.",
+    silence_lead:"Cuando la puerta se cierra, el murmullo del pueblo se queda fuera: quedan el silencio de la piedra y la luz de la ventana.",
+    silence_p1:"Las paredes están talladas a mano; nichos, arcos y estantes nacen de la propia roca. Kilims tejidos a mano en el suelo y una cálida luz de lectura junto a la cama. La toba mantiene la habitación fresca en verano y templada en invierno: el confort de la roca, no del aire acondicionado.",
+    silence_p2:"Si despiertas temprano, descorre la cortina: en las mañanas afortunadas los globos pasan uno a uno por el marco de tu ventana. En Göreme, el mejor asiento del amanecer puede ser tu propia cama.",
+    ph_story:"Desde la ventana · globos al alba",story_chip:"Imagen conceptual — retocada a partir de la foto del hotel",
+    rooms_eyebrow:"Habitaciones",rooms_h:"Cada habitación es la caligrafía de la roca.",
+    rooms_sub:"No hay dos habitaciones iguales; cada pared la moldeó la textura de la toba. Contáctanos directamente para tarifas y disponibilidad.",
+    room1_tag:"Excavada en roca",room1_h:"Habitación Cueva",room1_c:"Nichos tallados · Kilim · Frescor natural",
+    room1_p:"Paredes talladas a mano, nichos de piedra y un kilim tejido a mano en el suelo. Con la luz de la tarde, la toba se vuelve color miel.",
+    room2_tag:"Estantes de roca",room2_h:"Habitación Cueva con Nichos",room2_c:"Apliques · Estantes de roca · Cántaros",
+    room2_p:"Apliques junto a la cama, cántaros de barro en estantes tallados en la roca. La textura de la piedra no es papel pintado: es real.",
+    room3_tag:"Piedra labrada",room3_h:"Habitación de Piedra con Techo Pintado",room3_c:"Techo pintado a mano · Piedra labrada · Luz de ventana",
+    room3_p:"Paredes de piedra labrada, techo de madera pintado a mano y cortinas azules. Calidez de casona en lugar del frescor de la cueva.",
+    room_cta:"Consultar disponibilidad",
+    ph_room1:"Foto de la habitación cueva",ph_room2:"Foto de la habitación con nichos",ph_room3:"Foto de la habitación de piedra",
+    terrace_eyebrow:"Terraza",terrace_h:"05:40 — el cielo empieza a llenarse.",
+    terrace_time:"Atardecer · desde la terraza",ph_terrace:"Foto de la terraza",
+    terrace_p1:"La terraza es tuya mientras los globos se elevan uno a uno sobre los tejados de Göreme. Chimeneas de hadas a un lado, el pueblo despertando al otro: la mejor foto del día se toma aquí antes del desayuno.",
+    terrace_p2:"Por la tarde, la misma terraza se tiñe de naranja con el atardecer; de noche es uno de los rincones más tranquilos del pueblo para contar estrellas.",
+    terrace_note:"Pregúntanos por teléfono los detalles del desayuno y las atenciones: nos encanta contarlo.",
+    gallery_eyebrow:"Galería",gallery_h:"Los estados de la piedra.",
+    gallery_sub:"La terraza de día, Göreme de noche, habitaciones con arcos y baños de travertino.",
+    ph_g1:"Terraza · de día",ph_g2:"Entre chimeneas de hadas",ph_g3:"Göreme · noche",ph_g4:"Habitación cueva con arco",ph_g5:"Baño de travertino",ph_g6:"Globos al alba · desde la terraza",
+    gallery_src:"Las fotos proceden de las imágenes reales del hotel en Google y Tripadvisor.",
+    loc_eyebrow:"Ubicación",loc_h:"En pleno centro de Göreme.",
+    loc_p:"Los restaurantes, tiendas y senderos de los valles están a unos pasos; las chimeneas de hadas son tus vecinas. El día empieza en la ventana y termina en la terraza; todo lo demás se recorre a pie.",
+    loc_f1:"Centro de Göreme, Nevşehir — el corazón de Capadocia",
+    loc_btn:"Abrir en Google Maps",ph_loc:"Alrededores del hotel · chimeneas de hadas",
+    ig_p:"13.000 personas nos siguen en Instagram: habitaciones, terraza y mañanas de Göreme.",ig_btn:"Abrir perfil",
+    book_eyebrow:"Reserva",book_h:'Sin intermediarios, <em>directamente con nosotros.</em>',
+    book_lede:"El teléfono es lo más rápido: pregunta y recibe la respuesta del anfitrión. O rellena el formulario; tu mensaje quedará listo para enviarlo por DM de Instagram.",
+    book_call:"Llama ahora",book_ig:"Escribir por Instagram",
+    book_note:"Nota: nuestro número es una línea fija; una llamada o un DM de Instagram obtiene respuesta más rápido que WhatsApp.",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_in:"Entrada",label_out:"Salida",label_people:"Personas",label_room:"Preferencia de habitación",
+    opt_1p:"1 persona",opt_2p:"2 personas",opt_3p:"3 personas",opt_4p:"4+ personas",
+    opt_room0:"Indiferente",opt_room1:"Habitación Cueva",opt_room2:"Habitación Cueva con Nichos",opt_room3:"Habitación de Piedra con Techo Pintado",
+    btn_submit:"Preparar mi mensaje",
+    sent_h:"Tu mensaje está listo: cópialo y envíalo por el canal que prefieras.",
+    sent_copy:"Copiar",sent_copied:"Copiado ✓",sent_ig:"DM de Instagram",sent_wa:"WhatsApp",sent_call:"Llamar",
+    wa_msg:"Hola Bedrock Cave Hotel, quisiera preguntar por una estancia:",
+    wa_name:"Nombre",wa_in:"Entrada",wa_out:"Salida",wa_people:"Personas",wa_room:"Habitación",
+    alert_fill:"Por favor, introduce tu nombre y las fechas de entrada y salida.",
+    foot_about:"Habitaciones excavadas en la roca en el centro de Göreme, una terraza frente a los globos y el silencio de la piedra.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Göreme, Nevşehir",
+    foot_rights:"© 2026 Bedrock Cave Hotel — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+    theme_aria:"Cambiar tema"
+  },
+  "zh-CN":{
+    meta_title:"Bedrock Cave Hotel — 格雷梅岩石凿刻客房 | 卡帕多奇亚",
+    meta_desc:"位于格雷梅市中心、凿入岩石的洞穴与石砌客房，露台正对热气球。Bedrock Cave Hotel——电话或 Instagram 直接预订。",
+    nav_silence:"静谧",nav_rooms:"客房",nav_terrace:"露台",nav_gallery:"相册",nav_location:"位置",nav_book:"预订",
+    dock_silence:"静谧",dock_rooms:"客房",dock_terrace:"露台",dock_gallery:"相册",dock_book:"致电",
+    hero_eyebrow:"格雷梅 · 卡帕多奇亚",
+    hero_title:'夜写进石头，<br><em>晨写上天空。</em>',
+    hero_lede:"在凿入岩石的客房里，凝灰岩吞没声响；黎明时分，热气球从同一块岩石的露台前逐一升起。这是格雷梅正中心一处安静的栖所。",
+    hero_cta1:"咨询空房",hero_cta2:"查看客房",scroll_hint:"走进岩石",
+    stat1_n:"4.6★",stat1_l:"谷歌评分",stat2_n:"市中心",stat2_l:"格雷梅正中心",
+    stat3_n:"洞穴与石屋",stat3_l:"岩石凿刻客房",stat4_n:"黎明",stat4_l:"露台热气球景观",
+    silence_eyebrow:"静谧",silence_h:"凝灰岩，吞没声响。",
+    silence_sub:"我们的大多数客房不是被混凝土包围，而是被格雷梅自己的岩石环抱。石头自然而然地带来凉意、柔光与寂静。",
+    silence_lead:"房门关上时，小镇的喧嚣被留在外面——只剩下石头的寂静和窗口的光。",
+    silence_p1:"墙壁由人手凿成；壁龛、拱券与石架都生长自岩石本身。地上是手织基里姆毯，床头是温暖的壁灯。凝灰岩让房间夏凉冬温——那是岩石的舒适，而非空调的。",
+    silence_p2:"若您醒得早，请拉开窗帘：幸运的清晨，热气球会一只只掠过您的窗框。在格雷梅，看日出最好的座位，也许就是您的床。",
+    ph_story:"从客房窗口 · 黎明热气球",story_chip:"概念图——由酒店照片修饰而成",
+    rooms_eyebrow:"客房",rooms_h:"每间客房，都是岩石亲笔的字迹。",
+    rooms_sub:"没有两间相同的客房；每面墙都由凝灰岩的纹理塑成。房价与空房请直接联系我们。",
+    room1_tag:"岩石凿刻",room1_h:"洞穴客房",room1_c:"凿刻壁龛 · 基里姆毯 · 天然凉爽",
+    room1_p:"手工凿刻的墙壁、石壁龛和地上的手织基里姆毯。傍晚光线下，凝灰岩泛起蜂蜜色。",
+    room2_tag:"岩石层架",room2_h:"壁龛洞穴客房",room2_c:"壁灯 · 岩石层架 · 陶壶",
+    room2_p:"床头有壁灯，凿在岩石里的层架上摆着陶壶。石头的纹理不是壁纸——是真实的。",
+    room3_tag:"切石砌筑",room3_h:"彩绘木顶石屋客房",room3_c:"手绘木顶 · 切石墙 · 窗光",
+    room3_p:"切石砌成的墙壁、手绘的木质天花板和蓝色窗帘。以宅邸的温暖代替洞穴的清凉。",
+    room_cta:"咨询空房",
+    ph_room1:"洞穴客房照片",ph_room2:"壁龛洞穴客房照片",ph_room3:"石屋客房照片",
+    terrace_eyebrow:"露台",terrace_h:"05:40——天空开始被填满。",
+    terrace_time:"日落 · 露台视角",ph_terrace:"露台照片",
+    terrace_p1:"当热气球在格雷梅的屋顶上一只只升起时，露台就是您的。一侧是精灵烟囱，另一侧是苏醒的小镇——一天中最好的照片，在早餐前的这里拍下。",
+    terrace_p2:"傍晚，同一座露台被落日染成橙色；夜里，这里是小镇上数星星最安静的角落之一。",
+    terrace_note:"早餐与茶点的细节欢迎来电询问——我们很乐意介绍。",
+    gallery_eyebrow:"相册",gallery_h:"石头的种种模样。",
+    gallery_sub:"白日的露台、夜晚的格雷梅、拱券客房与洞石浴室。",
+    ph_g1:"露台 · 白天",ph_g2:"精灵烟囱之间",ph_g3:"格雷梅 · 夜",ph_g4:"拱券洞穴客房",ph_g5:"洞石浴室",ph_g6:"黎明热气球 · 露台视角",
+    gallery_src:"照片取自酒店在谷歌与 Tripadvisor 上的真实照片。",
+    loc_eyebrow:"位置",loc_h:"格雷梅的正中心。",
+    loc_p:"小镇的餐厅、商铺与山谷步道都在几步之外；精灵烟囱就是您的邻居。一天从窗前开始，在露台结束——中间的一切都可步行抵达。",
+    loc_f1:"格雷梅市中心，内夫谢希尔——卡帕多奇亚的心脏",
+    loc_btn:"在谷歌地图打开",ph_loc:"酒店周边 · 精灵烟囱",
+    ig_p:"13,000 人在 Instagram 关注我们——客房、露台与格雷梅的清晨。",ig_btn:"打开主页",
+    book_eyebrow:"预订",book_h:'没有中间商，<em>直接向我们预订。</em>',
+    book_lede:"打电话最快——您的问题由主人亲自回答。也可以填写表单；消息会自动生成，通过 Instagram 私信发送即可。",
+    book_call:"立即致电",book_ig:"Instagram 私信",
+    book_note:"提示：我们的号码是固定电话；来电或 Instagram 私信比 WhatsApp 回复更快。",
+    label_name:"您的姓名",ph_name:"您的全名",label_in:"入住",label_out:"退房",label_people:"人数",label_room:"房型偏好",
+    opt_1p:"1 人",opt_2p:"2 人",opt_3p:"3 人",opt_4p:"4 人以上",
+    opt_room0:"均可",opt_room1:"洞穴客房",opt_room2:"壁龛洞穴客房",opt_room3:"彩绘木顶石屋客房",
+    btn_submit:"生成我的消息",
+    sent_h:"消息已生成——复制后通过任意渠道发送：",
+    sent_copy:"复制",sent_copied:"已复制 ✓",sent_ig:"Instagram 私信",sent_wa:"WhatsApp",sent_call:"致电",
+    wa_msg:"您好 Bedrock Cave Hotel，我想咨询住宿：",
+    wa_name:"姓名",wa_in:"入住",wa_out:"退房",wa_people:"人数",wa_room:"房型",
+    alert_fill:"请填写您的姓名以及入住/退房日期。",
+    foot_about:"格雷梅市中心凿入岩石的客房、面向热气球的露台，以及石头的寂静。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"格雷梅，内夫谢希尔",
+    foot_rights:"© 2026 Bedrock Cave Hotel — 版权所有。",foot_demo:"示例 / 演示设计",
+    theme_aria:"切换主题"
+  },
+  ko:{
+    meta_title:"Bedrock Cave Hotel — 괴레메 바위를 깎아 만든 객실 | 카파도키아",
+    meta_desc:"괴레메 중심, 바위를 깎아 만든 동굴·석조 객실과 열기구가 보이는 테라스. Bedrock Cave Hotel — 전화 또는 인스타그램으로 직접 예약.",
+    nav_silence:"고요",nav_rooms:"객실",nav_terrace:"테라스",nav_gallery:"갤러리",nav_location:"위치",nav_book:"예약",
+    dock_silence:"고요",dock_rooms:"객실",dock_terrace:"테라스",dock_gallery:"갤러리",dock_book:"전화",
+    hero_eyebrow:"괴레메 · 카파도키아",
+    hero_title:'밤은 돌에 새겨지고,<br><em>아침은 하늘에 쓰입니다.</em>',
+    hero_lede:"바위를 깎아 만든 객실에서 응회암은 소리를 삼킵니다. 새벽이면 같은 바위의 테라스 앞으로 열기구가 하나둘 떠오릅니다. 괴레메 한복판의 고요한 안식처.",
+    hero_cta1:"예약 문의",hero_cta2:"객실 보기",scroll_hint:"돌 속으로",
+    stat1_n:"4.6★",stat1_l:"구글 평점",stat2_n:"중심가",stat2_l:"괴레메 한복판",
+    stat3_n:"동굴 & 석조",stat3_l:"바위를 깎은 객실",stat4_n:"새벽",stat4_l:"테라스 열기구 전망",
+    silence_eyebrow:"고요",silence_h:"응회암은 소리를 삼킵니다.",
+    silence_sub:"객실 대부분은 콘크리트가 아니라 괴레메의 바위 그 자체에 둘러싸여 있습니다. 돌은 서늘함과 은은한 빛, 고요를 스스로 데려옵니다.",
+    silence_lead:"문이 닫히면 마을의 웅성거림은 밖에 남습니다 — 남는 것은 돌의 고요와 창의 빛뿐.",
+    silence_p1:"벽은 손으로 깎아냈습니다. 벽감과 아치, 선반이 바위 속에서 그대로 자라났지요. 바닥에는 손으로 짠 킬림, 머리맡에는 따뜻한 벽등. 응회암은 여름엔 서늘하게, 겨울엔 포근하게 지켜줍니다 — 에어컨이 아닌 바위의 안락함.",
+    silence_p2:"아침 일찍 눈이 떠지면 커튼을 살짝 여세요. 운 좋은 아침에는 열기구가 창틀을 하나씩 지나갑니다. 괴레메에서 일출의 가장 좋은 자리는 당신의 침대일지도 모릅니다.",
+    ph_story:"객실 창가에서 · 새벽 열기구",story_chip:"콘셉트 이미지 — 호텔 사진을 보정했습니다",
+    rooms_eyebrow:"객실",rooms_h:"모든 객실은 바위의 친필입니다.",
+    rooms_sub:"똑같은 객실은 하나도 없습니다. 벽 하나하나를 응회암의 결이 빚었습니다. 요금과 예약 가능 여부는 직접 문의해 주세요.",
+    room1_tag:"바위 조각",room1_h:"동굴 객실",room1_c:"벽감 · 킬림 · 천연의 서늘함",
+    room1_p:"손으로 깎은 벽과 돌 벽감, 바닥의 수직조 킬림. 저녁 빛이 들면 응회암은 꿀빛으로 물듭니다.",
+    room2_tag:"바위 선반",room2_h:"벽감 동굴 객실",room2_c:"벽등 · 바위 선반 · 토기 항아리",
+    room2_p:"머리맡의 벽등, 바위를 깎아 만든 선반 위 토기 항아리. 돌의 질감은 벽지가 아닙니다 — 진짜입니다.",
+    room3_tag:"석조",room3_h:"채색 목조 천장 석조 객실",room3_c:"손채색 천장 · 석조 벽 · 창가의 빛",
+    room3_p:"다듬은 돌벽과 손으로 채색한 목조 천장, 푸른 커튼. 동굴의 서늘함 대신 저택의 따스함.",
+    room_cta:"예약 문의",
+    ph_room1:"동굴 객실 사진",ph_room2:"벽감 동굴 객실 사진",ph_room3:"석조 객실 사진",
+    terrace_eyebrow:"테라스",terrace_h:"05:40 — 하늘이 차오르기 시작합니다.",
+    terrace_time:"일몰 · 테라스에서",ph_terrace:"테라스 사진",
+    terrace_p1:"괴레메의 지붕들 위로 열기구가 하나둘 떠오르는 동안, 테라스는 당신의 것입니다. 한쪽엔 요정 굴뚝, 다른 쪽엔 깨어나는 마을 — 하루 최고의 사진은 아침 식사 전 이곳에서 찍힙니다.",
+    terrace_p2:"저녁이면 같은 테라스가 노을로 물들고, 밤이면 별을 세기 좋은 마을에서 가장 조용한 자리 중 하나가 됩니다.",
+    terrace_note:"조식과 다과는 전화로 문의해 주세요 — 기꺼이 알려드립니다.",
+    gallery_eyebrow:"갤러리",gallery_h:"돌의 여러 얼굴.",
+    gallery_sub:"낮의 테라스, 밤의 괴레메, 아치형 객실과 트래버틴 욕실.",
+    ph_g1:"테라스 · 낮",ph_g2:"요정 굴뚝 사이",ph_g3:"괴레메 · 밤",ph_g4:"아치형 동굴 객실",ph_g5:"트래버틴 욕실",ph_g6:"새벽 열기구 · 테라스에서",
+    gallery_src:"사진은 구글과 트립어드바이저에 있는 호텔의 실제 사진에서 모았습니다.",
+    loc_eyebrow:"위치",loc_h:"괴레메의 한복판.",
+    loc_p:"마을의 식당과 상점, 계곡 트레킹 길이 몇 걸음 거리이고, 요정 굴뚝이 바로 이웃입니다. 하루는 창가에서 시작해 테라스에서 끝납니다 — 그 사이는 모두 걸어서 닿습니다.",
+    loc_f1:"괴레메 중심, 네브셰히르 — 카파도키아의 심장",
+    loc_btn:"구글 지도에서 열기",ph_loc:"호텔 주변 · 요정 굴뚝",
+    ig_p:"인스타그램에서 13,000명이 함께합니다 — 객실, 테라스, 그리고 괴레메의 아침.",ig_btn:"프로필 열기",
+    book_eyebrow:"예약",book_h:'중개 수수료 없이, <em>저희에게 직접.</em>',
+    book_lede:"전화가 가장 빠릅니다 — 질문하면 주인이 직접 답합니다. 원하시면 폼을 채우세요. 메시지가 만들어지면 인스타그램 DM으로 보내면 됩니다.",
+    book_call:"지금 전화하기",book_ig:"인스타그램 DM 보내기",
+    book_note:"참고: 저희 번호는 유선 전화입니다. WhatsApp보다 전화나 인스타그램 DM이 더 빨리 닿습니다.",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_in:"체크인",label_out:"체크아웃",label_people:"인원",label_room:"객실 선호",
+    opt_1p:"1명",opt_2p:"2명",opt_3p:"3명",opt_4p:"4명 이상",
+    opt_room0:"상관없음",opt_room1:"동굴 객실",opt_room2:"벽감 동굴 객실",opt_room3:"채색 목조 천장 석조 객실",
+    btn_submit:"메시지 만들기",
+    sent_h:"메시지가 준비되었습니다 — 복사해 원하는 채널로 보내세요:",
+    sent_copy:"복사",sent_copied:"복사됨 ✓",sent_ig:"인스타그램 DM",sent_wa:"WhatsApp",sent_call:"전화",
+    wa_msg:"안녕하세요 Bedrock Cave Hotel, 숙박 문의드립니다:",
+    wa_name:"성함",wa_in:"체크인",wa_out:"체크아웃",wa_people:"인원",wa_room:"객실",
+    alert_fill:"성함과 체크인/체크아웃 날짜를 입력해 주세요.",
+    foot_about:"괴레메 중심의 바위를 깎아 만든 객실, 열기구가 보이는 테라스, 그리고 돌의 고요.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"괴레메, 네브셰히르",
+    foot_rights:"© 2026 Bedrock Cave Hotel — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    theme_aria:"테마 전환"
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  const tb = document.getElementById('themeBtn');
+  if(tb && dict.theme_aria) tb.setAttribute('aria-label', dict.theme_aria);
+
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  try{ localStorage.setItem('bedrock_lang', lang); }catch(e){}
+  // limelight yeniden ölç (metin genişlikleri değişti)
+  if(window.__relight) requestAnimationFrame(window.__relight);
+}
+
+function initLang(){
+  let lang = null;
+  const url = new URLSearchParams(location.search).get('lang');
+  if(url && SUPPORTED.includes(url)) lang = url;
+  if(!lang){ try{ const s=localStorage.getItem('bedrock_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click', ()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+// ==================== TEMA ====================
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('bedrock_theme', t); }catch(e){}
+}
+document.getElementById('themeBtn').addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme')==='light' ? 'dark' : 'light';
+  setTheme(cur);
+});
+
+// ==================== MOBİL MENÜ ====================
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+// ==================== NAV SCROLL ====================
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScroll);onScroll();
+
+// ==================== LIMELIGHT NAV (21st.dev portu — tepeden düşen ışık huzmesi) ====================
+(function(){
+  const desktop = document.getElementById('limelight');
+  const dockLight = document.getElementById('limelightDock');
+  const navLinks = Array.from(document.querySelectorAll('#navlinks a[data-spy]'));
+  const dockLinks = Array.from(document.querySelectorAll('#dock a[data-spy]'));
+  let activeId = null;
+
+  function place(light, link, container){
+    if(!light) return;
+    if(!link){ light.classList.remove('on'); return; }
+    const cr = container.getBoundingClientRect();
+    const lr = link.getBoundingClientRect();
+    const w = Math.max(lr.width, 44);
+    light.style.width = w + 'px';
+    light.style.transform = 'translateX(' + (lr.left - cr.left + (lr.width - w)/2) + 'px)';
+    light.classList.add('on');
+  }
+  function relight(){
+    const dl = navLinks.find(a=>a.getAttribute('data-spy')===activeId) || null;
+    const kl = dockLinks.find(a=>a.getAttribute('data-spy')===activeId) || null;
+    place(desktop, dl, document.getElementById('navlinks'));
+    place(dockLight, kl, document.getElementById('dock'));
+    navLinks.forEach(a=>a.classList.toggle('active', a===dl));
+    dockLinks.forEach(a=>a.classList.toggle('active', a===kl));
+  }
+  window.__relight = relight;
+
+  // scroll-spy
+  const ids = ['silence','rooms','terrace','gallery','location','book'];
+  const spy = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ activeId = e.target.id; relight(); } });
+  },{rootMargin:'-38% 0px -52% 0px'});
+  ids.forEach(id=>{ const el=document.getElementById(id); if(el) spy.observe(el); });
+
+  // hero'dayken ışık söner
+  const hero = document.querySelector('.hero');
+  const heroSpy = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting && e.intersectionRatio > .45){ activeId=null; relight(); } });
+  },{threshold:[.45]});
+  if(hero) heroSpy.observe(hero);
+
+  // tıklamada anında ışık
+  [...navLinks, ...dockLinks].forEach(a=>{
+    a.addEventListener('click', ()=>{ activeId = a.getAttribute('data-spy'); relight(); });
+  });
+  window.addEventListener('resize', ()=>requestAnimationFrame(relight));
+  window.addEventListener('load', ()=>setTimeout(relight, 200));
+})();
+
+// ==================== YILDIZLAR (hero gecesi) ====================
+(function(){
+  const sky=document.getElementById('stars');
+  for(let i=0;i<56;i++){
+    const s=document.createElement('div');s.className='star';
+    const size=Math.random()*1.9+0.5;
+    s.style.width=size+'px';s.style.height=size+'px';
+    s.style.left=Math.random()*100+'%';s.style.top=Math.random()*88+'%';
+    s.style.animationDelay=(Math.random()*4.4)+'s';
+    sky.appendChild(s);
+  }
+})();
+
+// ==================== REVEAL ====================
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+},{threshold:.18});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ==================== GÖRSEL YÜKLEME (varsa göster) ====================
+(function(){
+  const base='assets/images/';
+  function tryImg(el, file){
+    const img=new Image();
+    img.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; const l=el.querySelector('.ph-label'); if(l) l.style.display='none'; };
+    img.onerror=()=>{};
+    img.src=base+file;
+  }
+  const hero=document.getElementById('heroPhoto');
+  if(hero){ const hi=new Image(); hi.onload=()=>{ hero.style.backgroundImage=`url('${base}hero.jpg')`; hero.classList.add('has-img'); }; hi.onerror=()=>{}; hi.src=base+'hero.jpg'; }
+  document.querySelectorAll('[data-img]').forEach(t=>tryImg(t,t.getAttribute('data-img')));
+})();
+
+// ==================== REZERVASYON MESAJI — çift kanal (tel birincil · IG DM alternatif) ====================
+// [SAMI]: İşletmenin WhatsApp hattı TEYİT EDİLİRSE gerçek numarayı yaz (ülke kodu+numara, örn 905321234567).
+// 0384 271 23 68 SABİT HAT olduğu için placeholder bırakıldı; placeholder kaldıkça WhatsApp butonu GİZLİ kalır.
+const WHATSAPP = "905000000000";
+function buildMsg(){
+  const d = I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const cin=document.getElementById('f-in').value;
+  const cout=document.getElementById('f-out').value;
+  const count=document.getElementById('f-count').value;
+  const room=document.getElementById('f-room').value;
+  if(!name||!cin||!cout){ alert(d.alert_fill); return null; }
+  return d.wa_msg+"\n\n"+
+    d.wa_name+": "+name+"\n"+
+    d.wa_in+": "+cin+"\n"+
+    d.wa_out+": "+cout+"\n"+
+    d.wa_people+": "+count+"\n"+
+    d.wa_room+": "+room;
+}
+function buildBooking(){
+  const msg = buildMsg();
+  if(msg===null) return;
+  document.getElementById('sentMsg').value = msg;
+  const panel = document.getElementById('sentPanel');
+  panel.classList.add('show');
+  // WhatsApp butonu: sadece gerçek numara girilmişse görünür
+  const wa = document.getElementById('waBtn');
+  if(WHATSAPP && WHATSAPP !== "905000000000"){
+    wa.style.display='inline-flex';
+    wa.href = "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
+  }
+  copyMsg(true);
+}
+function copyMsg(silent){
+  const ta = document.getElementById('sentMsg');
+  const d = I18N[currentLang];
+  const done = ()=>{
+    const b = document.getElementById('copyBtn').querySelector('span');
+    b.textContent = d.sent_copied;
+    setTimeout(()=>{ b.textContent = d.sent_copy; }, 2200);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(ta.value).then(done).catch(()=>{ if(!silent){ ta.select(); try{document.execCommand('copy');done();}catch(e){} } });
+  } else {
+    ta.select();
+    try{ document.execCommand('copy'); done(); }catch(e){}
+  }
+}
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items = Array.from(document.querySelectorAll('.tile[data-img], .room-img[data-img], .terrace-visual[data-img], .loc-visual[data-img], .window-frame[data-img]'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  const capOf = t => { const l = t.querySelector('.ph-label') || t.querySelector('.time') || t.querySelector('.tag'); return l ? l.textContent.trim() : (t.getAttribute('aria-label')||''); };
+  function show(i){ idx = (i + items.length) % items.length; const t = items[idx]; img.src = base + t.getAttribute('data-img'); cap.textContent = capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>{ t.addEventListener('click',()=>open(i)); });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+// ==================== BAŞLAT ====================
+initLang();
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+</body>
+</html>
