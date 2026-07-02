@@ -1,0 +1,2007 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Private Hamam Spa — Göreme | Özel Hamam & Spa Ritüeli</title>
+<meta name="description" content="Göreme'de 5,0 Google puanlı (81 yorum) özel hamam & spa. Kese-köpük ritüeli, dinlenme odası, peştemal ve çay. WhatsApp ile hızlı rezervasyon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+(function(){
+  try{
+    var p = new URLSearchParams(location.search);
+    var t = p.get("theme");
+    var saved = localStorage.getItem("phs-theme");
+    var sys = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    var theme = (t === "light" || t === "dark") ? t : (saved || sys);
+    document.documentElement.dataset.theme = theme;
+    if(t === "light" || t === "dark") localStorage.setItem("phs-theme", theme);
+  }catch(e){ document.documentElement.dataset.theme = "dark"; }
+})();
+</script>
+<style>
+:root{
+  --zemin:#0b1613;
+  --zemin2:#0e1d18;
+  --panel:#12251e;
+  --metin:#e9f0ec;
+  --soluk:rgba(233,240,236,.64);
+  --su:#8fb8ab;
+  --mum:#d9bd8f;
+  --line:rgba(233,240,236,.13);
+  --karta:#f2f6f3;            /* görsel üstü kart metni — temadan bağımsız */
+  --kart-scrim:linear-gradient(185deg,rgba(6,13,11,0) 34%,rgba(6,13,11,.62) 62%,rgba(6,13,11,.9) 100%);
+  --golge:0 30px 80px rgba(0,0,0,.45);
+  --max:1160px;
+  --serif:"Fraunces",Georgia,"Times New Roman","Noto Sans SC","Noto Sans KR",serif;
+  --sans:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI","Noto Sans SC","Noto Sans KR",sans-serif;
+}
+html[data-theme="light"]{
+  --zemin:#edf1ee;
+  --zemin2:#e3eae5;
+  --panel:#dae4de;
+  --metin:#132821;
+  --soluk:rgba(19,40,33,.66);
+  --su:#33604f;
+  --mum:#8a6c40;
+  --line:rgba(19,40,33,.14);
+  --golge:0 26px 66px rgba(31,58,48,.16);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--zemin);
+  color:var(--metin);
+  font-family:var(--sans);
+  font-size:16.5px;
+  line-height:1.62;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+::selection{background:rgba(217,189,143,.35)}
+
+/* ---------- film grain + ilerleme ---------- */
+.grain{pointer-events:none;position:fixed;inset:0;z-index:70;opacity:.05;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+html[data-theme="light"] .grain{opacity:.04;mix-blend-mode:multiply}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:90;transform:scaleX(0);transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--su),var(--mum))}
+
+/* ---------- üst bar ---------- */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:16px clamp(18px,4vw,46px);
+  color:#eef4f0;
+  background:linear-gradient(180deg,rgba(6,13,11,.66),rgba(6,13,11,0));
+  transition:background .3s ease;
+}
+.topbar.solid{background:rgba(8,17,14,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(233,240,236,.07)}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.brand svg{flex:0 0 auto}
+.brand-name{font-family:var(--serif);font-weight:500;font-size:17px;letter-spacing:.055em;white-space:nowrap}
+.brand-name small{display:block;font-family:var(--sans);font-weight:600;font-size:9.5px;letter-spacing:.42em;color:rgba(238,244,240,.62);margin-top:1px}
+.top-actions{display:flex;align-items:center;gap:9px}
+.lang-select,.theme-toggle,.menu-btn{
+  appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  min-height:36px;padding:0 13px;border-radius:999px;cursor:pointer;
+  color:#eef4f0;background:rgba(9,20,16,.5);border:1px solid rgba(238,244,240,.2);
+  backdrop-filter:blur(10px);font-size:13.5px;font-weight:600;
+}
+.lang-select{padding-right:26px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23eef4f0' stroke-width='1.4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center}
+.lang-select option{color:#132821;background:#edf1ee}
+.theme-toggle svg{width:15px;height:15px}
+.top-cta{
+  display:none;align-items:center;gap:8px;min-height:36px;padding:0 16px;border-radius:999px;
+  font-size:13.5px;font-weight:700;color:#0b1613;background:var(--mum);border:1px solid transparent;
+}
+html[data-theme="light"] .top-cta{color:#132821}
+.top-cta:hover{filter:brightness(1.06)}
+.menu-btn{padding:0 12px}
+.menu-btn svg{width:16px;height:16px}
+@media (min-width:721px){ .top-cta{display:inline-flex} .menu-btn{display:none} }
+
+/* ---------- 21st.dev portu: sağ kenar nokta rayı (scrollspy side-dot nav) ---------- */
+.dotrail{position:fixed;right:clamp(12px,2.4vw,30px);top:50%;transform:translateY(-50%);z-index:55;
+  display:flex;flex-direction:column;gap:16px;align-items:flex-end}
+.dotrail a{display:flex;align-items:center;gap:10px;color:var(--soluk);outline-offset:4px}
+.dotrail .lbl{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;opacity:0;transform:translateX(6px);
+  transition:opacity .25s ease,transform .25s ease;pointer-events:none;color:var(--metin);
+  background:var(--panel);border:1px solid var(--line);padding:4px 10px;border-radius:999px}
+.dotrail .dot{width:9px;height:9px;border-radius:999px;border:1.6px solid var(--soluk);background:transparent;
+  transition:height .3s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease;flex:0 0 auto}
+.dotrail a:hover .lbl,.dotrail a:focus-visible .lbl{opacity:1;transform:none}
+.dotrail a.active .dot{height:26px;background:linear-gradient(180deg,var(--su),var(--mum));border-color:transparent;
+  box-shadow:0 0 14px rgba(217,189,143,.45)}
+@media (max-width:1099px){ .dotrail{display:none} }
+
+/* ---------- mobil tam ekran menü ---------- */
+.veil{position:fixed;inset:0;z-index:80;background:rgba(7,14,12,.96);backdrop-filter:blur(18px);
+  display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,8vw,60px);
+  opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+.veil.open{opacity:1;visibility:visible}
+.veil a.vlink{font-family:var(--serif);font-size:clamp(30px,9vw,44px);font-weight:500;color:#eef4f0;
+  padding:10px 0;border-bottom:1px solid rgba(238,244,240,.1);display:flex;justify-content:space-between;align-items:center}
+.veil a.vlink span.no{font-family:var(--sans);font-size:12px;letter-spacing:.3em;color:rgba(238,244,240,.45)}
+.veil a.vlink.active{color:var(--mum)}
+.veil .veil-wa{margin-top:26px;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:50px;border-radius:999px;background:#d9bd8f;color:#0b1613;font-weight:700}
+.veil-close{position:absolute;top:16px;right:18px;width:42px;height:42px;border-radius:999px;
+  border:1px solid rgba(238,244,240,.25);background:transparent;color:#eef4f0;cursor:pointer;font-size:20px;line-height:1}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;
+  isolation:isolate;color:#eef4f0;overflow:hidden}
+.hero-photo{position:absolute;inset:0;z-index:1;background:url("assets/images/hero.jpg") center 38%/cover no-repeat #0b1613}
+.hero-photo.has-img{animation:kenburns 36s ease-in-out infinite alternate;transform-origin:62% 42%}
+@keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.1)}}
+.hero-shade{position:absolute;inset:0;z-index:2;
+  background:linear-gradient(178deg,rgba(7,15,12,.62) 0%,rgba(7,15,12,.28) 38%,rgba(7,15,12,.58) 66%,rgba(6,13,11,.94) 100%)}
+.hero-tint{position:absolute;inset:0;z-index:3;background:rgba(11,34,26,.36);mix-blend-mode:multiply}
+#hero-gradient{position:absolute;inset:0;z-index:4;pointer-events:none;mix-blend-mode:overlay;opacity:.5;
+  --gradient-color-1:#0e2a21; --gradient-color-2:#173d30; --gradient-color-3:#3c6f5b; --gradient-color-4:#c9a06b}
+.no-webgl #hero-gradient{display:none}
+#rings-canvas{position:absolute;inset:0;z-index:5;pointer-events:none;mix-blend-mode:screen;opacity:.85}
+.candle{position:absolute;z-index:4;right:8%;bottom:22%;width:42vw;max-width:560px;aspect-ratio:1;pointer-events:none;
+  background:radial-gradient(circle,rgba(217,189,143,.32),rgba(217,189,143,.07) 45%,transparent 68%);
+  filter:blur(6px);animation:candle 6.5s ease-in-out infinite}
+@keyframes candle{0%,100%{opacity:.5;transform:scale(1)}18%{opacity:.72;transform:scale(1.04)}39%{opacity:.44;transform:scale(.98)}62%{opacity:.66;transform:scale(1.05)}81%{opacity:.5;transform:scale(1)}}
+.hero-inner{position:relative;z-index:10;width:min(var(--max),100%);margin:0 auto;
+  padding:120px clamp(20px,5vw,48px) clamp(30px,5vh,54px)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--soluk)}
+.hero .eyebrow,.book .eyebrow{color:rgba(238,244,240,.72)}
+.hero .eyebrow em{font-style:normal;color:var(--mum)}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,7.2vw,84px);line-height:1.04;
+  letter-spacing:-.01em;margin:18px 0 20px;max-width:13ch}
+.hero .lead{max-width:56ch;font-size:clamp(15.5px,1.25vw,18px);color:rgba(238,244,240,.82);margin:0 0 30px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:38px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:0 26px;
+  border-radius:999px;font-weight:700;font-size:15px;border:1px solid rgba(238,244,240,.32);color:#eef4f0;
+  transition:transform .2s ease,background .2s ease,filter .2s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--mum);border-color:transparent;color:#141007}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn.ghost:hover{background:rgba(238,244,240,.1)}
+.stat-band{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid rgba(238,244,240,.2)}
+.stat{flex:1 1 150px;padding:18px 22px 2px 0;display:flex;flex-direction:column;gap:2px}
+.stat + .stat{border-left:1px solid rgba(238,244,240,.14);padding-left:22px}
+.stat b{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3vw,36px);color:#f4ede0;display:flex;align-items:baseline;gap:7px}
+.stat b .star{color:var(--mum);font-size:.6em;transform:translateY(-2px)}
+.stat > span{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(238,244,240,.6);font-weight:600}
+
+/* ---------- ortak bölüm iskeleti ---------- */
+section{position:relative}
+.wrap{width:min(var(--max),100%);margin:0 auto;padding:clamp(72px,10vh,120px) clamp(20px,5vw,48px)}
+.sec-head{max-width:640px}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.2vw,50px);line-height:1.12;letter-spacing:-.01em;margin:14px 0 18px}
+.sec-text{color:var(--soluk);margin:0}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero-photo.has-img{animation:none}
+  .candle{animation:none;opacity:.5}
+  #rings-canvas{display:none}
+}
+
+/* ---------- ritüel ---------- */
+.ritual{background:linear-gradient(180deg,var(--zemin) 0%,var(--zemin2) 100%)}
+.ritual .cols{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.ritual-figure{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--golge)}
+.ritual-figure img{width:100%;height:auto}
+.ritual-figure::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(233,240,236,.12);border-radius:20px;pointer-events:none}
+.fig-tag{position:absolute;left:14px;bottom:14px;z-index:2;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:#f2f6f3;background:rgba(6,13,11,.62);backdrop-filter:blur(8px);padding:7px 12px;border-radius:999px}
+.steps{margin-top:38px;display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:64px minmax(0,1fr);gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .no{font-family:var(--serif);font-size:26px;color:var(--mum);line-height:1.15}
+.step h3{margin:0 0 6px;font-size:18px;font-weight:700;letter-spacing:.01em}
+.step p{margin:0;color:var(--soluk);font-size:15.5px}
+@media (max-width:900px){ .ritual .cols{grid-template-columns:1fr} .ritual-figure{max-width:520px} }
+
+/* ---------- odalar (görsel üstü kartlar — scrim temadan bağımsız) ---------- */
+.rooms{background:var(--zemin2)}
+.room-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px);margin-top:44px}
+.room-card{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5;box-shadow:var(--golge);
+  transform:translateZ(0)}
+.room-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.22,.61,.36,1)}
+.room-card:hover img{transform:scale(1.05)}
+.room-card::before{content:"";position:absolute;inset:0;background:var(--kart-scrim);z-index:1}
+.room-card .card-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:20px 20px 18px;color:var(--karta)}
+.room-card .card-body h3{margin:0 0 6px;font-family:var(--serif);font-weight:500;font-size:23px;letter-spacing:.01em;color:#f6f1e6}
+.room-card .card-body p{margin:0;font-size:14px;line-height:1.5;color:rgba(242,246,243,.88)}
+.room-note{margin-top:22px;font-size:13.5px;color:var(--soluk);display:flex;gap:8px;align-items:flex-start;max-width:640px}
+.room-note svg{flex:0 0 auto;margin-top:3px;color:var(--mum)}
+@media (max-width:900px){ .room-grid{grid-template-columns:1fr;max-width:440px} }
+
+/* ---------- neden burası ---------- */
+.why{background:var(--zemin)}
+.why-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px);margin-top:44px}
+.why-card{border:1px solid var(--line);border-radius:20px;padding:26px 24px;background:var(--panel);
+  display:flex;flex-direction:column;gap:10px}
+.why-card .ic{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  color:var(--mum);border:1px solid var(--line);background:transparent}
+.why-card h3{margin:4px 0 0;font-size:18px;font-weight:700}
+.why-card p{margin:0;color:var(--soluk);font-size:15px}
+@media (max-width:900px){ .why-grid{grid-template-columns:1fr} }
+
+/* ---------- yorum şeridi ---------- */
+.reviews{background:var(--zemin2)}
+.rev-inner{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.rev-big{font-family:var(--serif);font-weight:500;font-size:clamp(72px,12vw,128px);line-height:1;color:var(--metin)}
+.rev-stars{display:flex;gap:6px;color:var(--mum)}
+.rev-stars svg{width:22px;height:22px}
+.rev-count{color:var(--soluk);font-size:15.5px}
+.rev-btn{margin-top:8px;display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:0 24px;border-radius:999px;
+  border:1px solid var(--line);color:var(--metin);font-weight:700;font-size:14.5px;transition:background .2s ease}
+.rev-btn:hover{background:var(--panel)}
+
+/* ---------- rezervasyon ---------- */
+.book{position:relative;isolation:isolate;color:#eef4f0;overflow:hidden}
+.book-bg{position:absolute;inset:0;z-index:1;background:url("assets/images/kapanis.jpg") center/cover no-repeat #0b1613}
+.book-shade{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(6,13,11,.9),rgba(6,13,11,.72) 45%,rgba(6,13,11,.92))}
+.book .wrap{position:relative;z-index:3}
+.book .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.book .eyebrow{color:rgba(238,244,240,.66)}
+.book .sec-text{color:rgba(238,244,240,.78)}
+.book-form{background:rgba(10,20,16,.66);border:1px solid rgba(238,244,240,.16);border-radius:22px;
+  padding:clamp(20px,3vw,32px);backdrop-filter:blur(14px);display:flex;flex-direction:column;gap:15px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(238,244,240,.7)}
+.field input,.field select,.field textarea{
+  min-height:48px;border-radius:12px;border:1px solid rgba(238,244,240,.2);background:rgba(6,13,11,.5);
+  color:#eef4f0;padding:10px 14px;outline:none}
+.field textarea{min-height:76px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--mum);box-shadow:0 0 0 3px rgba(217,189,143,.18)}
+.field select option{color:#132821;background:#edf1ee}
+.field input::placeholder,.field textarea::placeholder{color:rgba(238,244,240,.4)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.send-btn{margin-top:4px;min-height:52px;border-radius:999px;border:none;cursor:pointer;font-weight:800;font-size:15.5px;
+  background:var(--mum);color:#141007;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  transition:filter .2s ease,transform .2s ease}
+.send-btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.book-hint{font-size:13px;color:rgba(238,244,240,.6);margin:2px 0 0}
+@media (max-width:900px){ .book .cols{grid-template-columns:1fr} .f-row{grid-template-columns:1fr} }
+
+/* ---------- footer ---------- */
+footer{background:#081310;color:rgba(238,244,240,.8)}
+html[data-theme="light"] footer{background:#10221c}
+.foot-inner{width:min(var(--max),100%);margin:0 auto;padding:54px clamp(20px,5vw,48px) 40px;
+  display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:flex-start}
+.foot-brand{display:flex;align-items:center;gap:11px;color:#eef4f0}
+.foot-col{display:flex;flex-direction:column;gap:6px;font-size:14.5px}
+.foot-col b{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(238,244,240,.55);margin-bottom:4px}
+.foot-col a:hover{color:var(--mum)}
+.foot-base{border-top:1px solid rgba(238,244,240,.12);margin-top:8px}
+.foot-base .foot-inner{padding-top:18px;padding-bottom:22px;align-items:center;font-size:12.5px;color:rgba(238,244,240,.5)}
+.demo-badge{border:1px solid rgba(238,244,240,.25);border-radius:999px;padding:5px 12px;font-weight:700;letter-spacing:.08em}
+
+@media (max-width:720px){
+  .topbar{padding:10px 14px;gap:8px}
+  .brand{gap:8px;min-width:0;flex:1 1 auto;overflow:hidden}
+  .brand svg{width:28px;height:28px}
+  .brand-name{font-size:13px;letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis}
+  .brand-name small{font-size:8px;letter-spacing:.3em}
+  .top-actions{flex:0 0 auto;gap:6px}
+  .lang-select,.theme-toggle,.menu-btn{min-height:32px;padding:0 9px;font-size:12.5px}
+  .lang-select{padding-right:22px;background-position:right 8px center}
+  .hero h1{font-size:clamp(36px,11vw,48px)}
+  .hero-inner{padding-top:96px}
+  .stat{flex:1 1 100%;padding-left:0;border-left:none !important}
+  .stat + .stat{border-top:1px solid rgba(238,244,240,.14);padding-top:14px;padding-left:0}
+  .stat-band{gap:2px}
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top" aria-label="Private Hamam Spa — başa dön" data-i18n-aria="brandAria">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+      <circle cx="17" cy="17" r="15.5" stroke="#d9bd8f" stroke-width="1.1" opacity=".85"/>
+      <circle cx="17" cy="17" r="10" stroke="#eef4f0" stroke-width="1" opacity=".55"/>
+      <circle cx="17" cy="17" r="4.6" stroke="#d9bd8f" stroke-width="1.1" opacity=".95"/>
+      <circle cx="17" cy="17" r="1.3" fill="#eef4f0"/>
+    </svg>
+    <span class="brand-name">Private Hamam Spa<small data-i18n="brandSub">GÖREME · KAPADOKYA</small></span>
+  </a>
+  <div class="top-actions">
+    <label class="sr-only" for="langSelect" data-i18n="langLabel">Dil seç</label>
+    <select class="lang-select" id="langSelect" aria-label="Dil seç" data-i18n-aria="langLabel">
+      <option value="tr">TR</option>
+      <option value="en">EN</option>
+      <option value="es">ES</option>
+      <option value="zh">中文</option>
+      <option value="ko">한국어</option>
+    </select>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Aydınlık moda geç" data-i18n-aria="themeAria">
+      <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A8.7 8.7 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="display:none"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M19.1 4.9l-1.6 1.6M6.5 17.5l-1.6 1.6"/></svg>
+    </button>
+    <a class="top-cta" href="https://wa.me/905422780980" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15L2 22l5.2-1.4A9.9 9.9 0 1 0 12 2Zm5.8 14.1c-.25.7-1.4 1.3-2 1.4-.5.1-1.2.15-1.9-.12a17 17 0 0 1-1.7-.64 13.3 13.3 0 0 1-5-4.4 5.8 5.8 0 0 1-1.2-3.1 3.3 3.3 0 0 1 1-2.4 1.1 1.1 0 0 1 .8-.37h.57c.18 0 .43-.07.67.5l.94 2.28a.56.56 0 0 1 .03.54 8 8 0 0 1-.86 1.14c-.13.15-.3.29-.13.58a8.6 8.6 0 0 0 1.6 2 7.8 7.8 0 0 0 2.3 1.4c.29.15.46.13.63-.07l1-1.15c.23-.3.43-.22.72-.12l2.2 1.05c.23.12.39.18.45.28a2 2 0 0 1-.12 1.2Z"/></svg>
+      <span data-i18n="navWa">WhatsApp</span>
+    </a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Menüyü aç" aria-expanded="false" data-i18n-aria="menuAria">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<nav class="dotrail" aria-label="Bölüm gezinme" data-i18n-aria="dotAria">
+  <a href="#top" data-spy="top" class="active"><span class="lbl" data-i18n="navTop">Başlangıç</span><span class="dot"></span></a>
+  <a href="#ritual" data-spy="ritual"><span class="lbl" data-i18n="navRitual">Ritüel</span><span class="dot"></span></a>
+  <a href="#rooms" data-spy="rooms"><span class="lbl" data-i18n="navRooms">Odalar</span><span class="dot"></span></a>
+  <a href="#reviews" data-spy="reviews"><span class="lbl" data-i18n="navReviews">Yorumlar</span><span class="dot"></span></a>
+  <a href="#book" data-spy="book"><span class="lbl" data-i18n="navBook">Rezervasyon</span><span class="dot"></span></a>
+</nav>
+
+<div class="veil" id="veil" role="dialog" aria-modal="true" aria-label="Menü" data-i18n-aria="menuAria2">
+  <button class="veil-close" id="veilClose" type="button" aria-label="Menüyü kapat" data-i18n-aria="menuCloseAria">×</button>
+  <a class="vlink" data-spy="ritual" href="#ritual"><span data-i18n="navRitual">Ritüel</span><span class="no">01</span></a>
+  <a class="vlink" data-spy="rooms" href="#rooms"><span data-i18n="navRooms">Odalar</span><span class="no">02</span></a>
+  <a class="vlink" data-spy="reviews" href="#reviews"><span data-i18n="navReviews">Yorumlar</span><span class="no">03</span></a>
+  <a class="vlink" data-spy="book" href="#book"><span data-i18n="navBook">Rezervasyon</span><span class="no">04</span></a>
+  <a class="veil-wa" href="https://wa.me/905422780980" target="_blank" rel="noopener"><span data-i18n="veilWa">WhatsApp'tan yaz</span></a>
+</div>
+
+<header class="hero" id="top">
+  <div class="hero-photo has-img" role="img" aria-label="Private Hamam Spa ritüel odası — el boyaması mandala duvarı" data-i18n-aria="heroImgAria"></div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-tint" aria-hidden="true"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <canvas id="rings-canvas" aria-hidden="true"></canvas>
+  <div class="candle" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="eyebrow reveal" data-i18n-html="heroEyebrow">Göreme · Kapadokya — <em>hamam &amp; spa</em></div>
+    <h1 class="reveal" data-i18n="heroTitle">Kapı kapanır, buhar konuşur.</h1>
+    <p class="lead reveal" data-i18n="heroLead">Adının verdiği söz basit: private. Kese-köpük ritüeli boyunca size hamamın kalabalığı değil, suyun sesi eşlik eder. Göreme'nin içinde, akşam geç saate kadar.</p>
+    <div class="hero-ctas reveal">
+      <a class="btn primary" href="#book" data-i18n="heroCta1">Saat sor — WhatsApp</a>
+      <a class="btn ghost" href="#ritual" data-i18n="heroCta2">Ritüeli keşfet</a>
+    </div>
+    <div class="stat-band reveal">
+      <div class="stat"><b><span data-i18n="statRatingV">5,0</span> <span class="star" aria-hidden="true">★★★★★</span></b><span data-i18n="statRating">Google puanı</span></div>
+      <div class="stat"><b>81</b><span data-i18n="statReviews">misafir yorumu</span></div>
+      <div class="stat"><b data-i18n="statPrivateV">Private</b><span data-i18n="statPrivate">adı, formatın kendisi</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="ritual" id="ritual">
+    <div class="wrap">
+      <div class="cols">
+        <figure class="ritual-figure reveal" style="margin:0">
+          <img src="assets/images/story.jpg" width="1000" height="1250" alt="Mozaik balon lambalarla aydınlanan taş tonozlu merdiven ve duvar freski" data-i18n-alt="storyAlt" loading="lazy">
+          <figcaption class="fig-tag" data-i18n="storyTag">Girişteki merdiven</figcaption>
+        </figure>
+        <div>
+          <div class="eyebrow reveal" data-i18n="ritualEyebrow">Ritüel</div>
+          <h2 class="reveal" data-i18n="ritualTitle">Merdiven aşağı iner, zaman yavaşlar.</h2>
+          <p class="sec-text reveal" data-i18n="ritualText">Mozaik lambaların ve duvar freskinin altından taş merdivenle inersiniz. Yukarıda Göreme'nin gündüz telaşı; aşağıda dört fasıllık eski bir düzen:</p>
+          <div class="steps">
+            <div class="step reveal"><div class="no">01</div><div><h3 data-i18n="step1T">Isınma</h3><p data-i18n="step1D">Sıcaklık önce taşı, sonra omuzları gevşetir. Aceleye yer yok; buhar kendi hızında çalışır.</p></div></div>
+            <div class="step reveal"><div class="no">02</div><div><h3 data-i18n="step2T">Kese</h3><p data-i18n="step2D">Geleneksel kese, biriken günleri katman katman kaldırır. Kısa, kararlı, dürüst bir arınma.</p></div></div>
+            <div class="step reveal"><div class="no">03</div><div><h3 data-i18n="step3T">Köpük</h3><p data-i18n="step3D">Peştemalin üzerinde köpük bulutu yükselir; nefes uzar, düşünceler seyrekleşir.</p></div></div>
+            <div class="step reveal"><div class="no">04</div><div><h3 data-i18n="step4T">Çay &amp; dinlenme</h3><p data-i18n="step4D">Ritüel, loş dinlenme odasında bir bardak çayla mühürlenir. Dışarı çıktığınızda gün başka görünür.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rooms" id="rooms">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow reveal" data-i18n="roomsEyebrow">Odalar</div>
+        <h2 class="reveal" data-i18n="roomsTitle">İçerisi, olduğu gibi.</h2>
+        <p class="sec-text reveal" data-i18n="roomsText">Bu kareler işletmenin Google profilindeki gerçek fotoğraflardan derlendi — filtre yok, vaat yok. Gördüğünüz, bulacağınızdır.</p>
+      </div>
+      <div class="room-grid">
+        <article class="room-card reveal">
+          <img src="assets/images/ritual-1.jpg" width="900" height="1125" alt="Ahşap masalı, aynalı ve havlu raflı bakım odası" data-i18n-alt="room1Alt" loading="lazy">
+          <div class="card-body"><h3 data-i18n="room1T">Ritüel odası</h3><p data-i18n="room1D">Ahşap masa, yumuşak ışık, mermer lavabo. Seans kapalı kapının ardında, sakin akar.</p></div>
+        </article>
+        <article class="room-card reveal">
+          <img src="assets/images/ritual-2.jpg" width="900" height="1125" alt="Duvar resimli, loş ışıklı dinlenme odası" data-i18n-alt="room2Alt" loading="lazy">
+          <div class="card-body"><h3 data-i18n="room2T">Dinlenme odası</h3><p data-i18n="room2D">El boyaması figürün altında, loş ışıkta uzanırsınız; çay gelir, telefon susar.</p></div>
+        </article>
+        <article class="room-card reveal">
+          <img src="assets/images/ritual-3.jpg" width="900" height="1125" alt="Peştemal, havlu ve doğal bakım ürünleriyle dolu raflar" data-i18n-alt="room3Alt" loading="lazy">
+          <div class="card-body"><h3 data-i18n="room3T">Peştemal &amp; bakım</h3><p data-i18n="room3D">Raflar peştemal, havlu ve doğal bakım ürünleriyle dolu; ritüelin kokusu burada başlar.</p></div>
+        </article>
+      </div>
+      <p class="room-note reveal">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+        <span data-i18n="roomsNote">Fotoğraflar işletmenin Google galerisinden alınmıştır; yayında dilediklerinizle güncellenir.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow reveal" data-i18n="whyEyebrow">Neden burası</div>
+        <h2 class="reveal" data-i18n="whyTitle">Beş yıldızın arkasında 81 ses var.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg></div>
+          <h3 data-i18n="why1T">5,0 — eksiksiz</h3>
+          <p data-i18n="why1D">Google'da 81 misafir yorumunun ortalaması tam 5,0. Tek bir yıldız bile eksik değil; bu sayfadaki en güçlü cümle bu.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></div>
+          <h3 data-i18n="why2T">Adı üstünde: private</h3>
+          <p data-i18n="why2D">İsim süs değil, iddia: kalabalık kabinler yerine size ayrılmış bir akış. Detayları mesajla sorun, netleştirelim.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
+          <h3 data-i18n="why3T">Göreme'nin içinde</h3>
+          <p data-i18n="why3D">Avcılar Mah. Musluk Sk. No:17 — balon sabahının ya da vadi yürüyüşünün ardından, akşam geç saate kadar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="rev-inner">
+        <div class="eyebrow reveal" data-i18n="revEyebrow">Google yorumları</div>
+        <div class="rev-big reveal" data-i18n="statRatingV">5,0</div>
+        <div class="rev-stars reveal" role="img" aria-label="Beş üzerinden beş yıldız" data-i18n-aria="revStarsAria">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg>
+        </div>
+        <p class="rev-count reveal" data-i18n="revCount">81 misafir yorumu · Google</p>
+        <a class="rev-btn reveal" href="https://www.google.com/maps/place/Private+Hamam+Spa/@38.6490482,34.8322144,17z" target="_blank" rel="noopener" data-i18n="revBtn">Yorumları Google'da okuyun</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="book" id="book">
+    <div class="book-bg" aria-hidden="true"></div>
+    <div class="book-shade" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <div class="eyebrow reveal" data-i18n="bookEyebrow">Rezervasyon</div>
+          <h2 class="reveal" data-i18n="bookTitle">Saatinizi tek mesajla ayırın.</h2>
+          <p class="sec-text reveal" data-i18n="bookText">Formu doldurun; mesajınız hazır şekilde WhatsApp'ta açılır, göndermeden önce düzenleyebilirsiniz. Tarih uymuyorsa yine yazın — birlikte bakalım.</p>
+          <p class="book-hint reveal" data-i18n="bookHint">Telefon &amp; WhatsApp: +90 542 278 09 80</p>
+        </div>
+        <form class="book-form reveal" id="bookForm" aria-label="Rezervasyon formu" data-i18n-aria="formAria">
+          <div class="field">
+            <label for="fName" data-i18n="fName">Adınız</label>
+            <input id="fName" name="name" type="text" autocomplete="name" placeholder="Adınız Soyadınız" data-i18n-ph="fNamePh" required>
+          </div>
+          <div class="f-row">
+            <div class="field">
+              <label for="fDate" data-i18n="fDate">Tarih</label>
+              <input id="fDate" name="date" type="date" required>
+            </div>
+            <div class="field">
+              <label for="fGuests" data-i18n="fGuests">Kişi sayısı</label>
+              <select id="fGuests" name="guests">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4+">4+</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="fTime" data-i18n="fTime">Saat tercihi</label>
+            <select id="fTime" name="time">
+              <option value="morning" data-i18n="fTimeM">Sabah</option>
+              <option value="afternoon" data-i18n="fTimeA" selected>Öğleden sonra</option>
+              <option value="evening" data-i18n="fTimeE">Akşam</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fNote" data-i18n="fNote">Notunuz (isteğe bağlı)</label>
+            <textarea id="fNote" name="note" placeholder="Örn. balon turu sonrası gelmek istiyoruz" data-i18n-ph="fNotePh"></textarea>
+          </div>
+          <button class="send-btn" type="submit">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a9.9 9.9 0 0 0-8.5 15L2 22l5.2-1.4A9.9 9.9 0 1 0 12 2Zm5.8 14.1c-.25.7-1.4 1.3-2 1.4-.5.1-1.2.15-1.9-.12a17 17 0 0 1-1.7-.64 13.3 13.3 0 0 1-5-4.4 5.8 5.8 0 0 1-1.2-3.1 3.3 3.3 0 0 1 1-2.4 1.1 1.1 0 0 1 .8-.37h.57c.18 0 .43-.07.67.5l.94 2.28a.56.56 0 0 1 .03.54 8 8 0 0 1-.86 1.14c-.13.15-.3.29-.13.58a8.6 8.6 0 0 0 1.6 2 7.8 7.8 0 0 0 2.3 1.4c.29.15.46.13.63-.07l1-1.15c.23-.3.43-.22.72-.12l2.2 1.05c.23.12.39.18.45.28a2 2 0 0 1-.12 1.2Z"/></svg>
+            <span data-i18n="fSend">WhatsApp'ta aç</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <svg width="30" height="30" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+        <circle cx="17" cy="17" r="15.5" stroke="#d9bd8f" stroke-width="1.1" opacity=".85"/>
+        <circle cx="17" cy="17" r="10" stroke="#eef4f0" stroke-width="1" opacity=".55"/>
+        <circle cx="17" cy="17" r="4.6" stroke="#d9bd8f" stroke-width="1.1" opacity=".95"/>
+        <circle cx="17" cy="17" r="1.3" fill="#eef4f0"/>
+      </svg>
+      <span class="brand-name" style="font-size:16px">Private Hamam Spa<small data-i18n="brandSub">GÖREME · KAPADOKYA</small></span>
+    </div>
+    <div class="foot-col">
+      <b data-i18n="footAddrT">Adres</b>
+      <span data-i18n="footAddr">Avcılar Mah. Musluk Sk. No:17, Göreme / Nevşehir</span>
+    </div>
+    <div class="foot-col">
+      <b data-i18n="footContactT">İletişim</b>
+      <a href="tel:+905422780980">+90 542 278 09 80</a>
+      <a href="https://wa.me/905422780980" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+  <div class="foot-base">
+    <div class="foot-inner">
+      <span data-i18n="footRights">© 2026 Private Hamam Spa — Göreme. Fotoğraflar ağırlıklı olarak işletmenin Google profilinden derlenmiştir; kapanış görseli konsept çalışmadır.</span>
+      <span class="demo-badge" data-i18n="footDemo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ==================== SABİTLER ==================== */
+var WHATSAPP = "905422780980";
+
+/* ==================== i18n SÖZLÜĞÜ (TR · EN · ES · 中文 · 한국어) ==================== */
+var I18N = {
+tr:{
+  meta_title:"Private Hamam Spa — Göreme | Özel Hamam & Spa Ritüeli",
+  meta_desc:"Göreme'de 5,0 Google puanlı (81 yorum) özel hamam & spa. Kese-köpük ritüeli, dinlenme odası, peştemal ve çay. WhatsApp ile hızlı rezervasyon.",
+  brandSub:"GÖREME · KAPADOKYA", brandAria:"Private Hamam Spa — başa dön",
+  langLabel:"Dil seç", themeAriaDark:"Aydınlık moda geç", themeAriaLight:"Karanlık moda geç",
+  menuAria:"Menüyü aç", menuAria2:"Menü", menuCloseAria:"Menüyü kapat", dotAria:"Bölüm gezinme",
+  navTop:"Başlangıç", navRitual:"Ritüel", navRooms:"Odalar", navReviews:"Yorumlar", navBook:"Rezervasyon",
+  navWa:"WhatsApp", veilWa:"WhatsApp'tan yaz",
+  heroImgAria:"Private Hamam Spa ritüel odası — el boyaması mandala duvarı",
+  heroEyebrow:"Göreme · Kapadokya — <em>hamam &amp; spa</em>",
+  heroTitle:"Kapı kapanır, buhar konuşur.",
+  heroLead:"Adının verdiği söz basit: private. Kese-köpük ritüeli boyunca size hamamın kalabalığı değil, suyun sesi eşlik eder. Göreme'nin içinde, akşam geç saate kadar.",
+  heroCta1:"Saat sor — WhatsApp", heroCta2:"Ritüeli keşfet",
+  statRatingV:"5,0", statRating:"Google puanı", statReviews:"misafir yorumu", statPrivateV:"Private", statPrivate:"adı, formatın kendisi",
+  storyAlt:"Mozaik balon lambalarla aydınlanan taş tonozlu merdiven ve duvar freski", storyTag:"Girişteki merdiven",
+  ritualEyebrow:"Ritüel", ritualTitle:"Merdiven aşağı iner, zaman yavaşlar.",
+  ritualText:"Mozaik lambaların ve duvar freskinin altından taş merdivenle inersiniz. Yukarıda Göreme'nin gündüz telaşı; aşağıda dört fasıllık eski bir düzen:",
+  step1T:"Isınma", step1D:"Sıcaklık önce taşı, sonra omuzları gevşetir. Aceleye yer yok; buhar kendi hızında çalışır.",
+  step2T:"Kese", step2D:"Geleneksel kese, biriken günleri katman katman kaldırır. Kısa, kararlı, dürüst bir arınma.",
+  step3T:"Köpük", step3D:"Peştemalin üzerinde köpük bulutu yükselir; nefes uzar, düşünceler seyrekleşir.",
+  step4T:"Çay & dinlenme", step4D:"Ritüel, loş dinlenme odasında bir bardak çayla mühürlenir. Dışarı çıktığınızda gün başka görünür.",
+  roomsEyebrow:"Odalar", roomsTitle:"İçerisi, olduğu gibi.",
+  roomsText:"Bu kareler işletmenin Google profilindeki gerçek fotoğraflardan derlendi — filtre yok, vaat yok. Gördüğünüz, bulacağınızdır.",
+  room1T:"Ritüel odası", room1D:"Ahşap masa, yumuşak ışık, mermer lavabo. Seans kapalı kapının ardında, sakin akar.",
+  room1Alt:"Ahşap masalı, aynalı ve havlu raflı bakım odası",
+  room2T:"Dinlenme odası", room2D:"El boyaması figürün altında, loş ışıkta uzanırsınız; çay gelir, telefon susar.",
+  room2Alt:"Duvar resimli, loş ışıklı dinlenme odası",
+  room3T:"Peştemal & bakım", room3D:"Raflar peştemal, havlu ve doğal bakım ürünleriyle dolu; ritüelin kokusu burada başlar.",
+  room3Alt:"Peştemal, havlu ve doğal bakım ürünleriyle dolu raflar",
+  roomsNote:"Fotoğraflar işletmenin Google galerisinden alınmıştır; yayında dilediklerinizle güncellenir.",
+  whyEyebrow:"Neden burası", whyTitle:"Beş yıldızın arkasında 81 ses var.",
+  why1T:"5,0 — eksiksiz", why1D:"Google'da 81 misafir yorumunun ortalaması tam 5,0. Tek bir yıldız bile eksik değil; bu sayfadaki en güçlü cümle bu.",
+  why2T:"Adı üstünde: private", why2D:"İsim süs değil, iddia: kalabalık kabinler yerine size ayrılmış bir akış. Detayları mesajla sorun, netleştirelim.",
+  why3T:"Göreme'nin içinde", why3D:"Avcılar Mah. Musluk Sk. No:17 — balon sabahının ya da vadi yürüyüşünün ardından, akşam geç saate kadar.",
+  revEyebrow:"Google yorumları", revStarsAria:"Beş üzerinden beş yıldız",
+  revCount:"81 misafir yorumu · Google", revBtn:"Yorumları Google'da okuyun",
+  bookEyebrow:"Rezervasyon", bookTitle:"Saatinizi tek mesajla ayırın.",
+  bookText:"Formu doldurun; mesajınız hazır şekilde WhatsApp'ta açılır, göndermeden önce düzenleyebilirsiniz. Tarih uymuyorsa yine yazın — birlikte bakalım.",
+  bookHint:"Telefon & WhatsApp: +90 542 278 09 80", formAria:"Rezervasyon formu",
+  fName:"Adınız", fNamePh:"Adınız Soyadınız", fDate:"Tarih", fGuests:"Kişi sayısı",
+  fTime:"Saat tercihi", fTimeM:"Sabah", fTimeA:"Öğleden sonra", fTimeE:"Akşam",
+  fNote:"Notunuz (isteğe bağlı)", fNotePh:"Örn. balon turu sonrası gelmek istiyoruz", fSend:"WhatsApp'ta aç",
+  footAddrT:"Adres", footAddr:"Avcılar Mah. Musluk Sk. No:17, Göreme / Nevşehir", footContactT:"İletişim",
+  footRights:"© 2026 Private Hamam Spa — Göreme. Fotoğraflar ağırlıklı olarak işletmenin Google profilinden derlenmiştir; kapanış görseli konsept çalışmadır.",
+  footDemo:"Örnek / Demo Tasarım",
+  waMsg:function(d){return "Merhaba Private Hamam Spa! " + d.date + " tarihinde, " + d.time + " için " + d.guests + " kişilik hamam ritüeli planlamak istiyoruz. Ad: " + d.name + (d.note ? (" — Not: " + d.note) : "");},
+  waTimes:{morning:"sabah",afternoon:"öğleden sonra",evening:"akşam"}
+},
+en:{
+  meta_title:"Private Hamam Spa — Göreme | Private Turkish Bath & Spa Ritual",
+  meta_desc:"A 5.0-rated (81 Google reviews) private hammam & spa in Göreme, Cappadocia. Scrub & foam ritual, resting room, peshtemal and tea. Book via WhatsApp.",
+  brandSub:"GÖREME · CAPPADOCIA", brandAria:"Private Hamam Spa — back to top",
+  langLabel:"Choose language", themeAriaDark:"Switch to light mode", themeAriaLight:"Switch to dark mode",
+  menuAria:"Open menu", menuAria2:"Menu", menuCloseAria:"Close menu", dotAria:"Section navigation",
+  navTop:"Top", navRitual:"The Ritual", navRooms:"The Rooms", navReviews:"Reviews", navBook:"Book",
+  navWa:"WhatsApp", veilWa:"Message on WhatsApp",
+  heroImgAria:"Private Hamam Spa ritual room — hand-painted mandala wall",
+  heroEyebrow:"Göreme · Cappadocia — <em>hammam &amp; spa</em>",
+  heroTitle:"The door closes. The steam does the talking.",
+  heroLead:"The name is the promise: private. Through the scrub-and-foam ritual you hear water, not a crowd. In the heart of Göreme, open into the late evening.",
+  heroCta1:"Ask for a slot — WhatsApp", heroCta2:"See the ritual",
+  statRatingV:"5.0", statRating:"Google rating", statReviews:"guest reviews", statPrivateV:"Private", statPrivate:"the name is the format",
+  storyAlt:"Stone vaulted stairway lit by mosaic balloon lamps, with a wall fresco", storyTag:"The entrance stairway",
+  ritualEyebrow:"The ritual", ritualTitle:"The stairs go down; time slows down.",
+  ritualText:"You descend a stone stairway beneath mosaic lamps and a painted fresco. Göreme's daytime rush stays above; below, an old four-part order:",
+  step1T:"Warming", step1D:"The heat loosens the stone first, then your shoulders. Nothing is rushed; steam works at its own pace.",
+  step2T:"The scrub (kese)", step2D:"The traditional kese lifts the accumulated days, layer by layer. Brief, decisive, honest.",
+  step3T:"The foam", step3D:"A cloud of foam rises over the peshtemal; breathing lengthens, thoughts thin out.",
+  step4T:"Tea & rest", step4D:"The ritual is sealed with a glass of tea in the dim resting room. Outside, the day looks different.",
+  roomsEyebrow:"The rooms", roomsTitle:"The inside, as it is.",
+  roomsText:"These frames come from the business's own Google gallery — no filters, no promises. What you see is what you find.",
+  room1T:"Ritual room", room1D:"A wooden table, soft light, a marble basin. Your session flows quietly behind a closed door.",
+  room1Alt:"Care room with wooden table, mirror and towel shelves",
+  room2T:"Resting room", room2D:"You lie back beneath a hand-painted figure in low light; tea arrives, phones go quiet.",
+  room2Alt:"Dim resting room with a wall mural",
+  room3T:"Peshtemal & care", room3D:"Shelves stacked with peshtemals, towels and natural care products; the scent of the ritual starts here.",
+  room3Alt:"Shelves of peshtemals, towels and natural care products",
+  roomsNote:"Photos are taken from the business's Google gallery; they can be replaced with any you prefer once live.",
+  whyEyebrow:"Why here", whyTitle:"Behind five stars there are 81 voices.",
+  why1T:"5.0 — flawless", why1D:"The average of 81 Google guest reviews is a full 5.0. Not a single star missing — the strongest sentence on this page.",
+  why2T:"Private, as named", why2D:"The name is a claim, not decoration: a flow reserved for you instead of crowded cabins. Message us for the details.",
+  why3T:"Inside Göreme", why3D:"Avcılar Mah. Musluk St. No:17 — after the balloon morning or a valley hike, open into the late evening.",
+  revEyebrow:"Google reviews", revStarsAria:"Five out of five stars",
+  revCount:"81 guest reviews · Google", revBtn:"Read the reviews on Google",
+  bookEyebrow:"Booking", bookTitle:"Reserve your hour with one message.",
+  bookText:"Fill in the form; your message opens pre-written in WhatsApp and you can edit it before sending. If the date doesn't fit, write anyway — we'll figure it out.",
+  bookHint:"Phone & WhatsApp: +90 542 278 09 80", formAria:"Booking form",
+  fName:"Your name", fNamePh:"Full name", fDate:"Date", fGuests:"Guests",
+  fTime:"Preferred time", fTimeM:"Morning", fTimeA:"Afternoon", fTimeE:"Evening",
+  fNote:"Note (optional)", fNotePh:"E.g. we'd like to come after the balloon tour", fSend:"Open in WhatsApp",
+  footAddrT:"Address", footAddr:"Avcılar Mah. Musluk Sk. No:17, Göreme / Nevşehir", footContactT:"Contact",
+  footRights:"© 2026 Private Hamam Spa — Göreme. Photos are mainly compiled from the business's Google profile; the closing visual is a concept image.",
+  footDemo:"Sample / Demo Design",
+  waMsg:function(d){return "Hello Private Hamam Spa! We'd like to book a hammam ritual for " + d.guests + " guest(s) on " + d.date + ", " + d.time + ". Name: " + d.name + (d.note ? (" — Note: " + d.note) : "");},
+  waTimes:{morning:"in the morning",afternoon:"in the afternoon",evening:"in the evening"}
+},
+es:{
+  meta_title:"Private Hamam Spa — Göreme | Baño turco privado y ritual de spa",
+  meta_desc:"Hammam y spa privado en Göreme, Capadocia, con 5,0 en Google (81 reseñas). Ritual de kese y espuma, sala de descanso, pestemal y té. Reserva por WhatsApp.",
+  brandSub:"GÖREME · CAPADOCIA", brandAria:"Private Hamam Spa — volver arriba",
+  langLabel:"Elegir idioma", themeAriaDark:"Cambiar a modo claro", themeAriaLight:"Cambiar a modo oscuro",
+  menuAria:"Abrir menú", menuAria2:"Menú", menuCloseAria:"Cerrar menú", dotAria:"Navegación por secciones",
+  navTop:"Inicio", navRitual:"El ritual", navRooms:"Las salas", navReviews:"Reseñas", navBook:"Reservar",
+  navWa:"WhatsApp", veilWa:"Escribir por WhatsApp",
+  heroImgAria:"Sala de ritual de Private Hamam Spa — pared con mandala pintado a mano",
+  heroEyebrow:"Göreme · Capadocia — <em>hammam &amp; spa</em>",
+  heroTitle:"La puerta se cierra y habla el vapor.",
+  heroLead:"El nombre es la promesa: privado. Durante el ritual de kese y espuma oirás el agua, no una multitud. En pleno Göreme, abierto hasta bien entrada la noche.",
+  heroCta1:"Pedir hora — WhatsApp", heroCta2:"Ver el ritual",
+  statRatingV:"5,0", statRating:"puntuación Google", statReviews:"reseñas de huéspedes", statPrivateV:"Privado", statPrivate:"el nombre es el formato",
+  storyAlt:"Escalera abovedada de piedra iluminada por lámparas de mosaico, con un fresco", storyTag:"La escalera de entrada",
+  ritualEyebrow:"El ritual", ritualTitle:"La escalera baja; el tiempo se frena.",
+  ritualText:"Desciendes por una escalera de piedra bajo lámparas de mosaico y un fresco pintado. El bullicio diurno de Göreme queda arriba; abajo, un viejo orden en cuatro actos:",
+  step1T:"Calentamiento", step1D:"El calor afloja primero la piedra y luego los hombros. Sin prisas; el vapor trabaja a su ritmo.",
+  step2T:"El kese", step2D:"La exfoliación tradicional levanta los días acumulados, capa a capa. Breve, decidida, honesta.",
+  step3T:"La espuma", step3D:"Una nube de espuma se alza sobre el pestemal; la respiración se alarga, los pensamientos se despejan.",
+  step4T:"Té y descanso", step4D:"El ritual se sella con un vaso de té en la penumbra de la sala de descanso. Al salir, el día se ve distinto.",
+  roomsEyebrow:"Las salas", roomsTitle:"El interior, tal cual es.",
+  roomsText:"Estas imágenes proceden de la galería de Google del propio negocio — sin filtros, sin promesas. Lo que ves es lo que encuentras.",
+  room1T:"Sala del ritual", room1D:"Mesa de madera, luz suave, lavabo de mármol. La sesión fluye tranquila tras una puerta cerrada.",
+  room1Alt:"Sala de cuidados con mesa de madera, espejo y estantes de toallas",
+  room2T:"Sala de descanso", room2D:"Te recuestas bajo una figura pintada a mano, con luz tenue; llega el té y el teléfono calla.",
+  room2Alt:"Sala de descanso en penumbra con mural",
+  room3T:"Pestemal y cuidado", room3D:"Estantes llenos de pestemales, toallas y productos naturales; el aroma del ritual empieza aquí.",
+  room3Alt:"Estantes con pestemales, toallas y productos de cuidado natural",
+  roomsNote:"Las fotos proceden de la galería de Google del negocio; en la web definitiva se sustituyen por las que prefieras.",
+  whyEyebrow:"Por qué aquí", whyTitle:"Tras las cinco estrellas hay 81 voces.",
+  why1T:"5,0 — impecable", why1D:"La media de 81 reseñas en Google es un 5,0 exacto. No falta ni una estrella; es la frase más fuerte de esta página.",
+  why2T:"Privado, como su nombre", why2D:"El nombre es una declaración: un flujo reservado para ti, no cabinas abarrotadas. Pregunta los detalles por mensaje.",
+  why3T:"Dentro de Göreme", why3D:"Avcılar Mah. Musluk Sk. No:17 — tras la mañana de globos o una caminata por los valles, abierto hasta tarde.",
+  revEyebrow:"Reseñas de Google", revStarsAria:"Cinco estrellas de cinco",
+  revCount:"81 reseñas de huéspedes · Google", revBtn:"Leer las reseñas en Google",
+  bookEyebrow:"Reserva", bookTitle:"Reserva tu hora con un solo mensaje.",
+  bookText:"Rellena el formulario; el mensaje se abre ya escrito en WhatsApp y puedes editarlo antes de enviarlo. Si la fecha no encaja, escribe igualmente.",
+  bookHint:"Teléfono y WhatsApp: +90 542 278 09 80", formAria:"Formulario de reserva",
+  fName:"Tu nombre", fNamePh:"Nombre y apellidos", fDate:"Fecha", fGuests:"Personas",
+  fTime:"Franja horaria", fTimeM:"Mañana", fTimeA:"Tarde", fTimeE:"Noche",
+  fNote:"Nota (opcional)", fNotePh:"Ej. queremos venir después del tour en globo", fSend:"Abrir en WhatsApp",
+  footAddrT:"Dirección", footAddr:"Avcılar Mah. Musluk Sk. No:17, Göreme / Nevşehir", footContactT:"Contacto",
+  footRights:"© 2026 Private Hamam Spa — Göreme. Las fotos proceden principalmente del perfil de Google del negocio; la imagen de cierre es conceptual.",
+  footDemo:"Diseño de muestra / Demo",
+  waMsg:function(d){return "¡Hola Private Hamam Spa! Queremos reservar un ritual de hammam para " + d.guests + " persona(s) el " + d.date + ", " + d.time + ". Nombre: " + d.name + (d.note ? (" — Nota: " + d.note) : "");},
+  waTimes:{morning:"por la mañana",afternoon:"por la tarde",evening:"por la noche"}
+},
+zh:{
+  meta_title:"Private Hamam Spa — 格雷梅 | 私享土耳其浴与水疗仪式",
+  meta_desc:"位于卡帕多奇亚格雷梅的私享土耳其浴与水疗，Google 5.0 分（81 条评价）。搓澡与泡沫仪式、休息室、浴巾与热茶。可通过 WhatsApp 预约。",
+  brandSub:"格雷梅 · 卡帕多奇亚", brandAria:"Private Hamam Spa — 回到顶部",
+  langLabel:"选择语言", themeAriaDark:"切换到浅色模式", themeAriaLight:"切换到深色模式",
+  menuAria:"打开菜单", menuAria2:"菜单", menuCloseAria:"关闭菜单", dotAria:"章节导航",
+  navTop:"首页", navRitual:"仪式", navRooms:"房间", navReviews:"评价", navBook:"预约",
+  navWa:"WhatsApp", veilWa:"通过 WhatsApp 联系",
+  heroImgAria:"Private Hamam Spa 仪式房间 — 手绘曼陀罗墙面",
+  heroEyebrow:"格雷梅 · 卡帕多奇亚 — <em>土耳其浴 &amp; 水疗</em>",
+  heroTitle:"门一关上，只剩蒸汽的声音。",
+  heroLead:"名字即承诺：私享。在搓澡与泡沫仪式中，陪伴你的是水声，而不是喧闹的人群。位于格雷梅镇中心，营业至深夜。",
+  heroCta1:"WhatsApp 询问时段", heroCta2:"了解仪式",
+  statRatingV:"5.0", statRating:"Google 评分", statReviews:"位客人评价", statPrivateV:"私享", statPrivate:"名字即是格局",
+  storyAlt:"马赛克热气球灯下的石拱楼梯与壁画", storyTag:"入口楼梯",
+  ritualEyebrow:"仪式", ritualTitle:"沿石阶而下，时间慢了下来。",
+  ritualText:"你在马赛克灯与壁画之下拾级而下。格雷梅白日的喧嚣留在上面；下面，是四幕古老的秩序：",
+  step1T:"暖身", step1D:"热气先温热石头，再舒展肩颈。这里不赶时间，蒸汽有自己的节奏。",
+  step2T:"搓澡（Kese）", step2D:"传统搓澡巾一层层带走积攒的疲惫。短暂、干脆、诚实的洁净。",
+  step3T:"泡沫浴", step3D:"泡沫之云在浴巾上升起；呼吸变长，思绪渐渐稀疏。",
+  step4T:"热茶与休憩", step4D:"仪式在幽暗休息室的一杯热茶中落幕。走出门时，世界看起来不一样了。",
+  roomsEyebrow:"房间", roomsTitle:"内部，如实呈现。",
+  roomsText:"这些照片全部来自商家自己的 Google 相册——没有滤镜，没有夸饰。你看到的，就是你将遇见的。",
+  room1T:"仪式房间", room1D:"木质护理床、柔和灯光、大理石洗手台。您的时段在关起的门后安静进行。",
+  room1Alt:"配有木桌、镜子和毛巾架的护理室",
+  room2T:"休息室", room2D:"在手绘壁画下的微光中躺下；热茶端来，手机安静。",
+  room2Alt:"带壁画的幽暗休息室",
+  room3T:"浴巾与护理", room3D:"架上摆满浴巾、毛巾与天然护理品；仪式的香气从这里开始。",
+  room3Alt:"摆满浴巾、毛巾和天然护理品的货架",
+  roomsNote:"照片取自商家的 Google 相册；正式上线后可替换为任意照片。",
+  whyEyebrow:"为何选这里", whyTitle:"五星背后，是 81 个声音。",
+  why1T:"5.0 — 满分", why1D:"Google 上 81 条客人评价的平均分是整整 5.0，一颗星都不少——这是本页最有力的一句话。",
+  why2T:"名副其实的私享", why2D:"名字不是装饰，而是承诺：为你保留的流程，而非拥挤的隔间。细节请留言询问。",
+  why3T:"就在格雷梅镇内", why3D:"Avcılar 区 Musluk 街 17 号——热气球清晨或峡谷徒步之后，营业至深夜。",
+  revEyebrow:"Google 评价", revStarsAria:"五星满分",
+  revCount:"81 条客人评价 · Google", revBtn:"在 Google 上阅读评价",
+  bookEyebrow:"预约", bookTitle:"一条消息，订下你的时段。",
+  bookText:"填写表单后，消息会在 WhatsApp 中自动生成，发送前可以修改。日期不合适也请留言——我们一起安排。",
+  bookHint:"电话 & WhatsApp：+90 542 278 09 80", formAria:"预约表单",
+  fName:"姓名", fNamePh:"您的姓名", fDate:"日期", fGuests:"人数",
+  fTime:"时段偏好", fTimeM:"上午", fTimeA:"下午", fTimeE:"晚上",
+  fNote:"备注（可选）", fNotePh:"例如：想在热气球之旅后前来", fSend:"在 WhatsApp 中打开",
+  footAddrT:"地址", footAddr:"Avcılar Mah. Musluk Sk. No:17, Göreme / Nevşehir", footContactT:"联系方式",
+  footRights:"© 2026 Private Hamam Spa — 格雷梅。照片主要来自商家的 Google 资料页；结尾图片为概念图。",
+  footDemo:"示例 / 演示设计",
+  waMsg:function(d){return "您好 Private Hamam Spa！我们想在 " + d.date + " " + d.time + "预约 " + d.guests + " 位的土耳其浴仪式。姓名：" + d.name + (d.note ? ("——备注：" + d.note) : "");},
+  waTimes:{morning:"上午",afternoon:"下午",evening:"晚上"}
+},
+ko:{
+  meta_title:"Private Hamam Spa — 괴레메 | 프라이빗 터키식 목욕 & 스파 리추얼",
+  meta_desc:"카파도키아 괴레메의 프라이빗 하맘 & 스파. Google 5.0점(리뷰 81개). 케세·거품 리추얼, 휴식 공간, 페스테말과 차. WhatsApp으로 예약하세요.",
+  brandSub:"괴레메 · 카파도키아", brandAria:"Private Hamam Spa — 맨 위로",
+  langLabel:"언어 선택", themeAriaDark:"라이트 모드로 전환", themeAriaLight:"다크 모드로 전환",
+  menuAria:"메뉴 열기", menuAria2:"메뉴", menuCloseAria:"메뉴 닫기", dotAria:"섹션 내비게이션",
+  navTop:"처음", navRitual:"리추얼", navRooms:"공간", navReviews:"리뷰", navBook:"예약",
+  navWa:"WhatsApp", veilWa:"WhatsApp으로 문의",
+  heroImgAria:"Private Hamam Spa 리추얼 룸 — 손으로 그린 만다라 벽화",
+  heroEyebrow:"괴레메 · 카파도키아 — <em>하맘 &amp; 스파</em>",
+  heroTitle:"문이 닫히면, 수증기가 말을 겁니다.",
+  heroLead:"이름이 곧 약속입니다: 프라이빗. 케세와 거품 리추얼 내내 들리는 것은 붐비는 소음이 아니라 물소리뿐. 괴레메 중심에서 늦은 저녁까지.",
+  heroCta1:"WhatsApp으로 시간 문의", heroCta2:"리추얼 살펴보기",
+  statRatingV:"5.0", statRating:"Google 평점", statReviews:"게스트 리뷰", statPrivateV:"프라이빗", statPrivate:"이름이 곧 형식",
+  storyAlt:"모자이크 열기구 램프가 밝히는 석조 아치 계단과 벽화", storyTag:"입구의 계단",
+  ritualEyebrow:"리추얼", ritualTitle:"계단을 내려가면, 시간이 느려집니다.",
+  ritualText:"모자이크 램프와 벽화 아래 돌계단을 내려갑니다. 괴레메의 분주한 낮은 위에 남고, 아래에는 네 막으로 이어지는 오래된 순서가 있습니다:",
+  step1T:"온열", step1D:"열기가 먼저 돌을, 그다음 어깨를 풀어줍니다. 서두르지 않습니다. 증기는 제 속도로 일합니다.",
+  step2T:"케세", step2D:"전통 케세가 쌓인 나날의 피로를 켜켜이 걷어냅니다. 짧고 단호하며 정직한 정화.",
+  step3T:"거품", step3D:"페스테말 위로 거품 구름이 피어오르고, 호흡은 길어지고 생각은 옅어집니다.",
+  step4T:"차와 휴식", step4D:"리추얼은 어둑한 휴식 공간에서 차 한 잔으로 마무리됩니다. 나서는 순간, 하루가 다르게 보입니다.",
+  roomsEyebrow:"공간", roomsTitle:"내부, 있는 그대로.",
+  roomsText:"이 사진들은 업체의 Google 갤러리에서 그대로 가져왔습니다 — 필터도, 과장도 없습니다. 보이는 그대로 만나게 됩니다.",
+  room1T:"리추얼 룸", room1D:"원목 테이블, 부드러운 조명, 대리석 세면대. 세션은 닫힌 문 뒤에서 조용히 흐릅니다.",
+  room1Alt:"원목 테이블과 거울, 수건 선반이 있는 케어 룸",
+  room2T:"휴식 공간", room2D:"손으로 그린 벽화 아래 은은한 빛 속에 몸을 누이면, 차가 나오고 휴대폰은 조용해집니다.",
+  room2Alt:"벽화가 있는 어둑한 휴식 공간",
+  room3T:"페스테말 & 케어", room3D:"선반 가득한 페스테말과 수건, 천연 케어 제품. 리추얼의 향은 여기서 시작됩니다.",
+  room3Alt:"페스테말, 수건, 천연 케어 제품이 놓인 선반",
+  roomsNote:"사진은 업체의 Google 갤러리에서 가져왔으며, 정식 오픈 시 원하는 사진으로 교체됩니다.",
+  whyEyebrow:"왜 이곳인가", whyTitle:"별 다섯 개 뒤에는 81개의 목소리가 있습니다.",
+  why1T:"5.0 — 완벽", why1D:"Google 게스트 리뷰 81개의 평균이 정확히 5.0. 별 하나도 모자라지 않습니다 — 이 페이지에서 가장 강력한 문장입니다.",
+  why2T:"이름 그대로 프라이빗", why2D:"이름은 장식이 아니라 선언입니다: 붐비는 칸막이 대신 당신을 위해 비워둔 흐름. 자세한 내용은 메시지로 문의하세요.",
+  why3T:"괴레메 안에", why3D:"Avcılar 지구 Musluk 거리 17번지 — 열기구의 아침이나 계곡 트레킹 후, 늦은 저녁까지 엽니다.",
+  revEyebrow:"Google 리뷰", revStarsAria:"5점 만점에 5점",
+  revCount:"게스트 리뷰 81개 · Google", revBtn:"Google에서 리뷰 읽기",
+  bookEyebrow:"예약", bookTitle:"메시지 한 통으로 시간을 예약하세요.",
+  bookText:"양식을 작성하면 메시지가 WhatsApp에 자동으로 작성되어 열립니다. 보내기 전에 수정할 수 있어요. 날짜가 맞지 않아도 연락 주세요 — 함께 맞춰봅니다.",
+  bookHint:"전화 & WhatsApp: +90 542 278 09 80", formAria:"예약 양식",
+  fName:"이름", fNamePh:"성함", fDate:"날짜", fGuests:"인원",
+  fTime:"희망 시간대", fTimeM:"오전", fTimeA:"오후", fTimeE:"저녁",
+  fNote:"메모 (선택)", fNotePh:"예: 열기구 투어 후에 방문하고 싶어요", fSend:"WhatsApp에서 열기",
+  footAddrT:"주소", footAddr:"Avcılar Mah. Musluk Sk. No:17, Göreme / Nevşehir", footContactT:"연락처",
+  footRights:"© 2026 Private Hamam Spa — 괴레메. 사진은 주로 업체의 Google 프로필에서 가져왔으며, 마지막 이미지는 콘셉트 이미지입니다.",
+  footDemo:"샘플 / 데모 디자인",
+  waMsg:function(d){return "안녕하세요 Private Hamam Spa! " + d.date + " " + d.time + "에 " + d.guests + "명 하맘 리추얼을 예약하고 싶습니다. 이름: " + d.name + (d.note ? (" — 메모: " + d.note) : "");},
+  waTimes:{morning:"오전",afternoon:"오후",evening:"저녁"}
+}
+};
+
+/* ==================== DİL YÖNETİMİ ==================== */
+var currentLang = "tr";
+function applyLang(lang){
+  if(!I18N[lang]) lang = "tr";
+  currentLang = lang;
+  var D = I18N[lang];
+  document.documentElement.lang = (lang === "zh" ? "zh-CN" : lang);
+  document.title = D.meta_title;
+  var md = document.querySelector('meta[name="description"]');
+  if(md) md.setAttribute("content", D.meta_desc);
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    var k = el.getAttribute("data-i18n");
+    if(D[k] != null) el.textContent = D[k];
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach(function(el){
+    var k = el.getAttribute("data-i18n-html");
+    if(D[k] != null) el.innerHTML = D[k];
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach(function(el){
+    var k = el.getAttribute("data-i18n-aria");
+    if(D[k] != null) el.setAttribute("aria-label", D[k]);
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(function(el){
+    var k = el.getAttribute("data-i18n-ph");
+    if(D[k] != null) el.setAttribute("placeholder", D[k]);
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach(function(el){
+    var k = el.getAttribute("data-i18n-alt");
+    if(D[k] != null) el.setAttribute("alt", D[k]);
+  });
+  var sel = document.getElementById("langSelect");
+  if(sel && sel.value !== lang) sel.value = lang;
+  try{ localStorage.setItem("phs-lang", lang); }catch(e){}
+  syncThemeAria();
+}
+(function initLang(){
+  var p = new URLSearchParams(location.search);
+  var q = p.get("lang");
+  var saved = null;
+  try{ saved = localStorage.getItem("phs-lang"); }catch(e){}
+  var nav = (navigator.language || "tr").slice(0,2).toLowerCase();
+  var lang = q || saved || (I18N[nav] ? nav : "tr");
+  if(!I18N[lang]) lang = "tr";
+  applyLang(lang);
+})();
+document.getElementById("langSelect").addEventListener("change", function(){ applyLang(this.value); });
+
+/* ==================== TEMA ==================== */
+function syncThemeAria(){
+  var D = I18N[currentLang];
+  var btn = document.getElementById("themeToggle");
+  var dark = document.documentElement.dataset.theme !== "light";
+  btn.setAttribute("aria-label", dark ? D.themeAriaDark : D.themeAriaLight);
+  document.getElementById("iconMoon").style.display = dark ? "" : "none";
+  document.getElementById("iconSun").style.display  = dark ? "none" : "";
+}
+document.getElementById("themeToggle").addEventListener("click", function(){
+  var next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+  document.documentElement.dataset.theme = next;
+  try{ localStorage.setItem("phs-theme", next); }catch(e){}
+  syncThemeAria();
+});
+syncThemeAria();
+
+/* ==================== ÜST BAR + İLERLEME ==================== */
+(function(){
+  var bar = document.getElementById("topbar");
+  var prog = document.querySelector(".scroll-progress");
+  function onScroll(){
+    var y = window.scrollY;
+    bar.classList.toggle("solid", y > 40);
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.transform = "scaleX(" + (max > 0 ? Math.min(1, y / max) : 0) + ")";
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll);
+  onScroll();
+})();
+
+/* ==================== SCROLL-SPY (nokta rayı + veil) ==================== */
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll("[data-spy]"));
+  var ids = ["top","ritual","rooms","reviews","book"];
+  var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  function setActive(id){
+    links.forEach(function(a){ a.classList.toggle("active", a.getAttribute("data-spy") === id); });
+  }
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); });
+    }, {rootMargin:"-38% 0px -52% 0px", threshold:0});
+    sections.forEach(function(s){ io.observe(s); });
+  }
+})();
+
+/* ==================== REVEAL ==================== */
+(function(){
+  var els = document.querySelectorAll(".reveal");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce || !("IntersectionObserver" in window)){
+    els.forEach(function(el){ el.classList.add("in"); });
+    return;
+  }
+  var kalan = Array.prototype.slice.call(els);
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ goster(en.target); }
+    });
+  }, {threshold:.12, rootMargin:"0px 0px -6% 0px"});
+  function goster(el){
+    if(el.classList.contains("in")) return;
+    el.classList.add("in");
+    io.unobserve(el);
+    var i = kalan.indexOf(el);
+    if(i > -1) kalan.splice(i, 1);
+  }
+  kalan.slice().forEach(function(el){ io.observe(el); });
+  /* Hızlı/sıçramalı kaydırmada IO'nun atladığı kısa elemanlar için süpürme fallback'i */
+  var sweepTick = false;
+  function sweep(){
+    sweepTick = false;
+    var vh = window.innerHeight;
+    kalan.slice().forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if(r.top < vh * .96) goster(el); /* geçilmiş (üstte kalmış) elemanlar da açılır */
+    });
+  }
+  window.addEventListener("scroll", function(){
+    if(!sweepTick && kalan.length){ sweepTick = true; requestAnimationFrame(sweep); }
+  }, {passive:true});
+})();
+
+/* ==================== MOBİL MENÜ ==================== */
+(function(){
+  var veil = document.getElementById("veil");
+  var btn = document.getElementById("menuBtn");
+  var close = document.getElementById("veilClose");
+  function toggle(open){
+    veil.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+  btn.addEventListener("click", function(){ toggle(true); });
+  close.addEventListener("click", function(){ toggle(false); });
+  veil.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ toggle(false); }); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") toggle(false); });
+})();
+
+/* ==================== SIGNATURE — KURNA HALKALARI (su damlası kanvası) ==================== */
+(function(){
+  var canvas = document.getElementById("rings-canvas");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!canvas || reduce) return;
+  var ctx = canvas.getContext("2d");
+  if(!ctx) return;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var W = 0, H = 0, rings = [], last = 0, spawnAt = 0;
+  function resize(){
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = Math.floor(W * dpr); canvas.height = Math.floor(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener("resize", resize);
+  var anchor = function(){ return { x: W * .66, y: H * .56 }; };
+  function spawn(now){
+    var a = anchor();
+    rings.push({ born: now, x: a.x, y: a.y });
+    if(rings.length > 6) rings.shift();
+    spawnAt = now + 2600 + Math.random() * 900;
+  }
+  function frame(now){
+    if(!last) last = now;
+    if(now >= spawnAt) spawn(now);
+    ctx.clearRect(0, 0, W, H);
+    var maxR = Math.min(W, H) * .34;
+    for(var i = 0; i < rings.length; i++){
+      var r = rings[i];
+      var t = (now - r.born) / 5200;               // 0..1
+      if(t >= 1) continue;
+      var ease = 1 - Math.pow(1 - t, 2.2);
+      var rad = 14 + ease * maxR;
+      var alpha = (1 - t) * .5;
+      /* dış halka — gümüş */
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, rad, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(214,228,222," + (alpha * .8).toFixed(3) + ")";
+      ctx.lineWidth = 1.1;
+      ctx.stroke();
+      /* iç halka — mum ışığı */
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, rad * .72, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(217,189,143," + (alpha * .55).toFixed(3) + ")";
+      ctx.lineWidth = .8;
+      ctx.stroke();
+    }
+    rings = rings.filter(function(r){ return (now - r.born) / 5200 < 1; });
+    last = now;
+    requestAnimationFrame(frame);
+  }
+  spawnAt = performance.now() + 800;
+  requestAnimationFrame(frame);
+})();
+
+/* ==================== FORM → WHATSAPP ==================== */
+document.getElementById("bookForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var D = I18N[currentLang];
+  var name = document.getElementById("fName").value.trim();
+  var date = document.getElementById("fDate").value;
+  var guests = document.getElementById("fGuests").value;
+  var timeKey = document.getElementById("fTime").value;
+  var note = document.getElementById("fNote").value.trim();
+  var msg = D.waMsg({ name: name, date: date, guests: guests, time: D.waTimes[timeKey] || timeKey, note: note });
+  window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
+});
+</script>
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+// İnternet/CDN gerektirmez; her koşulda çalışır. Ayarlar talimatla uyumlu: lerp 0.085, wheelMultiplier 0.9
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  // input/textarea/select/button ve data-lenis-prevent alanlarında smooth engelle
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    // kullanıcı manuel scroll'da current'ı senkronla
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  // dokunmatik ve klavye native kalsın; scroll pozisyonunu senkronla
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  // anchor linkleri yumuşak kaydır
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 70;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+</body>
+</html>
