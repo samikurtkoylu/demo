@@ -200,6 +200,14 @@
   .kol-foot .rule{flex:1;height:1px;background:var(--line)}
   @media(max-width:980px){.kol-grid{grid-template-columns:1fr 1fr}.kol:nth-child(3){border-left:none}.kol:nth-child(n+3){border-top:1px solid var(--line)}}
   @media(max-width:520px){.kol-grid{grid-template-columns:1fr}.kol{border-left:none}.kol:nth-child(n+2){border-top:1px solid var(--line)}}
+  /* Fig.03 — kuruyan çömlek rafları natürmortu (kol-grid ile yan yana dergi düzeni) */
+  .kl-wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:start}
+  .kl-fig{transform:rotate(.5deg)}
+  .kl-wrap .kol-grid{grid-template-columns:1fr 1fr}
+  .kl-wrap .kol:nth-child(3){border-left:none}
+  .kl-wrap .kol:nth-child(n+3){border-top:1px solid var(--line)}
+  @media(max-width:900px){.kl-wrap{grid-template-columns:1fr;gap:44px}.kl-fig{transform:none;max-width:440px}}
+  @media(max-width:520px){.kl-wrap .kol-grid{grid-template-columns:1fr}.kl-wrap .kol{border-left:none}.kl-wrap .kol:nth-child(n+2){border-top:1px solid var(--line)}}
 
   /* ---------- BÖLÜM 04 — ZİYARET / REZERVASYON ---------- */
   .ziyaret{padding:110px 0 120px;background:var(--paper-2);border-top:1px solid var(--line)}
@@ -452,11 +460,18 @@
       <h2 data-i18n="kl_h" data-i18n-html="1">Raflarda <em>neler var?</em></h2>
       <p class="sec-sub" data-i18n="kl_sub">Hepsi kilden, hepsi tek tek: mutfağa, bahçeye, duvara.</p>
     </div>
-    <div class="kol-grid reveal">
-      <div class="kol"><span class="ghost">01</span><h3 data-i18n="kl1_h">Testiler & vazolar</h3><p data-i18n="kl1_p">İri küplerden ince boyunlu vazolara — suyun sesini seven klasik formlar.</p></div>
-      <div class="kol"><span class="ghost">02</span><h3 data-i18n="kl2_h">Güveçler & kaseler</h3><p data-i18n="kl2_p">Fırından sofraya giden gündelik kaplar; kapaklı güveçler, çorba kâseleri.</p></div>
-      <div class="kol"><span class="ghost">03</span><h3 data-i18n="kl3_h">Kil çanlar</h3><p data-i18n="kl3_p">Tavandan sarkan rüzgâr çanları — kapı önlerinin, avluların sesi.</p></div>
-      <div class="kol"><span class="ghost">04</span><h3 data-i18n="kl4_h">Tabaklar & takılar</h3><p data-i18n="kl4_p">Duvar duvar desenli tabaklar; valize sığan boncuk ve seramik takılar.</p></div>
+    <div class="kl-wrap">
+      <div class="kol-grid reveal">
+        <div class="kol"><span class="ghost">01</span><h3 data-i18n="kl1_h">Testiler & vazolar</h3><p data-i18n="kl1_p">İri küplerden ince boyunlu vazolara — suyun sesini seven klasik formlar.</p></div>
+        <div class="kol"><span class="ghost">02</span><h3 data-i18n="kl2_h">Güveçler & kaseler</h3><p data-i18n="kl2_p">Fırından sofraya giden gündelik kaplar; kapaklı güveçler, çorba kâseleri.</p></div>
+        <div class="kol"><span class="ghost">03</span><h3 data-i18n="kl3_h">Kil çanlar</h3><p data-i18n="kl3_p">Tavandan sarkan rüzgâr çanları — kapı önlerinin, avluların sesi.</p></div>
+        <div class="kol"><span class="ghost">04</span><h3 data-i18n="kl4_h">Tabaklar & takılar</h3><p data-i18n="kl4_p">Duvar duvar desenli tabaklar; valize sığan boncuk ve seramik takılar.</p></div>
+      </div>
+      <figure class="kl-fig reveal">
+        <span class="fig-chip" data-i18n="kl_chip">Konsept kare</span>
+        <img class="fig-img" id="clayImg" alt="Ahşap raflarda kuruyan sırsız kızıl çömlekler, taş duvar önünde — konsept görsel" loading="lazy">
+        <figcaption><span class="no">Fig. 03</span><span data-i18n="kl_cap">Raflarda kuruyan çömlekler — konsept görsel.</span></figcaption>
+      </figure>
     </div>
     <div class="kol-foot reveal"><span class="rule"></span><span data-i18n="kl_foot">Gerisi atölyede — gelin, elinizle seçin.</span><span class="rule"></span></div>
   </div>
@@ -667,6 +682,7 @@ const I18N = {
     kl2_h:"Güveçler & kaseler",kl2_p:"Fırından sofraya giden gündelik kaplar; kapaklı güveçler, çorba kâseleri.",
     kl3_h:"Kil çanlar",kl3_p:"Tavandan sarkan rüzgâr çanları — kapı önlerinin, avluların sesi.",
     kl4_h:"Tabaklar & takılar",kl4_p:"Duvar duvar desenli tabaklar; valize sığan boncuk ve seramik takılar.",
+    kl_chip:"Konsept kare",kl_cap:"Raflarda kuruyan çömlekler — konsept görsel.",
     kl_foot:"Gerisi atölyede — gelin, elinizle seçin.",
     zy_kicker:"Bölüm 04 — Ziyaret",zy_h:"Yolunuz <em>Avanos'a</em> düşsün.",
     zy_lede:"Tarihinizi ve kaç kişi olduğunuzu yazın; çarkın başında yeriniz hazır olsun. Aklınıza takılanı WhatsApp'tan her zaman sorabilirsiniz.",
@@ -712,6 +728,7 @@ const I18N = {
     kl2_h:"Casseroles & bowls",kl2_p:"Everyday vessels that go from oven to table; lidded casseroles, soup bowls.",
     kl3_h:"Clay bells",kl3_p:"Wind chimes hanging from the ceiling — the sound of doorways and courtyards.",
     kl4_h:"Plates & jewellery",kl4_p:"Walls of patterned plates; beaded and ceramic jewellery that fits in a suitcase.",
+    kl_chip:"Concept shot",kl_cap:"Pots drying on the shelves — concept image.",
     kl_foot:"The rest is at the workshop — come and choose by hand.",
     zy_kicker:"Chapter 04 — Visit",zy_h:"Let your road <em>lead to Avanos.</em>",
     zy_lede:"Send your date and party size, and your seat at the wheel will be ready. Ask us anything on WhatsApp, anytime.",
@@ -757,6 +774,7 @@ const I18N = {
     kl2_h:"Cazuelas y cuencos",kl2_p:"Vasijas de diario que van del horno a la mesa; cazuelas con tapa, cuencos de sopa.",
     kl3_h:"Campanas de barro",kl3_p:"Campanas de viento colgadas del techo: el sonido de los portales y los patios.",
     kl4_h:"Platos y joyería",kl4_p:"Paredes de platos con dibujos; joyas de cuentas y cerámica que caben en la maleta.",
+    kl_chip:"Imagen concepto",kl_cap:"Cántaros secándose en los estantes — imagen conceptual.",
     kl_foot:"El resto está en el taller: venga y elija con sus manos.",
     zy_kicker:"Capítulo 04 — Visita",zy_h:"Que su camino <em>llegue a Avanos.</em>",
     zy_lede:"Envíe su fecha y cuántos son; su sitio junto al torno estará listo. Pregúntenos lo que quiera por WhatsApp.",
@@ -802,6 +820,7 @@ const I18N = {
     kl2_h:"砂锅与陶碗",kl2_p:"从炉火到餐桌的日常器皿；带盖砂锅、汤碗。",
     kl3_h:"陶铃",kl3_p:"悬在天花板上的风铃——门前与庭院的声音。",
     kl4_h:"陶盘与饰品",kl4_p:"满墙的花纹陶盘；能装进行李箱的串珠与陶瓷饰品。",
+    kl_chip:"概念图",kl_cap:"架上晾干的陶器——概念图。",
     kl_foot:"其余的都在工坊里——来，亲手挑选。",
     zy_kicker:"第四章 — 到访",zy_h:"愿您的旅途<em>经过阿瓦诺斯。</em>",
     zy_lede:"告诉我们日期和人数，转轮旁就会为您留好位置。任何疑问，随时通过 WhatsApp 询问。",
@@ -847,6 +866,7 @@ const I18N = {
     kl2_h:"뚝배기 & 그릇",kl2_p:"화덕에서 식탁으로 가는 일상의 그릇들; 뚜껑 있는 뚝배기, 수프 그릇.",
     kl3_h:"점토 종",kl3_p:"천장에 매달린 풍경 — 문 앞과 안뜰의 소리.",
     kl4_h:"접시 & 장신구",kl4_p:"벽을 가득 채운 무늬 접시; 여행 가방에 들어가는 구슬·세라믹 장신구.",
+    kl_chip:"콘셉트 컷",kl_cap:"선반에서 마르는 도자기 — 콘셉트 이미지.",
     kl_foot:"나머지는 공방에 있습니다 — 오셔서 직접 골라 보세요.",
     zy_kicker:"제4장 — 방문",zy_h:"당신의 길이 <em>아바노스로</em> 이어지기를.",
     zy_lede:"날짜와 인원을 보내 주세요; 물레 앞자리를 준비해 두겠습니다. 궁금한 점은 언제든 WhatsApp으로 물어보세요.",
@@ -994,6 +1014,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }
   tryImg('atolyeImg','atolye.jpg');
   tryImg('wheelImg','wheel.jpg');
+  tryImg('clayImg','clay-still.jpg');
 })();
 
 // ==================== SIGNATURE: SCROLL İLE DÖNEN ÇARK MÜHRÜ ====================
