@@ -91,12 +91,13 @@
   .dock{display:none}
   @media(max-width:1060px){
     .dock{display:flex;position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:95;
+      width:max-content;max-width:calc(100vw - 16px);
       background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(14px);
       border:1px solid var(--line);border-radius:16px;padding:8px 10px;gap:4px;box-shadow:0 14px 40px rgba(40,25,30,.18)}
     @supports not (background:color-mix(in srgb,red 50%,blue)){.dock{background:var(--card)}}
     .dock a{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 12px;color:var(--muted);transition:.3s}
     .dock a svg{width:17px;height:17px}
-    .dock a span{font-size:.55rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+    .dock a span{font-size:.55rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
     html[lang="zh-CN"] .dock a span,html[lang="ko"] .dock a span{letter-spacing:.02em;font-size:.62rem}
     .dock a::before,.dock a::after{content:"";position:absolute;width:8px;height:8px;border:1.5px solid var(--accent);opacity:0;transition:.3s}
     .dock a::before{top:0;left:0;border-right:none;border-bottom:none;transform:translate(5px,5px)}
@@ -289,9 +290,10 @@
     .scrollhint .l{animation:none}
   }
 </style>
+<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
-<a class="skip" href="#cekimler">İçeriğe geç</a>
+<a class="skip" href="#cekimler" data-i18n="skip">İçeriğe geç</a>
 <div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
 <div class="scroll-progress" aria-hidden="true"></div>
 
@@ -361,7 +363,7 @@
 
 <div class="stats">
   <div class="wrap">
-    <div class="stat reveal"><div class="n">22<small>B</small></div><div class="l" data-i18n="stat1_l">Instagram takipçisi</div></div>
+    <div class="stat reveal"><div class="n" data-i18n-html="stat1_n">22<small>B</small></div><div class="l" data-i18n="stat1_l">Instagram takipçisi</div></div>
     <div class="stat reveal"><div class="n">714</div><div class="l" data-i18n="stat2_l">paylaşılan kare</div></div>
     <div class="stat reveal"><div class="n">5.0</div><div class="l" data-i18n="stat3_l">Google puanı</div></div>
     <div class="stat reveal"><div class="n">04</div><div class="l" data-i18n="stat4_l">imza konsept</div></div>
@@ -534,6 +536,7 @@ const I18N = {
   tr:{
     meta_title:"Kapadokya Fotocan — Göreme Fotoğraf Çekimleri · Uçan Elbise, Düğün, Şafak",
     meta_desc:"Göreme'de şafak vakti balonların altında fotoğraf çekimi: uçan elbise, düğün & çift, klasik araba, atlarla şafak. Instagram'da 22.000 kişi izliyor.",
+    skip:"İçeriğe geç",
     nav_shoots:"Konseptler",nav_gallery:"Portfolyo",nav_story:"Hikâye",nav_book:"Rezervasyon",nav_cta:"WhatsApp",
     hero_eyebrow:"Göreme · Kapadokya",
     hero_title:'Balonların altında,<br><em>size ait bir kare.</em>',
@@ -541,6 +544,7 @@ const I18N = {
     hero_cta1:"Çekim planla",hero_cta2:"Portfolyoyu gör",
     hero_meta:"GÖREME — UÇAN ELBİSE · ŞAFAK",alt_hero:"Şafakta balonların altında kırmızı uçan elbiseyle çekim — Göreme",
     scroll_hint:"Kaydır",
+    stat1_n:'22<small>B</small>',
     stat1_l:"Instagram takipçisi",stat2_l:"paylaşılan kare",stat3_l:"Google puanı",stat4_l:"imza konsept",
     sh_eyebrow:"Çekim Konseptleri",sh_h:"Dört konsept, tek şafak.",sh_sub:"Aşağıdaki her kare kendi portfolyomuzdan. Hangisi sizin hikâyeniz?",
     s1_tag:"En ikonik",s1_h:"Uçan Elbise",s1_p:"Kayalıkların üzerinde savrulan kumaş, arkanızda yükselen balonlar. Kapadokya'nın en çok konuşulan karesi.",s1_light:"şafak ışığı",
@@ -567,6 +571,7 @@ const I18N = {
   en:{
     meta_title:"Cappadocia Fotocan — Göreme Photo Shoots · Flying Dress, Wedding, Sunrise",
     meta_desc:"Photo shoots under the balloons at dawn in Göreme: flying dress, wedding & couples, classic car, horses at dawn. 22,000 followers on Instagram.",
+    skip:"Skip to content",
     nav_shoots:"Concepts",nav_gallery:"Portfolio",nav_story:"Story",nav_book:"Booking",nav_cta:"WhatsApp",
     hero_eyebrow:"Göreme · Cappadocia",
     hero_title:'Under the balloons,<br><em>a frame of your own.</em>',
@@ -574,6 +579,7 @@ const I18N = {
     hero_cta1:"Plan a shoot",hero_cta2:"See the portfolio",
     hero_meta:"GÖREME — FLYING DRESS · DAWN",alt_hero:"Flying dress photo shoot under hot air balloons at dawn — Göreme",
     scroll_hint:"Scroll",
+    stat1_n:'22<small>K</small>',
     stat1_l:"Instagram followers",stat2_l:"frames shared",stat3_l:"Google rating",stat4_l:"signature concepts",
     sh_eyebrow:"Shoot Concepts",sh_h:"Four concepts, one sunrise.",sh_sub:"Every frame below is from our own portfolio. Which one is your story?",
     s1_tag:"Most iconic",s1_h:"Flying Dress",s1_p:"Fabric streaming over the rocks, balloons rising behind you. Cappadocia's most talked-about frame.",s1_light:"dawn light",
@@ -600,6 +606,7 @@ const I18N = {
   es:{
     meta_title:"Capadocia Fotocan — Sesiones de fotos en Göreme · Vestido volador, boda, amanecer",
     meta_desc:"Sesiones de fotos bajo los globos al amanecer en Göreme: vestido volador, bodas y parejas, coche clásico, caballos. 22.000 seguidores en Instagram.",
+    skip:"Ir al contenido",
     nav_shoots:"Conceptos",nav_gallery:"Portafolio",nav_story:"Historia",nav_book:"Reservas",nav_cta:"WhatsApp",
     hero_eyebrow:"Göreme · Capadocia",
     hero_title:'Bajo los globos,<br><em>un retrato solo tuyo.</em>',
@@ -607,6 +614,7 @@ const I18N = {
     hero_cta1:"Planear sesión",hero_cta2:"Ver portafolio",
     hero_meta:"GÖREME — VESTIDO VOLADOR · AMANECER",alt_hero:"Sesión con vestido volador bajo los globos al amanecer — Göreme",
     scroll_hint:"Desliza",
+    stat1_n:'22<small>K</small>',
     stat1_l:"seguidores en Instagram",stat2_l:"fotos publicadas",stat3_l:"puntuación en Google",stat4_l:"conceptos insignia",
     sh_eyebrow:"Conceptos",sh_h:"Cuatro conceptos, un amanecer.",sh_sub:"Cada foto es de nuestro propio portafolio. ¿Cuál es tu historia?",
     s1_tag:"El más icónico",s1_h:"Vestido volador",s1_p:"La tela ondeando sobre las rocas, los globos elevándose detrás de ti. La foto más comentada de Capadocia.",s1_light:"luz del alba",
@@ -633,6 +641,7 @@ const I18N = {
   "zh-CN":{
     meta_title:"卡帕多奇亚 Fotocan — 格雷梅旅拍 · 飘纱裙、婚纱、日出热气球",
     meta_desc:"格雷梅日出时分，在热气球下拍摄：飘纱裙、婚纱情侣、复古老爷车、骏马旅拍。Instagram 上有 22,000 位粉丝。",
+    skip:"跳到内容",
     nav_shoots:"拍摄主题",nav_gallery:"作品集",nav_story:"故事",nav_book:"预约",nav_cta:"WhatsApp",
     hero_eyebrow:"格雷梅 · 卡帕多奇亚",
     hero_title:'热气球之下，<br><em>只属于你的一帧。</em>',
@@ -640,6 +649,7 @@ const I18N = {
     hero_cta1:"预约拍摄",hero_cta2:"查看作品集",
     hero_meta:"格雷梅 — 飘纱裙 · 日出",alt_hero:"日出时分，热气球下的飘纱裙旅拍 — 格雷梅",
     scroll_hint:"下滑",
+    stat1_n:'2.2<small>万</small>',
     stat1_l:"Instagram 粉丝",stat2_l:"已发布作品",stat3_l:"Google 评分",stat4_l:"签名主题",
     sh_eyebrow:"拍摄主题",sh_h:"四个主题，同一个日出。",sh_sub:"以下每一帧都来自我们自己的作品集。哪一个是你的故事？",
     s1_tag:"最具代表",s1_h:"飘纱裙",s1_p:"裙摆在岩石上方飞舞，热气球在身后升起。卡帕多奇亚最受瞩目的一帧。",s1_light:"晨光",
@@ -666,6 +676,7 @@ const I18N = {
   ko:{
     meta_title:"카파도키아 포토잔 — 괴레메 스냅 촬영 · 플라잉드레스, 웨딩, 일출",
     meta_desc:"괴레메의 일출, 열기구 아래에서의 스냅 촬영: 플라잉드레스, 웨딩·커플, 클래식카, 말과 일출. 인스타그램 팔로워 22,000명.",
+    skip:"본문으로 건너뛰기",
     nav_shoots:"촬영 콘셉트",nav_gallery:"포트폴리오",nav_story:"스토리",nav_book:"예약",nav_cta:"WhatsApp",
     hero_eyebrow:"괴레메 · 카파도키아",
     hero_title:'열기구 아래,<br><em>당신만의 한 컷.</em>',
@@ -673,6 +684,7 @@ const I18N = {
     hero_cta1:"촬영 예약",hero_cta2:"포트폴리오 보기",
     hero_meta:"괴레메 — 플라잉드레스 · 일출",alt_hero:"새벽 열기구 아래 플라잉드레스 촬영 — 괴레메",
     scroll_hint:"스크롤",
+    stat1_n:'2.2<small>만</small>',
     stat1_l:"인스타그램 팔로워",stat2_l:"업로드된 컷",stat3_l:"구글 평점",stat4_l:"시그니처 콘셉트",
     sh_eyebrow:"촬영 콘셉트",sh_h:"네 가지 콘셉트, 하나의 일출.",sh_sub:"아래 모든 컷은 저희 포트폴리오에서 가져왔습니다. 어떤 것이 당신의 이야기인가요?",
     s1_tag:"가장 아이코닉",s1_h:"플라잉드레스",s1_p:"바위 위로 흩날리는 드레스 자락, 등 뒤로 떠오르는 열기구. 카파도키아에서 가장 화제가 되는 한 컷.",s1_light:"새벽 빛",
