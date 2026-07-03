@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Azalea Terrace Hotel — Ürgüp'te Bahçeli, Balon Manzaralı Butik Pansiyon | Kapadokya</title>
+<meta name="description" data-i18n="meta_desc" content="Ürgüp'te gül bahçeli, kilim sedirli, balonlara bakan teraslı butik pansiyon. Azalea Terrace — doğrudan telefon veya WhatsApp'tan rezervasyon, aracı yok.">
+<script>
+/* Tema FOUC önleme: URL > localStorage > sistem > AYDINLIK (varsayılan) */
+(function(){try{
+  var q=new URLSearchParams(location.search).get('theme');
+  var s=null;try{s=localStorage.getItem('azalea_theme')}catch(e){}
+  var m=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+  var t=(q==='light'||q==='dark')?q:((s==='light'||s==='dark')?s:m);
+  document.documentElement.setAttribute('data-theme',t);
+}catch(e){document.documentElement.setAttribute('data-theme','light')}})();
+</script>
+<style>
+  /* ============ AZALEA TERRACE — "Gül Bahçesi & Sabah Terası" (Editöryel Sıcaklık · aydınlık konaklama) ============ */
+  :root{
+    --bg:#f7f3ea;            /* beyaz badana / tüf sabahı */
+    --bg-2:#efe8da;          /* soft kum */
+    --surface:#fffdf7;       /* oda paneli */
+    --text:#2c322a;          /* bahçe mürekkebi (yeşil-kömür) */
+    --muted:#6f7466;         /* adaçayı taupe */
+    --rose:#cf5c86;          /* azalea pembesi (aksan) */
+    --rose-2:#b23f6a;        /* koyu azalea — açık zeminde metin kontrastı */
+    --leaf:#5f7f54;          /* bahçe yeşili */
+    --leaf-2:#7ba06a;
+    --gold:#cf9a52;          /* ılık güneş */
+    --bulb:#ffcf7a;          /* teras ampulü */
+    --btn-fg:#fffdf7;
+    --line:rgba(44,50,42,.14);
+    --nav-bg:rgba(247,243,234,.9);
+    --field-bg:rgba(255,255,255,.78);
+    --chip-bg:rgba(30,26,18,.5);
+    --glow:rgba(207,92,134,.2);
+    --glow-bulb:rgba(255,200,110,.5);
+    --serif:'Constantia','Cormorant Garamond','Palatino Linotype','Book Antiqua',Georgia,serif;
+    --sans:'Segoe UI','Gill Sans Nova','Gill Sans',system-ui,-apple-system,sans-serif;
+  }
+  html[data-theme="dark"]{
+    --bg:#201a22;            /* akşam terası, string lights yanıyor */
+    --bg-2:#191319;
+    --surface:#2a2230;
+    --text:#f0e7de;          /* ılık fildişi */
+    --muted:#aa9fa8;
+    --rose:#f08cae;          /* parlak azalea */
+    --rose-2:#f6a6c2;
+    --leaf:#8fb483;
+    --leaf-2:#a6c99b;
+    --gold:#e6b877;
+    --bulb:#ffcf7a;
+    --btn-fg:#201a22;
+    --line:rgba(240,231,222,.14);
+    --nav-bg:rgba(28,22,30,.86);
+    --field-bg:rgba(30,24,34,.72);
+    --chip-bg:rgba(10,8,12,.55);
+    --glow:rgba(240,140,174,.26);
+    --glow-bulb:rgba(255,200,110,.6);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.68;overflow-x:hidden;transition:background .5s,color .5s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:0}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:600}
+  .eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:.34em;font-size:.66rem;font-weight:700;color:var(--rose-2);display:inline-flex;align-items:center;gap:9px}
+  html[data-theme="dark"] .eyebrow{color:var(--rose)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.12em}
+  .eyebrow .bloom{width:15px;height:15px;color:var(--rose);flex:none}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 30px}
+
+  /* azalea blossom motif (signature) */
+  .bloom{display:inline-block}
+  .bloom svg{width:100%;height:100%;display:block}
+
+  /* ---------- NAV — 21st.dev portu: "Teras Garlandı" (asılı string-light; aktif bölümde ampul yanar) ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:13px 28px;transition:.5s;gap:14px}
+  nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+  .brand{display:flex;align-items:center;gap:10px;flex:none}
+  .brand .mark{width:34px;height:34px;color:var(--rose);flex:none;filter:drop-shadow(0 1px 4px rgba(0,0,0,.15))}
+  .brand .bt{display:flex;flex-direction:column;line-height:1}
+  .brand .bt b{font-family:var(--serif);font-size:1.32rem;font-weight:600;letter-spacing:.01em;color:#fff}
+  nav.scrolled .brand .bt b{color:var(--text)}
+  .brand .bt span{font-family:var(--sans);font-size:.54rem;letter-spacing:.32em;text-transform:uppercase;color:#ffe6d0;margin-top:3px}
+  nav.scrolled .brand .bt span{color:var(--rose-2)}
+  html[data-theme="dark"] nav.scrolled .brand .bt span{color:var(--rose)}
+
+  .navlinks{display:flex;gap:2px;align-items:center;margin-left:auto;position:relative;padding-top:15px}
+  /* garland teli */
+  .navlinks::before{content:"";position:absolute;top:6px;left:8px;right:8px;height:1px;pointer-events:none;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.5) 12%,rgba(255,255,255,.5) 88%,transparent)}
+  nav.scrolled .navlinks::before{background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent)}
+  .navlinks a{font-family:var(--sans);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:#f3ece2;transition:.3s;padding:9px 13px;position:relative;z-index:2;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+  nav.scrolled .navlinks a{color:var(--muted);text-shadow:none}
+  html[lang="zh-CN"] .navlinks a,html[lang="ko"] .navlinks a{text-transform:none;letter-spacing:.03em;font-size:.86rem}
+  .navlinks a:hover{color:#fff}
+  nav.scrolled .navlinks a:hover{color:var(--text)}
+  .navlinks a.active{color:#fff2c8}
+  nav.scrolled .navlinks a.active{color:var(--rose-2)}
+  html[data-theme="dark"] nav.scrolled .navlinks a.active{color:var(--rose)}
+  /* asılı ampul — aktif linkin üstünde yanar */
+  .bulb-ind{position:absolute;top:2px;left:0;width:46px;height:40px;pointer-events:none;opacity:0;z-index:1;
+    transition:transform .5s cubic-bezier(.3,.7,.2,1),width .5s cubic-bezier(.3,.7,.2,1),opacity .4s}
+  .bulb-ind.on{opacity:1}
+  .bulb-ind .cord{position:absolute;top:4px;left:50%;transform:translateX(-50%);width:1px;height:11px;background:rgba(255,255,255,.55)}
+  nav.scrolled .bulb-ind .cord{background:var(--line)}
+  .bulb-ind .glass{position:absolute;top:13px;left:50%;transform:translateX(-50%);width:10px;height:13px;border-radius:50% 50% 46% 46%;
+    background:radial-gradient(circle at 50% 34%,#fff7e0,var(--bulb));box-shadow:0 0 14px 4px var(--glow-bulb),0 0 6px var(--bulb)}
+
+  .nav-cta{border:1px solid var(--rose);color:#fff2c8!important;padding:9px 20px;border-radius:22px;font-size:.72rem!important;transition:.35s;margin-left:8px;background:rgba(207,92,134,.15)}
+  nav.scrolled .nav-cta{color:var(--rose-2)!important;background:none}
+  html[data-theme="dark"] nav.scrolled .nav-cta{color:var(--rose)!important}
+  .nav-cta:hover{background:var(--rose);color:var(--btn-fg)!important;border-color:var(--rose)}
+  html[lang="zh-CN"] .nav-cta,html[lang="ko"] .nav-cta{text-transform:none;letter-spacing:.02em}
+
+  .langs{display:flex;align-items:center;gap:1px;flex:none}
+  .langs button{background:none;border:none;color:#f0e8dd;font-family:var(--sans);font-size:.74rem;cursor:pointer;padding:5px 6px;transition:.25s;border-radius:3px;letter-spacing:.02em;text-shadow:0 1px 6px rgba(0,0,0,.3)}
+  nav.scrolled .langs button{color:var(--muted);text-shadow:none}
+  .langs button:hover{color:#fff}
+  nav.scrolled .langs button:hover{color:var(--text)}
+  .langs button.active{color:#fff2c8;font-weight:700}
+  nav.scrolled .langs button.active{color:var(--rose-2)}
+  html[data-theme="dark"] nav.scrolled .langs button.active{color:var(--rose)}
+  .langs .sep{color:rgba(255,255,255,.3);font-size:.68rem}
+  nav.scrolled .langs .sep{color:var(--line)}
+  .theme-btn{background:none;border:1px solid rgba(255,255,255,.4);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fbf4ea;transition:.3s;flex:none}
+  nav.scrolled .theme-btn{color:var(--text);border-color:var(--line)}
+  .theme-btn:hover{border-color:var(--rose);color:var(--rose)}
+  .theme-btn svg{width:16px;height:16px}
+  .theme-btn .ic-sun{display:none}
+  html[data-theme="light"] .theme-btn .ic-sun{display:block}
+  html[data-theme="light"] .theme-btn .ic-moon{display:none}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;color:#fbf4ea;flex:none}
+  nav.scrolled .menu-btn{color:var(--text)}
+
+  /* ---------- MOBİL DOCK (garlandın cebe inen hâli) ---------- */
+  .dock{display:none;position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:65;background:var(--nav-bg);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:20px;padding:11px 7px 8px;gap:1px;box-shadow:0 12px 36px rgba(0,0,0,.22);max-width:calc(100vw - 20px)}
+  .dock::before{content:"";position:absolute;top:6px;left:14px;right:14px;height:1px;background:var(--line);pointer-events:none}
+  .dock a{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 9px 4px;color:var(--muted);font-size:.56rem;letter-spacing:.02em;text-transform:uppercase;border-radius:12px;transition:.3s;white-space:nowrap}
+  html[lang="zh-CN"] .dock a,html[lang="ko"] .dock a{text-transform:none;letter-spacing:0;font-size:.6rem}
+  .dock a svg{width:20px;height:20px}
+  .dock a.active{color:var(--rose-2)}
+  html[data-theme="dark"] .dock a.active{color:var(--rose)}
+  .dock .bulb-ind{top:1px;height:34px;width:40px}
+  .dock .bulb-ind .glass{top:10px}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:flex-end;isolation:isolate;background:#2a2118}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center 46%;opacity:0;transition:opacity .8s}
+  .hero-photo.has-img{opacity:1;animation:kenburns 38s ease-in-out infinite alternate;transform-origin:60% 46%}
+  @keyframes kenburns{from{transform:scale(1.03)}to{transform:scale(1.1)}}
+  #hero-gradient{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:.5;
+    --gradient-color-1:#cf5c86; --gradient-color-2:#e6b877; --gradient-color-3:#5f7f54; --gradient-color-4:#f0a6c2}
+  .no-webgl #hero-gradient{display:none}
+  /* dappled terrace light — sabah ışığının yaprak arasından süzülmesi (signature) */
+  .dapple{position:absolute;inset:0;z-index:3;pointer-events:none;mix-blend-mode:soft-light;opacity:.9;
+    background:
+      radial-gradient(9% 14% at 18% 24%,rgba(255,244,214,.55),transparent 60%),
+      radial-gradient(7% 11% at 32% 68%,rgba(255,236,200,.4),transparent 60%),
+      radial-gradient(11% 16% at 74% 30%,rgba(255,246,220,.45),transparent 62%),
+      radial-gradient(6% 10% at 60% 80%,rgba(255,238,205,.35),transparent 60%),
+      radial-gradient(8% 12% at 88% 62%,rgba(255,240,210,.4),transparent 62%);
+    background-size:180% 180%;animation:dappleDrift 22s ease-in-out infinite alternate}
+  @keyframes dappleDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+  /* okunabilirlik scrim'i — iki temada da SABİT açık metin */
+  .hero::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+    background:linear-gradient(180deg,rgba(28,20,12,.34) 0%,rgba(28,20,12,.05) 30%,rgba(28,20,12,.28) 60%,rgba(24,16,10,.82) 100%)}
+  .hero-inner{position:relative;z-index:10;width:100%;padding-bottom:12vh}
+  .hero .eyebrow{color:#ffd9e4;text-shadow:0 1px 8px rgba(0,0,0,.55);background:rgba(28,20,14,.32);padding:8px 15px;border-radius:22px;backdrop-filter:blur(4px)}
+  .hero .eyebrow .bloom{color:#ff9dc0}
+  .hero h1{color:#fdf7ec;font-size:clamp(2.7rem,6.8vw,5.7rem);max-width:15ch;text-shadow:0 4px 44px rgba(0,0,0,.5);margin-top:20px}
+  .hero h1 em{font-style:italic;color:#ffcfa0;font-weight:600}
+  .hero .lede{font-size:clamp(1.02rem,1.5vw,1.28rem);color:rgba(253,247,236,.94);max-width:52ch;margin-top:22px;font-weight:400;text-shadow:0 2px 22px rgba(0,0,0,.6)}
+  .hero-cta{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:var(--rose);color:#fff;padding:15px 32px;border-radius:26px;font-family:var(--sans);font-weight:600;font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.35s;box-shadow:0 8px 26px rgba(207,92,134,.4)}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{text-transform:none;letter-spacing:.02em}
+  .btn-solid:hover{background:var(--rose-2);gap:15px;box-shadow:0 10px 32px rgba(207,92,134,.5)}
+  .btn-line{color:#fdf7ec;font-family:var(--sans);font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(253,247,236,.5);padding-bottom:4px;transition:.4s;text-shadow:0 1px 14px rgba(0,0,0,.5)}
+  .btn-line:hover{border-color:#ffcfa0;color:#ffcfa0}
+  .scrollhint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:10;font-family:var(--sans);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(253,247,236,.62);display:flex;flex-direction:column;align-items:center;gap:8px}
+  html[lang="zh-CN"] .scrollhint,html[lang="ko"] .scrollhint{letter-spacing:.08em}
+  .scrollhint .l{width:1px;height:32px;background:linear-gradient(var(--bulb),transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ---------- KANIT BANDI ---------- */
+  .stats{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:40px 30px}
+  .stat{text-align:center}
+  .stat .n{font-family:var(--serif);font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--rose-2);line-height:1.1;font-weight:600}
+  html[data-theme="dark"] .stat .n{color:var(--rose)}
+  .stat .l{font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  html[lang="zh-CN"] .stat .l,html[lang="ko"] .stat .l{text-transform:none;letter-spacing:.03em}
+  .stat+.stat{border-left:1px solid var(--line)}
+  @media(max-width:680px){.stats .wrap{grid-template-columns:1fr 1fr;gap:30px 18px}.stat:nth-child(3){border-left:none}}
+
+  section{padding:112px 0;position:relative}
+  .sec-head{max-width:680px;margin-bottom:56px}
+  .sec-head .eyebrow{margin-bottom:16px}
+  .sec-head h2{font-size:clamp(2.1rem,4.4vw,3.5rem)}
+  .sec-head p{margin-top:16px;color:var(--muted);font-size:1.08rem;font-weight:400}
+
+  /* ---------- BAHÇE (signature: gül bahçesi + dappled light) ---------- */
+  .garden{background:var(--bg);overflow:hidden}
+  .garden .dapple{position:absolute;z-index:0;opacity:.5;mix-blend-mode:normal}
+  html[data-theme="dark"] .garden .dapple{opacity:.14}
+  .garden>.wrap{position:relative;z-index:1}
+  .garden-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:60px;align-items:center}
+  .garden-visual{position:relative;display:grid;grid-template-columns:1.35fr 1fr;grid-template-rows:1fr 1fr;gap:14px}
+  .gv{position:relative;border-radius:14px;overflow:hidden;background:var(--surface) center/cover no-repeat;cursor:pointer;box-shadow:0 18px 44px rgba(60,40,30,.14)}
+  .gv.big{grid-row:span 2;aspect-ratio:4/5}
+  .gv.small{aspect-ratio:1/1}
+  .gv::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(30,20,14,.28),transparent 40%)}
+  .gv .ph-label{position:absolute;left:14px;bottom:12px;z-index:2;font-family:var(--sans);font-size:.66rem;letter-spacing:.05em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+  .garden-text .lead{font-family:var(--serif);font-size:clamp(1.4rem,2.2vw,1.8rem);line-height:1.4;font-style:italic;color:var(--text);margin-bottom:22px}
+  html[lang="zh-CN"] .garden-text .lead,html[lang="ko"] .garden-text .lead{font-style:normal}
+  .garden-text p{color:var(--muted);margin-bottom:16px;font-weight:400;max-width:52ch}
+  .garden-text .sign{margin-top:20px;display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--rose-2)}
+  html[data-theme="dark"] .garden-text .sign{color:var(--rose)}
+  .garden-text .sign .bloom{width:26px;height:26px;color:var(--rose)}
+  @media(max-width:900px){.garden-grid{grid-template-columns:1fr;gap:40px}.garden-visual{order:2}}
+
+  /* ---------- TERAS ---------- */
+  .terrace{background:var(--bg-2);overflow:hidden}
+  .terrace::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.6;
+    background:radial-gradient(40% 50% at 84% 14%,var(--glow),transparent 60%),radial-gradient(38% 46% at 10% 84%,rgba(95,127,84,.14),transparent 62%);
+    background-size:170% 170%;animation:meshDrift 26s ease-in-out infinite alternate}
+  html[data-theme="dark"] .terrace::before{opacity:.5}
+  @keyframes meshDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+  .terrace>.wrap{position:relative;z-index:1}
+  .terrace-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center}
+  .terrace-visual{position:relative;display:flex;flex-direction:column;gap:16px}
+  .tv{position:relative;border-radius:14px;overflow:hidden;background:var(--surface) center/cover no-repeat;cursor:pointer;box-shadow:0 22px 52px rgba(60,40,30,.16)}
+  .tv.main{aspect-ratio:7/5}
+  .tv.sub{aspect-ratio:16/8}
+  .tv::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(30,20,14,.34),transparent 42%)}
+  .tv .time{position:absolute;top:14px;left:16px;z-index:2;font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--chip-bg);padding:6px 12px;border-radius:20px;backdrop-filter:blur(5px)}
+  html[lang="zh-CN"] .tv .time,html[lang="ko"] .tv .time{text-transform:none;letter-spacing:.04em}
+  .tv .ph-label{position:absolute;left:16px;bottom:12px;z-index:2;font-family:var(--sans);font-size:.66rem;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+  .terrace-text p{color:var(--muted);font-weight:400;margin-bottom:16px;max-width:50ch}
+  .terrace-text .t-note{font-size:.9rem;color:var(--rose-2);border-left:2px solid var(--rose);padding-left:15px;margin-top:22px;max-width:44ch;font-style:italic}
+  html[data-theme="dark"] .terrace-text .t-note{color:var(--rose-2)}
+  .feat-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .feat-row .chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:.74rem;letter-spacing:.02em;color:var(--text);background:var(--surface);border:1px solid var(--line);padding:8px 14px;border-radius:20px}
+  .feat-row .chip svg{width:15px;height:15px;color:var(--leaf)}
+  @media(max-width:900px){.terrace-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* ---------- ODALAR ---------- */
+  .rooms{background:var(--bg)}
+  .room-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .room-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+  .room-card:hover{transform:translateY(-5px);box-shadow:0 24px 52px rgba(60,40,30,.16)}
+  .room-img{aspect-ratio:4/3;background:var(--bg-2) center/cover no-repeat;position:relative;overflow:hidden;cursor:pointer;margin:10px 10px 0;border-radius:11px}
+  .room-img .tag{position:absolute;top:12px;left:12px;z-index:2;font-family:var(--sans);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--chip-bg);padding:6px 12px;border-radius:20px;backdrop-filter:blur(5px);white-space:nowrap}
+  html[lang="zh-CN"] .room-img .tag,html[lang="ko"] .room-img .tag{text-transform:none;letter-spacing:.03em}
+  .room-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(30,20,14,.24),transparent 38%)}
+  .room-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
+  .room-body h3{font-size:1.42rem;color:var(--text)}
+  .room-body .feats{margin:9px 0 11px;font-family:var(--sans);font-size:.7rem;letter-spacing:.05em;color:var(--leaf);text-transform:uppercase;font-weight:600}
+  html[data-theme="dark"] .room-body .feats{color:var(--leaf-2)}
+  html[lang="zh-CN"] .room-body .feats,html[lang="ko"] .room-body .feats{text-transform:none;letter-spacing:.02em}
+  .room-body p{color:var(--muted);font-weight:400;font-size:.94rem;flex:1}
+  @media(max-width:900px){.room-grid{grid-template-columns:1fr;max-width:460px;margin:0 auto}}
+
+  /* ---------- KONUM ---------- */
+  .location{background:var(--bg-2)}
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .loc-text p{color:var(--muted);font-weight:400;margin-bottom:16px;max-width:50ch}
+  .loc-facts{list-style:none;margin:22px 0}
+  .loc-facts li{display:flex;gap:12px;align-items:flex-start;color:var(--text);font-weight:400;font-size:.96rem;margin-bottom:13px}
+  .loc-facts svg{width:18px;height:18px;color:var(--rose);flex:none;margin-top:3px}
+  .btn-ghost{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--rose);color:var(--rose-2);padding:13px 26px;border-radius:26px;font-family:var(--sans);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;transition:.35s;cursor:pointer;background:none;font-weight:600}
+  html[data-theme="dark"] .btn-ghost{color:var(--rose)}
+  html[lang="zh-CN"] .btn-ghost,html[lang="ko"] .btn-ghost{text-transform:none;letter-spacing:.02em}
+  .btn-ghost:hover{background:var(--rose);color:#fff;border-color:var(--rose)}
+  .loc-visual{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/11;background:var(--surface) center/cover no-repeat;cursor:pointer;box-shadow:0 24px 56px rgba(60,40,30,.16)}
+  .loc-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(30,20,14,.3),transparent 40%)}
+  .loc-visual .ph-label{position:absolute;left:18px;bottom:14px;z-index:2;font-family:var(--sans);font-size:.68rem;color:rgba(255,255,255,.92);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+  @media(max-width:900px){.loc-grid{grid-template-columns:1fr;gap:36px}}
+
+  /* ---------- GALERİ ---------- */
+  .gallery{background:var(--bg)}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+  .tile{border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:15px;background:var(--surface) center/cover no-repeat;cursor:pointer;transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s}
+  .tile.w2{grid-column:span 2}.tile.h2{grid-row:span 2}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(60,40,30,.22)}
+  .tile .ph-label{position:relative;z-index:3;font-family:var(--sans);font-size:.72rem;letter-spacing:.04em;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.8);display:flex;align-items:center;gap:6px}
+  .tile::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(30,20,14,.58),rgba(30,20,14,0) 46%);transition:.4s}
+  .tile::after{content:"\2922";position:absolute;top:11px;right:14px;z-index:3;color:#fff;font-size:1rem;opacity:0;transform:scale(.75);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.85)}
+  .tile:hover::before{background:linear-gradient(to top,rgba(30,20,14,.66),rgba(30,20,14,.12))}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  @media(max-width:820px){.tiles{grid-template-columns:1fr 1fr;grid-auto-rows:170px}.tile.w2{grid-column:span 1}.tile.h2{grid-row:span 1}}
+  @media(max-width:460px){.tiles{grid-template-columns:1fr;grid-auto-rows:210px}}
+  .gallery-src{margin-top:20px;font-size:.8rem;color:var(--muted);font-weight:400;max-width:70ch}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(20,14,10,.94);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:86vh;border-radius:8px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f4efe2;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s;z-index:5}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#f0e6da;font-family:var(--sans);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+  html[lang="zh-CN"] .lb-cap,html[lang="ko"] .lb-cap{text-transform:none;letter-spacing:.03em}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(40,26,18,.55);border:1px solid rgba(240,231,222,.24);color:#f4efe2;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:.25s;z-index:5}
+  .lb-nav:hover{background:var(--rose);color:#fff;border-color:var(--rose)}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:1.2rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ---------- INSTAGRAM BANDI ---------- */
+  .igband{background:linear-gradient(135deg,var(--bg-2),var(--surface));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:56px 0}
+  .ig-inner{display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap}
+  .ig-left{display:flex;align-items:center;gap:18px}
+  .ig-left .ig-ic{width:52px;height:52px;border-radius:15px;background:var(--glow);display:flex;align-items:center;justify-content:center;color:var(--rose-2);flex:none}
+  html[data-theme="dark"] .ig-left .ig-ic{color:var(--rose)}
+  .ig-left .ig-ic svg{width:26px;height:26px}
+  .ig-left h3{font-size:clamp(1.3rem,2.4vw,1.75rem);color:var(--text)}
+  .ig-left p{color:var(--muted);font-weight:400;font-size:.94rem;margin-top:3px}
+  .ig-cta{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--rose);color:var(--rose-2);padding:12px 24px;border-radius:26px;font-family:var(--sans);font-size:.8rem;font-weight:600;letter-spacing:.03em;transition:.35s}
+  html[data-theme="dark"] .ig-cta{color:var(--rose)}
+  .ig-cta:hover{background:var(--rose);color:#fff}
+
+  /* ---------- REZERVASYON ---------- */
+  .book{background:linear-gradient(180deg,var(--bg),var(--bg-2));position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 66%)}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.2rem,4.4vw,3.4rem);color:var(--text)}
+  .book h2 em{font-style:italic;color:var(--rose-2)}
+  html[data-theme="dark"] .book h2 em{color:var(--rose)}
+  .book .lede{color:var(--muted);margin-top:16px;font-size:1.05rem;font-weight:400;max-width:48ch}
+  .call-card{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 28px}
+  .call-card .cc-label{font-family:var(--sans);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose-2);margin-bottom:10px;font-weight:700}
+  html[data-theme="dark"] .call-card .cc-label{color:var(--rose)}
+  html[lang="zh-CN"] .call-card .cc-label,html[lang="ko"] .call-card .cc-label{text-transform:none;letter-spacing:.04em}
+  .call-card a.phone{display:flex;align-items:center;gap:13px;font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.05rem);color:var(--text);transition:.3s;font-weight:600}
+  .call-card a.phone:hover{color:var(--rose-2)}
+  .call-card a.phone svg{width:26px;height:26px;color:var(--leaf);flex:none}
+  .call-card .alt{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);display:flex;gap:12px;flex-wrap:wrap}
+  .call-card .alt a{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--rose-2);border:1px solid var(--line);padding:10px 17px;border-radius:22px;transition:.3s}
+  html[data-theme="dark"] .call-card .alt a{color:var(--rose)}
+  .call-card .alt a:hover{border-color:var(--rose)}
+  .call-card .alt a svg{width:16px;height:16px}
+  .book-note{margin-top:18px;font-size:.86rem;color:var(--muted);font-weight:400;border-left:2px solid var(--leaf);padding-left:14px;max-width:46ch}
+  .form{background:var(--field-bg);border:1px solid var(--line);border-radius:16px;padding:32px;backdrop-filter:blur(6px)}
+  .field{margin-bottom:15px}
+  .field label{display:block;font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-2);margin-bottom:7px;font-weight:700}
+  html[data-theme="dark"] .field label{color:var(--rose)}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{text-transform:none;letter-spacing:.03em}
+  .field input,.field select{width:100%;padding:13px 15px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-family:inherit;font-size:.94rem}
+  .field input::placeholder{color:var(--muted);opacity:.7}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--rose)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .submit{width:100%;background:var(--rose);color:#fff;border:none;padding:16px;border-radius:26px;font-family:var(--sans);font-weight:600;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.35s;margin-top:6px;box-shadow:0 8px 24px rgba(207,92,134,.34)}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{text-transform:none;letter-spacing:.02em}
+  .submit:hover{background:var(--rose-2)}
+  .sent-panel{display:none;margin-top:18px;border-top:1px solid var(--line);padding-top:18px}
+  .sent-panel.show{display:block}
+  .sent-panel .sp-h{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rose-2);margin-bottom:10px;font-family:var(--sans);font-weight:700}
+  html[data-theme="dark"] .sent-panel .sp-h{color:var(--rose)}
+  html[lang="zh-CN"] .sent-panel .sp-h,html[lang="ko"] .sent-panel .sp-h{text-transform:none;letter-spacing:.03em}
+  .sent-panel textarea{width:100%;min-height:118px;background:var(--surface);border:1px solid var(--line);border-radius:9px;color:var(--text);font-family:inherit;font-size:.86rem;padding:12px;resize:vertical}
+  .sent-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .sent-actions button,.sent-actions a{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;padding:10px 16px;border-radius:22px;border:1px solid var(--rose);color:var(--rose-2);background:none;cursor:pointer;transition:.3s;text-decoration:none}
+  html[data-theme="dark"] .sent-actions button,html[data-theme="dark"] .sent-actions a{color:var(--rose)}
+  html[lang="zh-CN"] .sent-actions button,html[lang="ko"] .sent-actions button,html[lang="zh-CN"] .sent-actions a,html[lang="ko"] .sent-actions a{text-transform:none;letter-spacing:.02em}
+  .sent-actions button:hover,.sent-actions a:hover{background:var(--rose);color:#fff}
+  .sent-actions .wa-go{border-color:#25b34a;color:#1c9c3e}
+  .sent-actions .wa-go:hover{background:#25b34a;color:#fff}
+  .sent-actions svg{width:14px;height:14px}
+  @media(max-width:900px){.book-grid{grid-template-columns:1fr;gap:38px}}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--bg-2);color:var(--muted);padding:64px 0 30px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:42px}
+  .foot-brand{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+  .foot-brand .mark{width:36px;height:36px;color:var(--rose)}
+  .foot-brand b{font-family:var(--serif);font-size:1.4rem;color:var(--text);font-weight:600}
+  footer h4{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose-2);margin-bottom:15px;font-weight:700}
+  html[data-theme="dark"] footer h4{color:var(--rose)}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{text-transform:none;letter-spacing:.04em}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px;font-size:.93rem;font-weight:400;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:var(--text)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--sans);font-size:.76rem}
+  .demo-badge{background:var(--rose);color:#fff;padding:5px 13px;border-radius:20px;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
+  html[lang="zh-CN"] .demo-badge,html[lang="ko"] .demo-badge{text-transform:none}
+
+  .reveal{opacity:0;transform:translateY(32px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- MOBİL MENÜ ---------- */
+  .mobile-menu{position:fixed;inset:0;z-index:70;background:var(--nav-bg);backdrop-filter:blur(16px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:22px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:var(--serif);font-size:1.75rem;color:var(--text);font-weight:600}
+  .mobile-menu .close{position:absolute;top:22px;right:24px;background:none;border:none;color:var(--text);cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;justify-content:center}
+  .mobile-menu .m-langs button{background:none;border:1px solid var(--line);color:var(--muted);padding:8px 13px;border-radius:20px;font-family:var(--sans);font-size:.84rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:var(--rose-2);border-color:var(--rose)}
+  html[data-theme="dark"] .mobile-menu .m-langs button.active{color:var(--rose)}
+
+  @media(max-width:760px){
+    .navlinks{display:none}.menu-btn{display:block}
+    .langs{display:none}
+    .dock{display:flex}
+    footer{padding-bottom:94px}
+    section{padding:74px 0}
+    .form{padding:24px}
+    .foot-grid{grid-template-columns:1fr;gap:30px}
+    .hero::after{background:linear-gradient(180deg,rgba(28,20,12,.44) 0%,rgba(28,20,12,.12) 30%,rgba(28,20,12,.32) 58%,rgba(20,13,8,.88) 100%)}
+    .hero-inner{padding-bottom:16vh}
+    .ig-inner{flex-direction:column;align-items:flex-start}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* ---------- SIGNATURE KATMANI: film grain + scroll ilerleme ---------- */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.04;mix-blend-mode:overlay}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--rose),var(--gold),var(--leaf));box-shadow:0 0 12px var(--glow)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+  /* azalea blossom — SVG (reusable) */
+  .bloomsvg .petal{fill:currentColor}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- Yeniden kullanılabilir azalea çiçeği SVG şablonu -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="azalea">
+    <g class="bloomsvg">
+      <ellipse class="petal" cx="16" cy="6.6" rx="4.5" ry="5.8"/>
+      <ellipse class="petal" cx="16" cy="6.6" rx="4.5" ry="5.8" transform="rotate(72 16 16)"/>
+      <ellipse class="petal" cx="16" cy="6.6" rx="4.5" ry="5.8" transform="rotate(144 16 16)"/>
+      <ellipse class="petal" cx="16" cy="6.6" rx="4.5" ry="5.8" transform="rotate(216 16 16)"/>
+      <ellipse class="petal" cx="16" cy="6.6" rx="4.5" ry="5.8" transform="rotate(288 16 16)"/>
+    </g>
+    <circle cx="16" cy="16" r="3" fill="#cf9a52"/>
+  </g>
+</defs></svg>
+
+<nav id="nav">
+  <a class="brand" href="#" aria-label="Azalea Terrace Hotel">
+    <span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#azalea"/></svg></span>
+    <span class="bt"><b>Azalea Terrace</b><span>Hotel · Ürgüp</span></span>
+  </a>
+  <div class="navlinks" id="navlinks">
+    <span class="bulb-ind" id="bulb" aria-hidden="true"><span class="cord"></span><span class="glass"></span></span>
+    <a href="#garden" data-i18n="nav_garden" data-spy="garden">Bahçe</a>
+    <a href="#terrace" data-i18n="nav_terrace" data-spy="terrace">Teras</a>
+    <a href="#rooms" data-i18n="nav_rooms" data-spy="rooms">Odalar</a>
+    <a href="#location" data-i18n="nav_location" data-spy="location">Konum</a>
+    <a class="nav-cta" href="#book" data-i18n="nav_book">Rezervasyon</a>
+  </div>
+  <div class="langs" role="group" aria-label="Dil / Language">
+    <button data-lang="tr" class="active">TR</button><span class="sep">|</span>
+    <button data-lang="en">EN</button><span class="sep">|</span>
+    <button data-lang="es">ES</button><span class="sep">|</span>
+    <button data-lang="zh-CN">中文</button><span class="sep">|</span>
+    <button data-lang="ko">한국어</button>
+  </div>
+  <button class="theme-btn" id="themeBtn" aria-label="Tema değiştir">
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+  <button class="menu-btn" aria-label="Menü" id="menuBtn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#garden" data-i18n="nav_garden">Bahçe</a>
+  <a href="#terrace" data-i18n="nav_terrace">Teras</a>
+  <a href="#rooms" data-i18n="nav_rooms">Odalar</a>
+  <a href="#location" data-i18n="nav_location">Konum</a>
+  <a href="#book" data-i18n="nav_book">Rezervasyon</a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+</div>
+
+<!-- Mobil garland dock -->
+<div class="dock" id="dock" aria-label="Bölümler">
+  <span class="bulb-ind" id="bulbDock" aria-hidden="true"><span class="cord"></span><span class="glass"></span></span>
+  <a href="#garden" data-spy="garden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 22c0-6 0-9 0-9M12 13c0-3-2-5-5-5-1 3 1 5 5 5zM12 13c0-3 2-6 5-6 1 3-1 6-5 6z"/></svg><span data-i18n="dock_garden">Bahçe</span></a>
+  <a href="#terrace" data-spy="terrace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 10l9-6 9 6M5 9v10h14V9M9 19v-5h6v5"/></svg><span data-i18n="dock_terrace">Teras</span></a>
+  <a href="#rooms" data-spy="rooms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6M3 18h18M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/></svg><span data-i18n="dock_rooms">Odalar</span></a>
+  <a href="#location" data-spy="location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-i18n="dock_location">Konum</span></a>
+  <a href="#book" data-spy="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><span data-i18n="dock_book">Ara</span></a>
+</div>
+
+<header class="hero">
+  <div class="hero-photo" id="heroPhoto"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <div class="dapple" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="hero_eyebrow"><span class="bloom"><svg viewBox="0 0 32 32"><use href="#azalea"/></svg></span> Ürgüp · Kapadokya · Butik Pansiyon</span>
+      <h1 data-i18n="hero_title" data-i18n-html="1">Güller bahçede,<br><em>balonlar ufukta.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Ürgüp'te taş bir konak, gül dolu bir bahçe ve vadiye bakan bir teras. Azalea Terrace'ta sabah, kilim sedirde çayınızı yudumlarken uzaktaki balonlarla başlar.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="tel:+905550713355"><span data-i18n="hero_cta1">Bizi arayın</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#rooms" data-i18n="hero_cta2">Odaları görün</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Bahçeye inin</span><span class="l"></span></div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n" data-i18n="stat1_n">4,8★</div><div class="l" data-i18n="stat1_l">Google puanı</div></div>
+    <div class="stat"><div class="n" data-i18n="stat2_n">Ürgüp</div><div class="l" data-i18n="stat2_l">Kapadokya'nın kalbinde</div></div>
+    <div class="stat"><div class="n" data-i18n="stat3_n">Teras</div><div class="l" data-i18n="stat3_l">Vadiye bakan çatı</div></div>
+    <div class="stat"><div class="n" data-i18n="stat4_n">Bahçe</div><div class="l" data-i18n="stat4_l">Gül & çam bahçesi</div></div>
+  </div>
+</div>
+
+<section class="garden" id="garden">
+  <div class="dapple" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="garden_eyebrow"><span class="bloom"><svg viewBox="0 0 32 32"><use href="#azalea"/></svg></span> Bahçe</span>
+      <h2 data-i18n="garden_h">Adımızı bahçemizden aldık.</h2>
+      <p data-i18n="garden_sub">Kapıdan girer girmez sizi çimen, çam ve gül karşılar. Azalea Terrace'ta bahçe binanın bir eklentisi değil — kalbi.</p>
+    </div>
+    <div class="garden-grid">
+      <div class="garden-visual reveal">
+        <div class="gv big" data-img="garden.jpg"><span class="ph-label" data-i18n="ph_garden1">Bahçedeki güller</span></div>
+        <div class="gv small" data-img="building-roses.jpg"><span class="ph-label" data-i18n="ph_garden2">Taş yol & konak</span></div>
+        <div class="gv small" data-img="lawn.jpg"><span class="ph-label" data-i18n="ph_garden3">Çim & çam</span></div>
+      </div>
+      <div class="garden-text reveal">
+        <p class="lead" data-i18n="garden_lead">Sabahları güllerin arasında bir kahvaltı, akşamları çam gölgesinde bir çay.</p>
+        <p data-i18n="garden_p1">Konağın önü baştan sona bahçe: taş patikalar boyunca kırmızı güller, aralarında genç çamlar, saksılarda mevsim çiçekleri. Şehrin uğultusu geride kalır; kalan tek ses, yaprakların ve kuşların sesidir.</p>
+        <p data-i18n="garden_p2">Kışın aynı güller karın altında açar, bahçe bembeyaz bir sessizliğe bürünür. Hangi mevsimde gelirseniz gelin, Kapadokya'nın rengi kapınızın önünde.</p>
+        <div class="sign"><span class="bloom"><svg viewBox="0 0 32 32"><use href="#azalea"/></svg></span> <span data-i18n="garden_sign">Azalea Terrace — Ürgüp</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="terrace" id="terrace">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="terrace_eyebrow"><span class="bloom"><svg viewBox="0 0 32 32"><use href="#azalea"/></svg></span> Teras</span>
+      <h2 data-i18n="terrace_h">Uzakta balonlar, önünüzde vadi.</h2>
+      <p data-i18n="terrace_sub">Çatı terasında kilim sedirler, tepede süzülen ışık telleri ve önünüzde uzanan vadi. Sabah uzaktaki balonlar için, akşam yıldızlar için.</p>
+    </div>
+    <div class="terrace-grid">
+      <div class="terrace-visual reveal">
+        <div class="tv main" data-img="daybed.jpg"><span class="time" data-i18n="terrace_t1">Sabah · kilim sedir</span><span class="ph-label" data-i18n="ph_terrace1">Teras & vadi manzarası</span></div>
+        <div class="tv sub" data-img="terrace-dog.jpg"><span class="time" data-i18n="terrace_t2">Gündüz · teras</span><span class="ph-label" data-i18n="ph_terrace2">Teras & ışık telleri</span></div>
+      </div>
+      <div class="terrace-text reveal">
+        <p data-i18n="terrace_p1">Terasa çıkan merdivenin sonunda gün açılır. Renkli kilimlerle döşenmiş sedirlere uzanın; tepede sıralanan ampuller ısınır, önünüzde yeşil vadi ve bağlar yavaşça uyanır.</p>
+        <p data-i18n="terrace_p2">Şanslı sabahlarda balonlar uzakta ufukta süzülür — çayınız elinizde, sabahı seyredin. Akşam düşünce aynı teras, ışık telleri altında sakin bir buluşma yerine döner.</p>
+        <div class="feat-row">
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 8h16M6 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2M8 8v12M16 8v12"/></svg><span data-i18n="terrace_c1">Kilim sedirler</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6c4 2 14 2 18 0M12 8v3M9 11a3 3 0 0 0 6 0"/></svg><span data-i18n="terrace_c2">Işık telleri</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="10" r="6"/><path d="M9 20h6M10 16.5 9 21M14 16.5l1 4.5"/></svg><span data-i18n="terrace_c3">Ufukta balonlar</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 12h14M7 12a5 5 0 0 1 10 0M12 5v2M9 21h6"/></svg><span data-i18n="terrace_c4">Sabah çayı</span></span>
+        </div>
+        <p class="t-note" data-i18n="terrace_note">Şafakta terasa çıkın; uzakta balonlar süzülürken çayınız çoktan hazır olsun.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rooms" id="rooms">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="rooms_eyebrow"><span class="bloom"><svg viewBox="0 0 32 32"><use href="#azalea"/></svg></span> Odalar</span>
+      <h2 data-i18n="rooms_h">Taşın serinliği, ahşabın sıcağı.</h2>
+      <p data-i18n="rooms_sub">Odaların bir kısmı Kapadokya'nın kendi taşına oyulu, kemerli tavanlı; hepsinde el dokuması kilimler ve sıcak ahşap dokunuşlar.</p>
+    </div>
+    <div class="room-grid">
+      <div class="room-card reveal">
+        <div class="room-img" data-img="room-1.jpg"><span class="tag" data-i18n="r1_tag">Kemerli</span></div>
+        <div class="room-body">
+          <h3 data-i18n="r1_h">Kemerli Taş Oda</h3>
+          <div class="feats" data-i18n="r1_feat">Kemerli tavan · Kesme taş · Kilim</div>
+          <p data-i18n="r1_p">Kesme taş duvarlar ve kemerli tavan altında, iki ahşap karyolalı sakin bir oda. Taş serinliği yazın klima gibi; kilim ve ahşap ise akşamları odayı ısıtır.</p>
+        </div>
+      </div>
+      <div class="room-card reveal">
+        <div class="room-img" data-img="room-2.jpg"><span class="tag" data-i18n="r2_tag">Ahşap</span></div>
+        <div class="room-body">
+          <h3 data-i18n="r2_h">Ahşap Sıcaklığı Oda</h3>
+          <div class="feats" data-i18n="r2_feat">Ahşap karyola · Taş duvar · Loş ışık</div>
+          <p data-i18n="r2_p">Masif ahşap karyola, yumuşak yorganlar ve loş bir ışık. Gün boyu vadileri gezdikten sonra dönülecek, sessiz ve dingin bir oda.</p>
+        </div>
+      </div>
+      <div class="room-card reveal">
+        <div class="room-img" data-img="welcome.jpg"><span class="tag" data-i18n="r3_tag">Karşılama</span></div>
+        <div class="room-body">
+          <h3 data-i18n="r3_h">Kişiye Özel Karşılama</h3>
+          <div class="feats" data-i18n="r3_feat">Çay ikramı · Özel not</div>
+          <p data-i18n="r3_p">Vardığınızda sizi demli çay, küçük ikramlar ve çoğu zaman adınıza yazılmış bir not karşılar. Balayı, yıl dönümü ya da sıradan bir tatil — fark eden nasıl ağırlandığınızdır.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div class="loc-text reveal">
+        <span class="eyebrow" data-i18n="loc_eyebrow"><span class="bloom"><svg viewBox="0 0 32 32"><use href="#azalea"/></svg></span> Konum</span>
+        <h2 style="margin-top:16px" data-i18n="loc_h">Ürgüp'te, her yere yakın.</h2>
+        <p style="margin-top:16px" data-i18n="loc_p1">Azalea Terrace, Ürgüp'te sakin bir bahçe içinde; yine de Kapadokya'nın gezilecek her yerine kolayca ulaşırsınız. Vadiler, bağlar, yer altı şehirleri ve balon kalkış bölgeleri kısa mesafede.</p>
+        <ul class="loc-facts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span data-i18n="loc_f1">Ürgüp merkeze yürüme mesafesinde bir bahçe içinde</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="10" r="6"/><path d="M9 20h6"/></svg><span data-i18n="loc_f2">Göreme, Uçhisar ve Avanos'a kısa araç mesafesi</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg><span data-i18n="loc_f3">Vadi yürüyüşlerine ve Ürgüp bağlarına yakın</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3a5 5 0 0 1 5 5c0 3-5 8-5 8s-5-5-5-8a5 5 0 0 1 5-5zM9 20h6"/></svg><span data-i18n="loc_f4">Balon kalkış bölgeleri ulaşım mesafesinde</span></li>
+        </ul>
+        <a class="btn-ghost" href="https://www.google.com/maps/place/AZALEA+TERRACE/@38.6429533,34.8282811,17z/data=!4m9!3m8!1s0x152a69b606660a2b:0xe39a9ff654db4915!5m2!4m1!1i2!8m2!3d38.6429533!4d34.8282811!16s%2Fg%2F11t63kc_s1" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <span data-i18n="loc_cta">Haritada aç</span>
+        </a>
+      </div>
+      <div class="loc-visual reveal" data-img="exterior.jpg"><span class="ph-label" data-i18n="ph_loc">Konak & bahçe · Ürgüp</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="gallery_eyebrow"><span class="bloom"><svg viewBox="0 0 32 32"><use href="#azalea"/></svg></span> Galeri</span>
+      <h2 data-i18n="gallery_h">Sizi bekleyen bahçe & teras.</h2>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile w2 h2" data-img="exterior.jpg"><span class="ph-label" data-i18n="ph_g1">Konak & teras · bahçeden</span></div>
+      <div class="tile" data-img="terrace-dog.jpg"><span class="ph-label" data-i18n="ph_g2">Teras & ev dostu</span></div>
+      <div class="tile" data-img="garden.jpg"><span class="ph-label" data-i18n="ph_g3">Güller</span></div>
+      <div class="tile" data-img="daybed.jpg"><span class="ph-label" data-i18n="ph_g4">Kilim sedir</span></div>
+      <div class="tile" data-img="room-1.jpg"><span class="ph-label" data-i18n="ph_g5">Kemerli oda</span></div>
+      <div class="tile w2" data-img="lawn.jpg"><span class="ph-label" data-i18n="ph_g6">Bahçe & konak</span></div>
+      <div class="tile" data-img="welcome.jpg"><span class="ph-label" data-i18n="ph_g7">Karşılama çayı</span></div>
+      <div class="tile" data-img="snow.jpg"><span class="ph-label" data-i18n="ph_g8">Kışın bahçe</span></div>
+    </div>
+    <p class="gallery-src reveal" data-i18n="gallery_src">Fotoğraflar işletmenin Instagram (@azaleaterracehotel) ve Google profilinden alınmıştır; ana görsel konsept amaçlı hazırlanmıştır. Yayında dilediğiniz kendi fotoğraflarınızla değiştirilir.</p>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="igband">
+  <div class="wrap ig-inner">
+    <div class="ig-left">
+      <span class="ig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>
+      <div>
+        <h3 data-i18n="ig_h">Günlük hayatımız Instagram'da.</h3>
+        <p data-i18n="ig_p">Bahçeden, terastan ve odalardan güncel kareler — @azaleaterracehotel</p>
+      </div>
+    </div>
+    <a class="ig-cta" href="https://instagram.com/azaleaterracehotel" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+      <span data-i18n="ig_cta">Instagram'da takip et</span>
+    </a>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="book_eyebrow"><span class="bloom"><svg viewBox="0 0 32 32"><use href="#azalea"/></svg></span> Rezervasyon</span>
+        <h2 style="margin-top:16px" data-i18n="book_h" data-i18n-html="1">Doğrudan bize yazın, <em>aracı yok.</em></h2>
+        <p class="lede" data-i18n="book_lede">Tarihinizi bırakın, en kısa sürede WhatsApp veya telefonla dönelim. Komisyon yok, en iyi fiyatı doğrudan bizden alırsınız.</p>
+        <div class="call-card">
+          <div class="cc-label" data-i18n="cc_label">Telefon & WhatsApp</div>
+          <a class="phone" href="tel:+905550713355">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
+            +90 555 071 33 55
+          </a>
+          <div class="alt">
+            <a href="https://wa.me/905550713355" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg><span>WhatsApp</span></a>
+            <a href="https://instagram.com/azaleaterracehotel" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg><span>Instagram DM</span></a>
+          </div>
+        </div>
+        <p class="book-note" data-i18n="book_note">Formu doldurunca hazır bir mesaj oluşur; WhatsApp'tan tek dokunuşla gönderin ya da kopyalayın.</p>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-in" data-i18n="label_in">Giriş</label><input type="date" id="f-in"></div>
+          <div class="field"><label for="f-out" data-i18n="label_out">Çıkış</label><input type="date" id="f-out"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-count" data-i18n="label_people">Kişi</label>
+            <select id="f-count">
+              <option data-i18n="opt_1p">1 kişi</option><option data-i18n="opt_2p">2 kişi</option><option data-i18n="opt_3p">3 kişi</option><option data-i18n="opt_4p">4+ kişi</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-room" data-i18n="label_room">Oda</label>
+            <select id="f-room">
+              <option data-i18n="opt_room1">Kemerli Taş Oda</option>
+              <option data-i18n="opt_room2">Ahşap Sıcaklığı Oda</option>
+              <option data-i18n="opt_room0">Fark etmez</option>
+            </select>
+          </div>
+        </div>
+        <button class="submit" type="button" onclick="buildBooking()" data-i18n="btn_submit">Rezervasyon mesajı oluştur</button>
+        <div class="sent-panel" id="sentPanel">
+          <div class="sp-h" data-i18n="sent_h">Mesajınız hazır — kopyalandı</div>
+          <textarea id="sentMsg" readonly></textarea>
+          <div class="sent-actions">
+            <a class="wa-go" id="waBtn" href="#" target="_blank" rel="noopener" style="display:none"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg><span data-i18n="sent_wa">WhatsApp'tan gönder</span></a>
+            <button id="copyBtn" type="button" onclick="copyMsg(false)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span data-i18n="sent_copy">Kopyala</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#azalea"/></svg></span>
+          <b>Azalea Terrace</b>
+        </div>
+        <p style="max-width:340px;font-weight:400" data-i18n="foot_about">Ürgüp'te gül bahçeli, kilim sedirli, balonlara bakan teraslı butik bir pansiyon. Sabahınız çayla, gününüz Kapadokya'yla başlasın.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#garden" data-i18n="nav_garden">Bahçe</a></li>
+          <li><a href="#terrace" data-i18n="nav_terrace">Teras</a></li>
+          <li><a href="#rooms" data-i18n="nav_rooms">Odalar</a></li>
+          <li><a href="#location" data-i18n="nav_location">Konum</a></li>
+          <li><a href="#book" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Ürgüp, Nevşehir · Kapadokya</li>
+          <li><a href="tel:+905550713355">+90 555 071 33 55</a></li>
+          <li><a href="https://wa.me/905550713355" target="_blank" rel="noopener">WhatsApp</a> · <a href="https://instagram.com/azaleaterracehotel" target="_blank" rel="noopener">Instagram</a></li>
+          <li data-i18n="foot_hours">Her mevsim açık · resepsiyon 7/24</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Azalea Terrace Hotel — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== i18n SÖZLÜĞÜ ====================
+const I18N = {
+  tr:{
+    meta_title:"Azalea Terrace Hotel — Ürgüp'te Bahçeli, Balon Manzaralı Butik Pansiyon | Kapadokya",
+    meta_desc:"Ürgüp'te gül bahçeli, kilim sedirli, balonlara bakan teraslı butik pansiyon. Azalea Terrace — doğrudan telefon veya WhatsApp'tan rezervasyon, aracı yok.",
+    nav_garden:"Bahçe",nav_terrace:"Teras",nav_rooms:"Odalar",nav_location:"Konum",nav_book:"Rezervasyon",
+    dock_garden:"Bahçe",dock_terrace:"Teras",dock_rooms:"Odalar",dock_location:"Konum",dock_book:"Ara",
+    theme_aria:"Aydınlık / karanlık tema",
+    hero_eyebrow:"Ürgüp · Kapadokya · Butik Pansiyon",
+    hero_title:'Güller bahçede,<br><em>balonlar ufukta.</em>',
+    hero_lede:"Ürgüp'te taş bir konak, gül dolu bir bahçe ve vadiye bakan bir teras. Azalea Terrace'ta sabah, kilim sedirde çayınızı yudumlarken uzaktaki balonlarla başlar.",
+    hero_cta1:"Bizi arayın",hero_cta2:"Odaları görün",scroll_hint:"Bahçeye inin",
+    stat1_n:"4,8★",stat1_l:"Google puanı",stat2_n:"Ürgüp",stat2_l:"Kapadokya'nın kalbinde",
+    stat3_n:"Teras",stat3_l:"Vadiye bakan çatı",stat4_n:"Bahçe",stat4_l:"Gül & çam bahçesi",
+    garden_eyebrow:"Bahçe",garden_h:"Adımızı bahçemizden aldık.",
+    garden_sub:"Kapıdan girer girmez sizi çimen, çam ve gül karşılar. Azalea Terrace'ta bahçe binanın bir eklentisi değil — kalbi.",
+    garden_lead:"Sabahları güllerin arasında bir kahvaltı, akşamları çam gölgesinde bir çay.",
+    garden_p1:"Konağın önü baştan sona bahçe: taş patikalar boyunca kırmızı güller, aralarında genç çamlar, saksılarda mevsim çiçekleri. Şehrin uğultusu geride kalır; kalan tek ses, yaprakların ve kuşların sesidir.",
+    garden_p2:"Kışın aynı güller karın altında açar, bahçe bembeyaz bir sessizliğe bürünür. Hangi mevsimde gelirseniz gelin, Kapadokya'nın rengi kapınızın önünde.",
+    garden_sign:"Azalea Terrace — Ürgüp",
+    ph_garden1:"Bahçedeki güller",ph_garden2:"Taş yol & konak",ph_garden3:"Çim & çam",
+    terrace_eyebrow:"Teras",terrace_h:"Uzakta balonlar, önünüzde vadi.",
+    terrace_sub:"Çatı terasında kilim sedirler, tepede süzülen ışık telleri ve önünüzde uzanan vadi. Sabah uzaktaki balonlar için, akşam yıldızlar için.",
+    terrace_t1:"Sabah · kilim sedir",terrace_t2:"Gündüz · teras",
+    ph_terrace1:"Teras & vadi manzarası",ph_terrace2:"Teras & ışık telleri",
+    terrace_p1:"Terasa çıkan merdivenin sonunda gün açılır. Renkli kilimlerle döşenmiş sedirlere uzanın; tepede sıralanan ampuller ısınır, önünüzde yeşil vadi ve bağlar yavaşça uyanır.",
+    terrace_p2:"Şanslı sabahlarda balonlar uzakta ufukta süzülür — çayınız elinizde, sabahı seyredin. Akşam düşünce aynı teras, ışık telleri altında sakin bir buluşma yerine döner.",
+    terrace_c1:"Kilim sedirler",terrace_c2:"Işık telleri",terrace_c3:"Ufukta balonlar",terrace_c4:"Sabah çayı",
+    terrace_note:"Şafakta terasa çıkın; uzakta balonlar süzülürken çayınız çoktan hazır olsun.",
+    rooms_eyebrow:"Odalar",rooms_h:"Taşın serinliği, ahşabın sıcağı.",
+    rooms_sub:"Odaların bir kısmı Kapadokya'nın kendi taşına oyulu, kemerli tavanlı; hepsinde el dokuması kilimler ve sıcak ahşap dokunuşlar.",
+    r1_tag:"Kemerli",r1_h:"Kemerli Taş Oda",r1_feat:"Kemerli tavan · Kesme taş · Kilim",
+    r1_p:"Kesme taş duvarlar ve kemerli tavan altında, iki ahşap karyolalı sakin bir oda. Taş serinliği yazın klima gibi; kilim ve ahşap ise akşamları odayı ısıtır.",
+    r2_tag:"Ahşap",r2_h:"Ahşap Sıcaklığı Oda",r2_feat:"Ahşap karyola · Taş duvar · Loş ışık",
+    r2_p:"Masif ahşap karyola, yumuşak yorganlar ve loş bir ışık. Gün boyu vadileri gezdikten sonra dönülecek, sessiz ve dingin bir oda.",
+    r3_tag:"Karşılama",r3_h:"Kişiye Özel Karşılama",r3_feat:"Çay ikramı · Özel not",
+    r3_p:"Vardığınızda sizi demli çay, küçük ikramlar ve çoğu zaman adınıza yazılmış bir not karşılar. Balayı, yıl dönümü ya da sıradan bir tatil — fark eden nasıl ağırlandığınızdır.",
+    loc_eyebrow:"Konum",loc_h:"Ürgüp'te, her yere yakın.",
+    loc_p1:"Azalea Terrace, Ürgüp'te sakin bir bahçe içinde; yine de Kapadokya'nın gezilecek her yerine kolayca ulaşırsınız. Vadiler, bağlar, yer altı şehirleri ve balon kalkış bölgeleri kısa mesafede.",
+    loc_f1:"Ürgüp merkeze yürüme mesafesinde bir bahçe içinde",
+    loc_f2:"Göreme, Uçhisar ve Avanos'a kısa araç mesafesi",
+    loc_f3:"Vadi yürüyüşlerine ve Ürgüp bağlarına yakın",
+    loc_f4:"Balon kalkış bölgeleri ulaşım mesafesinde",
+    loc_cta:"Haritada aç",ph_loc:"Konak & bahçe · Ürgüp",
+    gallery_eyebrow:"Galeri",gallery_h:"Sizi bekleyen bahçe & teras.",
+    ph_g1:"Konak & teras · bahçeden",ph_g2:"Teras & ev dostu",ph_g3:"Güller",ph_g4:"Kilim sedir",ph_g5:"Kemerli oda",ph_g6:"Bahçe & konak",ph_g7:"Karşılama çayı",ph_g8:"Kışın bahçe",
+    gallery_src:"Fotoğraflar işletmenin Instagram (@azaleaterracehotel) ve Google profilinden alınmıştır; ana görsel konsept amaçlı hazırlanmıştır. Yayında dilediğiniz kendi fotoğraflarınızla değiştirilir.",
+    ig_h:"Günlük hayatımız Instagram'da.",ig_p:"Bahçeden, terastan ve odalardan güncel kareler — @azaleaterracehotel",ig_cta:"Instagram'da takip et",
+    book_eyebrow:"Rezervasyon",book_h:'Doğrudan bize yazın, <em>aracı yok.</em>',
+    book_lede:"Tarihinizi bırakın, en kısa sürede WhatsApp veya telefonla dönelim. Komisyon yok, en iyi fiyatı doğrudan bizden alırsınız.",
+    cc_label:"Telefon & WhatsApp",
+    book_note:"Formu doldurunca hazır bir mesaj oluşur; WhatsApp'tan tek dokunuşla gönderin ya da kopyalayın.",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_in:"Giriş",label_out:"Çıkış",label_people:"Kişi",label_room:"Oda",
+    opt_1p:"1 kişi",opt_2p:"2 kişi",opt_3p:"3 kişi",opt_4p:"4+ kişi",
+    opt_room1:"Kemerli Taş Oda",opt_room2:"Ahşap Sıcaklığı Oda",opt_room0:"Fark etmez",
+    btn_submit:"Rezervasyon mesajı oluştur",sent_h:"Mesajınız hazır — kopyalandı",sent_copy:"Kopyala",sent_copied:"Kopyalandı ✓",sent_wa:"WhatsApp'tan gönder",
+    wa_msg:"Merhaba, Azalea Terrace için rezervasyon talebim var:",wa_name:"Ad",wa_in:"Giriş",wa_out:"Çıkış",wa_people:"Kişi",wa_room:"Oda",
+    alert_fill:"Lütfen adınızı, giriş ve çıkış tarihini girin.",
+    foot_about:"Ürgüp'te gül bahçeli, kilim sedirli, balonlara bakan teraslı butik bir pansiyon. Sabahınız çayla, gününüz Kapadokya'yla başlasın.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Ürgüp, Nevşehir · Kapadokya",foot_hours:"Her mevsim açık · resepsiyon 7/24",
+    foot_rights:"© 2026 Azalea Terrace Hotel — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım"
+  },
+  en:{
+    meta_title:"Azalea Terrace Hotel — Garden & Balloon-View Boutique Stay in Ürgüp | Cappadocia",
+    meta_desc:"A boutique guesthouse in Ürgüp with a rose garden, kilim daybeds and a terrace facing the balloons. Azalea Terrace — book directly by phone or WhatsApp, no middlemen.",
+    nav_garden:"Garden",nav_terrace:"Terrace",nav_rooms:"Rooms",nav_location:"Location",nav_book:"Book",
+    dock_garden:"Garden",dock_terrace:"Terrace",dock_rooms:"Rooms",dock_location:"Location",dock_book:"Call",
+    theme_aria:"Light / dark theme",
+    hero_eyebrow:"Ürgüp · Cappadocia · Boutique Stay",
+    hero_title:'Roses in the garden,<br><em>balloons on the horizon.</em>',
+    hero_lede:"A stone house in Ürgüp, a garden full of roses, and a terrace facing the valley. At Azalea Terrace, morning begins with tea on a kilim daybed and balloons drifting on the horizon.",
+    hero_cta1:"Call us",hero_cta2:"See the rooms",scroll_hint:"Into the garden",
+    stat1_n:"4.8★",stat1_l:"Google rating",stat2_n:"Ürgüp",stat2_l:"In the heart of Cappadocia",
+    stat3_n:"Terrace",stat3_l:"Rooftop facing the valley",stat4_n:"Garden",stat4_l:"Rose & pine garden",
+    garden_eyebrow:"Garden",garden_h:"We took our name from our garden.",
+    garden_sub:"Lawn, pines and roses greet you the moment you step through the gate. At Azalea Terrace the garden isn't an add-on — it's the heart of the place.",
+    garden_lead:"Breakfast among the roses in the morning, tea in the shade of the pines at dusk.",
+    garden_p1:"The front of the house is all garden: red roses along stone paths, young pines between them, seasonal flowers in pots. The hum of the town falls away; all that's left is the sound of leaves and birds.",
+    garden_p2:"In winter the same roses bloom under snow and the garden turns to a white hush. Whatever season you arrive, the colour of Cappadocia is right at your door.",
+    garden_sign:"Azalea Terrace — Ürgüp",
+    ph_garden1:"Roses in the garden",ph_garden2:"Stone path & house",ph_garden3:"Lawn & pines",
+    terrace_eyebrow:"Terrace",terrace_h:"Balloons on the horizon, the valley before you.",
+    terrace_sub:"Kilim daybeds on the rooftop, string lights overhead and the valley stretching before you. Mornings for the distant balloons, evenings for the stars.",
+    terrace_t1:"Morning · kilim daybed",terrace_t2:"Daytime · terrace",
+    ph_terrace1:"Terrace & valley view",ph_terrace2:"Terrace & string lights",
+    terrace_p1:"At the top of the stairs the day opens up. Stretch out on daybeds dressed in colourful kilims; the string bulbs warm up overhead as the green valley and vineyards slowly wake before you.",
+    terrace_p2:"On lucky mornings balloons drift on the distant horizon — tea in hand, watch the morning unfold. When evening falls, the same terrace becomes a quiet gathering place under the string lights.",
+    terrace_c1:"Kilim daybeds",terrace_c2:"String lights",terrace_c3:"Balloons on the horizon",terrace_c4:"Morning tea",
+    terrace_note:"Step out at dawn; have your tea ready while the balloons drift on the horizon.",
+    rooms_eyebrow:"Rooms",rooms_h:"The cool of stone, the warmth of wood.",
+    rooms_sub:"Some rooms are carved into Cappadocia's own rock with arched ceilings; all of them have hand-woven kilims and warm wooden touches.",
+    r1_tag:"Arched",r1_h:"Arched Stone Room",r1_feat:"Arched ceiling · Cut stone · Kilim",
+    r1_p:"A calm room with two wooden beds under cut-stone walls and an arched ceiling. The stone keeps it cool like air-conditioning in summer, while kilims and wood warm it in the evening.",
+    r2_tag:"Wood",r2_h:"Warm Wood Room",r2_feat:"Wooden bed · Stone wall · Soft light",
+    r2_p:"A solid wooden bed, soft quilts and gentle light. A quiet, restful room to return to after a day of exploring the valleys.",
+    r3_tag:"Welcome",r3_h:"A Personal Welcome",r3_feat:"Tea on arrival · Personal note",
+    r3_p:"On arrival you're met with brewed tea, small treats and, more often than not, a note with your name on it. Honeymoon, anniversary or an ordinary holiday — what matters is how you're hosted.",
+    loc_eyebrow:"Location",loc_h:"In Ürgüp, close to everything.",
+    loc_p1:"Azalea Terrace sits in a quiet garden in Ürgüp — yet everything worth seeing in Cappadocia is within easy reach. Valleys, vineyards, underground cities and balloon launch areas are all close by.",
+    loc_f1:"In a garden, walking distance to central Ürgüp",
+    loc_f2:"Short drive to Göreme, Uçhisar and Avanos",
+    loc_f3:"Close to valley hikes and Ürgüp vineyards",
+    loc_f4:"Balloon launch areas within reach",
+    loc_cta:"Open in maps",ph_loc:"House & garden · Ürgüp",
+    gallery_eyebrow:"Gallery",gallery_h:"The garden & terrace that await you.",
+    ph_g1:"House & terrace · from the garden",ph_g2:"Terrace & house friend",ph_g3:"Roses",ph_g4:"Kilim daybed",ph_g5:"Arched room",ph_g6:"Garden & house",ph_g7:"Welcome tea",ph_g8:"The garden in winter",
+    gallery_src:"Photos are taken from the property's Instagram (@azaleaterracehotel) and Google profile; the main image was prepared as a concept. On the live site they're replaced with your own photos.",
+    ig_h:"Our daily life is on Instagram.",ig_p:"Fresh frames from the garden, terrace and rooms — @azaleaterracehotel",ig_cta:"Follow on Instagram",
+    book_eyebrow:"Booking",book_h:'Write to us directly, <em>no middlemen.</em>',
+    book_lede:"Leave your dates and we'll get back to you shortly by WhatsApp or phone. No commission — you get the best price straight from us.",
+    cc_label:"Phone & WhatsApp",
+    book_note:"Filling in the form creates a ready message; send it with one tap on WhatsApp, or copy it.",
+    label_name:"Your name",ph_name:"Your full name",label_in:"Check-in",label_out:"Check-out",label_people:"Guests",label_room:"Room",
+    opt_1p:"1 guest",opt_2p:"2 guests",opt_3p:"3 guests",opt_4p:"4+ guests",
+    opt_room1:"Arched Stone Room",opt_room2:"Warm Wood Room",opt_room0:"No preference",
+    btn_submit:"Create booking message",sent_h:"Your message is ready — copied",sent_copy:"Copy",sent_copied:"Copied ✓",sent_wa:"Send on WhatsApp",
+    wa_msg:"Hello, I'd like to request a booking at Azalea Terrace:",wa_name:"Name",wa_in:"Check-in",wa_out:"Check-out",wa_people:"Guests",wa_room:"Room",
+    alert_fill:"Please enter your name and check-in / check-out dates.",
+    foot_about:"A boutique guesthouse in Ürgüp with a rose garden, kilim daybeds and a terrace facing the balloons. May your morning start with tea and your day with Cappadocia.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Ürgüp, Nevşehir · Cappadocia",foot_hours:"Open all seasons · reception 24/7",
+    foot_rights:"© 2026 Azalea Terrace Hotel — All rights reserved.",foot_demo:"Sample / Demo Design"
+  },
+  es:{
+    meta_title:"Azalea Terrace Hotel — Alojamiento boutique con jardín y vistas a los globos en Ürgüp | Capadocia",
+    meta_desc:"Casa de huéspedes boutique en Ürgüp con jardín de rosas, divanes de kilim y una terraza frente a los globos. Azalea Terrace — reserva directa por teléfono o WhatsApp, sin intermediarios.",
+    nav_garden:"Jardín",nav_terrace:"Terraza",nav_rooms:"Habitaciones",nav_location:"Ubicación",nav_book:"Reservar",
+    dock_garden:"Jardín",dock_terrace:"Terraza",dock_rooms:"Habit.",dock_location:"Ubicación",dock_book:"Llamar",
+    theme_aria:"Tema claro / oscuro",
+    hero_eyebrow:"Ürgüp · Capadocia · Alojamiento boutique",
+    hero_title:'Rosas en el jardín,<br><em>globos en el horizonte.</em>',
+    hero_lede:"Una casa de piedra en Ürgüp, un jardín lleno de rosas y una terraza frente al valle. En Azalea Terrace, la mañana empieza con té en un diván de kilim y los globos a lo lejos en el horizonte.",
+    hero_cta1:"Llámanos",hero_cta2:"Ver habitaciones",scroll_hint:"Hacia el jardín",
+    stat1_n:"4,8★",stat1_l:"Puntuación Google",stat2_n:"Ürgüp",stat2_l:"En el corazón de Capadocia",
+    stat3_n:"Terraza",stat3_l:"Azotea frente al valle",stat4_n:"Jardín",stat4_l:"Jardín de rosas y pinos",
+    garden_eyebrow:"Jardín",garden_h:"Tomamos nuestro nombre del jardín.",
+    garden_sub:"Césped, pinos y rosas te reciben nada más cruzar la puerta. En Azalea Terrace el jardín no es un añadido: es el corazón del lugar.",
+    garden_lead:"Desayuno entre las rosas por la mañana, té a la sombra de los pinos al atardecer.",
+    garden_p1:"El frente de la casa es todo jardín: rosas rojas a lo largo de senderos de piedra, pinos jóvenes entre ellas, flores de temporada en macetas. El murmullo del pueblo se desvanece; solo queda el sonido de las hojas y los pájaros.",
+    garden_p2:"En invierno las mismas rosas florecen bajo la nieve y el jardín se vuelve un silencio blanco. En cualquier estación que llegues, el color de Capadocia está a tu puerta.",
+    garden_sign:"Azalea Terrace — Ürgüp",
+    ph_garden1:"Rosas del jardín",ph_garden2:"Sendero & casa",ph_garden3:"Césped & pinos",
+    terrace_eyebrow:"Terraza",terrace_h:"Globos en el horizonte, el valle ante ti.",
+    terrace_sub:"Divanes de kilim en la azotea, guirnaldas de luz arriba y el valle extendiéndose ante ti. Las mañanas para los globos a lo lejos, las tardes para las estrellas.",
+    terrace_t1:"Mañana · diván de kilim",terrace_t2:"De día · terraza",
+    ph_terrace1:"Terraza & vistas al valle",ph_terrace2:"Terraza & guirnaldas de luz",
+    terrace_p1:"Al final de la escalera el día se abre. Recuéstate en los divanes vestidos con kilims de colores; las bombillas se encienden arriba mientras el valle verde y los viñedos despiertan poco a poco ante ti.",
+    terrace_p2:"En las mañanas afortunadas los globos flotan en el horizonte lejano — té en mano, contempla el amanecer. Al caer la tarde, la misma terraza se vuelve un tranquilo punto de encuentro bajo las luces.",
+    terrace_c1:"Divanes de kilim",terrace_c2:"Guirnaldas de luz",terrace_c3:"Globos en el horizonte",terrace_c4:"Té matinal",
+    terrace_note:"Sal al amanecer; ten el té listo mientras los globos flotan en el horizonte.",
+    rooms_eyebrow:"Habitaciones",rooms_h:"El frescor de la piedra, el calor de la madera.",
+    rooms_sub:"Algunas habitaciones están excavadas en la propia roca de Capadocia, con techos abovedados; todas tienen kilims tejidos a mano y detalles cálidos de madera.",
+    r1_tag:"Abovedada",r1_h:"Habitación de Piedra Abovedada",r1_feat:"Techo abovedado · Piedra tallada · Kilim",
+    r1_p:"Una habitación tranquila con dos camas de madera bajo muros de piedra tallada y techo abovedado. La piedra la mantiene fresca como un aire acondicionado en verano; los kilims y la madera la caldean por la tarde.",
+    r2_tag:"Madera",r2_h:"Habitación Cálida de Madera",r2_feat:"Cama de madera · Muro de piedra · Luz tenue",
+    r2_p:"Una sólida cama de madera, edredones suaves y una luz tenue. Una habitación tranquila y serena a la que volver tras un día explorando los valles.",
+    r3_tag:"Bienvenida",r3_h:"Una Bienvenida Personal",r3_feat:"Té de bienvenida · Nota personal",
+    r3_p:"Al llegar te reciben con té recién hecho, pequeños detalles y, muy a menudo, una nota con tu nombre. Luna de miel, aniversario o unas vacaciones cualquiera: lo que importa es cómo te acogen.",
+    loc_eyebrow:"Ubicación",loc_h:"En Ürgüp, cerca de todo.",
+    loc_p1:"Azalea Terrace se encuentra en un jardín tranquilo en Ürgüp, y aun así todo lo que merece la pena ver en Capadocia está a tu alcance. Valles, viñedos, ciudades subterráneas y zonas de despegue de globos, todo cerca.",
+    loc_f1:"En un jardín, a poca distancia a pie del centro de Ürgüp",
+    loc_f2:"Corto trayecto en coche a Göreme, Uçhisar y Avanos",
+    loc_f3:"Cerca de rutas por los valles y viñedos de Ürgüp",
+    loc_f4:"Zonas de despegue de globos a poca distancia",
+    loc_cta:"Abrir en el mapa",ph_loc:"Casa & jardín · Ürgüp",
+    gallery_eyebrow:"Galería",gallery_h:"El jardín y la terraza que te esperan.",
+    ph_g1:"Casa & terraza · desde el jardín",ph_g2:"Terraza & amigo de la casa",ph_g3:"Rosas",ph_g4:"Diván de kilim",ph_g5:"Habitación abovedada",ph_g6:"Jardín & casa",ph_g7:"Té de bienvenida",ph_g8:"El jardín en invierno",
+    gallery_src:"Las fotos provienen del Instagram (@azaleaterracehotel) y del perfil de Google del alojamiento; la imagen principal se preparó como concepto. En el sitio publicado se sustituyen por tus propias fotos.",
+    ig_h:"Nuestro día a día está en Instagram.",ig_p:"Imágenes recientes del jardín, la terraza y las habitaciones — @azaleaterracehotel",ig_cta:"Seguir en Instagram",
+    book_eyebrow:"Reserva",book_h:'Escríbenos directamente, <em>sin intermediarios.</em>',
+    book_lede:"Deja tus fechas y te respondemos enseguida por WhatsApp o teléfono. Sin comisión: consigues el mejor precio directamente con nosotros.",
+    cc_label:"Teléfono & WhatsApp",
+    book_note:"Al rellenar el formulario se crea un mensaje listo; envíalo con un toque por WhatsApp o cópialo.",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_in:"Entrada",label_out:"Salida",label_people:"Personas",label_room:"Habitación",
+    opt_1p:"1 persona",opt_2p:"2 personas",opt_3p:"3 personas",opt_4p:"4+ personas",
+    opt_room1:"Habitación de Piedra Abovedada",opt_room2:"Habitación Cálida de Madera",opt_room0:"Sin preferencia",
+    btn_submit:"Crear mensaje de reserva",sent_h:"Tu mensaje está listo — copiado",sent_copy:"Copiar",sent_copied:"Copiado ✓",sent_wa:"Enviar por WhatsApp",
+    wa_msg:"Hola, quisiera solicitar una reserva en Azalea Terrace:",wa_name:"Nombre",wa_in:"Entrada",wa_out:"Salida",wa_people:"Personas",wa_room:"Habitación",
+    alert_fill:"Por favor, introduce tu nombre y las fechas de entrada y salida.",
+    foot_about:"Una casa de huéspedes boutique en Ürgüp con jardín de rosas, divanes de kilim y una terraza frente a los globos. Que tu mañana empiece con té y tu día con Capadocia.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Ürgüp, Nevşehir · Capadocia",foot_hours:"Abierto todo el año · recepción 24/7",
+    foot_rights:"© 2026 Azalea Terrace Hotel — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo"
+  },
+  "zh-CN":{
+    meta_title:"Azalea Terrace 酒店 — 于尔居普花园与热气球景观精品住宿 | 卡帕多奇亚",
+    meta_desc:"于尔居普的精品民宿，拥有玫瑰花园、基里姆躺椅和面朝热气球的露台。Azalea Terrace — 电话或 WhatsApp 直接预订，无中介。",
+    nav_garden:"花园",nav_terrace:"露台",nav_rooms:"客房",nav_location:"位置",nav_book:"预订",
+    dock_garden:"花园",dock_terrace:"露台",dock_rooms:"客房",dock_location:"位置",dock_book:"致电",
+    theme_aria:"浅色 / 深色主题",
+    hero_eyebrow:"于尔居普 · 卡帕多奇亚 · 精品民宿",
+    hero_title:'玫瑰在花园里，<br><em>热气球在天边。</em>',
+    hero_lede:"于尔居普的一栋石屋、一座满是玫瑰的花园，还有一处面朝山谷的露台。在 Azalea Terrace，清晨从基里姆躺椅上的一杯茶与天边的热气球开始。",
+    hero_cta1:"致电我们",hero_cta2:"查看客房",scroll_hint:"走进花园",
+    stat1_n:"4.8★",stat1_l:"谷歌评分",stat2_n:"于尔居普",stat2_l:"卡帕多奇亚的心脏",
+    stat3_n:"露台",stat3_l:"面朝山谷的屋顶",stat4_n:"花园",stat4_l:"玫瑰与松树花园",
+    garden_eyebrow:"花园",garden_h:"我们的名字来自花园。",
+    garden_sub:"一踏进门，草坪、松树与玫瑰便迎接您。在 Azalea Terrace，花园不是附属——而是这里的心脏。",
+    garden_lead:"清晨在玫瑰间用早餐，黄昏在松荫下品一杯茶。",
+    garden_p1:"屋前是一整片花园：石径两旁是红玫瑰，其间点缀着幼松，花盆里是应季的花。小镇的喧嚣渐渐远去，只剩下树叶与鸟鸣。",
+    garden_p2:"冬天，同样的玫瑰在雪下绽放，花园化作一片洁白的宁静。无论您在哪个季节到来，卡帕多奇亚的色彩就在您门前。",
+    garden_sign:"Azalea Terrace — 于尔居普",
+    ph_garden1:"花园里的玫瑰",ph_garden2:"石径与石屋",ph_garden3:"草坪与松树",
+    terrace_eyebrow:"露台",terrace_h:"远处的热气球，眼前的山谷。",
+    terrace_sub:"屋顶露台上的基里姆躺椅、头顶的串灯，还有在您眼前铺展的山谷。清晨属于远处的热气球，夜晚属于繁星。",
+    terrace_t1:"清晨 · 基里姆躺椅",terrace_t2:"白日 · 露台",
+    ph_terrace1:"露台与山谷景观",ph_terrace2:"露台与串灯",
+    terrace_p1:"登上台阶尽头，白昼在眼前展开。躺进铺着彩色基里姆的躺椅；头顶的灯串渐渐亮起，绿色的山谷与葡萄园在您面前缓缓苏醒。",
+    terrace_p2:"幸运的清晨，热气球在远方的天际缓缓飘过——茶在手中，静看晨光。夜幕降临，同一处露台便在串灯下化作宁静的聚会之地。",
+    terrace_c1:"基里姆躺椅",terrace_c2:"串灯",terrace_c3:"天边的热气球",terrace_c4:"清晨茶",
+    terrace_note:"黎明时登上露台；在远处热气球飘过时，让茶已备好。",
+    rooms_eyebrow:"客房",rooms_h:"石的清凉，木的温暖。",
+    rooms_sub:"部分客房凿于卡帕多奇亚的岩石之中，拱形天花；每一间都有手织基里姆与温暖的木质细节。",
+    r1_tag:"拱形",r1_h:"拱形石屋客房",r1_feat:"拱形天花 · 切石墙 · 基里姆",
+    r1_p:"在切石墙与拱形天花之下，一间设有两张木床的宁静客房。石头让它在夏日凉爽如空调；基里姆与木材则在夜晚为它带来暖意。",
+    r2_tag:"木质",r2_h:"温暖木质客房",r2_feat:"木床 · 石墙 · 柔和灯光",
+    r2_p:"结实的木床、柔软的被褥与柔和的灯光。在山谷间探索一整天后，一间可以归来的、宁静安详的客房。",
+    r3_tag:"迎宾",r3_h:"专属迎宾",r3_feat:"到店茶点 · 专属留言",
+    r3_p:"抵达时，迎接您的是现沏的茶、小点心，而且往往还有一张写着您名字的卡片。蜜月、纪念日，或只是一次普通的假期——重要的是您被如何款待。",
+    loc_eyebrow:"位置",loc_h:"在于尔居普，通往各处都便利。",
+    loc_p1:"Azalea Terrace 坐落在于尔居普一处宁静的花园中，却又能轻松抵达卡帕多奇亚每一处值得一看的地方。山谷、葡萄园、地下城与热气球起飞区都近在咫尺。",
+    loc_f1:"位于花园中，步行即可到于尔居普中心",
+    loc_f2:"驱车不久即达格雷梅、乌奇希萨尔与阿瓦诺斯",
+    loc_f3:"靠近山谷徒步路线与于尔居普葡萄园",
+    loc_f4:"热气球起飞区在可达范围内",
+    loc_cta:"在地图中打开",ph_loc:"石屋与花园 · 于尔居普",
+    gallery_eyebrow:"相册",gallery_h:"等待您的花园与露台。",
+    ph_g1:"石屋与露台 · 自花园",ph_g2:"露台与看家犬",ph_g3:"玫瑰",ph_g4:"基里姆躺椅",ph_g5:"拱形客房",ph_g6:"花园与石屋",ph_g7:"迎宾茶",ph_g8:"冬日的花园",
+    gallery_src:"照片取自该住宿的 Instagram（@azaleaterracehotel）与谷歌资料；主图为概念图。正式上线时会替换为您自己的照片。",
+    ig_h:"我们的日常都在 Instagram。",ig_p:"来自花园、露台与客房的最新照片 — @azaleaterracehotel",ig_cta:"在 Instagram 关注",
+    book_eyebrow:"预订",book_h:'直接联系我们，<em>没有中介。</em>',
+    book_lede:"留下您的日期，我们会尽快通过 WhatsApp 或电话回复。没有佣金——直接从我们这里获得最优价格。",
+    cc_label:"电话 & WhatsApp",
+    book_note:"填写表单即生成一条现成的消息；在 WhatsApp 上一键发送，或复制它。",
+    label_name:"您的姓名",ph_name:"您的全名",label_in:"入住",label_out:"退房",label_people:"人数",label_room:"客房",
+    opt_1p:"1 人",opt_2p:"2 人",opt_3p:"3 人",opt_4p:"4 人以上",
+    opt_room1:"拱形石屋客房",opt_room2:"温暖木质客房",opt_room0:"无偏好",
+    btn_submit:"生成预订消息",sent_h:"消息已就绪 — 已复制",sent_copy:"复制",sent_copied:"已复制 ✓",sent_wa:"通过 WhatsApp 发送",
+    wa_msg:"您好，我想申请 Azalea Terrace 的预订：",wa_name:"姓名",wa_in:"入住",wa_out:"退房",wa_people:"人数",wa_room:"客房",
+    alert_fill:"请填写您的姓名以及入住和退房日期。",
+    foot_about:"于尔居普的一家精品民宿，拥有玫瑰花园、基里姆躺椅和面朝热气球的露台。愿您的清晨从一杯茶开始，您的一天从卡帕多奇亚开始。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"于尔居普，内夫谢希尔 · 卡帕多奇亚",foot_hours:"四季营业 · 前台 24 小时",
+    foot_rights:"© 2026 Azalea Terrace 酒店 — 版权所有。",foot_demo:"示例 / 演示设计"
+  },
+  ko:{
+    meta_title:"Azalea Terrace 호텔 — 위르귀프의 정원과 벌룬 뷰 부티크 숙소 | 카파도키아",
+    meta_desc:"장미 정원과 킬림 데이베드, 열기구를 마주한 테라스를 갖춘 위르귀프의 부티크 게스트하우스. Azalea Terrace — 전화나 WhatsApp으로 직접 예약, 중개 없음.",
+    nav_garden:"정원",nav_terrace:"테라스",nav_rooms:"객실",nav_location:"위치",nav_book:"예약",
+    dock_garden:"정원",dock_terrace:"테라스",dock_rooms:"객실",dock_location:"위치",dock_book:"전화",
+    theme_aria:"라이트 / 다크 테마",
+    hero_eyebrow:"위르귀프 · 카파도키아 · 부티크 숙소",
+    hero_title:'정원엔 장미가,<br><em>저 멀리엔 열기구가.</em>',
+    hero_lede:"위르귀프의 돌집, 장미로 가득한 정원, 그리고 계곡을 마주한 테라스. Azalea Terrace의 아침은 킬림 데이베드에서 마시는 차 한 잔과 저 멀리 떠오르는 열기구로 시작됩니다.",
+    hero_cta1:"전화하기",hero_cta2:"객실 보기",scroll_hint:"정원으로",
+    stat1_n:"4.8★",stat1_l:"구글 평점",stat2_n:"위르귀프",stat2_l:"카파도키아의 중심",
+    stat3_n:"테라스",stat3_l:"계곡을 마주한 옥상",stat4_n:"정원",stat4_l:"장미와 소나무 정원",
+    garden_eyebrow:"정원",garden_h:"우리 이름은 정원에서 왔습니다.",
+    garden_sub:"문을 들어서는 순간 잔디와 소나무, 장미가 당신을 맞이합니다. Azalea Terrace에서 정원은 부속이 아니라 — 이곳의 심장입니다.",
+    garden_lead:"아침엔 장미 사이에서의 조식, 저녁엔 소나무 그늘에서의 차 한 잔.",
+    garden_p1:"집 앞은 온통 정원입니다: 돌길을 따라 붉은 장미가 피고 그 사이로 어린 소나무가, 화분엔 제철 꽃이 담깁니다. 마을의 소음은 멀어지고, 남는 것은 잎사귀와 새의 소리뿐입니다.",
+    garden_p2:"겨울이면 같은 장미가 눈 아래 피어나고, 정원은 새하얀 고요에 잠깁니다. 어느 계절에 오시든, 카파도키아의 빛깔이 문 앞에 있습니다.",
+    garden_sign:"Azalea Terrace — 위르귀프",
+    ph_garden1:"정원의 장미",ph_garden2:"돌길 & 집",ph_garden3:"잔디 & 소나무",
+    terrace_eyebrow:"테라스",terrace_h:"저 멀리 열기구, 눈앞엔 계곡.",
+    terrace_sub:"옥상의 킬림 데이베드, 머리 위로 늘어진 조명, 그리고 눈앞에 펼쳐지는 계곡. 아침은 저 멀리 열기구를 위해, 저녁은 별을 위해.",
+    terrace_t1:"아침 · 킬림 데이베드",terrace_t2:"한낮 · 테라스",
+    ph_terrace1:"테라스 & 계곡 전망",ph_terrace2:"테라스 & 조명 줄",
+    terrace_p1:"계단 끝에 이르면 하루가 열립니다. 색색의 킬림으로 덮인 데이베드에 몸을 누이세요; 머리 위 전구가 따뜻해지고, 푸른 계곡과 포도밭이 눈앞에서 천천히 깨어납니다.",
+    terrace_p2:"운 좋은 아침이면 열기구가 저 멀리 지평선 위로 떠갑니다 — 차를 손에 들고 아침을 바라보세요. 저녁이 내리면 같은 테라스가 조명 아래 고요한 만남의 장소가 됩니다.",
+    terrace_c1:"킬림 데이베드",terrace_c2:"조명 줄",terrace_c3:"저 멀리 열기구",terrace_c4:"아침 차",
+    terrace_note:"새벽에 테라스로 나가세요; 저 멀리 열기구가 떠갈 때 차를 준비해 두세요.",
+    rooms_eyebrow:"객실",rooms_h:"돌의 서늘함, 나무의 따뜻함.",
+    rooms_sub:"일부 객실은 카파도키아의 바위를 깎아 만든 아치형 천장을 지녔고, 모든 객실엔 손으로 짠 킬림과 따뜻한 목재 감성이 담겨 있습니다.",
+    r1_tag:"아치형",r1_h:"아치형 스톤 룸",r1_feat:"아치 천장 · 깎은 돌 · 킬림",
+    r1_p:"깎은 돌 벽과 아치형 천장 아래, 두 개의 나무 침대를 갖춘 아늑한 객실. 돌은 여름엔 에어컨처럼 시원함을 지키고, 킬림과 나무는 저녁이면 방을 데웁니다.",
+    r2_tag:"목재",r2_h:"따뜻한 우드 룸",r2_feat:"원목 침대 · 돌 벽 · 은은한 조명",
+    r2_p:"단단한 원목 침대, 포근한 이불, 그리고 은은한 조명. 하루 종일 계곡을 누빈 뒤 돌아올, 조용하고 평온한 객실.",
+    r3_tag:"웰컴",r3_h:"당신만을 위한 환대",r3_feat:"도착 시 차 · 개인 메시지",
+    r3_p:"도착하면 갓 우린 차와 작은 간식, 그리고 대개는 당신의 이름이 적힌 카드가 맞이합니다. 신혼여행이든 기념일이든 평범한 휴가든 — 중요한 건 어떻게 대접받느냐입니다.",
+    loc_eyebrow:"위치",loc_h:"위르귀프에서, 어디든 가깝게.",
+    loc_p1:"Azalea Terrace는 위르귀프의 조용한 정원 안에 있으면서도, 카파도키아에서 볼 만한 모든 곳에 쉽게 닿습니다. 계곡, 포도밭, 지하 도시, 열기구 이륙 지역이 모두 가까이 있습니다.",
+    loc_f1:"정원 안에 있으며 위르귀프 중심까지 도보 거리",
+    loc_f2:"괴레메, 우치히사르, 아바노스까지 짧은 차편",
+    loc_f3:"계곡 트레킹과 위르귀프 포도밭에 인접",
+    loc_f4:"열기구 이륙 지역까지 이동 가능 거리",
+    loc_cta:"지도에서 열기",ph_loc:"집 & 정원 · 위르귀프",
+    gallery_eyebrow:"갤러리",gallery_h:"당신을 기다리는 정원과 테라스.",
+    ph_g1:"집 & 테라스 · 정원에서",ph_g2:"테라스 & 반려견",ph_g3:"장미",ph_g4:"킬림 데이베드",ph_g5:"아치형 객실",ph_g6:"정원 & 집",ph_g7:"웰컴 차",ph_g8:"겨울의 정원",
+    gallery_src:"사진은 숙소의 인스타그램(@azaleaterracehotel)과 구글 프로필에서 가져왔으며, 메인 이미지는 콘셉트로 제작되었습니다. 실제 공개 사이트에서는 원하시는 자체 사진으로 교체됩니다.",
+    ig_h:"우리의 일상은 인스타그램에 있습니다.",ig_p:"정원, 테라스, 객실의 최신 사진 — @azaleaterracehotel",ig_cta:"인스타그램에서 팔로우",
+    book_eyebrow:"예약",book_h:'중개 없이, <em>직접 문의하세요.</em>',
+    book_lede:"날짜를 남겨 주시면 WhatsApp이나 전화로 곧 답해 드립니다. 수수료 없이, 최적의 가격을 저희에게서 바로 받으실 수 있습니다.",
+    cc_label:"전화 & WhatsApp",
+    book_note:"양식을 채우면 바로 쓸 수 있는 메시지가 만들어집니다; WhatsApp에서 한 번에 보내거나 복사하세요.",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_in:"체크인",label_out:"체크아웃",label_people:"인원",label_room:"객실",
+    opt_1p:"1명",opt_2p:"2명",opt_3p:"3명",opt_4p:"4명 이상",
+    opt_room1:"아치형 스톤 룸",opt_room2:"따뜻한 우드 룸",opt_room0:"상관없음",
+    btn_submit:"예약 메시지 만들기",sent_h:"메시지가 준비됐습니다 — 복사됨",sent_copy:"복사",sent_copied:"복사됨 ✓",sent_wa:"WhatsApp으로 보내기",
+    wa_msg:"안녕하세요, Azalea Terrace 예약을 요청합니다:",wa_name:"성함",wa_in:"체크인",wa_out:"체크아웃",wa_people:"인원",wa_room:"객실",
+    alert_fill:"성함과 체크인 · 체크아웃 날짜를 입력해 주세요.",
+    foot_about:"장미 정원과 킬림 데이베드, 열기구를 마주한 테라스를 갖춘 위르귀프의 부티크 게스트하우스. 아침은 차로, 하루는 카파도키아로 시작하시길.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"위르귀프, 네브셰히르 · 카파도키아",foot_hours:"사계절 영업 · 리셉션 24시간",
+    foot_rights:"© 2026 Azalea Terrace 호텔 — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인"
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  const tb = document.getElementById('themeBtn');
+  if(tb && dict.theme_aria) tb.setAttribute('aria-label', dict.theme_aria);
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  try{ localStorage.setItem('azalea_lang', lang); }catch(e){}
+  if(window.__relight) requestAnimationFrame(window.__relight);
+}
+function initLang(){
+  let lang = null;
+  const url = new URLSearchParams(location.search).get('lang');
+  if(url && SUPPORTED.includes(url)) lang = url;
+  if(!lang){ try{ const s=localStorage.getItem('azalea_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click', ()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+// ==================== TEMA ====================
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('azalea_theme', t); }catch(e){}
+}
+document.getElementById('themeBtn').addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme')==='light' ? 'dark' : 'light';
+  setTheme(cur);
+});
+
+// ==================== MOBİL MENÜ ====================
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+// ==================== NAV SCROLL ====================
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScroll);onScroll();
+
+// ==================== GARLAND NAV (21st.dev portu — asılı ampul aktif bölümde yanar) ====================
+(function(){
+  const bulb = document.getElementById('bulb');
+  const bulbDock = document.getElementById('bulbDock');
+  const navLinks = Array.from(document.querySelectorAll('#navlinks a[data-spy]'));
+  const dockLinks = Array.from(document.querySelectorAll('#dock a[data-spy]'));
+  let activeId = null;
+  function place(light, link, container){
+    if(!light) return;
+    if(!link){ light.classList.remove('on'); return; }
+    const cr = container.getBoundingClientRect();
+    const lr = link.getBoundingClientRect();
+    const w = Math.max(lr.width, 40);
+    light.style.width = w + 'px';
+    light.style.transform = 'translateX(' + (lr.left - cr.left + (lr.width - w)/2) + 'px)';
+    light.classList.add('on');
+  }
+  function relight(){
+    const dl = navLinks.find(a=>a.getAttribute('data-spy')===activeId) || null;
+    const kl = dockLinks.find(a=>a.getAttribute('data-spy')===activeId) || null;
+    place(bulb, dl, document.getElementById('navlinks'));
+    place(bulbDock, kl, document.getElementById('dock'));
+    navLinks.forEach(a=>a.classList.toggle('active', a===dl));
+    dockLinks.forEach(a=>a.classList.toggle('active', a===kl));
+  }
+  window.__relight = relight;
+  const ids = ['garden','terrace','rooms','location','book'];
+  const spy = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ activeId = e.target.id; relight(); } });
+  },{rootMargin:'-40% 0px -52% 0px'});
+  ids.forEach(id=>{ const el=document.getElementById(id); if(el) spy.observe(el); });
+  const hero = document.querySelector('.hero');
+  const heroSpy = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting && e.intersectionRatio > .45){ activeId=null; relight(); } });
+  },{threshold:[.45]});
+  if(hero) heroSpy.observe(hero);
+  [...navLinks, ...dockLinks].forEach(a=>{
+    a.addEventListener('click', ()=>{ activeId = a.getAttribute('data-spy'); relight(); });
+  });
+  window.addEventListener('resize', ()=>requestAnimationFrame(relight));
+  window.addEventListener('load', ()=>setTimeout(relight, 200));
+})();
+
+// ==================== REVEAL ====================
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.16});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ==================== GÖRSEL YÜKLEME ====================
+(function(){
+  const base='assets/images/';
+  function tryImg(el, file){
+    const img=new Image();
+    img.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; const l=el.querySelector('.ph-label'); if(l) l.style.display='none'; };
+    img.onerror=()=>{};
+    img.src=base+file;
+  }
+  const hero=document.getElementById('heroPhoto');
+  if(hero){ const hi=new Image(); hi.onload=()=>{ hero.style.backgroundImage=`url('${base}hero.jpg')`; hero.classList.add('has-img'); }; hi.onerror=()=>{}; hi.src=base+'hero.jpg'; }
+  document.querySelectorAll('[data-img]').forEach(t=>tryImg(t,t.getAttribute('data-img')));
+})();
+
+// ==================== REZERVASYON — mesaj oluştur (WhatsApp birincil, kopyala) ====================
+const WHATSAPP = "905550713355";
+function buildMsg(){
+  const d = I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const cin=document.getElementById('f-in').value;
+  const cout=document.getElementById('f-out').value;
+  const count=document.getElementById('f-count').value;
+  const room=document.getElementById('f-room').value;
+  if(!name||!cin||!cout){ alert(d.alert_fill); return null; }
+  return d.wa_msg+"\n\n"+
+    d.wa_name+": "+name+"\n"+
+    d.wa_in+": "+cin+"\n"+
+    d.wa_out+": "+cout+"\n"+
+    d.wa_people+": "+count+"\n"+
+    d.wa_room+": "+room;
+}
+function buildBooking(){
+  const msg = buildMsg();
+  if(msg===null) return;
+  document.getElementById('sentMsg').value = msg;
+  const panel = document.getElementById('sentPanel');
+  panel.classList.add('show');
+  const wa = document.getElementById('waBtn');
+  if(WHATSAPP && WHATSAPP !== "905000000000"){
+    wa.style.display='inline-flex';
+    wa.href = "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
+  }
+  copyMsg(true);
+}
+function copyMsg(silent){
+  const ta = document.getElementById('sentMsg');
+  const d = I18N[currentLang];
+  const done = ()=>{
+    const b = document.getElementById('copyBtn').querySelector('span');
+    b.textContent = d.sent_copied;
+    setTimeout(()=>{ b.textContent = d.sent_copy; }, 2200);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(ta.value).then(done).catch(()=>{ if(!silent){ ta.select(); try{document.execCommand('copy');done();}catch(e){} } });
+  } else {
+    ta.select();
+    try{ document.execCommand('copy'); done(); }catch(e){}
+  }
+}
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items = Array.from(document.querySelectorAll('.tile[data-img], .room-img[data-img], .tv[data-img], .gv[data-img], .loc-visual[data-img]'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  const capOf = t => { const l = t.querySelector('.ph-label') || t.querySelector('.time') || t.querySelector('.tag'); return l ? l.textContent.trim() : (t.getAttribute('aria-label')||''); };
+  function show(i){ idx = (i + items.length) % items.length; const t = items[idx]; img.src = base + t.getAttribute('data-img'); cap.textContent = capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>{ t.addEventListener('click',()=>open(i)); });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+// ==================== BAŞLAT ====================
+initLang();
+</script>
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 66;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+</body>
+</html>

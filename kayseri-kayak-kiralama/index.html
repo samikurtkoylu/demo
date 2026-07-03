@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Kayseri Kayak Kiralama — Erciyes Kayak & Snowboard Kiralama</title>
+<meta name="description" data-i18n="meta_desc" content="Erciyes'te kayak ve snowboard kiralama. Bakımlı ekipman, doğru beden ve ayar, hızlı teslim. Kayseri Kayak Kiralama ile kaymaya hazır olun.">
+<style>
+  :root{
+    /* AÇIK (kar) — varsayılan */
+    --bg:#e9f1f7; --bg-2:#ffffff; --surface:#ffffff; --panel:#f2f7fb;
+    --text:#0c1a28; --muted:#516375; --faint:#7d8ea0;
+    --line:rgba(12,26,40,.12); --line-soft:rgba(12,26,40,.07);
+    --ice:#0b84c4; --ice-deep:#075985; --ice-soft:#d3ecfa;
+    --accent:#ff6a1a; --accent-2:#ff8a3d; --accent-ink:#ff6a1a;
+    --hero-ink:#ffffff;
+    color-scheme:light;
+  }
+  [data-theme="dark"]{
+    --bg:#08131f; --bg-2:#0c1b2b; --surface:#102132; --panel:#0e2032;
+    --text:#eaf3fa; --muted:#9db3c6; --faint:#728799;
+    --line:rgba(234,243,250,.14); --line-soft:rgba(234,243,250,.07);
+    --ice:#3cb6f0; --ice-deep:#7dd3fc; --ice-soft:rgba(60,182,240,.16);
+    --accent:#ff7f33; --accent-2:#ffa15c; --accent-ink:#ff9a55;
+    --hero-ink:#ffffff;
+    color-scheme:dark;
+  }
+  /* Yazı tipi aileleri — ağır grotesk kinetik başlık + nötr gövde */
+  :root{
+    --disp:"Arial Black","Helvetica Neue",Arial,"Segoe UI",system-ui,sans-serif;
+    --body:"Helvetica Neue",Arial,"Segoe UI",Roboto,system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,"DejaVu Sans Mono",Consolas,"Courier New",monospace;
+  }
+  html[lang="zh-CN"]{--disp:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;--body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+  html[lang="ko"]{--disp:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;--body:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{font-family:var(--body);color:var(--text);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.62;overflow-x:hidden;transition:background .5s,color .5s}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  @media(max-width:640px){.wrap{padding:0 20px}}
+
+  /* ---------- kinetik tipografi ---------- */
+  .disp{font-family:var(--disp);font-weight:900;line-height:.94;letter-spacing:-.028em;text-transform:uppercase}
+  html[lang="zh-CN"] .disp,html[lang="ko"] .disp{font-weight:800;letter-spacing:-.01em;text-transform:none;line-height:1.08}
+  .k-out{-webkit-text-stroke:2px currentColor;color:transparent;paint-order:stroke fill}
+  html[lang="zh-CN"] .k-out,html[lang="ko"] .k-out{-webkit-text-stroke:0;color:inherit}
+  .accent{color:var(--accent-ink)}
+  .eyebrow{font-family:var(--mono);text-transform:uppercase;letter-spacing:.34em;font-size:.68rem;font-weight:600;color:var(--ice-deep)}
+  [data-theme="dark"] .eyebrow{color:var(--ice-deep)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.12em}
+  .eyebrow .dotmark{display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;margin-right:10px;transform:translateY(-1px)}
+
+  /* ---------- signature: film grain + carve line + snow ---------- */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.045;mix-blend-mode:overlay}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--ice),var(--accent));box-shadow:0 0 14px rgba(255,106,26,.5)}
+  @supports (animation-timeline:scroll()){.scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}}
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  /* carve/iz motifi — kayak izini andıran akan çizgi */
+  .carve{position:relative;width:100%;height:70px;overflow:hidden;pointer-events:none}
+  .carve svg{position:absolute;inset:0;width:100%;height:100%}
+  .carve path{fill:none;stroke:var(--ice);stroke-width:2.5;stroke-linecap:round;opacity:.55;
+    stroke-dasharray:2400;stroke-dashoffset:2400;transition:stroke-dashoffset 1.8s cubic-bezier(.4,0,.15,1)}
+  .carve path.p2{stroke:var(--accent);opacity:.5;stroke-width:2}
+  .carve.in path{stroke-dashoffset:0}
+  @media(prefers-reduced-motion:reduce){.carve path{stroke-dashoffset:0;transition:none}}
+
+  /* ---------- nav (carve-wave underline + mobil dock) ---------- */
+  nav.top{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:center;gap:16px;
+    padding:16px 32px;transition:background .4s,box-shadow .4s,padding .4s}
+  nav.top.scrolled{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px) saturate(1.2);box-shadow:0 1px 0 var(--line);padding-top:12px;padding-bottom:12px}
+  @supports not (background:color-mix(in srgb,red 50%,blue)){nav.top.scrolled{background:var(--bg)}}
+  .brand{display:flex;align-items:center;gap:11px;flex:none}
+  .brand .mark{width:34px;height:34px;flex:none;color:var(--ice)}
+  nav.top:not(.scrolled) .brand .mark{color:#fff}
+  .brand .wm{display:flex;flex-direction:column;line-height:1}
+  .brand .wm b{font-family:var(--disp);font-weight:900;font-size:1.02rem;letter-spacing:-.01em;text-transform:uppercase;color:var(--text)}
+  nav.top:not(.scrolled) .brand .wm b{color:#fff}
+  .brand .wm span{font-family:var(--mono);font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;color:var(--faint);margin-top:3px}
+  nav.top:not(.scrolled) .brand .wm span{color:rgba(255,255,255,.7)}
+  html[lang="zh-CN"] .brand .wm b,html[lang="ko"] .brand .wm b{text-transform:none}
+  .navlinks{display:flex;gap:30px;align-items:center;margin-left:auto}
+  .navlinks a.flink{font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+    padding-bottom:5px;transition:color .3s;text-decoration:none;position:relative}
+  nav.top:not(.scrolled) .navlinks a.flink{color:rgba(255,255,255,.82)}
+  html[lang="zh-CN"] .navlinks a.flink,html[lang="ko"] .navlinks a.flink{text-transform:none;letter-spacing:.03em;font-size:.86rem}
+  .navlinks a.flink:hover{color:var(--text)}
+  nav.top:not(.scrolled) .navlinks a.flink:hover{color:#fff}
+  .navlinks a.flink.active{color:var(--text);text-decoration:underline wavy var(--ice);text-decoration-thickness:2px;text-underline-offset:7px}
+  nav.top:not(.scrolled) .navlinks a.flink.active{color:#fff;text-decoration-color:var(--ice)}
+  .nav-cta{font-family:var(--mono)!important;border:1.5px solid var(--accent);color:var(--accent-ink)!important;padding:9px 20px;border-radius:2px;
+    font-size:.74rem!important;letter-spacing:.1em;text-transform:uppercase;transition:.3s;text-decoration:none!important}
+  .nav-cta:hover{background:var(--accent);color:#fff!important}
+  nav.top:not(.scrolled) .nav-cta{border-color:var(--accent);color:#ffb98a!important}
+  nav.top:not(.scrolled) .nav-cta:hover{background:var(--accent);color:#fff!important}
+  html[lang="zh-CN"] .nav-cta,html[lang="ko"] .nav-cta{text-transform:none;letter-spacing:.02em}
+  .tools{display:flex;align-items:center;gap:4px;flex:none}
+  .langs{display:flex;align-items:center;gap:1px}
+  .langs button{background:none;border:none;color:var(--muted);font-family:var(--mono);font-size:.72rem;cursor:pointer;padding:5px 6px;border-radius:3px;letter-spacing:.02em;transition:.25s}
+  nav.top:not(.scrolled) .langs button{color:rgba(255,255,255,.72)}
+  .langs button:hover{color:var(--text)}
+  nav.top:not(.scrolled) .langs button:hover{color:#fff}
+  .langs button.active{color:var(--accent-ink);font-weight:700}
+  nav.top:not(.scrolled) .langs button.active{color:#ffb98a}
+  .theme-btn{background:none;border:1px solid var(--line);border-radius:50%;width:34px;height:34px;display:grid;place-items:center;cursor:pointer;color:var(--text);transition:.3s;flex:none;margin-left:6px}
+  nav.top:not(.scrolled) .theme-btn{border-color:rgba(255,255,255,.4);color:#fff}
+  .theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .theme-btn svg{width:16px;height:16px}
+  .theme-btn .moon{display:none}
+  [data-theme="dark"] .theme-btn .sun{display:none}
+  [data-theme="dark"] .theme-btn .moon{display:block}
+  .navlinks{transition:opacity .3s}
+
+  /* mobil dock */
+  .dock{display:none}
+  @media(max-width:900px){
+    .navlinks{display:none}
+    .dock{display:flex;position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:80;
+      background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(14px) saturate(1.3);
+      border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 34px rgba(0,0,0,.22);
+      padding:7px 7px;gap:2px;width:min(94vw,440px);justify-content:space-between}
+    @supports not (background:color-mix(in srgb,red 50%,blue)){.dock{background:var(--surface)}}
+    .dock a{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;
+      padding:7px 3px;border-radius:11px;color:var(--muted);transition:.25s;position:relative}
+    .dock a svg{width:19px;height:19px;flex:none}
+    .dock a .dl{font-family:var(--mono);font-size:.56rem;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;text-align:center}
+    html[lang="zh-CN"] .dock a .dl,html[lang="ko"] .dock a .dl{font-size:.6rem;letter-spacing:0}
+    .dock a.active{color:var(--accent-ink);background:var(--ice-soft)}
+    .dock a.active::before{content:"";position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:22px;height:3px;border-radius:3px;background:var(--accent)}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;background:#0b1622}
+  .hero-photo{position:absolute;inset:0;z-index:1;background:url('assets/images/hero.jpg') center/cover no-repeat;
+    animation:kenburns 36s ease-in-out infinite alternate;transform-origin:58% 42%}
+  @keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.12)}}
+  @media(prefers-reduced-motion:reduce){.hero-photo{animation:none}}
+  #hero-gradient{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:overlay;opacity:.55;
+    --gradient-color-1:#0b3a5c; --gradient-color-2:#0b84c4; --gradient-color-3:#eaf6ff; --gradient-color-4:#ff6a1a}
+  .no-webgl #hero-gradient{display:none}
+  #snow{position:absolute;inset:0;z-index:3;pointer-events:none}
+  .hero::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+    background:linear-gradient(180deg,rgba(6,16,26,.5) 0%,rgba(6,16,26,.12) 32%,rgba(6,16,26,.35) 62%,rgba(6,16,26,.82) 100%)}
+  .hero-carve{position:absolute;left:0;right:0;bottom:26vh;z-index:5;opacity:.75;pointer-events:none}
+  .hero-carve svg{width:120%;height:180px;display:block}
+  .hero-carve path{fill:none;stroke:#eaf6ff;stroke-width:2;opacity:.4;stroke-dasharray:3000;stroke-dashoffset:3000;animation:draw 3s cubic-bezier(.4,0,.15,1) .3s forwards}
+  .hero-carve path.o{stroke:#ff8a3d;opacity:.55}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @media(prefers-reduced-motion:reduce){.hero-carve path{animation:none;stroke-dashoffset:0}}
+  .hero-inner{position:relative;z-index:6;width:100%;padding:0 0 15vh;color:var(--hero-ink)}
+  .hero .eyebrow{color:#bfe4fb}
+  .hero h1{margin-top:20px;color:#fff;font-size:clamp(3rem,10.5vw,9rem);text-shadow:0 6px 44px rgba(0,0,0,.4)}
+  .hero h1 span{display:block}
+  .hero h1 .l2{margin:.02em 0}
+  /* orta satır: turuncu kontur — parlak kar ÜSTÜNDE de okunur (beyaz kontur kaybolurdu) */
+  .hero h1 .k-out{-webkit-text-stroke:2.5px var(--accent-2);color:transparent;filter:drop-shadow(0 3px 16px rgba(6,16,26,.5))}
+  html[lang="zh-CN"] .hero h1 .k-out,html[lang="ko"] .hero h1 .k-out{-webkit-text-stroke:0;color:var(--accent-2)}
+  .hero .lede{max-width:52ch;margin-top:26px;font-size:clamp(1.04rem,1.7vw,1.32rem);color:rgba(255,255,255,.92);font-weight:400;text-shadow:0 2px 20px rgba(0,0,0,.5)}
+  .hero-cta{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:var(--accent);color:#fff;padding:16px 32px;border-radius:3px;font-family:var(--mono);font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:11px;transition:.3s;border:none;cursor:pointer}
+  .btn-solid:hover{background:var(--accent-2);gap:15px;transform:translateY(-2px)}
+  .btn-line{color:#fff;font-family:var(--mono);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,.5);padding:15px 26px;border-radius:3px;transition:.3s}
+  .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{text-transform:none;letter-spacing:.02em}
+  .scrollhint{position:absolute;bottom:20px;right:32px;z-index:6;font-family:var(--mono);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:10px;writing-mode:vertical-rl}
+  .scrollhint .l{width:1px;height:40px;background:linear-gradient(var(--accent),transparent);animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+  @media(max-width:640px){.scrollhint{display:none}}
+
+  /* ---------- marquee ---------- */
+  .marquee{background:var(--accent);color:#fff;overflow:hidden;white-space:nowrap;padding:16px 0;position:relative}
+  [data-theme="dark"] .marquee{background:var(--ice-deep)}
+  .marq-track{display:inline-flex;align-items:center;gap:0;animation:marq 34s linear infinite;will-change:transform}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.marq-track{animation:none}}
+  .marq-track .it{font-family:var(--disp);font-weight:900;font-size:1.5rem;letter-spacing:.01em;text-transform:uppercase;padding:0 26px;display:inline-flex;align-items:center}
+  .marq-track .it.o{-webkit-text-stroke:1.6px #fff;color:transparent}
+  .marq-track .sf{opacity:.85;font-size:1rem;padding:0 4px}
+
+  /* ---------- band (dürüst mini-veriler) ---------- */
+  .band{background:var(--bg-2);border-bottom:1px solid var(--line-soft)}
+  .band .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .bcell{padding:38px 26px;text-align:center;border-left:1px solid var(--line-soft)}
+  .bcell:first-child{border-left:none}
+  .bcell .n{font-family:var(--disp);font-weight:900;font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--text);line-height:1;letter-spacing:-.02em}
+  .bcell .n .star{color:var(--accent);font-size:.85em}
+  html[lang="zh-CN"] .bcell .n,html[lang="ko"] .bcell .n{text-transform:none}
+  .bcell .l{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+  html[lang="zh-CN"] .bcell .l,html[lang="ko"] .bcell .l{letter-spacing:.04em;text-transform:none}
+  @media(max-width:720px){.band .wrap{grid-template-columns:1fr 1fr}.bcell:nth-child(3){border-left:none}.bcell{padding:28px 16px}}
+
+  section{position:relative}
+  .pad{padding:120px 0}
+  @media(max-width:640px){.pad{padding:78px 0}}
+  .sec-head{max-width:720px;margin-bottom:56px}
+  .sec-head .eyebrow{display:block;margin-bottom:20px}
+  .sec-head h2{font-size:clamp(2.3rem,6vw,4.6rem);color:var(--text)}
+  .sec-head p{margin-top:22px;color:var(--muted);font-size:1.12rem;font-weight:400;max-width:60ch}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+
+  /* ---------- ekipman ---------- */
+  .ekipman{background:var(--bg)}
+  .ek-hero-img{position:relative;border-radius:6px;overflow:hidden;margin-bottom:56px;border:1px solid var(--line-soft)}
+  .ek-hero-img img{width:100%;height:clamp(240px,42vw,520px);object-fit:cover}
+  .ek-hero-img .tag{position:absolute;left:16px;bottom:14px;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(8,16,26,.6);backdrop-filter:blur(5px);padding:6px 12px;border-radius:3px}
+  html[lang="zh-CN"] .ek-hero-img .tag,html[lang="ko"] .ek-hero-img .tag{text-transform:none}
+  .ek-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:980px){.ek-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.ek-grid{grid-template-columns:1fr}}
+  .ek-card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:30px 26px;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;overflow:hidden}
+  .ek-card::after{content:"";position:absolute;left:0;top:0;height:100%;width:3px;background:var(--ice);transform:scaleY(0);transform-origin:bottom;transition:transform .35s}
+  .ek-card:hover{transform:translateY(-6px);border-color:var(--ice);box-shadow:0 20px 44px rgba(11,132,196,.14)}
+  .ek-card:hover::after{transform:scaleY(1)}
+  .ek-card .ico{width:44px;height:44px;color:var(--ice);margin-bottom:20px}
+  .ek-card .num{position:absolute;top:22px;right:24px;font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.1em}
+  .ek-card h3{font-family:var(--disp);font-weight:900;font-size:1.28rem;text-transform:uppercase;letter-spacing:-.01em;color:var(--text);margin-bottom:12px}
+  html[lang="zh-CN"] .ek-card h3,html[lang="ko"] .ek-card h3{text-transform:none;font-weight:800}
+  .ek-card p{color:var(--muted);font-size:.96rem}
+  .ek-plus{margin-top:26px;font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;color:var(--muted);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .ek-plus .p{color:var(--ice-deep);font-weight:700}
+
+  /* ---------- nasil (adımlar) ---------- */
+  .nasil{background:var(--bg-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:st}
+  @media(max-width:820px){.steps{grid-template-columns:1fr;gap:0}}
+  .step{position:relative;padding:34px 30px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+  @media(max-width:820px){.step{border-radius:0;margin-top:-1px}.step:first-child{border-radius:6px 6px 0 0}.step:last-child{border-radius:0 0 6px 6px}}
+  .step .stnum{font-family:var(--disp);font-weight:900;font-size:2.6rem;line-height:1;color:transparent;-webkit-text-stroke:2px var(--ice);margin-bottom:18px;display:block}
+  html[lang="zh-CN"] .step .stnum,html[lang="ko"] .step .stnum{-webkit-text-stroke:0;color:var(--ice)}
+  .step h3{font-family:var(--disp);font-weight:900;font-size:1.24rem;text-transform:uppercase;color:var(--text);margin-bottom:12px;letter-spacing:-.01em}
+  html[lang="zh-CN"] .step h3,html[lang="ko"] .step h3{text-transform:none;font-weight:800}
+  .step p{color:var(--muted);font-size:.98rem}
+
+  /* ---------- erciyes (koyu vurgu) ---------- */
+  .erciyes{background:#08131f;color:#eaf3fa;position:relative;overflow:hidden}
+  .erciyes::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(50% 60% at 82% 20%,rgba(11,132,196,.28),transparent 60%),radial-gradient(46% 54% at 10% 88%,rgba(255,106,26,.12),transparent 62%)}
+  .erciyes .wrap{position:relative;z-index:1}
+  .erciyes .eyebrow{color:#7dd3fc}
+  .erc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+  @media(max-width:880px){.erc-grid{grid-template-columns:1fr;gap:40px}}
+  .erc-grid h2{color:#fff;font-size:clamp(2.2rem,5vw,4rem)}
+  .erc-lead{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(1.1rem,2vw,1.5rem);color:#7dd3fc;margin:26px 0 22px;line-height:1.15;letter-spacing:-.01em}
+  html[lang="zh-CN"] .erc-lead,html[lang="ko"] .erc-lead{text-transform:none;font-weight:800}
+  .erc-grid p{color:#a9c2d6;margin-bottom:16px}
+  .erc-vals{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(234,243,250,.09);border:1px solid rgba(234,243,250,.12);border-radius:8px;overflow:hidden}
+  .erc-val{background:#0c1c2b;padding:26px 24px}
+  .erc-val .ico{width:30px;height:30px;color:#3cb6f0;margin-bottom:14px}
+  .erc-val h4{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:.98rem;color:#fff;margin-bottom:8px;letter-spacing:-.005em}
+  html[lang="zh-CN"] .erc-val h4,html[lang="ko"] .erc-val h4{text-transform:none;font-weight:800}
+  .erc-val p{color:#93aec2;font-size:.86rem;margin:0}
+  @media(max-width:420px){.erc-vals{grid-template-columns:1fr}}
+
+  /* ---------- galeri ---------- */
+  .galeri{background:var(--bg)}
+  .g-grid{display:grid;grid-template-columns:2fr 1fr;grid-auto-rows:1fr;gap:18px}
+  .g-grid .tile{position:relative;border-radius:6px;overflow:hidden;cursor:pointer;border:1px solid var(--line-soft);background:var(--panel);min-height:220px}
+  .g-grid .tile img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .6s}
+  .g-grid .tile:hover img{transform:scale(1.06)}
+  .g-grid .tile.big{grid-row:span 2}
+  .g-grid .tile .cap{position:absolute;left:14px;bottom:12px;z-index:2;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(8,16,26,.6);backdrop-filter:blur(5px);padding:6px 11px;border-radius:3px}
+  html[lang="zh-CN"] .g-grid .tile .cap,html[lang="ko"] .g-grid .tile .cap{text-transform:none}
+  @media(max-width:720px){.g-grid{grid-template-columns:1fr}.g-grid .tile.big{grid-row:auto}.g-grid .tile{min-height:200px}}
+  .g-note{margin-top:22px;font-family:var(--mono);font-size:.74rem;letter-spacing:.03em;color:var(--faint);display:flex;align-items:center;gap:9px}
+  .g-note svg{width:15px;height:15px;flex:none;color:var(--ice)}
+
+  /* ---------- rezervasyon ---------- */
+  .rez{background:var(--bg-2);border-top:1px solid var(--line-soft)}
+  .rez-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  @media(max-width:880px){.rez-grid{grid-template-columns:1fr;gap:40px}}
+  .rez h2{font-size:clamp(2.3rem,5.4vw,4.4rem);color:var(--text)}
+  .rez-lede{color:var(--muted);margin-top:22px;font-size:1.08rem;max-width:46ch}
+  .rez-contact{margin-top:30px;display:flex;flex-direction:column;gap:12px}
+  .rez-contact a{display:inline-flex;align-items:center;gap:12px;color:var(--text);font-family:var(--mono);font-size:.9rem;letter-spacing:.02em}
+  .rez-contact a svg{width:18px;height:18px;color:var(--ice)}
+  .rez-contact a:hover{color:var(--ice-deep)}
+  form.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:34px}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{text-transform:none;letter-spacing:.02em}
+  .field input,.field select{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--text);
+    font-family:var(--body);font-size:.98rem;padding:13px 14px;transition:border-color .25s}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--ice)}
+  .field.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .field.row>div{margin:0}
+  form.card button{width:100%;background:var(--accent);color:#fff;border:none;border-radius:4px;padding:16px;
+    font-family:var(--mono);font-weight:700;font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.3s;margin-top:6px;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+  form.card button:hover{background:var(--accent-2)}
+  html[lang="zh-CN"] form.card button,html[lang="ko"] form.card button{text-transform:none;letter-spacing:.02em}
+  .form-note{margin-top:14px;font-family:var(--mono);font-size:.7rem;color:var(--faint);text-align:center;letter-spacing:.02em}
+
+  /* ---------- footer ---------- */
+  footer{background:#08131f;color:#c7d7e4;padding:64px 0 120px}
+  [data-theme="dark"] footer{background:#050d16}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px}}
+  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+  .foot-brand .mark{width:36px;height:36px;color:var(--ice)}
+  .foot-brand b{font-family:var(--disp);font-weight:900;font-size:1.15rem;text-transform:uppercase;color:#fff;letter-spacing:-.01em}
+  html[lang="zh-CN"] .foot-brand b,html[lang="ko"] .foot-brand b{text-transform:none}
+  footer p{color:#8ba4b8;font-size:.94rem;max-width:42ch}
+  .foot-col h5{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#5f7c92;margin-bottom:16px}
+  html[lang="zh-CN"] .foot-col h5,html[lang="ko"] .foot-col h5{letter-spacing:.04em;text-transform:none}
+  .foot-col a,.foot-col span{display:block;color:#b7cadb;font-size:.94rem;margin-bottom:11px;transition:color .25s}
+  .foot-col a:hover{color:var(--ice-deep)}
+  .foot-bottom{margin-top:52px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+  .foot-bottom span{font-family:var(--mono);font-size:.72rem;color:#5f7c92;letter-spacing:.03em}
+  .foot-bottom .demo{color:var(--accent-2);border:1px solid rgba(255,138,61,.4);padding:5px 12px;border-radius:3px}
+
+  /* ---------- lightbox ---------- */
+  .lb{position:fixed;inset:0;z-index:120;background:rgba(6,14,22,.94);display:none;align-items:center;justify-content:center;padding:30px}
+  .lb.open{display:flex}
+  .lb img{max-width:92vw;max-height:82vh;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .lb .cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;color:#cfe2f0}
+  .lb button{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1.3rem;display:grid;place-items:center;transition:.25s}
+  .lb button:hover{background:var(--accent);border-color:var(--accent)}
+  .lb .close{top:24px;right:24px}
+  .lb .prev{left:24px;top:50%;transform:translateY(-50%)}
+  .lb .next{right:24px;top:50%;transform:translateY(-50%)}
+  @media(max-width:640px){.lb .prev{left:12px}.lb .next{right:12px}}
+</style>
+</head>
+<body>
+
+<!-- signature: film grain + scroll progress -->
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<nav class="top" id="topnav">
+  <a class="brand" href="#top" aria-label="Kayseri Kayak Kiralama">
+    <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M20 5 L33 30 H7 Z" fill="currentColor" opacity=".9"/>
+      <path d="M20 5 L26.5 17.5 L20 22 L13.5 17.5 Z" fill="#fff" opacity=".85"/>
+      <path d="M4 34 C12 28 28 40 36 33" stroke="#ff6a1a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="wm"><b>KAYSERİ KAYAK</b><span data-i18n="brand_sub">Erciyes · Kiralama</span></span>
+  </a>
+  <div class="navlinks">
+    <a class="flink" href="#ekipman" data-i18n="nav_ekipman">Ekipman</a>
+    <a class="flink" href="#nasil" data-i18n="nav_nasil">Nasıl Çalışır</a>
+    <a class="flink" href="#erciyes" data-i18n="nav_erciyes">Erciyes</a>
+    <a class="flink" href="#galeri" data-i18n="nav_galeri">Galeri</a>
+    <a class="nav-cta" href="#rezervasyon" data-i18n="nav_book">Rezervasyon</a>
+  </div>
+  <div class="tools">
+    <div class="langs">
+      <button data-lang="tr" class="active">TR</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="es">ES</button>
+      <button data-lang="zh-CN">中</button>
+      <button data-lang="ko">한</button>
+    </div>
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Tema değiştir">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7" stroke-linecap="round"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 14.5A8 8 0 019.5 4a7 7 0 108.5 11z" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- mobil dock -->
+<div class="dock" id="dock">
+  <a href="#ekipman" data-spy="ekipman"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 3l3 15M17 3l-3 15M5 20l14-2M6 21l1.5-3M18 21l-1.5-3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="dl" data-i18n="dk_ekipman">Ekipman</span></a>
+  <a href="#nasil" data-spy="nasil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18l5-5 3 3 8-8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 8h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="dl" data-i18n="dk_nasil">Adımlar</span></a>
+  <a href="#erciyes" data-spy="erciyes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 20l6-11 4 6 2-3 6 8z" stroke-linejoin="round"/></svg><span class="dl" data-i18n="dk_erciyes">Erciyes</span></a>
+  <a href="#galeri" data-spy="galeri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M4 17l5-4 4 3 3-2 5 4" stroke-linejoin="round"/></svg><span class="dl" data-i18n="dk_galeri">Galeri</span></a>
+  <a href="#rezervasyon" data-spy="rezervasyon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 11.5a8.4 8.4 0 01-11.9 7.6L4 21l1.9-5A8.4 8.4 0 1121 11.5z" stroke-linejoin="round"/></svg><span class="dl" data-i18n="dk_book">Ayır</span></a>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <canvas id="hero-gradient"></canvas>
+  <canvas id="snow" aria-hidden="true"></canvas>
+  <div class="hero-carve" aria-hidden="true">
+    <svg viewBox="0 0 1440 180" preserveAspectRatio="none"><path d="M-40,120 C280,30 520,150 780,90 S1200,20 1480,110"/><path class="o" d="M-40,150 C300,70 560,170 820,120 S1240,60 1480,140"/></svg>
+  </div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow"><span class="dotmark"></span><span data-i18n="hero_eyebrow">Kayseri · Erciyes · Kayak &amp; Snowboard Kiralama</span></span>
+    <h1 class="disp">
+      <span class="l1" data-i18n="hero_l1">Erciyes'te</span>
+      <span class="l2 k-out" data-i18n="hero_l2">Ekipmanın</span>
+      <span class="l3"><span data-i18n="hero_l3">Hazır</span><span class="accent">.</span></span>
+    </h1>
+    <p class="lede" data-i18n="hero_lede">Kayak, snowboard, bot, kask ve gözlük — bedeninize göre ayarlanmış, bakımlı ekipmanla kaymaya hazır. Siz sadece karın tadını çıkarın.</p>
+    <div class="hero-cta">
+      <a class="btn-solid" href="#rezervasyon"><span data-i18n="hero_cta1">Ekipmanı ayır</span><span aria-hidden="true">→</span></a>
+      <a class="btn-line" href="#ekipman" data-i18n="hero_cta2">Ekipman hattını gör</a>
+    </div>
+  </div>
+  <div class="scrollhint" aria-hidden="true"><span data-i18n="scroll_hint">Kaydır</span><span class="l"></span></div>
+</header>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marq-track" id="marq">
+    <span class="it">Kayak</span><span class="sf">❄</span><span class="it o">Snowboard</span><span class="sf">❄</span><span class="it">Bot</span><span class="sf">❄</span><span class="it o">Kask</span><span class="sf">❄</span><span class="it">Gözlük</span><span class="sf">❄</span><span class="it o">Baton</span><span class="sf">❄</span><span class="it">Erciyes</span><span class="sf">❄</span>
+    <span class="it">Kayak</span><span class="sf">❄</span><span class="it o">Snowboard</span><span class="sf">❄</span><span class="it">Bot</span><span class="sf">❄</span><span class="it o">Kask</span><span class="sf">❄</span><span class="it">Gözlük</span><span class="sf">❄</span><span class="it o">Baton</span><span class="sf">❄</span><span class="it">Erciyes</span><span class="sf">❄</span>
+  </div>
+</div>
+
+<!-- ============ BAND (dürüst mini-veriler) ============ -->
+<div class="band">
+  <div class="wrap">
+    <div class="bcell"><div class="n" data-i18n="band_v1">Tam Takım</div><div class="l" data-i18n="band_l1">Kayak · Snowboard · Bot</div></div>
+    <div class="bcell"><div class="n">Erciyes</div><div class="l" data-i18n="band_l2">Kayseri kayak merkezi</div></div>
+    <div class="bcell"><div class="n" data-i18n="band_v3">Kış Sezonu</div><div class="l" data-i18n="band_l3">Kar durumuna göre</div></div>
+    <div class="bcell"><div class="n">WhatsApp</div><div class="l" data-i18n="band_l4">Anında rezervasyon</div></div>
+  </div>
+</div>
+
+<!-- ============ EKIPMAN ============ -->
+<section class="ekipman pad" id="ekipman">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="ek_eyebrow">01 — Kiralama Hattı</span>
+      <h2 class="disp" data-i18n="ek_h">Ekipman Hattı</h2>
+      <p data-i18n="ek_sub">Pistte ihtiyacın olan her şey tek noktada. Bedenine ve seviyene göre ayarlanmış, bakımlı takımlar.</p>
+    </div>
+    <div class="ek-hero-img reveal">
+      <img src="assets/images/ekipman.jpg" alt="Kayak ve snowboard kiralama ekipman hattı" loading="lazy">
+      <span class="tag" data-i18n="ek_imgtag">Konsept görsel · yayında kendi fotoğrafınız</span>
+    </div>
+    <div class="ek-grid">
+      <div class="ek-card reveal">
+        <span class="num">01</span>
+        <svg class="ico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 4l6 30M27 4l-6 30M9 34l22-3M11 35l2-4M29 35l-2-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3 data-i18n="ek1_h">Kayak Takımı</h3>
+        <p data-i18n="ek1_p">Farklı boy ve seviyelere uygun kayaklar; bağlamalar ustaca ayarlanır. İlk kez mi kayıyorsun, ileri misin — takımını ona göre veririz.</p>
+      </div>
+      <div class="ek-card reveal">
+        <span class="num">02</span>
+        <svg class="ico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><rect x="15" y="4" width="10" height="32" rx="5"/><path d="M20 13v3M20 24v3" stroke-linecap="round"/></svg>
+        <h3 data-i18n="ek2_h">Snowboard Takımı</h3>
+        <p data-i18n="ek2_p">Board ve bağlamalar; duruşuna (regular/goofy) ve ayak numarana göre kurulur. Kısa boarddan uzun boarda seçenek.</p>
+      </div>
+      <div class="ek-card reveal">
+        <span class="num">03</span>
+        <svg class="ico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 6h7v16l11 5v5H14z" stroke-linejoin="round"/><path d="M14 16h7M14 22h5" stroke-linecap="round"/></svg>
+        <h3 data-i18n="ek3_h">Kayak &amp; Snowboard Botu</h3>
+        <p data-i18n="ek3_p">Doğru numara ve sıkılık günün en önemli detayıdır. Botunu ayağına oturana kadar deneyip veririz — ayağı sıkmayan, üşütmeyen bot.</p>
+      </div>
+      <div class="ek-card reveal">
+        <span class="num">04</span>
+        <svg class="ico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 20a12 10 0 0124 0v3H8z" stroke-linejoin="round"/><rect x="10" y="22" width="20" height="7" rx="3.5"/></svg>
+        <h3 data-i18n="ek4_h">Kask &amp; Gözlük</h3>
+        <p data-i18n="ek4_p">Güvenlik önce gelir. Kafa ölçüne uygun kask ve kar/parlama için gözlük; temiz ve bakımlı teslim edilir.</p>
+      </div>
+    </div>
+    <div class="ek-plus reveal">
+      <span class="p" data-i18n="ek_plus_label">Ayrıca:</span>
+      <span data-i18n="ek_plus">kayak batonu · ekipman ayar &amp; servis · uzun süreli kiralamada esnek gün planı</span>
+    </div>
+  </div>
+</section>
+
+<div class="carve reveal" aria-hidden="true"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,50 C240,8 480,64 720,36 S1200,4 1440,44"/><path class="p2" d="M0,60 C260,26 500,72 740,48 S1220,18 1440,56"/></svg></div>
+
+<!-- ============ NASIL ÇALIŞIR ============ -->
+<section class="nasil pad" id="nasil">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="na_eyebrow">02 — Üç Adım</span>
+      <h2 class="disp" data-i18n="na_h">Nasıl Çalışır</h2>
+      <p data-i18n="na_sub">Karmaşık değil. Yazarsın, gelirsin, kayarsın — dönüşte teslim edersin.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="stnum">01</span>
+        <h3 data-i18n="na1_h">Yaz, bedenini söyle</h3>
+        <p data-i18n="na1_p">WhatsApp'tan tarihini, kaç kişi olduğunu ve boy / ayak numaralarını ilet. Ekipmanınızı önceden hazırlayalım.</p>
+      </div>
+      <div class="step reveal">
+        <span class="stnum">02</span>
+        <h3 data-i18n="na2_h">Gel, ayarlat</h3>
+        <p data-i18n="na2_p">Ekipmanını teslim alırken botunu, bağlamanı ve kaskını sana göre ayarlarız. Birkaç dakikada kaymaya hazırsın.</p>
+      </div>
+      <div class="step reveal">
+        <span class="stnum">03</span>
+        <h3 data-i18n="na3_h">Kay, dönüşte teslim et</h3>
+        <p data-i18n="na3_p">Gün boyu kay; işin bitince ekipmanı geri getir. Uzun süreli kiralamada günü birlikte planlarız.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ERCIYES ============ -->
+<section class="erciyes pad" id="erciyes">
+  <div class="wrap">
+    <div class="erc-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="er_eyebrow">03 — Neden Erciyes, Neden Biz</span>
+        <h2 class="disp" data-i18n="er_h">Doğru Ekipman,<br>Pratik ve Hızlı.</h2>
+        <p class="erc-lead" data-i18n="er_lead">Erciyes, Türkiye'nin en yüksek ve en çok kar tutan kayak merkezlerinden biri.</p>
+        <p data-i18n="er_p1">Kendi ekipmanını taşımak zorunda değilsin. Bakımlı, keskinliği korunmuş kayaklar ve temiz botlarla; pistte vakit kaybetmeden kaymaya başlarsın.</p>
+        <p data-i18n="er_p2">Bedenini bilmiyorsan sorun değil — boy, kilo ve ayak numarasına göre doğru takımı birlikte seçeriz. Amaç: ilk inişten itibaren güvende ve rahat olman.</p>
+      </div>
+      <div class="erc-vals reveal">
+        <div class="erc-val">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h4 data-i18n="er_v1h">Bakımlı ekipman</h4>
+          <p data-i18n="er_v1p">Keskinlik, cila ve bağlama ayarı düzenli yapılır.</p>
+        </div>
+        <div class="erc-val">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" stroke-linecap="round" opacity=".5"/><circle cx="12" cy="12" r="3.4"/></svg>
+          <h4 data-i18n="er_v2h">Doğru beden &amp; ayar</h4>
+          <p data-i18n="er_v2p">Boy, kilo ve ayak numarasına göre kurulum.</p>
+        </div>
+        <div class="erc-val">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L4 14h7l-1 8 9-12h-7z" stroke-linejoin="round"/></svg>
+          <h4 data-i18n="er_v3h">Hızlı teslim</h4>
+          <p data-i18n="er_v3p">Takımın hazır, sırada beklemeden.</p>
+        </div>
+        <div class="erc-val">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3a5 5 0 015 5v2h1a2 2 0 012 2v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7a2 2 0 012-2h1V8a5 5 0 015-5z" stroke-linejoin="round"/></svg>
+          <h4 data-i18n="er_v4h">Güvenlik ön planda</h4>
+          <p data-i18n="er_v4p">Kask ve gözlük her kiralamada önerilir.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERI ============ -->
+<section class="galeri pad" id="galeri">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="ga_eyebrow">04 — Erciyes'ten</span>
+      <h2 class="disp" data-i18n="ga_h">Kar, Pist ve Ekipman</h2>
+      <p data-i18n="ga_sub">Aşağıdaki kareler konsept görsellerdir. Yayında işletmenizin kendi fotoğraflarıyla değiştirilir.</p>
+    </div>
+    <div class="g-grid reveal">
+      <div class="tile big" data-img="hero.jpg"><img src="assets/images/hero.jpg" alt="Erciyes kayak pisti" loading="lazy"><span class="cap" data-i18n="ga_c1">Erciyes pisti · konsept</span></div>
+      <div class="tile" data-img="ekipman.jpg"><img src="assets/images/ekipman.jpg" alt="Kiralama ekipman hattı" loading="lazy"><span class="cap" data-i18n="ga_c2">Ekipman hattı · konsept</span></div>
+      <div class="tile" data-img="naturmort.jpg"><img src="assets/images/naturmort.jpg" alt="Kayak ve snowboard ekipmanı" loading="lazy"><span class="cap" data-i18n="ga_c3">Ekipman natürmort · konsept</span></div>
+    </div>
+    <div class="g-note reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v.5M12 11v5" stroke-linecap="round"/></svg>
+      <span data-i18n="ga_note">Görseller konsept amaçlıdır; satış sonrası kendi fotoğraflarınızla değiştirilir.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REZERVASYON ============ -->
+<section class="rez pad" id="rezervasyon">
+  <div class="wrap">
+    <div class="rez-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="bk_eyebrow">05 — Rezervasyon</span>
+        <h2 class="disp" data-i18n="bk_h">Ekipmanını<br>Şimdi Ayır.</h2>
+        <p class="rez-lede" data-i18n="bk_lede">Tarihini ve bedenini gönder, WhatsApp'tan hızlıca dönelim. Aklına takılan her şeyi sorabilirsin.</p>
+        <div class="rez-contact">
+          <a href="https://wa.me/905315132808" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm0 2a8 8 0 11-4.2 14.8l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0112 4zm4.5 10.3c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4H8c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.4c.1.2 1.7 2.6 4.1 3.5 1.5.6 2.1.6 2.8.5.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1z"/></svg>
+            <span>+90 531 513 28 08</span>
+          </a>
+          <a href="#top">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6"/></svg>
+            <span data-i18n="rez_loc">Kayseri · Erciyes</span>
+          </a>
+        </div>
+      </div>
+      <form class="card reveal" id="bookForm">
+        <div class="field">
+          <label data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field row">
+          <div>
+            <label data-i18n="label_date">Kiralama tarihi</label>
+            <input type="date" id="f-date">
+          </div>
+          <div>
+            <label data-i18n="label_gear">Ekipman</label>
+            <select id="f-gear">
+              <option value="opt_ski" data-i18n="opt_ski">Kayak takımı</option>
+              <option value="opt_board" data-i18n="opt_board">Snowboard takımı</option>
+              <option value="opt_both" data-i18n="opt_both">İkisi de</option>
+              <option value="opt_unsure" data-i18n="opt_unsure">Emin değilim</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label data-i18n="label_size">Boy &amp; ayak numarası</label>
+          <input type="text" id="f-size" data-i18n-ph="ph_size" placeholder="Örn. 178 cm · 43 numara">
+        </div>
+        <div class="field">
+          <label data-i18n="label_phone">WhatsApp / Telefon</label>
+          <input type="text" id="f-phone" data-i18n-ph="ph_phone" placeholder="Size ulaşabileceğimiz numara">
+        </div>
+        <button type="submit">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2z"/></svg>
+          <span data-i18n="btn_submit">Rezervasyon talebi gönder</span>
+        </button>
+        <div class="form-note" data-i18n="form_note">Gönder'e basınca WhatsApp'ta hazır mesaj açılır.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 5 L33 30 H7 Z" fill="currentColor" opacity=".9"/><path d="M20 5 L26.5 17.5 L20 22 L13.5 17.5 Z" fill="#fff" opacity=".85"/><path d="M4 34 C12 28 28 40 36 33" stroke="#ff6a1a" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+          <b>KAYSERİ KAYAK KİRALAMA</b>
+        </div>
+        <p data-i18n="foot_about">Kayseri Erciyes'te kayak ve snowboard kiralama. Bakımlı ekipman, doğru beden ve hızlı teslim.</p>
+      </div>
+      <div class="foot-col">
+        <h5 data-i18n="foot_explore">Keşfet</h5>
+        <a href="#ekipman" data-i18n="nav_ekipman">Ekipman</a>
+        <a href="#nasil" data-i18n="nav_nasil">Nasıl Çalışır</a>
+        <a href="#erciyes" data-i18n="nav_erciyes">Erciyes</a>
+        <a href="#rezervasyon" data-i18n="nav_book">Rezervasyon</a>
+      </div>
+      <div class="foot-col">
+        <h5 data-i18n="foot_contact">İletişim</h5>
+        <a href="https://wa.me/905315132808" target="_blank" rel="noopener">+90 531 513 28 08</a>
+        <span data-i18n="foot_loc">Kayseri · Erciyes</span>
+        <span data-i18n="foot_hours">Kış sezonu · kar durumuna göre</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Kayseri Kayak Kiralama — Tüm hakları saklıdır.</span>
+      <span class="demo" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lightbox" aria-hidden="true">
+  <button class="close" id="lbClose" aria-label="Kapat">×</button>
+  <button class="prev" id="lbPrev" aria-label="Önceki">‹</button>
+  <button class="next" id="lbNext" aria-label="Sonraki">›</button>
+  <img id="lbImg" src="" alt="">
+  <div class="cap" id="lbCap"></div>
+</div>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) — lerp 0.085, wheelMult 0.9 ====================
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY, current = window.scrollY, running = false, rafId = null;
+  function clampTarget(){ const max = document.documentElement.scrollHeight - window.innerHeight; if(target<0)target=0; if(target>max)target=max; }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){ current = target; window.scrollTo(0,current); running=false; return; }
+    window.scrollTo(0,current); rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running=true; rafId=requestAnimationFrame(loop); } }
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget(); start();
+  }, {passive:false});
+  window.addEventListener('scroll', function(){ if(!running){ target = window.scrollY; current = window.scrollY; } }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+  function smoothTo(el){ const y = el.getBoundingClientRect().top + window.scrollY - 64; target=y; clampTarget(); current=window.scrollY; start(); }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); smoothTo(t); } }
+    });
+  });
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{ const id=a.getAttribute('href'); if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } } });
+    });
+  }
+})();
+</script>
+
+<script>
+// ==================== i18n SÖZLÜĞÜ (5 dil) ====================
+const I18N = {
+  tr:{
+    meta_title:"Kayseri Kayak Kiralama — Erciyes Kayak & Snowboard Kiralama",
+    meta_desc:"Erciyes'te kayak ve snowboard kiralama. Bakımlı ekipman, doğru beden ve ayar, hızlı teslim.",
+    brand_sub:"Erciyes · Kiralama",
+    nav_ekipman:"Ekipman",nav_nasil:"Nasıl Çalışır",nav_erciyes:"Erciyes",nav_galeri:"Galeri",nav_book:"Rezervasyon",
+    dk_ekipman:"Ekipman",dk_nasil:"Adımlar",dk_erciyes:"Erciyes",dk_galeri:"Galeri",dk_book:"Ayır",
+    hero_eyebrow:"Kayseri · Erciyes · Kayak & Snowboard Kiralama",
+    hero_l1:"Erciyes'te",hero_l2:"Ekipmanın",hero_l3:"Hazır",
+    hero_lede:"Kayak, snowboard, bot, kask ve gözlük — bedenine göre ayarlanmış, bakımlı ekipmanla kaymaya hazır. Sen sadece karın tadını çıkar.",
+    hero_cta1:"Ekipmanı ayır",hero_cta2:"Ekipman hattını gör",scroll_hint:"Kaydır",
+    band_v1:"Tam Takım",band_l1:"Kayak · Snowboard · Bot",band_l2:"Kayseri kayak merkezi",band_v3:"Kış Sezonu",band_l3:"Kar durumuna göre",band_l4:"Anında rezervasyon",
+    ek_eyebrow:"01 — Kiralama Hattı",ek_h:"Ekipman Hattı",
+    ek_sub:"Pistte ihtiyacın olan her şey tek noktada. Bedenine ve seviyene göre ayarlanmış, bakımlı takımlar.",
+    ek_imgtag:"Konsept görsel · yayında kendi fotoğrafınız",
+    ek1_h:"Kayak Takımı",ek1_p:"Farklı boy ve seviyelere uygun kayaklar; bağlamalar ustaca ayarlanır. İlk kez mi kayıyorsun, ileri misin — takımını ona göre veririz.",
+    ek2_h:"Snowboard Takımı",ek2_p:"Board ve bağlamalar; duruşuna (regular/goofy) ve ayak numarana göre kurulur. Kısa boarddan uzun boarda seçenek.",
+    ek3_h:"Kayak & Snowboard Botu",ek3_p:"Doğru numara ve sıkılık günün en önemli detayıdır. Botunu ayağına oturana kadar deneyip veririz — ayağı sıkmayan, üşütmeyen bot.",
+    ek4_h:"Kask & Gözlük",ek4_p:"Güvenlik önce gelir. Kafa ölçüne uygun kask ve kar/parlama için gözlük; temiz ve bakımlı teslim edilir.",
+    ek_plus_label:"Ayrıca:",ek_plus:"kayak batonu · ekipman ayar & servis · uzun süreli kiralamada esnek gün planı",
+    na_eyebrow:"02 — Üç Adım",na_h:"Nasıl Çalışır",na_sub:"Karmaşık değil. Yazarsın, gelirsin, kayarsın — dönüşte teslim edersin.",
+    na1_h:"Yaz, bedenini söyle",na1_p:"WhatsApp'tan tarihini, kaç kişi olduğunu ve boy / ayak numaralarını ilet. Ekipmanınızı önceden hazırlayalım.",
+    na2_h:"Gel, ayarlat",na2_p:"Ekipmanını teslim alırken botunu, bağlamanı ve kaskını sana göre ayarlarız. Birkaç dakikada kaymaya hazırsın.",
+    na3_h:"Kay, dönüşte teslim et",na3_p:"Gün boyu kay; işin bitince ekipmanı geri getir. Uzun süreli kiralamada günü birlikte planlarız.",
+    er_eyebrow:"03 — Neden Erciyes, Neden Biz",er_h:"Doğru Ekipman,<br>Pratik ve Hızlı.",
+    er_lead:"Erciyes, Türkiye'nin en yüksek ve en çok kar tutan kayak merkezlerinden biri.",
+    er_p1:"Kendi ekipmanını taşımak zorunda değilsin. Bakımlı, keskinliği korunmuş kayaklar ve temiz botlarla; pistte vakit kaybetmeden kaymaya başlarsın.",
+    er_p2:"Bedenini bilmiyorsan sorun değil — boy, kilo ve ayak numarasına göre doğru takımı birlikte seçeriz. Amaç: ilk inişten itibaren güvende ve rahat olman.",
+    er_v1h:"Bakımlı ekipman",er_v1p:"Keskinlik, cila ve bağlama ayarı düzenli yapılır.",
+    er_v2h:"Doğru beden & ayar",er_v2p:"Boy, kilo ve ayak numarasına göre kurulum.",
+    er_v3h:"Hızlı teslim",er_v3p:"Takımın hazır, sırada beklemeden.",
+    er_v4h:"Güvenlik ön planda",er_v4p:"Kask ve gözlük her kiralamada önerilir.",
+    ga_eyebrow:"04 — Erciyes'ten",ga_h:"Kar, Pist ve Ekipman",
+    ga_sub:"Aşağıdaki kareler konsept görsellerdir. Yayında işletmenizin kendi fotoğraflarıyla değiştirilir.",
+    ga_c1:"Erciyes pisti · konsept",ga_c2:"Ekipman hattı · konsept",ga_c3:"Ekipman natürmort · konsept",
+    ga_note:"Görseller konsept amaçlıdır; satış sonrası kendi fotoğraflarınızla değiştirilir.",
+    bk_eyebrow:"05 — Rezervasyon",bk_h:"Ekipmanını<br>Şimdi Ayır.",
+    bk_lede:"Tarihini ve bedenini gönder, WhatsApp'tan hızlıca dönelim. Aklına takılan her şeyi sorabilirsin.",
+    rez_loc:"Kayseri · Erciyes",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_date:"Kiralama tarihi",label_gear:"Ekipman",
+    opt_ski:"Kayak takımı",opt_board:"Snowboard takımı",opt_both:"İkisi de",opt_unsure:"Emin değilim",
+    label_size:"Boy & ayak numarası",ph_size:"Örn. 178 cm · 43 numara",label_phone:"WhatsApp / Telefon",ph_phone:"Size ulaşabileceğimiz numara",
+    btn_submit:"Rezervasyon talebi gönder",form_note:"Gönder'e basınca WhatsApp'ta hazır mesaj açılır.",
+    foot_about:"Kayseri Erciyes'te kayak ve snowboard kiralama. Bakımlı ekipman, doğru beden ve hızlı teslim.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Kayseri · Erciyes",foot_hours:"Kış sezonu · kar durumuna göre",
+    foot_rights:"© 2026 Kayseri Kayak Kiralama — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    wa_greet:"Merhaba, ekipman kiralama rezervasyonu talebim var:",wa_name:"Ad",wa_date:"Tarih",wa_gear:"Ekipman",wa_size:"Boy/Numara",wa_phone:"Telefon",
+    alert_fill:"Lütfen adınızı, tarihi ve telefon numaranızı girin."
+  },
+  en:{
+    meta_title:"Kayseri Ski Rental — Erciyes Ski & Snowboard Rental",
+    meta_desc:"Ski and snowboard rental at Erciyes. Well-maintained gear, correct sizing and setup, fast, correct pickup.",
+    brand_sub:"Erciyes · Rental",
+    nav_ekipman:"Gear",nav_nasil:"How It Works",nav_erciyes:"Erciyes",nav_galeri:"Gallery",nav_book:"Booking",
+    dk_ekipman:"Gear",dk_nasil:"Steps",dk_erciyes:"Erciyes",dk_galeri:"Gallery",dk_book:"Book",
+    hero_eyebrow:"Kayseri · Erciyes · Ski & Snowboard Rental",
+    hero_l1:"At Erciyes,",hero_l2:"Your Gear",hero_l3:"Is Ready",
+    hero_lede:"Skis, snowboard, boots, helmet and goggles — well-maintained gear, fitted to your size, ready to go. You just enjoy the snow.",
+    hero_cta1:"Reserve gear",hero_cta2:"See the gear line",scroll_hint:"Scroll",
+    band_v1:"Full Kit",band_l1:"Ski · Snowboard · Boots",band_l2:"Kayseri ski resort",band_v3:"Winter Season",band_l3:"Depending on snow",band_l4:"Instant booking",
+    ek_eyebrow:"01 — Rental Line",ek_h:"The Gear Line",
+    ek_sub:"Everything you need on the slope in one place. Well-kept sets, fitted to your size and level.",
+    ek_imgtag:"Concept image · your own photo once live",
+    ek1_h:"Ski Set",ek1_p:"Skis for every height and level; bindings expertly adjusted. First time or advanced — we match the set to you.",
+    ek2_h:"Snowboard Set",ek2_p:"Board and bindings, set up for your stance (regular/goofy) and boot size. From short boards to long.",
+    ek3_h:"Ski & Snowboard Boots",ek3_p:"The right size and tightness is the day's key detail. We fit your boot until it sits right — snug but never pinching or cold.",
+    ek4_h:"Helmet & Goggles",ek4_p:"Safety comes first. A helmet to your head size and goggles for snow and glare; handed over clean and maintained.",
+    ek_plus_label:"Plus:",ek_plus:"ski poles · gear tuning & service · flexible day plan for long rentals",
+    na_eyebrow:"02 — Three Steps",na_h:"How It Works",na_sub:"Nothing complicated. You message, you come, you ski — and hand it back after.",
+    na1_h:"Message us your size",na1_p:"Send your date, party size and heights / boot sizes on WhatsApp. We'll prepare your gear in advance.",
+    na2_h:"Come and get fitted",na2_p:"When you pick up your gear we adjust your boots, bindings and helmet to you. You're ready to ski in minutes.",
+    na3_h:"Ski, then return it",na3_p:"Ski all day; bring the gear back when you're done. For longer rentals we plan the days together.",
+    er_eyebrow:"03 — Why Erciyes, Why Us",er_h:"Right Gear,<br>Fast and Simple.",
+    er_lead:"Erciyes is one of Turkey's highest, most snow-sure ski resorts.",
+    er_p1:"You don't have to haul your own gear. With well-maintained, sharpened skis and clean boots, you start skiing without wasting time on the slope.",
+    er_p2:"Don't know your size? No problem — we pick the right set together by height, weight and boot size. The goal: safe and comfortable from your very first run.",
+    er_v1h:"Maintained gear",er_v1p:"Edges, wax and binding settings kept in check.",
+    er_v2h:"Right size & setup",er_v2p:"Configured by height, weight and boot size.",
+    er_v3h:"Fast handover",er_v3p:"Your set ready, no waiting in line.",
+    er_v4h:"Safety first",er_v4p:"Helmet and goggles recommended with every rental.",
+    ga_eyebrow:"04 — From Erciyes",ga_h:"Snow, Slope and Gear",
+    ga_sub:"The frames below are concept images. Once live, they're replaced with your own business photos.",
+    ga_c1:"Erciyes slope · concept",ga_c2:"Gear line · concept",ga_c3:"Gear still life · concept",
+    ga_note:"Images are for concept purposes; replaced with your own photos after purchase.",
+    bk_eyebrow:"05 — Booking",bk_h:"Reserve Your<br>Gear Now.",
+    bk_lede:"Send your date and size and we'll reply quickly on WhatsApp. Ask us anything.",
+    rez_loc:"Kayseri · Erciyes",
+    label_name:"Your name",ph_name:"Your full name",label_date:"Rental date",label_gear:"Gear",
+    opt_ski:"Ski set",opt_board:"Snowboard set",opt_both:"Both",opt_unsure:"Not sure",
+    label_size:"Height & boot size",ph_size:"e.g. 178 cm · size 43",label_phone:"WhatsApp / Phone",ph_phone:"A number we can reach you on",
+    btn_submit:"Send booking request",form_note:"Pressing send opens a ready message on WhatsApp.",
+    foot_about:"Ski and snowboard rental at Kayseri Erciyes. Maintained gear, correct sizing and fast handover.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Kayseri · Erciyes",foot_hours:"Winter season · depending on snow",
+    foot_rights:"© 2026 Kayseri Ski Rental — All rights reserved.",foot_demo:"Sample / Demo Design",
+    wa_greet:"Hello, I'd like to request a gear rental booking:",wa_name:"Name",wa_date:"Date",wa_gear:"Gear",wa_size:"Height/Size",wa_phone:"Phone",
+    alert_fill:"Please enter your name, date and phone number."
+  },
+  es:{
+    meta_title:"Alquiler de Esquí Kayseri — Alquiler de Esquí y Snowboard en Erciyes",
+    meta_desc:"Alquiler de esquí y snowboard en Erciyes. Equipo cuidado, tallaje y ajuste correctos, entrega rápida y correcta.",
+    brand_sub:"Erciyes · Alquiler",
+    nav_ekipman:"Equipo",nav_nasil:"Cómo Funciona",nav_erciyes:"Erciyes",nav_galeri:"Galería",nav_book:"Reservar",
+    dk_ekipman:"Equipo",dk_nasil:"Pasos",dk_erciyes:"Erciyes",dk_galeri:"Galería",dk_book:"Reservar",
+    hero_eyebrow:"Kayseri · Erciyes · Alquiler de Esquí y Snowboard",
+    hero_l1:"En Erciyes,",hero_l2:"Tu Equipo",hero_l3:"Está Listo",
+    hero_lede:"Esquís, snowboard, botas, casco y gafas — equipo cuidado y ajustado a tu talla, listo para ti. Tú solo disfruta de la nieve.",
+    hero_cta1:"Reservar equipo",hero_cta2:"Ver la línea de equipo",scroll_hint:"Desliza",
+    band_v1:"Equipo Completo",band_l1:"Esquí · Snowboard · Botas",band_l2:"Estación de esquí de Kayseri",band_v3:"Temporada de Invierno",band_l3:"Según la nieve",band_l4:"Reserva instantánea",
+    ek_eyebrow:"01 — Línea de Alquiler",ek_h:"La Línea de Equipo",
+    ek_sub:"Todo lo que necesitas en la pista en un solo lugar. Equipos cuidados, ajustados a tu talla y nivel.",
+    ek_imgtag:"Imagen conceptual · tu propia foto al publicar",
+    ek1_h:"Equipo de Esquí",ek1_p:"Esquís para cada altura y nivel; fijaciones ajustadas con precisión. ¿Primera vez o avanzado? Adaptamos el equipo a ti.",
+    ek2_h:"Equipo de Snowboard",ek2_p:"Tabla y fijaciones, montadas según tu postura (regular/goofy) y tu talla de bota. De tablas cortas a largas.",
+    ek3_h:"Botas de Esquí y Snowboard",ek3_p:"La talla y el ajuste correctos son la clave del día. Probamos tu bota hasta que asiente bien: firme pero sin apretar ni enfriar.",
+    ek4_h:"Casco y Gafas",ek4_p:"La seguridad es lo primero. Casco a la medida de tu cabeza y gafas para nieve y reflejos; entregados limpios y cuidados.",
+    ek_plus_label:"Además:",ek_plus:"bastones de esquí · ajuste y servicio del equipo · plan flexible para alquileres largos",
+    na_eyebrow:"02 — Tres Pasos",na_h:"Cómo Funciona",na_sub:"Nada complicado. Escribes, vienes, esquías — y lo devuelves al final.",
+    na1_h:"Escribe tu talla",na1_p:"Envía tu fecha, cuántos sois y las alturas / tallas de bota por WhatsApp. Prepararemos tu equipo con antelación.",
+    na2_h:"Ven y ajústatelo",na2_p:"Al recoger tu equipo ajustamos tus botas, fijaciones y casco a ti. En unos minutos estás listo para esquiar.",
+    na3_h:"Esquía y devuélvelo",na3_p:"Esquía todo el día; trae el equipo de vuelta al terminar. En alquileres largos planificamos los días juntos.",
+    er_eyebrow:"03 — Por Qué Erciyes, Por Qué Nosotros",er_h:"Equipo Correcto,<br>Rápido y Sencillo.",
+    er_lead:"Erciyes es una de las estaciones de esquí más altas y con más nieve de Turquía.",
+    er_p1:"No tienes que cargar con tu equipo. Con esquís cuidados y afilados y botas limpias, empiezas a esquiar sin perder tiempo en la pista.",
+    er_p2:"¿No sabes tu talla? No hay problema: elegimos juntos el equipo correcto por altura, peso y número de pie. El objetivo: seguro y cómodo desde la primera bajada.",
+    er_v1h:"Equipo cuidado",er_v1p:"Cantos, encerado y fijaciones revisados con regularidad.",
+    er_v2h:"Talla y ajuste correctos",er_v2p:"Configurado por altura, peso y talla de bota.",
+    er_v3h:"Entrega rápida",er_v3p:"Tu equipo listo, sin colas.",
+    er_v4h:"Seguridad primero",er_v4p:"Casco y gafas recomendados en cada alquiler.",
+    ga_eyebrow:"04 — Desde Erciyes",ga_h:"Nieve, Pista y Equipo",
+    ga_sub:"Las imágenes de abajo son conceptuales. Al publicar se sustituyen por las fotos de tu propio negocio.",
+    ga_c1:"Pista de Erciyes · concepto",ga_c2:"Línea de equipo · concepto",ga_c3:"Bodegón de equipo · concepto",
+    ga_note:"Las imágenes son conceptuales; se sustituyen por tus propias fotos tras la compra.",
+    bk_eyebrow:"05 — Reserva",bk_h:"Reserva Tu<br>Equipo Ahora.",
+    bk_lede:"Envía tu fecha y tu talla y te responderemos rápido por WhatsApp. Pregúntanos lo que quieras.",
+    rez_loc:"Kayseri · Erciyes",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_date:"Fecha de alquiler",label_gear:"Equipo",
+    opt_ski:"Equipo de esquí",opt_board:"Equipo de snowboard",opt_both:"Ambos",opt_unsure:"No estoy seguro",
+    label_size:"Altura y talla de bota",ph_size:"Ej. 178 cm · talla 43",label_phone:"WhatsApp / Teléfono",ph_phone:"Un número donde localizarte",
+    btn_submit:"Enviar solicitud de reserva",form_note:"Al pulsar enviar se abre un mensaje listo en WhatsApp.",
+    foot_about:"Alquiler de esquí y snowboard en Kayseri Erciyes. Equipo cuidado, tallaje correcto y entrega rápida.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Kayseri · Erciyes",foot_hours:"Temporada de invierno · según la nieve",
+    foot_rights:"© 2026 Alquiler de Esquí Kayseri — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+    wa_greet:"Hola, quisiera solicitar una reserva de alquiler de equipo:",wa_name:"Nombre",wa_date:"Fecha",wa_gear:"Equipo",wa_size:"Altura/Talla",wa_phone:"Teléfono",
+    alert_fill:"Por favor, introduce tu nombre, la fecha y tu número de teléfono."
+  },
+  "zh-CN":{
+    meta_title:"开塞利滑雪租赁 — 埃尔吉耶斯滑雪板与单板租赁",
+    meta_desc:"埃尔吉耶斯滑雪与单板租赁。装备保养到位、尺码与调校精准，快速精准取还。",
+    brand_sub:"埃尔吉耶斯 · 租赁",
+    nav_ekipman:"装备",nav_nasil:"使用流程",nav_erciyes:"埃尔吉耶斯",nav_galeri:"相册",nav_book:"预订",
+    dk_ekipman:"装备",dk_nasil:"流程",dk_erciyes:"雪场",dk_galeri:"相册",dk_book:"预订",
+    hero_eyebrow:"开塞利 · 埃尔吉耶斯 · 滑雪板与单板租赁",
+    hero_l1:"在埃尔吉耶斯，",hero_l2:"你的装备",hero_l3:"已备好",
+    hero_lede:"双板、单板、雪靴、头盔和雪镜——保养到位、按你的尺码调好，已为你备好。你只管尽情滑雪。",
+    hero_cta1:"预订装备",hero_cta2:"查看装备清单",scroll_hint:"下滑",
+    band_v1:"全套装备",band_l1:"双板 · 单板 · 雪靴",band_l2:"开塞利滑雪场",band_v3:"冬季雪季",band_l3:"视降雪情况",band_l4:"即时预订",
+    ek_eyebrow:"01 — 租赁清单",ek_h:"装备清单",
+    ek_sub:"雪道上所需的一切一站备齐。按你的尺码与水平调好的保养装备。",
+    ek_imgtag:"概念图 · 上线后换成您的照片",
+    ek1_h:"双板套装",ek1_p:"适合不同身高与水平的雪板；固定器精心调校。初次还是进阶——按你来匹配装备。",
+    ek2_h:"单板套装",ek2_p:"雪板与固定器，按你的站姿（regular/goofy）和脚码安装。从短板到长板皆有。",
+    ek3_h:"双板与单板雪靴",ek3_p:"正确的尺码与松紧是当天的关键。我们试到贴合为止——不夹脚、不冻脚的雪靴。",
+    ek4_h:"头盔与雪镜",ek4_p:"安全第一。按你头围的头盔，以及应对雪光与反光的雪镜；清洁保养后交付。",
+    ek_plus_label:"另有：",ek_plus:"雪杖 · 装备调校与保养 · 长期租赁灵活排期",
+    na_eyebrow:"02 — 三步",na_h:"使用流程",na_sub:"并不复杂。你留言、你到店、你滑雪——用完归还。",
+    na1_h:"留言，告知尺码",na1_p:"通过 WhatsApp 发送日期、人数以及身高 / 脚码。我们会提前备好装备。",
+    na2_h:"到店，现场调校",na2_p:"取装备时，我们为你调好雪靴、固定器和头盔。几分钟后你就能开滑。",
+    na3_h:"滑雪，用完归还",na3_p:"尽情滑一整天；结束后把装备带回。长期租赁我们一起安排每天。",
+    er_eyebrow:"03 — 为何选埃尔吉耶斯，为何选我们",er_h:"装备到位，<br>快捷又省心。",
+    er_lead:"埃尔吉耶斯是土耳其海拔最高、积雪最丰的滑雪场之一。",
+    er_p1:"你无需自带装备。保养到位、打磨好的雪板与洁净的雪靴，让你在雪道上不浪费时间，立刻开滑。",
+    er_p2:"不知道尺码也没关系——我们按身高、体重和脚码一起为你挑选合适的装备。目标：从第一趟下滑起就安全又舒适。",
+    er_v1h:"保养到位的装备",er_v1p:"刃口、打蜡与固定器定期维护。",
+    er_v2h:"正确尺码与调校",er_v2p:"按身高、体重与脚码配置。",
+    er_v3h:"快速交付",er_v3p:"装备已备好，无需排队。",
+    er_v4h:"安全优先",er_v4p:"每次租赁均建议佩戴头盔与雪镜。",
+    ga_eyebrow:"04 — 来自埃尔吉耶斯",ga_h:"雪、雪道与装备",
+    ga_sub:"以下画面为概念图。上线后会换成贵店自己的照片。",
+    ga_c1:"埃尔吉耶斯雪道 · 概念",ga_c2:"装备清单 · 概念",ga_c3:"装备静物 · 概念",
+    ga_note:"图片仅为概念展示；购买后会换成您自己的照片。",
+    bk_eyebrow:"05 — 预订",bk_h:"立即预订<br>你的装备。",
+    bk_lede:"发送你的日期和尺码，我们会尽快通过 WhatsApp 回复。有任何问题都可以问。",
+    rez_loc:"开塞利 · 埃尔吉耶斯",
+    label_name:"您的姓名",ph_name:"您的全名",label_date:"租赁日期",label_gear:"装备",
+    opt_ski:"双板套装",opt_board:"单板套装",opt_both:"两者都要",opt_unsure:"还不确定",
+    label_size:"身高与脚码",ph_size:"例如 178 cm · 43 码",label_phone:"WhatsApp / 电话",ph_phone:"方便联系您的号码",
+    btn_submit:"发送预订请求",form_note:"点击发送后会在 WhatsApp 中打开已写好的消息。",
+    foot_about:"开塞利埃尔吉耶斯滑雪与单板租赁。装备保养到位、尺码精准、交付快捷。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"开塞利 · 埃尔吉耶斯",foot_hours:"冬季雪季 · 视降雪情况",
+    foot_rights:"© 2026 开塞利滑雪租赁 — 版权所有。",foot_demo:"示例 / 演示设计",
+    wa_greet:"您好，我想申请装备租赁预订：",wa_name:"姓名",wa_date:"日期",wa_gear:"装备",wa_size:"身高/尺码",wa_phone:"电话",
+    alert_fill:"请填写您的姓名、日期和电话号码。"
+  },
+  ko:{
+    meta_title:"카이세리 스키 렌탈 — 에르지예스 스키 & 스노보드 렌탈",
+    meta_desc:"에르지예스 스키·스노보드 렌탈. 잘 관리된 장비, 정확한 사이즈와 세팅, 빠르고 정확한 수령.",
+    brand_sub:"에르지예스 · 렌탈",
+    nav_ekipman:"장비",nav_nasil:"이용 방법",nav_erciyes:"에르지예스",nav_galeri:"갤러리",nav_book:"예약",
+    dk_ekipman:"장비",dk_nasil:"단계",dk_erciyes:"에르지예스",dk_galeri:"갤러리",dk_book:"예약",
+    hero_eyebrow:"카이세리 · 에르지예스 · 스키 & 스노보드 렌탈",
+    hero_l1:"에르지예스에서,",hero_l2:"당신의 장비는",hero_l3:"준비됐습니다",
+    hero_lede:"스키, 스노보드, 부츠, 헬멧, 고글 — 잘 관리되고 당신 사이즈에 맞춘 장비가 준비되어 있습니다. 당신은 눈만 즐기세요.",
+    hero_cta1:"장비 예약",hero_cta2:"장비 라인 보기",scroll_hint:"스크롤",
+    band_v1:"풀 세트",band_l1:"스키 · 스노보드 · 부츠",band_l2:"카이세리 스키장",band_v3:"겨울 시즌",band_l3:"적설 상황에 따라",band_l4:"즉시 예약",
+    ek_eyebrow:"01 — 렌탈 라인",ek_h:"장비 라인",
+    ek_sub:"슬로프에서 필요한 모든 것이 한곳에. 당신의 사이즈와 수준에 맞춘 잘 관리된 세트.",
+    ek_imgtag:"콘셉트 이미지 · 오픈 시 실제 사진으로 교체",
+    ek1_h:"스키 세트",ek1_p:"다양한 키와 수준에 맞는 스키; 바인딩을 정교하게 조정합니다. 처음이든 상급이든 — 당신에 맞춰 세트를 드립니다.",
+    ek2_h:"스노보드 세트",ek2_p:"보드와 바인딩을 당신의 스탠스(레귤러/구피)와 발 사이즈에 맞춰 세팅합니다. 짧은 보드부터 긴 보드까지.",
+    ek3_h:"스키 & 스노보드 부츠",ek3_p:"정확한 사이즈와 조임이 그날의 핵심입니다. 발에 맞을 때까지 신어보고 드립니다 — 조이거나 시리지 않는 부츠.",
+    ek4_h:"헬멧 & 고글",ek4_p:"안전이 우선입니다. 머리 둘레에 맞는 헬멧과 눈·반사광용 고글; 깨끗하게 관리해 드립니다.",
+    ek_plus_label:"추가로:",ek_plus:"스키 폴 · 장비 조정 & 서비스 · 장기 렌탈 시 유연한 일정",
+    na_eyebrow:"02 — 세 단계",na_h:"이용 방법",na_sub:"복잡하지 않습니다. 문의하고, 오고, 타고 — 끝나면 반납합니다.",
+    na1_h:"문의하고 사이즈 알리기",na1_p:"WhatsApp으로 날짜, 인원, 키 / 발 사이즈를 보내주세요. 장비를 미리 준비해 둡니다.",
+    na2_h:"방문해서 맞추기",na2_p:"장비를 받을 때 부츠, 바인딩, 헬멧을 당신에 맞춰 조정합니다. 몇 분이면 탈 준비 완료입니다.",
+    na3_h:"타고 반납하기",na3_p:"하루 종일 타세요; 끝나면 장비를 가져오세요. 장기 렌탈은 함께 일정을 계획합니다.",
+    er_eyebrow:"03 — 왜 에르지예스, 왜 우리인가",er_h:"정확한 장비,<br>빠르고 간편하게.",
+    er_lead:"에르지예스는 터키에서 가장 높고 눈이 풍부한 스키장 중 하나입니다.",
+    er_p1:"장비를 직접 들고 다닐 필요가 없습니다. 잘 관리되고 날이 선 스키와 깨끗한 부츠로, 슬로프에서 시간을 낭비하지 않고 바로 시작합니다.",
+    er_p2:"사이즈를 몰라도 괜찮습니다 — 키, 몸무게, 발 사이즈에 따라 알맞은 세트를 함께 고릅니다. 목표는 첫 활강부터 안전하고 편안한 것입니다.",
+    er_v1h:"관리된 장비",er_v1p:"엣지, 왁싱, 바인딩 세팅을 정기적으로 관리합니다.",
+    er_v2h:"정확한 사이즈 & 세팅",er_v2p:"키, 몸무게, 발 사이즈에 맞춰 구성.",
+    er_v3h:"빠른 수령",er_v3p:"세트 준비 완료, 줄 서지 않고.",
+    er_v4h:"안전 우선",er_v4p:"모든 렌탈에 헬멧과 고글을 권장합니다.",
+    ga_eyebrow:"04 — 에르지예스에서",ga_h:"눈, 슬로프 그리고 장비",
+    ga_sub:"아래 이미지는 콘셉트 이미지입니다. 오픈 시 매장의 실제 사진으로 교체됩니다.",
+    ga_c1:"에르지예스 슬로프 · 콘셉트",ga_c2:"장비 라인 · 콘셉트",ga_c3:"장비 정물 · 콘셉트",
+    ga_note:"이미지는 콘셉트용이며, 구매 후 실제 사진으로 교체됩니다.",
+    bk_eyebrow:"05 — 예약",bk_h:"지금 장비를<br>예약하세요.",
+    bk_lede:"날짜와 사이즈를 보내주시면 WhatsApp으로 빠르게 답장드립니다. 무엇이든 물어보세요.",
+    rez_loc:"카이세리 · 에르지예스",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_date:"렌탈 날짜",label_gear:"장비",
+    opt_ski:"스키 세트",opt_board:"스노보드 세트",opt_both:"둘 다",opt_unsure:"아직 모르겠어요",
+    label_size:"키 & 발 사이즈",ph_size:"예: 178 cm · 270 mm",label_phone:"WhatsApp / 전화",ph_phone:"연락 가능한 번호",
+    btn_submit:"예약 요청 보내기",form_note:"보내기를 누르면 WhatsApp에 작성된 메시지가 열립니다.",
+    foot_about:"카이세리 에르지예스 스키·스노보드 렌탈. 관리된 장비, 정확한 사이즈, 빠른 수령.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"카이세리 · 에르지예스",foot_hours:"겨울 시즌 · 적설 상황에 따라",
+    foot_rights:"© 2026 카이세리 스키 렌탈 — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    wa_greet:"안녕하세요, 장비 렌탈 예약을 요청합니다:",wa_name:"성함",wa_date:"날짜",wa_gear:"장비",wa_size:"키/사이즈",wa_phone:"전화",
+    alert_fill:"성함, 날짜, 전화번호를 입력해 주세요."
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(/<[a-z]/i.test(dict[key])) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  document.querySelectorAll('.langs button').forEach(b=> b.classList.toggle('active', b.getAttribute('data-lang')===lang));
+  try{ localStorage.setItem('kayseri_lang', lang); }catch(e){}
+}
+(function(){
+  const p = new URLSearchParams(location.search).get('lang');
+  let saved=null; try{ saved=localStorage.getItem('kayseri_lang'); }catch(e){}
+  applyLang(p || saved || 'tr');
+  document.querySelectorAll('.langs button').forEach(b=> b.addEventListener('click', ()=> applyLang(b.getAttribute('data-lang'))));
+})();
+
+// ==================== TEMA (?theme= + localStorage + prefers-color-scheme) ====================
+(function(){
+  const root = document.documentElement;
+  function setTheme(t){
+    if(t==='dark') root.setAttribute('data-theme','dark'); else root.removeAttribute('data-theme');
+    try{ localStorage.setItem('kayseri_theme', t); }catch(e){}
+  }
+  const p = new URLSearchParams(location.search).get('theme');
+  let saved=null; try{ saved=localStorage.getItem('kayseri_theme'); }catch(e){}
+  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  setTheme(p==='dark'||p==='light' ? p : (saved || (sysDark ? 'dark' : 'light')));
+  document.getElementById('themeBtn').addEventListener('click', ()=> setTheme(root.getAttribute('data-theme')==='dark' ? 'light' : 'dark'));
+})();
+
+// ==================== NAV scrolled + scroll-spy (carve-wave aktif) ====================
+(function(){
+  const nav = document.getElementById('topnav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  const ids = ['ekipman','nasil','erciyes','galeri','rezervasyon'];
+  const links = [...document.querySelectorAll('.navlinks .flink, .dock a')];
+  function spy(){
+    let active='';
+    for(const id of ids){ const el=document.getElementById(id); if(el && el.getBoundingClientRect().top <= window.innerHeight*.45) active=id; }
+    links.forEach(a=> a.classList.toggle('active', a.getAttribute('href') === '#'+active));
+  }
+  window.addEventListener('scroll', spy, {passive:true}); spy();
+})();
+
+// ==================== REVEAL + carve draw ====================
+(function(){
+  const els = document.querySelectorAll('.reveal, .carve');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)){
+    els.forEach(el=> el.classList.add('in')); return;
+  }
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -6% 0px'});
+  els.forEach(el=> io.observe(el));
+})();
+
+// ==================== KAR TANESİ CANVAS (signature) ====================
+(function(){
+  const cv = document.getElementById('snow');
+  if(!cv) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ctx = cv.getContext('2d');
+  let w=0,h=0,flakes=[],raf=null;
+  function size(){ const hero=cv.parentElement; w=cv.width=hero.offsetWidth; h=cv.height=hero.offsetHeight; }
+  function make(){
+    const n = Math.min(90, Math.round(w/16));
+    flakes = Array.from({length:n},()=>({ x:Math.random()*w, y:Math.random()*h, r:Math.random()*2.1+.6, sp:Math.random()*.7+.35, dr:Math.random()*.5-.25, o:Math.random()*.5+.25 }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for(const f of flakes){
+      ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,6.283);
+      ctx.fillStyle='rgba(255,255,255,'+f.o+')'; ctx.fill();
+      f.y += f.sp; f.x += f.dr + Math.sin(f.y*.012)*.25;
+      if(f.y>h+4){ f.y=-4; f.x=Math.random()*w; }
+      if(f.x>w+4)f.x=-4; if(f.x<-4)f.x=w+4;
+    }
+    raf = requestAnimationFrame(draw);
+  }
+  function init(){ size(); make(); if(!reduce){ if(raf)cancelAnimationFrame(raf); draw(); } else { draw(); cancelAnimationFrame(raf); } }
+  init();
+  window.addEventListener('resize', ()=>{ size(); make(); });
+})();
+
+// ==================== REZERVASYON → WHATSAPP (çok dilli) ====================
+const WHATSAPP = "905315132808";
+document.getElementById('bookForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const d = I18N[currentLang];
+  const name = document.getElementById('f-name').value.trim();
+  const date = document.getElementById('f-date').value;
+  const gearKey = document.getElementById('f-gear').value;
+  const size = document.getElementById('f-size').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  if(!name || !date || !phone){ alert(d.alert_fill); return; }
+  let lines = [d.wa_greet, '',
+    d.wa_name + ': ' + name,
+    d.wa_date + ': ' + date,
+    d.wa_gear + ': ' + (d[gearKey] || '')];
+  if(size) lines.push(d.wa_size + ': ' + size);
+  lines.push(d.wa_phone + ': ' + phone);
+  const msg = encodeURIComponent(lines.join('\n'));
+  window.open('https://wa.me/' + WHATSAPP + '?text=' + msg, '_blank');
+});
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items = Array.from(document.querySelectorAll('.g-grid .tile[data-img]'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  const capOf = t => { const l = t.querySelector('.cap'); return l ? l.textContent.trim() : ''; };
+  function show(i){ idx=(i+items.length)%items.length; const t=items[idx]; img.src=base+t.getAttribute('data-img'); cap.textContent=capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }
+  items.forEach((t,i)=> t.addEventListener('click', ()=> open(i)));
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbPrev').addEventListener('click', e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click', e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click', e=>{ if(e.target===lb) close(); });
+  document.addEventListener('keydown', e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape')close(); else if(e.key==='ArrowLeft')show(idx-1); else if(e.key==='ArrowRight')show(idx+1); });
+})();
+</script>
+
+<script>
+/*  Stripe WebGl Gradient Animation — whatamesh (MIT) · file:// güvenli
+    Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com
+    Aşağıdaki normalizeColor + MiniGl + Gradient sınıfları BİREBİR; sadece ESM export çıkarıldı. */
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh init + syncHeight ==================== */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+</body>
+</html>
