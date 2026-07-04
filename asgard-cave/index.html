@@ -1,0 +1,2012 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Asgard Cave Cappadocia — Çavuşin'de Kesme Taş Konak</title>
+<meta name="description" data-i18n="meta_desc" content="Çavuşin'in kayasına yaslı kesme taş bir konak. Sabah ışığı, taş kemerler ve vadinin sessizliği — Asgard Cave Cappadocia.">
+<style>
+  :root{
+    /* karanlık — sinematik gece taşı (varsayılan) */
+    --bg:#17130e; --bg-2:#1e1811; --panel:#241d15; --panel-2:#2b2318;
+    --text:#ece1cd; --muted:#a99a82; --faint:#87795f;
+    --line:rgba(236,225,205,.13); --line-2:rgba(236,225,205,.08);
+    --gold:#c99a5b; --gold-l:#e6bd7e; --gold-d:#a77f43;
+    --cool:#7f95a7;                 /* kuzey serinliği — çok az kullanılır */
+    --card:#221b13; --card-b:rgba(236,225,205,.10);
+    --nav-bg:rgba(20,16,11,.82); --nav-link:#e7dcc6; --nav-link-top:#f3ead9;
+    --input-bg:rgba(35,29,20,.6); --input-line:rgba(236,225,205,.16);
+    --shadow:0 24px 60px rgba(0,0,0,.45);
+    --grain-op:.05;
+  }
+  html[data-theme="light"]{
+    /* aydınlık — sabah kireç taşı ışığı */
+    --bg:#f2e9da; --bg-2:#ece0cd; --panel:#fbf5ea; --panel-2:#f5ecdd;
+    --text:#2b2118; --muted:#6f6252; --faint:#8c7d69;
+    --line:rgba(43,33,24,.14); --line-2:rgba(43,33,24,.07);
+    --gold:#a9762c; --gold-l:#c08a37; --gold-d:#875c20;
+    --cool:#5d7383;
+    --card:#fbf5ea; --card-b:rgba(43,33,24,.10);
+    --nav-bg:rgba(248,241,230,.86); --nav-link:#3a2d20; --nav-link-top:#f3ead9;
+    --input-bg:rgba(255,255,255,.7); --input-line:rgba(43,33,24,.16);
+    --shadow:0 24px 60px rgba(93,72,48,.18);
+    --grain-op:.035;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{font-family:'Optima','Gill Sans',system-ui,sans-serif;color:var(--text);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.68;overflow-x:hidden;transition:background .5s,color .5s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:'Cormorant Garamond','Didot','Bodoni MT','Playfair Display',Georgia,serif;font-weight:500;line-height:1.06;letter-spacing:.002em}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:600;letter-spacing:0}
+  .eyebrow{font-family:'Optima','Gill Sans',sans-serif;text-transform:uppercase;letter-spacing:.42em;font-size:.66rem;font-weight:600;color:var(--gold)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.16em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 34px}
+  img{max-width:100%;display:block}
+
+  /* ---------------- NAV ---------------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:18px;padding:17px 34px;transition:background .5s,box-shadow .5s,padding .4s}
+  nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding-top:13px;padding-bottom:13px}
+  .brand{display:flex;align-items:center;gap:12px;flex:none}
+  .brand .mark{width:34px;height:34px;flex:none;color:var(--gold)}
+  .brand .wm{display:flex;flex-direction:column;line-height:1}
+  .brand .wm b{font-family:'Cormorant Garamond','Didot',Georgia,serif;font-weight:600;font-size:1.42rem;letter-spacing:.14em;color:var(--nav-link-top);transition:color .4s}
+  .brand .wm span{font-family:'Optima',sans-serif;font-size:.54rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-top:3px}
+  nav.scrolled .brand .wm b{color:var(--nav-link)}
+
+  .navlinks{position:relative;display:flex;gap:6px;align-items:center;margin-left:auto}
+  .navlinks a{position:relative;z-index:2;font-family:'Optima','Gill Sans',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--nav-link-top);padding:9px 16px;border-radius:9px;transition:color .3s}
+  nav.scrolled .navlinks a{color:var(--nav-link)}
+  html[lang="zh-CN"] .navlinks a,html[lang="ko"] .navlinks a{text-transform:none;letter-spacing:.03em;font-size:.9rem}
+  .navlinks a.active,.navlinks a:hover{color:var(--gold-l)}
+  nav.scrolled .navlinks a.active,nav.scrolled .navlinks a:hover{color:var(--gold)}
+  /* SIGNATURE NAV — "oyuk niş": aktif bağlantı taşa oyulmuş bir niş gibi içeri gömülür */
+  .niche{position:absolute;top:2px;left:0;height:calc(100% - 4px);width:0;z-index:1;border-radius:10px;opacity:0;
+    background:linear-gradient(180deg,rgba(0,0,0,.16),rgba(255,255,255,.04));
+    box-shadow:inset 0 2px 5px rgba(0,0,0,.42),inset 0 -1px 0 rgba(255,235,190,.16),0 1px 0 rgba(255,255,255,.05);
+    transition:transform .45s cubic-bezier(.4,.5,.15,1),width .45s cubic-bezier(.4,.5,.15,1),opacity .4s}
+  .niche::after{content:"";position:absolute;left:22%;right:22%;bottom:4px;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 10px 1px rgba(232,189,126,.55);opacity:.9}
+  html[data-theme="light"] .niche{background:linear-gradient(180deg,rgba(43,33,24,.10),rgba(255,255,255,.5));
+    box-shadow:inset 0 2px 5px rgba(43,33,24,.18),inset 0 -1px 0 rgba(255,255,255,.6)}
+
+  .ctrls{display:flex;align-items:center;gap:8px;flex:none}
+  .langs{display:flex;align-items:center;gap:1px}
+  .langs button{background:none;border:none;color:var(--nav-link-top);font-family:'Optima',sans-serif;font-size:.72rem;cursor:pointer;padding:5px 6px;transition:.25s;border-radius:4px;letter-spacing:.03em;opacity:.7}
+  nav.scrolled .langs button{color:var(--nav-link)}
+  .langs button:hover{opacity:1}
+  .langs button.active{color:var(--gold-l);opacity:1;font-weight:600}
+  nav.scrolled .langs button.active{color:var(--gold)}
+  .langs .sep{opacity:.3;font-size:.68rem}
+  .icon-btn{background:none;border:1px solid var(--line);width:36px;height:36px;border-radius:9px;cursor:pointer;color:var(--nav-link-top);display:flex;align-items:center;justify-content:center;transition:.3s;flex:none}
+  nav.scrolled .icon-btn{color:var(--nav-link);border-color:var(--line)}
+  .icon-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .icon-btn svg{width:18px;height:18px}
+  .theme-btn .moon{display:none}
+  html[data-theme="light"] .theme-btn .sun{display:none}
+  html[data-theme="light"] .theme-btn .moon{display:block}
+  .menu-btn{display:none}
+
+  /* ---------------- HERO ---------------- */
+  .hero{position:relative;height:100vh;min-height:660px;overflow:hidden;display:flex;align-items:flex-end;isolation:isolate}
+  .hero .sky{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,#0f0c08 0%,#1a140d 42%,#3a2c1c 70%,#6b4f31 88%,#a97b45 100%)}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center 42%;opacity:0;transition:opacity 1s}
+  .hero-photo.has-img{opacity:1;animation:kenburns 40s ease-in-out infinite alternate;transform-origin:58% 46%}
+  @keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.12)}}
+  #hero-gradient{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:overlay;opacity:.34;
+    --gradient-color-1:#2a2018; --gradient-color-2:#c99a5b; --gradient-color-3:#7f95a7; --gradient-color-4:#8a5f36}
+  .no-webgl #hero-gradient{display:none}
+  .hero::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+    background:
+      linear-gradient(90deg,rgba(12,9,6,.74) 0%,rgba(12,9,6,.36) 42%,transparent 68%),
+      radial-gradient(82% 72% at 20% 74%,rgba(12,9,6,.6),transparent 68%),
+      linear-gradient(180deg,rgba(12,9,6,.34) 0%,transparent 30%,rgba(12,9,6,.3) 74%,rgba(12,9,6,.74) 100%)}
+  /* SIGNATURE — "şafak huzmesi": taş odaya sızan ilk ışık + toz zerreleri */
+  .hero-beam{position:absolute;inset:-25% -15%;z-index:4;pointer-events:none;mix-blend-mode:screen;filter:blur(2px);
+    background:linear-gradient(114deg,transparent 32%,rgba(236,205,145,.10) 45%,rgba(255,236,192,.20) 50%,rgba(236,205,145,.10) 55%,transparent 68%);
+    animation:beamSweep 15s ease-in-out infinite alternate}
+  @keyframes beamSweep{from{transform:translateX(-3%);opacity:.5}to{transform:translateX(3%);opacity:1}}
+  .motes{position:absolute;inset:0;z-index:5;pointer-events:none;overflow:hidden}
+  .mote{position:absolute;border-radius:50%;background:rgba(255,238,205,.9);box-shadow:0 0 6px 1px rgba(255,226,170,.6);animation:moteDrift linear infinite}
+  @keyframes moteDrift{0%{transform:translate(0,0);opacity:0}12%{opacity:.85}88%{opacity:.5}100%{transform:translate(-46px,-82px);opacity:0}}
+
+  .hero-inner{position:relative;z-index:10;width:100%;padding-bottom:11vh}
+  .hero .eyebrow{color:var(--gold-l);text-shadow:0 2px 18px rgba(0,0,0,.7)}
+  .hero h1{color:#f6efe1;font-size:clamp(2.9rem,7.6vw,6.6rem);max-width:15ch;margin-top:20px;text-shadow:0 6px 46px rgba(0,0,0,.6)}
+  .hero h1 em{font-style:italic;color:var(--gold-l)}
+  .hero .lede{font-size:clamp(1.04rem,1.55vw,1.32rem);color:rgba(246,239,225,.9);max-width:50ch;margin-top:24px;font-weight:300;text-shadow:0 2px 22px rgba(0,0,0,.6)}
+  .hero-cta{display:flex;gap:18px;margin-top:36px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:#f4ece0;color:#1a140d;padding:16px 32px;border-radius:3px;font-family:'Optima','Gill Sans',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.35s}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{text-transform:none;letter-spacing:.03em}
+  .btn-solid:hover{background:var(--gold-l);gap:16px}
+  .btn-line{color:#f6efe1;font-family:'Optima','Gill Sans',sans-serif;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid rgba(246,239,225,.4);padding-bottom:5px;transition:.4s}
+  .btn-line:hover{border-color:var(--gold-l);color:var(--gold-l)}
+  .scrollhint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:10;font-family:'Optima',sans-serif;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(246,239,225,.55);display:flex;flex-direction:column;align-items:center;gap:9px}
+  html[lang="zh-CN"] .scrollhint,html[lang="ko"] .scrollhint{letter-spacing:.12em}
+  .scrollhint .l{width:1px;height:34px;background:linear-gradient(var(--gold-l),transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ---------------- ESSENCE STRIP ---------------- */
+  .essence{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .essence .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:40px 34px}
+  .ess{text-align:center}
+  .ess .v{font-family:'Cormorant Garamond','Didot',Georgia,serif;font-size:clamp(1.7rem,3vw,2.5rem);color:var(--gold);line-height:1;font-weight:600}
+  html[lang="zh-CN"] .ess .v,html[lang="ko"] .ess .v{font-size:clamp(1.4rem,2.4vw,2rem)}
+  .ess .l{font-family:'Optima',sans-serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:11px}
+  html[lang="zh-CN"] .ess .l,html[lang="ko"] .ess .l{text-transform:none;letter-spacing:.04em}
+  .ess+.ess{border-left:1px solid var(--line)}
+  @media(max-width:680px){.essence .wrap{grid-template-columns:1fr 1fr;gap:30px 20px}.ess:nth-child(3){border-left:none}}
+
+  section{padding:118px 0;position:relative}
+  .sec-head{max-width:680px;margin-bottom:60px}
+  .sec-head .eyebrow{display:block;margin-bottom:18px}
+  .sec-head h2{font-size:clamp(2.1rem,4.4vw,3.5rem)}
+  .sec-head p{margin-top:20px;color:var(--muted);font-size:1.12rem;font-weight:300}
+
+  /* ---------------- STORY / KONAK ---------------- */
+  .story{background:var(--bg)}
+  .story-grid{display:grid;grid-template-columns:1.02fr 0.98fr;gap:0;align-items:stretch}
+  .story-visual{position:relative;min-height:540px;border-radius:4px;overflow:hidden;background:#241b12 center/cover no-repeat}
+  .story-visual .cap{position:absolute;left:22px;bottom:20px;z-index:3;font-family:'Optima',sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,239,225,.85);display:flex;align-items:center;gap:7px}
+  html[lang="zh-CN"] .story-visual .cap,html[lang="ko"] .story-visual .cap{text-transform:none;letter-spacing:.04em}
+  .story-visual .cap svg{width:14px;height:14px;opacity:.8}
+  .story-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(12,9,6,.5))}
+  .story-text{background:var(--panel);padding:60px;display:flex;flex-direction:column;justify-content:center;margin-left:-46px;z-index:2;border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow)}
+  .story-text .lead{font-family:'Cormorant Garamond','Didot',Georgia,serif;font-size:1.62rem;line-height:1.42;font-style:italic;color:var(--text);margin-bottom:22px}
+  html[lang="zh-CN"] .story-text .lead,html[lang="ko"] .story-text .lead{font-style:normal}
+  .story-text p{color:var(--muted);margin-bottom:16px;font-weight:300}
+  .story-text .sign{margin-top:14px;font-family:'Cormorant Garamond','Didot',Georgia,serif;font-size:1.28rem;color:var(--gold);font-style:italic}
+  @media(max-width:860px){.story-grid{grid-template-columns:1fr}.story-text{margin-left:0;margin-top:-46px}.story-visual{min-height:360px}}
+
+  /* ---------------- DENEYIM ---------------- */
+  .stay{background:var(--bg-2)}
+  .stay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .card{background:var(--card);border:1px solid var(--card-b);border-radius:5px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .card-visual{position:relative;height:270px;background:#241b12 center/cover no-repeat;cursor:pointer}
+  .card-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 46%,rgba(12,9,6,.44))}
+  .card-visual .note{position:absolute;left:16px;bottom:14px;z-index:3;font-family:'Optima',sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,239,225,.92)}
+  html[lang="zh-CN"] .card-visual .note,html[lang="ko"] .card-visual .note{text-transform:none;letter-spacing:.03em}
+  .card-body{padding:26px 26px 30px}
+  .card-body .tag{font-family:'Optima',sans-serif;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+  html[lang="zh-CN"] .card-body .tag,html[lang="ko"] .card-body .tag{letter-spacing:.06em}
+  .card-body h3{font-size:1.5rem;margin:9px 0 12px;color:var(--text)}
+  .card-body p{color:var(--muted);font-weight:300;font-size:.98rem}
+  @media(max-width:860px){.stay-grid{grid-template-columns:1fr;max-width:460px;margin:0 auto}}
+
+  /* concept görsel rozeti */
+  .concept-badge{position:absolute;top:13px;left:13px;z-index:4;font-family:'Optima',sans-serif;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:#f4ece0;background:rgba(12,9,6,.5);border:1px solid rgba(246,239,225,.28);padding:5px 10px;border-radius:20px;backdrop-filter:blur(3px)}
+  html[lang="zh-CN"] .concept-badge,html[lang="ko"] .concept-badge{text-transform:none;letter-spacing:.02em}
+
+  /* ---------------- WHY / NEDEN ---------------- */
+  .why{background:var(--bg)}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
+  .wi .ic{width:40px;height:40px;color:var(--gold);margin-bottom:16px}
+  .wi h3{font-size:1.24rem;margin-bottom:8px;color:var(--text)}
+  .wi p{font-size:.96rem;color:var(--muted);font-weight:300}
+  @media(max-width:860px){.why-grid{grid-template-columns:1fr 1fr;gap:32px 28px}}
+
+  /* ---------------- PLACE / ÇAVUŞIN immersive band ---------------- */
+  .place{position:relative;padding:130px 0;background:#120e09 center/cover no-repeat;overflow:hidden}
+  .place::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,9,6,.82) 0%,rgba(12,9,6,.55) 46%,rgba(12,9,6,.2) 100%)}
+  .place .wrap{position:relative;z-index:2}
+  .place .inner{max-width:560px}
+  .place .eyebrow{color:var(--gold-l)}
+  .place h2{color:#f6efe1;font-size:clamp(2.1rem,4.2vw,3.3rem);margin:16px 0 20px}
+  .place p{color:rgba(246,239,225,.9);font-weight:300;font-size:1.1rem;margin-bottom:26px;max-width:48ch}
+  .place ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+  .place li{display:flex;align-items:center;gap:13px;color:#f0e7d6;font-size:1rem;font-weight:300}
+  .place li svg{width:20px;height:20px;color:var(--gold-l);flex:none}
+  .place .concept-badge{top:auto;bottom:20px;left:auto;right:22px}
+
+  /* ---------------- GALLERY ---------------- */
+  .gallery{background:var(--bg-2)}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tile{aspect-ratio:4/3;border-radius:5px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px;background:#241b12 center/cover no-repeat;cursor:pointer;transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s}
+  .tile:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .tile .cap{position:relative;z-index:3;font-family:'Optima',sans-serif;font-size:.76rem;letter-spacing:.04em;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.8)}
+  .tile::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(12,9,6,.62),rgba(12,9,6,0) 52%);transition:.4s}
+  .tile::after{content:"\2922";position:absolute;top:12px;right:15px;z-index:3;color:#fff;font-size:1.05rem;opacity:0;transform:scale(.75);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .tile:hover::before{background:linear-gradient(to top,rgba(12,9,6,.7),rgba(12,9,6,.14))}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  @media(max-width:820px){.tiles{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.tiles{grid-template-columns:1fr}.tile{aspect-ratio:16/10}}
+
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(9,7,4,.95);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:86vh;border-radius:5px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f4ece0;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:var(--text);font-family:'Optima',sans-serif;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase}
+  html[lang="zh-CN"] .lb-cap,html[lang="ko"] .lb-cap{text-transform:none;letter-spacing:.04em}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(20,16,11,.55);border:1px solid var(--line);color:#f4ece0;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .lb-nav:hover{background:var(--gold);color:#17130e;border-color:var(--gold)}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:1.2rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ---------------- BOOK / İLETİŞİM ---------------- */
+  .book{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--bg),var(--bg-2))}
+  .book::before{content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(201,154,91,.2),transparent 68%)}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.3rem,4.4vw,3.6rem);color:var(--text)}
+  .book h2 em{font-style:italic;color:var(--gold)}
+  .book .lede{color:var(--muted);margin-top:20px;font-size:1.1rem;font-weight:300}
+  .wa{display:inline-flex;align-items:center;gap:11px;margin-top:26px;color:var(--text);font-family:'Optima',sans-serif;font-size:1.05rem}
+  .wa svg{width:24px;height:24px;color:#5ec96b}
+  .form{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:38px;box-shadow:var(--shadow)}
+  .field{margin-bottom:17px}
+  .field label{display:block;font-family:'Optima',sans-serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{text-transform:none;letter-spacing:.03em}
+  .field input,.field select{width:100%;padding:14px 15px;border-radius:3px;border:1px solid var(--input-line);background:var(--input-bg);color:var(--text);font-family:inherit;font-size:.95rem;transition:.3s}
+  .field input::placeholder{color:var(--faint)}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--gold)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .submit{width:100%;background:var(--gold);color:#17130e;border:none;padding:17px;border-radius:3px;font-family:'Optima',sans-serif;font-weight:600;font-size:.84rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.35s;margin-top:8px}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{text-transform:none;letter-spacing:.03em}
+  .submit:hover{background:var(--gold-l)}
+  @media(max-width:860px){.book-grid{grid-template-columns:1fr;gap:40px}.field-row{grid-template-columns:1fr 1fr}}
+
+  /* ---------------- FOOTER ---------------- */
+  footer{background:var(--bg-2);color:var(--muted);padding:66px 0 30px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:44px}
+  .foot-brand{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+  .foot-brand svg{width:32px;height:32px;color:var(--gold)}
+  .foot-brand b{font-family:'Cormorant Garamond','Didot',Georgia,serif;font-weight:600;font-size:1.4rem;letter-spacing:.1em;color:var(--text)}
+  footer h4{font-family:'Optima',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{text-transform:none;letter-spacing:.04em}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px;font-size:.95rem;font-weight:300;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:var(--text)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:'Optima',sans-serif;font-size:.76rem}
+  .demo-badge{background:var(--gold);color:#17130e;padding:5px 13px;border-radius:20px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+  html[lang="zh-CN"] .demo-badge,html[lang="ko"] .demo-badge{text-transform:none}
+
+  .reveal{opacity:0;transform:translateY(32px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------------- MOBILE MENU ---------------- */
+  .mobile-menu{position:fixed;inset:0;z-index:70;background:rgba(15,12,8,.98);backdrop-filter:blur(10px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:26px}
+  html[data-theme="light"] .mobile-menu{background:rgba(248,241,230,.98)}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:'Cormorant Garamond','Didot',Georgia,serif;font-size:1.9rem;color:var(--text)}
+  html[lang="zh-CN"] .mobile-menu a,html[lang="ko"] .mobile-menu a{font-size:1.6rem}
+  .mobile-menu a.active{color:var(--gold)}
+  .mobile-menu .close{position:absolute;top:22px;right:24px;background:none;border:none;color:var(--text);cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+  .mobile-menu .m-langs button{background:none;border:1px solid var(--line);color:var(--muted);padding:8px 14px;border-radius:5px;font-family:'Optima',sans-serif;font-size:.85rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:var(--gold);border-color:var(--gold)}
+
+  @media(max-width:900px){
+    .navlinks{display:none}.menu-btn{display:flex}.langs{display:none}
+    section{padding:82px 0}
+    .story-text,.form,.place{padding-left:34px;padding-right:34px}
+    .story-text,.form{padding-top:36px;padding-bottom:36px}
+    .foot-grid{grid-template-columns:1fr;gap:30px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s!important}
+    .reveal{opacity:1;transform:none}
+    .hero-photo.has-img{transform:none}
+  }
+
+  /* signature katmanları — file:// güvenli */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:var(--grain-op);mix-blend-mode:overlay}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--gold-d),var(--gold-l));box-shadow:0 0 12px rgba(201,154,91,.5)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a class="brand" href="#" aria-label="Asgard Cave Cappadocia">
+    <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M8 40V25c0-9 7-16 16-16s16 7 16 16v15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M16 40V27a8 8 0 0 1 16 0v13" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+      <path d="M24 4v6M24 40v-9" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    </svg>
+    <span class="wm"><b>ASGARD</b><span>Cave Cappadocia</span></span>
+  </a>
+  <div class="navlinks" id="navlinks">
+    <span class="niche" id="niche" aria-hidden="true"></span>
+    <a href="#story" class="active" data-i18n="nav_house">Konak</a>
+    <a href="#stay" data-i18n="nav_stay">Deneyim</a>
+    <a href="#place" data-i18n="nav_place">Çavuşin</a>
+    <a href="#gallery" data-i18n="nav_gallery">Galeri</a>
+    <a href="#book" data-i18n="nav_book">İletişim</a>
+  </div>
+  <div class="ctrls">
+    <div class="langs" role="group" aria-label="Dil / Language">
+      <button data-lang="tr" class="active">TR</button><span class="sep">·</span>
+      <button data-lang="en">EN</button><span class="sep">·</span>
+      <button data-lang="es">ES</button><span class="sep">·</span>
+      <button data-lang="zh-CN">中文</button><span class="sep">·</span>
+      <button data-lang="ko">한국어</button>
+    </div>
+    <button class="icon-btn theme-btn" id="themeBtn" aria-label="Tema">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+    </button>
+    <button class="icon-btn menu-btn" aria-label="Menü" id="menuBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#story" data-i18n="nav_house">Konak</a>
+  <a href="#stay" data-i18n="nav_stay">Deneyim</a>
+  <a href="#place" data-i18n="nav_place">Çavuşin</a>
+  <a href="#gallery" data-i18n="nav_gallery">Galeri</a>
+  <a href="#book" data-i18n="nav_book">İletişim</a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="sky"></div>
+  <div class="hero-photo" id="heroPhoto"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <div class="hero-beam" aria-hidden="true"></div>
+  <div class="motes" id="motes" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Çavuşin · Kapadokya</span>
+      <h1 data-i18n="hero_title" data-i18n-html="1">Taşın içinde,<br><em>Çavuşin'in kalbinde.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Çavuşin'in kesme taş konağında, günün ilk ışığıyla uyanan bir sessizlik. Ne acele, ne kalabalık — yalnızca taş, ışık ve vadi.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#book"><span data-i18n="hero_cta1">İletişime geç</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#story" data-i18n="hero_cta2">Konağı gör</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Sessizliğe in</span><span class="l"></span></div>
+</header>
+
+<div class="essence">
+  <div class="wrap">
+    <div class="ess"><div class="v">5.0★</div><div class="l" data-i18n="ess_rating_l">Google misafir puanı</div></div>
+    <div class="ess"><div class="v" data-i18n="ess_loc_v">Çavuşin</div><div class="l" data-i18n="ess_loc_l">Kaya vadisinin kalbi</div></div>
+    <div class="ess"><div class="v" data-i18n="ess_stone_v">Kesme taş</div><div class="l" data-i18n="ess_stone_l">El işi mimari</div></div>
+    <div class="ess"><div class="v" data-i18n="ess_quiet_v">Sükûnet</div><div class="l" data-i18n="ess_quiet_l">Kalabalıktan uzak</div></div>
+  </div>
+</div>
+
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="story_eyebrow">Konak</span>
+      <h2 data-i18n="story_h">Çavuşin'in taşından yükselen bir ev.</h2>
+      <p data-i18n="story_sub">Yontulmuş kesme taş, ahşap bir cumba, kemerli bir cephe — ve arkasında Kapadokya'nın kayası.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-visual reveal" data-img="story.jpg">
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="ph_story">Kesme taş konak · Çavuşin</span></span>
+      </div>
+      <div class="story-text reveal">
+        <p class="lead" data-i18n="story_lead">Burada mimari gösteriş değil, sükûnettir; her taş elle yerine konmuş gibi durur.</p>
+        <p data-i18n="story_p1">Kemerli cephe sabah güneşini yumuşakça içeri alır; ahşap cumbanın altındaki avluda gün, aceleye kapılmadan başlar. Konak Çavuşin'in kaya yamacına yaslanır — serin, sağlam, sessiz.</p>
+        <p data-i18n="story_p2">Küçük bir işletmenin sıcaklığı: birkaç misafir, tanıdık bir selam, size ait bir köşe. Kapadokya'yı turistik kalabalıktan değil, taşın huzurundan tanırsınız.</p>
+        <p class="sign">— <span data-i18n="story_sign">Asgard Cave Cappadocia</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stay" id="stay">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="stay_eyebrow">Deneyim</span>
+      <h2 data-i18n="stay_h">Günün üç sessiz ânı.</h2>
+      <p data-i18n="stay_sub">Asgard'da katı bir program değil, bir ritim vardır: ışığın, taşın ve vadinin ritmi.</p>
+    </div>
+    <div class="stay-grid">
+      <div class="card reveal">
+        <div class="card-visual" data-img="concept-valley.jpg">
+          <span class="concept-badge" data-i18n="concept_label">Konsept görsel</span>
+          <span class="note" data-i18n="stay1_note">gün doğumu · vadi</span>
+        </div>
+        <div class="card-body">
+          <span class="tag" data-i18n="stay1_tag">Sabah</span>
+          <h3 data-i18n="stay1_h">İlk ışıkla uyanış</h3>
+          <p data-i18n="stay1_p">Güneş vadinin ardından yükselirken, kesme taş avluda gün ağır ağır ve sessizce başlar.</p>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-visual" data-img="detail-arches.jpg">
+          <span class="note" data-i18n="stay2_note">kesme taş · el işi</span>
+        </div>
+        <div class="card-body">
+          <span class="tag" data-i18n="stay2_tag">Gündüz</span>
+          <h3 data-i18n="stay2_h">Kemerli cephe & taş</h3>
+          <p data-i18n="stay2_p">Yontulmuş taş kemerler, ahşap doğramalar, serin gölgeler. Konağın her ayrıntısı elle işlenmiş bir sabrın izini taşır.</p>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-visual" data-img="concept-terrace.jpg">
+          <span class="concept-badge" data-i18n="concept_label">Konsept görsel</span>
+          <span class="note" data-i18n="stay3_note">gün batımı · teras</span>
+        </div>
+        <div class="card-body">
+          <span class="tag" data-i18n="stay3_tag">Akşam</span>
+          <h3 data-i18n="stay3_h">Taş avluda sükûnet</h3>
+          <p data-i18n="stay3_p">Işık çekilirken taş bakıra döner, vadi sessizleşir. Yükseklerdeki bu taş sığınakta akşam, kendi ağırlığıyla iner.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="why_eyebrow">Neden Asgard</span>
+      <h2 data-i18n="why_h">Taş, sessizlik ve konum.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="wi reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20V11a8 8 0 0 1 16 0v9"/><path d="M8 20v-8a4 4 0 0 1 8 0v8"/><path d="M2 20h20"/></svg>
+        <h3 data-i18n="why1_h">Kesme taş & kaya</h3>
+        <p data-i18n="why1_p">Çavuşin'in kayasına yaslı, yontma taştan bir konak.</p>
+      </div>
+      <div class="wi reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 11.5c3-1 4-4 4-7 2 2 3 4 3 6 2-1 3-3 3-6 3 3 4.5 6.5 4.5 10a6.5 6.5 0 0 1-13 0c0-1 .2-2 .5-3z"/><path d="M8 21h8"/></svg>
+        <h3 data-i18n="why2_h">Sessiz konum</h3>
+        <p data-i18n="why2_p">Turistik kalabalıktan uzak, Çavuşin'in dingin dokusunda.</p>
+      </div>
+      <div class="wi reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.5a3 3 0 0 1 0 5.5M18 14c2.2.7 3.8 2.6 3.8 5"/></svg>
+        <h3 data-i18n="why3_h">Küçük & samimi</h3>
+        <p data-i18n="why3_p">Birkaç misafir, birebir ilgi; ev sahibinizi tanırsınız.</p>
+      </div>
+      <div class="wi reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 3 3 5.5v15L9 18l6 3 6-2.5v-15L15 6 9 3z"/><path d="M9 3v15M15 6v15"/></svg>
+        <h3 data-i18n="why4_h">Vadinin kalbinde</h3>
+        <p data-i18n="why4_p">Kaya oluşumları, vadiler ve yürüyüş rotaları adımınızda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="place" id="place" data-img="concept-valley.jpg">
+  <span class="concept-badge" data-i18n="concept_label">Konsept görsel</span>
+  <div class="wrap">
+    <div class="inner reveal">
+      <span class="eyebrow" data-i18n="place_eyebrow">Çevre</span>
+      <h2 data-i18n="place_h">Kapadokya'nın en eski köylerinden biri.</h2>
+      <p data-i18n="place_p">Asgard, Çavuşin'de. Kaya kilisesi, terk edilmiş taş köyü ve hemen ardındaki Güllüdere vadisiyle bölgenin en sahici köşelerinden biri. Göreme ve Avanos birkaç dakika uzağınızda.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span data-i18n="place1">Güllüdere & Kızılçukur vadisi</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg><span data-i18n="place2">Göreme · Avanos — kısa mesafe</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6c0 3 2 5 4 6l2 3 2-3c2-1 4-3 4-6a6 6 0 0 0-6-6z"/></svg><span data-i18n="place3">Balonlar sabahları bölgenin üstünde</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="gallery_eyebrow">Galeri</span>
+      <h2 data-i18n="gallery_h">Taşın ve ışığın kareleri.</h2>
+      <p data-i18n="gallery_sub">Konağın gerçek fotoğrafları ve Çavuşin atmosferinden konsept kareler. Yayında hepsi sizin fotoğraflarınızla değişir.</p>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile" data-img="story.jpg"><span class="cap" data-i18n="cap_g1">Kesme taş konak</span></div>
+      <div class="tile" data-img="detail-balcony.jpg"><span class="cap" data-i18n="cap_g2">Ahşap cumba</span></div>
+      <div class="tile" data-img="detail-arches.jpg"><span class="cap" data-i18n="cap_g3">Kemerli cephe</span></div>
+      <div class="tile" data-img="concept-valley.jpg"><span class="concept-badge" data-i18n="concept_label">Konsept görsel</span><span class="cap" data-i18n="cap_g4">Çavuşin vadisi</span></div>
+      <div class="tile" data-img="concept-arch.jpg"><span class="concept-badge" data-i18n="concept_label">Konsept görsel</span><span class="cap" data-i18n="cap_g5">Taş kemer avlu</span></div>
+      <div class="tile" data-img="concept-terrace.jpg"><span class="concept-badge" data-i18n="concept_label">Konsept görsel</span><span class="cap" data-i18n="cap_g6">Taş teras · akşam ışığı</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="book_eyebrow">İletişim</span>
+        <h2 style="margin-top:16px" data-i18n="book_h" data-i18n-html="1">Bir sessizliği <em>ayırtın.</em></h2>
+        <p class="lede" data-i18n="book_lede">Tarihlerinizi yazın, WhatsApp'tan hızlıca dönelim. Müsaitlik ve konaklama ayrıntılarını size özel paylaşalım.</p>
+        <a class="wa" id="waLink" href="https://wa.me/905061939450" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg>
+          +90 506 193 94 50
+        </a>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-in" data-i18n="label_in">Giriş</label><input type="date" id="f-in"></div>
+          <div class="field"><label for="f-out" data-i18n="label_out">Çıkış</label><input type="date" id="f-out"></div>
+          <div class="field"><label for="f-count" data-i18n="label_people">Kişi</label>
+            <select id="f-count">
+              <option data-i18n="opt_1p">1 kişi</option><option data-i18n="opt_2p">2 kişi</option><option data-i18n="opt_3p">3 kişi</option><option data-i18n="opt_4p">4+ kişi</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-phone" data-i18n="label_phone">WhatsApp / Telefon</label>
+          <input type="tel" id="f-phone" data-i18n-ph="ph_phone" placeholder="Size ulaşabileceğimiz numara">
+        </div>
+        <button class="submit" type="button" onclick="sendBooking()" data-i18n="btn_submit">Rezervasyon talebi gönder</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M8 40V25c0-9 7-16 16-16s16 7 16 16v15" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M24 4v6M24 40v-9" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <b>ASGARD</b>
+        </div>
+        <p style="max-width:340px;font-weight:300" data-i18n="foot_about">Çavuşin'in kayasına yaslı kesme taş bir konak. Sabah ışığı, taş kemerler ve vadinin sessizliği.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#story" data-i18n="nav_house">Konak</a></li>
+          <li><a href="#stay" data-i18n="nav_stay">Deneyim</a></li>
+          <li><a href="#place" data-i18n="nav_place">Çavuşin</a></li>
+          <li><a href="#gallery" data-i18n="nav_gallery">Galeri</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Çavuşin, Nevşehir</li>
+          <li><a href="https://wa.me/905061939450" target="_blank" rel="noopener">+90 506 193 94 50</a></li>
+          <li data-i18n="foot_hours">Her gün · rezervasyon & karşılama</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Asgard Cave Cappadocia — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+// İnternet/CDN gerektirmez; her koşulda çalışır. Ayarlar talimatla uyumlu: lerp 0.085, wheelMultiplier 0.9
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  // input/textarea/select/button ve data-lenis-prevent alanlarında smooth engelle
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    // kullanıcı manuel scroll'da current'ı senkronla
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  // dokunmatik ve klavye native kalsın; scroll pozisyonunu senkronla
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  // anchor linkleri yumuşak kaydır
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 70;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
+
+<script>
+// ==================== i18n SÖZLÜĞÜ ====================
+const I18N = {
+  tr:{
+    meta_title:"Asgard Cave Cappadocia — Çavuşin'de Kesme Taş Konak",
+    meta_desc:"Çavuşin'in kayasına yaslı kesme taş bir konak. Sabah ışığı, taş kemerler ve vadinin sessizliği — Asgard Cave Cappadocia.",
+    nav_house:"Konak",nav_stay:"Deneyim",nav_place:"Çavuşin",nav_gallery:"Galeri",nav_book:"İletişim",
+    hero_eyebrow:"Çavuşin · Kapadokya",
+    hero_title:'Taşın içinde,<br><em>Çavuşin'in kalbinde.</em>',
+    hero_lede:"Çavuşin'in kesme taş konağında, günün ilk ışığıyla uyanan bir sessizlik. Ne acele, ne kalabalık — yalnızca taş, ışık ve vadi.",
+    hero_cta1:"İletişime geç",hero_cta2:"Konağı gör",scroll_hint:"Sessizliğe in",
+    ess_rating_l:"Google misafir puanı",ess_loc_v:"Çavuşin",ess_loc_l:"Kaya vadisinin kalbi",
+    ess_stone_v:"Kesme taş",ess_stone_l:"El işi mimari",ess_quiet_v:"Sükûnet",ess_quiet_l:"Kalabalıktan uzak",
+    story_eyebrow:"Konak",story_h:"Çavuşin'in taşından yükselen bir ev.",
+    story_sub:"Yontulmuş kesme taş, ahşap bir cumba, kemerli bir cephe — ve arkasında Kapadokya'nın kayası.",
+    ph_story:"Kesme taş konak · Çavuşin",
+    story_lead:"Burada mimari gösteriş değil, sükûnettir; her taş elle yerine konmuş gibi durur.",
+    story_p1:"Kemerli cephe sabah güneşini yumuşakça içeri alır; ahşap cumbanın altındaki avluda gün, aceleye kapılmadan başlar. Konak Çavuşin'in kaya yamacına yaslanır — serin, sağlam, sessiz.",
+    story_p2:"Küçük bir işletmenin sıcaklığı: birkaç misafir, tanıdık bir selam, size ait bir köşe. Kapadokya'yı turistik kalabalıktan değil, taşın huzurundan tanırsınız.",
+    story_sign:"Asgard Cave Cappadocia",
+    stay_eyebrow:"Deneyim",stay_h:"Günün üç sessiz ânı.",
+    stay_sub:"Asgard'da katı bir program değil, bir ritim vardır: ışığın, taşın ve vadinin ritmi.",
+    stay1_tag:"Sabah",stay1_h:"İlk ışıkla uyanış",stay1_note:"gün doğumu · vadi",
+    stay1_p:"Güneş vadinin ardından yükselirken, kesme taş avluda gün ağır ağır ve sessizce başlar.",
+    stay2_tag:"Gündüz",stay2_h:"Kemerli cephe & taş",stay2_note:"kesme taş · el işi",
+    stay2_p:"Yontulmuş taş kemerler, ahşap doğramalar, serin gölgeler. Konağın her ayrıntısı elle işlenmiş bir sabrın izini taşır.",
+    stay3_tag:"Akşam",stay3_h:"Taş avluda sükûnet",stay3_note:"gün batımı · teras",
+    stay3_p:"Işık çekilirken taş bakıra döner, vadi sessizleşir. Yükseklerdeki bu taş sığınakta akşam, kendi ağırlığıyla iner.",
+    why_eyebrow:"Neden Asgard",why_h:"Taş, sessizlik ve konum.",
+    why1_h:"Kesme taş & kaya",why1_p:"Çavuşin'in kayasına yaslı, yontma taştan bir konak.",
+    why2_h:"Sessiz konum",why2_p:"Turistik kalabalıktan uzak, Çavuşin'in dingin dokusunda.",
+    why3_h:"Küçük & samimi",why3_p:"Birkaç misafir, birebir ilgi; ev sahibinizi tanırsınız.",
+    why4_h:"Vadinin kalbinde",why4_p:"Kaya oluşumları, vadiler ve yürüyüş rotaları adımınızda.",
+    place_eyebrow:"Çevre",place_h:"Kapadokya'nın en eski köylerinden biri.",
+    place_p:"Asgard, Çavuşin'de. Kaya kilisesi, terk edilmiş taş köyü ve hemen ardındaki Güllüdere vadisiyle bölgenin en sahici köşelerinden biri. Göreme ve Avanos birkaç dakika uzağınızda.",
+    place1:"Güllüdere & Kızılçukur vadisi",place2:"Göreme · Avanos — kısa mesafe",place3:"Balonlar sabahları bölgenin üstünde",
+    gallery_eyebrow:"Galeri",gallery_h:"Taşın ve ışığın kareleri.",
+    gallery_sub:"Konağın gerçek fotoğrafları ve Çavuşin atmosferinden konsept kareler. Yayında hepsi sizin fotoğraflarınızla değişir.",
+    cap_g1:"Kesme taş konak",cap_g2:"Ahşap cumba",cap_g3:"Kemerli cephe",cap_g4:"Çavuşin vadisi",cap_g5:"Taş kemer avlu",cap_g6:"Taş teras · akşam ışığı",
+    concept_label:"Konsept görsel",
+    book_eyebrow:"İletişim",book_h:'Bir sessizliği <em>ayırtın.</em>',
+    book_lede:"Tarihlerinizi yazın, WhatsApp'tan hızlıca dönelim. Müsaitlik ve konaklama ayrıntılarını size özel paylaşalım.",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_in:"Giriş",label_out:"Çıkış",label_people:"Kişi",
+    opt_1p:"1 kişi",opt_2p:"2 kişi",opt_3p:"3 kişi",opt_4p:"4+ kişi",
+    label_phone:"WhatsApp / Telefon",ph_phone:"Size ulaşabileceğimiz numara",btn_submit:"Rezervasyon talebi gönder",
+    foot_about:"Çavuşin'in kayasına yaslı kesme taş bir konak. Sabah ışığı, taş kemerler ve vadinin sessizliği.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Çavuşin, Nevşehir",foot_hours:"Her gün · rezervasyon & karşılama",
+    foot_rights:"© 2026 Asgard Cave Cappadocia — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    wa_msg:"Merhaba, Asgard Cave Cappadocia için konaklama sormak istiyorum:",wa_name:"Ad",wa_in:"Giriş",wa_out:"Çıkış",wa_people:"Kişi",wa_phone:"Telefon",
+    alert_fill:"Lütfen adınızı, giriş tarihini ve telefon numaranızı girin."
+  },
+  en:{
+    meta_title:"Asgard Cave Cappadocia — A Cut-Stone Mansion in Çavuşin",
+    meta_desc:"A cut-stone mansion set against the rock of Çavuşin. Morning light, stone arches and the silence of the valley — Asgard Cave Cappadocia.",
+    nav_house:"The House",nav_stay:"The Stay",nav_place:"Çavuşin",nav_gallery:"Gallery",nav_book:"Contact",
+    hero_eyebrow:"Çavuşin · Cappadocia",
+    hero_title:"Within the stone,<br><em>in the heart of Çavuşin.</em>",
+    hero_lede:"In a cut-stone mansion in Çavuşin, a silence that wakes with the first light of day. No rush, no crowds — only stone, light and the valley.",
+    hero_cta1:"Get in touch",hero_cta2:"See the house",scroll_hint:"Into the silence",
+    ess_rating_l:"Google guest rating",ess_loc_v:"Çavuşin",ess_loc_l:"Heart of the rock valley",
+    ess_stone_v:"Cut stone",ess_stone_l:"Handcrafted architecture",ess_quiet_v:"Stillness",ess_quiet_l:"Away from the crowds",
+    story_eyebrow:"The House",story_h:"A home raised from the stone of Çavuşin.",
+    story_sub:"Hand-cut stone, a wooden bay window, an arched façade — and Cappadocia's rock behind it.",
+    ph_story:"Cut-stone mansion · Çavuşin",
+    story_lead:"Here it isn't architectural display but stillness; every stone looks set by hand.",
+    story_p1:"The arched façade lets the morning sun in softly; in the courtyard beneath the wooden bay, the day begins unhurried. The mansion leans into the rock slope of Çavuşin — cool, solid, quiet.",
+    story_p2:"The warmth of a small place: a few guests, a familiar greeting, a corner that is yours. You come to know Cappadocia not through the tourist crowds, but through the calm of the stone.",
+    story_sign:"Asgard Cave Cappadocia",
+    stay_eyebrow:"The Stay",stay_h:"Three quiet moments of the day.",
+    stay_sub:"At Asgard there is no rigid programme, only a rhythm: of light, of stone, of the valley.",
+    stay1_tag:"Morning",stay1_h:"Waking with first light",stay1_note:"sunrise · valley",
+    stay1_p:"As the sun rises beyond the valley, the day begins slowly and silently in the cut-stone courtyard.",
+    stay2_tag:"Daytime",stay2_h:"Arched façade & stone",stay2_note:"cut stone · handwork",
+    stay2_p:"Hand-carved stone arches, wooden joinery, cool shadows. Every detail of the house carries the trace of patient handwork.",
+    stay3_tag:"Evening",stay3_h:"Stillness in the stone courtyard",stay3_note:"sunset · terrace",
+    stay3_p:"As the light withdraws, the stone turns to copper and the valley falls quiet. In this high stone refuge, evening settles with its own weight.",
+    why_eyebrow:"Why Asgard",why_h:"Stone, silence and place.",
+    why1_h:"Cut stone & rock",why1_p:"A hand-cut stone mansion set against the rock of Çavuşin.",
+    why2_h:"A quiet location",why2_p:"Away from the tourist crowds, within Çavuşin's calm fabric.",
+    why3_h:"Small & personal",why3_p:"A few guests, personal care; you get to know your host.",
+    why4_h:"Heart of the valley",why4_p:"Rock formations, valleys and hiking trails at your doorstep.",
+    place_eyebrow:"Surroundings",place_h:"One of Cappadocia's oldest villages.",
+    place_p:"Asgard is in Çavuşin. With its rock-cut church, its abandoned stone village and the Güllüdere valley just behind it, this is one of the region's most authentic corners. Göreme and Avanos are minutes away.",
+    place1:"Güllüdere & Kızılçukur valley",place2:"Göreme · Avanos — a short distance",place3:"Balloons rise over the area each morning",
+    gallery_eyebrow:"Gallery",gallery_h:"Frames of stone and light.",
+    gallery_sub:"Real photos of the house and concept frames from the atmosphere of Çavuşin. In the live site, all are replaced with your own.",
+    cap_g1:"Cut-stone mansion",cap_g2:"Wooden bay window",cap_g3:"Arched façade",cap_g4:"Çavuşin valley",cap_g5:"Stone-arched courtyard",cap_g6:"Stone terrace · evening light",
+    concept_label:"Concept image",
+    book_eyebrow:"Contact",book_h:"Reserve a <em>silence.</em>",
+    book_lede:"Send us your dates and we'll reply quickly on WhatsApp. We'll share availability and stay details personally.",
+    label_name:"Your name",ph_name:"Your full name",label_in:"Check-in",label_out:"Check-out",label_people:"Guests",
+    opt_1p:"1 guest",opt_2p:"2 guests",opt_3p:"3 guests",opt_4p:"4+ guests",
+    label_phone:"WhatsApp / Phone",ph_phone:"A number we can reach you on",btn_submit:"Send reservation request",
+    foot_about:"A cut-stone mansion set against the rock of Çavuşin. Morning light, stone arches and the silence of the valley.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Çavuşin, Nevşehir",foot_hours:"Daily · reservations & welcome",
+    foot_rights:"© 2026 Asgard Cave Cappadocia — All rights reserved.",foot_demo:"Sample / Demo Design",
+    wa_msg:"Hello, I'd like to ask about a stay at Asgard Cave Cappadocia:",wa_name:"Name",wa_in:"Check-in",wa_out:"Check-out",wa_people:"Guests",wa_phone:"Phone",
+    alert_fill:"Please enter your name, check-in date and phone number."
+  },
+  es:{
+    meta_title:"Asgard Cave Cappadocia — Una Mansión de Piedra en Çavuşin",
+    meta_desc:"Una mansión de piedra tallada apoyada en la roca de Çavuşin. Luz de la mañana, arcos de piedra y el silencio del valle — Asgard Cave Cappadocia.",
+    nav_house:"La Casa",nav_stay:"La Estancia",nav_place:"Çavuşin",nav_gallery:"Galería",nav_book:"Contacto",
+    hero_eyebrow:"Çavuşin · Capadocia",
+    hero_title:"Dentro de la piedra,<br><em>en el corazón de Çavuşin.</em>",
+    hero_lede:"En una mansión de piedra tallada en Çavuşin, un silencio que despierta con la primera luz del día. Sin prisa, sin multitudes: solo piedra, luz y valle.",
+    hero_cta1:"Contáctanos",hero_cta2:"Ver la casa",scroll_hint:"Hacia el silencio",
+    ess_rating_l:"Valoración Google",ess_loc_v:"Çavuşin",ess_loc_l:"Corazón del valle rocoso",
+    ess_stone_v:"Piedra tallada",ess_stone_l:"Arquitectura artesanal",ess_quiet_v:"Quietud",ess_quiet_l:"Lejos de las multitudes",
+    story_eyebrow:"La Casa",story_h:"Una casa alzada desde la piedra de Çavuşin.",
+    story_sub:"Piedra tallada a mano, un mirador de madera, una fachada de arcos — y detrás, la roca de Capadocia.",
+    ph_story:"Mansión de piedra · Çavuşin",
+    story_lead:"Aquí no hay ostentación arquitectónica, sino quietud; cada piedra parece colocada a mano.",
+    story_p1:"La fachada de arcos deja entrar suavemente el sol de la mañana; en el patio bajo el mirador de madera, el día empieza sin prisa. La mansión se apoya en la ladera rocosa de Çavuşin: fresca, sólida, silenciosa.",
+    story_p2:"La calidez de un lugar pequeño: pocos huéspedes, un saludo familiar, un rincón que es tuyo. Conoces Capadocia no por las multitudes turísticas, sino por la calma de la piedra.",
+    story_sign:"Asgard Cave Cappadocia",
+    stay_eyebrow:"La Estancia",stay_h:"Tres momentos serenos del día.",
+    stay_sub:"En Asgard no hay un programa rígido, sino un ritmo: el de la luz, la piedra y el valle.",
+    stay1_tag:"Mañana",stay1_h:"Despertar con la primera luz",stay1_note:"amanecer · valle",
+    stay1_p:"Mientras el sol asciende tras el valle, el día comienza despacio y en silencio en el patio de piedra.",
+    stay2_tag:"Día",stay2_h:"Fachada de arcos y piedra",stay2_note:"piedra tallada · a mano",
+    stay2_p:"Arcos de piedra tallada, carpintería de madera, sombras frescas. Cada detalle de la casa lleva la huella de un trabajo paciente.",
+    stay3_tag:"Tarde",stay3_h:"Quietud en el patio de piedra",stay3_note:"atardecer · terraza",
+    stay3_p:"Cuando la luz se retira, la piedra se vuelve cobre y el valle enmudece. En este alto refugio de piedra, la tarde desciende con su propio peso.",
+    why_eyebrow:"Por qué Asgard",why_h:"Piedra, silencio y lugar.",
+    why1_h:"Piedra y roca",why1_p:"Una mansión de piedra tallada apoyada en la roca de Çavuşin.",
+    why2_h:"Ubicación tranquila",why2_p:"Lejos de las multitudes, en el tejido sereno de Çavuşin.",
+    why3_h:"Pequeño y cercano",why3_p:"Pocos huéspedes, atención personal; conoces a tu anfitrión.",
+    why4_h:"En el corazón del valle",why4_p:"Formaciones rocosas, valles y senderos a tus pies.",
+    place_eyebrow:"Entorno",place_h:"Uno de los pueblos más antiguos de Capadocia.",
+    place_p:"Asgard está en Çavuşin. Con su iglesia excavada en la roca, su antiguo pueblo de piedra y el valle de Güllüdere justo detrás, es uno de los rincones más auténticos de la región. Göreme y Avanos están a pocos minutos.",
+    place1:"Valle de Güllüdere y Kızılçukur",place2:"Göreme · Avanos — a poca distancia",place3:"Los globos se elevan sobre la zona cada mañana",
+    gallery_eyebrow:"Galería",gallery_h:"Imágenes de piedra y luz.",
+    gallery_sub:"Fotos reales de la casa e imágenes de concepto de la atmósfera de Çavuşin. En el sitio final, todas se sustituyen por las tuyas.",
+    cap_g1:"Mansión de piedra",cap_g2:"Mirador de madera",cap_g3:"Fachada de arcos",cap_g4:"Valle de Çavuşin",cap_g5:"Patio de arcos de piedra",cap_g6:"Terraza de piedra · luz del atardecer",
+    concept_label:"Imagen conceptual",
+    book_eyebrow:"Contacto",book_h:"Reserva un <em>silencio.</em>",
+    book_lede:"Envíanos tus fechas y te responderemos pronto por WhatsApp. Compartiremos disponibilidad y detalles de la estancia de forma personal.",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_in:"Entrada",label_out:"Salida",label_people:"Personas",
+    opt_1p:"1 persona",opt_2p:"2 personas",opt_3p:"3 personas",opt_4p:"4+ personas",
+    label_phone:"WhatsApp / Teléfono",ph_phone:"Un número donde localizarte",btn_submit:"Enviar solicitud de reserva",
+    foot_about:"Una mansión de piedra tallada apoyada en la roca de Çavuşin. Luz de la mañana, arcos de piedra y el silencio del valle.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Çavuşin, Nevşehir",foot_hours:"A diario · reservas y bienvenida",
+    foot_rights:"© 2026 Asgard Cave Cappadocia — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+    wa_msg:"Hola, me gustaría preguntar por una estancia en Asgard Cave Cappadocia:",wa_name:"Nombre",wa_in:"Entrada",wa_out:"Salida",wa_people:"Personas",wa_phone:"Teléfono",
+    alert_fill:"Por favor, introduce tu nombre, la fecha de entrada y tu número de teléfono."
+  },
+  "zh-CN":{
+    meta_title:"Asgard Cave Cappadocia — 恰乌辛的切石庄园",
+    meta_desc:"依偎在恰乌辛岩壁上的切石庄园。晨光、石拱与山谷的静谧 — Asgard Cave Cappadocia。",
+    nav_house:"庄园",nav_stay:"住宿体验",nav_place:"恰乌辛",nav_gallery:"相册",nav_book:"联系",
+    hero_eyebrow:"恰乌辛 · 卡帕多奇亚",
+    hero_title:"栖于石中，<br><em>置身恰乌辛。</em>",
+    hero_lede:"在恰乌辛的切石庄园里，一份随着第一缕晨光苏醒的静谧。不必匆忙，没有人群——只有石、光与山谷。",
+    hero_cta1:"联系我们",hero_cta2:"看看庄园",scroll_hint:"走进静谧",
+    ess_rating_l:"谷歌住客评分",ess_loc_v:"恰乌辛",ess_loc_l:"岩石山谷的中心",
+    ess_stone_v:"切石",ess_stone_l:"手工建筑",ess_quiet_v:"静谧",ess_quiet_l:"远离人潮",
+    story_eyebrow:"庄园",story_h:"从恰乌辛的石头中升起的家。",
+    story_sub:"手工切石、木制凸窗、拱形立面——身后是卡帕多奇亚的岩壁。",
+    ph_story:"切石庄园 · 恰乌辛",
+    story_lead:"这里没有建筑的炫耀，只有静谧；每一块石头都像是手工安放。",
+    story_p1:"拱形立面让晨光柔和地洒入；木制凸窗下的庭院里，一天从容地开始。庄园依偎在恰乌辛的岩坡上——清凉、坚实、宁静。",
+    story_p2:"小小居所的温度：三两位客人，一声熟悉的问候，一处属于你的角落。你认识卡帕多奇亚，不是通过游客的喧嚣，而是通过石头的安宁。",
+    story_sign:"Asgard Cave Cappadocia",
+    stay_eyebrow:"住宿体验",stay_h:"一日中的三个静谧时刻。",
+    stay_sub:"在 Asgard，没有刻板的行程，只有一种节奏：光的、石的、山谷的节奏。",
+    stay1_tag:"清晨",stay1_h:"随第一缕光苏醒",stay1_note:"日出 · 山谷",
+    stay1_p:"当太阳从山谷之后升起，切石庭院里的一天缓缓而静静地开始。",
+    stay2_tag:"白日",stay2_h:"拱形立面与石",stay2_note:"切石 · 手工",
+    stay2_p:"手工雕凿的石拱、木制门窗、清凉的阴影。庄园的每一处细节都留有耐心手作的痕迹。",
+    stay3_tag:"黄昏",stay3_h:"石庭中的静谧",stay3_note:"日落 · 露台",
+    stay3_p:"当光线退去，石头染上铜色，山谷归于寂静。在这高处的石之庇所，夜晚以自身的重量缓缓落下。",
+    why_eyebrow:"为何选择 Asgard",why_h:"石、静谧与位置。",
+    why1_h:"切石与岩壁",why1_p:"一座依偎在恰乌辛岩壁上的手工切石庄园。",
+    why2_h:"静谧的位置",why2_p:"远离游客人潮，融入恰乌辛宁静的肌理。",
+    why3_h:"小巧而亲切",why3_p:"三两位客人，贴心照料；你会认识你的主人。",
+    why4_h:"山谷的中心",why4_p:"岩石群、山谷与徒步路线近在脚下。",
+    place_eyebrow:"周边",place_h:"卡帕多奇亚最古老的村落之一。",
+    place_p:"Asgard 坐落在恰乌辛。这里有岩凿教堂、废弃的石村，身后即是 Güllüdere（红谷）山谷，是全区最本真的角落之一。格雷梅与阿瓦诺斯仅数分钟之遥。",
+    place1:"Güllüdere 与 Kızılçukur 山谷",place2:"格雷梅 · 阿瓦诺斯 — 近在咫尺",place3:"清晨热气球在这一带升起",
+    gallery_eyebrow:"相册",gallery_h:"石与光的画面。",
+    gallery_sub:"庄园的真实照片，以及取自恰乌辛氛围的概念画面。正式上线时，全部替换为您自己的照片。",
+    cap_g1:"切石庄园",cap_g2:"木制凸窗",cap_g3:"拱形立面",cap_g4:"恰乌辛山谷",cap_g5:"石拱庭院",cap_g6:"石露台 · 暮光",
+    concept_label:"概念图",
+    book_eyebrow:"联系",book_h:"预订一段<em>静谧。</em>",
+    book_lede:"发送您的日期，我们会尽快通过 WhatsApp 回复。空房与住宿细节将为您单独说明。",
+    label_name:"您的姓名",ph_name:"您的全名",label_in:"入住",label_out:"退房",label_people:"人数",
+    opt_1p:"1 人",opt_2p:"2 人",opt_3p:"3 人",opt_4p:"4 人以上",
+    label_phone:"WhatsApp / 电话",ph_phone:"方便联系您的号码",btn_submit:"发送预订申请",
+    foot_about:"依偎在恰乌辛岩壁上的切石庄园。晨光、石拱与山谷的静谧。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"恰乌辛，内夫谢希尔",foot_hours:"每天 · 预订与迎接",
+    foot_rights:"© 2026 Asgard Cave Cappadocia — 版权所有。",foot_demo:"示例 / 演示设计",
+    wa_msg:"您好，我想咨询 Asgard Cave Cappadocia 的住宿：",wa_name:"姓名",wa_in:"入住",wa_out:"退房",wa_people:"人数",wa_phone:"电话",
+    alert_fill:"请填写您的姓名、入住日期和电话号码。"
+  },
+  ko:{
+    meta_title:"Asgard Cave Cappadocia — 차우신의 석조 저택",
+    meta_desc:"차우신의 바위에 기댄 절석(切石) 저택. 아침 빛, 돌 아치, 그리고 계곡의 고요 — Asgard Cave Cappadocia.",
+    nav_house:"저택",nav_stay:"머무름",nav_place:"차우신",nav_gallery:"갤러리",nav_book:"문의",
+    hero_eyebrow:"차우신 · 카파도키아",
+    hero_title:"돌 안에서,<br><em>차우신의 중심에서.</em>",
+    hero_lede:"차우신의 석조 저택에서, 하루의 첫 빛과 함께 깨어나는 고요. 서두름도 인파도 없이 — 오직 돌과 빛과 계곡뿐.",
+    hero_cta1:"문의하기",hero_cta2:"저택 보기",scroll_hint:"고요 속으로",
+    ess_rating_l:"구글 게스트 평점",ess_loc_v:"차우신",ess_loc_l:"바위 계곡의 중심",
+    ess_stone_v:"절석",ess_stone_l:"손으로 지은 건축",ess_quiet_v:"고요",ess_quiet_l:"인파에서 멀리",
+    story_eyebrow:"저택",story_h:"차우신의 돌에서 세워진 집.",
+    story_sub:"손으로 다듬은 돌, 목조 내닫이창, 아치형 정면 — 그리고 그 뒤로 카파도키아의 바위.",
+    ph_story:"석조 저택 · 차우신",
+    story_lead:"이곳엔 건축의 과시가 아니라 고요가 있습니다; 돌 하나하나가 손으로 놓인 듯합니다.",
+    story_p1:"아치형 정면은 아침 해를 부드럽게 들입니다; 목조 내닫이창 아래 안뜰에서 하루는 서두르지 않고 시작됩니다. 저택은 차우신의 바위 비탈에 기댑니다 — 서늘하고, 견고하고, 고요하게.",
+    story_p2:"작은 곳의 따뜻함: 몇 안 되는 손님, 익숙한 인사, 당신만의 한 켠. 카파도키아를 관광객의 붐빔이 아니라 돌의 평온으로 알게 됩니다.",
+    story_sign:"Asgard Cave Cappadocia",
+    stay_eyebrow:"머무름",stay_h:"하루의 세 고요한 순간.",
+    stay_sub:"Asgard에는 빡빡한 일정이 아니라 리듬이 있습니다: 빛의, 돌의, 계곡의 리듬.",
+    stay1_tag:"아침",stay1_h:"첫 빛과 함께 깨어남",stay1_note:"일출 · 계곡",
+    stay1_p:"해가 계곡 너머로 떠오를 때, 절석 안뜰에서 하루는 천천히 그리고 고요히 시작됩니다.",
+    stay2_tag:"낮",stay2_h:"아치형 정면과 돌",stay2_note:"절석 · 수작업",
+    stay2_p:"손으로 깎은 돌 아치, 목조 창호, 서늘한 그늘. 저택의 모든 디테일에 인내 어린 손길의 흔적이 남아 있습니다.",
+    stay3_tag:"저녁",stay3_h:"돌 안뜰의 고요",stay3_note:"일몰 · 테라스",
+    stay3_p:"빛이 물러나면 돌은 구릿빛으로 물들고 계곡은 잠잠해집니다. 이 높은 곳의 돌 피난처에서, 저녁은 제 무게로 내려앉습니다.",
+    why_eyebrow:"왜 Asgard인가",why_h:"돌, 고요 그리고 자리.",
+    why1_h:"절석과 바위",why1_p:"차우신의 바위에 기댄 손으로 지은 석조 저택.",
+    why2_h:"고요한 위치",why2_p:"관광객 인파에서 멀리, 차우신의 잔잔한 결 속에.",
+    why3_h:"작고 다정한",why3_p:"몇 안 되는 손님, 세심한 응대; 주인을 알게 됩니다.",
+    why4_h:"계곡의 중심에서",why4_p:"바위 지형, 계곡, 그리고 트레킹 길이 문 앞에.",
+    place_eyebrow:"주변",place_h:"카파도키아에서 가장 오래된 마을 중 하나.",
+    place_p:"Asgard는 차우신에 있습니다. 바위를 깎은 교회, 버려진 돌 마을, 그리고 바로 뒤의 Güllüdere(붉은 계곡)까지 — 이 지역에서 가장 진솔한 곳 중 하나입니다. 괴레메와 아바노스는 몇 분 거리입니다.",
+    place1:"Güllüdere & Kızılçukur 계곡",place2:"괴레메 · 아바노스 — 가까운 거리",place3:"아침마다 열기구가 이 일대 위로 떠오릅니다",
+    gallery_eyebrow:"갤러리",gallery_h:"돌과 빛의 장면들.",
+    gallery_sub:"저택의 실제 사진과 차우신의 분위기를 담은 콘셉트 장면들. 정식 사이트에서는 모두 당신의 사진으로 교체됩니다.",
+    cap_g1:"석조 저택",cap_g2:"목조 내닫이창",cap_g3:"아치형 정면",cap_g4:"차우신 계곡",cap_g5:"돌 아치 안뜰",cap_g6:"돌 테라스 · 저녁빛",
+    concept_label:"콘셉트 이미지",
+    book_eyebrow:"문의",book_h:"<em>고요</em>를 예약하세요.",
+    book_lede:"날짜를 보내주시면 WhatsApp으로 곧 답장드립니다. 예약 가능 여부와 숙박 세부 사항을 직접 안내해 드립니다.",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_in:"체크인",label_out:"체크아웃",label_people:"인원",
+    opt_1p:"1명",opt_2p:"2명",opt_3p:"3명",opt_4p:"4명 이상",
+    label_phone:"WhatsApp / 전화",ph_phone:"연락 가능한 번호",btn_submit:"예약 요청 보내기",
+    foot_about:"차우신의 바위에 기댄 석조 저택. 아침 빛, 돌 아치, 그리고 계곡의 고요.",
+    foot_explore:"둘러보기",foot_contact:"문의",foot_loc:"차우신, 네브셰히르",foot_hours:"매일 · 예약과 맞이",
+    foot_rights:"© 2026 Asgard Cave Cappadocia — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    wa_msg:"안녕하세요, Asgard Cave Cappadocia 숙박을 문의하고 싶습니다:",wa_name:"성함",wa_in:"체크인",wa_out:"체크아웃",wa_people:"인원",wa_phone:"전화",
+    alert_fill:"성함, 체크인 날짜, 전화번호를 입력해 주세요."
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  try{ localStorage.setItem('asgard_lang', lang); }catch(e){}
+  requestAnimationFrame(moveNicheToActive);
+}
+function initLang(){
+  let lang = null;
+  const url = new URLSearchParams(location.search).get('lang');
+  if(url && SUPPORTED.includes(url)) lang = url;
+  if(!lang){ try{ const s=localStorage.getItem('asgard_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click', ()=>{ applyLang(b.getAttribute('data-lang')); closeMenu(); });
+});
+
+// ==================== TEMA (aydınlık / karanlık) ====================
+function applyTheme(t){
+  if(t!=='light' && t!=='dark') t='dark';
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('asgard_theme', t); }catch(e){}
+}
+function initTheme(){
+  let t = null;
+  const url = new URLSearchParams(location.search).get('theme');
+  if(url==='light'||url==='dark') t=url;
+  if(!t){ try{ const s=localStorage.getItem('asgard_theme'); if(s==='light'||s==='dark') t=s; }catch(e){} }
+  if(!t){ t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark'; }
+  applyTheme(t);
+}
+document.getElementById('themeBtn').addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme');
+  applyTheme(cur==='light'?'dark':'light');
+});
+
+// ==================== MOBİL MENÜ ====================
+function closeMenu(){ document.getElementById('mobileMenu').classList.remove('open'); }
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',closeMenu));
+
+// ==================== NAV SCROLL ====================
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScroll);onScroll();
+
+// ==================== SIGNATURE NAV — "oyuk niş" göstergesi ====================
+const navlinksWrap = document.getElementById('navlinks');
+const niche = document.getElementById('niche');
+const navAnchors = Array.from(navlinksWrap.querySelectorAll('a'));
+function moveNiche(el){
+  if(!el || getComputedStyle(navlinksWrap).display==='none'){ niche.style.opacity=0; return; }
+  niche.style.opacity=1;
+  niche.style.width = el.offsetWidth + 'px';
+  niche.style.transform = 'translateX(' + el.offsetLeft + 'px)';
+}
+function moveNicheToActive(){ moveNiche(navlinksWrap.querySelector('a.active')); }
+navAnchors.forEach(a=>{
+  a.addEventListener('mouseenter',()=>moveNiche(a));
+});
+navlinksWrap.addEventListener('mouseleave',moveNicheToActive);
+window.addEventListener('resize',moveNicheToActive);
+// scroll-spy → aktif bölümü işaretle
+const sectionIds = navAnchors.map(a=>a.getAttribute('href')).filter(h=>h&&h.startsWith('#'));
+const spy = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const id = '#'+e.target.id;
+      navAnchors.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===id));
+      document.querySelectorAll('.mobile-menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href')===id));
+      moveNicheToActive();
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px',threshold:0});
+sectionIds.forEach(id=>{ const s=document.querySelector(id); if(s) spy.observe(s); });
+
+// ==================== SIGNATURE HERO — toz zerreleri (şafak huzmesi içinde) ====================
+(function(){
+  const box=document.getElementById('motes');
+  if(!box) return;
+  for(let i=0;i<16;i++){
+    const m=document.createElement('div');m.className='mote';
+    const size=Math.random()*2+1.2;
+    m.style.width=size+'px';m.style.height=size+'px';
+    m.style.left=(20+Math.random()*62)+'%';
+    m.style.top=(15+Math.random()*70)+'%';
+    m.style.animationDuration=(8+Math.random()*9)+'s';
+    m.style.animationDelay=(Math.random()*8)+'s';
+    box.appendChild(m);
+  }
+})();
+
+// ==================== REVEAL ====================
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ==================== GÖRSEL YÜKLEME ====================
+(function(){
+  const base='assets/images/';
+  function tryImg(el, file){
+    const img=new Image();
+    img.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; };
+    img.onerror=()=>{};
+    img.src=base+file;
+  }
+  const hero=document.getElementById('heroPhoto');
+  if(hero){ const hi=new Image(); hi.onload=()=>{ hero.style.backgroundImage=`url('${base}hero.jpg')`; hero.classList.add('has-img'); }; hi.onerror=()=>{}; hi.src=base+'hero.jpg'; }
+  document.querySelectorAll('[data-img]').forEach(t=>{ if(t.id!=='heroPhoto') tryImg(t,t.getAttribute('data-img')); });
+})();
+
+// ==================== REZERVASYON → WHATSAPP (çok dilli) ====================
+const WHATSAPP = "905061939450";
+function sendBooking(){
+  const d = I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const cin=document.getElementById('f-in').value;
+  const cout=document.getElementById('f-out').value;
+  const count=document.getElementById('f-count').value;
+  const phone=document.getElementById('f-phone').value.trim();
+  if(!name||!cin||!phone){ alert(d.alert_fill); return; }
+  const msg = d.wa_msg+"%0A%0A"+
+    d.wa_name+": "+encodeURIComponent(name)+"%0A"+
+    d.wa_in+": "+encodeURIComponent(cin)+"%0A"+
+    d.wa_out+": "+encodeURIComponent(cout)+"%0A"+
+    d.wa_people+": "+encodeURIComponent(count)+"%0A"+
+    d.wa_phone+": "+encodeURIComponent(phone);
+  window.open("https://wa.me/"+WHATSAPP+"?text="+msg,"_blank");
+}
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items = Array.from(document.querySelectorAll('.gallery .tile[data-img], .card-visual[data-img]'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  const capOf = t => { const l = t.querySelector('.cap') || t.querySelector('.note'); return l ? l.textContent.trim() : ''; };
+  function show(i){ idx = (i + items.length) % items.length; const t = items[idx]; img.src = base + t.getAttribute('data-img'); cap.textContent = capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>{ t.addEventListener('click',()=>open(i)); });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+// ==================== BAŞLAT ====================
+initTheme();
+initLang();
+setTimeout(moveNicheToActive, 60);
+window.addEventListener('load', ()=>setTimeout(moveNicheToActive,120));
+</script>
+
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+</body>
+</html>
