@@ -1,0 +1,2260 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Kadir's Antiq Gelveri House — Güzelyurt / Gelveri'de Antika Taş Ev | Aksaray Kapadokya</title>
+<meta name="description" data-i18n="meta_desc" content="Gelveri'nin (Güzelyurt, Aksaray) kesme taşından antika bir ev: tonozlu taş odalar, tüfe oyulmuş mağara oda, kilimler, kasabaya bakan teras. Aracısız, doğrudan Instagram'dan.">
+<script>
+/* Tema FOUC önleme: URL > localStorage > sistem > KARANLIK (fener/kandil saati varsayılanı) */
+(function(){try{
+  var q=new URLSearchParams(location.search).get('theme');
+  var s=null;try{s=localStorage.getItem('kadirs_theme')}catch(e){}
+  var m=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';
+  var t=(q==='light'||q==='dark')?q:((s==='light'||s==='dark')?s:m);
+  document.documentElement.setAttribute('data-theme',t);
+}catch(e){document.documentElement.setAttribute('data-theme','dark')}})();
+</script>
+<style>
+  /* ============ KADIR'S ANTIQ GELVERI HOUSE — "Envanter Defteri" (Editöryel Sıcaklık · antika taş ev) ============ */
+  /* Signature: N° katalog/envanter sistemi — her bölüm bir defter kaydı; mühür noktası + çizilen cetvel çizgisi */
+  :root{
+    --bg:#efe3ce;            /* yıllanmış kâğıt / gündüz avlusu */
+    --bg-2:#e6d7bd;          /* koyu kum kâğıdı */
+    --surface:#f7edd9;       /* kart / panel */
+    --text:#33261b;          /* sepya mürekkebi */
+    --muted:#7a6a53;         /* yıpranmış taupe */
+    --amber:#a5661c;         /* kandil kehribarı — açık zeminde metin kontrastı */
+    --amber-2:#c1832f;       /* uplight kehribarı */
+    --wax:#a5432b;           /* mühür / oksliyot kırmızısı */
+    --patina:#6c7e60;        /* bakır patinası / adaçayı — antika yeşili */
+    --line:rgba(51,38,27,.15);
+    --btn-fg:#f7edd9;
+    --nav-bg:rgba(239,227,206,.9);
+    --field-bg:rgba(255,255,255,.6);
+    --chip-bg:rgba(30,20,10,.5);
+    --glow:rgba(193,131,47,.42);
+    --serif:'Iowan Old Style','Palatino Linotype','Book Antiqua','Hoefler Text',Georgia,'Times New Roman',serif;
+    --sans:'Gill Sans Nova','Gill Sans','Futura','Segoe UI',system-ui,-apple-system,sans-serif;
+  }
+  html[data-theme="dark"]{
+    --bg:#1b1512;            /* espresso / kandilli oda gecesi */
+    --bg-2:#140f0c;
+    --surface:#241b15;
+    --text:#efe0cb;          /* ılık parşömen */
+    --muted:#a2907a;
+    --amber:#d99a4e;         /* parlak kandil */
+    --amber-2:#ecba76;
+    --wax:#cf6247;
+    --patina:#93a586;
+    --line:rgba(239,224,203,.13);
+    --btn-fg:#1b1512;
+    --nav-bg:rgba(20,15,12,.86);
+    --field-bg:rgba(30,22,16,.7);
+    --chip-bg:rgba(6,4,2,.55);
+    --glow:rgba(217,154,78,.5);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.68;overflow-x:hidden;transition:background .5s,color .5s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:var(--serif);font-weight:600;line-height:1.1;letter-spacing:-.004em}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:600;letter-spacing:0}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 30px}
+
+  /* eyebrow = envanter kaydı başlığı: N° + mühür + söz */
+  .eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:.28em;font-size:.66rem;font-weight:700;color:var(--amber);display:inline-flex;align-items:center;gap:11px}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.1em}
+  .eyebrow .cno{font-family:var(--serif);font-style:italic;font-weight:600;font-size:.98rem;letter-spacing:0;text-transform:none;color:var(--amber)}
+  .eyebrow .seal{width:6px;height:6px;border-radius:50%;background:var(--wax);flex:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--wax) 22%,transparent)}
+
+  /* cetvel çizgisi — bölüm başlığında kayda çizilir (signature) */
+  .rule{height:1px;background:var(--line);width:0;margin-top:24px;transition:width 1.1s cubic-bezier(.2,.7,.2,1) .12s;position:relative;overflow:visible}
+  .rule::after{content:"";position:absolute;right:0;top:-2px;width:5px;height:5px;border-radius:50%;background:var(--amber);opacity:0;transition:opacity .5s .9s}
+  .reveal.in .rule{width:100%}
+  .reveal.in .rule::after{opacity:.85}
+
+  /* ---------- NAV — 21st.dev portu: "Envanter İndeksi" (defter cetveli + kayan N° mürekkep izi) ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:15px 28px;transition:.5s;gap:14px}
+  nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+  .brand{display:flex;align-items:center;gap:12px;flex:none}
+  .brand .mark{width:34px;height:34px;flex:none;color:#f2e2c6;filter:drop-shadow(0 1px 5px rgba(0,0,0,.45))}
+  nav.scrolled .brand .mark{color:var(--amber)}
+  .brand .bt{display:flex;flex-direction:column;line-height:1}
+  .brand .bt b{font-family:var(--serif);font-size:1.32rem;font-weight:600;letter-spacing:.01em;color:#fbf1df;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+  nav.scrolled .brand .bt b{color:var(--text);text-shadow:none}
+  .brand .bt span{font-family:var(--sans);font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:#e7cfac;margin-top:4px;text-shadow:0 1px 8px rgba(0,0,0,.55)}
+  nav.scrolled .brand .bt span{color:var(--amber);text-shadow:none}
+
+  .navlinks{display:flex;gap:4px;align-items:flex-end;margin-left:auto;position:relative;padding-bottom:8px}
+  .navlinks::before{content:"";position:absolute;left:6px;right:6px;bottom:0;height:1px;background:rgba(247,237,217,.32)}
+  nav.scrolled .navlinks::before{background:var(--line)}
+  .navlinks a{font-family:var(--sans);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#f1e6d5;transition:.3s;padding:8px 14px;position:relative;z-index:2;text-shadow:0 1px 8px rgba(0,0,0,.45);display:inline-flex;align-items:baseline;gap:5px}
+  nav.scrolled .navlinks a{color:var(--muted);text-shadow:none}
+  html[lang="zh-CN"] .navlinks a,html[lang="ko"] .navlinks a{text-transform:none;letter-spacing:.03em;font-size:.85rem}
+  .navlinks a .cno{font-family:var(--serif);font-style:italic;font-size:.62rem;opacity:.55;transition:.3s;letter-spacing:0}
+  .navlinks a:hover{color:#fff}
+  nav.scrolled .navlinks a:hover{color:var(--text)}
+  .navlinks a.active{color:#ffe7c4}
+  nav.scrolled .navlinks a.active{color:var(--amber)}
+  .navlinks a.active .cno{opacity:1;color:#ffd79a}
+  nav.scrolled .navlinks a.active .cno{color:var(--amber)}
+  /* kayan mürekkep izi — aktif kaydı vurgular */
+  .idx-ind{position:absolute;bottom:0;left:0;width:0;height:2px;background:#ffcf8f;opacity:0;pointer-events:none;z-index:1;border-radius:2px;
+    transition:left .5s cubic-bezier(.3,.7,.2,1),width .5s cubic-bezier(.3,.7,.2,1),opacity .4s;box-shadow:0 0 8px rgba(255,207,143,.6)}
+  nav.scrolled .idx-ind{background:var(--amber);box-shadow:0 0 8px var(--glow)}
+  .idx-ind.on{opacity:1}
+
+  .nav-cta{border:1px solid var(--amber-2);color:#ffe7c4!important;padding:9px 20px;border-radius:3px;font-size:.72rem!important;transition:.35s;margin-left:12px;margin-bottom:6px;background:rgba(180,120,50,.18);letter-spacing:.1em;align-self:center}
+  nav.scrolled .nav-cta{color:var(--amber)!important;background:none;border-color:var(--amber)}
+  .nav-cta:hover{background:var(--amber);color:var(--btn-fg)!important;border-color:var(--amber)}
+  html[lang="zh-CN"] .nav-cta,html[lang="ko"] .nav-cta{text-transform:none;letter-spacing:.02em}
+
+  .langs{display:flex;align-items:center;gap:1px;flex:none}
+  .langs button{background:none;border:none;color:#eddfc9;font-family:var(--sans);font-size:.74rem;cursor:pointer;padding:5px 6px;transition:.25s;border-radius:3px;letter-spacing:.02em;text-shadow:0 1px 6px rgba(0,0,0,.4)}
+  nav.scrolled .langs button{color:var(--muted);text-shadow:none}
+  .langs button:hover{color:#fff}
+  nav.scrolled .langs button:hover{color:var(--text)}
+  .langs button.active{color:#ffe7c4;font-weight:700}
+  nav.scrolled .langs button.active{color:var(--amber)}
+  .langs .sep{color:rgba(255,255,255,.26);font-size:.68rem}
+  nav.scrolled .langs .sep{color:var(--line)}
+  .theme-btn{background:none;border:1px solid rgba(255,255,255,.36);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fbefdc;transition:.3s;flex:none}
+  nav.scrolled .theme-btn{color:var(--text);border-color:var(--line)}
+  .theme-btn:hover{border-color:var(--amber);color:var(--amber)}
+  .theme-btn svg{width:16px;height:16px}
+  html[data-theme="light"] .theme-btn .ic-moon{display:none}
+  html[data-theme="dark"] .theme-btn .ic-sun{display:none}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;color:#fbefdc;flex:none}
+  nav.scrolled .menu-btn{color:var(--text)}
+
+  /* ---------- MOBİL DOCK (envanter sekmeleri) ---------- */
+  .dock{display:none;position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:65;background:var(--nav-bg);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:16px;padding:9px 6px 7px;gap:1px;box-shadow:0 12px 36px rgba(0,0,0,.3);max-width:calc(100vw - 20px)}
+  .dock a{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 10px 4px;color:var(--muted);font-size:.56rem;letter-spacing:.02em;text-transform:uppercase;border-radius:11px;transition:.3s;white-space:nowrap;min-width:52px}
+  html[lang="zh-CN"] .dock a,html[lang="ko"] .dock a{text-transform:none;letter-spacing:0;font-size:.62rem}
+  .dock a svg{width:20px;height:20px}
+  .dock a.active{color:var(--amber)}
+  .dock a.active::before{content:"";position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:22px;height:2px;background:var(--amber);border-radius:2px;box-shadow:0 0 8px var(--glow)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;height:100vh;min-height:660px;overflow:hidden;display:flex;align-items:flex-end;isolation:isolate;background:#160f0b}
+  .sky{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,#160f0b 0%,#2a1c12 32%,#4a2f1e 58%,#7c4a2c 78%,#c1832f 100%)}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center 42%;opacity:0;transition:opacity .8s}
+  .hero-photo.has-img{opacity:1;animation:kenburns 40s ease-in-out infinite alternate;transform-origin:56% 46%}
+  @keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.12)}}
+  #hero-gradient{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:.5;
+    --gradient-color-1:#3a2415; --gradient-color-2:#8a4a2c; --gradient-color-3:#c1832f; --gradient-color-4:#d99a4e}
+  .no-webgl #hero-gradient{display:none}
+  /* okunabilirlik scrim'i — iki temada da SABİT açık metin */
+  .hero::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+    background:linear-gradient(180deg,rgba(14,9,6,.5) 0%,rgba(14,9,6,.12) 26%,rgba(14,9,6,.4) 60%,rgba(8,5,3,.9) 100%)}
+  .hero-inner{position:relative;z-index:10;width:100%;padding-bottom:12vh}
+  .hero .eyebrow{color:#ffd7a8;text-shadow:0 1px 8px rgba(0,0,0,.6);background:rgba(20,13,7,.34);padding:8px 15px;border-radius:22px;backdrop-filter:blur(4px)}
+  .hero .eyebrow .cno{color:#ffcf8f}
+  .hero .eyebrow .seal{background:#e6795b;box-shadow:0 0 0 3px rgba(230,121,91,.28)}
+  .hero h1{color:#fdf3e6;font-size:clamp(2.7rem,7vw,5.7rem);max-width:16ch;text-shadow:0 4px 42px rgba(0,0,0,.6);margin-top:20px}
+  .hero h1 em{font-style:italic;color:#ffcf94;font-weight:600}
+  html[lang="zh-CN"] .hero h1 em,html[lang="ko"] .hero h1 em{font-style:normal}
+  .hero .lede{font-size:clamp(1.02rem,1.5vw,1.26rem);color:rgba(253,243,230,.94);max-width:54ch;margin-top:22px;font-weight:400;text-shadow:0 2px 22px rgba(0,0,0,.7)}
+  .hero-cta{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:var(--amber);color:#1c130a;padding:15px 30px;border-radius:3px;font-family:var(--sans);font-weight:600;font-size:.83rem;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.35s;box-shadow:0 8px 26px rgba(150,95,35,.45)}
+  html[data-theme="dark"] .btn-solid{color:#1c130a}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{text-transform:none;letter-spacing:.02em}
+  .btn-solid:hover{background:var(--amber-2);gap:15px}
+  .btn-solid svg{width:18px;height:18px}
+  .btn-line{color:#fdf3e6;font-family:var(--sans);font-size:.83rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(253,243,230,.5);padding-bottom:4px;transition:.4s;text-shadow:0 1px 14px rgba(0,0,0,.5)}
+  .btn-line:hover{border-color:#ffcf94;color:#ffcf94}
+  .scrollhint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:10;font-family:var(--sans);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(253,243,230,.62);display:flex;flex-direction:column;align-items:center;gap:8px}
+  html[lang="zh-CN"] .scrollhint,html[lang="ko"] .scrollhint{letter-spacing:.08em}
+  .scrollhint .l{width:1px;height:32px;background:linear-gradient(var(--amber-2),transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ---------- KANIT / ENVANTER BANDI ---------- */
+  .proof{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .proof .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:36px 30px}
+  .pf{text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px}
+  .pf .pf-ic{width:24px;height:24px;color:var(--amber);margin-bottom:3px}
+  .pf .n{font-family:var(--serif);font-size:clamp(1.4rem,2.8vw,2rem);color:var(--text);line-height:1.1;font-weight:600}
+  .pf .l{font-family:var(--sans);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  html[lang="zh-CN"] .pf .l,html[lang="ko"] .pf .l{text-transform:none;letter-spacing:.03em}
+  .pf+.pf{border-left:1px solid var(--line)}
+  @media(max-width:680px){.proof .wrap{grid-template-columns:1fr 1fr;gap:30px 18px}.pf:nth-child(3){border-left:none}}
+
+  section{padding:112px 0;position:relative}
+  .sec-head{max-width:700px;margin-bottom:54px}
+  .sec-head .eyebrow{margin-bottom:16px}
+  .sec-head h2{font-size:clamp(2.1rem,4.4vw,3.5rem)}
+  .sec-head p{margin-top:16px;color:var(--muted);font-size:1.08rem;font-weight:400}
+
+  /* ---------- EV / HİKÂYE (signature: dev N° filigranı) ---------- */
+  .house{background:var(--bg);overflow:hidden}
+  .house .wm{position:absolute;top:50%;right:-4%;transform:translateY(-50%);z-index:0;pointer-events:none;color:var(--amber);opacity:.06;font-family:var(--serif);font-style:italic;font-size:min(38vw,440px);line-height:1;font-weight:600}
+  html[data-theme="dark"] .house .wm{opacity:.08}
+  .house>.wrap{position:relative;z-index:1}
+  .house-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .house-visual{position:relative;display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:14px}
+  .hv{position:relative;border-radius:12px;overflow:hidden;background:var(--surface) center/cover no-repeat;cursor:pointer;box-shadow:0 18px 44px rgba(30,20,12,.24)}
+  .hv.big{grid-row:span 2;aspect-ratio:3/4}
+  .hv.small{aspect-ratio:1/1}
+  .hv::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,12,6,.32),transparent 42%)}
+  .hv .ph-label{position:absolute;left:13px;bottom:11px;z-index:2;font-family:var(--sans);font-size:.63rem;letter-spacing:.04em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.85)}
+  .house-text .lead{font-family:var(--serif);font-size:clamp(1.4rem,2.2vw,1.85rem);line-height:1.42;font-style:italic;color:var(--text);margin-bottom:22px}
+  html[lang="zh-CN"] .house-text .lead,html[lang="ko"] .house-text .lead{font-style:normal}
+  .house-text p{color:var(--muted);margin-bottom:16px;font-weight:400;max-width:54ch}
+  .house-text .sign{margin-top:20px;display:flex;align-items:center;gap:11px;font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--amber)}
+  .house-text .sign .seal{width:7px;height:7px;border-radius:50%;background:var(--wax);flex:none}
+  @media(max-width:900px){.house-grid{grid-template-columns:1fr;gap:38px}.house-visual{order:2}}
+
+  /* ---------- ODALAR ---------- */
+  .rooms{background:var(--bg-2)}
+  .room-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .room-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+  .room-card:hover{transform:translateY(-5px);box-shadow:0 24px 52px rgba(30,20,12,.22)}
+  .room-img{aspect-ratio:4/3;background:var(--bg-2) center/cover no-repeat;position:relative;overflow:hidden;cursor:pointer;margin:10px 10px 0;border-radius:9px}
+  .room-img .tag{position:absolute;top:12px;left:12px;z-index:2;font-family:var(--sans);font-size:.61rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--chip-bg);padding:6px 12px;border-radius:20px;backdrop-filter:blur(5px);white-space:nowrap}
+  html[lang="zh-CN"] .room-img .tag,html[lang="ko"] .room-img .tag{text-transform:none;letter-spacing:.03em}
+  .room-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,12,6,.28),transparent 40%)}
+  .room-body{padding:18px 22px 22px;display:flex;flex-direction:column;flex:1}
+  .room-body h3{font-size:1.4rem;color:var(--text)}
+  .room-body .feats{margin:9px 0 11px;font-family:var(--sans);font-size:.67rem;letter-spacing:.05em;color:var(--amber);text-transform:uppercase;font-weight:700}
+  html[lang="zh-CN"] .room-body .feats,html[lang="ko"] .room-body .feats{text-transform:none;letter-spacing:.02em}
+  .room-body p{color:var(--muted);font-weight:400;font-size:.92rem;flex:1}
+  .room-note{margin-top:26px;text-align:center;color:var(--muted);font-size:.9rem;font-weight:400}
+  .room-note b{color:var(--amber);font-weight:700}
+  @media(max-width:900px){.room-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
+
+  /* ---------- İKİLİ BÖLÜM (Sofra & Teras) ---------- */
+  .split{overflow:hidden}
+  .split.alt{background:var(--bg-2)}
+  .split:not(.alt){background:var(--bg)}
+  .split::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55;
+    background:radial-gradient(42% 52% at 82% 16%,var(--glow),transparent 60%),radial-gradient(38% 48% at 8% 84%,rgba(108,126,96,.16),transparent 62%);
+    background-size:170% 170%;animation:meshDrift 26s ease-in-out infinite alternate}
+  @keyframes meshDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+  .split>.wrap{position:relative;z-index:1}
+  .split-grid{display:grid;grid-template-columns:.94fr 1.06fr;gap:54px;align-items:center}
+  .split.flip .split-grid{grid-template-columns:1.06fr .94fr}
+  .split.flip .split-visual{order:-1}
+  .split-text p{color:var(--muted);font-weight:400;margin-bottom:16px;max-width:50ch}
+  .split-note{font-size:.9rem;color:var(--amber);border-left:2px solid var(--amber-2);padding-left:15px;margin-top:22px;max-width:46ch;font-style:italic}
+  .split-visual{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:3/2;background:var(--surface) center/cover no-repeat;cursor:pointer;box-shadow:0 22px 50px rgba(30,20,12,.24)}
+  .cv{position:relative;border-radius:14px;overflow:hidden;background:var(--surface) center/cover no-repeat;cursor:pointer}
+  .split-visual::after,.cv::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,12,6,.34),transparent 46%)}
+  .split-visual .time{position:absolute;top:13px;left:14px;z-index:2;font-family:var(--sans);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--chip-bg);padding:6px 11px;border-radius:20px;backdrop-filter:blur(5px)}
+  html[lang="zh-CN"] .split-visual .time,html[lang="ko"] .split-visual .time{text-transform:none;letter-spacing:.04em}
+  .split-visual .ph-label{position:absolute;left:15px;bottom:12px;z-index:2;font-family:var(--sans);font-size:.66rem;color:rgba(255,255,255,.94);text-shadow:0 1px 8px rgba(0,0,0,.85)}
+  @media(max-width:900px){.split-grid,.split.flip .split-grid{grid-template-columns:1fr;gap:36px}.split.flip .split-visual{order:0}}
+
+  /* ---------- GELVERİ / KONUM ---------- */
+  .gelveri{background:var(--bg)}
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .loc-text p{color:var(--muted);font-weight:400;margin-bottom:16px;max-width:50ch}
+  .loc-facts{list-style:none;margin:22px 0}
+  .loc-facts li{display:flex;gap:12px;align-items:flex-start;color:var(--text);font-weight:400;font-size:.95rem;margin-bottom:13px}
+  .loc-facts svg{width:18px;height:18px;color:var(--amber);flex:none;margin-top:3px}
+  .btn-ghost{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--amber);color:var(--amber);padding:13px 26px;border-radius:3px;font-family:var(--sans);font-size:.77rem;letter-spacing:.06em;text-transform:uppercase;transition:.35s;cursor:pointer;background:none;font-weight:600}
+  html[lang="zh-CN"] .btn-ghost,html[lang="ko"] .btn-ghost{text-transform:none;letter-spacing:.02em}
+  .btn-ghost:hover{background:var(--amber);color:var(--btn-fg);border-color:var(--amber)}
+  .loc-visual{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;background:var(--surface) center/cover no-repeat;cursor:pointer;box-shadow:0 24px 56px rgba(30,20,12,.24)}
+  .loc-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,12,6,.36),transparent 42%)}
+  .loc-visual .ph-label{position:absolute;left:18px;bottom:14px;z-index:2;font-family:var(--sans);font-size:.68rem;color:rgba(255,255,255,.94);text-shadow:0 1px 8px rgba(0,0,0,.85)}
+  @media(max-width:900px){.loc-grid{grid-template-columns:1fr;gap:34px}.loc-visual{max-width:420px;margin:0 auto}}
+
+  /* ---------- DOĞRUDAN / OTA KANCASI ---------- */
+  .direct{background:linear-gradient(135deg,var(--bg-2),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:64px 0;overflow:hidden;position:relative}
+  .direct::before{content:"";position:absolute;top:-120px;right:-60px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 66%);pointer-events:none;opacity:.7}
+  .direct .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center}
+  .direct h2{font-size:clamp(1.9rem,3.6vw,2.9rem);color:var(--text)}
+  .direct h2 em{font-style:italic;color:var(--amber)}
+  html[lang="zh-CN"] .direct h2 em,html[lang="ko"] .direct h2 em{font-style:normal}
+  .direct p{color:var(--muted);font-weight:400;margin-top:14px;max-width:52ch;font-size:1.02rem}
+  .direct .d-cta{display:flex;flex-direction:column;gap:12px}
+  .direct .d-btn{display:inline-flex;align-items:center;justify-content:center;gap:11px;background:var(--amber);color:#1c130a;padding:16px 26px;border-radius:3px;font-family:var(--sans);font-weight:600;font-size:.86rem;letter-spacing:.05em;transition:.35s;box-shadow:0 8px 24px rgba(150,95,35,.36)}
+  .direct .d-btn:hover{background:var(--amber-2)}
+  .direct .d-btn svg{width:20px;height:20px}
+  .direct .d-note{font-size:.82rem;color:var(--muted);text-align:center}
+  @media(max-width:820px){.direct .wrap{grid-template-columns:1fr;gap:26px}}
+
+  /* ---------- GALERİ ---------- */
+  .gallery{background:var(--bg-2)}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+  .tile{border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:15px;background:var(--surface) center/cover no-repeat;cursor:pointer;transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s}
+  .tile.w2{grid-column:span 2}.tile.h2{grid-row:span 2}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(30,20,12,.3)}
+  .tile .ph-label{position:relative;z-index:3;font-family:var(--sans);font-size:.72rem;letter-spacing:.04em;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.9);display:flex;align-items:center;gap:6px}
+  .tile::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(20,12,6,.6),rgba(20,12,6,0) 48%);transition:.4s}
+  .tile::after{content:"\2922";position:absolute;top:11px;right:14px;z-index:3;color:#fff;font-size:1rem;opacity:0;transform:scale(.75);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.9)}
+  .tile:hover::before{background:linear-gradient(to top,rgba(20,12,6,.68),rgba(20,12,6,.12))}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  @media(max-width:820px){.tiles{grid-template-columns:1fr 1fr;grid-auto-rows:170px}.tile.w2{grid-column:span 1}.tile.h2{grid-row:span 1}}
+  @media(max-width:460px){.tiles{grid-template-columns:1fr;grid-auto-rows:210px}}
+  .gallery-src{margin-top:20px;font-size:.8rem;color:var(--muted);font-weight:400;max-width:74ch}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(12,8,5,.95);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:86vh;border-radius:8px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f4ecdd;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s;z-index:5}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#f0e4d4;font-family:var(--sans);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+  html[lang="zh-CN"] .lb-cap,html[lang="ko"] .lb-cap{text-transform:none;letter-spacing:.03em}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(40,24,14,.55);border:1px solid rgba(240,228,212,.24);color:#f4ecdd;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:.25s;z-index:5}
+  .lb-nav:hover{background:var(--amber);color:#1c130a;border-color:var(--amber)}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:1.2rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ---------- REZERVASYON (Instagram DM) ---------- */
+  .book{background:linear-gradient(180deg,var(--bg),var(--bg-2));position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 66%);opacity:.55}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.2rem,4.4vw,3.4rem);color:var(--text)}
+  .book h2 em{font-style:italic;color:var(--amber)}
+  html[lang="zh-CN"] .book h2 em,html[lang="ko"] .book h2 em{font-style:normal}
+  .book .lede{color:var(--muted);margin-top:16px;font-size:1.05rem;font-weight:400;max-width:48ch}
+  .ig-line{display:inline-flex;align-items:center;gap:10px;margin-top:22px;color:var(--text);font-family:var(--sans);font-size:1rem;font-weight:600}
+  .ig-line svg{width:22px;height:22px;color:var(--wax)}
+  .book-steps{list-style:none;margin:24px 0 0;display:flex;flex-direction:column;gap:12px}
+  .book-steps li{display:flex;gap:13px;align-items:flex-start;color:var(--muted);font-size:.95rem;font-weight:400}
+  .book-steps .num{flex:none;width:25px;height:25px;border-radius:50%;background:var(--amber);color:var(--btn-fg);font-family:var(--serif);font-size:.86rem;display:flex;align-items:center;justify-content:center;font-weight:600;margin-top:1px}
+  .form{background:var(--field-bg);border:1px solid var(--line);border-radius:16px;padding:32px;backdrop-filter:blur(6px)}
+  .field{margin-bottom:15px}
+  .field label{display:block;font-family:var(--sans);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:7px;font-weight:700}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{text-transform:none;letter-spacing:.03em}
+  .field input,.field select,.field textarea{width:100%;padding:13px 15px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-family:inherit;font-size:.93rem}
+  .field textarea{min-height:76px;resize:vertical}
+  .field input::placeholder,.field textarea::placeholder{color:var(--muted);opacity:.7}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--amber)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .submit{width:100%;background:var(--amber);color:#1c130a;border:none;padding:16px;border-radius:3px;font-family:var(--sans);font-weight:600;font-size:.83rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:.35s;margin-top:6px;box-shadow:0 8px 24px rgba(150,95,35,.34);display:inline-flex;align-items:center;justify-content:center;gap:10px}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{text-transform:none;letter-spacing:.02em}
+  .submit:hover{background:var(--amber-2)}
+  .submit svg{width:19px;height:19px}
+  .dm-panel{display:none;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .dm-panel.show{display:block}
+  .dm-panel h4{font-family:var(--serif);font-size:1.18rem;margin-bottom:8px;color:var(--text)}
+  .dm-status{font-size:.82rem;color:var(--muted);margin-bottom:10px}
+  .dm-status.ok{color:var(--patina)}
+  .dm-msg{width:100%;min-height:132px;padding:13px 15px;border-radius:9px;border:1px solid var(--line);background:var(--field-bg);color:var(--text);font-family:inherit;font-size:.9rem;resize:vertical;line-height:1.6}
+  .dm-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .dm-actions .a{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);border:1px solid var(--line);padding:11px 18px;border-radius:22px;transition:.3s;cursor:pointer;background:none;font-family:var(--sans)}
+  .dm-actions .a svg{width:16px;height:16px}
+  .dm-actions .a:hover{border-color:var(--amber);color:var(--amber)}
+  .dm-actions .a.primary{background:var(--amber);color:var(--btn-fg);border-color:var(--amber)}
+  .dm-actions .a.primary:hover{background:var(--amber-2)}
+  .dm-note{margin-top:12px;font-size:.78rem;color:var(--muted);font-weight:400;line-height:1.55}
+  @media(max-width:900px){.book-grid{grid-template-columns:1fr;gap:36px}}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--bg-2);color:var(--muted);padding:62px 0 30px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:40px}
+  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .foot-brand .mark{width:36px;height:36px;color:var(--amber)}
+  .foot-brand .bt b{font-family:var(--serif);font-size:1.34rem;color:var(--text);font-weight:600;display:block;line-height:1.1}
+  .foot-brand .bt span{font-family:var(--sans);font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-top:4px;display:block}
+  footer h4{font-family:var(--sans);font-size:.69rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:15px;font-weight:700}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{text-transform:none;letter-spacing:.04em}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px;font-size:.92rem;font-weight:400;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:var(--text)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--sans);font-size:.76rem}
+  .demo-badge{background:var(--amber);color:#1c130a;padding:5px 13px;border-radius:20px;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
+  html[lang="zh-CN"] .demo-badge,html[lang="ko"] .demo-badge{text-transform:none}
+
+  .reveal{opacity:0;transform:translateY(32px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- MOBİL MENÜ ---------- */
+  .mobile-menu{position:fixed;inset:0;z-index:80;background:var(--nav-bg);backdrop-filter:blur(16px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:var(--serif);font-size:1.7rem;color:var(--text);font-weight:600;display:flex;align-items:baseline;gap:8px}
+  .mobile-menu a .cno{font-style:italic;font-size:.9rem;color:var(--amber)}
+  .mobile-menu .close{position:absolute;top:22px;right:24px;background:none;border:none;color:var(--text);cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;justify-content:center}
+  .mobile-menu .m-langs button{background:none;border:1px solid var(--line);color:var(--muted);padding:8px 13px;border-radius:20px;font-family:var(--sans);font-size:.84rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:var(--amber);border-color:var(--amber)}
+
+  @media(max-width:820px){
+    .navlinks{display:none}.menu-btn{display:block}
+    .langs{display:none}
+    .dock{display:flex}
+    footer{padding-bottom:92px}
+    section{padding:74px 0}
+    .form{padding:24px}
+    .foot-grid{grid-template-columns:1fr;gap:30px}
+    .hero::after{background:linear-gradient(180deg,rgba(14,9,6,.56) 0%,rgba(14,9,6,.16) 26%,rgba(14,9,6,.42) 58%,rgba(8,5,3,.92) 100%)}
+    .hero-inner{padding-bottom:16vh}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s!important}
+    .reveal{opacity:1;transform:none}
+    .rule{width:100%!important}
+  }
+
+  /* ---------- SIGNATURE KATMANI: film grain + scroll ilerleme ---------- */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--wax),var(--amber),var(--amber-2));box-shadow:0 0 12px var(--glow)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a class="brand" href="#" aria-label="Kadir's Antiq Gelveri House">
+    <span class="mark" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="7" y="15" width="30" height="24" rx="1.5" stroke="currentColor" stroke-width="2"/><path d="M11 15V13c0-2.2 1.8-4 4-4s4 1.8 4 4v2M19 15V13c0-2.2 1.8-4 4-4s4 1.8 4 4v2M27 15V13c0-2.2 1.8-4 4-4s4 1.8 4 4v2" stroke="currentColor" stroke-width="1.6"/><path d="M22 39V27" stroke="currentColor" stroke-width="1.5"/></svg></span>
+    <span class="bt"><b>Antiq Gelveri</b><span data-i18n="brand_sub">Kadir's House · Güzelyurt</span></span>
+  </a>
+  <div class="navlinks" id="navlinks">
+    <span class="idx-ind" id="idxInd" aria-hidden="true"></span>
+    <a href="#house" data-spy="house"><span class="cno">01</span><span data-i18n="nav_house">Ev</span></a>
+    <a href="#rooms" data-spy="rooms"><span class="cno">02</span><span data-i18n="nav_rooms">Odalar</span></a>
+    <a href="#terrace" data-spy="terrace"><span class="cno">04</span><span data-i18n="nav_terrace">Teras</span></a>
+    <a href="#gelveri" data-spy="gelveri"><span class="cno">05</span><span data-i18n="nav_gelveri">Gelveri</span></a>
+    <a class="nav-cta" href="#book" data-i18n="nav_book">Rezervasyon</a>
+  </div>
+  <div class="langs" role="group" aria-label="Dil / Language">
+    <button data-lang="tr" class="active">TR</button><span class="sep">|</span>
+    <button data-lang="en">EN</button><span class="sep">|</span>
+    <button data-lang="es">ES</button><span class="sep">|</span>
+    <button data-lang="zh-CN">中文</button><span class="sep">|</span>
+    <button data-lang="ko">한국어</button>
+  </div>
+  <button class="theme-btn" id="themeBtn" aria-label="Tema değiştir">
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" stroke-linecap="round"/></svg>
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5z" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="menu-btn" aria-label="Menü" id="menuBtn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#house"><span class="cno">01</span><span data-i18n="nav_house">Ev</span></a>
+  <a href="#rooms"><span class="cno">02</span><span data-i18n="nav_rooms">Odalar</span></a>
+  <a href="#sofra"><span class="cno">03</span><span data-i18n="nav_sofra">Sofra</span></a>
+  <a href="#terrace"><span class="cno">04</span><span data-i18n="nav_terrace">Teras</span></a>
+  <a href="#gelveri"><span class="cno">05</span><span data-i18n="nav_gelveri">Gelveri</span></a>
+  <a href="#book"><span class="cno">·</span><span data-i18n="nav_book">Rezervasyon</span></a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+</div>
+
+<div class="dock" id="dock" aria-label="Mobil menü">
+  <a href="#house" data-spy="house"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 21V10c0-4.4 3.6-8 8-8s8 3.6 8 8v11" stroke-linecap="round"/><path d="M4 21h16"/></svg><span data-i18n="dock_house">Ev</span></a>
+  <a href="#rooms" data-spy="rooms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 11h18M8 6V4M16 6V4"/></svg><span data-i18n="dock_rooms">Oda</span></a>
+  <a href="#sofra" data-spy="sofra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3v7a3 3 0 0 0 6 0V3M9 10v11M18 3c-1.5 0-2.5 2-2.5 5s1 4 2.5 4v9"/></svg><span data-i18n="dock_sofra">Sofra</span></a>
+  <a href="#terrace" data-spy="terrace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 20h18M5 20V11M19 20V11M4 11l8-6 8 6M9 20v-5h6v5"/></svg><span data-i18n="dock_terrace">Teras</span></a>
+  <a href="#book" data-spy="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M7 4h10a2 2 0 0 1 2 2v14l-7-3-7 3V6a2 2 0 0 1 2-2z"/></svg><span data-i18n="dock_book">Kayıt</span></a>
+</div>
+
+<header class="hero">
+  <div class="sky"></div>
+  <div class="hero-photo" id="heroPhoto"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow"><span class="cno">N° 00</span><i class="seal"></i><span data-i18n="hero_eyebrow">Güzelyurt · Gelveri · Aksaray</span></span>
+      <h1 data-i18n="hero_title" data-i18n-html="1">Antika bir taş evde,<br><em>zamanın içinde bir gece.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Gelveri'nin — Güzelyurt'un eski adı — kesme taşından bir ev. Tonozlu taş odalar, kilimler, oyma nişler, bir de tüfe oyulmuş mağara oda. Antikaların ve sessizliğin evi; aracısız, doğrudan Kadir'in konukları olarak.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg><span data-i18n="hero_cta1">Instagram'dan yazın</span></a>
+        <a class="btn-line" href="#rooms" data-i18n="hero_cta2">Odaları görün</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Deftere göz atın</span><span class="l"></span></div>
+</header>
+
+<div class="proof">
+  <div class="wrap">
+    <div class="pf">
+      <svg class="pf-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.7 1.4 6.8L12 17.8 5.9 21.5l1.4-6.8L2.2 9l6.9-.7z"/></svg>
+      <div class="n">4,5<span style="font-size:.6em"> ★</span></div><div class="l" data-i18n="proof1">Google puanı</div>
+    </div>
+    <div class="pf">
+      <svg class="pf-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 20V9c0-4 3.6-7 8-7s8 3 8 7v11" stroke-linecap="round"/><path d="M4 20h16"/></svg>
+      <div class="n" data-i18n="proof2">Taş · Tonoz · Mağara</div><div class="l" data-i18n="proof2s">oda dokuları</div>
+    </div>
+    <div class="pf">
+      <svg class="pf-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s-6.5-5.5-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.5 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/></svg>
+      <div class="n" data-i18n="proof3">Gelveri</div><div class="l" data-i18n="proof3s">Güzelyurt, Aksaray</div>
+    </div>
+    <div class="pf">
+      <svg class="pf-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 20l6-16 6 16M7 14h4M15 20l3-8 3 8M17 17h2"/></svg>
+      <div class="n" data-i18n="proof4">Manastır Vadisi</div><div class="l" data-i18n="proof4s">kasabanın eşiğinde</div>
+    </div>
+  </div>
+</div>
+
+<section class="house" id="house">
+  <div class="wm" aria-hidden="true">01</div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="cno">N° 01</span><i class="seal"></i><span data-i18n="house_eyebrow">Ev</span></span>
+      <h2 data-i18n="house_h">Kadir'in antika taş evi.</h2>
+      <p data-i18n="house_sub">Gelveri'nin kesme taşıyla örülmüş, antikalarla döşenmiş bir ev. Adındaki "antiq" boşuna değil — her köşede zamanın bir katmanı var.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="house-grid">
+      <div class="house-visual reveal">
+        <div class="hv big" data-img="house.jpg"><span class="ph-label" data-i18n="ph_house_1">Taş avlu · altın saat</span></div>
+        <div class="hv small" data-img="house-b.jpg"><span class="ph-label" data-i18n="ph_house_2">Avlu · gündüz</span></div>
+        <div class="hv small" data-img="house-c.jpg"><span class="ph-label" data-i18n="ph_house_3">Teras & oyma taş</span></div>
+      </div>
+      <div class="house-text reveal">
+        <p class="lead" data-i18n="house_lead">Burası bir "otel" değil; yıllanmış eşyaların, kilimlerin ve taşın sıcaklığıyla döşenmiş bir ev.</p>
+        <p data-i18n="house_p1">Kalın kesme taş duvarlar yazın serinliği, kışın sıcağı içeride tutar. Kemerli geçitler, ferforje parmaklıklar, oyma taş nişler ve bakır-pirinç antikalar Gelveri'nin taş konak geleneğini bugüne taşır.</p>
+        <p data-i18n="house_p2">Avlusunda gün ışığı taşa vurur; teraslarından kasaba ve vadi görünür. Aynı anda yalnızca birkaç misafir ağırlanır — çünkü bu evin asıl ikramı sessizlik ve zaman.</p>
+        <p class="sign"><i class="seal"></i><span data-i18n="house_sign">Kadir'in evi · Gelveri</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rooms" id="rooms">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="cno">N° 02</span><i class="seal"></i><span data-i18n="rooms_eyebrow">Odalar</span></span>
+      <h2 data-i18n="rooms_h">Kimi tonoz, kimi mağara.</h2>
+      <p data-i18n="rooms_sub">Her oda farklı: tonozlu taş tavan, kilim, oyma niş; birinde tüfe oyulmuş gerçek bir mağara. Fiyat ve müsaitlik Instagram'dan.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="room-grid">
+      <div class="room-card reveal">
+        <div class="room-img" data-img="room-1.jpg"><span class="tag" data-i18n="room1_tag">Tonozlu</span></div>
+        <div class="room-body">
+          <h3 data-i18n="room1_h">Gül Yapraklı Tonoz Oda</h3>
+          <div class="feats" data-i18n="room1_f">Taş tonoz · Kilim · Oyma niş</div>
+          <p data-i18n="room1_p">Kemerli taş tonozun altında, duvara gömülü sıcak aplikler ve toprak tonlarında el işi örtüler. Özel günler için gül yaprağı ve havlu süslemesiyle hazırlanır; taşın serinliğinde derin bir uyku.</p>
+        </div>
+      </div>
+      <div class="room-card reveal">
+        <div class="room-img" data-img="room-2.jpg"><span class="tag" data-i18n="room2_tag">Dubleks</span></div>
+        <div class="room-body">
+          <h3 data-i18n="room2_h">Merdivenli Tonoz Oda</h3>
+          <div class="feats" data-i18n="room2_f">Ahşap merdiven · Taş tonoz · Kilim</div>
+          <p data-i18n="room2_p">Elle işlenmiş ahşap bir merdivenle çıkılan, asma katlı tonoz oda. Oymalı korkuluklar, taş duvarlar ve kilimler; iki katın kendine ait mahremiyeti.</p>
+        </div>
+      </div>
+      <div class="room-card reveal">
+        <div class="room-img" data-img="room-3.jpg"><span class="tag" data-i18n="room3_tag">Mağara</span></div>
+        <div class="room-body">
+          <h3 data-i18n="room3_h">Oyma Mağara Oda</h3>
+          <div class="feats" data-i18n="room3_f">Tüfe oyma · Kemerli niş · Kilim</div>
+          <p data-i18n="room3_p">Doğrudan tüfe oyulmuş gerçek bir mağara oda; dalgalı taş tavanı ve nişleri yüzyılların dokusunu taşır. Sıcak fener ışığında, taşın içinde bir gece.</p>
+        </div>
+      </div>
+    </div>
+    <p class="room-note reveal" data-i18n="room_note" data-i18n-html="1">Oda tipleri ve döşemeler mevsime göre değişebilir — güncel fiyat, müsaitlik ve fotoğraflar için <b>Instagram'dan yazın</b>.</p>
+  </div>
+</section>
+
+<section class="split alt" id="sofra">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="cno">N° 03</span><i class="seal"></i><span data-i18n="sofra_eyebrow">Sofra</span></span>
+      <h2 data-i18n="sofra_h">Ahşap tavanın altında sabah.</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="split-grid">
+      <div class="split-text reveal">
+        <p data-i18n="sofra_p1">Kahvaltı, ahşap tavanlı taş odanın içinde kurulur; duvarda kilim, masada beyaz örtü. Gün telaşsız, taşın serinliğinde başlar.</p>
+        <p data-i18n="sofra_p2">Sofra ev usulü, sade ve sahici hazırlanır — mevsimine göre değişir. Menü ve saatler için Instagram'dan yazmanız yeter.</p>
+        <p class="split-note" data-i18n="sofra_note">Bu bölümdeki her söz gözlenen gerçeğe dayanır; kahvaltı içeriği işletmeyle netleşince yazılır.</p>
+      </div>
+      <div class="split-visual reveal" data-img="breakfast.jpg"><span class="time" data-i18n="sofra_t">sabah · kahvaltı</span><span class="ph-label" data-i18n="ph_sofra">Ahşap tavanlı kahvaltı odası</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="split flip" id="terrace">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="cno">N° 04</span><i class="seal"></i><span data-i18n="terrace_eyebrow">Teras</span></span>
+      <h2 data-i18n="terrace_h">Kasabaya bakan teras, alacakaranlıkta.</h2>
+      <p data-i18n="terrace_sub">Akşamüstü terasa çıkın; Güzelyurt'un ışıkları yanarken ufukta gün batar, ay yükselir.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="split-grid">
+      <div class="split-text reveal">
+        <p data-i18n="terrace_p1">Minderli sedirlerde, bir bardak çayla; aşağıda kasaba, ötede vadi. Gelveri'nin en sakin saati bu terasta geçer.</p>
+        <p data-i18n="terrace_p2">Gündüz taşın aydınlığı, gece kasabanın ışıkları — teras, evin en sevilen köşesi. Ne kalabalık, ne acele; yalnızca renk değiştiren bir gökyüzü.</p>
+        <p class="split-note" data-i18n="terrace_note">Manzara, işletmenin kendi terasından çekilmiştir; abartısız, olduğu gibi.</p>
+      </div>
+      <div class="split-visual reveal" data-img="terrace.jpg"><span class="time" data-i18n="terrace_t">alacakaranlık · ay</span><span class="ph-label" data-i18n="ph_terrace">Teras · gün batımı</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gelveri" id="gelveri">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div class="loc-text reveal">
+        <span class="eyebrow"><span class="cno">N° 05</span><i class="seal"></i><span data-i18n="gelveri_eyebrow">Gelveri · Konum</span></span>
+        <h2 style="margin-top:16px" data-i18n="gelveri_h">Gelveri — taşın ve tarihin kasabası.</h2>
+        <p style="margin-top:18px" data-i18n="gelveri_p1">Gelveri, Güzelyurt'un eski adı: Aksaray'a bağlı, 19. yüzyıl Rum taş evleri ve kaya kiliseleriyle ünlü tarihi bir kasaba. Sokakları kesme taş, evleri kemerli.</p>
+        <p data-i18n="gelveri_p2">Kasabanın eşiğinden Manastır (Güzelyurt) Vadisi başlar; kayaya oyulmuş kiliseler ve patikalar buradan uzanır. Ihlara Vadisi ve Aksaray da kısa bir sürüş.</p>
+        <ul class="loc-facts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.5-5.5-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.5 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/></svg><span data-i18n="gf1">Gelveri (Güzelyurt, Aksaray) · tarihî Rum kasabası</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 20l6-16 6 16M7 14h4M15 20l3-8 3 8"/></svg><span data-i18n="gf2">Manastır Vadisi kasabanın eşiğinde başlar</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 20h20M4 20V9l8-5 8 5v11M9 20v-6h6v6"/></svg><span data-i18n="gf3">19. yy taş evleri ve kayaya oyulmuş kiliseler</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 16l20-6-9 11-2-4-4-1z" stroke-linejoin="round"/></svg><span data-i18n="gf4">Ihlara Vadisi ve Aksaray kısa mesafede</span></li>
+        </ul>
+        <a class="btn-ghost" href="https://www.google.com/maps/place/Kadir%27s+Antiq+Gelveri+House/data=!4m10!3m9!1s0x14d6042b30fb817d:0x81312d7c6d8dc3ca!5m2!4m1!1i2!8m2!3d38.2744!4d34.375984!16s%2Fg%2F1vypf4qy!19sChIJfYH7MCsE1hQRysONbXwtMYE" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.5-5.5-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.5 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/></svg><span data-i18n="gelveri_cta">Haritada gör</span></a>
+      </div>
+      <div class="loc-visual reveal" data-img="heritage.jpg"><span class="ph-label" data-i18n="ph_gelveri">Gelveri'nin tarihî taş mimarisi</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="direct">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow"><i class="seal"></i><span data-i18n="direct_eyebrow">Doğrudan</span></span>
+      <h2 style="margin-top:14px" data-i18n="direct_h" data-i18n-html="1">Aracıya değil, <em>doğrudan Kadir'e.</em></h2>
+      <p data-i18n="direct_p">Bizi büyük rezervasyon sitelerinde de bulabilirsiniz — ama orada her gecede komisyon var. Telefon yerine Instagram'dan yazın: en iyi fiyat, esnek tarih ve odanızı birlikte seçmek doğrudan bizde.</p>
+    </div>
+    <div class="d-cta reveal">
+      <a class="d-btn" href="https://www.instagram.com/kadirsantiqgelverihouse/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg><span data-i18n="direct_cta">Instagram'dan yazın</span></a>
+      <span class="d-note" data-i18n="direct_note">En hızlı yanıt Instagram DM'de.</span>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="cno">N° 06</span><i class="seal"></i><span data-i18n="gallery_eyebrow">Defter</span></span>
+      <h2 data-i18n="gallery_h">Evin envanteri.</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile w2 h2" data-img="hero.jpg"><span class="ph-label" data-i18n="ph_g1">Tonozlu taş oda</span></div>
+      <div class="tile" data-img="terrace.jpg"><span class="ph-label" data-i18n="ph_g2">Teras · gün batımı</span></div>
+      <div class="tile" data-img="room-3.jpg"><span class="ph-label" data-i18n="ph_g3">Mağara oda</span></div>
+      <div class="tile w2" data-img="house.jpg"><span class="ph-label" data-i18n="ph_g4">Taş avlu · altın saat</span></div>
+      <div class="tile" data-img="breakfast.jpg"><span class="ph-label" data-i18n="ph_g5">Kahvaltı odası</span></div>
+      <div class="tile" data-img="heritage.jpg"><span class="ph-label" data-i18n="ph_g6">Gelveri taş mimarisi</span></div>
+      <div class="tile" data-img="house-b.jpg"><span class="ph-label" data-i18n="ph_g7">Avlu · gündüz</span></div>
+      <div class="tile" data-img="room-2.jpg"><span class="ph-label" data-i18n="ph_g8">Merdivenli tonoz</span></div>
+    </div>
+    <p class="gallery-src reveal" data-i18n="gallery_src">Fotoğraflar işletmenin Google ve Tripadvisor profilinden alınmıştır; yayında dilediğiniz kendi fotoğraflarınızla değiştirilir.</p>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow"><i class="seal"></i><span data-i18n="book_eyebrow">Rezervasyon</span></span>
+        <h2 style="margin-top:16px" data-i18n="book_h" data-i18n-html="1">Bir tarih seçin, <em>gerisini yazışalım.</em></h2>
+        <p class="lede" data-i18n="book_lede">Telefon yerine Instagram'dan ilerliyoruz — en hızlı yanıt orada. Formu doldurun; mesajınız hazırlanıp panoya kopyalansın, Instagram DM'imiz açılsın. Yapıştırıp gönderin.</p>
+        <a class="ig-line" href="https://www.instagram.com/kadirsantiqgelverihouse/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="ig_handle">Instagram · Kadir's Antiq Gelveri House</span>
+        </a>
+        <ul class="book-steps">
+          <li><span class="num">1</span><span data-i18n="step1">Tarih, kişi ve oda tercihinizi yazın.</span></li>
+          <li><span class="num">2</span><span data-i18n="step2">"Mesajı hazırla"ya basın — metin panoya kopyalanır.</span></li>
+          <li><span class="num">3</span><span data-i18n="step3">Açılan Instagram DM'e yapıştırıp gönderin.</span></li>
+        </ul>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-checkin" data-i18n="label_checkin">Giriş</label><input type="date" id="f-checkin"></div>
+          <div class="field"><label for="f-checkout" data-i18n="label_checkout">Çıkış</label><input type="date" id="f-checkout"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-guests" data-i18n="label_guests">Misafir</label>
+            <select id="f-guests">
+              <option data-i18n="opt_1">1 misafir</option><option data-i18n="opt_2">2 misafir</option><option data-i18n="opt_3">3 misafir</option><option data-i18n="opt_4">4+ misafir</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-room" data-i18n="label_room">Oda</label>
+            <select id="f-room">
+              <option data-i18n="opt_room0">Farketmez</option><option data-i18n="opt_room1">Gül Yapraklı Tonoz Oda</option><option data-i18n="opt_room2">Merdivenli Tonoz Oda</option><option data-i18n="opt_room3">Oyma Mağara Oda</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-note" data-i18n="label_note">Notunuz (isteğe bağlı)</label>
+          <textarea id="f-note" data-i18n-ph="ph_note" placeholder="Kaç gece, özel bir istek, geliş saati…"></textarea>
+        </div>
+        <button class="submit" type="button" onclick="prepareDM()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="btn_prepare">Mesajı hazırla & Instagram'ı aç</span>
+        </button>
+        <div class="dm-panel" id="dmPanel" aria-live="polite">
+          <h4 data-i18n="dm_title">Instagram mesajınız</h4>
+          <div class="dm-status" id="dmStatus"></div>
+          <textarea class="dm-msg" id="dmMsg" readonly></textarea>
+          <div class="dm-actions">
+            <button class="a" type="button" onclick="copyDM()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span data-i18n="dm_recopy">Tekrar kopyala</span></button>
+            <a class="a primary" href="https://www.instagram.com/kadirsantiqgelverihouse/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg><span data-i18n="dm_open">Instagram'ı aç</span></a>
+          </div>
+          <p class="dm-note" data-i18n="dm_note">Not: Instagram profili yeni sekmede açılır. Mesaj panoda; DM kutusuna yapıştırın (Ctrl / Cmd + V).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <span class="mark" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none"><rect x="7" y="15" width="30" height="24" rx="1.5" stroke="currentColor" stroke-width="2"/><path d="M11 15V13c0-2.2 1.8-4 4-4s4 1.8 4 4v2M19 15V13c0-2.2 1.8-4 4-4s4 1.8 4 4v2M27 15V13c0-2.2 1.8-4 4-4s4 1.8 4 4v2" stroke="currentColor" stroke-width="1.6"/><path d="M22 39V27" stroke="currentColor" stroke-width="1.5"/></svg></span>
+          <span class="bt"><b>Kadir's Antiq Gelveri House</b><span data-i18n="brand_sub">Kadir's House · Güzelyurt</span></span>
+        </div>
+        <p style="max-width:340px;font-weight:400" data-i18n="foot_about">Gelveri'nin (Güzelyurt, Aksaray) kesme taşından antika bir ev: tonozlu taş odalar, tüfe oyulmuş mağara oda, kilimler ve kasabaya bakan teras. Aracısız, doğrudan.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#house" data-i18n="nav_house">Ev</a></li>
+          <li><a href="#rooms" data-i18n="nav_rooms">Odalar</a></li>
+          <li><a href="#sofra" data-i18n="nav_sofra">Sofra</a></li>
+          <li><a href="#terrace" data-i18n="nav_terrace">Teras</a></li>
+          <li><a href="#gelveri" data-i18n="nav_gelveri">Gelveri</a></li>
+          <li><a href="#book" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_c1">Gelveri · Güzelyurt / Aksaray</li>
+          <li><a href="https://www.instagram.com/kadirsantiqgelverihouse/" target="_blank" rel="noopener" data-i18n="foot_c2">Instagram (DM)</a></li>
+          <li><a href="https://www.google.com/maps/place/Kadir%27s+Antiq+Gelveri+House/data=!4m10!3m9!1s0x14d6042b30fb817d:0x81312d7c6d8dc3ca!5m2!4m1!1i2!8m2!3d38.2744!4d34.375984!16s%2Fg%2F1vypf4qy!19sChIJfYH7MCsE1hQRysONbXwtMYE" target="_blank" rel="noopener" data-i18n="foot_c3">Google Haritalar'da gör</a></li>
+          <li data-i18n="foot_c4">Doğrudan rezervasyon · aracısız</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Kadir's Antiq Gelveri House — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) — lerp 0.085, wheel 0.9 ====================
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY, current = window.scrollY, running = false, rafId = null;
+  function clampTarget(){ const max = document.documentElement.scrollHeight - window.innerHeight; if(target<0)target=0; if(target>max)target=max; }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){ current = target; window.scrollTo(0, current); running = false; return; }
+    window.scrollTo(0, current); rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+  function isPrevented(el){
+    while(el && el !== document.body){ const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement; }
+    return false;
+  }
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget(); start();
+  }, {passive:false});
+  window.addEventListener('scroll', function(){ if(!running){ target = window.scrollY; current = window.scrollY; } }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+  function smoothTo(el){ const y = el.getBoundingClientRect().top + window.scrollY - 68; target = y; clampTarget(); current = window.scrollY; start(); }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{ const id = a.getAttribute('href');
+      if(id.length > 1){ const t = document.querySelector(id); if(t){ e.preventDefault(); smoothTo(t); } } });
+  });
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{ const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } } });
+    });
+  }
+})();
+</script>
+<script>
+// ==================== i18n SÖZLÜĞÜ ====================
+const I18N = {
+  tr:{
+    meta_title:"Kadir's Antiq Gelveri House — Güzelyurt / Gelveri'de Antika Taş Ev | Aksaray Kapadokya",
+    meta_desc:"Gelveri'nin (Güzelyurt, Aksaray) kesme taşından antika bir ev: tonozlu taş odalar, tüfe oyulmuş mağara oda, kilimler, kasabaya bakan teras. Aracısız, doğrudan Instagram'dan.",
+    brand_sub:"Kadir's House · Güzelyurt",
+    nav_house:"Ev",nav_rooms:"Odalar",nav_sofra:"Sofra",nav_terrace:"Teras",nav_gelveri:"Gelveri",nav_book:"Rezervasyon",
+    dock_house:"Ev",dock_rooms:"Oda",dock_sofra:"Sofra",dock_terrace:"Teras",dock_book:"Kayıt",
+    hero_eyebrow:"Güzelyurt · Gelveri · Aksaray",
+    hero_title:"Antika bir taş evde,<br><em>zamanın içinde bir gece.</em>",
+    hero_lede:"Gelveri'nin — Güzelyurt'un eski adı — kesme taşından bir ev. Tonozlu taş odalar, kilimler, oyma nişler, bir de tüfe oyulmuş mağara oda. Antikaların ve sessizliğin evi; aracısız, doğrudan Kadir'in konukları olarak.",
+    hero_cta1:"Instagram'dan yazın",hero_cta2:"Odaları görün",scroll_hint:"Deftere göz atın",
+    proof1:"Google puanı",proof2:"Taş · Tonoz · Mağara",proof2s:"oda dokuları",proof3:"Gelveri",proof3s:"Güzelyurt, Aksaray",proof4:"Manastır Vadisi",proof4s:"kasabanın eşiğinde",
+    house_eyebrow:"Ev",house_h:"Kadir'in antika taş evi.",
+    house_sub:'Gelveri\'nin kesme taşıyla örülmüş, antikalarla döşenmiş bir ev. Adındaki "antiq" boşuna değil — her köşede zamanın bir katmanı var.',
+    house_lead:'Burası bir "otel" değil; yıllanmış eşyaların, kilimlerin ve taşın sıcaklığıyla döşenmiş bir ev.',
+    house_p1:"Kalın kesme taş duvarlar yazın serinliği, kışın sıcağı içeride tutar. Kemerli geçitler, ferforje parmaklıklar, oyma taş nişler ve bakır-pirinç antikalar Gelveri'nin taş konak geleneğini bugüne taşır.",
+    house_p2:"Avlusunda gün ışığı taşa vurur; teraslarından kasaba ve vadi görünür. Aynı anda yalnızca birkaç misafir ağırlanır — çünkü bu evin asıl ikramı sessizlik ve zaman.",
+    house_sign:"Kadir'in evi · Gelveri",
+    ph_house_1:"Taş avlu · altın saat",ph_house_2:"Avlu · gündüz",ph_house_3:"Teras & oyma taş",
+    rooms_eyebrow:"Odalar",rooms_h:"Kimi tonoz, kimi mağara.",
+    rooms_sub:"Her oda farklı: tonozlu taş tavan, kilim, oyma niş; birinde tüfe oyulmuş gerçek bir mağara. Fiyat ve müsaitlik Instagram'dan.",
+    room1_tag:"Tonozlu",room1_h:"Gül Yapraklı Tonoz Oda",room1_f:"Taş tonoz · Kilim · Oyma niş",
+    room1_p:"Kemerli taş tonozun altında, duvara gömülü sıcak aplikler ve toprak tonlarında el işi örtüler. Özel günler için gül yaprağı ve havlu süslemesiyle hazırlanır; taşın serinliğinde derin bir uyku.",
+    room2_tag:"Dubleks",room2_h:"Merdivenli Tonoz Oda",room2_f:"Ahşap merdiven · Taş tonoz · Kilim",
+    room2_p:"Elle işlenmiş ahşap bir merdivenle çıkılan, asma katlı tonoz oda. Oymalı korkuluklar, taş duvarlar ve kilimler; iki katın kendine ait mahremiyeti.",
+    room3_tag:"Mağara",room3_h:"Oyma Mağara Oda",room3_f:"Tüfe oyma · Kemerli niş · Kilim",
+    room3_p:"Doğrudan tüfe oyulmuş gerçek bir mağara oda; dalgalı taş tavanı ve nişleri yüzyılların dokusunu taşır. Sıcak fener ışığında, taşın içinde bir gece.",
+    room_note:"Oda tipleri ve döşemeler mevsime göre değişebilir — güncel fiyat, müsaitlik ve fotoğraflar için <b>Instagram'dan yazın</b>.",
+    sofra_eyebrow:"Sofra",sofra_h:"Ahşap tavanın altında sabah.",
+    sofra_p1:"Kahvaltı, ahşap tavanlı taş odanın içinde kurulur; duvarda kilim, masada beyaz örtü. Gün telaşsız, taşın serinliğinde başlar.",
+    sofra_p2:"Sofra ev usulü, sade ve sahici hazırlanır — mevsimine göre değişir. Menü ve saatler için Instagram'dan yazmanız yeter.",
+    sofra_note:"Bu bölümdeki her söz gözlenen gerçeğe dayanır; kahvaltı içeriği işletmeyle netleşince yazılır.",
+    sofra_t:"sabah · kahvaltı",ph_sofra:"Ahşap tavanlı kahvaltı odası",
+    terrace_eyebrow:"Teras",terrace_h:"Kasabaya bakan teras, alacakaranlıkta.",
+    terrace_sub:"Akşamüstü terasa çıkın; Güzelyurt'un ışıkları yanarken ufukta gün batar, ay yükselir.",
+    terrace_p1:"Minderli sedirlerde, bir bardak çayla; aşağıda kasaba, ötede vadi. Gelveri'nin en sakin saati bu terasta geçer.",
+    terrace_p2:"Gündüz taşın aydınlığı, gece kasabanın ışıkları — teras, evin en sevilen köşesi. Ne kalabalık, ne acele; yalnızca renk değiştiren bir gökyüzü.",
+    terrace_note:"Manzara, işletmenin kendi terasından çekilmiştir; abartısız, olduğu gibi.",
+    terrace_t:"alacakaranlık · ay",ph_terrace:"Teras · gün batımı",
+    gelveri_eyebrow:"Gelveri · Konum",gelveri_h:"Gelveri — taşın ve tarihin kasabası.",
+    gelveri_p1:"Gelveri, Güzelyurt'un eski adı: Aksaray'a bağlı, 19. yüzyıl Rum taş evleri ve kaya kiliseleriyle ünlü tarihi bir kasaba. Sokakları kesme taş, evleri kemerli.",
+    gelveri_p2:"Kasabanın eşiğinden Manastır (Güzelyurt) Vadisi başlar; kayaya oyulmuş kiliseler ve patikalar buradan uzanır. Ihlara Vadisi ve Aksaray da kısa bir sürüş.",
+    gf1:"Gelveri (Güzelyurt, Aksaray) · tarihî Rum kasabası",
+    gf2:"Manastır Vadisi kasabanın eşiğinde başlar",
+    gf3:"19. yy taş evleri ve kayaya oyulmuş kiliseler",
+    gf4:"Ihlara Vadisi ve Aksaray kısa mesafede",
+    gelveri_cta:"Haritada gör",ph_gelveri:"Gelveri'nin tarihî taş mimarisi",
+    direct_eyebrow:"Doğrudan",direct_h:"Aracıya değil, <em>doğrudan Kadir'e.</em>",
+    direct_p:"Bizi büyük rezervasyon sitelerinde de bulabilirsiniz — ama orada her gecede komisyon var. Telefon yerine Instagram'dan yazın: en iyi fiyat, esnek tarih ve odanızı birlikte seçmek doğrudan bizde.",
+    direct_cta:"Instagram'dan yazın",direct_note:"En hızlı yanıt Instagram DM'de.",
+    gallery_eyebrow:"Defter",gallery_h:"Evin envanteri.",
+    ph_g1:"Tonozlu taş oda",ph_g2:"Teras · gün batımı",ph_g3:"Mağara oda",ph_g4:"Taş avlu · altın saat",ph_g5:"Kahvaltı odası",ph_g6:"Gelveri taş mimarisi",ph_g7:"Avlu · gündüz",ph_g8:"Merdivenli tonoz",
+    gallery_src:"Fotoğraflar işletmenin Google ve Tripadvisor profilinden alınmıştır; yayında dilediğiniz kendi fotoğraflarınızla değiştirilir.",
+    book_eyebrow:"Rezervasyon",book_h:"Bir tarih seçin, <em>gerisini yazışalım.</em>",
+    book_lede:"Telefon yerine Instagram'dan ilerliyoruz — en hızlı yanıt orada. Formu doldurun; mesajınız hazırlanıp panoya kopyalansın, Instagram DM'imiz açılsın. Yapıştırıp gönderin.",
+    ig_handle:"Instagram · Kadir's Antiq Gelveri House",
+    step1:"Tarih, kişi ve oda tercihinizi yazın.",step2:'"Mesajı hazırla"ya basın — metin panoya kopyalanır.',step3:"Açılan Instagram DM'e yapıştırıp gönderin.",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_checkin:"Giriş",label_checkout:"Çıkış",label_guests:"Misafir",
+    opt_1:"1 misafir",opt_2:"2 misafir",opt_3:"3 misafir",opt_4:"4+ misafir",
+    label_room:"Oda",opt_room0:"Farketmez",opt_room1:"Gül Yapraklı Tonoz Oda",opt_room2:"Merdivenli Tonoz Oda",opt_room3:"Oyma Mağara Oda",
+    label_note:"Notunuz (isteğe bağlı)",ph_note:"Kaç gece, özel bir istek, geliş saati…",btn_prepare:"Mesajı hazırla & Instagram'ı aç",
+    dm_title:"Instagram mesajınız",dm_copied:"Mesaj panoya kopyalandı ✓ — Instagram açılıyor, yapıştırıp gönderin.",dm_fail:"Panoya kopyalanamadı — metni seçip elle kopyalayın.",
+    dm_recopy:"Tekrar kopyala",dm_open:"Instagram'ı aç",dm_note:"Not: Instagram profili yeni sekmede açılır. Mesaj panoda; DM kutusuna yapıştırın (Ctrl / Cmd + V).",
+    foot_about:"Gelveri'nin (Güzelyurt, Aksaray) kesme taşından antika bir ev: tonozlu taş odalar, tüfe oyulmuş mağara oda, kilimler ve kasabaya bakan teras. Aracısız, doğrudan.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_c1:"Gelveri · Güzelyurt / Aksaray",foot_c2:"Instagram (DM)",foot_c3:"Google Haritalar'da gör",foot_c4:"Doğrudan rezervasyon · aracısız",
+    foot_rights:"© 2026 Kadir's Antiq Gelveri House — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    theme_aria:"Aydınlık / karanlık tema",
+    msg_hello:"Merhaba, Kadir's Antiq Gelveri House için rezervasyon talebim var:",msg_name:"Ad",msg_checkin:"Giriş",msg_checkout:"Çıkış",msg_guests:"Misafir",msg_room:"Oda",msg_note:"Not",msg_tail:"Güncel fiyat ve müsaitlik için teşekkürler!",
+    alert_fill:"Lütfen adınızı ve giriş tarihini girin."
+  },
+  en:{
+    meta_title:"Kadir's Antiq Gelveri House — Antique Stone House in Güzelyurt / Gelveri | Aksaray, Cappadocia",
+    meta_desc:"An antique cut-stone house in Gelveri (Güzelyurt, Aksaray): vaulted stone rooms, a cave room carved into tuff, kilims and a terrace over the town. Book direct via Instagram, no middleman.",
+    brand_sub:"Kadir's House · Güzelyurt",
+    nav_house:"House",nav_rooms:"Rooms",nav_sofra:"Table",nav_terrace:"Terrace",nav_gelveri:"Gelveri",nav_book:"Book",
+    dock_house:"House",dock_rooms:"Rooms",dock_sofra:"Table",dock_terrace:"Terrace",dock_book:"Book",
+    hero_eyebrow:"Güzelyurt · Gelveri · Aksaray",
+    hero_title:"In an antique stone house,<br><em>a night inside time.</em>",
+    hero_lede:"A house of cut stone in Gelveri — the old name of Güzelyurt. Vaulted stone rooms, kilims, carved niches and a cave room hewn into tuff. A house of antiques and silence — book direct, as Kadir's guests.",
+    hero_cta1:"Message on Instagram",hero_cta2:"See the rooms",scroll_hint:"Open the ledger",
+    proof1:"Google rating",proof2:"Stone · Vault · Cave",proof2s:"room textures",proof3:"Gelveri",proof3s:"Güzelyurt, Aksaray",proof4:"Monastery Valley",proof4s:"at the town's edge",
+    house_eyebrow:"The House",house_h:"Kadir's antique stone house.",
+    house_sub:'A house built of Gelveri\'s cut stone and furnished with antiques. The "antiq" in the name is no accident — every corner holds a layer of time.',
+    house_lead:'This is not a "hotel"; it is a home dressed in aged objects, kilims and the warmth of stone.',
+    house_p1:"Thick cut-stone walls keep the cool in summer and the warmth in winter. Arched passages, wrought-iron railings, carved stone niches and copper-and-brass antiques carry Gelveri's stone-house tradition into today.",
+    house_p2:"Daylight strikes the stone in the courtyard; from the terraces the town and valley appear. Only a few guests at a time — because this house's true offering is silence and time.",
+    house_sign:"Kadir's house · Gelveri",
+    ph_house_1:"Stone courtyard · golden hour",ph_house_2:"Courtyard · day",ph_house_3:"Terrace & carved stone",
+    rooms_eyebrow:"Rooms",rooms_h:"Some vaulted, some cave.",
+    rooms_sub:"Every room is different: vaulted stone ceilings, kilims, carved niches; one a true cave hewn into tuff. Prices and availability via Instagram.",
+    room1_tag:"Vaulted",room1_h:"Rose-Petal Vaulted Room",room1_f:"Stone vault · Kilim · Carved niche",
+    room1_p:"Under an arched stone vault, warm sconces set into the wall and hand-worked covers in earthen tones. Dressed with rose petals and towel art for special occasions — deep sleep in the cool of the stone.",
+    room2_tag:"Duplex",room2_h:"Stairway Vaulted Room",room2_f:"Wooden stair · Stone vault · Kilim",
+    room2_p:"A mezzanine vaulted room reached by a hand-worked wooden staircase. Carved railings, stone walls and kilims; the private feel of two levels of its own.",
+    room3_tag:"Cave",room3_h:"Carved Cave Room",room3_f:"Hewn in tuff · Arched niche · Kilim",
+    room3_p:"A true cave room carved directly into the tuff; its undulating stone ceiling and niches hold the texture of centuries. A night inside the stone, in warm lantern light.",
+    room_note:"Room types and dressing may vary by season — for current prices, availability and photos, <b>message us on Instagram</b>.",
+    sofra_eyebrow:"The Table",sofra_h:"Morning under a timber ceiling.",
+    sofra_p1:"Breakfast is laid in the timber-ceilinged stone room; a kilim on the wall, a white cloth on the table. The day begins slowly, in the cool of the stone.",
+    sofra_p2:"The table is home-made — simple, honest, changing with the season. Just message on Instagram for the menu and times.",
+    sofra_note:"Every word here rests on what can be seen; the breakfast menu will be written once confirmed with the host.",
+    sofra_t:"morning · breakfast",ph_sofra:"Timber-ceilinged breakfast room",
+    terrace_eyebrow:"Terrace",terrace_h:"A terrace over the town, at dusk.",
+    terrace_sub:"Step onto the terrace at evening; as Güzelyurt's lights come on, the sun sets on the horizon and the moon rises.",
+    terrace_p1:"On cushioned benches, with a glass of tea; the town below, the valley beyond. Gelveri's quietest hour is spent on this terrace.",
+    terrace_p2:"The brightness of stone by day, the town's lights by night — the terrace is the house's most-loved corner. No crowd, no hurry; just a sky that keeps changing colour.",
+    terrace_note:"The view is photographed from the property's own terrace; unembellished, as it is.",
+    terrace_t:"dusk · moon",ph_terrace:"Terrace · sunset",
+    gelveri_eyebrow:"Gelveri · Location",gelveri_h:"Gelveri — town of stone and history.",
+    gelveri_p1:"Gelveri is the old name of Güzelyurt: a historic town in Aksaray, famed for its 19th-century Greek stone houses and rock-cut churches. Its streets are cut stone, its houses arched.",
+    gelveri_p2:"The Monastery (Güzelyurt) Valley begins at the town's edge; rock-cut churches and trails run out from here. Ihlara Valley and Aksaray are a short drive too.",
+    gf1:"Gelveri (Güzelyurt, Aksaray) · historic Greek town",
+    gf2:"Monastery Valley begins at the town's edge",
+    gf3:"19th-century stone houses and rock-cut churches",
+    gf4:"Ihlara Valley and Aksaray a short distance away",
+    gelveri_cta:"View on map",ph_gelveri:"Gelveri's historic stone architecture",
+    direct_eyebrow:"Direct",direct_h:"Not the middleman — <em>Kadir, directly.</em>",
+    direct_p:"You can find us on the big booking sites too — but there, every night carries a commission. Instead of a phone, message us on Instagram: the best rate, flexible dates and choosing your room together, straight from us.",
+    direct_cta:"Message on Instagram",direct_note:"Fastest reply is on Instagram DM.",
+    gallery_eyebrow:"Ledger",gallery_h:"The house's inventory.",
+    ph_g1:"Vaulted stone room",ph_g2:"Terrace · sunset",ph_g3:"Cave room",ph_g4:"Stone courtyard · golden hour",ph_g5:"Breakfast room",ph_g6:"Gelveri stone architecture",ph_g7:"Courtyard · day",ph_g8:"Stairway vault",
+    gallery_src:"Photos are taken from the property's Google and Tripadvisor profiles; once live, they are replaced with your own.",
+    book_eyebrow:"Booking",book_h:"Pick a date, <em>we'll do the rest by message.</em>",
+    book_lede:"We work through Instagram rather than phone — the fastest reply is there. Fill in the form; your message is composed and copied to your clipboard, and our Instagram opens. Paste and send.",
+    ig_handle:"Instagram · Kadir's Antiq Gelveri House",
+    step1:"Enter your dates, guests and room preference.",step2:'Tap "Prepare message" — the text is copied to your clipboard.',step3:"Paste it into the Instagram DM that opens and send.",
+    label_name:"Your name",ph_name:"Your full name",label_checkin:"Check-in",label_checkout:"Check-out",label_guests:"Guests",
+    opt_1:"1 guest",opt_2:"2 guests",opt_3:"3 guests",opt_4:"4+ guests",
+    label_room:"Room",opt_room0:"No preference",opt_room1:"Rose-Petal Vaulted Room",opt_room2:"Stairway Vaulted Room",opt_room3:"Carved Cave Room",
+    label_note:"Your note (optional)",ph_note:"How many nights, a special request, arrival time…",btn_prepare:"Prepare message & open Instagram",
+    dm_title:"Your Instagram message",dm_copied:"Message copied to clipboard ✓ — Instagram is opening, paste and send.",dm_fail:"Couldn't copy — select the text and copy it manually.",
+    dm_recopy:"Copy again",dm_open:"Open Instagram",dm_note:"Note: the Instagram profile opens in a new tab. The message is on your clipboard; paste it into the DM box (Ctrl / Cmd + V).",
+    foot_about:"In Gelveri (Güzelyurt, Aksaray), an antique cut-stone house: vaulted stone rooms, a cave room carved in tuff, kilims and a terrace over the town. Direct, no middleman.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_c1:"Gelveri · Güzelyurt / Aksaray",foot_c2:"Instagram (DM)",foot_c3:"View on Google Maps",foot_c4:"Direct booking · no middleman",
+    foot_rights:"© 2026 Kadir's Antiq Gelveri House — All rights reserved.",foot_demo:"Sample / Demo Design",
+    theme_aria:"Light / dark theme",
+    msg_hello:"Hello, I'd like to request a booking at Kadir's Antiq Gelveri House:",msg_name:"Name",msg_checkin:"Check-in",msg_checkout:"Check-out",msg_guests:"Guests",msg_room:"Room",msg_note:"Note",msg_tail:"Thanks — please let me know current price and availability!",
+    alert_fill:"Please enter your name and check-in date."
+  },
+  es:{
+    meta_title:"Kadir's Antiq Gelveri House — Casa de Piedra Antigua en Güzelyurt / Gelveri | Aksaray, Capadocia",
+    meta_desc:"Una casa antigua de piedra tallada en Gelveri (Güzelyurt, Aksaray): habitaciones abovedadas de piedra, una habitación-cueva excavada en toba, kilims y una terraza sobre el pueblo. Reserva directa por Instagram.",
+    brand_sub:"Kadir's House · Güzelyurt",
+    nav_house:"Casa",nav_rooms:"Habitaciones",nav_sofra:"Mesa",nav_terrace:"Terraza",nav_gelveri:"Gelveri",nav_book:"Reservar",
+    dock_house:"Casa",dock_rooms:"Hab.",dock_sofra:"Mesa",dock_terrace:"Terraza",dock_book:"Reserva",
+    hero_eyebrow:"Güzelyurt · Gelveri · Aksaray",
+    hero_title:"En una casa de piedra antigua,<br><em>una noche dentro del tiempo.</em>",
+    hero_lede:"Una casa de piedra tallada en Gelveri — el antiguo nombre de Güzelyurt. Habitaciones abovedadas, kilims, hornacinas talladas y una habitación-cueva excavada en toba. Una casa de antigüedades y silencio; reserva directa, como huésped de Kadir.",
+    hero_cta1:"Escribir por Instagram",hero_cta2:"Ver las habitaciones",scroll_hint:"Abre el registro",
+    proof1:"Puntuación Google",proof2:"Piedra · Bóveda · Cueva",proof2s:"texturas de las habitaciones",proof3:"Gelveri",proof3s:"Güzelyurt, Aksaray",proof4:"Valle del Monasterio",proof4s:"al borde del pueblo",
+    house_eyebrow:"La Casa",house_h:"La casa de piedra antigua de Kadir.",
+    house_sub:'Una casa construida con la piedra tallada de Gelveri y amueblada con antigüedades. El "antiq" del nombre no es casual — cada rincón guarda una capa de tiempo.',
+    house_lead:'No es un "hotel"; es un hogar vestido de objetos añejos, kilims y el calor de la piedra.',
+    house_p1:"Los gruesos muros de piedra mantienen el fresco en verano y el calor en invierno. Pasajes con arcos, barandas de forja, hornacinas talladas y antigüedades de cobre y latón traen al presente la tradición de las casas de piedra de Gelveri.",
+    house_p2:"En el patio la luz del día golpea la piedra; desde las terrazas aparecen el pueblo y el valle. Solo unos pocos huéspedes a la vez — porque lo que de verdad ofrece esta casa es silencio y tiempo.",
+    house_sign:"La casa de Kadir · Gelveri",
+    ph_house_1:"Patio de piedra · hora dorada",ph_house_2:"Patio · día",ph_house_3:"Terraza y piedra tallada",
+    rooms_eyebrow:"Habitaciones",rooms_h:"Unas abovedadas, otras cueva.",
+    rooms_sub:"Cada habitación es distinta: techos de piedra abovedados, kilims, hornacinas talladas; una es una cueva real excavada en toba. Precios y disponibilidad por Instagram.",
+    room1_tag:"Abovedada",room1_h:"Habitación Abovedada de Pétalos",room1_f:"Bóveda de piedra · Kilim · Hornacina",
+    room1_p:"Bajo una bóveda de piedra con arco, apliques cálidos en el muro y textiles hechos a mano en tonos tierra. Se prepara con pétalos de rosa y arte de toallas para ocasiones especiales; sueño profundo en el frescor de la piedra.",
+    room2_tag:"Dúplex",room2_h:"Habitación Abovedada con Escalera",room2_f:"Escalera de madera · Bóveda · Kilim",
+    room2_p:"Una habitación abovedada con altillo, a la que se sube por una escalera de madera labrada. Barandas talladas, muros de piedra y kilims; la intimidad propia de dos niveles.",
+    room3_tag:"Cueva",room3_h:"Habitación-Cueva Tallada",room3_f:"Tallada en toba · Hornacina · Kilim",
+    room3_p:"Una habitación-cueva real excavada directamente en la toba; su techo ondulado y sus hornacinas guardan la textura de los siglos. Una noche dentro de la piedra, a la luz cálida del candil.",
+    room_note:"Los tipos de habitación y la decoración pueden variar según la temporada — para precios, disponibilidad y fotos actuales, <b>escríbenos por Instagram</b>.",
+    sofra_eyebrow:"La Mesa",sofra_h:"Mañana bajo un techo de madera.",
+    sofra_p1:"El desayuno se sirve en la sala de piedra con techo de madera; un kilim en el muro, un mantel blanco en la mesa. El día empieza sin prisa, en el frescor de la piedra.",
+    sofra_p2:"La mesa es casera — sencilla, auténtica, cambia con la estación. Basta con escribir por Instagram para el menú y los horarios.",
+    sofra_note:"Cada palabra aquí se apoya en lo que se puede ver; el contenido del desayuno se escribirá al confirmarlo con el anfitrión.",
+    sofra_t:"mañana · desayuno",ph_sofra:"Sala de desayuno con techo de madera",
+    terrace_eyebrow:"Terraza",terrace_h:"Una terraza sobre el pueblo, al anochecer.",
+    terrace_sub:"Sal a la terraza al atardecer; cuando se encienden las luces de Güzelyurt, el sol se pone en el horizonte y sale la luna.",
+    terrace_p1:"En bancos con cojines, con un vaso de té; abajo el pueblo, más allá el valle. La hora más tranquila de Gelveri se vive en esta terraza.",
+    terrace_p2:"El brillo de la piedra de día, las luces del pueblo de noche — la terraza es el rincón más querido de la casa. Ni multitud ni prisa; solo un cielo que cambia de color.",
+    terrace_note:"La vista está fotografiada desde la propia terraza del establecimiento; sin adornos, tal como es.",
+    terrace_t:"anochecer · luna",ph_terrace:"Terraza · atardecer",
+    gelveri_eyebrow:"Gelveri · Ubicación",gelveri_h:"Gelveri — pueblo de piedra e historia.",
+    gelveri_p1:"Gelveri es el antiguo nombre de Güzelyurt: un pueblo histórico de Aksaray, famoso por sus casas de piedra griegas del siglo XIX y sus iglesias excavadas en la roca. Sus calles son de piedra tallada, sus casas con arcos.",
+    gelveri_p2:"El Valle del Monasterio (Güzelyurt) empieza al borde del pueblo; de aquí parten iglesias rupestres y senderos. El Valle de Ihlara y Aksaray están también a poca distancia en coche.",
+    gf1:"Gelveri (Güzelyurt, Aksaray) · pueblo griego histórico",
+    gf2:"El Valle del Monasterio empieza al borde del pueblo",
+    gf3:"Casas de piedra del s. XIX e iglesias rupestres",
+    gf4:"Valle de Ihlara y Aksaray a poca distancia",
+    gelveri_cta:"Ver en el mapa",ph_gelveri:"Arquitectura de piedra histórica de Gelveri",
+    direct_eyebrow:"Directo",direct_h:"No al intermediario — <em>a Kadir, directamente.</em>",
+    direct_p:"También puedes encontrarnos en los grandes portales de reserva — pero allí cada noche lleva comisión. En lugar de teléfono, escríbenos por Instagram: el mejor precio, fechas flexibles y elegir tu habitación juntos, directo de nosotros.",
+    direct_cta:"Escribir por Instagram",direct_note:"La respuesta más rápida es por DM de Instagram.",
+    gallery_eyebrow:"Registro",gallery_h:"El inventario de la casa.",
+    ph_g1:"Habitación abovedada",ph_g2:"Terraza · atardecer",ph_g3:"Habitación-cueva",ph_g4:"Patio de piedra · hora dorada",ph_g5:"Sala de desayuno",ph_g6:"Arquitectura de piedra de Gelveri",ph_g7:"Patio · día",ph_g8:"Bóveda con escalera",
+    gallery_src:"Las fotos provienen de los perfiles de Google y Tripadvisor del establecimiento; una vez en línea, se sustituyen por las tuyas.",
+    book_eyebrow:"Reserva",book_h:"Elige una fecha, <em>el resto lo hablamos por mensaje.</em>",
+    book_lede:"Trabajamos por Instagram en lugar de teléfono — la respuesta más rápida está allí. Rellena el formulario; tu mensaje se compone y se copia al portapapeles, y se abre nuestro Instagram. Pega y envía.",
+    ig_handle:"Instagram · Kadir's Antiq Gelveri House",
+    step1:"Indica fechas, huéspedes y preferencia de habitación.",step2:'Pulsa "Preparar mensaje" — el texto se copia al portapapeles.',step3:"Pégalo en el DM de Instagram que se abre y envía.",
+    label_name:"Tu nombre",ph_name:"Nombre y apellidos",label_checkin:"Entrada",label_checkout:"Salida",label_guests:"Huéspedes",
+    opt_1:"1 huésped",opt_2:"2 huéspedes",opt_3:"3 huéspedes",opt_4:"4+ huéspedes",
+    label_room:"Habitación",opt_room0:"Sin preferencia",opt_room1:"Habitación Abovedada de Pétalos",opt_room2:"Habitación Abovedada con Escalera",opt_room3:"Habitación-Cueva Tallada",
+    label_note:"Tu nota (opcional)",ph_note:"Cuántas noches, una petición especial, hora de llegada…",btn_prepare:"Preparar mensaje y abrir Instagram",
+    dm_title:"Tu mensaje de Instagram",dm_copied:"Mensaje copiado ✓ — se abre Instagram, pega y envía.",dm_fail:"No se pudo copiar — selecciona el texto y cópialo a mano.",
+    dm_recopy:"Copiar de nuevo",dm_open:"Abrir Instagram",dm_note:"Nota: el perfil de Instagram se abre en una pestaña nueva. El mensaje está en el portapapeles; pégalo en el DM (Ctrl / Cmd + V).",
+    foot_about:"En Gelveri (Güzelyurt, Aksaray), una casa antigua de piedra tallada: habitaciones abovedadas, una habitación-cueva en toba, kilims y una terraza sobre el pueblo. Directo, sin intermediarios.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_c1:"Gelveri · Güzelyurt / Aksaray",foot_c2:"Instagram (DM)",foot_c3:"Ver en Google Maps",foot_c4:"Reserva directa · sin intermediarios",
+    foot_rights:"© 2026 Kadir's Antiq Gelveri House — Todos los derechos reservados.",foot_demo:"Diseño de muestra / demo",
+    theme_aria:"Tema claro / oscuro",
+    msg_hello:"Hola, quisiera solicitar una reserva en Kadir's Antiq Gelveri House:",msg_name:"Nombre",msg_checkin:"Entrada",msg_checkout:"Salida",msg_guests:"Huéspedes",msg_room:"Habitación",msg_note:"Nota",msg_tail:"Gracias — ¿me indican precio y disponibilidad actuales?",
+    alert_fill:"Por favor, introduce tu nombre y la fecha de entrada."
+  },
+  "zh-CN":{
+    meta_title:"Kadir's Antiq Gelveri House — 居泽尔尤特/盖尔韦里的古董石屋 | 阿克萨赖，卡帕多奇亚",
+    meta_desc:"盖尔韦里（居泽尔尤特，阿克萨赖）一座古董切石老宅：拱顶石屋、凿于凝灰岩的洞穴房、基里姆地毯，以及俯瞰小镇的露台。经 Instagram 直接预订，无中介。",
+    brand_sub:"Kadir's House · Güzelyurt",
+    nav_house:"宅院",nav_rooms:"客房",nav_sofra:"餐桌",nav_terrace:"露台",nav_gelveri:"盖尔韦里",nav_book:"预订",
+    dock_house:"宅院",dock_rooms:"客房",dock_sofra:"餐桌",dock_terrace:"露台",dock_book:"预订",
+    hero_eyebrow:"居泽尔尤特 · 盖尔韦里 · 阿克萨赖",
+    hero_title:"在一座古董石屋里，<br><em>一夜栖于时光之中。</em>",
+    hero_lede:"盖尔韦里（居泽尔尤特的旧名）一座切石老宅：拱顶石屋、基里姆地毯、雕凿壁龛，还有一间凿于凝灰岩的洞穴房。古董与静谧之家——直接预订，做 Kadir 的客人。",
+    hero_cta1:"用 Instagram 私信",hero_cta2:"查看客房",scroll_hint:"翻开这本册子",
+    proof1:"谷歌评分",proof2:"石 · 拱 · 洞",proof2s:"客房质感",proof3:"盖尔韦里",proof3s:"居泽尔尤特，阿克萨赖",proof4:"修道院谷",proof4s:"就在镇口",
+    house_eyebrow:"宅院",house_h:"Kadir 的古董石屋。",
+    house_sub:"用盖尔韦里的切石砌成、以古董陈设的宅院。名字里的 “antiq”（古董）并非虚言——每个角落都叠着一层时光。",
+    house_lead:"这里不是“酒店”，而是一座以旧物、基里姆地毯与石头暖意陈设的家。",
+    house_p1:"厚实的切石墙夏纳清凉、冬留暖意。拱形通道、铁艺栏杆、雕凿石龛与铜黄铜古董，把盖尔韦里的石屋传统带到今天。",
+    house_p2:"庭院里日光照在石上；从露台可见小镇与山谷。同一时间只招待寥寥几位客人——因为这座宅院真正的款待，是静谧与时光。",
+    house_sign:"Kadir 之家 · 盖尔韦里",
+    ph_house_1:"石庭 · 黄金时刻",ph_house_2:"庭院 · 白日",ph_house_3:"露台与雕石",
+    rooms_eyebrow:"客房",rooms_h:"有的拱顶，有的洞穴。",
+    rooms_sub:"每间客房都不同：拱顶石顶、基里姆地毯、雕凿壁龛；其中一间是凿于凝灰岩的真洞穴房。价格与空房请经 Instagram 询问。",
+    room1_tag:"拱顶",room1_h:"玫瑰花瓣拱顶房",room1_f:"石拱顶 · 地毯 · 雕龛",
+    room1_p:"在拱形石顶之下，墙内嵌暖色壁灯，配大地色系的手工织物。特别日子会以玫瑰花瓣与毛巾造型布置；在石头的清凉里沉睡。",
+    room2_tag:"复式",room2_h:"楼梯拱顶房",room2_f:"木楼梯 · 石拱顶 · 地毯",
+    room2_p:"由手工木楼梯上到夹层的拱顶房。雕花栏杆、石墙与基里姆地毯；两层空间独有的私密。",
+    room3_tag:"洞穴",room3_h:"雕凿洞穴房",room3_f:"凿于凝灰岩 · 拱龛 · 地毯",
+    room3_p:"直接凿入凝灰岩的真洞穴房；起伏的石顶与壁龛承载着数百年的质感。在暖暖的灯火里，栖于石中一夜。",
+    room_note:"房型与陈设可能随季节变化——最新价格、空房与照片，请 <b>经 Instagram 询问</b>。",
+    sofra_eyebrow:"餐桌",sofra_h:"木顶之下的清晨。",
+    sofra_p1:"早餐摆在木顶石屋里；墙上一方基里姆，桌上一块白布。日子在石头的清凉里，不慌不忙地开始。",
+    sofra_p2:"餐桌是家常的——简单、真实，随季节而变。菜单与时间，经 Instagram 询问即可。",
+    sofra_note:"此处每句话都基于可见的实景；早餐内容将在与主人确认后写明。",
+    sofra_t:"清晨 · 早餐",ph_sofra:"木顶早餐室",
+    terrace_eyebrow:"露台",terrace_h:"暮色中，俯瞰小镇的露台。",
+    terrace_sub:"傍晚走上露台；当居泽尔尤特的灯火点亮，落日沉入天际，月亮升起。",
+    terrace_p1:"坐在铺着软垫的长椅上，端一杯茶；脚下是小镇，远处是山谷。盖尔韦里最静的一刻，就在这方露台。",
+    terrace_p2:"白日是石的明亮，夜里是镇的灯火——露台是这座宅院最受喜爱的角落。不喧闹、不匆忙，只有一片不断变色的天空。",
+    terrace_note:"此景拍自本店自家露台；未加修饰，如其本来。",
+    terrace_t:"暮色 · 月",ph_terrace:"露台 · 落日",
+    gelveri_eyebrow:"盖尔韦里 · 位置",gelveri_h:"盖尔韦里——石与历史之镇。",
+    gelveri_p1:"盖尔韦里是居泽尔尤特的旧名：阿克萨赖的一座历史小镇，以 19 世纪的希腊石屋与凿岩教堂闻名。街是切石铺的，屋是带拱的。",
+    gelveri_p2:"修道院谷（居泽尔尤特谷）就从镇口开始；凿岩教堂与步道由此延伸。伊赫拉拉谷与阿克萨赖也只需短途车程。",
+    gf1:"盖尔韦里（居泽尔尤特，阿克萨赖）· 历史希腊小镇",
+    gf2:"修道院谷从镇口开始",
+    gf3:"19 世纪石屋与凿岩教堂",
+    gf4:"伊赫拉拉谷与阿克萨赖近在咫尺",
+    gelveri_cta:"在地图上查看",ph_gelveri:"盖尔韦里的历史石造建筑",
+    direct_eyebrow:"直接",direct_h:"不经中介——<em>直接找 Kadir。</em>",
+    direct_p:"你也能在各大预订网站找到我们——但那里每一晚都含佣金。请用 Instagram 私信代替电话：最优价格、灵活日期，还能一起挑选你的房间，全都直接由我们提供。",
+    direct_cta:"用 Instagram 私信",direct_note:"Instagram 私信回复最快。",
+    gallery_eyebrow:"册子",gallery_h:"这座宅院的清单。",
+    ph_g1:"拱顶石屋",ph_g2:"露台 · 落日",ph_g3:"洞穴房",ph_g4:"石庭 · 黄金时刻",ph_g5:"早餐室",ph_g6:"盖尔韦里石造建筑",ph_g7:"庭院 · 白日",ph_g8:"楼梯拱顶",
+    gallery_src:"照片取自该店的谷歌与 Tripadvisor 资料；正式上线后将替换为您自己的照片。",
+    book_eyebrow:"预订",book_h:"选个日期，<em>其余我们私信详谈。</em>",
+    book_lede:"我们以 Instagram 而非电话沟通——那里回复最快。填写表单；系统会生成消息并复制到剪贴板，同时打开我们的 Instagram。粘贴并发送即可。",
+    ig_handle:"Instagram · Kadir's Antiq Gelveri House",
+    step1:"填写日期、人数与房型偏好。",step2:"点“生成消息”——文字会复制到剪贴板。",step3:"粘贴到弹出的 Instagram 私信并发送。",
+    label_name:"您的称呼",ph_name:"您的全名",label_checkin:"入住",label_checkout:"退房",label_guests:"人数",
+    opt_1:"1 位",opt_2:"2 位",opt_3:"3 位",opt_4:"4 位以上",
+    label_room:"房型",opt_room0:"均可 / 请推荐",opt_room1:"玫瑰花瓣拱顶房",opt_room2:"楼梯拱顶房",opt_room3:"雕凿洞穴房",
+    label_note:"备注（选填）",ph_note:"住几晚、特别需求、到达时间……",btn_prepare:"生成消息并打开 Instagram",
+    dm_title:"您的 Instagram 消息",dm_copied:"消息已复制到剪贴板 ✓ — Instagram 正在打开，粘贴并发送。",dm_fail:"复制失败——请选中文字手动复制。",
+    dm_recopy:"再次复制",dm_open:"打开 Instagram",dm_note:"提示：Instagram 资料会在新标签页打开。消息已在剪贴板；粘贴到私信框（Ctrl / Cmd + V）。",
+    foot_about:"在盖尔韦里（居泽尔尤特，阿克萨赖）一座古董切石老宅：拱顶石屋、凿于凝灰岩的洞穴房、基里姆地毯，以及俯瞰小镇的露台。直接预订，无中介。",
+    foot_explore:"探索",foot_contact:"联系",foot_c1:"盖尔韦里 · 居泽尔尤特 / 阿克萨赖",foot_c2:"Instagram（私信）",foot_c3:"在谷歌地图查看",foot_c4:"直接预订 · 无中介",
+    foot_rights:"© 2026 Kadir's Antiq Gelveri House — 版权所有。",foot_demo:"示例 / 演示设计",
+    theme_aria:"浅色 / 深色主题",
+    msg_hello:"您好，我想预订 Kadir's Antiq Gelveri House：",msg_name:"姓名",msg_checkin:"入住",msg_checkout:"退房",msg_guests:"人数",msg_room:"房型",msg_note:"备注",msg_tail:"谢谢——请告知最新价格与空房情况！",
+    alert_fill:"请填写您的称呼和入住日期。"
+  },
+  ko:{
+    meta_title:"Kadir's Antiq Gelveri House — 귀젤유르트/겔베리의 앤티크 돌집 | 아크사라이, 카파도키아",
+    meta_desc:"겔베리(귀젤유르트, 아크사라이)의 앤티크 절석 고택: 볼트형 돌 객실, 응회암을 파낸 동굴 객실, 킬림, 마을을 내려다보는 테라스. 중개 없이 인스타그램으로 직접 예약.",
+    brand_sub:"Kadir's House · Güzelyurt",
+    nav_house:"고택",nav_rooms:"객실",nav_sofra:"식탁",nav_terrace:"테라스",nav_gelveri:"겔베리",nav_book:"예약",
+    dock_house:"고택",dock_rooms:"객실",dock_sofra:"식탁",dock_terrace:"테라스",dock_book:"예약",
+    hero_eyebrow:"귀젤유르트 · 겔베리 · 아크사라이",
+    hero_title:"앤티크 돌집에서,<br><em>시간 속의 하룻밤.</em>",
+    hero_lede:"겔베리(귀젤유르트의 옛 이름)의 절석으로 지은 집. 볼트형 돌 객실, 킬림, 조각 벽감, 그리고 응회암을 파낸 동굴 객실. 골동품과 고요의 집 — 중개 없이, Kadir의 손님으로 직접 예약하세요.",
+    hero_cta1:"인스타그램으로 문의",hero_cta2:"객실 보기",scroll_hint:"장부를 펼치다",
+    proof1:"구글 평점",proof2:"돌 · 볼트 · 동굴",proof2s:"객실의 질감",proof3:"겔베리",proof3s:"귀젤유르트, 아크사라이",proof4:"수도원 계곡",proof4s:"마을 어귀에서",
+    house_eyebrow:"고택",house_h:"Kadir의 앤티크 돌집.",
+    house_sub:'겔베리의 절석으로 쌓고 골동품으로 꾸민 집. 이름 속 "antiq(앤티크)"는 괜한 말이 아닙니다 — 구석마다 시간의 켜가 쌓여 있습니다.',
+    house_lead:'이곳은 "호텔"이 아니라, 세월이 밴 물건과 킬림, 돌의 온기로 꾸민 하나의 집입니다.',
+    house_p1:"두꺼운 절석 벽이 여름엔 서늘함을, 겨울엔 온기를 안에 담습니다. 아치 통로, 철제 난간, 조각 돌 벽감, 구리·놋 골동품이 겔베리 돌집의 전통을 오늘로 이어갑니다.",
+    house_p2:"안뜰에선 햇빛이 돌에 부딪히고, 테라스에서는 마을과 계곡이 보입니다. 한 번에 몇 분의 손님만 모십니다 — 이 집이 정말 대접하는 것은 고요와 시간이기 때문입니다.",
+    house_sign:"Kadir의 집 · 겔베리",
+    ph_house_1:"돌 안뜰 · 골든아워",ph_house_2:"안뜰 · 낮",ph_house_3:"테라스와 조각석",
+    rooms_eyebrow:"객실",rooms_h:"어떤 방은 볼트, 어떤 방은 동굴.",
+    rooms_sub:"객실마다 다릅니다: 볼트형 돌 천장, 킬림, 조각 벽감; 그중 하나는 응회암을 파낸 진짜 동굴. 가격과 예약 가능 여부는 인스타그램으로.",
+    room1_tag:"볼트형",room1_h:"장미 꽃잎 볼트 객실",room1_f:"돌 볼트 · 킬림 · 조각 벽감",
+    room1_p:"아치형 돌 볼트 아래, 벽에 박힌 따뜻한 벽등과 대지색 수제 직물. 특별한 날에는 장미 꽃잎과 수건 장식으로 꾸며집니다 — 돌의 서늘함 속 깊은 잠.",
+    room2_tag:"복층",room2_h:"계단 볼트 객실",room2_f:"목재 계단 · 돌 볼트 · 킬림",
+    room2_p:"손으로 다듬은 목재 계단으로 오르는 복층 볼트 객실. 조각 난간, 돌벽, 킬림; 두 층만의 아늑한 사생활.",
+    room3_tag:"동굴",room3_h:"조각 동굴 객실",room3_f:"응회암 조각 · 아치 벽감 · 킬림",
+    room3_p:"응회암을 곧바로 파낸 진짜 동굴 객실; 물결치는 돌 천장과 벽감이 수백 년의 질감을 품습니다. 따뜻한 등불 아래, 돌 속에서의 하룻밤.",
+    room_note:"객실 유형과 연출은 계절에 따라 달라질 수 있습니다 — 최신 가격·예약 가능 여부·사진은 <b>인스타그램으로 문의</b>하세요.",
+    sofra_eyebrow:"식탁",sofra_h:"나무 천장 아래의 아침.",
+    sofra_p1:"아침 식사는 나무 천장의 돌방에 차려집니다; 벽에는 킬림, 식탁에는 흰 천. 하루는 돌의 서늘함 속에서 서두르지 않고 시작됩니다.",
+    sofra_p2:"식탁은 집에서 만든 대로 — 소박하고 진솔하며 계절에 따라 바뀝니다. 메뉴와 시간은 인스타그램으로 문의만 주시면 됩니다.",
+    sofra_note:"이 단락의 모든 문장은 눈으로 확인된 사실에 근거합니다; 아침 식사 내용은 주인과 확인 후 기재됩니다.",
+    sofra_t:"아침 · 조식",ph_sofra:"나무 천장의 조식실",
+    terrace_eyebrow:"테라스",terrace_h:"해질 무렵, 마을을 내려다보는 테라스.",
+    terrace_sub:"저녁 무렵 테라스로 나가 보세요; 귀젤유르트의 불빛이 켜질 때 지평선으로 해가 지고 달이 뜹니다.",
+    terrace_p1:"쿠션을 얹은 벤치에서 차 한 잔과 함께; 아래로 마을, 저편으로 계곡. 겔베리의 가장 고요한 시간이 이 테라스에서 흘러갑니다.",
+    terrace_p2:"낮에는 돌의 밝음, 밤에는 마을의 불빛 — 테라스는 이 집에서 가장 사랑받는 자리입니다. 붐비지도 서두르지도 않는, 색을 바꾸는 하늘뿐.",
+    terrace_note:"이 전경은 업소의 실제 테라스에서 촬영했습니다; 꾸밈 없이, 있는 그대로.",
+    terrace_t:"해질녘 · 달",ph_terrace:"테라스 · 일몰",
+    gelveri_eyebrow:"겔베리 · 위치",gelveri_h:"겔베리 — 돌과 역사의 마을.",
+    gelveri_p1:"겔베리는 귀젤유르트의 옛 이름입니다: 아크사라이에 속한 역사 마을로, 19세기 그리스 돌집과 암굴 교회로 유명합니다. 거리는 절석, 집은 아치.",
+    gelveri_p2:"수도원 계곡(귀젤유르트 계곡)이 마을 어귀에서 시작됩니다; 암굴 교회와 오솔길이 여기서 뻗어 나갑니다. 이흘라라 계곡과 아크사라이도 차로 잠깐 거리.",
+    gf1:"겔베리(귀젤유르트, 아크사라이) · 역사적 그리스 마을",
+    gf2:"수도원 계곡이 마을 어귀에서 시작",
+    gf3:"19세기 돌집과 암굴 교회",
+    gf4:"이흘라라 계곡과 아크사라이가 가까움",
+    gelveri_cta:"지도에서 보기",ph_gelveri:"겔베리의 역사적 석조 건축",
+    direct_eyebrow:"직접",direct_h:"중개가 아니라 — <em>Kadir에게 직접.</em>",
+    direct_p:"대형 예약 사이트에서도 저희를 찾을 수 있지만, 그곳은 하룻밤마다 수수료가 붙습니다. 전화 대신 인스타그램으로 문의하세요: 최적가, 유연한 일정, 그리고 객실을 함께 고르는 일까지 모두 저희가 직접 도와드립니다.",
+    direct_cta:"인스타그램으로 문의",direct_note:"가장 빠른 답변은 인스타그램 DM입니다.",
+    gallery_eyebrow:"장부",gallery_h:"이 집의 목록.",
+    ph_g1:"볼트형 돌 객실",ph_g2:"테라스 · 일몰",ph_g3:"동굴 객실",ph_g4:"돌 안뜰 · 골든아워",ph_g5:"조식실",ph_g6:"겔베리 석조 건축",ph_g7:"안뜰 · 낮",ph_g8:"계단 볼트",
+    gallery_src:"사진은 업소의 구글·트립어드바이저 프로필에서 가져왔습니다; 정식 오픈 후 원하시는 자체 사진으로 교체됩니다.",
+    book_eyebrow:"예약",book_h:"날짜를 고르세요, <em>나머지는 메시지로 이어가요.</em>",
+    book_lede:"전화 대신 인스타그램으로 진행합니다 — 가장 빠른 답변이 그곳에 있습니다. 양식을 채우면 메시지가 작성되어 클립보드에 복사되고, 저희 인스타그램이 열립니다. 붙여넣고 보내세요.",
+    ig_handle:"Instagram · Kadir's Antiq Gelveri House",
+    step1:"날짜, 인원, 객실 선호를 적어 주세요.",step2:'"메시지 준비"를 누르면 텍스트가 클립보드에 복사됩니다.',step3:"열린 인스타그램 DM에 붙여넣고 보내세요.",
+    label_name:"성함",ph_name:"성함(전체)",label_checkin:"체크인",label_checkout:"체크아웃",label_guests:"인원",
+    opt_1:"1명",opt_2:"2명",opt_3:"3명",opt_4:"4명 이상",
+    label_room:"객실",opt_room0:"상관없음 / 추천받기",opt_room1:"장미 꽃잎 볼트 객실",opt_room2:"계단 볼트 객실",opt_room3:"조각 동굴 객실",
+    label_note:"메모(선택)",ph_note:"몇 박, 특별한 요청, 도착 시간…",btn_prepare:"메시지 준비 & 인스타그램 열기",
+    dm_title:"인스타그램 메시지",dm_copied:"메시지가 클립보드에 복사됨 ✓ — 인스타그램이 열립니다, 붙여넣고 보내세요.",dm_fail:"복사하지 못했습니다 — 텍스트를 선택해 직접 복사하세요.",
+    dm_recopy:"다시 복사",dm_open:"인스타그램 열기",dm_note:"참고: 인스타그램 프로필이 새 탭에서 열립니다. 메시지는 클립보드에 있습니다; DM 칸에 붙여넣으세요 (Ctrl / Cmd + V).",
+    foot_about:"겔베리(귀젤유르트, 아크사라이)의 앤티크 절석 고택: 볼트형 돌 객실, 응회암을 파낸 동굴 객실, 킬림, 마을을 내려다보는 테라스. 중개 없이 직접.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_c1:"겔베리 · 귀젤유르트 / 아크사라이",foot_c2:"Instagram (DM)",foot_c3:"구글 지도에서 보기",foot_c4:"직접 예약 · 중개 없음",
+    foot_rights:"© 2026 Kadir's Antiq Gelveri House — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    theme_aria:"라이트 / 다크 테마",
+    msg_hello:"안녕하세요, Kadir's Antiq Gelveri House 예약을 문의드립니다:",msg_name:"성함",msg_checkin:"체크인",msg_checkout:"체크아웃",msg_guests:"인원",msg_room:"객실",msg_note:"메모",msg_tail:"감사합니다 — 최신 가격과 예약 가능 여부를 알려주세요!",
+    alert_fill:"성함과 체크인 날짜를 입력해 주세요."
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  const tb = document.getElementById('themeBtn');
+  if(tb && dict.theme_aria) tb.setAttribute('aria-label', dict.theme_aria);
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  try{ localStorage.setItem('kadirs_lang', lang); }catch(e){}
+  requestAnimationFrame(()=>{ requestAnimationFrame(updateSpy); });
+}
+function initLang(){
+  let lang = null;
+  const url = new URLSearchParams(location.search).get('lang');
+  if(url && SUPPORTED.includes(url)) lang = url;
+  if(!lang){ try{ const s=localStorage.getItem('kadirs_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click', ()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+// ==================== TEMA ====================
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('kadirs_theme', t); }catch(e){}
+}
+document.getElementById('themeBtn').addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme')==='light' ? 'dark' : 'light';
+  setTheme(cur);
+});
+
+// ==================== MOBİL MENÜ ====================
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+// ==================== NAV SCROLL + ENVANTER İNDEKSİ (scroll-spy) ====================
+const nav=document.getElementById('nav');
+const idxInd=document.getElementById('idxInd');
+const spyLinks=Array.from(document.querySelectorAll('.navlinks a[data-spy]'));
+const dockLinks=Array.from(document.querySelectorAll('.dock a[data-spy]'));
+const spyIds=['house','rooms','sofra','terrace','gelveri','book'];
+function updateSpy(){
+  nav.classList.toggle('scrolled', window.scrollY>40);
+  let active=null;
+  const mid=window.scrollY + window.innerHeight*0.36;
+  for(const id of spyIds){
+    const el=document.getElementById(id);
+    if(el && el.offsetTop <= mid) active=id;
+  }
+  spyLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('data-spy')===active));
+  dockLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('data-spy')===active));
+  const activeLink=spyLinks.find(a=>a.getAttribute('data-spy')===active);
+  if(activeLink && window.getComputedStyle(activeLink).display!=='none'){
+    idxInd.style.left=activeLink.offsetLeft+'px';
+    idxInd.style.width=activeLink.offsetWidth+'px';
+    idxInd.classList.add('on');
+  } else {
+    idxInd.classList.remove('on');
+  }
+}
+window.addEventListener('scroll',updateSpy,{passive:true});
+window.addEventListener('resize',updateSpy);
+
+// ==================== REVEAL ====================
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.16});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ==================== GÖRSEL YÜKLEME ====================
+(function(){
+  const base='assets/images/';
+  function tryImg(el, file){
+    const img=new Image();
+    img.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; const l=el.querySelector('.ph-label'); if(l) l.style.display='none'; };
+    img.onerror=()=>{};
+    img.src=base+file;
+  }
+  const hero=document.getElementById('heroPhoto');
+  if(hero){ const hi=new Image(); hi.onload=()=>{ hero.style.backgroundImage=`url('${base}hero.jpg')`; hero.classList.add('has-img'); }; hi.onerror=()=>{}; hi.src=base+'hero.jpg'; }
+  document.querySelectorAll('[data-img]').forEach(t=>tryImg(t,t.getAttribute('data-img')));
+})();
+
+// ==================== REZERVASYON → INSTAGRAM DM (çok dilli, panoya kopyala) ====================
+// NOT: Maps'te telefon kayıtlı DEĞİL → birincil kanal Instagram DM'dir.
+// PLACEHOLDER HANDLE: IG kullanıcı adı doğrulanamadı (IG login-shell nedeniyle og:title okunamadı).
+// Sami, işletmenin GERÇEK Instagram handle'ını doğrulayıp aşağıdaki IG_URL'yi ve HTML'deki
+// tüm instagram.com/kadirsantiqgelverihouse linklerini güncellemeli (30 sn telefon kontrolünde).
+// Telefon alınırsa wa.me akışına dönülebilir.
+const IG_URL = "https://www.instagram.com/kadirsantiqgelverihouse/";
+
+function buildDMText(){
+  const d = I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const cin=document.getElementById('f-checkin').value;
+  const cout=document.getElementById('f-checkout').value;
+  const guests=document.getElementById('f-guests').value;
+  const room=document.getElementById('f-room').value;
+  const note=document.getElementById('f-note').value.trim();
+  if(!name||!cin){ alert(d.alert_fill); return null; }
+  let msg = d.msg_hello + "\n\n" +
+    d.msg_name + ": " + name + "\n" +
+    d.msg_checkin + ": " + cin + "\n";
+  if(cout) msg += d.msg_checkout + ": " + cout + "\n";
+  msg += d.msg_guests + ": " + guests + "\n" +
+    d.msg_room + ": " + room + "\n";
+  if(note) msg += d.msg_note + ": " + note + "\n";
+  msg += "\n" + d.msg_tail;
+  return msg;
+}
+function copyText(txt){
+  if(navigator.clipboard && window.isSecureContext){
+    return navigator.clipboard.writeText(txt).then(()=>true).catch(()=>legacyCopy(txt));
+  }
+  return Promise.resolve(legacyCopy(txt));
+}
+function legacyCopy(txt){
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=txt; ta.setAttribute('readonly','');
+    ta.style.position='fixed'; ta.style.left='-9999px';
+    document.body.appendChild(ta);
+    ta.select(); ta.setSelectionRange(0, txt.length);
+    const ok=document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  }catch(e){ return false; }
+}
+function setDMStatus(ok){
+  const d=I18N[currentLang];
+  const st=document.getElementById('dmStatus');
+  st.textContent = ok ? d.dm_copied : d.dm_fail;
+  st.classList.toggle('ok', !!ok);
+}
+function prepareDM(){
+  const msg = buildDMText();
+  if(msg===null) return;
+  const panel=document.getElementById('dmPanel');
+  const ta=document.getElementById('dmMsg');
+  ta.value = msg;
+  panel.classList.add('show');
+  copyText(msg).then(ok=>{
+    setDMStatus(ok);
+    window.open(IG_URL, "_blank", "noopener");
+    panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+}
+function copyDM(){
+  const ta=document.getElementById('dmMsg');
+  if(!ta.value) return;
+  copyText(ta.value).then(setDMStatus);
+}
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items = Array.from(document.querySelectorAll('.gallery .tile[data-img], .hv[data-img], .split-visual[data-img], .room-img[data-img], .loc-visual[data-img]'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  const capOf = t => { const l = t.querySelector('.ph-label') || t.querySelector('.tag') || t.querySelector('.time'); return l ? l.textContent.trim() : ''; };
+  function show(i){ idx = (i + items.length) % items.length; const t = items[idx]; img.src = base + t.getAttribute('data-img'); cap.textContent = capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>{ t.addEventListener('click',()=>open(i)); });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+// ==================== BAŞLAT ====================
+initLang();
+updateSpy();
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+</body>
+</html>
