@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Osmanoğlu Hotel — Güzelyurt (Gelveri), Aksaray · Kapadokya Taş Avlu Konağı</title>
+<meta name="description" data-i18n="meta_desc" content="Güzelyurt'un — eski adıyla Gelveri'nin — sessiz sokaklarında, kesme taştan bir avlu konağı. Beşik tonozlu odalar, ay ışığında bir avlu ve gerçekten dingin geceler.">
+<script>
+/* Tema erken — FOUC yok (file:// güvenli) */
+(function(){try{var p=new URLSearchParams(location.search),t=p.get('theme');if(!t)t=localStorage.getItem('osman_theme');if(!t)t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';if(t!=='light'&&t!=='dark')t='dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+</script>
+<style>
+  :root{
+    --bg:#1a1611;--bg-2:#120f0b;--surface:#221c15;--surface-2:#2a2219;--card:#241d15;
+    --text:#e9ddca;--head:#f6ecd9;--muted:#a89a86;--line:rgba(233,221,202,.12);--line-2:rgba(233,221,202,.22);
+    --nar:#c1503f;--nar-2:#dc7a66;--nar-deep:#9c3a2d;
+    --stone-hi:#cbb996;--stone-mid:#a2865e;--stone-lo:#6f5637;
+    --hero-scrim1:rgba(10,8,5,.34);--hero-scrim2:rgba(10,8,5,.72);
+    --nav-hair:rgba(233,221,202,.16);--sel:rgba(193,80,63,.26);
+  }
+  html[data-theme="light"]{
+    --bg:#ece3d2;--bg-2:#e0d5c0;--surface:#f4ecdd;--surface-2:#e7ddc9;--card:#f6efe2;
+    --text:#3a2f22;--head:#241c14;--muted:#6d6053;--line:rgba(40,30,20,.13);--line-2:rgba(40,30,20,.23);
+    --nar:#a5382b;--nar-2:#bf4d3c;--nar-deep:#872b1f;
+    --stone-hi:#d9c9ab;--stone-mid:#b3956c;--stone-lo:#8b6f4c;
+    --hero-scrim1:rgba(10,8,5,.30);--hero-scrim2:rgba(10,8,5,.66);
+    --nav-hair:rgba(40,30,20,.16);--sel:rgba(165,56,43,.20);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  ::selection{background:var(--sel)}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{font-family:'Gill Sans MT','Gill Sans','Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden;transition:background .5s,color .5s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:'Constantia','Hoefler Text','Baskerville Old Face','Palatino Linotype','Georgia',serif;font-weight:500;line-height:1.1;letter-spacing:-.008em;color:var(--head)}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:700;letter-spacing:0}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.7rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--nar)}
+  .eyebrow::before{content:"";width:9px;height:9px;background:linear-gradient(135deg,var(--stone-hi),var(--stone-lo));transform:rotate(45deg);box-shadow:inset .5px .5px 0 rgba(255,255,255,.4),0 0 0 1px rgba(0,0,0,.12)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.1em}
+
+  /* ---------- NAV ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:20px;padding:20px 32px;transition:background .45s,box-shadow .45s,padding .45s}
+  nav.scrolled{background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(12px) saturate(120%);box-shadow:0 1px 0 var(--line);padding:13px 32px}
+  .brand{display:flex;align-items:baseline;gap:10px;flex:none;color:var(--head)}
+  .brand .mark{font-family:'Constantia','Hoefler Text','Palatino Linotype','Georgia',serif;font-size:1.32rem;letter-spacing:.01em}
+  .brand .sub{font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  html[lang="zh-CN"] .brand .sub,html[lang="ko"] .brand .sub{letter-spacing:.1em}
+  nav:not(.scrolled) .brand{color:#f6ecd9}
+  nav:not(.scrolled) .brand .sub{color:rgba(246,236,217,.66)}
+  .spacer{flex:1}
+  .navlinks{position:relative;display:flex;gap:30px;align-items:center;padding-bottom:11px}
+  .navlinks::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--nav-hair)}
+  .navlinks a{position:relative;font-size:.82rem;letter-spacing:.05em;color:var(--muted);transition:color .3s;padding:2px 1px}
+  nav:not(.scrolled) .navlinks a{color:rgba(246,236,217,.74)}
+  nav:not(.scrolled) .navlinks::after{background:rgba(246,236,217,.2)}
+  .navlinks a:hover,.navlinks a.cur{color:var(--head)}
+  nav:not(.scrolled) .navlinks a:hover,nav:not(.scrolled) .navlinks a.cur{color:#fff}
+  html[lang="zh-CN"] .navlinks a,html[lang="ko"] .navlinks a{letter-spacing:.02em;font-size:.9rem}
+  /* SIGNATURE — kesme taş sürgüsü: aktif linkin altında kayan bir taş dizisi */
+  .nav-stone{position:absolute;left:0;bottom:-2px;height:8px;width:0;border-radius:1.5px;overflow:hidden;
+    background:linear-gradient(180deg,var(--stone-hi),var(--stone-mid) 52%,var(--stone-lo));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.28),0 1px 3px rgba(0,0,0,.28);
+    transition:transform .55s cubic-bezier(.2,.7,.2,1),width .55s cubic-bezier(.2,.7,.2,1),opacity .4s;opacity:0}
+  .nav-stone::before,.nav-stone::after{content:"";position:absolute;top:-1px;bottom:-1px;width:1.5px;background:rgba(35,22,10,.42)}
+  .nav-stone::before{left:34%}.nav-stone::after{left:67%}
+  .nav-actions{display:flex;align-items:center;gap:14px;flex:none}
+  .theme-btn{background:none;border:1px solid var(--line-2);color:inherit;width:38px;height:38px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;flex:none}
+  nav:not(.scrolled) .theme-btn{border-color:rgba(246,236,217,.32);color:#f6ecd9}
+  .theme-btn:hover{border-color:var(--nar);color:var(--nar)}
+  .theme-btn svg{width:18px;height:18px}
+  html[data-theme="dark"] .ic-sun{display:block}html[data-theme="dark"] .ic-moon{display:none}
+  html[data-theme="light"] .ic-sun{display:none}html[data-theme="light"] .ic-moon{display:block}
+  .langs{display:flex;align-items:center;gap:1px}
+  .langs button{background:none;border:none;color:var(--muted);font-family:inherit;font-size:.72rem;cursor:pointer;padding:5px 5px;transition:.25s;border-radius:3px;letter-spacing:.02em}
+  nav:not(.scrolled) .langs button{color:rgba(246,236,217,.6)}
+  .langs button:hover{color:var(--head)}nav:not(.scrolled) .langs button:hover{color:#fff}
+  .langs button.active{color:var(--nar);font-weight:700}
+  nav:not(.scrolled) .langs button.active{color:var(--nar-2)}
+  .langs .sep{color:var(--line-2);font-size:.6rem}
+  .nav-cta{border:1px solid var(--nar);color:var(--nar);padding:9px 18px;border-radius:2px;font-size:.76rem;font-weight:600;letter-spacing:.05em;transition:.35s;white-space:nowrap}
+  nav:not(.scrolled) .nav-cta{border-color:var(--nar-2);color:var(--nar-2)}
+  .nav-cta:hover{background:var(--nar);color:#fff;border-color:var(--nar)}
+  html[lang="zh-CN"] .nav-cta,html[lang="ko"] .nav-cta{letter-spacing:.02em}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;color:var(--head);flex:none}
+  nav:not(.scrolled) .menu-btn{color:#f6ecd9}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+  .hero-photo{position:absolute;inset:0;z-index:0;background:url('assets/images/hero.jpg') center/cover no-repeat;transform-origin:60% 46%;animation:kenburns 42s ease-in-out infinite alternate}
+  @keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.12)}}
+  #hero-gradient{position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:soft-light;opacity:.36;
+    --gradient-color-1:#1a1611;--gradient-color-2:#3a2a20;--gradient-color-3:#c1503f;--gradient-color-4:#6b4a34}
+  .no-webgl #hero-gradient{display:none}
+  .hero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,var(--hero-scrim1) 0%,transparent 36%,var(--hero-scrim2) 100%),radial-gradient(72% 62% at 20% 88%,rgba(10,8,5,.62),transparent 72%)}
+  .hero-inner{position:relative;z-index:3;width:100%;padding-bottom:9.5vh}
+  .hero .eyebrow{color:var(--nar-2)}
+  .hero h1{color:#f7eeda;font-size:clamp(2.7rem,7vw,6rem);max-width:16ch;margin-top:22px;text-shadow:0 3px 46px rgba(0,0,0,.55)}
+  .hero h1 em{font-style:italic;color:#f0c58e;position:relative;white-space:nowrap}
+  .hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:2px;background:linear-gradient(90deg,transparent,var(--nar-2) 22%,var(--nar-2) 78%,transparent);opacity:.9}
+  .hero .lede{font-size:clamp(1.04rem,1.55vw,1.28rem);color:rgba(246,236,217,.9);max-width:48ch;margin-top:26px;font-weight:300;text-shadow:0 2px 22px rgba(0,0,0,.6)}
+  .hero-cta{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:var(--nar);color:#fff;padding:15px 30px;border-radius:2px;font-weight:600;font-size:.84rem;letter-spacing:.05em;display:inline-flex;align-items:center;gap:10px;transition:.35s;box-shadow:0 8px 30px rgba(193,80,63,.34)}
+  .btn-solid:hover{background:var(--nar-deep);gap:14px}
+  .btn-line{color:#f6ecd9;font-size:.84rem;letter-spacing:.05em;border-bottom:1px solid rgba(246,236,217,.42);padding-bottom:4px;transition:.4s}
+  .btn-line:hover{border-color:#f0c58e;color:#f0c58e}
+  .scrollhint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(246,236,217,.6);display:flex;flex-direction:column;align-items:center;gap:8px}
+  html[lang="zh-CN"] .scrollhint,html[lang="ko"] .scrollhint{letter-spacing:.1em}
+  .scrollhint .l{width:1px;height:32px;background:linear-gradient(#f0c58e,transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ---------- PROOF ---------- */
+  .proof{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .proof .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:40px 32px}
+  .pf{text-align:center;padding:0 8px}
+  .pf .n{font-family:'Constantia','Hoefler Text','Palatino Linotype','Georgia',serif;font-size:clamp(1.5rem,3vw,2.1rem);color:var(--nar);line-height:1.12}
+  .pf .n .st{font-size:.7em;color:var(--stone-mid)}
+  .pf .l{font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  html[lang="zh-CN"] .pf .l,html[lang="ko"] .pf .l{letter-spacing:.03em;text-transform:none}
+  .pf+.pf{border-left:1px solid var(--line)}
+  @media(max-width:680px){.proof .wrap{grid-template-columns:1fr 1fr;gap:30px 18px}.pf:nth-child(3){border-left:none}}
+
+  section{padding:118px 0;position:relative}
+  .sec-head{max-width:680px;margin-bottom:56px}
+  .sec-head .eyebrow{margin-bottom:20px}
+  .sec-head h2{font-size:clamp(2rem,4.4vw,3.4rem)}
+  .sec-head p{margin-top:20px;color:var(--muted);font-size:1.08rem;font-weight:300}
+
+  /* ---------- SPLIT ---------- */
+  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch}
+  .split.flip .sp-visual{order:2}
+  .sp-visual{position:relative;min-height:540px;border-radius:3px;overflow:hidden;background-size:cover;background-position:center;background-color:var(--surface-2)}
+  .sp-visual.konak{background-image:url('assets/images/konak.jpg')}
+  .sp-visual.oda{background-image:url('assets/images/oda.jpg');background-position:50% 38%}
+  .sp-visual.konum{background-image:url('assets/images/konum.jpg')}
+  .sp-visual .cap{position:absolute;left:20px;bottom:18px;z-index:3;font-size:.72rem;letter-spacing:.04em;color:#f4ece0;text-shadow:0 1px 10px rgba(0,0,0,.85);display:flex;align-items:center;gap:7px;background:rgba(12,9,6,.44);backdrop-filter:blur(3px);padding:7px 12px;border-radius:2px}
+  .sp-visual .cap svg{width:14px;height:14px;opacity:.85}
+  .sp-visual .zoom{position:absolute;top:14px;right:15px;z-index:3;width:34px;height:34px;border-radius:50%;background:rgba(12,9,6,.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;color:#f4ece0;border:none;cursor:pointer;opacity:0;transform:scale(.8);transition:.35s}
+  .sp-visual:hover .zoom{opacity:1;transform:scale(1)}
+  .sp-visual .zoom svg{width:16px;height:16px}
+  .sp-text{background:var(--card);padding:60px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line);border-radius:3px}
+  .split:not(.flip) .sp-text{margin-left:-46px}
+  .split.flip .sp-text{margin-right:-46px}
+  .sp-text .lead{font-family:'Constantia','Hoefler Text','Palatino Linotype','Georgia',serif;font-size:1.55rem;line-height:1.44;color:var(--head);margin-bottom:22px;font-style:italic}
+  html[lang="zh-CN"] .sp-text .lead,html[lang="ko"] .sp-text .lead{font-style:normal}
+  .sp-text p{color:var(--muted);margin-bottom:16px;font-weight:300}
+  .sp-text .sign-off{margin-top:14px;font-family:'Constantia','Hoefler Text','Palatino Linotype','Georgia',serif;font-style:italic;font-size:1.08rem;color:var(--nar)}
+  @media(max-width:860px){
+    .split,.split.flip{grid-template-columns:1fr}
+    .split.flip .sp-visual{order:0}
+    .sp-visual{min-height:340px}
+    .split:not(.flip) .sp-text{margin-left:0;margin-top:-40px}
+    .split.flip .sp-text{margin-right:0;margin-top:-40px}
+  }
+
+  /* ---------- CINEMATIC BAND (avlu) ---------- */
+  .band{position:relative;min-height:66vh;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+  .band-photo{position:absolute;inset:0;z-index:0;background:url('assets/images/avlu.jpg') center/cover no-repeat;transform-origin:50% 50%;animation:kenburns 46s ease-in-out infinite alternate}
+  .band::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(10,8,5,.78),rgba(10,8,5,.42) 55%,rgba(10,8,5,.6))}
+  .band .wrap{position:relative;z-index:2}
+  .band .eyebrow{color:var(--nar-2)}
+  .band blockquote{font-family:'Constantia','Hoefler Text','Palatino Linotype','Georgia',serif;font-style:italic;color:#f7eeda;font-size:clamp(1.7rem,3.6vw,2.9rem);line-height:1.32;max-width:20ch;margin-top:20px;text-shadow:0 3px 30px rgba(0,0,0,.6)}
+  html[lang="zh-CN"] .band blockquote,html[lang="ko"] .band blockquote{font-style:normal}
+  .band cite{display:block;margin-top:22px;font-style:normal;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,236,217,.72);font-family:'Gill Sans MT','Gill Sans','Segoe UI',sans-serif}
+  html[lang="zh-CN"] .band cite,html[lang="ko"] .band cite{letter-spacing:.04em;text-transform:none}
+
+  /* ---------- ÇEVRE place cards ---------- */
+  .places{display:grid;grid-template-columns:1fr;gap:14px;margin-top:6px}
+  .place{display:flex;gap:18px;align-items:flex-start;padding:22px 0;border-top:1px solid var(--line)}
+  .place:first-child{border-top:none}
+  .place .ic{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--nar);color:var(--nar);display:flex;align-items:center;justify-content:center}
+  .place .ic svg{width:21px;height:21px}
+  .place .meta{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--stone-mid);margin-bottom:6px;font-weight:700}
+  html[lang="zh-CN"] .place .meta,html[lang="ko"] .place .meta{letter-spacing:.03em;text-transform:none}
+  .place h3{font-size:1.2rem;margin-bottom:5px}
+  .place p{color:var(--muted);font-size:.95rem;font-weight:300}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{background:var(--surface)}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .tile{aspect-ratio:4/3;border-radius:3px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;background-size:cover;background-position:center;background-color:var(--surface-2);cursor:pointer;border:none;transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+  .tile.t1{background-image:url('assets/images/hero.jpg')}
+  .tile.t2{background-image:url('assets/images/konak.jpg')}
+  .tile.t3{background-image:url('assets/images/oda.jpg')}
+  .tile.t4{background-image:url('assets/images/oda-2.jpg')}
+  .tile.t5{background-image:url('assets/images/avlu.jpg')}
+  .tile.t6{background-image:url('assets/images/konum.jpg')}
+  .tile .cap{position:relative;z-index:3;font-size:.74rem;letter-spacing:.03em;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.8);text-align:left}
+  .tile::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(10,8,5,.62),rgba(10,8,5,0) 52%);transition:.4s}
+  .tile::after{content:"\2922";position:absolute;top:11px;right:14px;z-index:3;color:#fff;font-size:1.05rem;opacity:0;transform:scale(.75);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .tile:hover::before{background:linear-gradient(to top,rgba(10,8,5,.7),rgba(10,8,5,.14))}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  @media(max-width:820px){.tiles{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.tiles{grid-template-columns:1fr}.tile{aspect-ratio:16/10}}
+
+  /* ---------- REZERVASYON ---------- */
+  .rez{background:linear-gradient(180deg,var(--bg),var(--surface-2));position:relative;overflow:hidden}
+  .rez::before{content:"";position:absolute;top:-140px;right:-60px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(193,80,63,.22),transparent 66%);pointer-events:none}
+  .rez-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+  .rez h2{font-size:clamp(2.1rem,4.4vw,3.4rem)}
+  .rez h2 em{font-style:italic;color:var(--nar)}
+  .rez .lede{color:var(--muted);margin-top:18px;font-size:1.08rem;font-weight:300;max-width:42ch}
+  .wa-link{display:inline-flex;align-items:center;gap:13px;margin-top:26px;color:var(--head);font-size:1.05rem;font-weight:600}
+  .wa-link .wab{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(145deg,#4bc35a,#1fa34a)}
+  .wa-link .wab svg{width:25px;height:25px}
+  .wa-link span small{display:block;font-weight:400;font-size:.78rem;color:var(--muted);letter-spacing:.02em}
+  .form{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:36px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--nar);margin-bottom:8px;font-weight:700}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{letter-spacing:.03em;text-transform:none}
+  .field input,.field select{width:100%;padding:13px 15px;border-radius:2px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);font-family:inherit;font-size:.95rem;transition:border-color .3s}
+  .field input::placeholder{color:var(--muted);opacity:.7}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--nar)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .submit{width:100%;background:var(--nar);color:#fff;border:none;padding:16px;border-radius:2px;font-family:inherit;font-weight:600;font-size:.86rem;letter-spacing:.05em;cursor:pointer;transition:.35s;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:10px}
+  .submit:hover{background:var(--nar-deep)}
+  .submit svg{width:18px;height:18px}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{letter-spacing:.02em}
+  .form .note{font-size:.76rem;color:var(--muted);margin-top:14px;text-align:center;font-weight:300}
+  @media(max-width:860px){.rez-grid{grid-template-columns:1fr;gap:38px}}
+
+  footer{background:var(--bg-2);color:var(--muted);padding:66px 0 30px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1.2fr;gap:44px;margin-bottom:44px}
+  .foot-brand{font-family:'Constantia','Hoefler Text','Palatino Linotype','Georgia',serif;font-size:1.5rem;color:var(--head);margin-bottom:14px}
+  .foot-brand small{display:block;font-family:inherit;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:4px}
+  footer h4{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--nar);margin-bottom:16px}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{letter-spacing:.04em;text-transform:none}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px;font-size:.92rem;font-weight:300;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:var(--head)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem}
+  .demo-badge{background:var(--nar);color:#fff;padding:5px 13px;border-radius:2px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  html[lang="zh-CN"] .demo-badge,html[lang="ko"] .demo-badge{letter-spacing:.03em;text-transform:none}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px}}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* mobile menu */
+  .mobile-menu{position:fixed;inset:0;z-index:80;background:color-mix(in srgb,var(--bg-2) 97%,transparent);backdrop-filter:blur(10px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:26px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:'Constantia','Hoefler Text','Palatino Linotype','Georgia',serif;font-size:1.85rem;color:var(--head)}
+  .mobile-menu .close{position:absolute;top:22px;right:24px;background:none;border:none;color:var(--head);cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:9px;margin-top:16px}
+  .mobile-menu .m-langs button{background:none;border:1px solid var(--line-2);color:var(--muted);padding:8px 13px;border-radius:3px;font-family:inherit;font-size:.85rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:var(--nar);border-color:var(--nar)}
+
+  @media(max-width:860px){.navlinks,.langs,.nav-cta{display:none}.menu-btn{display:block}section{padding:82px 0}.sp-text,.form{padding:34px}.band{min-height:58vh}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:opacity .3s!important}.reveal{opacity:1;transform:none}.hero-photo,.band-photo{animation:none}}
+
+  /* signature layers */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+  html[data-theme="light"] .grain{opacity:.035;mix-blend-mode:multiply}
+  .grain svg{width:100%;height:100%;display:block}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--stone-lo),var(--nar),var(--stone-hi));box-shadow:0 0 12px rgba(193,80,63,.5)}
+  @supports (animation-timeline:scroll()){.scroll-progress{animation:grow linear both;animation-timeline:scroll(root block)}}
+  @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(9,7,4,.95);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:86vh;border-radius:5px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f4ece0;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#e9ddca;font-size:.78rem;letter-spacing:.08em}
+
+  /* toast */
+  .toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);z-index:300;background:var(--head);color:var(--bg-2);padding:13px 22px;border-radius:4px;font-size:.86rem;font-weight:600;box-shadow:0 12px 40px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.4s}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="gn"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#gn)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a class="brand" href="#" aria-label="Osmanoğlu Hotel">
+    <span class="mark">Osmanoğlu Hotel</span><span class="sub" data-i18n="brand_sub">Güzelyurt · Gelveri</span>
+  </a>
+  <span class="spacer"></span>
+  <div class="navlinks">
+    <a href="#konak" data-nav data-i18n="nav_konak">Konak</a>
+    <a href="#odalar" data-nav data-i18n="nav_odalar">Odalar</a>
+    <a href="#cevre" data-nav data-i18n="nav_cevre">Çevre</a>
+    <a href="#galeri" data-nav data-i18n="nav_galeri">Galeri</a>
+    <span class="nav-stone" aria-hidden="true"></span>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-btn" id="themeBtn" aria-label="Tema">
+      <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M2 12h2.5M19.5 12H22M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+      <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a7 7 0 1 0 9.8 9.8z"/></svg>
+    </button>
+    <div class="langs" role="group" aria-label="Dil / Language">
+      <button data-lang="tr" class="active">TR</button><span class="sep">|</span>
+      <button data-lang="en">EN</button><span class="sep">|</span>
+      <button data-lang="es">ES</button><span class="sep">|</span>
+      <button data-lang="zh-CN">中文</button><span class="sep">|</span>
+      <button data-lang="ko">한국어</button>
+    </div>
+    <a class="nav-cta" href="#rez" data-i18n="nav_rez">Rezervasyon</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menü"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#konak" data-i18n="nav_konak">Konak</a>
+  <a href="#odalar" data-i18n="nav_odalar">Odalar</a>
+  <a href="#cevre" data-i18n="nav_cevre">Çevre</a>
+  <a href="#galeri" data-i18n="nav_galeri">Galeri</a>
+  <a href="#rez" data-i18n="nav_rez">Rezervasyon</a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Güzelyurt · Gelveri · Kapadokya</span>
+      <h1 data-i18n="hero_title" data-i18n-html="1">Ay ışığında,<br>asırlık bir <em>taş konak.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Güzelyurt'un — eski adıyla Gelveri'nin — sessiz sokaklarında, kesme taştan bir avlu konağı. Tonozlu odalar, akşam sıcacık yanan bir kapı ve gerçekten dingin geceler.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#rez"><span data-i18n="hero_cta1">Yer ayırtın</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#konak" data-i18n="hero_cta2">Konağı gezin</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Aşağı in</span><span class="l"></span></div>
+</header>
+
+<div class="proof">
+  <div class="wrap">
+    <div class="pf"><div class="n">4,9<span class="st"> ★</span></div><div class="l" data-i18n="pf1">Google misafir puanı</div></div>
+    <div class="pf"><div class="n" data-i18n="pf2n">Gelveri</div><div class="l" data-i18n="pf2">Güzelyurt'un asırlık adı</div></div>
+    <div class="pf"><div class="n" data-i18n="pf3n">Kesme taş</div><div class="l" data-i18n="pf3">Restore avlu konağı</div></div>
+    <div class="pf"><div class="n" data-i18n="pf4n">Beşik tonoz</div><div class="l" data-i18n="pf4">Taş kemerli odalar</div></div>
+  </div>
+</div>
+
+<section class="konak" id="konak">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="konak_eyebrow">Konak</span>
+      <h2 data-i18n="konak_h">Bir avlunun çevresinde, simetrik taş bir konak.</h2>
+      <p data-i18n="konak_sub">Güzelyurt'un sakin bir sokağında, kesme taştan örülü iki katlı bir konak ve onu saran taş avlu.</p>
+    </div>
+    <div class="split reveal">
+      <div class="sp-visual konak" role="img" aria-label="Osmanoğlu Hotel'in taş avlusu, gül mevsiminde">
+        <button class="zoom" data-lb="assets/images/konak.jpg" data-cap-i18n="cap_konak" aria-label="Büyüt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="cap_konak">Avlu · gül mevsiminde</span></span>
+      </div>
+      <div class="sp-text">
+        <p class="lead" data-i18n="konak_lead">Cephesinde alnında bir bayrak dalgalanan, kemerli kapısı akşam sıcacık yanan bir konak.</p>
+        <p data-i18n="konak_p1">İnce işçilikle kesilmiş tüf taşı, avluyu çeviren duvarlar, ortasında gül ve asma. Osmanoğlu adı gibi, yıllara yaslanan bir yer — gösterişten değil, süreklilikten gelen bir ağırbaşlılık.</p>
+        <p data-i18n="konak_p2">Otobüs turlarının, kalabalık meydanların uzağında. Sabah avluda kuş sesi, akşam taş duvarların üstünde ay var. Küçük, sahici, kendi hâlinde bir ev sahipliği.</p>
+        <p class="sign-off" data-i18n="konak_sign">— Osmanoğlu Hotel · Güzelyurt / Aksaray</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-label="Avlu, akşamüstü">
+  <div class="band-photo" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="band_eyebrow">Akşamüstü</span>
+    <blockquote data-i18n="band_q">Avlunun üstünde bulutlar toplanıyor, taş ısınıyor, sonra ay çıkıyor.</blockquote>
+    <cite data-i18n="band_cite">Osmanoğlu Hotel · avlu · alaca karanlık</cite>
+  </div>
+</section>
+
+<section class="odalar" id="odalar">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="odalar_eyebrow">Odalar</span>
+      <h2 data-i18n="odalar_h">Beşik tonozun altında, taş duvarlar arasında.</h2>
+    </div>
+    <div class="split flip reveal">
+      <div class="sp-visual oda" role="img" aria-label="Beşik tonozlu taş oda, pencere önünde kilimli sedir">
+        <button class="zoom" data-lb="assets/images/oda.jpg" data-cap-i18n="cap_oda" aria-label="Büyüt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="cap_oda">Tonozlu oda · sedirli pencere</span></span>
+      </div>
+      <div class="sp-text">
+        <p class="lead" data-i18n="odalar_lead">Kemerli tonoz tavan, kesme taş duvarlar, pencere önünde kilimli bir sedir.</p>
+        <p data-i18n="odalar_p1">Odalar konağın taş dokusunu olduğu gibi taşıyor: beşik tonozlu tavan, derin pencere nişleri ve önlerinde işlemeli beyaz perdeler. Yatakların üstünde el dokuması kilim örtüler.</p>
+        <p data-i18n="odalar_p2">Kimi odada eski bir soba borusu tavana uzanıyor, duvarda folklorik dokumalar. Kalın taş, yazın sıcağını dışarıda, kış gecesinin soğuğunu kapıda bırakıyor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cevre" id="cevre">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="cevre_eyebrow">Çevre</span>
+      <h2 data-i18n="cevre_h">Kapının önünde, ıssız Kapadokya.</h2>
+      <p data-i18n="cevre_sub">Güzelyurt, balon kalabalığının çok uzağında; Ihlara ve Manastır vadilerinin, Hasan Dağı'nın eteğinde bir taş kasaba.</p>
+    </div>
+    <div class="split reveal">
+      <div class="sp-visual konum" role="img" aria-label="Konağın çatısından Güzelyurt kasabası ve ardındaki tepeler">
+        <button class="zoom" data-lb="assets/images/konum.jpg" data-cap-i18n="cap_konum" aria-label="Büyüt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="cap_konum">Çatıdan Güzelyurt ve tepeler</span></span>
+      </div>
+      <div class="sp-text">
+        <div class="places">
+          <div class="place">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l6-13 4 7 3-5 3 11z"/><path d="M2 20h20"/></svg></div>
+            <div><div class="meta" data-i18n="place1_m">Kasabanın ucunda · yürüme mesafesi</div><h3 data-i18n="place1_h">Manastır Vadisi</h3><p data-i18n="place1_p">Güzelyurt'un hemen yanı başından başlayan, kayaya oyulmuş kilise ve manastırlarla dolu sessiz bir yürüyüş vadisi.</p></div>
+          </div>
+          <div class="place">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 21V8l6-5 6 5v13"/><path d="M12 3v18M9 21v-5h6v5"/></svg></div>
+            <div><div class="meta" data-i18n="place2_m">Yaklaşık yarım saat</div><h3 data-i18n="place2_h">Ihlara Vadisi & Selime</h3><p data-i18n="place2_p">Melendiz boyunca uzanan derin kanyon ve ucundaki, tüfe oyulmuş devasa Selime kaya manastırı.</p></div>
+          </div>
+          <div class="place">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 20l7-14 5 9 3-5 5 10z"/><path d="M7.5 11l2 2 2-2.5"/></svg></div>
+            <div><div class="meta" data-i18n="place3_m">3.253 m · ufuktaki volkan</div><h3 data-i18n="place3_h">Hasan Dağı</h3><p data-i18n="place3_p">Güzelyurt'un havasını ve manzarasını belirleyen, kışın karlı sönmüş volkan.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galeri">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="galeri_eyebrow">Galeri</span>
+      <h2 data-i18n="galeri_h">Taş, ay ve avlu.</h2>
+      <p data-i18n="galeri_sub">Fotoğraflar konağın Google ve TripAdvisor profilinden alındı; yayında dilediklerinizle değiştiririz.</p>
+    </div>
+    <div class="tiles reveal">
+      <button class="tile t1" data-lb="assets/images/hero.jpg" data-cap-i18n="cap_g1" aria-label="Büyüt"><span class="cap" data-i18n="cap_g1">Avlu · ay ışığında</span></button>
+      <button class="tile t2" data-lb="assets/images/konak.jpg" data-cap-i18n="cap_g2" aria-label="Büyüt"><span class="cap" data-i18n="cap_g2">Konak cephesi · gül mevsimi</span></button>
+      <button class="tile t3" data-lb="assets/images/oda.jpg" data-cap-i18n="cap_g3" aria-label="Büyüt"><span class="cap" data-i18n="cap_g3">Tonozlu oda · sedir</span></button>
+      <button class="tile t4" data-lb="assets/images/oda-2.jpg" data-cap-i18n="cap_g4" aria-label="Büyüt"><span class="cap" data-i18n="cap_g4">Taş oda · soba ve kilimler</span></button>
+      <button class="tile t5" data-lb="assets/images/avlu.jpg" data-cap-i18n="cap_g5" aria-label="Büyüt"><span class="cap" data-i18n="cap_g5">Avlu · alaca karanlık</span></button>
+      <button class="tile t6" data-lb="assets/images/konum.jpg" data-cap-i18n="cap_g6" aria-label="Büyüt"><span class="cap" data-i18n="cap_g6">Çatıdan kasaba ve tepeler</span></button>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <img id="lbImg" alt="">
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="rez" id="rez">
+  <div class="wrap">
+    <div class="rez-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="rez_eyebrow">Rezervasyon</span>
+        <h2 style="margin-top:16px" data-i18n="rez_h" data-i18n-html="1">Taş avluda <em>yerinizi ayırtın.</em></h2>
+        <p class="lede" data-i18n="rez_lede">Tarihlerinizi bırakın, WhatsApp'tan hızlıca dönelim. Gelmeden önce merak ettiğiniz her şeyi sorun.</p>
+        <a class="wa-link" href="https://wa.me/905445224406" target="_blank" rel="noopener">
+          <span class="wab"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg></span>
+          <span>+90 544 522 44 06<small data-i18n="rez_wa_sub">WhatsApp · Osmanoğlu Hotel</small></span>
+        </a>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-in" data-i18n="label_in">Giriş</label><input type="date" id="f-in"></div>
+          <div class="field"><label for="f-out" data-i18n="label_out">Çıkış</label><input type="date" id="f-out"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-people" data-i18n="label_people">Kişi</label>
+            <select id="f-people">
+              <option data-i18n="opt_1">1 kişi</option><option data-i18n="opt_2">2 kişi</option><option data-i18n="opt_3">3 kişi</option><option data-i18n="opt_4">4+ kişi</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-note" data-i18n="label_note">Not (isteğe bağlı)</label><input type="text" id="f-note" data-i18n-ph="ph_note" placeholder="Örn. geç giriş"></div>
+        </div>
+        <button class="submit" type="button" onclick="sendReservation()">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg>
+          <span data-i18n="btn_rez">WhatsApp'tan sor</span>
+        </button>
+        <p class="note" data-i18n="rez_note">Butona basınca tarihlerinizle hazırlanmış mesaj WhatsApp'ta açılır — dilerseniz düzenleyip gönderin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Osmanoğlu Hotel<small>Güzelyurt · Gelveri · Aksaray</small></div>
+        <p style="max-width:330px;font-weight:300" data-i18n="foot_about">Kapadokya'nın sessiz tarafında, Güzelyurt'un asırlık taş sokaklarında, avlulu bir taş konak.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#konak" data-i18n="nav_konak">Konak</a></li>
+          <li><a href="#odalar" data-i18n="nav_odalar">Odalar</a></li>
+          <li><a href="#cevre" data-i18n="nav_cevre">Çevre</a></li>
+          <li><a href="#galeri" data-i18n="nav_galeri">Galeri</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li><a href="https://wa.me/905445224406" target="_blank" rel="noopener">WhatsApp · +90 544 522 44 06</a></li>
+          <li data-i18n="foot_loc">Güzelyurt / Aksaray</li>
+          <li data-i18n="foot_hours">Dört mevsim açık</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Osmanoğlu Hotel — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ==================== */
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+  const LERP=0.085, WHEEL_MULT=0.9;
+  let target=window.scrollY, current=window.scrollY, running=false, rafId=null;
+  function clampTarget(){ const max=document.documentElement.scrollHeight-window.innerHeight; if(target<0)target=0; if(target>max)target=max; }
+  function loop(){ current+=(target-current)*LERP; if(Math.abs(target-current)<0.4){ current=target; window.scrollTo(0,current); running=false; return; } window.scrollTo(0,current); rafId=requestAnimationFrame(loop); }
+  function start(){ if(!running){ running=true; rafId=requestAnimationFrame(loop); } }
+  function isPrevented(el){ while(el&&el!==document.body){ const t=el.tagName; if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT'||t==='BUTTON') return true; if(el.hasAttribute&&el.hasAttribute('data-lenis-prevent')) return true; el=el.parentElement; } return false; }
+  window.addEventListener('wheel',function(e){ if(isPrevented(e.target)) return; e.preventDefault(); if(!running)current=window.scrollY; target=(running?target:window.scrollY)+e.deltaY*WHEEL_MULT; clampTarget(); start(); },{passive:false});
+  window.addEventListener('scroll',function(){ if(!running){ target=window.scrollY; current=window.scrollY; } },{passive:true});
+  window.addEventListener('resize',clampTarget);
+  function smoothTo(el){ const y=el.getBoundingClientRect().top+window.scrollY-64; target=y; clampTarget(); current=window.scrollY; start(); }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',e=>{ const id=a.getAttribute('href'); if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); smoothTo(t); } } }); });
+  function setupPlainAnchors(){ document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',e=>{ const id=a.getAttribute('href'); if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } } }); }); }
+})();
+</script>
+
+<script>
+/* ==================== i18n SÖZLÜĞÜ ==================== */
+const I18N = {
+ tr:{
+  meta_title:"Osmanoğlu Hotel — Güzelyurt (Gelveri), Aksaray · Kapadokya Taş Avlu Konağı",
+  meta_desc:"Güzelyurt'un — eski adıyla Gelveri'nin — sessiz sokaklarında, kesme taştan bir avlu konağı. Beşik tonozlu odalar, ay ışığında bir avlu ve gerçekten dingin geceler.",
+  brand_sub:"Güzelyurt · Gelveri",
+  nav_konak:"Konak",nav_odalar:"Odalar",nav_cevre:"Çevre",nav_galeri:"Galeri",nav_rez:"Rezervasyon",
+  hero_eyebrow:"Güzelyurt · Gelveri · Kapadokya",
+  hero_title:"Ay ışığında,<br>asırlık bir <em>taş konak.</em>",
+  hero_lede:"Güzelyurt'un — eski adıyla Gelveri'nin — sessiz sokaklarında, kesme taştan bir avlu konağı. Tonozlu odalar, akşam sıcacık yanan bir kapı ve gerçekten dingin geceler.",
+  hero_cta1:"Yer ayırtın",hero_cta2:"Konağı gezin",scroll_hint:"Aşağı in",
+  pf1:"Google misafir puanı",pf2n:"Gelveri",pf2:"Güzelyurt'un asırlık adı",pf3n:"Kesme taş",pf3:"Restore avlu konağı",pf4n:"Beşik tonoz",pf4:"Taş kemerli odalar",
+  konak_eyebrow:"Konak",konak_h:"Bir avlunun çevresinde, simetrik taş bir konak.",
+  konak_sub:"Güzelyurt'un sakin bir sokağında, kesme taştan örülü iki katlı bir konak ve onu saran taş avlu.",
+  konak_lead:"Cephesinde alnında bir bayrak dalgalanan, kemerli kapısı akşam sıcacık yanan bir konak.",
+  konak_p1:"İnce işçilikle kesilmiş tüf taşı, avluyu çeviren duvarlar, ortasında gül ve asma. Osmanoğlu adı gibi, yıllara yaslanan bir yer — gösterişten değil, süreklilikten gelen bir ağırbaşlılık.",
+  konak_p2:"Otobüs turlarının, kalabalık meydanların uzağında. Sabah avluda kuş sesi, akşam taş duvarların üstünde ay var. Küçük, sahici, kendi hâlinde bir ev sahipliği.",
+  konak_sign:"— Osmanoğlu Hotel · Güzelyurt / Aksaray",
+  cap_konak:"Avlu · gül mevsiminde",
+  band_eyebrow:"Akşamüstü",band_q:"Avlunun üstünde bulutlar toplanıyor, taş ısınıyor, sonra ay çıkıyor.",band_cite:"Osmanoğlu Hotel · avlu · alaca karanlık",
+  odalar_eyebrow:"Odalar",odalar_h:"Beşik tonozun altında, taş duvarlar arasında.",
+  cap_oda:"Tonozlu oda · sedirli pencere",
+  odalar_lead:"Kemerli tonoz tavan, kesme taş duvarlar, pencere önünde kilimli bir sedir.",
+  odalar_p1:"Odalar konağın taş dokusunu olduğu gibi taşıyor: beşik tonozlu tavan, derin pencere nişleri ve önlerinde işlemeli beyaz perdeler. Yatakların üstünde el dokuması kilim örtüler.",
+  odalar_p2:"Kimi odada eski bir soba borusu tavana uzanıyor, duvarda folklorik dokumalar. Kalın taş, yazın sıcağını dışarıda, kış gecesinin soğuğunu kapıda bırakıyor.",
+  cevre_eyebrow:"Çevre",cevre_h:"Kapının önünde, ıssız Kapadokya.",
+  cevre_sub:"Güzelyurt, balon kalabalığının çok uzağında; Ihlara ve Manastır vadilerinin, Hasan Dağı'nın eteğinde bir taş kasaba.",
+  cap_konum:"Çatıdan Güzelyurt ve tepeler",
+  place1_m:"Kasabanın ucunda · yürüme mesafesi",place1_h:"Manastır Vadisi",place1_p:"Güzelyurt'un hemen yanı başından başlayan, kayaya oyulmuş kilise ve manastırlarla dolu sessiz bir yürüyüş vadisi.",
+  place2_m:"Yaklaşık yarım saat",place2_h:"Ihlara Vadisi & Selime",place2_p:"Melendiz boyunca uzanan derin kanyon ve ucundaki, tüfe oyulmuş devasa Selime kaya manastırı.",
+  place3_m:"3.253 m · ufuktaki volkan",place3_h:"Hasan Dağı",place3_p:"Güzelyurt'un havasını ve manzarasını belirleyen, kışın karlı sönmüş volkan.",
+  galeri_eyebrow:"Galeri",galeri_h:"Taş, ay ve avlu.",
+  galeri_sub:"Fotoğraflar konağın Google ve TripAdvisor profilinden alındı; yayında dilediklerinizle değiştiririz.",
+  cap_g1:"Avlu · ay ışığında",cap_g2:"Konak cephesi · gül mevsimi",cap_g3:"Tonozlu oda · sedir",cap_g4:"Taş oda · soba ve kilimler",cap_g5:"Avlu · alaca karanlık",cap_g6:"Çatıdan kasaba ve tepeler",
+  rez_eyebrow:"Rezervasyon",rez_h:"Taş avluda <em>yerinizi ayırtın.</em>",
+  rez_lede:"Tarihlerinizi bırakın, WhatsApp'tan hızlıca dönelim. Gelmeden önce merak ettiğiniz her şeyi sorun.",
+  rez_wa_sub:"WhatsApp · Osmanoğlu Hotel",
+  label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_in:"Giriş",label_out:"Çıkış",label_people:"Kişi",
+  opt_1:"1 kişi",opt_2:"2 kişi",opt_3:"3 kişi",opt_4:"4+ kişi",
+  label_note:"Not (isteğe bağlı)",ph_note:"Örn. geç giriş",btn_rez:"WhatsApp'tan sor",
+  rez_note:"Butona basınca tarihlerinizle hazırlanmış mesaj WhatsApp'ta açılır — dilerseniz düzenleyip gönderin.",
+  foot_about:"Kapadokya'nın sessiz tarafında, Güzelyurt'un asırlık taş sokaklarında, avlulu bir taş konak.",
+  foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Güzelyurt / Aksaray",foot_hours:"Dört mevsim açık",
+  foot_rights:"© 2026 Osmanoğlu Hotel — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+  wa_msg:"Merhaba, Osmanoğlu Hotel için rezervasyon sormak istiyorum:",wa_name:"Ad",wa_in:"Giriş",wa_out:"Çıkış",wa_people:"Kişi",wa_note:"Not",
+  copied:"WhatsApp açılıyor…",alert_fill:"Lütfen en azından adınızı ve giriş tarihini girin."
+ },
+ en:{
+  meta_title:"Osmanoğlu Hotel — Güzelyurt (Gelveri), Aksaray · A Stone Courtyard Konak in Cappadocia",
+  meta_desc:"On the quiet side of Cappadocia, a cut-stone courtyard konak in the old lanes of Güzelyurt (Gelveri). Barrel-vaulted rooms, a moonlit courtyard, and genuinely calm nights.",
+  brand_sub:"Güzelyurt · Gelveri",
+  nav_konak:"The Konak",nav_odalar:"Rooms",nav_cevre:"Around",nav_galeri:"Gallery",nav_rez:"Reserve",
+  hero_eyebrow:"Güzelyurt · Gelveri · Cappadocia",
+  hero_title:"Under the moon,<br>a centuries-old <em>stone konak.</em>",
+  hero_lede:"On the quiet lanes of Güzelyurt — once called Gelveri — a cut-stone courtyard konak. Vaulted rooms, a doorway that glows warm at dusk, and nights that are genuinely still.",
+  hero_cta1:"Reserve a stay",hero_cta2:"Tour the konak",scroll_hint:"Scroll down",
+  pf1:"Google guest rating",pf2n:"Gelveri",pf2:"Güzelyurt's old name",pf3n:"Cut stone",pf3:"Restored courtyard konak",pf4n:"Barrel vault",pf4:"Stone arched rooms",
+  konak_eyebrow:"The Konak",konak_h:"A symmetrical stone konak around a courtyard.",
+  konak_sub:"On a quiet street in Güzelyurt, a two-storey house built of cut stone, and the stone courtyard that wraps around it.",
+  konak_lead:"A konak with a flag on its gable and an arched doorway that glows warm in the evening.",
+  konak_p1:"Finely cut tuff stone, walls enclosing the courtyard, roses and vines at its centre. Like the name Osmanoğlu, this is a place that leans on the years — a composure that comes from continuity, not show.",
+  konak_p2:"Far from tour buses and crowded squares. Birdsong in the courtyard at dawn, the moon above the stone walls at night. Small, genuine, quietly run hospitality.",
+  konak_sign:"— Osmanoğlu Hotel · Güzelyurt / Aksaray",
+  cap_konak:"Courtyard · in rose season",
+  band_eyebrow:"At dusk",band_q:"Clouds gather over the courtyard, the stone holds its warmth, and then the moon comes out.",band_cite:"Osmanoğlu Hotel · courtyard · twilight",
+  odalar_eyebrow:"Rooms",odalar_h:"Under the barrel vault, between stone walls.",
+  cap_oda:"Vaulted room · window divan",
+  odalar_lead:"An arched vaulted ceiling, cut-stone walls, and a kilim-covered divan set into the window.",
+  odalar_p1:"The rooms carry the konak's stone texture as it is: barrel-vaulted ceilings, deep window niches with embroidered white curtains before them. Hand-woven kilim covers over the beds.",
+  odalar_p2:"In some rooms an old stove pipe rises to the ceiling, folk weavings on the wall. Thick stone keeps the summer heat outside and the cold of a winter night at the door.",
+  cevre_eyebrow:"Around",cevre_h:"An empty Cappadocia, just outside the door.",
+  cevre_sub:"Güzelyurt lies far from the balloon crowds — a stone town at the foot of the Ihlara and Monastery valleys and Mount Hasan.",
+  cap_konum:"From the roof: Güzelyurt and the hills",
+  place1_m:"At the town's edge · walking distance",place1_h:"Monastery Valley",place1_p:"A quiet walking valley beginning right beside Güzelyurt, full of churches and monasteries carved into the rock.",
+  place2_m:"About half an hour",place2_h:"Ihlara Valley & Selime",place2_p:"A deep canyon along the Melendiz stream, and at its end the vast Selime monastery carved into the tuff.",
+  place3_m:"3,253 m · the volcano on the horizon",place3_h:"Mount Hasan",place3_p:"The snow-capped dormant volcano that shapes Güzelyurt's air and its view.",
+  galeri_eyebrow:"Gallery",galeri_h:"Stone, moon, and courtyard.",
+  galeri_sub:"Photos taken from the konak's Google and TripAdvisor profiles; once live we swap in whichever you prefer.",
+  cap_g1:"Courtyard · by moonlight",cap_g2:"Konak facade · rose season",cap_g3:"Vaulted room · divan",cap_g4:"Stone room · stove and kilims",cap_g5:"Courtyard · twilight",cap_g6:"From the roof: town and hills",
+  rez_eyebrow:"Reserve",rez_h:"Reserve your place <em>in the stone courtyard.</em>",
+  rez_lede:"Leave your dates and we'll reply quickly on WhatsApp. Ask us anything before you arrive.",
+  rez_wa_sub:"WhatsApp · Osmanoğlu Hotel",
+  label_name:"Your name",ph_name:"Your full name",label_in:"Check-in",label_out:"Check-out",label_people:"Guests",
+  opt_1:"1 guest",opt_2:"2 guests",opt_3:"3 guests",opt_4:"4+ guests",
+  label_note:"Note (optional)",ph_note:"e.g. late arrival",btn_rez:"Ask on WhatsApp",
+  rez_note:"Tapping opens WhatsApp with your dates prefilled — edit it if you like, then send.",
+  foot_about:"A stone courtyard konak on the quiet side of Cappadocia, in the centuries-old stone lanes of Güzelyurt.",
+  foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Güzelyurt / Aksaray",foot_hours:"Open all four seasons",
+  foot_rights:"© 2026 Osmanoğlu Hotel — All rights reserved.",foot_demo:"Sample / Demo Design",
+  wa_msg:"Hello, I'd like to ask about a reservation at Osmanoğlu Hotel:",wa_name:"Name",wa_in:"Check-in",wa_out:"Check-out",wa_people:"Guests",wa_note:"Note",
+  copied:"Opening WhatsApp…",alert_fill:"Please enter at least your name and a check-in date."
+ },
+ es:{
+  meta_title:"Osmanoğlu Hotel — Güzelyurt (Gelveri), Aksaray · Konak de piedra con patio en Capadocia",
+  meta_desc:"En el lado tranquilo de Capadocia, un konak de piedra tallada con patio en las viejas calles de Güzelyurt (Gelveri). Habitaciones abovedadas, un patio bajo la luna y noches de verdad serenas.",
+  brand_sub:"Güzelyurt · Gelveri",
+  nav_konak:"El konak",nav_odalar:"Habitaciones",nav_cevre:"Alrededor",nav_galeri:"Galería",nav_rez:"Reservar",
+  hero_eyebrow:"Güzelyurt · Gelveri · Capadocia",
+  hero_title:"Bajo la luna,<br>un konak de piedra <em>centenario.</em>",
+  hero_lede:"En las calles tranquilas de Güzelyurt — antes llamada Gelveri — un konak de piedra tallada con patio. Habitaciones abovedadas, una puerta que se enciende al anochecer y noches de verdad serenas.",
+  hero_cta1:"Reserva tu estancia",hero_cta2:"Recorre el konak",scroll_hint:"Desliza",
+  pf1:"Reseña de Google",pf2n:"Gelveri",pf2:"Antiguo nombre de Güzelyurt",pf3n:"Piedra tallada",pf3:"Konak con patio restaurado",pf4n:"Bóveda",pf4:"Habitaciones abovedadas",
+  konak_eyebrow:"El konak",konak_h:"Un konak de piedra simétrico en torno a un patio.",
+  konak_sub:"En una calle tranquila de Güzelyurt, una casa de dos plantas de piedra tallada y el patio de piedra que la envuelve.",
+  konak_lead:"Un konak con una bandera en el frontón y una puerta en arco que se enciende cálida al anochecer.",
+  konak_p1:"Toba finamente tallada, muros que cierran el patio, rosas y parras en el centro. Como el nombre Osmanoğlu, es un lugar que se apoya en los años — una serenidad que viene de la continuidad, no del alarde.",
+  konak_p2:"Lejos de los autobuses turísticos y las plazas abarrotadas. Cantos de pájaros en el patio al amanecer, la luna sobre los muros de piedra por la noche. Una hospitalidad pequeña, auténtica y llevada con calma.",
+  konak_sign:"— Osmanoğlu Hotel · Güzelyurt / Aksaray",
+  cap_konak:"Patio · en temporada de rosas",
+  band_eyebrow:"Al anochecer",band_q:"Las nubes se juntan sobre el patio, la piedra guarda su calor, y entonces sale la luna.",band_cite:"Osmanoğlu Hotel · patio · crepúsculo",
+  odalar_eyebrow:"Habitaciones",odalar_h:"Bajo la bóveda de cañón, entre muros de piedra.",
+  cap_oda:"Habitación abovedada · diván en la ventana",
+  odalar_lead:"Techo abovedado en arco, muros de piedra tallada y un diván con kilim junto a la ventana.",
+  odalar_p1:"Las habitaciones conservan la textura de piedra del konak: techos de bóveda de cañón, hornacinas profundas en las ventanas con cortinas blancas bordadas. Sobre las camas, colchas de kilim tejidas a mano.",
+  odalar_p2:"En algunas habitaciones un viejo tubo de estufa sube al techo, con tejidos folclóricos en la pared. La piedra gruesa deja fuera el calor del verano y el frío de la noche de invierno en la puerta.",
+  cevre_eyebrow:"Alrededor",cevre_h:"Una Capadocia desierta, justo tras la puerta.",
+  cevre_sub:"Güzelyurt queda lejos de las multitudes de globos: un pueblo de piedra al pie de los valles de Ihlara y del Monasterio y del monte Hasan.",
+  cap_konum:"Desde el tejado: Güzelyurt y las colinas",
+  place1_m:"Al borde del pueblo · a pie",place1_h:"Valle del Monasterio",place1_p:"Un valle tranquilo para caminar que empieza junto a Güzelyurt, lleno de iglesias y monasterios excavados en la roca.",
+  place2_m:"Alrededor de media hora",place2_h:"Valle de Ihlara y Selime",place2_p:"Un cañón profundo a lo largo del arroyo Melendiz y, en su extremo, el enorme monasterio de Selime tallado en la toba.",
+  place3_m:"3.253 m · el volcán del horizonte",place3_h:"Monte Hasan",place3_p:"El volcán nevado que define el aire y las vistas de Güzelyurt.",
+  galeri_eyebrow:"Galería",galeri_h:"Piedra, luna y patio.",
+  galeri_sub:"Fotos tomadas de los perfiles de Google y TripAdvisor del konak; una vez en línea las cambiamos por las que prefieras.",
+  cap_g1:"Patio · a la luz de la luna",cap_g2:"Fachada del konak · rosas",cap_g3:"Habitación abovedada · diván",cap_g4:"Habitación de piedra · estufa y kilims",cap_g5:"Patio · crepúsculo",cap_g6:"Desde el tejado: pueblo y colinas",
+  rez_eyebrow:"Reservar",rez_h:"Reserva tu lugar <em>en el patio de piedra.</em>",
+  rez_lede:"Déjanos tus fechas y te responderemos pronto por WhatsApp. Pregúntanos lo que quieras antes de llegar.",
+  rez_wa_sub:"WhatsApp · Osmanoğlu Hotel",
+  label_name:"Tu nombre",ph_name:"Tu nombre completo",label_in:"Entrada",label_out:"Salida",label_people:"Personas",
+  opt_1:"1 persona",opt_2:"2 personas",opt_3:"3 personas",opt_4:"4+ personas",
+  label_note:"Nota (opcional)",ph_note:"Ej. llegada tardía",btn_rez:"Preguntar por WhatsApp",
+  rez_note:"Al pulsar se abre WhatsApp con tus fechas ya escritas — edítalo si quieres y envía.",
+  foot_about:"Un konak de piedra con patio en el lado tranquilo de Capadocia, en las calles centenarias de Güzelyurt.",
+  foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Güzelyurt / Aksaray",foot_hours:"Abierto las cuatro estaciones",
+  foot_rights:"© 2026 Osmanoğlu Hotel — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+  wa_msg:"Hola, quisiera preguntar por una reserva en Osmanoğlu Hotel:",wa_name:"Nombre",wa_in:"Entrada",wa_out:"Salida",wa_people:"Personas",wa_note:"Nota",
+  copied:"Abriendo WhatsApp…",alert_fill:"Por favor, introduce al menos tu nombre y una fecha de entrada."
+ },
+ "zh-CN":{
+  meta_title:"Osmanoğlu Hotel — 阿克萨赖·居泽尔尤尔特（Gelveri）· 卡帕多奇亚石头庭院宅邸",
+  meta_desc:"在卡帕多奇亚宁静的一隅，居泽尔尤尔特（旧称 Gelveri）古老街巷中的一座切石庭院宅邸。筒形拱顶客房、月色下的庭院，以及真正宁静的夜晚。",
+  brand_sub:"居泽尔尤尔特 · Gelveri",
+  nav_konak:"宅邸",nav_odalar:"客房",nav_cevre:"周边",nav_galeri:"相册",nav_rez:"预订",
+  hero_eyebrow:"居泽尔尤尔特 · Gelveri · 卡帕多奇亚",
+  hero_title:"月色之下，<br>一座百年<em>石头宅邸。</em>",
+  hero_lede:"在居泽尔尤尔特——旧称 Gelveri——安静的街巷里，一座切石庭院宅邸。拱顶客房、黄昏时暖暖亮起的门扉，以及真正安宁的夜。",
+  hero_cta1:"预订入住",hero_cta2:"参观宅邸",scroll_hint:"向下滑",
+  pf1:"谷歌住客评分",pf2n:"Gelveri",pf2:"居泽尔尤尔特的旧称",pf3n:"切石",pf3:"修复的庭院宅邸",pf4n:"筒形拱顶",pf4:"石拱客房",
+  konak_eyebrow:"宅邸",konak_h:"围绕庭院的一座对称石头宅邸。",
+  konak_sub:"在居泽尔尤尔特一条安静的街上，一座切石砌成的两层宅邸，以及环抱它的石头庭院。",
+  konak_lead:"山墙上飘着一面旗，拱形门扉在傍晚暖暖亮起的一座宅邸。",
+  konak_p1:"精细切割的凝灰岩、围合庭院的石墙，中央是玫瑰与葡萄藤。正如 Osmanoğlu（奥斯曼之子）这个名字，这里是一处倚靠着岁月的地方——那份沉稳来自延续，而非张扬。",
+  konak_p2:"远离旅游巴士与喧闹的广场。清晨庭院里有鸟鸣，夜里石墙之上有明月。小巧、真实、以从容之心经营的待客之道。",
+  konak_sign:"— Osmanoğlu Hotel · 居泽尔尤尔特 / 阿克萨赖",
+  cap_konak:"庭院 · 玫瑰季",
+  band_eyebrow:"傍晚",band_q:"云在庭院上方聚拢，石头留着余温，然后月亮升起。",band_cite:"Osmanoğlu Hotel · 庭院 · 暮色",
+  odalar_eyebrow:"客房",odalar_h:"在筒形拱顶之下，石墙之间。",
+  cap_oda:"拱顶客房 · 窗边坐榻",
+  odalar_lead:"拱形筒顶、切石墙面，窗前一张铺着基里姆的坐榻。",
+  odalar_p1:"客房原样保留着宅邸的石质肌理：筒形拱顶、深深的窗龛，窗前是绣花白窗帘。床上铺着手织基里姆盖毯。",
+  odalar_p2:"有些客房里，一截旧火炉烟管通向天花板，墙上挂着民俗织物。厚厚的石头把夏日的炎热挡在门外，把冬夜的寒冷留在门口。",
+  cevre_eyebrow:"周边",cevre_h:"门外，便是空寂的卡帕多奇亚。",
+  cevre_sub:"居泽尔尤尔特远离热气球人潮——一座石头小镇，坐落在伊赫拉拉谷、修道院谷与哈桑山脚下。",
+  cap_konum:"从屋顶望向居泽尔尤尔特与群山",
+  place1_m:"镇子边缘 · 步行可达",place1_h:"修道院谷",place1_p:"就从居泽尔尤尔特旁边开始的一条安静步道山谷，满是凿入岩石的教堂与修道院。",
+  place2_m:"约半小时",place2_h:"伊赫拉拉谷与 Selime",place2_p:"沿梅伦迪兹溪延伸的深峡谷，尽头是凿入凝灰岩的巨大 Selime 岩石修道院。",
+  place3_m:"3,253 米 · 地平线上的火山",place3_h:"哈桑山",place3_p:"决定居泽尔尤尔特空气与景致的雪顶死火山。",
+  galeri_eyebrow:"相册",galeri_h:"石头、明月与庭院。",
+  galeri_sub:"照片取自宅邸的谷歌与 TripAdvisor 主页；正式上线后可换成您喜欢的任意照片。",
+  cap_g1:"庭院 · 月色下",cap_g2:"宅邸正立面 · 玫瑰季",cap_g3:"拱顶客房 · 坐榻",cap_g4:"石头客房 · 火炉与基里姆",cap_g5:"庭院 · 暮色",cap_g6:"从屋顶望向小镇与群山",
+  rez_eyebrow:"预订",rez_h:"在石头庭院里，<em>为您留一处。</em>",
+  rez_lede:"留下您的日期，我们会尽快用 WhatsApp 回复。抵达前有任何疑问都欢迎询问。",
+  rez_wa_sub:"WhatsApp · Osmanoğlu Hotel",
+  label_name:"您的姓名",ph_name:"您的全名",label_in:"入住",label_out:"退房",label_people:"人数",
+  opt_1:"1 人",opt_2:"2 人",opt_3:"3 人",opt_4:"4 人以上",
+  label_note:"备注（可选）",ph_note:"例如：较晚抵达",btn_rez:"用 WhatsApp 询问",
+  rez_note:"点击后会打开 WhatsApp，并已填好您的日期——可自行修改后发送。",
+  foot_about:"卡帕多奇亚宁静一隅、居泽尔尤尔特百年石巷中的一座石头庭院宅邸。",
+  foot_explore:"探索",foot_contact:"联系",foot_loc:"居泽尔尤尔特 / 阿克萨赖",foot_hours:"四季开放",
+  foot_rights:"© 2026 Osmanoğlu Hotel — 版权所有。",foot_demo:"示例 / 演示设计",
+  wa_msg:"您好，我想咨询 Osmanoğlu Hotel 的预订：",wa_name:"姓名",wa_in:"入住",wa_out:"退房",wa_people:"人数",wa_note:"备注",
+  copied:"正在打开 WhatsApp…",alert_fill:"请至少填写您的姓名和入住日期。"
+ },
+ ko:{
+  meta_title:"Osmanoğlu Hotel — 귀젤유르트(Gelveri), 아크사라이 · 카파도키아 돌 안뜰 저택",
+  meta_desc:"카파도키아의 고요한 곳, 귀젤유르트(옛 이름 Gelveri)의 오래된 골목에 자리한 절석 안뜰 저택. 배럴 볼트 객실, 달빛 어린 안뜰, 그리고 정말로 고요한 밤.",
+  brand_sub:"귀젤유르트 · Gelveri",
+  nav_konak:"저택",nav_odalar:"객실",nav_cevre:"주변",nav_galeri:"갤러리",nav_rez:"예약",
+  hero_eyebrow:"귀젤유르트 · Gelveri · 카파도키아",
+  hero_title:"달빛 아래,<br>수백 년 된 <em>돌 저택.</em>",
+  hero_lede:"귀젤유르트 — 옛 이름 Gelveri — 의 고요한 골목에 자리한 절석 안뜰 저택. 볼트 천장의 객실, 해질녘 따뜻하게 밝혀지는 문, 그리고 진정으로 고요한 밤.",
+  hero_cta1:"숙박 예약",hero_cta2:"저택 둘러보기",scroll_hint:"아래로",
+  pf1:"구글 이용객 평점",pf2n:"Gelveri",pf2:"귀젤유르트의 옛 이름",pf3n:"절석",pf3:"복원된 안뜰 저택",pf4n:"배럴 볼트",pf4:"돌 아치 객실",
+  konak_eyebrow:"저택",konak_h:"안뜰을 둘러싼 대칭의 돌 저택.",
+  konak_sub:"귀젤유르트의 조용한 거리에, 절석으로 쌓아 올린 2층 저택과 그것을 감싸는 돌 안뜰.",
+  konak_lead:"박공에 깃발이 나부끼고, 아치형 문이 저녁이면 따뜻하게 밝혀지는 저택.",
+  konak_p1:"정교하게 다듬은 응회암, 안뜰을 두른 담장, 그 가운데 장미와 포도 넝쿨. Osmanoğlu(오스만의 후손)라는 이름처럼, 세월에 기댄 곳 — 과시가 아니라 이어짐에서 오는 묵직함.",
+  konak_p2:"관광버스와 붐비는 광장에서 멀리. 새벽 안뜰의 새소리, 밤이면 돌담 위의 달. 작고 진솔하며 조용히 꾸려가는 환대.",
+  konak_sign:"— Osmanoğlu Hotel · 귀젤유르트 / 아크사라이",
+  cap_konak:"안뜰 · 장미 철에",
+  band_eyebrow:"해질녘",band_q:"안뜰 위로 구름이 모이고, 돌은 온기를 머금고, 이윽고 달이 떠오릅니다.",band_cite:"Osmanoğlu Hotel · 안뜰 · 어스름",
+  odalar_eyebrow:"객실",odalar_h:"배럴 볼트 아래, 돌벽 사이에서.",
+  cap_oda:"볼트 객실 · 창가 세디르",
+  odalar_lead:"아치형 볼트 천장, 절석 벽, 창가에 놓인 킬림 덮인 세디르(긴 의자).",
+  odalar_p1:"객실은 저택의 돌 질감을 그대로 간직합니다: 배럴 볼트 천장, 깊은 창 벽감과 그 앞의 수 놓인 하얀 커튼. 침대 위에는 손으로 짠 킬림 덮개.",
+  odalar_p2:"어떤 객실에는 낡은 난로 연통이 천장으로 올라가고, 벽에는 민속 직물이 걸립니다. 두꺼운 돌은 여름의 더위를 문밖에, 겨울밤의 추위를 문 앞에 둡니다.",
+  cevre_eyebrow:"주변",cevre_h:"문밖은, 인적 드문 카파도키아.",
+  cevre_sub:"귀젤유르트는 열기구 인파에서 멀리 — 이흘라라 계곡과 수도원 계곡, 하산 산 기슭의 돌 마을입니다.",
+  cap_konum:"옥상에서 본 귀젤유르트와 언덕",
+  place1_m:"마을 끝 · 도보 거리",place1_h:"수도원 계곡",place1_p:"귀젤유르트 바로 옆에서 시작되는 고요한 도보 계곡, 바위에 새긴 교회와 수도원으로 가득합니다.",
+  place2_m:"약 30분",place2_h:"이흘라라 계곡 & Selime",place2_p:"멜렌디즈 개울을 따라 이어지는 깊은 협곡, 그 끝에 응회암을 파낸 거대한 Selime 바위 수도원.",
+  place3_m:"3,253 m · 지평선의 화산",place3_h:"하산 산",place3_p:"귀젤유르트의 공기와 풍경을 결정짓는, 겨울이면 눈 덮이는 사화산.",
+  galeri_eyebrow:"갤러리",galeri_h:"돌, 달, 그리고 안뜰.",
+  galeri_sub:"사진은 저택의 구글·트립어드바이저 프로필에서 가져왔습니다; 정식 공개 후 원하시는 사진으로 교체해 드립니다.",
+  cap_g1:"안뜰 · 달빛 아래",cap_g2:"저택 정면 · 장미 철",cap_g3:"볼트 객실 · 세디르",cap_g4:"돌 객실 · 난로와 킬림",cap_g5:"안뜰 · 어스름",cap_g6:"옥상에서 본 마을과 언덕",
+  rez_eyebrow:"예약",rez_h:"돌 안뜰에 <em>자리를 예약하세요.</em>",
+  rez_lede:"날짜를 남겨 주시면 WhatsApp으로 곧 답장드립니다. 오시기 전 궁금한 점은 무엇이든 물어보세요.",
+  rez_wa_sub:"WhatsApp · Osmanoğlu Hotel",
+  label_name:"성함",ph_name:"성함을 입력하세요",label_in:"체크인",label_out:"체크아웃",label_people:"인원",
+  opt_1:"1명",opt_2:"2명",opt_3:"3명",opt_4:"4명 이상",
+  label_note:"메모 (선택)",ph_note:"예: 늦은 도착",btn_rez:"WhatsApp으로 문의",
+  rez_note:"버튼을 누르면 날짜가 입력된 메시지와 함께 WhatsApp이 열립니다 — 수정 후 보내세요.",
+  foot_about:"카파도키아의 고요한 곳, 귀젤유르트의 오래된 돌 골목에 자리한 돌 안뜰 저택.",
+  foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"귀젤유르트 / 아크사라이",foot_hours:"사계절 운영",
+  foot_rights:"© 2026 Osmanoğlu Hotel — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+  wa_msg:"안녕하세요, Osmanoğlu Hotel 예약을 문의하고 싶습니다:",wa_name:"성함",wa_in:"체크인",wa_out:"체크아웃",wa_people:"인원",wa_note:"메모",
+  copied:"WhatsApp을 여는 중…",alert_fill:"성함과 체크인 날짜를 최소한 입력해 주세요."
+ }
+};
+
+/* ==================== i18n MOTORU ==================== */
+const SUPPORTED=['tr','en','es','zh-CN','ko'];
+let currentLang='tr';
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang=lang;
+  const dict=I18N[lang];
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n'); if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML=dict[key]; else el.textContent=dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ const key=el.getAttribute('data-i18n-ph'); if(dict[key]!==undefined) el.setAttribute('placeholder',dict[key]); });
+  if(dict.meta_title) document.title=dict.meta_title;
+  const md=document.querySelector('meta[name="description"]'); if(md&&dict.meta_desc) md.setAttribute('content',dict.meta_desc);
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>b.classList.toggle('active',b.getAttribute('data-lang')===lang));
+  try{ localStorage.setItem('osman_lang',lang); }catch(e){}
+  if(window.__navRemeasure) setTimeout(window.__navRemeasure,60);
+}
+function initLang(){
+  let lang=null;
+  const url=new URLSearchParams(location.search).get('lang');
+  if(url&&SUPPORTED.includes(url)) lang=url;
+  if(!lang){ try{ const s=localStorage.getItem('osman_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click',()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+/* ==================== TEMA ==================== */
+(function(){
+  const btn=document.getElementById('themeBtn');
+  function set(t){ document.documentElement.setAttribute('data-theme',t); try{localStorage.setItem('osman_theme',t);}catch(e){} if(window.__navRemeasure) setTimeout(window.__navRemeasure,60); }
+  btn.addEventListener('click',()=>{ const cur=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark'; set(cur==='light'?'dark':'light'); });
+})();
+
+/* ==================== MOBİL MENÜ ==================== */
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+/* ==================== NAV SCROLL + KESME TAŞ SÜRGÜSÜ ==================== */
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+(function(){
+  const links=[...document.querySelectorAll('.navlinks a[data-nav]')];
+  const stone=document.querySelector('.nav-stone');
+  const box=document.querySelector('.navlinks');
+  if(!links.length||!stone||!box) return;
+  let active=links[0];
+  function moveTo(el){ if(!el) return; const br=box.getBoundingClientRect(),r=el.getBoundingClientRect(); stone.style.width=r.width+'px'; stone.style.transform='translateX('+(r.left-br.left)+'px)'; stone.style.opacity=1; }
+  function setActive(el){ if(!el) return; active=el; links.forEach(l=>l.classList.toggle('cur',l===el)); moveTo(el); }
+  links.forEach(l=>{ l.addEventListener('mouseenter',()=>moveTo(l)); l.addEventListener('mouseleave',()=>moveTo(active)); });
+  const secs=links.map(l=>document.querySelector(l.getAttribute('href')));
+  function spy(){ const y=window.scrollY+130; let cur=active; for(let i=0;i<secs.length;i++){ if(secs[i]&&secs[i].offsetTop<=y) cur=links[i]; } if(cur!==active) setActive(cur); }
+  window.addEventListener('scroll',spy,{passive:true});
+  window.addEventListener('resize',()=>moveTo(active));
+  window.__navRemeasure=()=>moveTo(active);
+  setActive(links[0]);
+  setTimeout(()=>moveTo(active),200);
+})();
+
+/* ==================== REVEAL ==================== */
+const io=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.16});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ==================== LIGHTBOX ==================== */
+(function(){
+  const lb=document.getElementById('lightbox'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap');
+  const btns=[...document.querySelectorAll('[data-lb]')];
+  if(!lb||!btns.length) return;
+  function open(src,capKey){ img.src=src; cap.textContent=(I18N[currentLang][capKey]||''); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  btns.forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); open(b.getAttribute('data-lb'),b.getAttribute('data-cap-i18n')); }));
+  document.getElementById('lbClose').addEventListener('click',close);
+  lb.addEventListener('click',e=>{ if(e.target===lb) close(); });
+  document.addEventListener('keydown',e=>{ if(lb.classList.contains('open')&&e.key==='Escape') close(); });
+})();
+
+/* ==================== REZERVASYON → WHATSAPP ==================== */
+const WHATSAPP="905445224406";
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),3200); }
+function sendReservation(){
+  const d=I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const cin=document.getElementById('f-in').value;
+  const cout=document.getElementById('f-out').value;
+  const ppl=document.getElementById('f-people').value;
+  const note=document.getElementById('f-note').value.trim();
+  if(!name||!cin){ alert(d.alert_fill); return; }
+  let msg=d.wa_msg+"%0A%0A"+d.wa_name+": "+encodeURIComponent(name)+"%0A"+d.wa_in+": "+encodeURIComponent(cin)+"%0A"+d.wa_out+": "+encodeURIComponent(cout||"—")+"%0A"+d.wa_people+": "+encodeURIComponent(ppl);
+  if(note) msg+="%0A"+d.wa_note+": "+encodeURIComponent(note);
+  showToast(d.copied);
+  window.open("https://wa.me/"+WHATSAPP+"?text="+msg,"_blank","noopener");
+}
+
+/* ==================== BAŞLAT ==================== */
+initLang();
+</script>
+
+<script>
+/* ==================== HERO MESH — whatamesh (MIT) · file:// güvenli ==================== */
+function normalizeColor(hexCode){return[((hexCode>>16)&255)/255,((hexCode>>8)&255)/255,(255&hexCode)/255];}
+["SCREEN","LINEAR_LIGHT"].reduce((hexCode,t,n)=>Object.assign(hexCode,{[t]:n}),{});
+class MiniGl{constructor(canvas,width,height,debug=false){const _miniGl=this,debug_output=-1!==document.location.search.toLowerCase().indexOf("debug=webgl");(_miniGl.canvas=canvas),(_miniGl.gl=_miniGl.canvas.getContext("webgl",{antialias:true})),(_miniGl.meshes=[]);const context=_miniGl.gl;width&&height&&this.setSize(width,height),_miniGl.lastDebugMsg,(_miniGl.debug=debug&&debug_output?function(e){const t=new Date();t-_miniGl.lastDebugMsg>1e3&&console.log("---"),console.log(t.toLocaleTimeString()+Array(Math.max(0,32-e.length)).join(" ")+e+": ",...Array.from(arguments).slice(1)),(_miniGl.lastDebugMsg=t);}:()=>{}),Object.defineProperties(_miniGl,{Material:{enumerable:false,value:class{constructor(vertexShaders,fragments,uniforms={}){const material=this;function getShaderByType(type,source){const shader=context.createShader(type);return context.shaderSource(shader,source),context.compileShader(shader),context.getShaderParameter(shader,context.COMPILE_STATUS)||console.error(context.getShaderInfoLog(shader)),_miniGl.debug("Material.compileShaderSource",{source:source}),shader;}function getUniformVariableDeclarations(uniforms,type){return Object.entries(uniforms).map(([uniform,value])=>value.getDeclaration(uniform,type)).join("\n");}(material.uniforms=uniforms),(material.uniformInstances=[]);const prefix="\n              precision highp float;\n            ";(material.vertexSource=`\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(_miniGl.commonUniforms,"vertex")}\n              ${getUniformVariableDeclarations(uniforms,"vertex")}\n              ${vertexShaders}\n            `),(material.Source=`\n              ${prefix}\n              ${getUniformVariableDeclarations(_miniGl.commonUniforms,"fragment")}\n              ${getUniformVariableDeclarations(uniforms,"fragment")}\n              ${fragments}\n            `),(material.vertexShader=getShaderByType(context.VERTEX_SHADER,material.vertexSource)),(material.fragmentShader=getShaderByType(context.FRAGMENT_SHADER,material.Source)),(material.program=context.createProgram()),context.attachShader(material.program,material.vertexShader),context.attachShader(material.program,material.fragmentShader),context.linkProgram(material.program),context.getProgramParameter(material.program,context.LINK_STATUS)||console.error(context.getProgramInfoLog(material.program)),context.useProgram(material.program),material.attachUniforms(void 0,_miniGl.commonUniforms),material.attachUniforms(void 0,material.uniforms);}attachUniforms(name,uniforms){const material=this;void 0===name?Object.entries(uniforms).forEach(([name,uniform])=>{material.attachUniforms(name,uniform);}):"array"==uniforms.type?uniforms.value.forEach((uniform,i)=>material.attachUniforms(`${name}[${i}]`,uniform)):"struct"==uniforms.type?Object.entries(uniforms.value).forEach(([uniform,i])=>material.attachUniforms(`${name}.${uniform}`,i)):(_miniGl.debug("Material.attachUniforms",{name:name,uniform:uniforms}),material.uniformInstances.push({uniform:uniforms,location:context.getUniformLocation(material.program,name)}));}}},Uniform:{enumerable:!1,value:class{constructor(e){(this.type="float"),Object.assign(this,e);(this.typeFn={float:"1f",int:"1i",vec2:"2fv",vec3:"3fv",vec4:"4fv",mat4:"Matrix4fv"}[this.type]||"1f"),this.update();}update(value){void 0!==this.value&&context[`uniform${this.typeFn}`](value,0===this.typeFn.indexOf("Matrix")?this.transpose:this.value,0===this.typeFn.indexOf("Matrix")?this.value:null);}getDeclaration(name,type,length){const uniform=this;if(uniform.excludeFrom!==type){if("array"===uniform.type)return uniform.value[0].getDeclaration(name,type,uniform.value.length)+`\nconst int ${name}_length = ${uniform.value.length};`;if("struct"===uniform.type){let name_no_prefix=name.replace("u_","");return(name_no_prefix=name_no_prefix.charAt(0).toUpperCase()+name_no_prefix.slice(1)),`uniform struct ${name_no_prefix} \n                                    {\n`+Object.entries(uniform.value).map(([name,uniform])=>uniform.getDeclaration(name,type).replace(/^uniform/,"")).join("")+`\n} ${name}${length>0?`[${length}]`:""};`;}return`uniform ${uniform.type} ${name}${length>0?`[${length}]`:""};`;}}}},PlaneGeometry:{enumerable:!1,value:class{constructor(width,height,n,i,orientation){context.createBuffer(),(this.attributes={position:new _miniGl.Attribute({target:context.ARRAY_BUFFER,size:3}),uv:new _miniGl.Attribute({target:context.ARRAY_BUFFER,size:2}),uvNorm:new _miniGl.Attribute({target:context.ARRAY_BUFFER,size:2}),index:new _miniGl.Attribute({target:context.ELEMENT_ARRAY_BUFFER,size:3,type:context.UNSIGNED_SHORT})}),this.setTopology(n,i),this.setSize(width,height,orientation);}setTopology(e=1,t=1){const n=this;(n.xSegCount=e),(n.ySegCount=t),(n.vertexCount=(n.xSegCount+1)*(n.ySegCount+1)),(n.quadCount=n.xSegCount*n.ySegCount*2),(n.attributes.uv.values=new Float32Array(2*n.vertexCount)),(n.attributes.uvNorm.values=new Float32Array(2*n.vertexCount)),(n.attributes.index.values=new Uint16Array(3*n.quadCount));for(let e=0;e<=n.ySegCount;e++)for(let t=0;t<=n.xSegCount;t++){const i=e*(n.xSegCount+1)+t;if(((n.attributes.uv.values[2*i]=t/n.xSegCount),(n.attributes.uv.values[2*i+1]=1-e/n.ySegCount),(n.attributes.uvNorm.values[2*i]=(t/n.xSegCount)*2-1),(n.attributes.uvNorm.values[2*i+1]=1-(e/n.ySegCount)*2),t<n.xSegCount&&e<n.ySegCount)){const s=e*n.xSegCount+t;(n.attributes.index.values[6*s]=i),(n.attributes.index.values[6*s+1]=i+1+n.xSegCount),(n.attributes.index.values[6*s+2]=i+1),(n.attributes.index.values[6*s+3]=i+1),(n.attributes.index.values[6*s+4]=i+1+n.xSegCount),(n.attributes.index.values[6*s+5]=i+2+n.xSegCount);}}n.attributes.uv.update(),n.attributes.uvNorm.update(),n.attributes.index.update();}setSize(width=1,height=1,orientation="xz"){const geometry=this;(geometry.width=width),(geometry.height=height),(geometry.orientation=orientation),(geometry.attributes.position.values&&geometry.attributes.position.values.length===3*geometry.vertexCount)||(geometry.attributes.position.values=new Float32Array(3*geometry.vertexCount));const o=width/-2,r=height/-2,segment_width=width/geometry.xSegCount,segment_height=height/geometry.ySegCount;for(let yIndex=0;yIndex<=geometry.ySegCount;yIndex++){const t=r+yIndex*segment_height;for(let xIndex=0;xIndex<=geometry.xSegCount;xIndex++){const r=o+xIndex*segment_width,l=yIndex*(geometry.xSegCount+1)+xIndex;(geometry.attributes.position.values[3*l+"xyz".indexOf(orientation[0])]=r),(geometry.attributes.position.values[3*l+"xyz".indexOf(orientation[1])]=-t);}}geometry.attributes.position.update();}}},Mesh:{enumerable:!1,value:class{constructor(geometry,material){const mesh=this;(mesh.geometry=geometry),(mesh.material=material),(mesh.wireframe=!1),(mesh.attributeInstances=[]),Object.entries(mesh.geometry.attributes).forEach(([e,attribute])=>{mesh.attributeInstances.push({attribute:attribute,location:attribute.attach(e,mesh.material.program)});}),_miniGl.meshes.push(mesh);}draw(){context.useProgram(this.material.program),this.material.uniformInstances.forEach(({uniform:e,location:t})=>e.update(t)),this.attributeInstances.forEach(({attribute:e,location:t})=>e.use(t)),context.drawElements(this.wireframe?context.LINES:context.TRIANGLES,this.geometry.attributes.index.values.length,context.UNSIGNED_SHORT,0);}remove(){_miniGl.meshes=_miniGl.meshes.filter((e)=>e!=this);}}},Attribute:{enumerable:!1,value:class{constructor(e){(this.type=context.FLOAT),(this.normalized=!1),(this.buffer=context.createBuffer()),Object.assign(this,e),this.update();}update(){void 0!==this.values&&(context.bindBuffer(this.target,this.buffer),context.bufferData(this.target,this.values,context.STATIC_DRAW));}attach(e,t){const n=context.getAttribLocation(t,e);return this.target===context.ARRAY_BUFFER&&(context.enableVertexAttribArray(n),context.vertexAttribPointer(n,this.size,this.type,this.normalized,0,0)),n;}use(e){context.bindBuffer(this.target,this.buffer),this.target===context.ARRAY_BUFFER&&(context.enableVertexAttribArray(e),context.vertexAttribPointer(e,this.size,this.type,this.normalized,0,0));}}}});const a=[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];_miniGl.commonUniforms={projectionMatrix:new _miniGl.Uniform({type:"mat4",value:a}),modelViewMatrix:new _miniGl.Uniform({type:"mat4",value:a}),resolution:new _miniGl.Uniform({type:"vec2",value:[1,1]}),aspectRatio:new _miniGl.Uniform({type:"float",value:1})};}setSize(e=640,t=480){(this.width=e),(this.height=t),(this.canvas.width=e),(this.canvas.height=t),this.gl.viewport(0,0,e,t),(this.commonUniforms.resolution.value=[e,t]),(this.commonUniforms.aspectRatio.value=e/t);}setOrthographicCamera(e=0,t=0,n=0,i=-2e3,s=2e3){(this.commonUniforms.projectionMatrix.value=[2/this.width,0,0,0,0,2/this.height,0,0,0,0,2/(i-s),0,e,t,n,1]);}render(){this.gl.clearColor(0,0,0,0),this.gl.clearDepth(1),this.meshes.forEach((e)=>e.draw());}}
+function e(object,propertyName,val){return propertyName in object?Object.defineProperty(object,propertyName,{value:val,enumerable:!0,configurable:!0,writable:!0}):(object[propertyName]=val),object;}
+class Gradient{constructor(...t){e(this,"el",void 0),e(this,"cssVarRetries",0),e(this,"maxCssVarRetries",200),e(this,"angle",0),e(this,"isLoadedClass",!1),e(this,"isScrolling",!1),e(this,"scrollingTimeout",void 0),e(this,"scrollingRefreshDelay",200),e(this,"isIntersecting",!1),e(this,"shaderFiles",void 0),e(this,"vertexShader",void 0),e(this,"sectionColors",void 0),e(this,"computedCanvasStyle",void 0),e(this,"conf",void 0),e(this,"uniforms",void 0),e(this,"t",1253106),e(this,"last",0),e(this,"width",void 0),e(this,"minWidth",1111),e(this,"height",600),e(this,"xSegCount",void 0),e(this,"ySegCount",void 0),e(this,"mesh",void 0),e(this,"material",void 0),e(this,"geometry",void 0),e(this,"minigl",void 0),e(this,"scrollObserver",void 0),e(this,"amp",320),e(this,"seed",5),e(this,"freqX",14e-5),e(this,"freqY",29e-5),e(this,"freqDelta",1e-5),e(this,"activeColors",[1,1,1,1]),e(this,"isMetaKey",!1),e(this,"isGradientLegendVisible",!1),e(this,"isMouseDown",!1),e(this,"handleScroll",()=>{clearTimeout(this.scrollingTimeout),(this.scrollingTimeout=setTimeout(this.handleScrollEnd,this.scrollingRefreshDelay)),this.isGradientLegendVisible&&this.hideGradientLegend(),this.conf.playing&&((this.isScrolling=!0),this.pause());}),e(this,"handleScrollEnd",()=>{(this.isScrolling=!1),this.isIntersecting&&this.play();}),e(this,"resize",()=>{(this.width=window.innerWidth),this.minigl.setSize(this.width,this.height),this.minigl.setOrthographicCamera(),(this.xSegCount=Math.ceil(this.width*this.conf.density[0])),(this.ySegCount=Math.ceil(this.height*this.conf.density[1])),this.mesh.geometry.setTopology(this.xSegCount,this.ySegCount),this.mesh.geometry.setSize(this.width,this.height),(this.mesh.material.uniforms.u_shadow_power.value=this.width<600?5:6);}),e(this,"handleMouseDown",(e)=>{}),e(this,"handleMouseUp",()=>{}),e(this,"animate",(e)=>{if(!this.shouldSkipFrame(e)||this.isMouseDown){if(((this.t+=Math.min(e-this.last,1e3/15)),(this.last=e),this.isMouseDown)){let e=160;this.isMetaKey&&(e=-160),(this.t+=e);}(this.mesh.material.uniforms.u_time.value=this.t),this.minigl.render();}if(0!==this.last&&this.isStatic)return this.minigl.render(),void this.disconnect();(this.conf.playing||this.isMouseDown)&&requestAnimationFrame(this.animate);}),e(this,"addIsLoadedClass",()=>{!this.isLoadedClass&&((this.isLoadedClass=!0),this.el.classList.add("isLoaded"),setTimeout(()=>{this.el.parentElement.classList.add("isLoaded");},3e3));}),e(this,"pause",()=>{this.conf.playing=false;}),e(this,"play",()=>{requestAnimationFrame(this.animate),(this.conf.playing=true);}),e(this,"initGradient",(selector)=>{this.el=document.querySelector(selector);this.connect();return this;});}async connect(){(this.shaderFiles={vertex:"varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",noise:"vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}\nvec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}\nvec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}\nvec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}\nfloat snoise(vec3 v){const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;i=mod289(i);vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));float n_=0.142857142857;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.0*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}",blend:"vec3 blendNormal(vec3 base,vec3 blend){return blend;}\nvec3 blendNormal(vec3 base,vec3 blend,float opacity){return (blendNormal(base,blend)*opacity+base*(1.0-opacity));}",fragment:"varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}"}),(this.conf={presetName:"",wireframe:false,density:[.06,.16],zoom:1,rotation:0,playing:true}),document.querySelectorAll("canvas").length<1?console.log("NO HERO CANVAS"):((this.minigl=new MiniGl(this.el,null,null,!0)),requestAnimationFrame(()=>{this.el&&((this.computedCanvasStyle=getComputedStyle(this.el)),this.waitForCssVars());}));}disconnect(){this.scrollObserver&&(window.removeEventListener("scroll",this.handleScroll),window.removeEventListener("mousedown",this.handleMouseDown),window.removeEventListener("mouseup",this.handleMouseUp),window.removeEventListener("keydown",this.handleKeyDown),this.scrollObserver.disconnect()),window.removeEventListener("resize",this.resize);}initMaterial(){this.uniforms={u_time:new this.minigl.Uniform({value:0}),u_shadow_power:new this.minigl.Uniform({value:5}),u_darken_top:new this.minigl.Uniform({value:""===this.el.dataset.jsDarkenTop?1:0}),u_active_colors:new this.minigl.Uniform({value:this.activeColors,type:"vec4"}),u_global:new this.minigl.Uniform({value:{noiseFreq:new this.minigl.Uniform({value:[this.freqX,this.freqY],type:"vec2"}),noiseSpeed:new this.minigl.Uniform({value:5e-6})},type:"struct"}),u_vertDeform:new this.minigl.Uniform({value:{incline:new this.minigl.Uniform({value:Math.sin(this.angle)/Math.cos(this.angle)}),offsetTop:new this.minigl.Uniform({value:-.5}),offsetBottom:new this.minigl.Uniform({value:-.5}),noiseFreq:new this.minigl.Uniform({value:[3,4],type:"vec2"}),noiseAmp:new this.minigl.Uniform({value:this.amp}),noiseSpeed:new this.minigl.Uniform({value:10}),noiseFlow:new this.minigl.Uniform({value:3}),noiseSeed:new this.minigl.Uniform({value:this.seed})},type:"struct",excludeFrom:"fragment"}),u_baseColor:new this.minigl.Uniform({value:this.sectionColors[0],type:"vec3",excludeFrom:"fragment"}),u_waveLayers:new this.minigl.Uniform({value:[],excludeFrom:"fragment",type:"array"})};for(let e=1;e<this.sectionColors.length;e+=1)this.uniforms.u_waveLayers.value.push(new this.minigl.Uniform({value:{color:new this.minigl.Uniform({value:this.sectionColors[e],type:"vec3"}),noiseFreq:new this.minigl.Uniform({value:[2+e/this.sectionColors.length,3+e/this.sectionColors.length],type:"vec2"}),noiseSpeed:new this.minigl.Uniform({value:11+.3*e}),noiseFlow:new this.minigl.Uniform({value:6.5+.3*e}),noiseSeed:new this.minigl.Uniform({value:this.seed+10*e}),noiseFloor:new this.minigl.Uniform({value:.1}),noiseCeil:new this.minigl.Uniform({value:.63+.07*e})},type:"struct"}));return(this.vertexShader=[this.shaderFiles.noise,this.shaderFiles.blend,this.shaderFiles.vertex].join("\n\n")),new this.minigl.Material(this.vertexShader,this.shaderFiles.fragment,this.uniforms);}initMesh(){(this.material=this.initMaterial()),(this.geometry=new this.minigl.PlaneGeometry()),(this.mesh=new this.minigl.Mesh(this.geometry,this.material));}shouldSkipFrame(e){return!!window.document.hidden||!this.conf.playing||parseInt(e,10)%2==0||void 0;}updateFrequency(e){(this.freqX+=e),(this.freqY+=e);}toggleColor(index){this.activeColors[index]=0===this.activeColors[index]?1:0;}showGradientLegend(){}hideGradientLegend(){}init(){this.initGradientColors(),this.initMesh(),this.resize(),requestAnimationFrame(this.animate),window.addEventListener("resize",this.resize);}waitForCssVars(){if(this.computedCanvasStyle&&-1!==this.computedCanvasStyle.getPropertyValue("--gradient-color-1").indexOf("#"))this.init(),this.addIsLoadedClass();else{if(((this.cssVarRetries+=1),this.cssVarRetries>this.maxCssVarRetries)){return(this.sectionColors=[16711680,16711680,16711935,65280,255]),void this.init();}requestAnimationFrame(()=>this.waitForCssVars());}}initGradientColors(){this.sectionColors=["--gradient-color-1","--gradient-color-2","--gradient-color-3","--gradient-color-4"].map((cssPropertyName)=>{let hex=this.computedCanvasStyle.getPropertyValue(cssPropertyName).trim();if(4===hex.length){const hexTemp=hex.substr(1).split("").map((hexTemp)=>hexTemp+hexTemp).join("");hex=`#${hexTemp}`;}return hex&&`0x${hex.substr(1)}`;}).filter(Boolean).map(normalizeColor);}}
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try{
+    var g=new Gradient();
+    g.initGradient('#hero-gradient');
+    function syncHeight(){ try{ g.height=window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize',syncHeight);
+    setTimeout(syncHeight,120); setTimeout(syncHeight,400);
+    if(reduce&&typeof g.pause==='function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} },500); }
+  }catch(e){ console.error('hero mesh init hatasi:',e); document.body.classList.add('no-webgl'); }
+})();
+</script>
+
+</body>
+</html>
