@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Naydehane Yeşil Konak — Ayvalı, Ürgüp · Kapadokya</title>
+<meta name="description" data-i18n="meta_desc" content="Ayvalı köyünde, kavakların gölgesinde bir kesme taş konak. Ürgüp'e komşu, yeşil bir vadiye açılan bahçe terası ve köyün sessizliği.">
+<style>
+  :root{
+    /* KOYU (varsayılan) — botanik çam yeşili + honey taş + bakır/altın ışık */
+    --bg:#152219; --bg-2:#0f1a13; --surface:#1b2b21; --surface-2:#213329;
+    --text:#e7ede0; --muted:#9cb298; --head:#f3efe4;
+    --line:rgba(200,222,196,.14); --line-2:rgba(200,222,196,.09);
+    --accent:#d98a5a;   /* bakır/terakota — vurgu */
+    --accent-2:#e3ba7f; /* altın ışık */
+    --green:#5a8b64; --green-l:#8fb08b;
+    --paper:#f3efe4; --btn-ink:#152219;
+    --hero-h1:#f6f2e7;
+  }
+  html[data-theme="light"]{
+    --bg:#f1ebdb; --bg-2:#e6ddc8; --surface:#fbf7ec; --surface-2:#f3ecda;
+    --text:#2c352b; --muted:#5e6c57; --head:#223024;
+    --line:rgba(40,58,40,.15); --line-2:rgba(40,58,40,.08);
+    --accent:#b25f33; --accent-2:#9a6f28;
+    --green:#3c6e4c; --green-l:#4d7d59;
+    --paper:#223024; --btn-ink:#f7f3e8;
+    --hero-h1:#f6f2e7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{font-family:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;color:var(--text);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden;transition:background .5s,color .5s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:'Iowan Old Style','Palatino Linotype','Book Antiqua','Palatino',Georgia,serif;font-weight:500;line-height:1.08;letter-spacing:-.004em;color:var(--head)}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:600;letter-spacing:0}
+  .eyebrow{font-family:'Segoe UI',system-ui,sans-serif;text-transform:uppercase;letter-spacing:.36em;font-size:.68rem;font-weight:600;color:var(--green-l)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.14em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 30px}
+
+  /* ============ NAV — "asma dalı / yaprak imleci" portu ============ */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:16px 30px;transition:.5s;gap:14px}
+  nav.scrolled{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(11px);box-shadow:0 1px 0 var(--line)}
+  .brand{display:flex;align-items:center;gap:11px;flex:none;line-height:1}
+  .brand .mark{width:34px;height:34px;flex:none;color:var(--green-l)}
+  .brand .wm{display:flex;flex-direction:column}
+  .brand .wm b{font-family:'Iowan Old Style','Palatino Linotype','Book Antiqua',Georgia,serif;font-weight:600;font-size:1.28rem;letter-spacing:.01em;color:var(--head)}
+  .brand .wm span{font-family:'Segoe UI',sans-serif;font-size:.56rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+  html[lang="zh-CN"] .brand .wm span,html[lang="ko"] .brand .wm span{letter-spacing:.12em}
+
+  .navwrap{margin-left:auto;position:relative;display:flex;align-items:center}
+  .navlinks{display:flex;gap:30px;align-items:center;position:relative;padding-bottom:12px}
+  /* hairline "dal" baseline */
+  .navlinks::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:1px;
+    background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent)}
+  .navlinks a{font-family:'Segoe UI',sans-serif;font-size:.82rem;letter-spacing:.03em;color:var(--muted);transition:color .3s;position:relative;padding:2px 0}
+  html[lang="zh-CN"] .navlinks a,html[lang="ko"] .navlinks a{font-size:.9rem}
+  .navlinks a:hover,.navlinks a.active{color:var(--head)}
+  /* kayan yaprak imleci */
+  .leaf-marker{position:absolute;bottom:0;left:0;width:22px;height:16px;transform:translateX(0);transition:transform .5s cubic-bezier(.4,.9,.3,1),width .5s cubic-bezier(.4,.9,.3,1);pointer-events:none;color:var(--green);z-index:2;opacity:0}
+  .leaf-marker.show{opacity:1}
+  .leaf-marker svg{width:16px;height:16px;display:block;margin:0 auto;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
+  .nav-tools{display:flex;align-items:center;gap:8px;margin-left:26px;flex:none}
+  .nav-cta{border:1px solid var(--accent);color:var(--accent)!important;padding:9px 20px;border-radius:100px;font-size:.78rem;font-family:'Segoe UI',sans-serif;letter-spacing:.02em;transition:.35s}
+  .nav-cta:hover{background:var(--accent);color:var(--btn-ink)!important}
+  .icon-btn{width:38px;height:38px;border:1px solid var(--line);background:transparent;border-radius:100px;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;flex:none}
+  .icon-btn:hover{border-color:var(--green);color:var(--green-l)}
+  .icon-btn svg{width:18px;height:18px}
+  .theme-btn .moon{display:none}
+  html[data-theme="light"] .theme-btn .sun{display:none}
+  html[data-theme="light"] .theme-btn .moon{display:block}
+  .langs{display:flex;align-items:center;gap:1px;flex:none}
+  .langs button{background:none;border:none;color:var(--muted);font-family:'Segoe UI',sans-serif;font-size:.74rem;cursor:pointer;padding:5px 6px;transition:.25s;border-radius:4px;letter-spacing:.02em}
+  .langs button:hover{color:var(--head)}
+  .langs button.active{color:var(--accent-2);font-weight:600}
+  .langs .sep{color:var(--line);font-size:.66rem}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;color:var(--text);flex:none}
+  /* nav hero üzerindeyken (scrollsuz) her temada AÇIK renk — koyu hero overlay için okunur kalsın */
+  nav:not(.scrolled) .brand .wm b{color:#f4f0e5}
+  nav:not(.scrolled) .brand .wm span{color:rgba(244,240,229,.72)}
+  nav:not(.scrolled) .brand .mark{color:#c3d6b6}
+  nav:not(.scrolled) .navlinks a{color:rgba(244,240,229,.74)}
+  nav:not(.scrolled) .navlinks a:hover,nav:not(.scrolled) .navlinks a.active{color:#fff}
+  nav:not(.scrolled) .navlinks::after{background:linear-gradient(90deg,transparent,rgba(244,240,229,.26) 12%,rgba(244,240,229,.26) 88%,transparent)}
+  nav:not(.scrolled) .leaf-marker{color:#bcd6a6}
+  nav:not(.scrolled) .icon-btn{color:#f4f0e5;border-color:rgba(244,240,229,.32)}
+  nav:not(.scrolled) .icon-btn:hover{border-color:#c3d6b6;color:#fff}
+  nav:not(.scrolled) .langs button{color:rgba(244,240,229,.72)}
+  nav:not(.scrolled) .langs button.active{color:var(--accent-2)}
+  nav:not(.scrolled) .langs .sep{color:rgba(244,240,229,.3)}
+  nav:not(.scrolled) .menu-btn{color:#f4f0e5}
+
+  /* ============ HERO ============ */
+  .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:flex-end;isolation:isolate}
+  .sky{position:absolute;inset:0;z-index:0;
+    background:linear-gradient(180deg,#0f1a13 0%,#173021 34%,#2f5238 58%,#5c7a48 76%,#9a9a56 90%,#d7b06e 100%)}
+  html[data-theme="light"] .sky{background:linear-gradient(180deg,#243a28 0%,#3c5c3c 34%,#6a8a54 62%,#a8b06a 82%,#e3c07e 100%)}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center;opacity:0;transition:opacity .9s}
+  .hero-photo.has-img{opacity:1}
+  .hero-photo.has-img::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(11,20,13,.5),rgba(11,20,13,.18) 42%,rgba(11,20,13,.72))}
+  .hero-photo.has-img{animation:kenburns 40s ease-in-out infinite alternate;transform-origin:58% 42%}
+  @keyframes kenburns{from{transform:scale(1.03)}to{transform:scale(1.11)}}
+  /* çizili yaprak silüetleri — foto yokken atmosfer, varken gizlenir */
+  .canopy{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.9}
+  .hero-photo.has-img~.canopy{display:none}
+  #hero-gradient{position:absolute;inset:0;z-index:5;pointer-events:none;mix-blend-mode:soft-light;opacity:.62;
+    --gradient-color-1:#2f5a3f; --gradient-color-2:#c2703f; --gradient-color-3:#e0b878; --gradient-color-4:#6a8f5a}
+  .no-webgl #hero-gradient{display:none}
+  .hero::after{content:"";position:absolute;inset:0;z-index:7;pointer-events:none;
+    background:radial-gradient(66% 60% at 22% 88%,rgba(11,20,13,.6),transparent 72%),linear-gradient(180deg,rgba(11,20,13,.28) 0%,transparent 38%,rgba(11,20,13,.55) 100%)}
+  /* düşen yapraklar (signature) */
+  .leaf-fall{position:absolute;z-index:6;top:-6%;color:var(--green-l);opacity:.0;pointer-events:none}
+  .leaf-fall svg{width:100%;height:100%;display:block}
+  @keyframes leafdrift{
+    0%{transform:translateY(-8vh) translateX(0) rotate(0deg);opacity:0}
+    12%{opacity:.55}
+    100%{transform:translateY(112vh) translateX(-40px) rotate(320deg);opacity:0}}
+  .hero-inner{position:relative;z-index:10;width:100%;padding-bottom:11vh}
+  .hero .eyebrow{color:#cfe0bf;text-shadow:0 2px 18px rgba(0,0,0,.5)}
+  .hero h1{color:var(--hero-h1);font-size:clamp(2.7rem,7.2vw,6.1rem);max-width:15ch;text-shadow:0 4px 46px rgba(0,0,0,.5)}
+  .hero h1 em{font-style:italic;color:var(--accent-2)}
+  .hero .lede{font-size:clamp(1.04rem,1.55vw,1.3rem);color:rgba(245,241,230,.92);max-width:50ch;margin-top:24px;font-weight:400;text-shadow:0 2px 22px rgba(0,0,0,.55)}
+  .hero-cta{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:var(--accent);color:#fff;padding:15px 32px;border-radius:100px;font-family:'Segoe UI',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.03em;display:inline-flex;align-items:center;gap:10px;transition:.35s;box-shadow:0 10px 30px rgba(0,0,0,.28)}
+  .btn-solid:hover{gap:15px;filter:brightness(1.06)}
+  .btn-line{color:#f5f1e6;font-family:'Segoe UI',sans-serif;font-size:.85rem;letter-spacing:.03em;border-bottom:1px solid rgba(245,241,230,.5);padding-bottom:4px;transition:.4s}
+  .btn-line:hover{border-color:var(--accent-2);color:var(--accent-2)}
+  .concept-tag{position:absolute;bottom:20px;right:24px;z-index:10;font-family:'Segoe UI',sans-serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,241,230,.62);background:rgba(11,20,13,.4);border:1px solid rgba(245,241,230,.16);padding:5px 11px;border-radius:100px;backdrop-filter:blur(4px)}
+  html[lang="zh-CN"] .concept-tag,html[lang="ko"] .concept-tag{letter-spacing:.04em}
+  .scrollhint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:10;font-family:'Segoe UI',sans-serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(245,241,230,.6);display:flex;flex-direction:column;align-items:center;gap:8px}
+  html[lang="zh-CN"] .scrollhint,html[lang="ko"] .scrollhint{letter-spacing:.08em}
+  .scrollhint .l{width:1px;height:32px;background:linear-gradient(var(--accent-2),transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ============ INTRO / FACTS STRIP ============ */
+  .facts{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .facts .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:42px 30px}
+  .fact{text-align:center;padding:0 8px}
+  .fact .n{font-family:'Iowan Old Style','Palatino Linotype','Book Antiqua',Georgia,serif;font-size:clamp(1.5rem,2.6vw,2.15rem);color:var(--accent-2);line-height:1.1}
+  html[lang="zh-CN"] .fact .n,html[lang="ko"] .fact .n{font-size:clamp(1.3rem,2.4vw,1.8rem)}
+  .fact .l{font-family:'Segoe UI',sans-serif;font-size:.72rem;letter-spacing:.06em;color:var(--muted);margin-top:8px;line-height:1.4}
+  .fact+.fact{border-left:1px solid var(--line-2)}
+  @media(max-width:680px){.facts .wrap{grid-template-columns:1fr 1fr;gap:30px 16px}.fact:nth-child(3){border-left:none}}
+
+  section{padding:118px 0;position:relative}
+  .sec-head{max-width:680px;margin-bottom:58px}
+  .sec-head .eyebrow{display:block;margin-bottom:16px}
+  .sec-head h2{font-size:clamp(2.1rem,4.4vw,3.5rem)}
+  .sec-head p{margin-top:18px;color:var(--muted);font-size:1.08rem}
+
+  /* ============ STORY / KONAK ============ */
+  .story{background:var(--bg)}
+  .story-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:0;align-items:stretch}
+  .story-visual{position:relative;min-height:540px;border-radius:4px;overflow:hidden;background-size:cover;background-position:center;background-color:var(--surface-2)}
+  .story-visual .ph-label,.tile .ph-label,.exp-visual .ph-label{position:absolute;left:22px;bottom:20px;font-family:'Segoe UI',sans-serif;font-size:.72rem;letter-spacing:.04em;color:rgba(245,241,230,.82);z-index:3;display:flex;align-items:center;gap:7px}
+  .ph-label svg{width:15px;height:15px;opacity:.85}
+  .src-tag{position:absolute;top:14px;left:16px;z-index:4;font-family:'Segoe UI',sans-serif;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:100px;backdrop-filter:blur(4px)}
+  html[lang="zh-CN"] .src-tag,html[lang="ko"] .src-tag{letter-spacing:.03em}
+  .src-tag.real{background:rgba(60,110,76,.82);color:#f2f7ee;border:1px solid rgba(255,255,255,.2)}
+  .src-tag.ai{background:rgba(11,20,13,.55);color:rgba(245,241,230,.9);border:1px solid rgba(245,241,230,.22)}
+  .story-text{background:var(--surface);padding:60px;display:flex;flex-direction:column;justify-content:center;margin-left:-44px;z-index:2;border:1px solid var(--line);border-radius:4px}
+  @media(max-width:860px){.story-text{margin-left:0;margin-top:-44px}}
+  .story-text .lead{font-family:'Iowan Old Style','Palatino Linotype','Book Antiqua',Georgia,serif;font-size:1.55rem;line-height:1.42;font-style:italic;color:var(--head);margin-bottom:22px}
+  html[lang="zh-CN"] .story-text .lead,html[lang="ko"] .story-text .lead{font-style:normal}
+  .story-text p{color:var(--muted);margin-bottom:16px}
+  .story-text .sign{margin-top:14px;font-family:'Iowan Old Style','Palatino Linotype',Georgia,serif;font-size:1.2rem;color:var(--green-l);font-style:italic}
+  @media(max-width:860px){.story-grid{grid-template-columns:1fr}.story-visual{min-height:340px}}
+
+  /* ============ BAHÇE / EXPERIENCE ============ */
+  .bahce{background:var(--bg-2)}
+  .exp{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:52px 0;border-top:1px solid var(--line)}
+  .exp:last-child{border-bottom:1px solid var(--line)}
+  .exp.flip .exp-visual{order:2}
+  .exp-visual{height:380px;border-radius:4px;position:relative;overflow:hidden;background-size:cover;background-position:center;background-color:var(--surface-2)}
+  .exp-visual .time{position:absolute;top:16px;right:16px;font-family:'Segoe UI',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#f5f1e6;z-index:3;background:rgba(11,20,13,.42);padding:6px 12px;border-radius:100px;backdrop-filter:blur(4px)}
+  html[lang="zh-CN"] .exp-visual .time,html[lang="ko"] .exp-visual .time{letter-spacing:.03em}
+  .exp-body .tag{font-family:'Segoe UI',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--green-l)}
+  html[lang="zh-CN"] .exp-body .tag,html[lang="ko"] .exp-body .tag{letter-spacing:.05em}
+  .exp-body h3{font-size:clamp(1.7rem,3.2vw,2.5rem);margin:10px 0 14px;color:var(--head)}
+  .exp-body p{color:var(--muted);margin-bottom:20px;max-width:46ch}
+  .exp-note{display:inline-flex;align-items:center;gap:9px;font-family:'Segoe UI',sans-serif;font-size:.86rem;color:var(--text);border:1px solid var(--line);border-radius:100px;padding:8px 16px;background:var(--surface)}
+  .exp-note svg{width:16px;height:16px;color:var(--accent)}
+  @media(max-width:860px){.exp,.exp.flip{grid-template-columns:1fr;gap:22px}.exp.flip .exp-visual{order:0}.exp-visual{height:250px}}
+
+  /* ============ VADI / ETHOS ============ */
+  .vadi{background:var(--bg)}
+  .ethos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
+  .et{padding:26px;border:1px solid var(--line);border-radius:6px;background:var(--surface);transition:transform .5s cubic-bezier(.2,.7,.2,1),border-color .4s}
+  .et:hover{transform:translateY(-5px);border-color:var(--green)}
+  .et .ic{width:38px;height:38px;color:var(--green);margin-bottom:15px}
+  .et h3{font-size:1.22rem;margin-bottom:8px;color:var(--head)}
+  .et p{font-size:.94rem;color:var(--muted)}
+  @media(max-width:860px){.ethos-grid{grid-template-columns:1fr 1fr;gap:24px}}
+  @media(max-width:480px){.ethos-grid{grid-template-columns:1fr}}
+
+  /* ============ GALERİ ============ */
+  .galeri{background:var(--bg-2)}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .tile{aspect-ratio:3/4;border-radius:5px;position:relative;overflow:hidden;background-size:cover;background-position:center;background-color:var(--surface-2);cursor:pointer;transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(0,0,0,.34)}
+  .tile::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(11,20,13,.62),rgba(11,20,13,0) 46%);transition:.4s}
+  .tile::after{content:"\2922";position:absolute;top:12px;right:14px;z-index:3;color:#fff;font-size:1rem;opacity:0;transform:scale(.75);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  .tile .cap{position:absolute;left:16px;bottom:16px;z-index:3;font-family:'Segoe UI',sans-serif;font-size:.78rem;color:#f5f1e6;text-shadow:0 1px 10px rgba(0,0,0,.8)}
+  @media(max-width:820px){.tiles{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.tiles{grid-template-columns:1fr}.tile{aspect-ratio:16/11}}
+  .galeri-note{margin-top:26px;font-family:'Segoe UI',sans-serif;font-size:.84rem;color:var(--muted);display:flex;align-items:center;gap:9px}
+  .galeri-note svg{width:16px;height:16px;color:var(--green);flex:none}
+
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(8,14,10,.95);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:86vh;border-radius:5px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f4efe4;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:var(--paper);font-family:'Segoe UI',sans-serif;font-size:.78rem;letter-spacing:.06em}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(20,30,22,.55);border:1px solid var(--line);color:#f4efe4;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .lb-nav:hover{background:var(--green);color:#fff;border-color:var(--green)}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ============ REZERVASYON ============ */
+  .book{background:linear-gradient(180deg,var(--bg),var(--bg-2));position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-130px;left:70%;transform:translateX(-50%);width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--green) 30%,transparent),transparent 68%)}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.2rem,4.4vw,3.5rem)}
+  .book h2 em{font-style:italic;color:var(--accent-2)}
+  .book .lede{color:var(--muted);margin-top:18px;font-size:1.08rem}
+  .wa{display:inline-flex;align-items:center;gap:11px;margin-top:24px;color:var(--text);font-family:'Segoe UI',sans-serif;font-size:1.05rem}
+  .wa svg{width:24px;height:24px;color:#5ec96b}
+  .form{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:36px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-family:'Segoe UI',sans-serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green-l);margin-bottom:7px}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{letter-spacing:.03em}
+  .field input,.field select,.field textarea{width:100%;padding:13px 15px;border-radius:5px;border:1px solid var(--line);background:var(--bg-2);color:var(--text);font-family:inherit;font-size:.95rem}
+  .field textarea{resize:vertical;min-height:64px}
+  .field input::placeholder,.field textarea::placeholder{color:color-mix(in srgb,var(--muted) 80%,transparent)}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .submit{width:100%;background:var(--accent);color:#fff;border:none;padding:16px;border-radius:5px;font-family:'Segoe UI',sans-serif;font-weight:600;font-size:.86rem;letter-spacing:.03em;cursor:pointer;transition:.35s;margin-top:6px}
+  .submit:hover{filter:brightness(1.07)}
+  @media(max-width:860px){.book-grid{grid-template-columns:1fr;gap:36px}}
+
+  footer{background:var(--bg-2);color:var(--muted);padding:66px 0 30px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:42px;margin-bottom:42px}
+  .foot-brand{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+  .foot-brand .mark{width:32px;height:32px;color:var(--green-l)}
+  .foot-brand b{font-family:'Iowan Old Style','Palatino Linotype',Georgia,serif;font-size:1.4rem;color:var(--head);font-weight:600}
+  footer h4{font-family:'Segoe UI',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green-l);margin-bottom:16px}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{letter-spacing:.04em}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px;font-size:.94rem;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:var(--head)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:'Segoe UI',sans-serif;font-size:.78rem}
+  .demo-badge{background:var(--green);color:#fff;padding:5px 13px;border-radius:100px;font-size:.7rem;letter-spacing:.06em}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  .mobile-menu{position:fixed;inset:0;z-index:70;background:color-mix(in srgb,var(--bg) 97%,transparent);backdrop-filter:blur(8px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:26px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:'Iowan Old Style','Palatino Linotype',Georgia,serif;font-size:1.85rem;color:var(--head)}
+  .mobile-menu .close{position:absolute;top:22px;right:24px;background:none;border:none;color:var(--head);cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:9px;margin-top:16px}
+  .mobile-menu .m-langs button{background:none;border:1px solid var(--line);color:var(--muted);padding:8px 13px;border-radius:5px;font-family:'Segoe UI',sans-serif;font-size:.85rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:var(--accent-2);border-color:var(--green)}
+
+  @media(max-width:820px){
+    .navlinks{display:none}.menu-btn{display:block}
+    .langs{display:none}.nav-cta{display:none}
+    section{padding:80px 0}
+    .story-text,.form{padding:32px}
+    .foot-grid{grid-template-columns:1fr;gap:30px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s,background .3s,color .3s!important}
+    .reveal{opacity:1;transform:none}
+    .leaf-fall{display:none}
+  }
+
+  /* ============ SIGNATURE: film grain + yaprak gölgesi (dappled light) + scroll bar ============ */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.045;mix-blend-mode:overlay}
+  .grain svg{width:100%;height:100%;display:block}
+  /* yaprak gölgesi — kavak yapraklarından süzülen, yavaşça kayan benekli ışık */
+  .dapple{position:fixed;inset:-20%;z-index:3;pointer-events:none;mix-blend-mode:soft-light;opacity:.55;
+    background:
+      radial-gradient(20% 16% at 18% 22%,rgba(224,184,120,.55),transparent 60%),
+      radial-gradient(14% 12% at 33% 44%,rgba(90,139,100,.5),transparent 62%),
+      radial-gradient(22% 18% at 62% 30%,rgba(224,184,120,.42),transparent 60%),
+      radial-gradient(16% 14% at 78% 58%,rgba(90,139,100,.45),transparent 62%),
+      radial-gradient(18% 15% at 46% 72%,rgba(224,184,120,.4),transparent 60%),
+      radial-gradient(13% 11% at 88% 82%,rgba(90,139,100,.4),transparent 62%);
+    background-size:160% 160%;animation:dappleDrift 34s ease-in-out infinite alternate}
+  html[data-theme="light"] .dapple{opacity:.4;mix-blend-mode:multiply}
+  @keyframes dappleDrift{0%{background-position:0% 0%}50%{background-position:60% 40%}100%{background-position:100% 100%}}
+  .story::before,.bahce::before,.book::before,.vadi::before{}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--green),var(--accent-2));box-shadow:0 0 12px color-mix(in srgb,var(--accent-2) 50%,transparent)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="dapple" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a class="brand" href="#" aria-label="Naydehane Yeşil Konak">
+    <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M24 6C16 14 12 22 12 30a12 12 0 0 0 24 0c0-8-4-16-12-24z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M24 16v24M24 26l-6-5M24 32l6-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    <span class="wm"><b>Naydehane</b><span data-i18n="brand_sub">Yeşil Konak · Ayvalı</span></span>
+  </a>
+  <div class="navwrap">
+    <div class="navlinks" id="navlinks">
+      <a href="#konak" data-spy="konak" data-i18n="nav_konak">Konak</a>
+      <a href="#bahce" data-spy="bahce" data-i18n="nav_bahce">Bahçe</a>
+      <a href="#vadi" data-spy="vadi" data-i18n="nav_vadi">Vadi</a>
+      <a href="#galeri" data-spy="galeri" data-i18n="nav_gallery">Galeri</a>
+      <span class="leaf-marker" id="leafMarker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 11 4 15a8 8 0 0 0 16 0c0-4-3-9-8-13z"/><path d="M12 8v10" stroke="rgba(0,0,0,.25)" stroke-width="1.2"/></svg></span>
+    </div>
+    <div class="nav-tools">
+      <a class="nav-cta" href="#rezervasyon" data-i18n="nav_book">Rezervasyon</a>
+      <button class="icon-btn theme-btn" id="themeBtn" aria-label="Tema">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <div class="langs" role="group" aria-label="Dil / Language">
+        <button data-lang="tr" class="active">TR</button><span class="sep">·</span>
+        <button data-lang="en">EN</button><span class="sep">·</span>
+        <button data-lang="es">ES</button><span class="sep">·</span>
+        <button data-lang="zh-CN">中文</button><span class="sep">·</span>
+        <button data-lang="ko">한국어</button>
+      </div>
+      <button class="menu-btn" aria-label="Menü" id="menuBtn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#konak" data-i18n="nav_konak">Konak</a>
+  <a href="#bahce" data-i18n="nav_bahce">Bahçe</a>
+  <a href="#vadi" data-i18n="nav_vadi">Vadi</a>
+  <a href="#galeri" data-i18n="nav_gallery">Galeri</a>
+  <a href="#rezervasyon" data-i18n="nav_book">Rezervasyon</a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="sky"></div>
+  <div class="hero-photo" id="heroPhoto"></div>
+  <svg class="canopy" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="#1c3323" opacity="0.9">
+      <path d="M0 0h1440v150c-70 30-150 10-230 40s-140 60-240 50-170-50-280-40-190 60-300 50S120 240 60 210 0 160 0 160z"/>
+    </g>
+    <g fill="#26442f" opacity="0.55">
+      <ellipse cx="180" cy="120" rx="60" ry="34"/><ellipse cx="320" cy="90" rx="50" ry="28"/><ellipse cx="520" cy="130" rx="70" ry="36"/>
+      <ellipse cx="900" cy="100" rx="66" ry="34"/><ellipse cx="1120" cy="140" rx="58" ry="30"/><ellipse cx="1320" cy="105" rx="60" ry="32"/>
+    </g>
+  </svg>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <!-- düşen yapraklar (signature) -->
+  <div class="leaf-fall" style="left:14%;width:20px;height:20px;animation:leafdrift 14s linear infinite 0s" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 11 4 15a8 8 0 0 0 16 0c0-4-3-9-8-13z"/></svg></div>
+  <div class="leaf-fall" style="left:38%;width:15px;height:15px;animation:leafdrift 18s linear infinite 3s" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 11 4 15a8 8 0 0 0 16 0c0-4-3-9-8-13z"/></svg></div>
+  <div class="leaf-fall" style="left:63%;width:22px;height:22px;animation:leafdrift 16s linear infinite 6s" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 11 4 15a8 8 0 0 0 16 0c0-4-3-9-8-13z"/></svg></div>
+  <div class="leaf-fall" style="left:82%;width:17px;height:17px;animation:leafdrift 20s linear infinite 2s" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 6 4 11 4 15a8 8 0 0 0 16 0c0-4-3-9-8-13z"/></svg></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Ayvalı Köyü · Ürgüp, Kapadokya</span>
+      <h1 style="margin-top:20px" data-i18n="hero_title" data-i18n-html="1">Kavakların gölgesinde,<br><em>yeşil bir vadi konağı.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Ürgüp'e birkaç dakika, ama bambaşka bir sessizlik. Kesme taş duvarlar, gölge veren kavaklar ve taş bir vadiye açılan bahçe terası.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#rezervasyon"><span data-i18n="hero_cta1">Rezervasyon</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#konak" data-i18n="hero_cta2">Konağı gör</a>
+      </div>
+    </div>
+  </div>
+  <div class="concept-tag" data-i18n="concept_hero">Konsept görsel</div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Bahçeye in</span><span class="l"></span></div>
+</header>
+
+<div class="facts">
+  <div class="wrap">
+    <div class="fact"><div class="n">5.0★</div><div class="l" data-i18n="fact_rating">Google puanı</div></div>
+    <div class="fact"><div class="n" data-i18n="fact_v2_n">Ayvalı</div><div class="l" data-i18n="fact_v2_l">Ürgüp'e komşu köy</div></div>
+    <div class="fact"><div class="n" data-i18n="fact_v3_n">Kesme taş</div><div class="l" data-i18n="fact_v3_l">el emeği konak</div></div>
+    <div class="fact"><div class="n" data-i18n="fact_v4_n">Yeşil vadi</div><div class="l" data-i18n="fact_v4_l">kavak gölgesinde</div></div>
+  </div>
+</div>
+
+<section class="story" id="konak">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="story_eyebrow">Konak</span>
+      <h2 data-i18n="story_h">Taşın ve yeşilin arasında.</h2>
+      <p data-i18n="story_sub">Ayvalı, Ürgüp'ün hemen yanında, kavakların büyüdüğü sakin bir vadi köyü. Naydehane de o vadinin içinde, kesme taştan bir konak.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-visual reveal" id="storyImg" data-img="terrace.jpg" data-cap="Bahçe terası">
+        <span class="src-tag real" data-i18n="src_google">Google profilinizden</span>
+        <span class="ph-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="ph_terrace">Bahçe terası · kavaklar</span></span>
+      </div>
+      <div class="story-text reveal">
+        <p class="lead" data-i18n="story_lead">Burada gün, motor sesiyle değil; yaprakların hışırtısı ve bir fincan çayla başlar.</p>
+        <p data-i18n="story_p1">Terasa çıktığınızda önce gölge karşılar sizi: uzun kavaklar, taş bir duvarın ardındaki küçük vadi, serin bir hava. Konağın duvarları bölgenin honey renkli kesme taşından; demir işi korkuluklar, ahşap ve eski bir el arabası köşede çiçek saksısı olmuş.</p>
+        <p data-i18n="story_p2">Ayvalı, Kapadokya'nın çıplak kayasından değil; yeşilinden yana. Ürgüp'ün hareketi birkaç dakika ötede dururken, burada kalan tek şey sessizlik oluyor.</p>
+        <p class="sign">— Naydehane Yeşil Konak</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bahce" id="bahce">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="bahce_eyebrow">Bahçe</span>
+      <h2 data-i18n="bahce_h">Konağın üç köşesi.</h2>
+      <p data-i18n="bahce_sub">Gösterişten çok gölge, sükûnet ve taşın dokusu. Ayvalı'da bir günün geçtiği yerler.</p>
+    </div>
+
+    <div class="exp reveal">
+      <div class="exp-visual" data-img="corner.jpg" data-cap="Gölgeli bahçe terası">
+        <span class="src-tag real" data-i18n="src_google">Google profilinizden</span>
+        <span class="time" data-i18n="exp1_time">Sabahtan akşama</span>
+      </div>
+      <div class="exp-body">
+        <span class="tag" data-i18n="exp1_tag">Gölge & serinlik</span>
+        <h3 data-i18n="exp1_h">Gölgeli bahçe terası</h3>
+        <p data-i18n="exp1_p">Kavakların altında, kesme taş zeminli geniş bir teras. Pergolanın gölgesinde bir masa, demir işi korkuluklar ve vadiye bakan sakin bir köşe. Sabah serini, akşam feneri.</p>
+        <span class="exp-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M5 8l7-5 7 5"/></svg><span data-i18n="exp1_note">Gün boyu açık bahçe</span></span>
+      </div>
+    </div>
+
+    <div class="exp flip reveal">
+      <div class="exp-visual" data-img="valley.jpg" data-cap="Taş vadi & kavaklar">
+        <span class="src-tag ai" data-i18n="src_concept">Konsept görsel</span>
+        <span class="time" data-i18n="exp2_time">Sabah sisi</span>
+      </div>
+      <div class="exp-body">
+        <span class="tag" data-i18n="exp2_tag">Sükûnet</span>
+        <h3 data-i18n="exp2_h">Taş vadiye açılan köşe</h3>
+        <p data-i18n="exp2_p">Terasın kenarında eski bir taş duvar ve onun ardında yeşile boğulmuş küçük bir vadi. Kavaklar, sarmaşıklar ve taşın arasından süzülen ışık — Ayvalı'nın en çok bununla anılan yanı.</p>
+        <span class="exp-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 20s3-8 9-8 9 8 9 8M12 12V3M9 6l3-3 3 3"/></svg><span data-i18n="exp2_note">Yeşil vadi manzarası</span></span>
+      </div>
+    </div>
+
+    <div class="exp reveal">
+      <div class="exp-visual" data-img="cart.jpg" data-cap="Taşın ve demirin dokusu">
+        <span class="src-tag real" data-i18n="src_google">Google profilinizden</span>
+        <span class="time" data-i18n="exp3_time">Akşam feneri</span>
+      </div>
+      <div class="exp-body">
+        <span class="tag" data-i18n="exp3_tag">El emeği</span>
+        <h3 data-i18n="exp3_h">Taşın ve demirin dokusu</h3>
+        <p data-i18n="exp3_p">Kesme taş zemin, demir işi korkuluklar ve köşede çiçek dolu eski bir el arabası. Naydehane'nin havasını yapan, işte bu el emeği ayrıntılar — yeni bir binadan çok, uzun süredir orada duran bir Anadolu köşesi.</p>
+        <span class="exp-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 9l8-5 8 5M9 20v-6h6v6"/></svg><span data-i18n="exp3_note">Yöresel el işi</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vadi" id="vadi">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="vadi_eyebrow">Vadi</span>
+      <h2 data-i18n="vadi_h">Neden Ayvalı?</h2>
+      <p data-i18n="vadi_sub">Kapadokya'yı görüp, kalabalığında kaybolmak istemeyenler için.</p>
+    </div>
+    <div class="ethos-grid">
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12a9 9 0 0 1 18 0M12 12v9M8 21h8"/><circle cx="12" cy="7" r="1.4"/></svg>
+        <h3 data-i18n="et1_h">Kalabalıktan uzak</h3>
+        <p data-i18n="et1_p">Ayvalı kendi ritminde, sakin bir köy. Gün burada yavaşlar; kalan tek ses yaprak ve kuş.</p>
+      </div>
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6-7-12a7 7 0 0 1 14 0c0 6-7 12-7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+        <h3 data-i18n="et2_h">Ürgüp'e komşu</h3>
+        <p data-i18n="et2_p">Merkeze, restoranlara ve turlara kısa bir yol. Gün boyu Kapadokya, akşam köyün huzuru.</p>
+      </div>
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22c5-3 8-7 8-12 0-3-2-5-4-5-1.6 0-3 1-4 3-1-2-2.4-3-4-3-2 0-4 2-4 5 0 5 3 9 8 12z"/></svg>
+        <h3 data-i18n="et3_h">Yeşilin Kapadokya'sı</h3>
+        <p data-i18n="et3_p">Kavaklar, bahçe ve taş bir vadi. Çıplak kayanın değil, gölgenin ve yeşilin tarafındasınız.</p>
+      </div>
+      <div class="et reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20v-9l8-6 8 6v9M4 20h16M9 20v-5h6v5"/><path d="M9 11h.01M15 11h.01"/></svg>
+        <h3 data-i18n="et4_h">Sahici ev sahipliği</h3>
+        <p data-i18n="et4_p">Kesme taş, ahşap ve sıcak bir karşılama. Zincir bir otel değil; bir konağın samimiyeti.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="galeri" id="galeri">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="gallery_eyebrow">Galeri</span>
+      <h2 data-i18n="gallery_h">Konaktan kareler.</h2>
+      <p data-i18n="gallery_sub">Gerçek fotoğraflarınız yayında bunların yerini alır; konsept görseller yalnızca fikir vermek için.</p>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile" data-img="terrace.jpg" data-cap="Bahçe terası"><span class="src-tag real" data-i18n="src_google">Google</span><span class="cap" data-i18n="cap_terrace">Bahçe terası</span></div>
+      <div class="tile" data-img="corner.jpg" data-cap="Pergola gölgesi"><span class="src-tag real" data-i18n="src_google">Google</span><span class="cap" data-i18n="cap_corner">Pergola gölgesi</span></div>
+      <div class="tile" data-img="cart.jpg" data-cap="Avlu köşesi"><span class="src-tag real" data-i18n="src_google">Google</span><span class="cap" data-i18n="cap_cart">Avlu köşesi</span></div>
+      <div class="tile" data-img="valley.jpg" data-cap="Yeşil vadi"><span class="src-tag ai" data-i18n="src_concept">Konsept</span><span class="cap" data-i18n="cap_valley">Yeşil vadi</span></div>
+    </div>
+    <div class="galeri-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span data-i18n="gallery_note">"Google" etiketli kare işletme profilinizden; "Konsept" etiketliler AI ile hazırlanmış örnek görsellerdir.</span></div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="book" id="rezervasyon">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="book_eyebrow">Rezervasyon</span>
+        <h2 style="margin-top:16px" data-i18n="book_h" data-i18n-html="1">Bir <em>sessizlik</em> ayırtın.</h2>
+        <p class="lede" data-i18n="book_lede">Tarihinizi gönderin, kısa sürede WhatsApp'tan dönelim. Müsaitlik ve tüm sorularınız için buradayız.</p>
+        <a class="wa" href="https://wa.me/905372262735" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg>
+          +90 537 226 27 35
+        </a>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-date" data-i18n="label_date">Giriş tarihi</label><input type="date" id="f-date"></div>
+          <div class="field"><label for="f-count" data-i18n="label_people">Kişi</label>
+            <select id="f-count">
+              <option data-i18n="opt_1p">1 kişi</option><option data-i18n="opt_2p">2 kişi</option><option data-i18n="opt_3p">3 kişi</option><option data-i18n="opt_4p">4+ kişi</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-phone" data-i18n="label_phone">WhatsApp / Telefon</label>
+          <input type="tel" id="f-phone" data-i18n-ph="ph_phone" placeholder="Size ulaşabileceğimiz numara">
+        </div>
+        <div class="field">
+          <label for="f-note" data-i18n="label_note">Notunuz (isteğe bağlı)</label>
+          <textarea id="f-note" data-i18n-ph="ph_note" placeholder="Kaç gece, özel bir isteğiniz…"></textarea>
+        </div>
+        <button class="submit" type="button" onclick="sendBooking()" data-i18n="btn_submit">Rezervasyon talebi gönder</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 6C16 14 12 22 12 30a12 12 0 0 0 24 0c0-8-4-16-12-24z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M24 16v24M24 26l-6-5M24 32l6-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <b>Naydehane Yeşil Konak</b>
+        </div>
+        <p style="max-width:340px" data-i18n="foot_about">Ayvalı köyünde, kavakların gölgesinde bir kesme taş konak. Ürgüp'e komşu, yeşil bir vadinin sessizliğinde.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#konak" data-i18n="nav_konak">Konak</a></li>
+          <li><a href="#bahce" data-i18n="nav_bahce">Bahçe</a></li>
+          <li><a href="#vadi" data-i18n="nav_vadi">Vadi</a></li>
+          <li><a href="#galeri" data-i18n="nav_gallery">Galeri</a></li>
+          <li><a href="#rezervasyon" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Ayvalı, Ürgüp · Nevşehir</li>
+          <li><a href="https://wa.me/905372262735" target="_blank" rel="noopener">+90 537 226 27 35</a></li>
+          <li data-i18n="foot_channels">WhatsApp · Instagram</li>
+          <li data-i18n="foot_hours">Her mevsim açık</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Naydehane Yeşil Konak — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY, current = window.scrollY, running = false, rafId = null;
+  function clampTarget(){ const max = document.documentElement.scrollHeight - window.innerHeight; if(target<0)target=0; if(target>max)target=max; }
+  function loop(){ current += (target-current)*LERP; if(Math.abs(target-current)<0.4){ current=target; window.scrollTo(0,current); running=false; return; } window.scrollTo(0,current); rafId=requestAnimationFrame(loop); }
+  function start(){ if(!running){ running=true; rafId=requestAnimationFrame(loop);} }
+  function isPrevented(el){ while(el&&el!==document.body){ const tag=el.tagName; if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true; if(el.hasAttribute&&el.hasAttribute('data-lenis-prevent')) return true; el=el.parentElement;} return false; }
+  window.addEventListener('wheel',function(e){ if(isPrevented(e.target))return; e.preventDefault(); if(!running)current=window.scrollY; target=(running?target:window.scrollY)+e.deltaY*WHEEL_MULT; clampTarget(); start(); },{passive:false});
+  window.addEventListener('scroll',function(){ if(!running){ target=window.scrollY; current=window.scrollY; } },{passive:true});
+  window.addEventListener('resize',clampTarget);
+  function smoothTo(el){ const y=el.getBoundingClientRect().top+window.scrollY-64; target=y; clampTarget(); current=window.scrollY; start(); }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',e=>{ const id=a.getAttribute('href'); if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); smoothTo(t);} } }); });
+  function setupPlainAnchors(){ document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',e=>{ const id=a.getAttribute('href'); if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'});} } }); }); }
+})();
+</script>
+<script>
+// ==================== i18n SÖZLÜĞÜ ====================
+const I18N = {
+  tr:{
+    meta_title:"Naydehane Yeşil Konak — Ayvalı, Ürgüp · Kapadokya",
+    meta_desc:"Ayvalı köyünde, kavakların gölgesinde bir kesme taş konak. Ürgüp'e komşu, yeşil bir vadiye açılan bahçe terası ve köyün sessizliği.",
+    brand_sub:"Yeşil Konak · Ayvalı",
+    nav_konak:"Konak",nav_bahce:"Bahçe",nav_vadi:"Vadi",nav_gallery:"Galeri",nav_book:"Rezervasyon",
+    hero_eyebrow:"Ayvalı Köyü · Ürgüp, Kapadokya",
+    hero_title:'Kavakların gölgesinde,<br><em>yeşil bir vadi konağı.</em>',
+    hero_lede:"Ürgüp'e birkaç dakika, ama bambaşka bir sessizlik. Kesme taş duvarlar, gölge veren kavaklar ve taş bir vadiye açılan bahçe terası.",
+    hero_cta1:"Rezervasyon",hero_cta2:"Konağı gör",scroll_hint:"Bahçeye in",concept_hero:"Konsept görsel",
+    fact_rating:"Google puanı",fact_v2_n:"Ayvalı",fact_v2_l:"Ürgüp'e komşu köy",fact_v3_n:"Kesme taş",fact_v3_l:"el emeği konak",fact_v4_n:"Yeşil vadi",fact_v4_l:"kavak gölgesinde",
+    story_eyebrow:"Konak",story_h:"Taşın ve yeşilin arasında.",
+    story_sub:"Ayvalı, Ürgüp'ün hemen yanında, kavakların büyüdüğü sakin bir vadi köyü. Naydehane de o vadinin içinde, kesme taştan bir konak.",
+    story_lead:"Burada gün, motor sesiyle değil; yaprakların hışırtısı ve bir fincan çayla başlar.",
+    story_p1:"Terasa çıktığınızda önce gölge karşılar sizi: uzun kavaklar, taş bir duvarın ardındaki küçük vadi, serin bir hava. Konağın duvarları bölgenin honey renkli kesme taşından; demir işi korkuluklar, ahşap ve eski bir el arabası köşede çiçek saksısı olmuş.",
+    story_p2:"Ayvalı, Kapadokya'nın çıplak kayasından değil; yeşilinden yana. Ürgüp'ün hareketi birkaç dakika ötede dururken, burada kalan tek şey sessizlik oluyor.",
+    src_google:"Google profilinizden",src_concept:"Konsept görsel",ph_terrace:"Bahçe terası · kavaklar",
+    bahce_eyebrow:"Bahçe",bahce_h:"Konağın üç köşesi.",bahce_sub:"Gösterişten çok gölge, sükûnet ve taşın dokusu. Ayvalı'da bir günün geçtiği yerler.",
+    exp1_time:"Sabahtan akşama",exp1_tag:"Gölge & serinlik",exp1_h:"Gölgeli bahçe terası",
+    exp1_p:"Kavakların altında, kesme taş zeminli geniş bir teras. Pergolanın gölgesinde bir masa, demir işi korkuluklar ve vadiye bakan sakin bir köşe. Sabah serini, akşam feneri.",
+    exp1_note:"Gün boyu açık bahçe",
+    exp2_time:"Sabah sisi",exp2_tag:"Sükûnet",exp2_h:"Taş vadiye açılan köşe",
+    exp2_p:"Terasın kenarında eski bir taş duvar ve onun ardında yeşile boğulmuş küçük bir vadi. Kavaklar, sarmaşıklar ve taşın arasından süzülen ışık — Ayvalı'nın en çok bununla anılan yanı.",
+    exp2_note:"Yeşil vadi manzarası",
+    exp3_time:"Akşam feneri",exp3_tag:"El emeği",exp3_h:"Taşın ve demirin dokusu",
+    exp3_p:"Kesme taş zemin, demir işi korkuluklar ve köşede çiçek dolu eski bir el arabası. Naydehane'nin havasını yapan, işte bu el emeği ayrıntılar — yeni bir binadan çok, uzun süredir orada duran bir Anadolu köşesi.",
+    exp3_note:"Yöresel el işi",
+    vadi_eyebrow:"Vadi",vadi_h:"Neden Ayvalı?",vadi_sub:"Kapadokya'yı görüp, kalabalığında kaybolmak istemeyenler için.",
+    et1_h:"Kalabalıktan uzak",et1_p:"Ayvalı kendi ritminde, sakin bir köy. Gün burada yavaşlar; kalan tek ses yaprak ve kuş.",
+    et2_h:"Ürgüp'e komşu",et2_p:"Merkeze, restoranlara ve turlara kısa bir yol. Gün boyu Kapadokya, akşam köyün huzuru.",
+    et3_h:"Yeşilin Kapadokya'sı",et3_p:"Kavaklar, bahçe ve taş bir vadi. Çıplak kayanın değil, gölgenin ve yeşilin tarafındasınız.",
+    et4_h:"Sahici ev sahipliği",et4_p:"Kesme taş, ahşap ve sıcak bir karşılama. Zincir bir otel değil; bir konağın samimiyeti.",
+    gallery_eyebrow:"Galeri",gallery_h:"Konaktan kareler.",
+    gallery_sub:"Gerçek fotoğraflarınız yayında bunların yerini alır; konsept görseller yalnızca fikir vermek için.",
+    cap_terrace:"Bahçe terası",cap_corner:"Pergola gölgesi",cap_cart:"Avlu köşesi",cap_valley:"Yeşil vadi",
+    gallery_note:'"Google" etiketli kareler işletme profilinizden; "Konsept" etiketli AI ile hazırlanmış örnek görseldir.',
+    book_eyebrow:"Rezervasyon",book_h:'Bir <em>sessizlik</em> ayırtın.',
+    book_lede:"Tarihinizi gönderin, kısa sürede WhatsApp'tan dönelim. Müsaitlik ve tüm sorularınız için buradayız.",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_date:"Giriş tarihi",label_people:"Kişi",
+    opt_1p:"1 kişi",opt_2p:"2 kişi",opt_3p:"3 kişi",opt_4p:"4+ kişi",
+    label_phone:"WhatsApp / Telefon",ph_phone:"Size ulaşabileceğimiz numara",
+    label_note:"Notunuz (isteğe bağlı)",ph_note:"Kaç gece, özel bir isteğiniz…",btn_submit:"Rezervasyon talebi gönder",
+    foot_about:"Ayvalı köyünde, kavakların gölgesinde bir kesme taş konak. Ürgüp'e komşu, yeşil bir vadinin sessizliğinde.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Ayvalı, Ürgüp · Nevşehir",foot_channels:"WhatsApp · Instagram",foot_hours:"Her mevsim açık",
+    foot_rights:"© 2026 Naydehane Yeşil Konak — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    wa_msg:"Merhaba, Naydehane Yeşil Konak için rezervasyon talebim var:",wa_name:"Ad",wa_date:"Giriş",wa_people:"Kişi",wa_phone:"Telefon",wa_note:"Not",
+    alert_fill:"Lütfen adınızı, tarihi ve telefon numaranızı girin."
+  },
+  en:{
+    meta_title:"Naydehane Green Konak — Ayvalı, Ürgüp · Cappadocia",
+    meta_desc:"A cut-stone konak in the village of Ayvalı, in the shade of poplar trees. Next to Ürgüp, with a garden terrace opening onto a green valley and the quiet of the village.",
+    brand_sub:"Green Konak · Ayvalı",
+    nav_konak:"The Konak",nav_bahce:"Garden",nav_vadi:"Valley",nav_gallery:"Gallery",nav_book:"Reserve",
+    hero_eyebrow:"Village of Ayvalı · Ürgüp, Cappadocia",
+    hero_title:'In the shade of poplars,<br><em>a green-valley konak.</em>',
+    hero_lede:"A few minutes from Ürgüp, yet a whole other silence. Cut-stone walls, shade-giving poplars, and a garden terrace opening onto a stone valley.",
+    hero_cta1:"Reserve",hero_cta2:"See the konak",scroll_hint:"Down to the garden",concept_hero:"Concept image",
+    fact_rating:"Google rating",fact_v2_n:"Ayvalı",fact_v2_l:"village next to Ürgüp",fact_v3_n:"Cut stone",fact_v3_l:"handcrafted konak",fact_v4_n:"Green valley",fact_v4_l:"under the poplars",
+    story_eyebrow:"The Konak",story_h:"Between stone and green.",
+    story_sub:"Ayvalı sits right beside Ürgüp — a calm valley village where poplars grow. Naydehane stands within that valley, a konak of cut stone.",
+    story_lead:"Here the day begins not with an engine, but with rustling leaves and a glass of tea.",
+    story_p1:"Step onto the terrace and shade greets you first: tall poplars, a little valley behind a stone wall, cool air. The konak's walls are of the region's honey-coloured cut stone; wrought-iron railings, timber, and an old cart turned into a flower planter in the corner.",
+    story_p2:"Ayvalı belongs to Cappadocia's green side, not its bare rock. Ürgüp's bustle stops a few minutes away, and all that stays here is the quiet.",
+    src_google:"From your Google profile",src_concept:"Concept image",ph_terrace:"Garden terrace · poplars",
+    bahce_eyebrow:"Garden",bahce_h:"Three corners of the konak.",bahce_sub:"More shade than show — stillness and the texture of stone. Where a day passes in Ayvalı.",
+    exp1_time:"Morning to evening",exp1_tag:"Shade & cool",exp1_h:"Shaded garden terrace",
+    exp1_p:"A wide, cut-stone terrace beneath the poplars. A table in the pergola's shade, wrought-iron railings, and a calm corner facing the valley. Cool in the morning, lantern-lit at dusk.",
+    exp1_note:"Garden open all day",
+    exp2_time:"Morning mist",exp2_tag:"Stillness",exp2_h:"A corner over the stone valley",
+    exp2_p:"At the terrace edge, an old stone wall and behind it a small valley drowned in green. Poplars, ivy, and light filtering through stone — the thing Ayvalı is most remembered for.",
+    exp2_note:"Green valley view",
+    exp3_time:"Evening lantern",exp3_tag:"Handcraft",exp3_h:"The texture of stone and iron",
+    exp3_p:"A cut-stone floor, wrought-iron railings and an old flower-filled cart in the corner. These are the handmade details that give Naydehane its air — less a new building than an Anatolian corner that has long stood there.",
+    exp3_note:"Local handcraft",
+    vadi_eyebrow:"Valley",vadi_h:"Why Ayvalı?",vadi_sub:"For those who want to see Cappadocia without getting lost in its crowds.",
+    et1_h:"Away from the crowds",et1_p:"Ayvalı keeps its own rhythm, a quiet village. The day slows here; the only sound left is leaf and bird.",
+    et2_h:"Next to Ürgüp",et2_p:"A short road to the centre, the restaurants and the tours. Cappadocia by day, the village's calm by night.",
+    et3_h:"The green Cappadocia",et3_p:"Poplars, a garden and a stone valley. You're on the side of shade and green, not bare rock.",
+    et4_h:"Genuine hosting",et4_p:"Cut stone, timber and a warm welcome. Not a chain hotel, but the intimacy of a konak.",
+    gallery_eyebrow:"Gallery",gallery_h:"Frames from the konak.",
+    gallery_sub:"Your real photos will replace these when live; the concept images are only to give an idea.",
+    cap_terrace:"Garden terrace",cap_corner:"Pergola shade",cap_cart:"Courtyard corner",cap_valley:"Green valley",
+    gallery_note:'Frames tagged "Google" are from your business profile; the one tagged "Concept" is an AI-prepared sample image.',
+    book_eyebrow:"Reservation",book_h:'Reserve a <em>silence.</em>',
+    book_lede:"Send us your date and we'll reply shortly on WhatsApp. We're here for availability and any questions.",
+    label_name:"Your name",ph_name:"Your full name",label_date:"Check-in",label_people:"Guests",
+    opt_1p:"1 guest",opt_2p:"2 guests",opt_3p:"3 guests",opt_4p:"4+ guests",
+    label_phone:"WhatsApp / Phone",ph_phone:"A number we can reach you on",
+    label_note:"Your note (optional)",ph_note:"How many nights, any special request…",btn_submit:"Send reservation request",
+    foot_about:"A cut-stone konak in Ayvalı village, in the shade of poplars. Next to Ürgüp, in the quiet of a green valley.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Ayvalı, Ürgüp · Nevşehir",foot_channels:"WhatsApp · Instagram",foot_hours:"Open all seasons",
+    foot_rights:"© 2026 Naydehane Green Konak — All rights reserved.",foot_demo:"Sample / Demo Design",
+    wa_msg:"Hello, I'd like to request a reservation at Naydehane Green Konak:",wa_name:"Name",wa_date:"Check-in",wa_people:"Guests",wa_phone:"Phone",wa_note:"Note",
+    alert_fill:"Please enter your name, date and phone number."
+  },
+  es:{
+    meta_title:"Naydehane Konak Verde — Ayvalı, Ürgüp · Capadocia",
+    meta_desc:"Un konak de piedra tallada en el pueblo de Ayvalı, a la sombra de los álamos. Junto a Ürgüp, con una terraza ajardinada que se abre a un valle verde y al silencio del pueblo.",
+    brand_sub:"Konak Verde · Ayvalı",
+    nav_konak:"El Konak",nav_bahce:"Jardín",nav_vadi:"Valle",nav_gallery:"Galería",nav_book:"Reservar",
+    hero_eyebrow:"Pueblo de Ayvalı · Ürgüp, Capadocia",
+    hero_title:'A la sombra de los álamos,<br><em>un konak en el valle verde.</em>',
+    hero_lede:"A pocos minutos de Ürgüp, pero otro silencio por completo. Muros de piedra tallada, álamos que dan sombra y una terraza ajardinada abierta a un valle de piedra.",
+    hero_cta1:"Reservar",hero_cta2:"Ver el konak",scroll_hint:"Baja al jardín",concept_hero:"Imagen conceptual",
+    fact_rating:"Reseña Google",fact_v2_n:"Ayvalı",fact_v2_l:"pueblo junto a Ürgüp",fact_v3_n:"Piedra tallada",fact_v3_l:"konak artesanal",fact_v4_n:"Valle verde",fact_v4_l:"bajo los álamos",
+    story_eyebrow:"El Konak",story_h:"Entre la piedra y el verde.",
+    story_sub:"Ayvalı está justo al lado de Ürgüp, un tranquilo pueblo de valle donde crecen los álamos. Naydehane se alza dentro de ese valle, un konak de piedra tallada.",
+    story_lead:"Aquí el día no empieza con un motor, sino con el susurro de las hojas y un vaso de té.",
+    story_p1:"Al salir a la terraza, primero te recibe la sombra: álamos altos, un pequeño valle tras un muro de piedra, aire fresco. Los muros del konak son de la piedra tallada color miel de la región; barandillas de hierro forjado, madera y un viejo carro convertido en macetero en un rincón.",
+    story_p2:"Ayvalı pertenece al lado verde de Capadocia, no a su roca desnuda. El bullicio de Ürgüp se detiene a unos minutos, y lo único que queda aquí es el silencio.",
+    src_google:"De tu perfil de Google",src_concept:"Imagen conceptual",ph_terrace:"Terraza ajardinada · álamos",
+    bahce_eyebrow:"Jardín",bahce_h:"Tres rincones del konak.",bahce_sub:"Más sombra que ostentación: calma y la textura de la piedra. Donde transcurre un día en Ayvalı.",
+    exp1_time:"De la mañana a la tarde",exp1_tag:"Sombra y frescor",exp1_h:"Terraza ajardinada con sombra",
+    exp1_p:"Una amplia terraza de piedra tallada bajo los álamos. Una mesa a la sombra de la pérgola, barandillas de hierro forjado y un rincón sereno frente al valle. Fresca por la mañana, con farolillos al anochecer.",
+    exp1_note:"Jardín abierto todo el día",
+    exp2_time:"Niebla matinal",exp2_tag:"Calma",exp2_h:"Un rincón sobre el valle de piedra",
+    exp2_p:"Al borde de la terraza, un viejo muro de piedra y tras él un pequeño valle ahogado en verde. Álamos, hiedra y luz filtrándose entre la piedra: lo que más se recuerda de Ayvalı.",
+    exp2_note:"Vista al valle verde",
+    exp3_time:"Farol al anochecer",exp3_tag:"Artesanía",exp3_h:"La textura de la piedra y el hierro",
+    exp3_p:"Un suelo de piedra tallada, barandillas de hierro forjado y un viejo carro lleno de flores en un rincón. Son los detalles artesanales que dan su aire a Naydehane: más que un edificio nuevo, un rincón anatolio que lleva mucho allí.",
+    exp3_note:"Artesanía local",
+    vadi_eyebrow:"Valle",vadi_h:"¿Por qué Ayvalı?",vadi_sub:"Para quienes quieren ver Capadocia sin perderse entre sus multitudes.",
+    et1_h:"Lejos de las multitudes",et1_p:"Ayvalí mantiene su propio ritmo, un pueblo tranquilo. El día se ralentiza aquí; solo quedan la hoja y el pájaro.",
+    et2_h:"Junto a Ürgüp",et2_p:"Un corto camino al centro, los restaurantes y las excursiones. Capadocia de día, la calma del pueblo de noche.",
+    et3_h:"La Capadocia verde",et3_p:"Álamos, un jardín y un valle de piedra. Estás del lado de la sombra y el verde, no de la roca desnuda.",
+    et4_h:"Hospitalidad auténtica",et4_p:"Piedra tallada, madera y una cálida bienvenida. No un hotel de cadena, sino la intimidad de un konak.",
+    gallery_eyebrow:"Galería",gallery_h:"Instantes del konak.",
+    gallery_sub:"Tus fotos reales sustituirán a estas al publicar; las imágenes conceptuales solo dan una idea.",
+    cap_terrace:"Terraza ajardinada",cap_corner:"Sombra de la pérgola",cap_cart:"Rincón del patio",cap_valley:"Valle verde",
+    gallery_note:'Los cuadros etiquetados "Google" son de tu perfil de empresa; el de "Concepto" es una imagen de muestra creada con IA.',
+    book_eyebrow:"Reserva",book_h:'Reserva un <em>silencio.</em>',
+    book_lede:"Envíanos tu fecha y te responderemos pronto por WhatsApp. Estamos aquí para la disponibilidad y cualquier duda.",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_date:"Entrada",label_people:"Personas",
+    opt_1p:"1 persona",opt_2p:"2 personas",opt_3p:"3 personas",opt_4p:"4+ personas",
+    label_phone:"WhatsApp / Teléfono",ph_phone:"Un número donde localizarte",
+    label_note:"Tu nota (opcional)",ph_note:"Cuántas noches, alguna petición especial…",btn_submit:"Enviar solicitud de reserva",
+    foot_about:"Un konak de piedra tallada en el pueblo de Ayvalı, a la sombra de los álamos. Junto a Ürgüp, en el silencio de un valle verde.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Ayvalı, Ürgüp · Nevşehir",foot_channels:"WhatsApp · Instagram",foot_hours:"Abierto todas las estaciones",
+    foot_rights:"© 2026 Naydehane Konak Verde — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+    wa_msg:"Hola, quisiera solicitar una reserva en Naydehane Konak Verde:",wa_name:"Nombre",wa_date:"Entrada",wa_people:"Personas",wa_phone:"Teléfono",wa_note:"Nota",
+    alert_fill:"Por favor, introduce tu nombre, la fecha y tu número de teléfono."
+  },
+  "zh-CN":{
+    meta_title:"Naydehane 绿宅 — 阿伊瓦勒 · 于尔居普 · 卡帕多奇亚",
+    meta_desc:"位于阿伊瓦勒村、白杨树荫下的一座切石庄园。紧邻于尔居普，花园露台朝向一片绿色山谷，尽享村庄的宁静。",
+    brand_sub:"绿宅 · 阿伊瓦勒",
+    nav_konak:"庄园",nav_bahce:"花园",nav_vadi:"山谷",nav_gallery:"相册",nav_book:"预订",
+    hero_eyebrow:"阿伊瓦勒村 · 于尔居普，卡帕多奇亚",
+    hero_title:'在白杨的树荫下，<br><em>一座绿谷石庄园。</em>',
+    hero_lede:"距于尔居普仅几分钟，却是另一种宁静。切石砌墙、遮荫的白杨，以及一座朝向石谷的花园露台。",
+    hero_cta1:"预订",hero_cta2:"参观庄园",scroll_hint:"走向花园",concept_hero:"概念图",
+    fact_rating:"谷歌评分",fact_v2_n:"阿伊瓦勒",fact_v2_l:"于尔居普旁的村庄",fact_v3_n:"切石",fact_v3_l:"手工庄园",fact_v4_n:"绿色山谷",fact_v4_l:"白杨树荫下",
+    story_eyebrow:"庄园",story_h:"在石与绿之间。",
+    story_sub:"阿伊瓦勒就在于尔居普旁，是一座生长着白杨的宁静山谷村庄。Naydehane 就坐落在那片山谷之中，一座切石庄园。",
+    story_lead:"在这里，一天不是伴着引擎声，而是伴着树叶的沙沙声和一杯茶开始的。",
+    story_p1:"走上露台，最先迎接你的是树荫：高大的白杨、石墙后的小山谷、清凉的空气。庄园的墙体由当地蜜色切石砌成；铁艺栏杆、木料，角落里一辆旧车被改成了花盆。",
+    story_p2:"阿伊瓦勒属于卡帕多奇亚绿意的一面，而非裸露的岩石。于尔居普的喧嚣停在几分钟之外，这里留下的只有宁静。",
+    src_google:"来自您的谷歌资料",src_concept:"概念图",ph_terrace:"花园露台 · 白杨",
+    bahce_eyebrow:"花园",bahce_h:"庄园的三处角落。",bahce_sub:"少些张扬，多些树荫、静谧与石头的质感。阿伊瓦勒一天的去处。",
+    exp1_time:"从清晨到夜晚",exp1_tag:"树荫与清凉",exp1_h:"绿荫花园露台",
+    exp1_p:"白杨树下一方宽阔的切石露台。凉棚荫下的一张桌子、铁艺栏杆，以及一处面向山谷的宁静角落。清晨凉爽，入夜灯火。",
+    exp1_note:"花园全天开放",
+    exp2_time:"晨雾",exp2_tag:"静谧",exp2_h:"俯瞰石谷的一角",
+    exp2_p:"露台边缘一堵古老的石墙，墙后是一片被绿意淹没的小山谷。白杨、常春藤，以及从石间洒落的光——这正是阿伊瓦勒最令人难忘之处。",
+    exp2_note:"绿色山谷景观",
+    exp3_time:"夜灯",exp3_tag:"匠心",exp3_h:"石与铁的质感",
+    exp3_p:"切石地面、铁艺栏杆，以及角落里一辆盛满花的旧车。正是这些手工细节，成就了 Naydehane 的气息——与其说是一栋新楼，不如说是一处久立于此的安纳托利亚角落。",
+    exp3_note:"地方手工",
+    vadi_eyebrow:"山谷",vadi_h:"为什么选阿伊瓦勒？",vadi_sub:"献给想看卡帕多奇亚、却不愿迷失在人潮中的人。",
+    et1_h:"远离人潮",et1_p:"阿伊瓦勒保持着自己的节奏，一座宁静的村庄。时光在这里放慢；留下的只有树叶与鸟鸣。",
+    et2_h:"紧邻于尔居普",et2_p:"到镇中心、餐厅与各类旅程都只是短短一程。白天是卡帕多奇亚，夜晚是村庄的宁静。",
+    et3_h:"绿色的卡帕多奇亚",et3_p:"白杨、花园与一片石谷。你站在树荫与绿意这一边，而非裸岩。",
+    et4_h:"真诚的待客",et4_p:"切石、木料与温暖的迎接。这不是连锁酒店，而是一座庄园的亲切。",
+    gallery_eyebrow:"相册",gallery_h:"庄园的片刻。",
+    gallery_sub:"上线后，您的真实照片将取代这些；概念图仅供参考。",
+    cap_terrace:"花园露台",cap_corner:"凉棚树荫",cap_cart:"庭院一角",cap_valley:"绿色山谷",
+    gallery_note:'标注"谷歌"的照片来自您的商家资料；标注"概念"的是用 AI 制作的示意图。',
+    book_eyebrow:"预订",book_h:'预订一份<em>宁静。</em>',
+    book_lede:"发送您的日期，我们会尽快通过 WhatsApp 回复。空房与任何疑问，我们都在。",
+    label_name:"您的姓名",ph_name:"您的全名",label_date:"入住日期",label_people:"人数",
+    opt_1p:"1 人",opt_2p:"2 人",opt_3p:"3 人",opt_4p:"4 人以上",
+    label_phone:"WhatsApp / 电话",ph_phone:"方便联系您的号码",
+    label_note:"您的留言（选填）",ph_note:"住几晚，有无特别需求…",btn_submit:"发送预订申请",
+    foot_about:"位于阿伊瓦勒村、白杨树荫下的一座切石庄园。紧邻于尔居普，在绿色山谷的宁静之中。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"阿伊瓦勒，于尔居普 · 内夫谢希尔",foot_channels:"WhatsApp · Instagram",foot_hours:"四季开放",
+    foot_rights:"© 2026 Naydehane 绿宅 — 版权所有。",foot_demo:"示例 / 演示设计",
+    wa_msg:"您好，我想预订 Naydehane 绿宅：",wa_name:"姓名",wa_date:"入住",wa_people:"人数",wa_phone:"电话",wa_note:"备注",
+    alert_fill:"请填写您的姓名、日期和电话号码。"
+  },
+  ko:{
+    meta_title:"Naydehane 초록 코낙 — 아이발르 · 위르귀프 · 카파도키아",
+    meta_desc:"포플러 그늘 아래, 아이발르 마을의 다듬은 돌로 지은 코낙. 위르귀프 곁, 초록 계곡으로 열린 정원 테라스와 마을의 고요.",
+    brand_sub:"초록 코낙 · 아이발르",
+    nav_konak:"코낙",nav_bahce:"정원",nav_vadi:"계곡",nav_gallery:"갤러리",nav_book:"예약",
+    hero_eyebrow:"아이발르 마을 · 위르귀프, 카파도키아",
+    hero_title:'포플러 그늘 아래,<br><em>초록 계곡의 코낙.</em>',
+    hero_lede:"위르귀프에서 몇 분, 그러나 완전히 다른 고요. 다듬은 돌벽, 그늘을 드리우는 포플러, 그리고 돌 계곡으로 열린 정원 테라스.",
+    hero_cta1:"예약",hero_cta2:"코낙 보기",scroll_hint:"정원으로",concept_hero:"콘셉트 이미지",
+    fact_rating:"구글 평점",fact_v2_n:"아이발르",fact_v2_l:"위르귀프 옆 마을",fact_v3_n:"다듬은 돌",fact_v3_l:"손으로 지은 코낙",fact_v4_n:"초록 계곡",fact_v4_l:"포플러 그늘 아래",
+    story_eyebrow:"코낙",story_h:"돌과 초록 사이에서.",
+    story_sub:"아이발르는 위르귀프 바로 옆, 포플러가 자라는 고요한 계곡 마을입니다. Naydehane는 그 계곡 안, 다듬은 돌로 지은 코낙입니다.",
+    story_lead:"이곳의 하루는 엔진 소리가 아니라, 나뭇잎의 사각임과 한 잔의 차로 시작됩니다.",
+    story_p1:"테라스에 오르면 먼저 그늘이 맞이합니다: 키 큰 포플러, 돌담 뒤의 작은 계곡, 서늘한 공기. 코낙의 벽은 이 지역의 꿀빛 다듬은 돌로 쌓였고, 철제 난간과 목재, 그리고 한쪽 구석에는 낡은 수레가 화분이 되어 있습니다.",
+    story_p2:"아이발르는 카파도키아의 헐벗은 바위가 아니라 초록의 편입니다. 위르귀프의 분주함은 몇 분 밖에서 멈추고, 이곳에 남는 것은 오직 고요뿐입니다.",
+    src_google:"귀하의 구글 프로필에서",src_concept:"콘셉트 이미지",ph_terrace:"정원 테라스 · 포플러",
+    bahce_eyebrow:"정원",bahce_h:"코낙의 세 모퉁이.",bahce_sub:"과시보다 그늘, 고요, 그리고 돌의 질감. 아이발르에서 하루가 흐르는 자리.",
+    exp1_time:"아침부터 저녁까지",exp1_tag:"그늘과 서늘함",exp1_h:"그늘진 정원 테라스",
+    exp1_p:"포플러 아래, 다듬은 돌바닥의 넓은 테라스. 퍼걸러 그늘 속 탁자, 철제 난간, 그리고 계곡을 마주한 고요한 모퉁이. 아침엔 서늘하고, 해 질 녘엔 등불이 켜집니다.",
+    exp1_note:"하루 종일 열린 정원",
+    exp2_time:"아침 안개",exp2_tag:"고요",exp2_h:"돌 계곡으로 열린 모퉁이",
+    exp2_p:"테라스 가장자리의 오래된 돌담, 그 뒤로 초록에 잠긴 작은 계곡. 포플러와 담쟁이, 돌 사이로 스미는 빛 — 아이발르가 가장 오래 기억되는 이유입니다.",
+    exp2_note:"초록 계곡 전망",
+    exp3_time:"저녁 등불",exp3_tag:"손의 정성",exp3_h:"돌과 철의 질감",
+    exp3_p:"다듬은 돌바닥, 철제 난간, 그리고 한쪽 구석에 꽃이 가득한 낡은 수레. Naydehane의 분위기를 만드는 건 바로 이 손의 디테일입니다 — 새 건물이라기보다, 오래 그 자리를 지켜온 아나톨리아의 한 모퉁이입니다.",
+    exp3_note:"지역 수공예",
+    vadi_eyebrow:"계곡",vadi_h:"왜 아이발르인가?",vadi_sub:"카파도키아를 보되, 인파 속에서 길을 잃고 싶지 않은 이들을 위해.",
+    et1_h:"인파에서 멀리",et1_p:"아이발르는 자기만의 리듬을 지닌 고요한 마을입니다. 이곳에서 하루는 느려지고, 남는 소리는 잎과 새뿐입니다.",
+    et2_h:"위르귀프 곁에",et2_p:"중심가와 식당, 투어까지 짧은 길. 낮에는 카파도키아, 밤에는 마을의 고요.",
+    et3_h:"초록의 카파도키아",et3_p:"포플러와 정원, 그리고 돌 계곡. 헐벗은 바위가 아니라 그늘과 초록의 편에 있습니다.",
+    et4_h:"진정한 환대",et4_p:"다듬은 돌, 목재, 그리고 따뜻한 맞이. 체인 호텔이 아니라, 코낙의 친밀함입니다.",
+    gallery_eyebrow:"갤러리",gallery_h:"코낙의 순간들.",
+    gallery_sub:"공개 시 귀하의 실제 사진이 이 자리를 대신합니다; 콘셉트 이미지는 느낌을 전하기 위한 것입니다.",
+    cap_terrace:"정원 테라스",cap_corner:"퍼걸러 그늘",cap_cart:"안뜰 모퉁이",cap_valley:"초록 계곡",
+    gallery_note:'"구글" 표시 사진은 귀하의 비즈니스 프로필에서; "콘셉트" 표시는 AI로 만든 예시 이미지입니다.',
+    book_eyebrow:"예약",book_h:'<em>고요</em>를 예약하세요.',
+    book_lede:"날짜를 보내주시면 WhatsApp으로 곧 답장드립니다. 예약 가능 여부와 모든 문의를 도와드립니다.",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_date:"체크인",label_people:"인원",
+    opt_1p:"1명",opt_2p:"2명",opt_3p:"3명",opt_4p:"4명 이상",
+    label_phone:"WhatsApp / 전화",ph_phone:"연락 가능한 번호",
+    label_note:"메모 (선택)",ph_note:"몇 박인지, 특별한 요청…",btn_submit:"예약 요청 보내기",
+    foot_about:"포플러 그늘 아래, 아이발르 마을의 다듬은 돌 코낙. 위르귀프 곁, 초록 계곡의 고요 속에서.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"아이발르, 위르귀프 · 네브셰히르",foot_channels:"WhatsApp · Instagram",foot_hours:"사계절 운영",
+    foot_rights:"© 2026 Naydehane 초록 코낙 — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    wa_msg:"안녕하세요, Naydehane 초록 코낙 예약을 요청합니다:",wa_name:"성함",wa_date:"체크인",wa_people:"인원",wa_phone:"전화",wa_note:"메모",
+    alert_fill:"성함, 날짜, 전화번호를 입력해 주세요."
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n'); if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML=dict[key]; else el.textContent=dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key=el.getAttribute('data-i18n-ph'); if(dict[key]!==undefined) el.setAttribute('placeholder',dict[key]);
+  });
+  if(dict.meta_title) document.title=dict.meta_title;
+  const md=document.querySelector('meta[name="description"]'); if(md&&dict.meta_desc) md.setAttribute('content',dict.meta_desc);
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{ b.classList.toggle('active', b.getAttribute('data-lang')===lang); });
+  try{ localStorage.setItem('nay_lang', lang); }catch(e){}
+  requestAnimationFrame(moveLeaf);
+}
+function initLang(){
+  let lang=null; const url=new URLSearchParams(location.search).get('lang');
+  if(url&&SUPPORTED.includes(url)) lang=url;
+  if(!lang){ try{ const s=localStorage.getItem('nay_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr'; applyLang(lang);
+}
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click',()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+// ==================== TEMA ====================
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('nay_theme', t); }catch(e){}
+}
+function initTheme(){
+  let t=null; const url=new URLSearchParams(location.search).get('theme');
+  if(url==='light'||url==='dark') t=url;
+  if(!t){ try{ const s=localStorage.getItem('nay_theme'); if(s==='light'||s==='dark') t=s; }catch(e){} }
+  if(!t){ t = (window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'; }
+  applyTheme(t);
+}
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const cur=document.documentElement.getAttribute('data-theme'); applyTheme(cur==='light'?'dark':'light');
+});
+
+// ==================== MOBİL MENÜ ====================
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+// ==================== NAV SCROLL + YAPRAK İMLECİ (scroll-spy) ====================
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScroll);onScroll();
+
+const spyLinks = Array.from(document.querySelectorAll('.navlinks a[data-spy]'));
+const leaf = document.getElementById('leafMarker');
+let activeSpy = 'konak';
+function moveLeaf(){
+  const link = document.querySelector('.navlinks a[data-spy="'+activeSpy+'"]');
+  if(!link||!leaf) return;
+  const parent = link.parentElement.getBoundingClientRect();
+  const r = link.getBoundingClientRect();
+  const w = Math.max(18, r.width);
+  leaf.style.width = w+'px';
+  leaf.style.transform = 'translateX('+(r.left-parent.left)+'px)';
+  leaf.classList.add('show');
+}
+function updateSpy(){
+  let cur=activeSpy; const y=window.scrollY+ window.innerHeight*0.34;
+  document.querySelectorAll('section[id]').forEach(sec=>{
+    if(sec.offsetTop<=y) { if(spyLinks.some(l=>l.getAttribute('data-spy')===sec.id)) cur=sec.id; }
+  });
+  spyLinks.forEach(l=>l.classList.toggle('active', l.getAttribute('data-spy')===cur));
+  if(cur!==activeSpy){ activeSpy=cur; moveLeaf(); }
+}
+window.addEventListener('scroll',updateSpy,{passive:true});
+window.addEventListener('resize',()=>{ moveLeaf(); });
+spyLinks.forEach(l=>l.addEventListener('mouseenter',()=>{
+  const parent=l.parentElement.getBoundingClientRect(); const r=l.getBoundingClientRect();
+  leaf.style.width=Math.max(18,r.width)+'px'; leaf.style.transform='translateX('+(r.left-parent.left)+'px)'; leaf.classList.add('show');
+}));
+document.getElementById('navlinks').addEventListener('mouseleave',moveLeaf);
+
+// ==================== REVEAL ====================
+const io=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); },{threshold:.16});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ==================== GÖRSEL YÜKLEME ====================
+(function(){
+  const base='assets/images/';
+  function tryImg(el,file){ const img=new Image(); img.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; const l=el.querySelector('.ph-label'); if(l) l.style.display='none'; }; img.onerror=()=>{}; img.src=base+file; }
+  const hero=document.getElementById('heroPhoto');
+  if(hero){ const hi=new Image(); hi.onload=()=>{ hero.style.backgroundImage=`url('${base}hero.jpg')`; hero.classList.add('has-img'); }; hi.onerror=()=>{}; hi.src=base+'hero.jpg'; }
+  document.querySelectorAll('[data-img]').forEach(t=>{ if(t.id!=='heroPhoto') tryImg(t,t.getAttribute('data-img')); });
+})();
+
+// ==================== REZERVASYON → WHATSAPP ====================
+const WHATSAPP = "905372262735";
+function sendBooking(){
+  const d=I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const date=document.getElementById('f-date').value;
+  const count=document.getElementById('f-count').value;
+  const phone=document.getElementById('f-phone').value.trim();
+  const note=document.getElementById('f-note').value.trim();
+  if(!name||!date||!phone){ alert(d.alert_fill); return; }
+  let msg=d.wa_msg+"%0A%0A"+
+    d.wa_name+": "+encodeURIComponent(name)+"%0A"+
+    d.wa_date+": "+encodeURIComponent(date)+"%0A"+
+    d.wa_people+": "+encodeURIComponent(count)+"%0A"+
+    d.wa_phone+": "+encodeURIComponent(phone);
+  if(note) msg+="%0A"+d.wa_note+": "+encodeURIComponent(note);
+  window.open("https://wa.me/"+WHATSAPP+"?text="+msg,"_blank");
+}
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items=Array.from(document.querySelectorAll('.tile[data-img], .exp-visual[data-img], #storyImg[data-img]'));
+  const lb=document.getElementById('lightbox'); if(!items.length||!lb) return;
+  const img=document.getElementById('lbImg'), cap=document.getElementById('lbCap'); const base='assets/images/'; let idx=0;
+  function capOf(t){ return t.getAttribute('data-cap')||''; }
+  function show(i){ idx=(i+items.length)%items.length; const t=items[idx]; img.src=base+t.getAttribute('data-img'); cap.textContent=capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>t.addEventListener('click',()=>open(i)));
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target===lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open'))return; if(e.key==='Escape')close(); else if(e.key==='ArrowLeft')show(idx-1); else if(e.key==='ArrowRight')show(idx+1); });
+})();
+
+// ==================== BAŞLAT ====================
+initTheme();
+initLang();
+updateSpy();
+setTimeout(moveLeaf,120); setTimeout(moveLeaf,500);
+</script>
+
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+</body>
+</html>
