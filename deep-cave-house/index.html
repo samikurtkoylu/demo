@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Deep Cave House — Mustafapaşa (Sinasos) Mağara Evi</title>
+<meta name="description" data-i18n="meta_desc" content="Sinasos'un (Mustafapaşa) kayasına elle oyulmuş bir mağara evi. Kalın tüf duvarlar, oyma nişler ve şehirden uzak bir sessizlik. Ürgüp'e birkaç dakika.">
+<style>
+  /* ============ TEMA · deep cave (koyu) varsayılan / sunlit tuff (açık) ============ */
+  :root, html[data-theme="dark"]{
+    --bg:#15100d; --bg-2:#0e0a08; --surface:#201712; --surface-2:#1a1310;
+    --stone:#ece0cd; --stone-dim:#a8987f; --stone-faint:#7c6e5c;
+    --ember:#d9793f; --ember-l:#f0a568; --ember-d:#a9552a;
+    --glow:#e9bf78;
+    --line:rgba(236,224,205,.12); --line-2:rgba(236,224,205,.07);
+    --nav-bar:rgba(28,20,16,.5); --nav-groove:rgba(0,0,0,.42); --nav-hi:rgba(255,255,255,.05);
+    --nav-solid:rgba(14,10,8,.85);
+    --card:#1c1510; --card-2:#241a13;
+    --shadow:0 24px 60px rgba(0,0,0,.5);
+    --grain-blend:overlay; --grain-op:.05;
+    --mesh-op:.5;
+  }
+  html[data-theme="light"]{
+    --bg:#ece0cd; --bg-2:#e2d3ba; --surface:#f7f0e3; --surface-2:#efe5d3;
+    --stone:#2b2019; --stone-dim:#6c5b48; --stone-faint:#9a8871;
+    --ember:#bf5f30; --ember-l:#d67c46; --ember-d:#9a4a22;
+    --glow:#b07c34;
+    --line:rgba(43,32,25,.14); --line-2:rgba(43,32,25,.08);
+    --nav-bar:rgba(247,240,227,.72); --nav-groove:rgba(120,88,55,.13); --nav-hi:rgba(255,255,255,.6);
+    --nav-solid:rgba(236,224,205,.9);
+    --card:#f7f0e3; --card-2:#efe5d3;
+    --shadow:0 22px 50px rgba(90,64,40,.16);
+    --grain-blend:multiply; --grain-op:.04;
+    --mesh-op:.32;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{font-family:'Optima','Gill Sans','Gill Sans MT',system-ui,sans-serif;color:var(--stone);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.68;overflow-x:hidden;transition:background .5s,color .5s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:'Didot','Bodoni MT','Bodoni 72',Georgia,'Times New Roman',serif;font-weight:500;line-height:1.06;letter-spacing:-.01em}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:600;letter-spacing:0}
+  .eyebrow{font-family:'Optima','Gill Sans',sans-serif;text-transform:uppercase;letter-spacing:.4em;font-size:.66rem;font-weight:600;color:var(--ember)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.14em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 30px}
+
+  /* ============ NAV — "oygu / carved-inset" taş tablet ============ */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+    padding:16px 30px;gap:16px;color:#efe4d2;transition:background .45s,box-shadow .45s,color .45s}
+  nav::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:1;transition:.45s;
+    background:linear-gradient(180deg,rgba(8,6,4,.5),transparent)}
+  nav.scrolled{background:var(--nav-solid);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);color:var(--stone)}
+  nav.scrolled::before{opacity:0}
+  .brand{display:flex;align-items:center;gap:11px;font-family:'Didot','Bodoni MT',Georgia,serif;font-size:1.24rem;letter-spacing:.06em;flex:none;color:inherit}
+  .brand .mark{width:30px;height:30px;flex:none}
+  .brand b{font-weight:500}
+  .brand i{font-style:normal;color:var(--ember-l);font-weight:500}
+
+  .navlinks{display:flex;gap:2px;align-items:center;margin:0 auto;
+    background:var(--nav-bar);border:1px solid var(--line);border-radius:24px;padding:5px 6px;backdrop-filter:blur(10px)}
+  .navlinks a{position:relative;font-family:'Optima','Gill Sans',sans-serif;font-size:.78rem;letter-spacing:.06em;
+    color:var(--stone-dim);padding:8px 16px;border-radius:19px;transition:color .3s,background .3s,box-shadow .3s}
+  html[lang="zh-CN"] .navlinks a,html[lang="ko"] .navlinks a{font-size:.86rem;letter-spacing:.02em}
+  .navlinks a:hover{color:var(--stone)}
+  .navlinks a.active{color:var(--stone);background:var(--nav-groove);
+    box-shadow:inset 0 2px 6px rgba(0,0,0,.4),inset 0 -1px 0 var(--nav-hi)}
+  .navlinks a.active::after{content:"";position:absolute;left:15px;right:15px;bottom:6px;height:1px;border-radius:1px;
+    background:linear-gradient(90deg,transparent,var(--ember-l),transparent);opacity:.95}
+
+  .nav-right{display:flex;align-items:center;gap:6px;flex:none}
+  .langs{display:flex;align-items:center;gap:1px}
+  .langs button{background:none;border:none;color:inherit;opacity:.72;font-family:'Optima',sans-serif;font-size:.74rem;
+    cursor:pointer;padding:5px 6px;transition:.25s;border-radius:3px;letter-spacing:.02em}
+  .langs button:hover{opacity:1}
+  .langs button.active{opacity:1;color:var(--ember-l);font-weight:600}
+  nav.scrolled .langs button.active{color:var(--ember)}
+  .langs .sep{opacity:.3;font-size:.66rem}
+  .icon-btn{background:none;border:1px solid transparent;color:inherit;cursor:pointer;width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;transition:.3s;flex:none}
+  .icon-btn:hover{border-color:var(--line);background:var(--nav-bar)}
+  .icon-btn svg{width:19px;height:19px}
+  .theme-btn .moon{display:none}
+  html[data-theme="light"] .theme-btn .sun{display:none}
+  html[data-theme="light"] .theme-btn .moon{display:block}
+  .menu-btn{display:none}
+
+  /* ============ HERO — deep cave, ışık kuyusu + toz (signature) ============ */
+  .hero{position:relative;height:100svh;min-height:620px;overflow:hidden;display:flex;align-items:flex-end;isolation:isolate}
+  .cavebg{position:absolute;inset:0;z-index:0;background:
+    radial-gradient(120% 90% at 50% 0%,#3a251a 0%,#1c130d 45%,#0c0806 100%)}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center 42%;opacity:0;transition:opacity 1s}
+  .hero-photo.has-img{opacity:1;animation:kenburns 40s ease-in-out infinite alternate;transform-origin:58% 44%}
+  @keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.13)}}
+  .hero-photo.has-img::after{content:"";position:absolute;inset:0;background:
+    linear-gradient(180deg,rgba(10,7,5,.55) 0%,rgba(10,7,5,.12) 34%,rgba(10,7,5,.72) 100%)}
+  /* signature ışık kuyusu — yukarıdan düşen yumuşak sıcak huzme */
+  .shaft{position:absolute;top:-8%;left:16%;width:44%;height:120%;z-index:3;pointer-events:none;mix-blend-mode:screen;
+    background:linear-gradient(178deg,rgba(233,191,120,.28),rgba(217,121,63,.10) 42%,transparent 68%);
+    transform:rotate(9deg);filter:blur(6px);opacity:.9;animation:breathe 9s ease-in-out infinite}
+  @keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
+  .dust{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+  .mote{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(240,210,160,.9),rgba(240,210,160,0) 70%);
+    animation:drift linear infinite}
+  @keyframes drift{0%{transform:translateY(12px) translateX(0);opacity:0}
+    12%{opacity:.7}88%{opacity:.55}100%{transform:translateY(-90px) translateX(14px);opacity:0}}
+  #hero-gradient{position:absolute;inset:0;z-index:5;pointer-events:none;mix-blend-mode:overlay;opacity:var(--mesh-op);
+    --gradient-color-1:#2a1c14; --gradient-color-2:#d9793f; --gradient-color-3:#e9bf78; --gradient-color-4:#7a4526}
+  .no-webgl #hero-gradient{display:none}
+  .hero::after{content:"";position:absolute;inset:0;z-index:6;pointer-events:none;
+    background:radial-gradient(70% 60% at 22% 88%,rgba(10,7,5,.6),transparent 70%)}
+
+  .hero-inner{position:relative;z-index:10;width:100%;padding-bottom:12vh}
+  .hero .eyebrow{color:var(--ember-l);display:block;margin-bottom:20px;opacity:0;animation:rise 1s .2s both}
+  .hero h1{color:#f6ecdb;font-size:clamp(3rem,8vw,7rem);max-width:15ch;text-shadow:0 6px 60px rgba(0,0,0,.6);
+    opacity:0;animation:rise 1.1s .35s both}
+  .hero h1 em{font-style:italic;color:var(--glow)}
+  .hero .lede{font-size:clamp(1.04rem,1.55vw,1.28rem);color:rgba(246,236,219,.9);max-width:52ch;margin-top:26px;
+    font-weight:300;text-shadow:0 2px 26px rgba(0,0,0,.6);opacity:0;animation:rise 1.1s .55s both}
+  @keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+  .hero-cta{display:flex;gap:18px;margin-top:38px;flex-wrap:wrap;align-items:center;opacity:0;animation:rise 1.1s .75s both}
+  .btn-solid{background:var(--glow);color:#211208;padding:16px 32px;border-radius:2px;font-family:'Optima','Gill Sans',sans-serif;
+    font-weight:600;font-size:.84rem;letter-spacing:.13em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.35s}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{text-transform:none;letter-spacing:.03em}
+  .btn-solid:hover{background:var(--ember-l);gap:15px}
+  .btn-line{color:#f6ecdb;font-family:'Optima','Gill Sans',sans-serif;font-size:.84rem;letter-spacing:.13em;text-transform:uppercase;
+    border-bottom:1px solid rgba(246,236,219,.42);padding-bottom:5px;transition:.4s}
+  .btn-line:hover{border-color:var(--glow);color:var(--glow)}
+  .scrollhint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:10;font-family:'Optima',sans-serif;
+    font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(246,236,219,.6);display:flex;flex-direction:column;align-items:center;gap:9px}
+  html[lang="zh-CN"] .scrollhint,html[lang="ko"] .scrollhint{letter-spacing:.1em}
+  .scrollhint .l{width:1px;height:36px;background:linear-gradient(var(--glow),transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.65)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ============ ESSENCE band ============ */
+  .essence{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .essence .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:44px 30px}
+  .ess{text-align:center;padding:0 8px}
+  .ess .v{font-family:'Didot','Bodoni MT',Georgia,serif;font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--glow);line-height:1.05}
+  html[data-theme="light"] .ess .v{color:var(--ember-d)}
+  .ess .k{font-family:'Optima',sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-dim);margin-top:10px}
+  html[lang="zh-CN"] .ess .k,html[lang="ko"] .ess .k{text-transform:none;letter-spacing:.03em}
+  .ess+.ess{border-left:1px solid var(--line)}
+  @media(max-width:680px){.essence .wrap{grid-template-columns:1fr 1fr;gap:30px 16px}.ess:nth-child(3){border-left:none}}
+
+  section{padding:120px 0;position:relative}
+  .sec-head{max-width:640px;margin-bottom:60px}
+  .sec-head .eyebrow{display:block;margin-bottom:18px}
+  .sec-head h2{font-size:clamp(2.2rem,4.8vw,3.7rem)}
+  .sec-head p{margin-top:20px;color:var(--stone-dim);font-size:1.08rem;font-weight:300}
+
+  /* ============ STORY / KÖY — İniş ============ */
+  .story{background:var(--bg)}
+  .story-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch}
+  .story-visual{position:relative;min-height:540px;border-radius:3px;overflow:hidden;background-size:cover;background-position:center;
+    background-color:var(--surface)}
+  .story-visual::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,7,5,.15),transparent 55%)}
+  .concept-tag{position:absolute;left:18px;bottom:16px;z-index:3;font-family:'Optima',sans-serif;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:rgba(246,236,219,.92);background:rgba(12,8,6,.5);border:1px solid rgba(246,236,219,.18);
+    padding:6px 12px;border-radius:2px;backdrop-filter:blur(4px);display:flex;align-items:center;gap:7px}
+  html[lang="zh-CN"] .concept-tag,html[lang="ko"] .concept-tag{text-transform:none;letter-spacing:.03em}
+  .concept-tag svg{width:13px;height:13px;opacity:.85}
+  .story-text{background:var(--surface);padding:60px;display:flex;flex-direction:column;justify-content:center;
+    margin-left:-46px;z-index:2;border:1px solid var(--line);border-radius:3px;box-shadow:var(--shadow)}
+  @media(max-width:860px){.story-text{margin-left:0;margin-top:-40px}}
+  .story-text .lead{font-family:'Didot','Bodoni MT',Georgia,serif;font-size:1.6rem;line-height:1.42;font-style:italic;color:var(--stone);margin-bottom:22px}
+  html[lang="zh-CN"] .story-text .lead,html[lang="ko"] .story-text .lead{font-style:normal}
+  .story-text p{color:var(--stone-dim);margin-bottom:16px;font-weight:300}
+  .story-text .sign{margin-top:14px;font-family:'Didot',Georgia,serif;font-size:1.3rem;color:var(--ember-l);font-style:italic}
+  html[data-theme="light"] .story-text .sign{color:var(--ember-d)}
+  @media(max-width:860px){.story-grid{grid-template-columns:1fr}.story-visual{min-height:340px}}
+
+  /* ============ ROOMS & SPACES ============ */
+  .rooms{background:var(--bg-2)}
+  .room-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .room{background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;
+    transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s,border-color .5s}
+  .room:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--ember-d)}
+  .room-img{height:250px;background-size:cover;background-position:center;position:relative;cursor:pointer;background-color:var(--surface-2)}
+  .room-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,8,6,.5),transparent 55%)}
+  .room-img .meta{position:absolute;left:16px;bottom:14px;z-index:2;font-family:'Optima',sans-serif;font-size:.7rem;letter-spacing:.1em;
+    color:rgba(246,236,219,.94);display:flex;align-items:center;gap:7px;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+  .room-img .zoomdot{position:absolute;top:12px;right:14px;z-index:3;color:#fff;opacity:0;transform:scale(.7);transition:.35s;
+    text-shadow:0 1px 8px rgba(0,0,0,.8);font-size:1.05rem}
+  .room:hover .zoomdot{opacity:.95;transform:scale(1)}
+  .room-body{padding:26px 26px 30px}
+  .room-body .tag{font-family:'Optima',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ember)}
+  html[lang="zh-CN"] .room-body .tag,html[lang="ko"] .room-body .tag{text-transform:none;letter-spacing:.03em}
+  .room-body h3{font-size:1.6rem;margin:8px 0 12px;color:var(--stone)}
+  .room-body p{color:var(--stone-dim);font-weight:300;font-size:.96rem}
+  @media(max-width:860px){.room-grid{grid-template-columns:1fr;gap:18px}.room-img{height:220px}}
+
+  /* ============ EXPERIENCE / neden taş ============ */
+  .exp{background:var(--bg)}
+  .exp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:38px}
+  .ex .ic{width:40px;height:40px;color:var(--ember);margin-bottom:16px}
+  html[data-theme="light"] .ex .ic{color:var(--ember-d)}
+  .ex h3{font-size:1.2rem;margin-bottom:8px;color:var(--stone)}
+  .ex p{font-size:.94rem;color:var(--stone-dim);font-weight:300}
+  @media(max-width:860px){.exp-grid{grid-template-columns:1fr 1fr;gap:30px}}
+  @media(max-width:480px){.exp-grid{grid-template-columns:1fr}}
+
+  /* ============ GALLERY ============ */
+  .gallery{background:var(--bg-2)}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .tile{aspect-ratio:4/3;border-radius:4px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;
+    background-size:cover;background-position:center;background-color:var(--surface-2);cursor:pointer;
+    transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s}
+  .tile:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .tile .cap{position:relative;z-index:3;font-family:'Optima',sans-serif;font-size:.74rem;letter-spacing:.04em;color:#fff;
+    text-shadow:0 1px 10px rgba(0,0,0,.8);display:flex;align-items:center;gap:6px}
+  .tile.concept .cap::before{content:"◈";color:var(--glow);font-size:.7rem}
+  .tile::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(10,7,5,.62),rgba(10,7,5,0) 50%);transition:.4s}
+  .tile::after{content:"\2922";position:absolute;top:11px;right:14px;z-index:3;color:#fff;font-size:1.02rem;opacity:0;transform:scale(.75);
+    transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .tile:hover::before{background:linear-gradient(to top,rgba(10,7,5,.7),rgba(10,7,5,.15))}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  @media(max-width:820px){.tiles{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.tiles{grid-template-columns:1fr}.tile{aspect-ratio:16/10}}
+
+  /* ---- Lightbox ---- */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(8,6,4,.95);backdrop-filter:blur(8px);display:none;align-items:center;
+    justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:84vh;border-radius:5px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f6ecdb;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:var(--stone);font-family:'Optima',sans-serif;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
+  html[lang="zh-CN"] .lb-cap,html[lang="ko"] .lb-cap{text-transform:none}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(28,20,16,.55);border:1px solid var(--line);color:#f6ecdb;
+    width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .lb-nav:hover{background:var(--ember);color:#211208;border-color:var(--ember)}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:1.2rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* ============ BOOK ============ */
+  .book{background:linear-gradient(180deg,var(--bg),var(--surface));position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:480px;height:480px;border-radius:50%;
+    background:radial-gradient(circle,rgba(233,191,120,.18),transparent 68%)}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.3rem,4.6vw,3.7rem);color:var(--stone)}
+  .book h2 em{font-style:italic;color:var(--ember)}
+  html[data-theme="dark"] .book h2 em{color:var(--glow)}
+  .book .lede{color:var(--stone-dim);margin-top:20px;font-size:1.08rem;font-weight:300}
+  .wa{display:inline-flex;align-items:center;gap:11px;margin-top:26px;color:var(--stone);font-family:'Optima',sans-serif;font-size:1rem}
+  .wa svg{width:23px;height:23px;color:#4caf67}
+  .form{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:36px;box-shadow:var(--shadow)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-family:'Optima',sans-serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ember);margin-bottom:8px}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{text-transform:none;letter-spacing:.03em}
+  html[data-theme="light"] .field label{color:var(--ember-d)}
+  .field input,.field select{width:100%;padding:13px 15px;border-radius:2px;border:1px solid var(--line);background:var(--surface-2);
+    color:var(--stone);font-family:inherit;font-size:.95rem;transition:.25s}
+  .field input::placeholder{color:var(--stone-faint)}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--ember)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .submit{width:100%;background:var(--ember);color:#1a0f07;border:none;padding:16px;border-radius:2px;font-family:'Optima',sans-serif;
+    font-weight:600;font-size:.84rem;letter-spacing:.11em;text-transform:uppercase;cursor:pointer;transition:.35s;margin-top:6px}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{text-transform:none;letter-spacing:.03em}
+  .submit:hover{background:var(--glow)}
+  @media(max-width:860px){.book-grid{grid-template-columns:1fr;gap:38px}}
+
+  footer{background:var(--bg-2);color:var(--stone-dim);padding:66px 0 30px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1.2fr;gap:44px;margin-bottom:46px}
+  .foot-brand{display:flex;align-items:center;gap:11px;font-family:'Didot','Bodoni MT',Georgia,serif;font-size:1.4rem;color:var(--stone);margin-bottom:16px}
+  .foot-brand .mark{width:30px;height:30px}
+  footer h4{font-family:'Optima',sans-serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin-bottom:16px}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{text-transform:none;letter-spacing:.03em}
+  html[data-theme="light"] footer h4{color:var(--ember-d)}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px;font-size:.94rem;font-weight:300;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:var(--stone)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-family:'Optima',sans-serif;font-size:.76rem}
+  .demo-badge{background:var(--ember);color:#1a0f07;padding:5px 13px;border-radius:2px;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase}
+  html[lang="zh-CN"] .demo-badge,html[lang="ko"] .demo-badge{text-transform:none}
+
+  .reveal{opacity:0;transform:translateY(32px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  .mobile-menu{position:fixed;inset:0;z-index:70;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;gap:26px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:'Didot',Georgia,serif;font-size:1.9rem;color:var(--stone)}
+  html[lang="zh-CN"] .mobile-menu a,html[lang="ko"] .mobile-menu a{font-family:inherit}
+  .mobile-menu .close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--stone);cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:8px;margin-top:18px}
+  .mobile-menu .m-langs button{background:none;border:1px solid var(--line);color:var(--stone-dim);padding:8px 13px;border-radius:3px;
+    font-family:'Optima',sans-serif;font-size:.85rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:var(--ember);border-color:var(--ember)}
+
+  @media(max-width:820px){
+    .navlinks{display:none}.langs{display:none}.menu-btn{display:flex}
+    section{padding:80px 0}.story-text,.form{padding:34px}
+    .foot-grid{grid-template-columns:1fr;gap:30px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s!important}
+    .reveal{opacity:1;transform:none}
+    .hero .eyebrow,.hero h1,.hero .lede,.hero-cta{opacity:1}
+    .mote{display:none}
+  }
+
+  /* ============ SIGNATURE katmanı — grain + mesh drift + scroll progress ============ */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:var(--grain-op);mix-blend-mode:var(--grain-blend)}
+  .grain svg{width:100%;height:100%;display:block}
+  .story::before,.rooms::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(38% 52% at 12% 16%,rgba(217,121,63,.14),transparent 60%),
+      radial-gradient(44% 50% at 88% 82%,rgba(233,191,120,.10),transparent 62%),
+      radial-gradient(34% 40% at 60% 44%,rgba(122,69,38,.10),transparent 60%);
+    background-size:180% 180%;animation:meshDrift 28s ease-in-out infinite alternate}
+  .story>.wrap,.rooms>.wrap{position:relative;z-index:1}
+  @keyframes meshDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--ember),var(--glow));box-shadow:0 0 12px rgba(233,191,120,.5)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a class="brand" href="#" aria-label="Deep Cave House">
+    <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M6 42V24C6 13.5 14.1 6 24 6s18 7.5 18 18v18" stroke="var(--ember-l)" stroke-width="2.4"/>
+      <path d="M15 42V27c0-5.4 4-9.5 9-9.5s9 4.1 9 9.5v15" stroke="currentColor" stroke-width="2" opacity=".55"/>
+      <path d="M24 42V30" stroke="var(--glow)" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="24" cy="25.5" r="1.6" fill="var(--glow)"/>
+    </svg>
+    <span><b>Deep Cave</b> <i>House</i></span>
+  </a>
+  <div class="navlinks" id="navlinks">
+    <a href="#village" class="spy" data-i18n="nav_village">Köy</a>
+    <a href="#rooms" class="spy" data-i18n="nav_rooms">Odalar</a>
+    <a href="#exp" class="spy" data-i18n="nav_exp">Deneyim</a>
+    <a href="#gallery" class="spy" data-i18n="nav_gallery">Galeri</a>
+    <a href="#book" class="spy" data-i18n="nav_book">Rezervasyon</a>
+  </div>
+  <div class="nav-right">
+    <div class="langs" role="group" aria-label="Dil / Language">
+      <button data-lang="tr" class="active">TR</button><span class="sep">·</span>
+      <button data-lang="en">EN</button><span class="sep">·</span>
+      <button data-lang="es">ES</button><span class="sep">·</span>
+      <button data-lang="zh-CN">中文</button><span class="sep">·</span>
+      <button data-lang="ko">한국어</button>
+    </div>
+    <button class="icon-btn theme-btn" id="themeBtn" aria-label="Tema" title="Aydınlık / Karanlık">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M22 12h-2.4M4.4 12H2M19 5l-1.7 1.7M6.7 17.3 5 19M19 19l-1.7-1.7M6.7 6.7 5 5" stroke-linecap="round"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 7 7 0 1 0 20 14.5z" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="icon-btn menu-btn" aria-label="Menü" id="menuBtn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#village" data-i18n="nav_village">Köy</a>
+  <a href="#rooms" data-i18n="nav_rooms">Odalar</a>
+  <a href="#exp" data-i18n="nav_exp">Deneyim</a>
+  <a href="#gallery" data-i18n="nav_gallery">Galeri</a>
+  <a href="#book" data-i18n="nav_book">Rezervasyon</a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="cavebg"></div>
+  <div class="hero-photo" id="heroPhoto"></div>
+  <div class="shaft" aria-hidden="true"></div>
+  <div class="dust" id="dust" aria-hidden="true"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Mustafapaşa · Sinasos · Kapadokya</span>
+      <h1 data-i18n="hero_title" data-i18n-html="1">Taşın derinliğinde <em>uyanın.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Sinasos'un asırlık taş sokaklarında, kayaya elle oyulmuş bir mağara evi. Kalın tüf duvarların ardında ne şehir gürültüsü ne acele — yalnızca serin taşın sessizliği ve bir kandilin sıcaklığı.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#book"><span data-i18n="hero_cta1">Kalışınızı planlayın</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#rooms" data-i18n="hero_cta2">Odaları görün</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Derine inin</span><span class="l"></span></div>
+</header>
+
+<div class="essence">
+  <div class="wrap">
+    <div class="ess reveal"><div class="v">4.4★</div><div class="k" data-i18n="ess1_k">Google puanı</div></div>
+    <div class="ess reveal"><div class="v" data-i18n="ess2_v">Sinasos</div><div class="k" data-i18n="ess2_k">Mustafapaşa köyü</div></div>
+    <div class="ess reveal"><div class="v" data-i18n="ess3_v">Tüf</div><div class="k" data-i18n="ess3_k">elle oyulmuş taş</div></div>
+    <div class="ess reveal"><div class="v" data-i18n="ess4_v">Sessizlik</div><div class="k" data-i18n="ess4_k">şehirden uzak</div></div>
+  </div>
+</div>
+
+<section class="story" id="village">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="story_eyebrow">Sinasos</span>
+      <h2 data-i18n="story_h">Bir köyün en sessiz köşesinde.</h2>
+      <p data-i18n="story_sub">Mustafapaşa — eski adıyla Sinasos — Ürgüp'ün hemen güneyinde, taş konaklarıyla anılan sakin bir köy. Deep Cave House işte bu köyün kayasına oyulmuş.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-visual reveal" id="storyImg">
+        <span class="concept-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v18M5 8l7-5 7 5"/></svg><span data-i18n="story_concept">Konsept görsel · ışık kuyusu</span></span>
+      </div>
+      <div class="story-text reveal">
+        <p class="lead" data-i18n="story_lead">Burada bir oda değil, bir çağ konaklarsınız.</p>
+        <p data-i18n="story_p1">Duvarlar yüzyıllar önce elle oyulmuş yumuşak tüften. Taşın kendi iklimi vardır: yazın serin, kışın ılık tutar. Tavandaki her kavis, her niş bir ustanın elinden çıkmış.</p>
+        <p data-i18n="story_p2">Sokakta ne kalabalık ne korna sesi. Sabah sizi kuş sesi ve taşın üzerine düşen ilk ışık uyandırır — Kapadokya'nın en gösterişsiz, en gerçek hâli.</p>
+        <p class="sign">— Deep Cave House</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rooms" id="rooms">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="rooms_eyebrow">Odalar & Mekânlar</span>
+      <h2 data-i18n="rooms_h">Taşa oyulmuş, iki oda ve bir avlu.</h2>
+      <p data-i18n="rooms_sub">Her mekân kayanın içinde ayrı bir karakter. Aşağıdaki kareler Deep Cave House'un kendi Google ve Instagram profilinden.</p>
+    </div>
+    <div class="room-grid">
+      <div class="room reveal">
+        <div class="room-img" data-img="room-red.jpg"><span class="zoomdot">⤢</span><span class="meta" data-i18n="r1_meta">Oyma tüf tavan · kandil sıcağı</span></div>
+        <div class="room-body">
+          <span class="tag" data-i18n="r1_tag">Derin oda</span>
+          <h3 data-i18n="r1_h">Kızıl Oyuk</h3>
+          <p data-i18n="r1_p">Duvara oyulmuş nişlerde eski bakır ve toprak kaplar. Kızıl örtüler, kilim yastıklar ve tavanın derinliğinde yumuşayan bir ışık — mağaranın en sıcak köşesi.</p>
+        </div>
+      </div>
+      <div class="room reveal">
+        <div class="room-img" data-img="room-cream.jpg"><span class="zoomdot">⤢</span><span class="meta" data-i18n="r2_meta">Açık tüf · geniş niş</span></div>
+        <div class="room-body">
+          <span class="tag" data-i18n="r2_tag">Ferah oda</span>
+          <h3 data-i18n="r2_h">Krem Oyuk</h3>
+          <p data-i18n="r2_p">Daha açık, daha ferah bir oyuk. Kavisli tavanın altında sade beyaz keten, ahşap komodinler ve duvarın kalbine oyulmuş geniş bir niş. Sabah ışığı taşta yumuşar.</p>
+        </div>
+      </div>
+      <div class="room reveal">
+        <div class="room-img" data-img="courtyard.jpg"><span class="zoomdot">⤢</span><span class="meta" data-i18n="r3_meta">Kesme taş · gölgeli teras</span></div>
+        <div class="room-body">
+          <span class="tag" data-i18n="r3_tag">Ortak alan</span>
+          <h3 data-i18n="r3_h">Taş Avlu</h3>
+          <p data-i18n="r3_p">Kayanın oyuk kemeri altında, kesme taş duvarların çevrelediği serin bir avlu. Sabah kahvenizi ya da akşam çayınızı taşın gölgesinde içmek için.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="exp" id="exp">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="exp_eyebrow">Deneyim</span>
+      <h2 data-i18n="exp_h">Neden taşın içinde uyunur?</h2>
+    </div>
+    <div class="exp-grid">
+      <div class="ex reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3c4 4 6 7 6 10a6 6 0 0 1-12 0c0-3 2-6 6-10z"/></svg>
+        <h3 data-i18n="e1_h">Taşın iklimi</h3>
+        <p data-i18n="e1_p">Kalın tüf duvarlar yazın serin, kışın ılık tutar. Klimadan değil, kayadan gelen doğal bir konfor.</p>
+      </div>
+      <div class="ex reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20V10a8 8 0 0 1 16 0v10"/><path d="M9 20v-6a3 3 0 0 1 6 0v6"/></svg>
+        <h3 data-i18n="e2_h">Elle oyma nişler</h3>
+        <p data-i18n="e2_p">Her odada ustaların oyduğu özgün nişler ve kavisler. Fabrikadan çıkmış hiçbir yüzey yok.</p>
+      </div>
+      <div class="ex reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-5h6v5"/></svg>
+        <h3 data-i18n="e3_h">Sinasos'un sessizliği</h3>
+        <p data-i18n="e3_p">Turist kalabalığından uzak, tarihî bir köyün ritmi. Gerçekten dinleneceğiniz bir Kapadokya.</p>
+      </div>
+      <div class="ex reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <h3 data-i18n="e4_h">Kapıda yardım</h3>
+        <p data-i18n="e4_p">Ürgüp'e çok yakınız. Ulaşım, balon, vadiler — planınız için WhatsApp'tan yanınızdayız.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="gallery_eyebrow">Galeri</span>
+      <h2 data-i18n="gallery_h">Kayanın içinden.</h2>
+      <p data-i18n="gallery_sub">Kareler Deep Cave House'un Google ve Instagram profilinden; atmosfer için hazırlanan konsept görseller ◈ ile işaretlendi.</p>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile" data-img="room-red.jpg"><span class="cap" data-i18n="ph_g1">Kızıl Oyuk</span></div>
+      <div class="tile" data-img="room-cream.jpg"><span class="cap" data-i18n="ph_g2">Krem Oyuk</span></div>
+      <div class="tile" data-img="courtyard.jpg"><span class="cap" data-i18n="ph_g3">Taş avlu</span></div>
+      <div class="tile concept" data-img="ai-depth.jpg"><span class="cap" data-i18n="ph_g4">Işık kuyusu · konsept</span></div>
+      <div class="tile concept" data-img="ai-niche.jpg"><span class="cap" data-i18n="ph_g5">Oyma niş · konsept</span></div>
+      <div class="tile concept" data-img="ai-threshold.jpg"><span class="cap" data-i18n="ph_g6">Taş geçit · konsept</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="book_eyebrow">Rezervasyon</span>
+        <h2 style="margin-top:16px" data-i18n="book_h" data-i18n-html="1">Bir taş odayı <em>ayırtın.</em></h2>
+        <p class="lede" data-i18n="book_lede">Tarihlerinizi gönderin, WhatsApp'tan hızlıca dönelim. Odalar, ulaşım, köy — aklınıza takılan her şeyi sorun.</p>
+        <a class="wa" href="https://wa.me/905312932777" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg>
+          +90 531 293 27 77
+        </a>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-date" data-i18n="label_date">Giriş tarihi</label><input type="date" id="f-date"></div>
+          <div class="field"><label for="f-nights" data-i18n="label_nights">Gece</label>
+            <select id="f-nights">
+              <option data-i18n="opt_n1">1 gece</option><option data-i18n="opt_n2">2 gece</option><option data-i18n="opt_n3">3 gece</option><option data-i18n="opt_n4">4+ gece</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-room" data-i18n="label_room">Oda</label>
+          <select id="f-room">
+            <option data-i18n="opt_room1">Kızıl Oyuk</option>
+            <option data-i18n="opt_room2">Krem Oyuk</option>
+            <option data-i18n="opt_room3">Fark etmez</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-phone" data-i18n="label_phone">WhatsApp / Telefon</label>
+          <input type="tel" id="f-phone" data-i18n-ph="ph_phone" placeholder="Size ulaşabileceğimiz numara">
+        </div>
+        <button class="submit" type="button" onclick="sendBooking()" data-i18n="btn_submit">Rezervasyon talebi gönder</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path d="M6 42V24C6 13.5 14.1 6 24 6s18 7.5 18 18v18" stroke="var(--ember-l)" stroke-width="2.4"/>
+            <path d="M15 42V27c0-5.4 4-9.5 9-9.5s9 4.1 9 9.5v15" stroke="currentColor" stroke-width="2" opacity=".5"/>
+            <path d="M24 42V30" stroke="var(--glow)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="24" cy="25.5" r="1.6" fill="var(--glow)"/>
+          </svg>
+          Deep Cave House
+        </div>
+        <p style="max-width:340px;font-weight:300" data-i18n="foot_about">Sinasos'un (Mustafapaşa) kayasına elle oyulmuş sessiz bir mağara evi. Ürgüp'e birkaç dakika, kalabalıktan uzak.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#village" data-i18n="nav_village">Köy</a></li>
+          <li><a href="#rooms" data-i18n="nav_rooms">Odalar</a></li>
+          <li><a href="#gallery" data-i18n="nav_gallery">Galeri</a></li>
+          <li><a href="#book" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Mustafapaşa (Sinasos), Ürgüp · Nevşehir</li>
+          <li><a href="https://wa.me/905312932777" target="_blank" rel="noopener">+90 531 293 27 77</a></li>
+          <li><a href="https://instagram.com/deepcavehouse" target="_blank" rel="noopener">Instagram · @deepcavehouse</a></li>
+          <li data-i18n="foot_hours">Her gün · giriş & çıkış</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Deep Cave House — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ==================== */
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY, current = window.scrollY, running = false, rafId = null;
+  function clampTarget(){ const max = document.documentElement.scrollHeight - window.innerHeight; if(target<0)target=0; if(target>max)target=max; }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){ current = target; window.scrollTo(0, current); running = false; return; }
+    window.scrollTo(0, current); rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+  function isPrevented(el){
+    while(el && el !== document.body){ const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true; el = el.parentElement; }
+    return false;
+  }
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return; e.preventDefault();
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT; clampTarget(); start();
+  }, {passive:false});
+  window.addEventListener('scroll', function(){ if(!running){ target = window.scrollY; current = window.scrollY; } }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+  function smoothTo(el){ const y = el.getBoundingClientRect().top + window.scrollY - 66; target = y; clampTarget(); current = window.scrollY; start(); }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{ const id = a.getAttribute('href');
+      if(id.length > 1){ const t = document.querySelector(id); if(t){ e.preventDefault(); smoothTo(t); } } });
+  });
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{ const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } } });
+    });
+  }
+})();
+</script>
+<script>
+/* ==================== i18n SÖZLÜĞÜ ==================== */
+const I18N = {
+  tr:{
+    meta_title:"Deep Cave House — Mustafapaşa (Sinasos) Mağara Evi",
+    meta_desc:"Sinasos'un (Mustafapaşa) kayasına elle oyulmuş bir mağara evi. Kalın tüf duvarlar, oyma nişler ve şehirden uzak bir sessizlik. Ürgüp'e birkaç dakika.",
+    nav_village:"Köy",nav_rooms:"Odalar",nav_exp:"Deneyim",nav_gallery:"Galeri",nav_book:"Rezervasyon",
+    hero_eyebrow:"Mustafapaşa · Sinasos · Kapadokya",
+    hero_title:'Taşın derinliğinde <em>uyanın.</em>',
+    hero_lede:"Sinasos'un asırlık taş sokaklarında, kayaya elle oyulmuş bir mağara evi. Kalın tüf duvarların ardında ne şehir gürültüsü ne acele — yalnızca serin taşın sessizliği ve bir kandilin sıcaklığı.",
+    hero_cta1:"Kalışınızı planlayın",hero_cta2:"Odaları görün",scroll_hint:"Derine inin",
+    ess1_k:"Google puanı",ess2_v:"Sinasos",ess2_k:"Mustafapaşa köyü",ess3_v:"Tüf",ess3_k:"elle oyulmuş taş",ess4_v:"Sessizlik",ess4_k:"şehirden uzak",
+    story_eyebrow:"Sinasos",story_h:"Bir köyün en sessiz köşesinde.",
+    story_sub:"Mustafapaşa — eski adıyla Sinasos — Ürgüp'ün hemen güneyinde, taş konaklarıyla anılan sakin bir köy. Deep Cave House işte bu köyün kayasına oyulmuş.",
+    story_concept:"Konsept görsel · ışık kuyusu",
+    story_lead:"Burada bir oda değil, bir çağ konaklarsınız.",
+    story_p1:"Duvarlar yüzyıllar önce elle oyulmuş yumuşak tüften. Taşın kendi iklimi vardır: yazın serin, kışın ılık tutar. Tavandaki her kavis, her niş bir ustanın elinden çıkmış.",
+    story_p2:"Sokakta ne kalabalık ne korna sesi. Sabah sizi kuş sesi ve taşın üzerine düşen ilk ışık uyandırır — Kapadokya'nın en gösterişsiz, en gerçek hâli.",
+    rooms_eyebrow:"Odalar & Mekânlar",rooms_h:"Taşa oyulmuş, iki oda ve bir avlu.",
+    rooms_sub:"Her mekân kayanın içinde ayrı bir karakter. Aşağıdaki kareler Deep Cave House'un kendi Google ve Instagram profilinden.",
+    r1_tag:"Derin oda",r1_h:"Kızıl Oyuk",r1_meta:"Oyma tüf tavan · kandil sıcağı",
+    r1_p:"Duvara oyulmuş nişlerde eski bakır ve toprak kaplar. Kızıl örtüler, kilim yastıklar ve tavanın derinliğinde yumuşayan bir ışık — mağaranın en sıcak köşesi.",
+    r2_tag:"Ferah oda",r2_h:"Krem Oyuk",r2_meta:"Açık tüf · geniş niş",
+    r2_p:"Daha açık, daha ferah bir oyuk. Kavisli tavanın altında sade beyaz keten, ahşap komodinler ve duvarın kalbine oyulmuş geniş bir niş. Sabah ışığı taşta yumuşar.",
+    r3_tag:"Ortak alan",r3_h:"Taş Avlu",r3_meta:"Kesme taş · gölgeli teras",
+    r3_p:"Kayanın oyuk kemeri altında, kesme taş duvarların çevrelediği serin bir avlu. Sabah kahvenizi ya da akşam çayınızı taşın gölgesinde içmek için.",
+    exp_eyebrow:"Deneyim",exp_h:"Neden taşın içinde uyunur?",
+    e1_h:"Taşın iklimi",e1_p:"Kalın tüf duvarlar yazın serin, kışın ılık tutar. Klimadan değil, kayadan gelen doğal bir konfor.",
+    e2_h:"Elle oyma nişler",e2_p:"Her odada ustaların oyduğu özgün nişler ve kavisler. Fabrikadan çıkmış hiçbir yüzey yok.",
+    e3_h:"Sinasos'un sessizliği",e3_p:"Turist kalabalığından uzak, tarihî bir köyün ritmi. Gerçekten dinleneceğiniz bir Kapadokya.",
+    e4_h:"Kapıda yardım",e4_p:"Ürgüp'e çok yakınız. Ulaşım, balon, vadiler — planınız için WhatsApp'tan yanınızdayız.",
+    gallery_eyebrow:"Galeri",gallery_h:"Kayanın içinden.",
+    gallery_sub:"Kareler Deep Cave House'un Google ve Instagram profilinden; atmosfer için hazırlanan konsept görseller ◈ ile işaretlendi.",
+    ph_g1:"Kızıl Oyuk",ph_g2:"Krem Oyuk",ph_g3:"Taş avlu",ph_g4:"Işık kuyusu · konsept",ph_g5:"Oyma niş · konsept",ph_g6:"Taş geçit · konsept",
+    book_eyebrow:"Rezervasyon",book_h:'Bir taş odayı <em>ayırtın.</em>',
+    book_lede:"Tarihlerinizi gönderin, WhatsApp'tan hızlıca dönelim. Odalar, ulaşım, köy — aklınıza takılan her şeyi sorun.",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_date:"Giriş tarihi",label_nights:"Gece",
+    opt_n1:"1 gece",opt_n2:"2 gece",opt_n3:"3 gece",opt_n4:"4+ gece",
+    label_room:"Oda",opt_room1:"Kızıl Oyuk",opt_room2:"Krem Oyuk",opt_room3:"Fark etmez",
+    label_phone:"WhatsApp / Telefon",ph_phone:"Size ulaşabileceğimiz numara",btn_submit:"Rezervasyon talebi gönder",
+    foot_about:"Sinasos'un (Mustafapaşa) kayasına elle oyulmuş sessiz bir mağara evi. Ürgüp'e birkaç dakika, kalabalıktan uzak.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Mustafapaşa (Sinasos), Ürgüp · Nevşehir",foot_hours:"Her gün · giriş & çıkış",
+    foot_rights:"© 2026 Deep Cave House — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    wa_msg:"Merhaba, Deep Cave House'ta konaklama sormak istiyorum:",wa_name:"Ad",wa_date:"Giriş",wa_nights:"Gece",wa_room:"Oda",wa_phone:"Telefon",
+    alert_fill:"Lütfen adınızı, giriş tarihini ve telefon numaranızı girin."
+  },
+  en:{
+    meta_title:"Deep Cave House — A Cave Home in Mustafapaşa (Sinasos)",
+    meta_desc:"A cave house carved by hand into the rock of Sinasos (Mustafapaşa). Thick tuff walls, hand-carved niches and a silence far from the city. Minutes from Ürgüp.",
+    nav_village:"Village",nav_rooms:"Rooms",nav_exp:"Experience",nav_gallery:"Gallery",nav_book:"Book",
+    hero_eyebrow:"Mustafapaşa · Sinasos · Cappadocia",
+    hero_title:'Wake in the <em>depth of stone.</em>',
+    hero_lede:"On the centuries-old stone lanes of Sinasos, a cave house carved into the rock by hand. Behind thick tuff walls there is no city noise, no hurry — only the silence of cool stone and the warmth of a single lamp.",
+    hero_cta1:"Plan your stay",hero_cta2:"See the rooms",scroll_hint:"Descend",
+    ess1_k:"Google rating",ess2_v:"Sinasos",ess2_k:"the village of Mustafapaşa",ess3_v:"Tuff",ess3_k:"hand-carved stone",ess4_v:"Silence",ess4_k:"far from the city",
+    story_eyebrow:"Sinasos",story_h:"In a village's quietest corner.",
+    story_sub:"Mustafapaşa — once called Sinasos — sits just south of Ürgüp, a calm village known for its stone mansions. Deep Cave House is carved into this village's rock.",
+    story_concept:"Concept image · light well",
+    story_lead:"Here you don't rent a room — you stay in an age.",
+    story_p1:"The walls are soft tuff, carved by hand centuries ago. Stone has its own climate: cool in summer, mild in winter. Every curve and niche in the ceiling came from a craftsman's hand.",
+    story_p2:"No crowds on the lane, no car horns. In the morning you are woken by birdsong and the first light falling on stone — Cappadocia at its most modest and most real.",
+    rooms_eyebrow:"Rooms & Spaces",rooms_h:"Two rooms and a courtyard, carved into stone.",
+    rooms_sub:"Each space is its own character within the rock. The frames below are from Deep Cave House's own Google and Instagram profiles.",
+    r1_tag:"Deep room",r1_h:"The Red Hollow",r1_meta:"Carved tuff ceiling · lamp warmth",
+    r1_p:"Old copper and earthenware in hand-carved wall niches. Red covers, kilim cushions and a light that softens in the depth of the ceiling — the warmest corner of the cave.",
+    r2_tag:"Airy room",r2_h:"The Cream Hollow",r2_meta:"Pale tuff · wide niche",
+    r2_p:"A lighter, airier hollow. Plain white linen beneath a curved ceiling, wooden nightstands and a broad niche carved into the heart of the wall. Morning light softens on the stone.",
+    r3_tag:"Shared space",r3_h:"The Stone Courtyard",r3_meta:"Cut stone · shaded terrace",
+    r3_p:"A cool courtyard beneath the rock's carved arch, framed by cut-stone walls. For morning coffee or an evening tea in the shade of the stone.",
+    exp_eyebrow:"Experience",exp_h:"Why sleep inside stone?",
+    e1_h:"The climate of stone",e1_p:"Thick tuff walls stay cool in summer and mild in winter. Natural comfort that comes from the rock, not the air conditioner.",
+    e2_h:"Hand-carved niches",e2_p:"Original niches and curves carved by craftsmen in every room. Not a single factory-made surface.",
+    e3_h:"The quiet of Sinasos",e3_p:"Away from the tourist crowds, the rhythm of a historic village. The Cappadocia where you truly rest.",
+    e4_h:"Help at the door",e4_p:"We're very close to Ürgüp. Transfers, balloons, valleys — we're a WhatsApp message away for your plans.",
+    gallery_eyebrow:"Gallery",gallery_h:"From within the rock.",
+    gallery_sub:"Frames from Deep Cave House's Google and Instagram profiles; concept images prepared for atmosphere are marked with ◈.",
+    ph_g1:"The Red Hollow",ph_g2:"The Cream Hollow",ph_g3:"Stone courtyard",ph_g4:"Light well · concept",ph_g5:"Carved niche · concept",ph_g6:"Stone passage · concept",
+    book_eyebrow:"Booking",book_h:'Reserve a <em>stone room.</em>',
+    book_lede:"Send us your dates and we'll reply quickly on WhatsApp. Rooms, transfers, the village — ask us anything.",
+    label_name:"Your name",ph_name:"Your full name",label_date:"Check-in",label_nights:"Nights",
+    opt_n1:"1 night",opt_n2:"2 nights",opt_n3:"3 nights",opt_n4:"4+ nights",
+    label_room:"Room",opt_room1:"The Red Hollow",opt_room2:"The Cream Hollow",opt_room3:"Either one",
+    label_phone:"WhatsApp / Phone",ph_phone:"A number we can reach you on",btn_submit:"Send booking request",
+    foot_about:"A quiet cave house carved by hand into the rock of Sinasos (Mustafapaşa). Minutes from Ürgüp, far from the crowds.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Mustafapaşa (Sinasos), Ürgüp · Nevşehir",foot_hours:"Daily · check-in & check-out",
+    foot_rights:"© 2026 Deep Cave House — All rights reserved.",foot_demo:"Sample / Demo Design",
+    wa_msg:"Hello, I'd like to ask about staying at Deep Cave House:",wa_name:"Name",wa_date:"Check-in",wa_nights:"Nights",wa_room:"Room",wa_phone:"Phone",
+    alert_fill:"Please enter your name, check-in date and phone number."
+  },
+  es:{
+    meta_title:"Deep Cave House — Una casa cueva en Mustafapaşa (Sinasos)",
+    meta_desc:"Una casa cueva tallada a mano en la roca de Sinasos (Mustafapaşa). Gruesos muros de toba, nichos tallados y un silencio lejos de la ciudad. A minutos de Ürgüp.",
+    nav_village:"Pueblo",nav_rooms:"Habitaciones",nav_exp:"Experiencia",nav_gallery:"Galería",nav_book:"Reservar",
+    hero_eyebrow:"Mustafapaşa · Sinasos · Capadocia",
+    hero_title:'Despierta en la <em>profundidad de la piedra.</em>',
+    hero_lede:"En las calles centenarias de Sinasos, una casa cueva tallada a mano en la roca. Tras gruesos muros de toba no hay ruido ni prisa: solo el silencio de la piedra fresca y el calor de una lámpara.",
+    hero_cta1:"Planifica tu estancia",hero_cta2:"Ver las habitaciones",scroll_hint:"Desciende",
+    ess1_k:"Valoración Google",ess2_v:"Sinasos",ess2_k:"el pueblo de Mustafapaşa",ess3_v:"Toba",ess3_k:"piedra tallada a mano",ess4_v:"Silencio",ess4_k:"lejos de la ciudad",
+    story_eyebrow:"Sinasos",story_h:"En el rincón más silencioso de un pueblo.",
+    story_sub:"Mustafapaşa — antes llamado Sinasos — está justo al sur de Ürgüp, un pueblo tranquilo conocido por sus casonas de piedra. Deep Cave House está tallada en la roca de este pueblo.",
+    story_concept:"Imagen conceptual · pozo de luz",
+    story_lead:"Aquí no alquilas una habitación: te alojas en una época.",
+    story_p1:"Los muros son de toba blanda, tallados a mano hace siglos. La piedra tiene su propio clima: fresca en verano, templada en invierno. Cada curva y nicho del techo salió de la mano de un artesano.",
+    story_p2:"Ni multitudes en la calle ni bocinas. Por la mañana te despiertan el canto de los pájaros y la primera luz sobre la piedra: la Capadocia más humilde y más auténtica.",
+    rooms_eyebrow:"Habitaciones y espacios",rooms_h:"Dos habitaciones y un patio, tallados en piedra.",
+    rooms_sub:"Cada espacio tiene su carácter dentro de la roca. Las imágenes de abajo son de los propios perfiles de Google e Instagram de Deep Cave House.",
+    r1_tag:"Habitación honda",r1_h:"El Hueco Rojo",r1_meta:"Techo de toba tallado · calor de lámpara",
+    r1_p:"Cobre antiguo y cerámica en nichos tallados a mano. Cubrecamas rojos, cojines kilim y una luz que se suaviza en la profundidad del techo: el rincón más cálido de la cueva.",
+    r2_tag:"Habitación amplia",r2_h:"El Hueco Crema",r2_meta:"Toba clara · nicho amplio",
+    r2_p:"Un hueco más claro y más amplio. Lino blanco bajo un techo curvo, mesillas de madera y un nicho ancho tallado en el corazón del muro. La luz de la mañana se suaviza en la piedra.",
+    r3_tag:"Espacio común",r3_h:"El Patio de Piedra",r3_meta:"Piedra cortada · terraza con sombra",
+    r3_p:"Un patio fresco bajo el arco tallado de la roca, rodeado de muros de piedra cortada. Para el café de la mañana o el té de la tarde a la sombra de la piedra.",
+    exp_eyebrow:"Experiencia",exp_h:"¿Por qué dormir dentro de la piedra?",
+    e1_h:"El clima de la piedra",e1_p:"Los gruesos muros de toba se mantienen frescos en verano y templados en invierno. Un confort natural que viene de la roca, no del aire acondicionado.",
+    e2_h:"Nichos tallados a mano",e2_p:"Nichos y curvas originales tallados por artesanos en cada habitación. Ni una sola superficie de fábrica.",
+    e3_h:"El silencio de Sinasos",e3_p:"Lejos de las multitudes, el ritmo de un pueblo histórico. La Capadocia donde de verdad descansas.",
+    e4_h:"Ayuda en la puerta",e4_p:"Estamos muy cerca de Ürgüp. Traslados, globos, valles: estamos a un mensaje de WhatsApp para tus planes.",
+    gallery_eyebrow:"Galería",gallery_h:"Desde dentro de la roca.",
+    gallery_sub:"Imágenes de los perfiles de Google e Instagram de Deep Cave House; las imágenes conceptuales creadas para la atmósfera están marcadas con ◈.",
+    ph_g1:"El Hueco Rojo",ph_g2:"El Hueco Crema",ph_g3:"Patio de piedra",ph_g4:"Pozo de luz · concepto",ph_g5:"Nicho tallado · concepto",ph_g6:"Pasaje de piedra · concepto",
+    book_eyebrow:"Reserva",book_h:'Reserva una <em>habitación de piedra.</em>',
+    book_lede:"Envíanos tus fechas y te responderemos pronto por WhatsApp. Habitaciones, traslados, el pueblo: pregúntanos lo que quieras.",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_date:"Entrada",label_nights:"Noches",
+    opt_n1:"1 noche",opt_n2:"2 noches",opt_n3:"3 noches",opt_n4:"4+ noches",
+    label_room:"Habitación",opt_room1:"El Hueco Rojo",opt_room2:"El Hueco Crema",opt_room3:"Cualquiera",
+    label_phone:"WhatsApp / Teléfono",ph_phone:"Un número donde localizarte",btn_submit:"Enviar solicitud de reserva",
+    foot_about:"Una tranquila casa cueva tallada a mano en la roca de Sinasos (Mustafapaşa). A minutos de Ürgüp, lejos de las multitudes.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Mustafapaşa (Sinasos), Ürgüp · Nevşehir",foot_hours:"A diario · entrada y salida",
+    foot_rights:"© 2026 Deep Cave House — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+    wa_msg:"Hola, quisiera preguntar por una estancia en Deep Cave House:",wa_name:"Nombre",wa_date:"Entrada",wa_nights:"Noches",wa_room:"Habitación",wa_phone:"Teléfono",
+    alert_fill:"Por favor, introduce tu nombre, la fecha de entrada y tu teléfono."
+  },
+  "zh-CN":{
+    meta_title:"Deep Cave House — 穆斯塔法帕夏(锡纳索斯)洞穴之家",
+    meta_desc:"一座在锡纳索斯(穆斯塔法帕夏)岩石中手工凿刻的洞穴之家。厚厚的凝灰岩墙、手凿壁龛，以及远离城市的静谧。距于尔居普数分钟。",
+    nav_village:"村庄",nav_rooms:"客房",nav_exp:"体验",nav_gallery:"相册",nav_book:"预订",
+    hero_eyebrow:"穆斯塔法帕夏 · 锡纳索斯 · 卡帕多奇亚",
+    hero_title:'在<em>石头的深处</em>醒来。',
+    hero_lede:"在锡纳索斯百年的石巷间，一座手工凿入岩石的洞穴之家。厚厚的凝灰岩墙后，没有城市的喧嚣，没有匆忙——只有清凉石头的静谧与一盏灯的暖意。",
+    hero_cta1:"规划您的入住",hero_cta2:"查看客房",scroll_hint:"向深处",
+    ess1_k:"谷歌评分",ess2_v:"锡纳索斯",ess2_k:"穆斯塔法帕夏村",ess3_v:"凝灰岩",ess3_k:"手工凿刻的石头",ess4_v:"静谧",ess4_k:"远离城市",
+    story_eyebrow:"锡纳索斯",story_h:"在一座村庄最安静的角落。",
+    story_sub:"穆斯塔法帕夏——旧称锡纳索斯——就在于尔居普以南，是一座以石造宅邸闻名的宁静村庄。Deep Cave House 便凿刻于这座村庄的岩石之中。",
+    story_concept:"概念图 · 光井",
+    story_lead:"在这里，您租下的不是一间房，而是一个时代。",
+    story_p1:"墙壁是数百年前手工凿刻的软凝灰岩。石头有自己的气候：夏凉冬暖。天花板上的每一道弧线、每一处壁龛都出自匠人之手。",
+    story_p2:"街上没有人群，也没有车鸣。清晨叫醒您的是鸟鸣与落在石上的第一缕光——这是卡帕多奇亚最朴素、最真实的模样。",
+    rooms_eyebrow:"客房与空间",rooms_h:"凿入石中的两间客房与一方庭院。",
+    rooms_sub:"每处空间在岩石之中都有独特的性格。以下画面来自 Deep Cave House 自己的谷歌与 Instagram 主页。",
+    r1_tag:"深处客房",r1_h:"赭红石窟",r1_meta:"凿刻凝灰岩顶 · 灯火暖意",
+    r1_p:"手凿壁龛中的古铜器与陶器。赭红床罩、基里姆靠枕，以及在穹顶深处渐柔的灯光——洞穴中最温暖的一隅。",
+    r2_tag:"明亮客房",r2_h:"米白石窟",r2_meta:"浅色凝灰岩 · 宽阔壁龛",
+    r2_p:"一处更明亮、更开阔的石窟。弧形穹顶下是素白亚麻、木质床头柜，以及凿入墙心的宽阔壁龛。晨光在石面上变得柔和。",
+    r3_tag:"公共空间",r3_h:"石庭院",r3_meta:"切石 · 荫凉露台",
+    r3_p:"在岩石凿出的拱门之下，由切石墙环抱的清凉庭院。在石影中享用清晨的咖啡或傍晚的茶。",
+    exp_eyebrow:"体验",exp_h:"为何在石头里安眠？",
+    e1_h:"石头的气候",e1_p:"厚厚的凝灰岩墙夏凉冬暖。这份自然的舒适来自岩石，而非空调。",
+    e2_h:"手凿壁龛",e2_p:"每间客房都有匠人亲手凿出的原创壁龛与弧线。没有一处是工厂流水线的表面。",
+    e3_h:"锡纳索斯的宁静",e3_p:"远离游客的喧闹，是一座历史村庄的节奏。这是您能真正休息的卡帕多奇亚。",
+    e4_h:"贴心相助",e4_p:"我们距于尔居普很近。接送、热气球、山谷——为您的行程，我们随时在 WhatsApp 上。",
+    gallery_eyebrow:"相册",gallery_h:"来自岩石之内。",
+    gallery_sub:"画面来自 Deep Cave House 的谷歌与 Instagram 主页；为营造氛围而制作的概念图以 ◈ 标注。",
+    ph_g1:"赭红石窟",ph_g2:"米白石窟",ph_g3:"石庭院",ph_g4:"光井 · 概念",ph_g5:"凿刻壁龛 · 概念",ph_g6:"石之通道 · 概念",
+    book_eyebrow:"预订",book_h:'预订一间<em>石头客房。</em>',
+    book_lede:"发送您的日期，我们会尽快通过 WhatsApp 回复。客房、接送、村庄——有任何问题都请询问。",
+    label_name:"您的姓名",ph_name:"您的全名",label_date:"入住日期",label_nights:"晚数",
+    opt_n1:"1 晚",opt_n2:"2 晚",opt_n3:"3 晚",opt_n4:"4 晚以上",
+    label_room:"客房",opt_room1:"赭红石窟",opt_room2:"米白石窟",opt_room3:"均可",
+    label_phone:"WhatsApp / 电话",ph_phone:"方便联系您的号码",btn_submit:"发送预订申请",
+    foot_about:"一座在锡纳索斯(穆斯塔法帕夏)岩石中手工凿刻的静谧洞穴之家。距于尔居普数分钟，远离人群。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"穆斯塔法帕夏(锡纳索斯)，于尔居普 · 内夫谢希尔",foot_hours:"每天 · 入住与退房",
+    foot_rights:"© 2026 Deep Cave House — 版权所有。",foot_demo:"示例 / 演示设计",
+    wa_msg:"您好，我想咨询在 Deep Cave House 的住宿：",wa_name:"姓名",wa_date:"入住",wa_nights:"晚数",wa_room:"客房",wa_phone:"电话",
+    alert_fill:"请填写您的姓名、入住日期和电话号码。"
+  },
+  ko:{
+    meta_title:"Deep Cave House — 무스타파파샤(시나소스) 동굴 하우스",
+    meta_desc:"시나소스(무스타파파샤)의 바위를 손으로 깎아 만든 동굴 집. 두꺼운 응회암 벽, 손으로 깎은 벽감, 그리고 도시에서 멀리 떨어진 고요. 위르귀프에서 몇 분.",
+    nav_village:"마을",nav_rooms:"객실",nav_exp:"경험",nav_gallery:"갤러리",nav_book:"예약",
+    hero_eyebrow:"무스타파파샤 · 시나소스 · 카파도키아",
+    hero_title:'돌의 <em>깊은 곳</em>에서 깨어나세요.',
+    hero_lede:"시나소스의 오래된 돌길 위, 바위를 손으로 깎아 만든 동굴 집. 두꺼운 응회암 벽 너머에는 도시의 소음도 서두름도 없습니다 — 서늘한 돌의 고요와 등불 하나의 온기뿐입니다.",
+    hero_cta1:"숙박 계획하기",hero_cta2:"객실 보기",scroll_hint:"더 깊이",
+    ess1_k:"구글 평점",ess2_v:"시나소스",ess2_k:"무스타파파샤 마을",ess3_v:"응회암",ess3_k:"손으로 깎은 돌",ess4_v:"고요",ess4_k:"도시에서 멀리",
+    story_eyebrow:"시나소스",story_h:"한 마을의 가장 고요한 구석에서.",
+    story_sub:"무스타파파샤 — 옛 이름 시나소스 — 는 위르귀프 바로 남쪽, 돌 저택으로 알려진 조용한 마을입니다. Deep Cave House는 바로 이 마을의 바위에 깎여 있습니다.",
+    story_concept:"콘셉트 이미지 · 빛의 우물",
+    story_lead:"이곳에서 당신은 방이 아니라 한 시대에 머뭅니다.",
+    story_p1:"벽은 수백 년 전 손으로 깎은 부드러운 응회암입니다. 돌에는 고유한 기후가 있어 여름엔 서늘하고 겨울엔 따뜻합니다. 천장의 모든 곡선과 벽감은 장인의 손에서 나왔습니다.",
+    story_p2:"골목에는 인파도 경적도 없습니다. 아침이면 새소리와 돌 위에 내리는 첫 빛이 당신을 깨웁니다 — 가장 소박하고 가장 진짜인 카파도키아.",
+    rooms_eyebrow:"객실 & 공간",rooms_h:"돌에 깎아낸 두 객실과 하나의 안뜰.",
+    rooms_sub:"각 공간은 바위 속에서 저마다의 성격을 지닙니다. 아래 사진은 Deep Cave House의 구글과 인스타그램 프로필에서 가져왔습니다.",
+    r1_tag:"깊은 객실",r1_h:"붉은 석굴",r1_meta:"깎은 응회암 천장 · 등불의 온기",
+    r1_p:"손으로 깎은 벽감에 오래된 구리와 토기. 붉은 침구, 킬림 쿠션, 그리고 천장 깊은 곳에서 부드러워지는 빛 — 동굴에서 가장 따뜻한 구석입니다.",
+    r2_tag:"밝은 객실",r2_h:"크림 석굴",r2_meta:"밝은 응회암 · 넓은 벽감",
+    r2_p:"더 밝고 트인 석굴. 곡선 천장 아래 담백한 흰 리넨, 나무 협탁, 그리고 벽의 심장부에 깎인 넓은 벽감. 아침 빛이 돌 위에서 부드러워집니다.",
+    r3_tag:"공용 공간",r3_h:"돌 안뜰",r3_meta:"다듬은 돌 · 그늘진 테라스",
+    r3_p:"바위의 깎인 아치 아래, 다듬은 돌 벽으로 둘러싸인 서늘한 안뜰. 아침 커피나 저녁 차를 돌 그늘에서 즐기기 위한 곳.",
+    exp_eyebrow:"경험",exp_h:"왜 돌 속에서 잠드는가?",
+    e1_h:"돌의 기후",e1_p:"두꺼운 응회암 벽은 여름엔 서늘하고 겨울엔 따뜻합니다. 에어컨이 아니라 바위에서 오는 자연스러운 편안함.",
+    e2_h:"손으로 깎은 벽감",e2_p:"모든 객실에 장인이 깎아낸 고유한 벽감과 곡선. 공장에서 나온 표면은 하나도 없습니다.",
+    e3_h:"시나소스의 고요",e3_p:"관광 인파에서 벗어난, 역사 깊은 마을의 리듬. 진정으로 쉴 수 있는 카파도키아입니다.",
+    e4_h:"문 앞의 도움",e4_p:"위르귀프에서 매우 가깝습니다. 이동, 열기구, 계곡 — 당신의 일정을 위해 WhatsApp으로 늘 함께합니다.",
+    gallery_eyebrow:"갤러리",gallery_h:"바위 안쪽에서.",
+    gallery_sub:"사진은 Deep Cave House의 구글과 인스타그램 프로필에서; 분위기를 위해 제작한 콘셉트 이미지는 ◈로 표시했습니다.",
+    ph_g1:"붉은 석굴",ph_g2:"크림 석굴",ph_g3:"돌 안뜰",ph_g4:"빛의 우물 · 콘셉트",ph_g5:"깎은 벽감 · 콘셉트",ph_g6:"돌의 통로 · 콘셉트",
+    book_eyebrow:"예약",book_h:'<em>돌 객실</em>을 예약하세요.',
+    book_lede:"날짜를 보내주시면 WhatsApp으로 빠르게 답장드립니다. 객실, 이동, 마을 — 무엇이든 물어보세요.",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_date:"체크인",label_nights:"박",
+    opt_n1:"1박",opt_n2:"2박",opt_n3:"3박",opt_n4:"4박 이상",
+    label_room:"객실",opt_room1:"붉은 석굴",opt_room2:"크림 석굴",opt_room3:"상관없음",
+    label_phone:"WhatsApp / 전화",ph_phone:"연락 가능한 번호",btn_submit:"예약 요청 보내기",
+    foot_about:"시나소스(무스타파파샤)의 바위를 손으로 깎아 만든 고요한 동굴 집. 위르귀프에서 몇 분, 인파에서 멀리.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"무스타파파샤(시나소스), 위르귀프 · 네브셰히르",foot_hours:"매일 · 체크인 & 체크아웃",
+    foot_rights:"© 2026 Deep Cave House — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    wa_msg:"안녕하세요, Deep Cave House 숙박을 문의하고 싶습니다:",wa_name:"성함",wa_date:"체크인",wa_nights:"박",wa_room:"객실",wa_phone:"전화",
+    alert_fill:"성함, 체크인 날짜, 전화번호를 입력해 주세요."
+  }
+};
+
+/* ==================== i18n MOTORU ==================== */
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  try{ localStorage.setItem('dch_lang', lang); }catch(e){}
+}
+function initLang(){
+  let lang = null;
+  const url = new URLSearchParams(location.search).get('lang');
+  if(url && SUPPORTED.includes(url)) lang = url;
+  if(!lang){ try{ const s=localStorage.getItem('dch_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click', ()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+/* ==================== TEMA (aydınlık / karanlık) ==================== */
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('dch_theme', t); }catch(e){}
+}
+function initTheme(){
+  let t = null;
+  const url = new URLSearchParams(location.search).get('theme');
+  if(url==='light'||url==='dark') t = url;
+  if(!t){ try{ const s=localStorage.getItem('dch_theme'); if(s==='light'||s==='dark') t=s; }catch(e){} }
+  if(!t){ t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark'; }
+  applyTheme(t);
+}
+document.getElementById('themeBtn').addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme');
+  applyTheme(cur==='light'?'dark':'light');
+});
+
+/* ==================== MOBİL MENÜ ==================== */
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+/* ==================== NAV SCROLL + SCROLL-SPY (carved-inset aktif) ==================== */
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScroll);onScroll();
+
+const spyLinks = Array.from(document.querySelectorAll('.navlinks a.spy'));
+const spySections = spyLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const spyObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      const id = '#'+en.target.id;
+      spyLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===id));
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px', threshold:0});
+spySections.forEach(s=>spyObserver.observe(s));
+
+/* ==================== DUST MOTES (signature) ==================== */
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return;
+  const box = document.getElementById('dust'); if(!box) return;
+  for(let i=0;i<34;i++){
+    const m=document.createElement('div'); m.className='mote';
+    const s=Math.random()*3+1.2;
+    m.style.width=s+'px'; m.style.height=s+'px';
+    m.style.left=(8+Math.random()*66)+'%';
+    m.style.top=(Math.random()*100)+'%';
+    m.style.animationDuration=(7+Math.random()*9)+'s';
+    m.style.animationDelay=(-Math.random()*12)+'s';
+    box.appendChild(m);
+  }
+})();
+
+/* ==================== REVEAL ==================== */
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.18});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ==================== GÖRSEL YÜKLEME ==================== */
+(function(){
+  const base='assets/images/';
+  function tryImg(el, file){
+    const img=new Image();
+    img.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; el.classList.add('has-bg'); };
+    img.onerror=()=>{};
+    img.src=base+file;
+  }
+  const hero=document.getElementById('heroPhoto');
+  if(hero){ const hi=new Image(); hi.onload=()=>{ hero.style.backgroundImage=`url('${base}hero.jpg')`; hero.classList.add('has-img'); }; hi.onerror=()=>{}; hi.src=base+'hero.jpg'; }
+  const story=document.getElementById('storyImg');
+  if(story) tryImg(story,'ai-depth.jpg');
+  document.querySelectorAll('.room-img[data-img], .tile[data-img]').forEach(t=>tryImg(t,t.getAttribute('data-img')));
+})();
+
+/* ==================== REZERVASYON → WHATSAPP ==================== */
+const WHATSAPP = "905312932777";
+function sendBooking(){
+  const d = I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const date=document.getElementById('f-date').value;
+  const nights=document.getElementById('f-nights').value;
+  const room=document.getElementById('f-room').value;
+  const phone=document.getElementById('f-phone').value.trim();
+  if(!name||!date||!phone){ alert(d.alert_fill); return; }
+  const msg = d.wa_msg+"%0A%0A"+
+    d.wa_name+": "+encodeURIComponent(name)+"%0A"+
+    d.wa_date+": "+encodeURIComponent(date)+"%0A"+
+    d.wa_nights+": "+encodeURIComponent(nights)+"%0A"+
+    d.wa_room+": "+encodeURIComponent(room)+"%0A"+
+    d.wa_phone+": "+encodeURIComponent(phone);
+  window.open("https://wa.me/"+WHATSAPP+"?text="+msg,"_blank");
+}
+
+/* ==================== LIGHTBOX ==================== */
+(function(){
+  const items = Array.from(document.querySelectorAll('.gallery .tile[data-img], .room-img[data-img]'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  const capOf = t => { const l = t.querySelector('.cap') || t.querySelector('.meta'); return l ? l.textContent.trim() : ''; };
+  function show(i){ idx = (i + items.length) % items.length; const t = items[idx]; img.src = base + t.getAttribute('data-img'); cap.textContent = capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }
+  items.forEach((t,i)=>{ t.addEventListener('click',()=>open(i)); });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+/* ==================== BAŞLAT ==================== */
+initTheme();
+initLang();
+</script>
+<script>
+/*  Stripe WebGl Gradient Animation — whatamesh (MIT) · github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com  */
+function normalizeColor(hexCode){return [((hexCode>>16)&255)/255,((hexCode>>8)&255)/255,(255&hexCode)/255];}
+["SCREEN","LINEAR_LIGHT"].reduce((hexCode,t,n)=>Object.assign(hexCode,{[t]:n}),{});
+class MiniGl{
+  constructor(canvas,width,height,debug=false){
+    const _miniGl=this,debug_output=-1!==document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas=canvas),(_miniGl.gl=_miniGl.canvas.getContext("webgl",{antialias:true})),(_miniGl.meshes=[]);
+    const context=_miniGl.gl;
+    width&&height&&this.setSize(width,height),_miniGl.lastDebugMsg,(_miniGl.debug=debug&&debug_output?function(e){const t=new Date();t-_miniGl.lastDebugMsg>1e3&&console.log("---"),console.log(t.toLocaleTimeString()+Array(Math.max(0,32-e.length)).join(" ")+e+": ",...Array.from(arguments).slice(1)),(_miniGl.lastDebugMsg=t);}:()=>{}),Object.defineProperties(_miniGl,{Material:{enumerable:false,value:class{
+      constructor(vertexShaders,fragments,uniforms={}){const material=this;
+        function getShaderByType(type,source){const shader=context.createShader(type);return context.shaderSource(shader,source),context.compileShader(shader),context.getShaderParameter(shader,context.COMPILE_STATUS)||console.error(context.getShaderInfoLog(shader)),_miniGl.debug("Material.compileShaderSource",{source:source}),shader;}
+        function getUniformVariableDeclarations(uniforms,type){return Object.entries(uniforms).map(([uniform,value])=>value.getDeclaration(uniform,type)).join("\n");}
+        (material.uniforms=uniforms),(material.uniformInstances=[]);
+        const prefix="\n              precision highp float;\n            ";
+        (material.vertexSource=`\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(_miniGl.commonUniforms,"vertex")}\n              ${getUniformVariableDeclarations(uniforms,"vertex")}\n              ${vertexShaders}\n            `),(material.Source=`\n              ${prefix}\n              ${getUniformVariableDeclarations(_miniGl.commonUniforms,"fragment")}\n              ${getUniformVariableDeclarations(uniforms,"fragment")}\n              ${fragments}\n            `),(material.vertexShader=getShaderByType(context.VERTEX_SHADER,material.vertexSource)),(material.fragmentShader=getShaderByType(context.FRAGMENT_SHADER,material.Source)),(material.program=context.createProgram()),context.attachShader(material.program,material.vertexShader),context.attachShader(material.program,material.fragmentShader),context.linkProgram(material.program),context.getProgramParameter(material.program,context.LINK_STATUS)||console.error(context.getProgramInfoLog(material.program)),context.useProgram(material.program),material.attachUniforms(void 0,_miniGl.commonUniforms),material.attachUniforms(void 0,material.uniforms);
+      }
+      attachUniforms(name,uniforms){const material=this;void 0===name?Object.entries(uniforms).forEach(([name,uniform])=>{material.attachUniforms(name,uniform);}):"array"==uniforms.type?uniforms.value.forEach((uniform,i)=>material.attachUniforms(`${name}[${i}]`,uniform)):"struct"==uniforms.type?Object.entries(uniforms.value).forEach(([uniform,i])=>material.attachUniforms(`${name}.${uniform}`,i)):(_miniGl.debug("Material.attachUniforms",{name:name,uniform:uniforms}),material.uniformInstances.push({uniform:uniforms,location:context.getUniformLocation(material.program,name)}));}
+    }},Uniform:{enumerable:!1,value:class{
+      constructor(e){(this.type="float"),Object.assign(this,e);(this.typeFn={float:"1f",int:"1i",vec2:"2fv",vec3:"3fv",vec4:"4fv",mat4:"Matrix4fv"}[this.type]||"1f"),this.update();}
+      update(value){void 0!==this.value&&context[`uniform${this.typeFn}`](value,0===this.typeFn.indexOf("Matrix")?this.transpose:this.value,0===this.typeFn.indexOf("Matrix")?this.value:null);}
+      getDeclaration(name,type,length){const uniform=this;if(uniform.excludeFrom!==type){if("array"===uniform.type)return uniform.value[0].getDeclaration(name,type,uniform.value.length)+`\nconst int ${name}_length = ${uniform.value.length};`;if("struct"===uniform.type){let name_no_prefix=name.replace("u_","");return(name_no_prefix=name_no_prefix.charAt(0).toUpperCase()+name_no_prefix.slice(1)),`uniform struct ${name_no_prefix} \n                                    {\n`+Object.entries(uniform.value).map(([name,uniform])=>uniform.getDeclaration(name,type).replace(/^uniform/,"")).join("")+`\n} ${name}${length>0?`[${length}]`:""};`;}return `uniform ${uniform.type} ${name}${length>0?`[${length}]`:""};`;}}
+    }},PlaneGeometry:{enumerable:!1,value:class{
+      constructor(width,height,n,i,orientation){context.createBuffer(),(this.attributes={position:new _miniGl.Attribute({target:context.ARRAY_BUFFER,size:3}),uv:new _miniGl.Attribute({target:context.ARRAY_BUFFER,size:2}),uvNorm:new _miniGl.Attribute({target:context.ARRAY_BUFFER,size:2}),index:new _miniGl.Attribute({target:context.ELEMENT_ARRAY_BUFFER,size:3,type:context.UNSIGNED_SHORT})}),this.setTopology(n,i),this.setSize(width,height,orientation);}
+      setTopology(e=1,t=1){const n=this;(n.xSegCount=e),(n.ySegCount=t),(n.vertexCount=(n.xSegCount+1)*(n.ySegCount+1)),(n.quadCount=n.xSegCount*n.ySegCount*2),(n.attributes.uv.values=new Float32Array(2*n.vertexCount)),(n.attributes.uvNorm.values=new Float32Array(2*n.vertexCount)),(n.attributes.index.values=new Uint16Array(3*n.quadCount));for(let e=0;e<=n.ySegCount;e++)for(let t=0;t<=n.xSegCount;t++){const i=e*(n.xSegCount+1)+t;if(((n.attributes.uv.values[2*i]=t/n.xSegCount),(n.attributes.uv.values[2*i+1]=1-e/n.ySegCount),(n.attributes.uvNorm.values[2*i]=(t/n.xSegCount)*2-1),(n.attributes.uvNorm.values[2*i+1]=1-(e/n.ySegCount)*2),t<n.xSegCount&&e<n.ySegCount)){const s=e*n.xSegCount+t;(n.attributes.index.values[6*s]=i),(n.attributes.index.values[6*s+1]=i+1+n.xSegCount),(n.attributes.index.values[6*s+2]=i+1),(n.attributes.index.values[6*s+3]=i+1),(n.attributes.index.values[6*s+4]=i+1+n.xSegCount),(n.attributes.index.values[6*s+5]=i+2+n.xSegCount);}}n.attributes.uv.update(),n.attributes.uvNorm.update(),n.attributes.index.update(),_miniGl.debug("Geometry.setTopology",{uv:n.attributes.uv,uvNorm:n.attributes.uvNorm,index:n.attributes.index});}
+      setSize(width=1,height=1,orientation="xz"){const geometry=this;(geometry.width=width),(geometry.height=height),(geometry.orientation=orientation),(geometry.attributes.position.values&&geometry.attributes.position.values.length===3*geometry.vertexCount)||(geometry.attributes.position.values=new Float32Array(3*geometry.vertexCount));const o=width/-2,r=height/-2,segment_width=width/geometry.xSegCount,segment_height=height/geometry.ySegCount;for(let yIndex=0;yIndex<=geometry.ySegCount;yIndex++){const t=r+yIndex*segment_height;for(let xIndex=0;xIndex<=geometry.xSegCount;xIndex++){const r=o+xIndex*segment_width,l=yIndex*(geometry.xSegCount+1)+xIndex;(geometry.attributes.position.values[3*l+"xyz".indexOf(orientation[0])]=r),(geometry.attributes.position.values[3*l+"xyz".indexOf(orientation[1])]=-t);}}geometry.attributes.position.update(),_miniGl.debug("Geometry.setSize",{position:geometry.attributes.position});}
+    }},Mesh:{enumerable:!1,value:class{
+      constructor(geometry,material){const mesh=this;(mesh.geometry=geometry),(mesh.material=material),(mesh.wireframe=!1),(mesh.attributeInstances=[]),Object.entries(mesh.geometry.attributes).forEach(([e,attribute])=>{mesh.attributeInstances.push({attribute:attribute,location:attribute.attach(e,mesh.material.program)});}),_miniGl.meshes.push(mesh),_miniGl.debug("Mesh.constructor",{mesh:mesh});}
+      draw(){context.useProgram(this.material.program),this.material.uniformInstances.forEach(({uniform:e,location:t})=>e.update(t)),this.attributeInstances.forEach(({attribute:e,location:t})=>e.use(t)),context.drawElements(this.wireframe?context.LINES:context.TRIANGLES,this.geometry.attributes.index.values.length,context.UNSIGNED_SHORT,0);}
+      remove(){_miniGl.meshes=_miniGl.meshes.filter((e)=>e!=this);}
+    }},Attribute:{enumerable:!1,value:class{
+      constructor(e){(this.type=context.FLOAT),(this.normalized=!1),(this.buffer=context.createBuffer()),Object.assign(this,e),this.update();}
+      update(){void 0!==this.values&&(context.bindBuffer(this.target,this.buffer),context.bufferData(this.target,this.values,context.STATIC_DRAW));}
+      attach(e,t){const n=context.getAttribLocation(t,e);return this.target===context.ARRAY_BUFFER&&(context.enableVertexAttribArray(n),context.vertexAttribPointer(n,this.size,this.type,this.normalized,0,0)),n;}
+      use(e){context.bindBuffer(this.target,this.buffer),this.target===context.ARRAY_BUFFER&&(context.enableVertexAttribArray(e),context.vertexAttribPointer(e,this.size,this.type,this.normalized,0,0));}
+    }}});
+    const a=[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];_miniGl.commonUniforms={projectionMatrix:new _miniGl.Uniform({type:"mat4",value:a}),modelViewMatrix:new _miniGl.Uniform({type:"mat4",value:a}),resolution:new _miniGl.Uniform({type:"vec2",value:[1,1]}),aspectRatio:new _miniGl.Uniform({type:"float",value:1})};
+  }
+  setSize(e=640,t=480){(this.width=e),(this.height=t),(this.canvas.width=e),(this.canvas.height=t),this.gl.viewport(0,0,e,t),(this.commonUniforms.resolution.value=[e,t]),(this.commonUniforms.aspectRatio.value=e/t),this.debug("MiniGL.setSize",{width:e,height:t});}
+  setOrthographicCamera(e=0,t=0,n=0,i=-2e3,s=2e3){(this.commonUniforms.projectionMatrix.value=[2/this.width,0,0,0,0,2/this.height,0,0,0,0,2/(i-s),0,e,t,n,1]),this.debug("setOrthographicCamera",this.commonUniforms.projectionMatrix.value);}
+  render(){this.gl.clearColor(0,0,0,0),this.gl.clearDepth(1),this.meshes.forEach((e)=>e.draw());}
+}
+function e(object,propertyName,val){return propertyName in object?Object.defineProperty(object,propertyName,{value:val,enumerable:!0,configurable:!0,writable:!0}):(object[propertyName]=val),object;}
+class Gradient{
+  constructor(...t){e(this,"el",void 0),e(this,"cssVarRetries",0),e(this,"maxCssVarRetries",200),e(this,"angle",0),e(this,"isLoadedClass",!1),e(this,"isScrolling",!1),e(this,"scrollingTimeout",void 0),e(this,"scrollingRefreshDelay",200),e(this,"isIntersecting",!1),e(this,"shaderFiles",void 0),e(this,"vertexShader",void 0),e(this,"sectionColors",void 0),e(this,"computedCanvasStyle",void 0),e(this,"conf",void 0),e(this,"uniforms",void 0),e(this,"t",1253106),e(this,"last",0),e(this,"width",void 0),e(this,"minWidth",1111),e(this,"height",600),e(this,"xSegCount",void 0),e(this,"ySegCount",void 0),e(this,"mesh",void 0),e(this,"material",void 0),e(this,"geometry",void 0),e(this,"minigl",void 0),e(this,"scrollObserver",void 0),e(this,"amp",320),e(this,"seed",5),e(this,"freqX",14e-5),e(this,"freqY",29e-5),e(this,"freqDelta",1e-5),e(this,"activeColors",[1,1,1,1]),e(this,"isMetaKey",!1),e(this,"isGradientLegendVisible",!1),e(this,"isMouseDown",!1),e(this,"handleScroll",()=>{clearTimeout(this.scrollingTimeout),(this.scrollingTimeout=setTimeout(this.handleScrollEnd,this.scrollingRefreshDelay)),this.isGradientLegendVisible&&this.hideGradientLegend(),this.conf.playing&&((this.isScrolling=!0),this.pause());}),e(this,"handleScrollEnd",()=>{(this.isScrolling=!1),this.isIntersecting&&this.play();}),e(this,"resize",()=>{(this.width=window.innerWidth),this.minigl.setSize(this.width,this.height),this.minigl.setOrthographicCamera(),(this.xSegCount=Math.ceil(this.width*this.conf.density[0])),(this.ySegCount=Math.ceil(this.height*this.conf.density[1])),this.mesh.geometry.setTopology(this.xSegCount,this.ySegCount),this.mesh.geometry.setSize(this.width,this.height),(this.mesh.material.uniforms.u_shadow_power.value=this.width<600?5:6);}),e(this,"handleMouseDown",(e)=>{this.isGradientLegendVisible&&((this.isMetaKey=e.metaKey),(this.isMouseDown=!0),!1===this.conf.playing&&requestAnimationFrame(this.animate));}),e(this,"handleMouseUp",()=>{this.isMouseDown=!1;}),e(this,"animate",(e)=>{if(!this.shouldSkipFrame(e)||this.isMouseDown){if(((this.t+=Math.min(e-this.last,1e3/15)),(this.last=e),this.isMouseDown)){let e=160;this.isMetaKey&&(e=-160),(this.t+=e);}(this.mesh.material.uniforms.u_time.value=this.t),this.minigl.render();}if(0!==this.last&&this.isStatic)return this.minigl.render(),void this.disconnect();(this.conf.playing||this.isMouseDown)&&requestAnimationFrame(this.animate);}),e(this,"addIsLoadedClass",()=>{!this.isLoadedClass&&((this.isLoadedClass=!0),this.el.classList.add("isLoaded"),setTimeout(()=>{this.el.parentElement.classList.add("isLoaded");},3e3));}),e(this,"pause",()=>{this.conf.playing=false;}),e(this,"play",()=>{requestAnimationFrame(this.animate),(this.conf.playing=true);}),e(this,"initGradient",(selector)=>{this.el=document.querySelector(selector);this.connect();return this;});}
+  async connect(){(this.shaderFiles={vertex:"varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",noise:"vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}\nvec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}\nvec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}\nvec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}\nfloat snoise(vec3 v){const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;i=mod289(i);vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));float n_=0.142857142857;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.0*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}",blend:"vec3 blendNormal(vec3 base, vec3 blend){return blend;}\nvec3 blendNormal(vec3 base, vec3 blend, float opacity){return (blendNormal(base, blend) * opacity + base * (1.0 - opacity));}",fragment:"varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}"}),(this.conf={presetName:"",wireframe:false,density:[.06,.16],zoom:1,rotation:0,playing:true}),document.querySelectorAll("canvas").length<1?console.log("DID NOT LOAD HERO STRIPE CANVAS"):((this.minigl=new MiniGl(this.el,null,null,!0)),requestAnimationFrame(()=>{this.el&&((this.computedCanvasStyle=getComputedStyle(this.el)),this.waitForCssVars());}));}
+  disconnect(){this.scrollObserver&&(window.removeEventListener("scroll",this.handleScroll),window.removeEventListener("mousedown",this.handleMouseDown),window.removeEventListener("mouseup",this.handleMouseUp),window.removeEventListener("keydown",this.handleKeyDown),this.scrollObserver.disconnect()),window.removeEventListener("resize",this.resize);}
+  initMaterial(){this.uniforms={u_time:new this.minigl.Uniform({value:0}),u_shadow_power:new this.minigl.Uniform({value:5}),u_darken_top:new this.minigl.Uniform({value:""===this.el.dataset.jsDarkenTop?1:0}),u_active_colors:new this.minigl.Uniform({value:this.activeColors,type:"vec4"}),u_global:new this.minigl.Uniform({value:{noiseFreq:new this.minigl.Uniform({value:[this.freqX,this.freqY],type:"vec2"}),noiseSpeed:new this.minigl.Uniform({value:5e-6})},type:"struct"}),u_vertDeform:new this.minigl.Uniform({value:{incline:new this.minigl.Uniform({value:Math.sin(this.angle)/Math.cos(this.angle)}),offsetTop:new this.minigl.Uniform({value:-.5}),offsetBottom:new this.minigl.Uniform({value:-.5}),noiseFreq:new this.minigl.Uniform({value:[3,4],type:"vec2"}),noiseAmp:new this.minigl.Uniform({value:this.amp}),noiseSpeed:new this.minigl.Uniform({value:10}),noiseFlow:new this.minigl.Uniform({value:3}),noiseSeed:new this.minigl.Uniform({value:this.seed})},type:"struct",excludeFrom:"fragment"}),u_baseColor:new this.minigl.Uniform({value:this.sectionColors[0],type:"vec3",excludeFrom:"fragment"}),u_waveLayers:new this.minigl.Uniform({value:[],excludeFrom:"fragment",type:"array"})};for(let e=1;e<this.sectionColors.length;e+=1)this.uniforms.u_waveLayers.value.push(new this.minigl.Uniform({value:{color:new this.minigl.Uniform({value:this.sectionColors[e],type:"vec3"}),noiseFreq:new this.minigl.Uniform({value:[2+e/this.sectionColors.length,3+e/this.sectionColors.length],type:"vec2"}),noiseSpeed:new this.minigl.Uniform({value:11+.3*e}),noiseFlow:new this.minigl.Uniform({value:6.5+.3*e}),noiseSeed:new this.minigl.Uniform({value:this.seed+10*e}),noiseFloor:new this.minigl.Uniform({value:.1}),noiseCeil:new this.minigl.Uniform({value:.63+.07*e})},type:"struct"}));return this.vertexShader=[this.shaderFiles.noise,this.shaderFiles.blend,this.shaderFiles.vertex].join("\n\n"),new this.minigl.Material(this.vertexShader,this.shaderFiles.fragment,this.uniforms);}
+  initMesh(){(this.material=this.initMaterial()),(this.geometry=new this.minigl.PlaneGeometry()),(this.mesh=new this.minigl.Mesh(this.geometry,this.material));}
+  shouldSkipFrame(e){return !!window.document.hidden||!this.conf.playing||parseInt(e,10)%2==0||void 0;}
+  updateFrequency(e){(this.freqX+=e),(this.freqY+=e);}
+  toggleColor(index){this.activeColors[index]=0===this.activeColors[index]?1:0;}
+  showGradientLegend(){this.width>this.minWidth&&((this.isGradientLegendVisible=!0),document.body.classList.add("isGradientLegendVisible"));}
+  hideGradientLegend(){(this.isGradientLegendVisible=!1),document.body.classList.remove("isGradientLegendVisible");}
+  init(){this.initGradientColors(),this.initMesh(),this.resize(),requestAnimationFrame(this.animate),window.addEventListener("resize",this.resize);}
+  waitForCssVars(){if(this.computedCanvasStyle&&-1!==this.computedCanvasStyle.getPropertyValue("--gradient-color-1").indexOf("#"))this.init(),this.addIsLoadedClass();else{if(((this.cssVarRetries+=1),this.cssVarRetries>this.maxCssVarRetries)){return(this.sectionColors=[16711680,16711680,16711935,65280,255]),void this.init();}requestAnimationFrame(()=>this.waitForCssVars());}}
+  initGradientColors(){this.sectionColors=["--gradient-color-1","--gradient-color-2","--gradient-color-3","--gradient-color-4"].map((cssPropertyName)=>{let hex=this.computedCanvasStyle.getPropertyValue(cssPropertyName).trim();if(4===hex.length){const hexTemp=hex.substr(1).split("").map((hexTemp)=>hexTemp+hexTemp).join("");hex=`#${hexTemp}`;}return hex&&`0x${hex.substr(1)}`;}).filter(Boolean).map(normalizeColor);}
+}
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){ console.error('hero mesh init hatasi:', e); document.body.classList.add('no-webgl'); }
+})();
+</script>
+
+</body>
+</html>
