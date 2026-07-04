@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* Tema erken uygula — FOUC yok (file:// güvenli) */
+(function(){try{var p=new URLSearchParams(location.search),t=p.get('theme');if(!t)t=localStorage.getItem('ulp_theme');if(!t)t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';if(t!=='light'&&t!=='dark')t='dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+</script>
+<title data-i18n="meta_title">Ürgüp local Pansiyon — Ürgüp merkezde kesme taş ev</title>
+<meta name="description" data-i18n="meta_desc" content="Ürgüp'ün tam merkezinde, kesme taş bir evde el emeği kilimler ve sıcak bir karşılamayla; çarşıya, şarap evlerine ve restoranlara yürüme mesafesinde küçük bir pansiyon.">
+<style>
+  :root{
+    --bg:#0f1b1c;--bg-2:#0a1314;--surface:#152324;--surface-2:#1b2b2c;--card:#13201f;
+    --text:#e7ddca;--head:#f4ecd9;--muted:#8fa199;--line:rgba(231,221,202,.12);--line-2:rgba(231,221,202,.22);
+    --red:#d05b3f;--red-2:#e17c60;--red-deep:#b34428;
+    --teal:#4f9a92;--teal-2:#6bb4ab;
+    --hero-scrim1:rgba(7,14,15,.30);--hero-scrim2:rgba(7,14,15,.72);
+    --nav-hair:rgba(231,221,202,.20);--sel:rgba(208,91,63,.26);
+    /* kilim palet — iki temada sabit dokuma renkleri */
+    --k-red:#c0472f;--k-indigo:#33506b;--k-cream:#e6d8ba;--k-teal:#3f7d76;--k-clay:#a8542f;
+  }
+  html[data-theme="light"]{
+    --bg:#efe7d6;--bg-2:#e4dbc6;--surface:#f6f0e2;--surface-2:#ece2cf;--card:#f7f1e4;
+    --text:#2b322e;--head:#1b2521;--muted:#5d685f;--line:rgba(27,37,33,.14);--line-2:rgba(27,37,33,.24);
+    --red:#b23f29;--red-2:#c5573f;--red-deep:#8f2f1c;
+    --teal:#2c6f68;--teal-2:#3f8c85;
+    --hero-scrim1:rgba(7,14,15,.26);--hero-scrim2:rgba(7,14,15,.62);
+    --nav-hair:rgba(27,37,33,.20);--sel:rgba(178,63,41,.20);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  ::selection{background:var(--sel)}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{font-family:'Optima','Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.68;overflow-x:hidden;transition:background .5s,color .5s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}
+  h1,h2,h3,.disp{font-family:'Hoefler Text','Palatino Linotype','Book Antiqua','Georgia',serif;font-weight:500;line-height:1.08;letter-spacing:-.01em;color:var(--head)}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:700;letter-spacing:0}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+  .eyebrow{display:inline-flex;align-items:center;gap:11px;font-size:.7rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--red)}
+  .eyebrow::before{content:"";width:16px;height:9px;flex:none;
+    background:
+      linear-gradient(135deg,var(--k-red) 25%,transparent 25%),
+      linear-gradient(225deg,var(--k-red) 25%,transparent 25%),
+      linear-gradient(45deg,var(--k-indigo) 25%,transparent 25%),
+      linear-gradient(315deg,var(--k-indigo) 25%,transparent 25%);
+    background-position:0 0,4.5px 0,0 0,4.5px 0;background-size:9px 9px;background-repeat:repeat-x}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.1em}
+
+  /* ---------- KİLİM ŞERİDİ (imza) ---------- */
+  .kilim-band{height:20px;width:100%;
+    background-color:var(--k-cream);
+    background-image:
+      linear-gradient(135deg,var(--k-red) 25%,transparent 25%),
+      linear-gradient(225deg,var(--k-red) 25%,transparent 25%),
+      linear-gradient(45deg,var(--k-indigo) 25%,transparent 25%),
+      linear-gradient(315deg,var(--k-indigo) 25%,transparent 25%);
+    background-position:0 0,10px 0,0 0,10px 0;background-size:20px 20px;
+    box-shadow:inset 0 2px 0 var(--k-teal),inset 0 -2px 0 var(--k-teal)}
+  .kilim-thin{height:6px;background-size:6px 6px;background-position:0 0,3px 0,0 0,3px 0;box-shadow:none;opacity:.9}
+
+  /* ---------- NAV — kilim dikişi (scroll-spy, dil-güvenli CSS işaret) ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:18px;padding:19px 32px;transition:background .45s,box-shadow .45s,padding .45s}
+  nav.scrolled{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px) saturate(120%);box-shadow:0 1px 0 var(--line);padding:13px 32px}
+  .brand{display:flex;flex-direction:column;gap:2px;flex:none;line-height:1}
+  .brand .b1{font-family:'Hoefler Text','Palatino Linotype','Book Antiqua','Georgia',serif;font-size:1.3rem;font-style:italic;color:var(--head);letter-spacing:.01em}
+  .brand .b2{font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);font-weight:700;padding-left:2px}
+  nav:not(.scrolled) .brand .b1{color:#f6eedb}
+  nav:not(.scrolled) .brand .b2{color:rgba(246,238,219,.7)}
+  html[lang="zh-CN"] .brand .b2,html[lang="ko"] .brand .b2{letter-spacing:.14em}
+  .spacer{flex:1}
+  .navlinks{position:relative;display:flex;gap:28px;align-items:flex-end;padding-bottom:9px}
+  .navlinks::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:0;border-bottom:1.5px dashed var(--nav-hair)}
+  .navlinks a{position:relative;font-size:.82rem;letter-spacing:.05em;color:var(--muted);transition:color .3s;padding:0 1px 12px}
+  nav:not(.scrolled) .navlinks a{color:rgba(246,238,219,.74)}
+  .navlinks a:hover{color:var(--head)}
+  nav:not(.scrolled) .navlinks a:hover{color:#fff}
+  .navlinks a.cur{color:var(--head)}
+  nav:not(.scrolled) .navlinks a.cur{color:#fff}
+  .navlinks a.cur::before{content:"";position:absolute;left:0;right:0;bottom:3px;height:2px;background:var(--red);border-radius:2px}
+  .navlinks a.cur::after{content:"";position:absolute;left:50%;bottom:-1px;width:8px;height:8px;transform:translateX(-50%) rotate(45deg);background:var(--red);box-shadow:0 0 0 3px var(--bg)}
+  nav:not(.scrolled) .navlinks a.cur::after{box-shadow:none}
+  html[lang="zh-CN"] .navlinks a,html[lang="ko"] .navlinks a{letter-spacing:.02em;font-size:.9rem}
+  .nav-actions{display:flex;align-items:center;gap:12px;flex:none}
+  .theme-btn{background:none;border:1px solid var(--line-2);color:inherit;width:38px;height:38px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;flex:none}
+  nav:not(.scrolled) .theme-btn{border-color:rgba(246,238,219,.34);color:#f6eedb}
+  .theme-btn:hover{border-color:var(--red);color:var(--red)}
+  .theme-btn svg{width:18px;height:18px}
+  html[data-theme="dark"] .ic-sun{display:block}html[data-theme="dark"] .ic-moon{display:none}
+  html[data-theme="light"] .ic-sun{display:none}html[data-theme="light"] .ic-moon{display:block}
+  .langs{display:flex;align-items:center;gap:1px}
+  .langs button{background:none;border:none;color:var(--muted);font-family:inherit;font-size:.72rem;cursor:pointer;padding:5px 5px;transition:.25s;border-radius:3px;letter-spacing:.02em}
+  nav:not(.scrolled) .langs button{color:rgba(246,238,219,.62)}
+  .langs button:hover{color:var(--head)}nav:not(.scrolled) .langs button:hover{color:#fff}
+  .langs button.active{color:var(--red);font-weight:700}
+  .langs .sep{color:var(--line-2);font-size:.6rem}
+  .nav-cta{border:1px solid var(--red);color:var(--red);padding:9px 18px;border-radius:2px;font-size:.76rem;font-weight:600;letter-spacing:.05em;transition:.35s;white-space:nowrap}
+  nav:not(.scrolled) .nav-cta{border-color:var(--red-2);color:#f4d9cd}
+  .nav-cta:hover{background:var(--red);color:#fff;border-color:var(--red)}
+  html[lang="zh-CN"] .nav-cta,html[lang="ko"] .nav-cta{letter-spacing:.02em}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;color:var(--head);flex:none}
+  nav:not(.scrolled) .menu-btn{color:#f6eedb}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+  .hero-photo{position:absolute;inset:0;z-index:0;background:linear-gradient(165deg,#0c1a1d 0%,#173033 34%,#3f6f66 60%,#b46a3f 82%,#e2a15f 100%);background-size:cover;background-position:center;transform-origin:58% 42%}
+  .hero-photo.has-img{animation:kenburns 42s ease-in-out infinite alternate}
+  @keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.12)}}
+  #hero-gradient{position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:overlay;opacity:.55;
+    --gradient-color-1:#173033; --gradient-color-2:#3f7d76; --gradient-color-3:#c0472f; --gradient-color-4:#e2a15f}
+  .no-webgl #hero-gradient{display:none}
+  .hero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:
+      radial-gradient(70% 60% at 22% 84%,var(--hero-scrim2),transparent 70%),
+      linear-gradient(180deg,var(--hero-scrim1) 0%,transparent 34%,rgba(7,14,15,.5) 100%)}
+  .hero-inner{position:relative;z-index:5;width:100%;padding-bottom:min(15vh,140px)}
+  .hero .hero-eyebrow{color:#f0c9a0}
+  .hero .hero-eyebrow::before{background-image:
+      linear-gradient(135deg,var(--k-red) 25%,transparent 25%),
+      linear-gradient(225deg,var(--k-red) 25%,transparent 25%),
+      linear-gradient(45deg,var(--k-cream) 25%,transparent 25%),
+      linear-gradient(315deg,var(--k-cream) 25%,transparent 25%)}
+  .hero h1{color:#fbf5e8;font-size:clamp(2.7rem,7vw,6rem);max-width:16ch;text-shadow:0 4px 44px rgba(0,0,0,.5);margin-top:22px}
+  .hero h1 em{font-style:italic;color:#f0b782}
+  .hero .lede{font-size:clamp(1.04rem,1.55vw,1.3rem);color:rgba(251,245,232,.92);max-width:48ch;margin-top:24px;font-weight:300;text-shadow:0 2px 22px rgba(0,0,0,.55)}
+  .hero-cta{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:var(--red);color:#fff;padding:16px 32px;border-radius:2px;font-family:inherit;font-weight:600;font-size:.84rem;letter-spacing:.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:.35s;border:1px solid var(--red)}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{text-transform:none;letter-spacing:.03em}
+  .btn-solid:hover{background:var(--red-deep);border-color:var(--red-deep);gap:14px}
+  .btn-line{color:#fbf5e8;font-family:inherit;font-size:.84rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(251,245,232,.5);padding-bottom:4px;transition:.4s}
+  .btn-line:hover{border-color:#f0b782;color:#f0b782}
+  .hero-kilim{position:absolute;left:0;right:0;bottom:0;z-index:4}
+  .hero-concept{position:absolute;right:26px;bottom:34px;z-index:5;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(251,245,232,.72);background:rgba(7,14,15,.4);border:1px solid rgba(246,238,219,.2);padding:5px 11px;border-radius:20px;backdrop-filter:blur(4px)}
+  html[lang="zh-CN"] .hero-concept,html[lang="ko"] .hero-concept{letter-spacing:.05em}
+  @media(max-width:560px){.hero-concept{right:16px;bottom:30px;font-size:.55rem;padding:4px 9px}}
+  .scrollhint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:5;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(251,245,232,.6);display:flex;flex-direction:column;align-items:center;gap:8px}
+  html[lang="zh-CN"] .scrollhint,html[lang="ko"] .scrollhint{letter-spacing:.1em}
+  .scrollhint .l{width:1px;height:32px;background:linear-gradient(#f0b782,transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ---------- MARKS ---------- */
+  .marks{background:var(--bg-2);border-bottom:1px solid var(--line)}
+  .marks .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:40px 32px}
+  .mark{text-align:center;padding:0 8px}
+  .mark .v{font-family:'Hoefler Text','Palatino Linotype','Georgia',serif;font-size:clamp(1.5rem,2.6vw,2.1rem);color:var(--red);line-height:1.05}
+  .mark .v .st{color:var(--teal-2);font-size:.9em}
+  .mark .l{font-size:.72rem;letter-spacing:.05em;color:var(--muted);margin-top:9px;line-height:1.4}
+  .mark+.mark{border-left:1px solid var(--line)}
+  @media(max-width:680px){.marks .wrap{grid-template-columns:1fr 1fr;gap:30px 18px}.mark:nth-child(3){border-left:none}}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:118px 0;position:relative}
+  .sec-head{max-width:660px;margin-bottom:56px}
+  .sec-head .eyebrow{margin-bottom:18px}
+  .sec-head h2{font-size:clamp(2.1rem,4.5vw,3.5rem)}
+  .sec-head p{margin-top:18px;color:var(--muted);font-size:1.1rem;font-weight:300}
+
+  /* STORY (gerçek foto) */
+  .story{background:var(--bg)}
+  .story-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch}
+  .story-visual{position:relative;min-height:540px;border-radius:4px;overflow:hidden;background:linear-gradient(160deg,#173033,#3f6f66 60%,#b46a3f);background-size:cover;background-position:center}
+  .story-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(7,14,15,.5))}
+  .ph-label{position:absolute;left:20px;bottom:18px;z-index:3;display:inline-flex;align-items:center;gap:7px;font-size:.72rem;letter-spacing:.03em;color:#f2e9d5;text-shadow:0 1px 10px rgba(0,0,0,.8);background:rgba(10,19,20,.42);border:1px solid rgba(246,238,219,.18);padding:5px 11px;border-radius:20px;backdrop-filter:blur(4px)}
+  .ph-label svg{width:14px;height:14px;opacity:.85}
+  .story-text{background:var(--surface);padding:60px;display:flex;flex-direction:column;justify-content:center;margin-left:-46px;z-index:2;border:1px solid var(--line);border-radius:4px}
+  .story-text .lead{font-family:'Hoefler Text','Palatino Linotype','Georgia',serif;font-size:1.55rem;line-height:1.42;font-style:italic;color:var(--head);margin-bottom:22px}
+  html[lang="zh-CN"] .story-text .lead,html[lang="ko"] .story-text .lead{font-style:normal}
+  .story-text p{color:var(--text);margin-bottom:16px;font-weight:300}
+  .story-text .sign{margin-top:12px;font-family:'Hoefler Text','Georgia',serif;font-size:1.2rem;color:var(--red);font-style:italic}
+  @media(max-width:880px){.story-grid{grid-template-columns:1fr}.story-text{margin-left:0;margin-top:-40px}.story-visual{min-height:340px}}
+
+  /* SPLIT (stay / morning) */
+  .split{position:relative}
+  .split.morning{background:var(--surface-2)}
+  .split-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .split.flip .split-visual{order:2}
+  .split-visual{position:relative;min-height:460px;border-radius:4px;overflow:hidden;background-size:cover;background-position:center}
+  .sv-room{background:linear-gradient(155deg,#1b2b2c,#3f6f66 60%,#caa06a)}
+  .sv-morning{background:linear-gradient(155deg,#2a1f18,#a8542f 55%,#e2a15f)}
+  .split-visual::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 28%,rgba(246,238,219,.14),transparent 55%)}
+  .split-body .eyebrow{margin-bottom:16px}
+  .split-body h2{font-size:clamp(1.9rem,3.7vw,2.9rem);margin-bottom:14px}
+  .split-body p{color:var(--text);font-weight:300;margin-bottom:16px;max-width:48ch}
+  .feat{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .feat span{font-size:.76rem;letter-spacing:.03em;color:var(--muted);border:1px solid var(--line-2);border-radius:20px;padding:7px 14px;display:inline-flex;align-items:center;gap:7px}
+  .feat span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal);flex:none}
+  @media(max-width:880px){.split-grid{grid-template-columns:1fr;gap:34px}.split.flip .split-visual{order:0}.split-visual{min-height:300px}}
+
+  /* LOCATION — dokuma ipi rota (görselsiz imza) */
+  .loc{background:var(--bg)}
+  .loc-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  .loc-note{margin-top:20px;font-size:.82rem;color:var(--muted);font-style:italic}
+  .walk{position:relative;padding-left:6px}
+  .walk-row{position:relative;display:flex;align-items:flex-start;gap:20px;padding:16px 0 16px 30px}
+  .walk::before{content:"";position:absolute;left:5px;top:22px;bottom:22px;width:0;border-left:2px dashed var(--line-2)}
+  .walk-row::before{content:"";position:absolute;left:0;top:22px;width:12px;height:12px;transform:translateY(-2px) rotate(45deg);background:var(--red);box-shadow:0 0 0 4px var(--bg)}
+  .walk-row .wt{flex:1}
+  .walk-row h3{font-size:1.16rem;color:var(--head);margin-bottom:3px}
+  .walk-row p{font-size:.92rem;color:var(--muted);font-weight:300}
+  .walk-row .tag{flex:none;align-self:center;font-size:.72rem;letter-spacing:.04em;color:var(--teal-2);border:1px solid var(--line-2);border-radius:20px;padding:5px 12px;white-space:nowrap}
+  @media(max-width:880px){.loc-grid{grid-template-columns:1fr;gap:36px}.walk-row{flex-wrap:wrap;gap:8px 16px}.walk-row .tag{align-self:flex-start;margin-left:0}}
+
+  /* GALLERY */
+  .gallery{background:var(--surface)}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .tile{aspect-ratio:3/4;border-radius:4px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;background-size:cover;background-position:center;background-color:var(--surface-2);cursor:pointer;transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.32)}
+  .tile .ph-label{position:relative;left:auto;bottom:auto}
+  .tile::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(7,14,15,.6),rgba(7,14,15,0) 52%);transition:.4s}
+  .tile::after{content:"\2922";position:absolute;top:11px;right:14px;z-index:3;color:#fff;font-size:1rem;opacity:0;transform:scale(.75);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .tile:hover::before{background:linear-gradient(to top,rgba(7,14,15,.66),rgba(7,14,15,.15))}
+  .tile:hover::after{opacity:.95;transform:scale(1)}
+  @media(max-width:820px){.tiles{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.tiles{grid-template-columns:1fr}.tile{aspect-ratio:4/3}}
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(6,11,12,.95);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:84vh;border-radius:5px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#f2e9d5;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.75;transition:.25s}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:var(--k-cream);font-size:.78rem;letter-spacing:.08em}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(20,32,31,.55);border:1px solid var(--line-2);color:#f2e9d5;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .lb-nav:hover{background:var(--red);color:#fff;border-color:var(--red)}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:1.2rem}.lb-prev{left:8px}.lb-next{right:8px}}
+
+  /* BOOK */
+  .book{background:linear-gradient(180deg,var(--bg),var(--bg-2));position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-140px;left:52%;transform:translateX(-50%);width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(208,91,63,.16),transparent 68%)}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.3rem,4.4vw,3.6rem)}
+  .book h2 em{font-style:italic;color:var(--red)}
+  .book .lede{color:var(--text);margin-top:18px;font-size:1.08rem;font-weight:300}
+  .wa{display:inline-flex;align-items:center;gap:11px;margin-top:24px;color:var(--head);font-size:1rem}
+  .wa svg{width:24px;height:24px;color:#5ec96b}
+  .wa b{font-weight:600;letter-spacing:.02em}
+  .form{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:36px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:7px;font-weight:600}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{text-transform:none;letter-spacing:.03em}
+  .field input,.field select{width:100%;padding:13px 15px;border-radius:3px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);font-family:inherit;font-size:.95rem}
+  .field input::placeholder{color:var(--muted)}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--red)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .submit{width:100%;background:var(--red);color:#fff;border:none;padding:16px;border-radius:3px;font-family:inherit;font-weight:600;font-size:.86rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.35s;margin-top:6px}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{text-transform:none;letter-spacing:.03em}
+  .submit:hover{background:var(--red-deep)}
+  @media(max-width:880px){.book-grid{grid-template-columns:1fr;gap:38px}}
+
+  /* FOOTER */
+  footer{background:var(--bg-2);color:var(--muted);padding:0 0 30px}
+  .foot-kilim{margin-bottom:56px}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:40px}
+  .foot-brand{display:flex;flex-direction:column;gap:2px;margin-bottom:16px}
+  .foot-brand .b1{font-family:'Hoefler Text','Palatino Linotype','Georgia',serif;font-size:1.45rem;font-style:italic;color:var(--head)}
+  .foot-brand .b2{font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  footer h4{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{letter-spacing:.04em}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px;font-size:.95rem;font-weight:300;overflow-wrap:break-word;word-break:break-word}
+  footer a:hover{color:var(--head)}
+  .foot-note{font-size:.8rem;font-weight:300;max-width:320px;margin-top:14px;color:var(--muted)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem}
+  .demo-badge{background:var(--red);color:#fff;padding:5px 13px;border-radius:2px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
+  html[lang="zh-CN"] .demo-badge,html[lang="ko"] .demo-badge{text-transform:none;letter-spacing:.03em}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* MOBILE MENU */
+  .mobile-menu{position:fixed;inset:0;z-index:70;background:color-mix(in srgb,var(--bg-2) 97%,transparent);backdrop-filter:blur(10px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:'Hoefler Text','Palatino Linotype','Georgia',serif;font-size:1.8rem;color:var(--head)}
+  .mobile-menu .close{position:absolute;top:22px;right:26px;background:none;border:none;color:var(--head);cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:8px;margin-top:16px}
+  .mobile-menu .m-langs button{background:none;border:1px solid var(--line-2);color:var(--muted);padding:8px 14px;border-radius:3px;font-family:inherit;font-size:.85rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:var(--red);border-color:var(--red)}
+
+  @media(max-width:840px){
+    .navlinks{display:none}.menu-btn{display:block}
+    .langs{display:none}
+    section{padding:78px 0}
+    .story-text,.form{padding:32px}
+    .foot-grid{grid-template-columns:1fr;gap:30px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s,background .3s,color .3s!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* SIGNATURE KATMANI — grain + scroll ilerleme + mesh derinlik */
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+  html[data-theme="light"] .grain{opacity:.035;mix-blend-mode:multiply}
+  .grain svg{width:100%;height:100%;display:block}
+  .story::before,.loc::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(38% 52% at 12% 16%,rgba(208,91,63,.10),transparent 60%),
+      radial-gradient(44% 50% at 88% 80%,rgba(79,154,146,.09),transparent 62%);
+    background-size:180% 180%;animation:meshDrift 28s ease-in-out infinite alternate}
+  .story>.wrap,.loc>.wrap{position:relative;z-index:1}
+  @keyframes meshDrift{from{background-position:0% 0%}to{background-position:100% 100%}}
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--red),var(--teal-2));box-shadow:0 0 12px rgba(208,91,63,.5)}
+  @supports (animation-timeline:scroll()){
+    .scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}
+  }
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a class="brand" href="#" aria-label="Ürgüp local Pansiyon">
+    <span class="b1">Ürgüp local</span>
+    <span class="b2">Pansiyon · Ürgüp</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="navlinks" id="navlinks">
+    <a href="#story" data-i18n="nav_story">Ev</a>
+    <a href="#stay" data-i18n="nav_stay">Odalar</a>
+    <a href="#morning" data-i18n="nav_morning">Sabah</a>
+    <a href="#loc" data-i18n="nav_location">Konum</a>
+    <a href="#gallery" data-i18n="nav_gallery">Galeri</a>
+  </div>
+  <div class="nav-actions">
+    <div class="langs" role="group" aria-label="Dil / Language">
+      <button data-lang="tr" class="active">TR</button><span class="sep">|</span>
+      <button data-lang="en">EN</button><span class="sep">|</span>
+      <button data-lang="es">ES</button><span class="sep">|</span>
+      <button data-lang="zh-CN">中文</button><span class="sep">|</span>
+      <button data-lang="ko">한국어</button>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="Tema değiştir" title="Aydınlık / Karanlık">
+      <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.5M19 12h2.5M4.2 19.8l1.8-1.8M18 6l1.8-1.8"/></svg>
+      <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.6A8.5 8.5 0 1 1 11.4 3a6.6 6.6 0 0 0 9.6 9.6z"/></svg>
+    </button>
+    <a class="nav-cta" href="#book" data-i18n="nav_book">Rezervasyon</a>
+    <button class="menu-btn" aria-label="Menü" id="menuBtn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#story" data-i18n="nav_story">Ev</a>
+  <a href="#stay" data-i18n="nav_stay">Odalar</a>
+  <a href="#morning" data-i18n="nav_morning">Sabah</a>
+  <a href="#loc" data-i18n="nav_location">Konum</a>
+  <a href="#gallery" data-i18n="nav_gallery">Galeri</a>
+  <a href="#book" data-i18n="nav_book">Rezervasyon</a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-photo" id="heroPhoto"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow hero-eyebrow" data-i18n="hero_eyebrow">Ürgüp Merkez · Kesme Taş Ev</span>
+      <h1 data-i18n="hero_title" data-i18n-html="1">Ürgüp'ün kalbinde,<br><em>sizin taş eviniz.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Ne otobüs beklemek, ne uzak bir vadi. Çarşı, şarap evleri ve restoranlar kapının önünde; içeride kilimler, taş duvarlar ve tanıdık bir sıcaklık.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#book"><span data-i18n="hero_cta1">Oda ayır</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#story" data-i18n="hero_cta2">Evi tanı</a>
+      </div>
+    </div>
+  </div>
+  <span class="hero-concept" data-i18n="concept_tag">Konsept görsel</span>
+  <div class="kilim-band hero-kilim" aria-hidden="true"></div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Aşağı in</span><span class="l"></span></div>
+</header>
+
+<div class="marks">
+  <div class="wrap">
+    <div class="mark"><div class="v">4.8 <span class="st">★</span></div><div class="l" data-i18n="mk1l">Google puanı</div></div>
+    <div class="mark"><div class="v" data-i18n="mk2v">Merkez</div><div class="l" data-i18n="mk2l">Ürgüp'ün tam ortası · yürüme mesafesi</div></div>
+    <div class="mark"><div class="v" data-i18n="mk3v">Kesme taş</div><div class="l" data-i18n="mk3l">gerçek bir Ürgüp evi</div></div>
+    <div class="mark"><div class="v" data-i18n="mk4v">El emeği</div><div class="l" data-i18n="mk4l">kilimler & sıcak karşılama</div></div>
+  </div>
+</div>
+
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="story_eyebrow">Ev</span>
+      <h2 data-i18n="story_h">Otel değil; birinin evi.</h2>
+      <p data-i18n="story_sub">Ürgüp'ün eski taş sokaklarından birinde, kapısında el yazması bir tabela olan küçük bir pansiyon.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-visual reveal" id="storyImg">
+        <span class="ph-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="ph_story">Ürgüp local Pansiyon · giriş (gerçek fotoğraf)</span></span>
+      </div>
+      <div class="story-text reveal">
+        <p class="lead" data-i18n="story_lead">Kapıdan girdiğinizde sizi bir resepsiyon değil, kilimlerin serildiği sıcak bir hol karşılar.</p>
+        <p data-i18n="story_p1">Ürgüp local Pansiyon büyük bir tesis değil — kesme taştan, gerçek bir Ürgüp evi. Duvarlar taş, zemin el işi taş döşeme, holde el dokuması kilimler ve bir demlik çay. Küçük olması tam da meselesi: kim geldi, kim gitti, adınızla bilinir.</p>
+        <p data-i18n="story_p2">Konumu abartısız en güçlü yanı. Sabah çarşıya, akşam şarap evlerine ve restoranlara yürüyerek gidersiniz; balon, tur ve transfer için de merkezde olmak her şeyi kolaylaştırır.</p>
+        <p class="sign" data-i18n="story_sign">— Ürgüp local Pansiyon</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="split stay" id="stay">
+  <div class="wrap">
+    <div class="split-grid">
+      <div class="split-visual sv-room reveal" id="stayImg">
+        <span class="ph-label"><span data-i18n="ph_stay">Oda · konsept görsel</span></span>
+      </div>
+      <div class="split-body reveal">
+        <span class="eyebrow" data-i18n="stay_eyebrow">Odalar</span>
+        <h2 data-i18n="stay_h">Sade, sıcak, taşın serinliğinde.</h2>
+        <p data-i18n="stay_p1">Odalar gösterişten uzak; taş duvarların kendi serinliği, ahşap tavan ve gündüz içeri sızan yumuşak bir ışık. Lüks numarası değil, gerçek bir ev rahatlığı arayanlar için.</p>
+        <p data-i18n="stay_p2">Temiz beyaz çarşaflar, üzerine katlanmış el dokuması bir kilim ve gece için sıcak bir lamba. Uyumak için sessiz; uyanmak için Ürgüp'ün tam ortası.</p>
+        <div class="feat">
+          <span data-i18n="stay_f1">Kesme taş duvarlar</span>
+          <span data-i18n="stay_f2">Ahşap tavan</span>
+          <span data-i18n="stay_f3">El dokuması kilimler</span>
+          <span data-i18n="stay_f4">Sessiz sokak</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="split morning flip" id="morning">
+  <div class="wrap">
+    <div class="split-grid">
+      <div class="split-visual sv-morning reveal" id="morningImg">
+        <span class="ph-label"><span data-i18n="ph_morning">Kahvaltı · konsept görsel</span></span>
+      </div>
+      <div class="split-body reveal">
+        <span class="eyebrow" data-i18n="morning_eyebrow">Sabah</span>
+        <h2 data-i18n="morning_h">Güne Ürgüp usulü başlayın.</h2>
+        <p data-i18n="morning_p1">Kapadokya sabahları sakin başlar: taş bir avluda demli çay, sıcak ekmek ve bakır bir tepside serilmiş küçük kaselerin sohbeti. Güne acele etmeden, doyarak çıkmanın kendi keyfi vardır.</p>
+        <p data-i18n="morning_p2">Balon izlemek isteyenler için erken; sadece dinlenmek isteyenler için tembel. Merkezde olduğunuz için, kahvaltıdan sonra atacağınız ilk adım çoktan çarşının içinde.</p>
+        <div class="feat">
+          <span data-i18n="morning_f1">Ev usulü sofra</span>
+          <span data-i18n="morning_f2">Demli çay</span>
+          <span data-i18n="morning_f3">Taş avlu</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="loc" id="loc">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div class="reveal">
+        <div class="sec-head" style="margin-bottom:0">
+          <span class="eyebrow" data-i18n="loc_eyebrow">Konum</span>
+          <h2 data-i18n="loc_h">Her şey yürüme mesafesinde.</h2>
+          <p data-i18n="loc_sub">Ürgüp'ün merkezinde olmak, aracınız olmadan bile bütün bir tatili kolaylaştırır. Kapıdan çıkın; gerisi zaten ayağınızın altında.</p>
+        </div>
+        <p class="loc-note" data-i18n="loc_note">Mesafeler yaklaşıktır; yürüyüş temposuna göre birkaç dakika değişebilir.</p>
+      </div>
+      <div class="walk reveal">
+        <div class="walk-row"><div class="wt"><h3 data-i18n="w1h">Cumhuriyet Meydanı & eski çarşı</h3><p data-i18n="w1p">Ürgüp'ün kalbi; kahveler, fırınlar, küçük dükkânlar</p></div><span class="tag" data-i18n="w1t">2–3 dk</span></div>
+        <div class="walk-row"><div class="wt"><h3 data-i18n="w2h">Restoranlar & meze salonları</h3><p data-i18n="w2p">Akşam yemeği için birkaç sokak ötede bir sürü seçenek</p></div><span class="tag" data-i18n="w2t">kapının önü</span></div>
+        <div class="walk-row"><div class="wt"><h3 data-i18n="w3h">Şarap evleri</h3><p data-i18n="w3p">Ürgüp bağcılıkla anılır; tadım için yürüyerek gidin</p></div><span class="tag" data-i18n="w3t">5 dk</span></div>
+        <div class="walk-row"><div class="wt"><h3 data-i18n="w4h">Temenni Tepesi</h3><p data-i18n="w4p">Şehrin üzerinde ücretsiz gün batımı manzarası</p></div><span class="tag" data-i18n="w4t">7 dk</span></div>
+        <div class="walk-row"><div class="wt"><h3 data-i18n="w5h">Tur & balon transfer noktası</h3><p data-i18n="w5p">Merkezde olduğunuz için sabah alımları çok kolay</p></div><span class="tag" data-i18n="w5t">merkez</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="gallery_eyebrow">Galeri</span>
+      <h2 data-i18n="gallery_h">Birkaç kare.</h2>
+      <p data-i18n="gallery_sub">Bir gerçek fotoğraf ve konsept görsellerle hazırlandı; yayında kendi fotoğraflarınızla değiştiririz.</p>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile" data-img="story.jpg"><span class="ph-label"><span data-i18n="ph_g1">Giriş · gerçek fotoğraf</span></span></div>
+      <div class="tile" data-img="room.jpg"><span class="ph-label"><span data-i18n="ph_g2">Oda · konsept</span></span></div>
+      <div class="tile" data-img="breakfast.jpg"><span class="ph-label"><span data-i18n="ph_g3">Kahvaltı · konsept</span></span></div>
+      <div class="tile" data-img="hero.jpg"><span class="ph-label"><span data-i18n="ph_g4">Eski Ürgüp · konsept</span></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="book_eyebrow">Rezervasyon</span>
+        <h2 style="margin-top:16px" data-i18n="book_h" data-i18n-html="1">Bir oda <em>ayırtın.</em></h2>
+        <p class="lede" data-i18n="book_lede">Tarihlerinizi gönderin, WhatsApp'tan hızlıca dönelim. Müsaitlik, fiyat ve kahvaltı dahil aklınıza takılan her şeyi sorun.</p>
+        <a class="wa" href="https://wa.me/905077837750" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg>
+          <b>+90 507 783 77 50</b>
+        </a>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-in" data-i18n="label_in">Giriş</label><input type="date" id="f-in"></div>
+          <div class="field"><label for="f-out" data-i18n="label_out">Çıkış</label><input type="date" id="f-out"></div>
+        </div>
+        <div class="field">
+          <label for="f-count" data-i18n="label_people">Kişi</label>
+          <select id="f-count">
+            <option data-i18n="opt_1p">1 kişi</option><option data-i18n="opt_2p">2 kişi</option><option data-i18n="opt_3p">3 kişi</option><option data-i18n="opt_4p">4+ kişi</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-phone" data-i18n="label_phone">WhatsApp / Telefon</label>
+          <input type="tel" id="f-phone" data-i18n-ph="ph_phone" placeholder="Size ulaşabileceğimiz numara">
+        </div>
+        <button class="submit" type="button" onclick="sendBooking()" data-i18n="btn_submit">Rezervasyon talebi gönder</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="kilim-band foot-kilim" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <span class="b1">Ürgüp local</span>
+          <span class="b2">Pansiyon · Ürgüp</span>
+        </div>
+        <p class="foot-note" data-i18n="foot_about">Ürgüp'ün tam merkezinde, kesme taş bir evde el emeği kilimler ve sıcak bir karşılama. Çarşıya, şarap evlerine ve restoranlara yürüme mesafesinde küçük bir pansiyon.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#story" data-i18n="nav_story">Ev</a></li>
+          <li><a href="#stay" data-i18n="nav_stay">Odalar</a></li>
+          <li><a href="#loc" data-i18n="nav_location">Konum</a></li>
+          <li><a href="#book" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Ürgüp merkez, Nevşehir</li>
+          <li><a href="https://wa.me/905077837750" target="_blank" rel="noopener">+90 507 783 77 50</a></li>
+          <li data-i18n="foot_wa">WhatsApp · rezervasyon</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Ürgüp local Pansiyon — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+// İnternet/CDN gerektirmez; her koşulda çalışır. Ayarlar talimatla uyumlu: lerp 0.085, wheelMultiplier 0.9
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+
+  const LERP = 0.085, WHEEL_MULT = 0.9;
+  let target = window.scrollY;
+  let current = window.scrollY;
+  let running = false;
+  let rafId = null;
+
+  function clampTarget(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(target < 0) target = 0;
+    if(target > max) target = max;
+  }
+  function loop(){
+    current += (target - current) * LERP;
+    if(Math.abs(target - current) < 0.4){
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  function start(){ if(!running){ running = true; rafId = requestAnimationFrame(loop); } }
+
+  // input/textarea/select/button ve data-lenis-prevent alanlarında smooth engelle
+  function isPrevented(el){
+    while(el && el !== document.body){
+      const tag = el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT'||tag==='BUTTON') return true;
+      if(el.hasAttribute && el.hasAttribute('data-lenis-prevent')) return true;
+      el = el.parentElement;
+    }
+    return false;
+  }
+
+  window.addEventListener('wheel', function(e){
+    if(isPrevented(e.target)) return;
+    e.preventDefault();
+    // kullanıcı manuel scroll'da current'ı senkronla
+    if(!running) current = window.scrollY;
+    target = (running ? target : window.scrollY) + e.deltaY * WHEEL_MULT;
+    clampTarget();
+    start();
+  }, {passive:false});
+
+  // dokunmatik ve klavye native kalsın; scroll pozisyonunu senkronla
+  window.addEventListener('scroll', function(){
+    if(!running){ target = window.scrollY; current = window.scrollY; }
+  }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+
+  // anchor linkleri yumuşak kaydır
+  function smoothTo(el){
+    const y = el.getBoundingClientRect().top + window.scrollY - 70;
+    target = y; clampTarget(); current = window.scrollY; start();
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const t = document.querySelector(id);
+        if(t){ e.preventDefault(); smoothTo(t); }
+      }
+    });
+  });
+
+  function setupPlainAnchors(){
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+      });
+    });
+  }
+})();
+</script>
+<script>
+// ==================== i18n SÖZLÜĞÜ ====================
+const I18N = {
+  tr:{
+    meta_title:"Ürgüp local Pansiyon — Ürgüp merkezde kesme taş ev",
+    meta_desc:"Ürgüp'ün tam merkezinde, kesme taş bir evde el emeği kilimler ve sıcak bir karşılamayla; çarşıya, şarap evlerine ve restoranlara yürüme mesafesinde küçük bir pansiyon.",
+    nav_story:"Ev",nav_stay:"Odalar",nav_morning:"Sabah",nav_location:"Konum",nav_gallery:"Galeri",nav_book:"Rezervasyon",
+    hero_eyebrow:"Ürgüp Merkez · Kesme Taş Ev",
+    hero_title:"Ürgüp'ün kalbinde,<br><em>sizin taş eviniz.</em>",
+    hero_lede:"Ne otobüs beklemek, ne uzak bir vadi. Çarşı, şarap evleri ve restoranlar kapının önünde; içeride kilimler, taş duvarlar ve tanıdık bir sıcaklık.",
+    hero_cta1:"Oda ayır",hero_cta2:"Evi tanı",scroll_hint:"Aşağı in",concept_tag:"Konsept görsel",
+    mk1l:"Google puanı",mk2v:"Merkez",mk2l:"Ürgüp'ün tam ortası · yürüme mesafesi",mk3v:"Kesme taş",mk3l:"gerçek bir Ürgüp evi",mk4v:"El emeği",mk4l:"kilimler & sıcak karşılama",
+    story_eyebrow:"Ev",story_h:"Otel değil; birinin evi.",story_sub:"Ürgüp'ün eski taş sokaklarından birinde, kapısında el yazması bir tabela olan küçük bir pansiyon.",
+    ph_story:"Ürgüp local Pansiyon · giriş (gerçek fotoğraf)",
+    story_lead:"Kapıdan girdiğinizde sizi bir resepsiyon değil, kilimlerin serildiği sıcak bir hol karşılar.",
+    story_p1:"Ürgüp local Pansiyon büyük bir tesis değil — kesme taştan, gerçek bir Ürgüp evi. Duvarlar taş, zemin el işi taş döşeme, holde el dokuması kilimler ve bir demlik çay. Küçük olması tam da meselesi: kim geldi, kim gitti, adınızla bilinir.",
+    story_p2:"Konumu abartısız en güçlü yanı. Sabah çarşıya, akşam şarap evlerine ve restoranlara yürüyerek gidersiniz; balon, tur ve transfer için de merkezde olmak her şeyi kolaylaştırır.",
+    story_sign:"— Ürgüp local Pansiyon",
+    stay_eyebrow:"Odalar",stay_h:"Sade, sıcak, taşın serinliğinde.",
+    stay_p1:"Odalar gösterişten uzak; taş duvarların kendi serinliği, ahşap tavan ve gündüz içeri sızan yumuşak bir ışık. Lüks numarası değil, gerçek bir ev rahatlığı arayanlar için.",
+    stay_p2:"Temiz beyaz çarşaflar, üzerine katlanmış el dokuması bir kilim ve gece için sıcak bir lamba. Uyumak için sessiz; uyanmak için Ürgüp'ün tam ortası.",
+    stay_f1:"Kesme taş duvarlar",stay_f2:"Ahşap tavan",stay_f3:"El dokuması kilimler",stay_f4:"Sessiz sokak",ph_stay:"Oda · konsept görsel",
+    morning_eyebrow:"Sabah",morning_h:"Güne Ürgüp usulü başlayın.",
+    morning_p1:"Kapadokya sabahları sakin başlar: taş bir avluda demli çay, sıcak ekmek ve bakır bir tepside serilmiş küçük kaselerin sohbeti. Güne acele etmeden, doyarak çıkmanın kendi keyfi vardır.",
+    morning_p2:"Balon izlemek isteyenler için erken; sadece dinlenmek isteyenler için tembel. Merkezde olduğunuz için, kahvaltıdan sonra atacağınız ilk adım çoktan çarşının içinde.",
+    morning_f1:"Ev usulü sofra",morning_f2:"Demli çay",morning_f3:"Taş avlu",ph_morning:"Kahvaltı · konsept görsel",
+    loc_eyebrow:"Konum",loc_h:"Her şey yürüme mesafesinde.",loc_sub:"Ürgüp'ün merkezinde olmak, aracınız olmadan bile bütün bir tatili kolaylaştırır. Kapıdan çıkın; gerisi zaten ayağınızın altında.",
+    loc_note:"Mesafeler yaklaşıktır; yürüyüş temposuna göre birkaç dakika değişebilir.",
+    w1h:"Cumhuriyet Meydanı & eski çarşı",w1p:"Ürgüp'ün kalbi; kahveler, fırınlar, küçük dükkânlar",w1t:"2–3 dk",
+    w2h:"Restoranlar & meze salonları",w2p:"Akşam yemeği için birkaç sokak ötede bir sürü seçenek",w2t:"kapının önü",
+    w3h:"Şarap evleri",w3p:"Ürgüp bağcılıkla anılır; tadım için yürüyerek gidin",w3t:"5 dk",
+    w4h:"Temenni Tepesi",w4p:"Şehrin üzerinde ücretsiz gün batımı manzarası",w4t:"7 dk",
+    w5h:"Tur & balon transfer noktası",w5p:"Merkezde olduğunuz için sabah alımları çok kolay",w5t:"merkez",
+    gallery_eyebrow:"Galeri",gallery_h:"Birkaç kare.",gallery_sub:"Bir gerçek fotoğraf ve konsept görsellerle hazırlandı; yayında kendi fotoğraflarınızla değiştiririz.",
+    ph_g1:"Giriş · gerçek fotoğraf",ph_g2:"Oda · konsept",ph_g3:"Kahvaltı · konsept",ph_g4:"Eski Ürgüp · konsept",
+    book_eyebrow:"Rezervasyon",book_h:"Bir oda <em>ayırtın.</em>",book_lede:"Tarihlerinizi gönderin, WhatsApp'tan hızlıca dönelim. Müsaitlik, fiyat ve kahvaltı dahil aklınıza takılan her şeyi sorun.",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_in:"Giriş",label_out:"Çıkış",label_people:"Kişi",
+    opt_1p:"1 kişi",opt_2p:"2 kişi",opt_3p:"3 kişi",opt_4p:"4+ kişi",
+    label_phone:"WhatsApp / Telefon",ph_phone:"Size ulaşabileceğimiz numara",btn_submit:"Rezervasyon talebi gönder",
+    foot_about:"Ürgüp'ün tam merkezinde, kesme taş bir evde el emeği kilimler ve sıcak bir karşılama. Çarşıya, şarap evlerine ve restoranlara yürüme mesafesinde küçük bir pansiyon.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Ürgüp merkez, Nevşehir",foot_wa:"WhatsApp · rezervasyon",
+    foot_rights:"© 2026 Ürgüp local Pansiyon — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    wa_msg:"Merhaba, Ürgüp local Pansiyon için rezervasyon talebim var:",wa_name:"Ad",wa_in:"Giriş",wa_out:"Çıkış",wa_people:"Kişi",wa_phone:"Telefon",
+    alert_fill:"Lütfen adınızı, giriş tarihini ve telefon numaranızı girin."
+  },
+  en:{
+    meta_title:"Ürgüp local Pansiyon — a stone house in the heart of Ürgüp",
+    meta_desc:"A small guesthouse in the very centre of Ürgüp, Cappadocia: a real cut-stone house with handwoven kilims and a warm welcome, a short walk from the bazaar, wine houses and restaurants.",
+    nav_story:"The house",nav_stay:"Rooms",nav_morning:"Mornings",nav_location:"Location",nav_gallery:"Gallery",nav_book:"Book",
+    hero_eyebrow:"Central Ürgüp · Cut-Stone House",
+    hero_title:"In the heart of Ürgüp,<br><em>your stone house.</em>",
+    hero_lede:"No buses to wait for, no distant valley. The bazaar, wine houses and restaurants are right outside; inside, kilims, stone walls and a familiar warmth.",
+    hero_cta1:"Book a room",hero_cta2:"Meet the house",scroll_hint:"Scroll down",concept_tag:"Concept image",
+    mk1l:"Google rating",mk2v:"Central",mk2l:"heart of Ürgüp · walking distance",mk3v:"Cut stone",mk3l:"a real Ürgüp house",mk4v:"Handmade",mk4l:"kilims & a warm welcome",
+    story_eyebrow:"The house",story_h:"Not a hotel — someone's home.",story_sub:"A small guesthouse on one of Ürgüp's old stone lanes, with a hand-painted sign above the door.",
+    ph_story:"Ürgüp local Pansiyon · entrance (real photo)",
+    story_lead:"Step through the door and you're met not by a reception desk, but by a warm hall laid with kilims.",
+    story_p1:"Ürgüp local Pansiyon is not a big property — it's a real Ürgüp house of cut stone. Stone walls, a hand-laid stone floor, handwoven kilims in the hall and a pot of tea. Being small is the whole point: who came, who left, you're known by name.",
+    story_p2:"Its location is, quietly, its strongest side. Walk to the bazaar in the morning, to the wine houses and restaurants in the evening; and for balloons, tours and transfers, being central makes everything easy.",
+    story_sign:"— Ürgüp local Pansiyon",
+    stay_eyebrow:"Rooms",stay_h:"Simple, warm, cool as stone.",
+    stay_p1:"The rooms are unshowy — the natural coolness of stone walls, a wooden ceiling and soft daylight seeping in. No luxury pretence; for those who want the comfort of a real home.",
+    stay_p2:"Clean white linen, a handwoven kilim folded on top, and a warm lamp for the night. Quiet enough to sleep; central enough to wake in the middle of Ürgüp.",
+    stay_f1:"Cut-stone walls",stay_f2:"Wooden ceiling",stay_f3:"Handwoven kilims",stay_f4:"Quiet street",ph_stay:"Room · concept image",
+    morning_eyebrow:"Mornings",morning_h:"Start the day the Ürgüp way.",
+    morning_p1:"Cappadocian mornings begin gently: brewed tea in a stone courtyard, warm bread, and a table of little bowls on a copper tray. There's a pleasure in leaving the day well-fed and unhurried.",
+    morning_p2:"Early for those who want to watch the balloons; lazy for those who only want to rest. Because you're central, your first step after breakfast is already inside the bazaar.",
+    morning_f1:"Home-style spread",morning_f2:"Brewed tea",morning_f3:"Stone courtyard",ph_morning:"Breakfast · concept image",
+    loc_eyebrow:"Location",loc_h:"Everything within walking distance.",loc_sub:"Being in the centre of Ürgüp makes a whole holiday easy, even without a car. Step out the door; the rest is already at your feet.",
+    loc_note:"Distances are approximate and vary by a few minutes with your walking pace.",
+    w1h:"Republic Square & old bazaar",w1p:"the heart of Ürgüp; cafés, bakeries, little shops",w1t:"2–3 min",
+    w2h:"Restaurants & meze houses",w2p:"plenty of choices a few streets away for dinner",w2t:"at the door",
+    w3h:"Wine houses",w3p:"Ürgüp is known for its vineyards; walk over for a tasting",w3t:"5 min",
+    w4h:"Temenni Hill",w4p:"a free sunset view above the town",w4t:"7 min",
+    w5h:"Tour & balloon pickup point",w5p:"being central makes morning pickups very easy",w5t:"central",
+    gallery_eyebrow:"Gallery",gallery_h:"A few frames.",gallery_sub:"Made with one real photo and concept images; once live, we replace them with your own.",
+    ph_g1:"Entrance · real photo",ph_g2:"Room · concept",ph_g3:"Breakfast · concept",ph_g4:"Old Ürgüp · concept",
+    book_eyebrow:"Booking",book_h:"Reserve a <em>room.</em>",book_lede:"Send your dates and we'll reply quickly on WhatsApp. Ask us anything — availability, price, breakfast included.",
+    label_name:"Your name",ph_name:"Your full name",label_in:"Check-in",label_out:"Check-out",label_people:"Guests",
+    opt_1p:"1 guest",opt_2p:"2 guests",opt_3p:"3 guests",opt_4p:"4+ guests",
+    label_phone:"WhatsApp / Phone",ph_phone:"A number we can reach you on",btn_submit:"Send booking request",
+    foot_about:"A small guesthouse in the very centre of Ürgüp: a real cut-stone house with handwoven kilims and a warm welcome, a short walk from the bazaar, wine houses and restaurants.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Central Ürgüp, Nevşehir",foot_wa:"WhatsApp · booking",
+    foot_rights:"© 2026 Ürgüp local Pansiyon — All rights reserved.",foot_demo:"Sample / Demo Design",
+    wa_msg:"Hello, I'd like to request a booking at Ürgüp local Pansiyon:",wa_name:"Name",wa_in:"Check-in",wa_out:"Check-out",wa_people:"Guests",wa_phone:"Phone",
+    alert_fill:"Please enter your name, check-in date and phone number."
+  },
+  es:{
+    meta_title:"Ürgüp local Pansiyon — una casa de piedra en el corazón de Ürgüp",
+    meta_desc:"Una pequeña pensión en pleno centro de Ürgüp, Capadocia: una auténtica casa de piedra tallada con kilims tejidos a mano y una cálida bienvenida, a pocos pasos del bazar, las bodegas y los restaurantes.",
+    nav_story:"La casa",nav_stay:"Habitaciones",nav_morning:"Mañanas",nav_location:"Ubicación",nav_gallery:"Galería",nav_book:"Reservar",
+    hero_eyebrow:"Ürgüp Centro · Casa de Piedra",
+    hero_title:"En el corazón de Ürgüp,<br><em>tu casa de piedra.</em>",
+    hero_lede:"Ni autobuses que esperar, ni un valle lejano. El bazar, las bodegas y los restaurantes están justo afuera; dentro, kilims, muros de piedra y una calidez familiar.",
+    hero_cta1:"Reservar habitación",hero_cta2:"Conocer la casa",scroll_hint:"Desliza",concept_tag:"Imagen conceptual",
+    mk1l:"Reseña Google",mk2v:"Centro",mk2l:"pleno centro de Ürgüp · a pie",mk3v:"Piedra",mk3l:"una casa auténtica de Ürgüp",mk4v:"Hecho a mano",mk4l:"kilims y bienvenida cálida",
+    story_eyebrow:"La casa",story_h:"No es un hotel; es la casa de alguien.",story_sub:"Una pequeña pensión en una de las viejas calles de piedra de Ürgüp, con un letrero pintado a mano sobre la puerta.",
+    ph_story:"Ürgüp local Pansiyon · entrada (foto real)",
+    story_lead:"Al cruzar la puerta no te recibe una recepción, sino un cálido zaguán cubierto de kilims.",
+    story_p1:"Ürgüp local Pansiyon no es un gran establecimiento: es una auténtica casa de Ürgüp de piedra tallada. Muros de piedra, suelo empedrado a mano, kilims tejidos en el recibidor y una tetera. Ser pequeña es justo lo que importa: quién llegó, quién se fue, te conocen por tu nombre.",
+    story_p2:"Su ubicación es, sin alardes, su mayor fortaleza. Por la mañana vas al bazar a pie, por la noche a las bodegas y los restaurantes; y para globos, tours y traslados, estar en el centro lo facilita todo.",
+    story_sign:"— Ürgüp local Pansiyon",
+    stay_eyebrow:"Habitaciones",stay_h:"Sencillas, cálidas, frescas como la piedra.",
+    stay_p1:"Las habitaciones no presumen: el frescor natural de los muros de piedra, un techo de madera y una luz suave que entra de día. Sin pretensiones de lujo; para quien busca la comodidad de una casa de verdad.",
+    stay_p2:"Sábanas blancas y limpias, un kilim tejido a mano doblado encima y una lámpara cálida para la noche. Silencio para dormir; pleno centro de Ürgüp para despertar.",
+    stay_f1:"Muros de piedra",stay_f2:"Techo de madera",stay_f3:"Kilims tejidos a mano",stay_f4:"Calle tranquila",ph_stay:"Habitación · imagen conceptual",
+    morning_eyebrow:"Mañanas",morning_h:"Empieza el día al estilo de Ürgüp.",
+    morning_p1:"Las mañanas de Capadocia empiezan con calma: té recién hecho en un patio de piedra, pan caliente y una mesa de pequeños cuencos en una bandeja de cobre. Hay un placer en salir del día saciado y sin prisa.",
+    morning_p2:"Temprano para quien quiere ver los globos; perezoso para quien solo quiere descansar. Como estás en el centro, tu primer paso tras el desayuno ya está dentro del bazar.",
+    morning_f1:"Mesa casera",morning_f2:"Té recién hecho",morning_f3:"Patio de piedra",ph_morning:"Desayuno · imagen conceptual",
+    loc_eyebrow:"Ubicación",loc_h:"Todo a distancia de paseo.",loc_sub:"Estar en el centro de Ürgüp facilita todas las vacaciones, incluso sin coche. Sal por la puerta; el resto ya está a tus pies.",
+    loc_note:"Las distancias son aproximadas y varían unos minutos según tu ritmo al caminar.",
+    w1h:"Plaza de la República & bazar viejo",w1p:"el corazón de Ürgüp; cafés, panaderías, tiendas pequeñas",w1t:"2–3 min",
+    w2h:"Restaurantes & mezes",w2p:"muchas opciones a pocas calles para cenar",w2t:"en la puerta",
+    w3h:"Bodegas",w3p:"Ürgüp es célebre por su viñedo; ve andando a una cata",w3t:"5 min",
+    w4h:"Colina Temenni",w4p:"una vista gratuita del atardecer sobre el pueblo",w4t:"7 min",
+    w5h:"Punto de recogida de tours y globos",w5p:"estar en el centro facilita mucho las recogidas de la mañana",w5t:"centro",
+    gallery_eyebrow:"Galería",gallery_h:"Unas cuantas imágenes.",gallery_sub:"Hecha con una foto real e imágenes conceptuales; en la versión final las cambiamos por las tuyas.",
+    ph_g1:"Entrada · foto real",ph_g2:"Habitación · concepto",ph_g3:"Desayuno · concepto",ph_g4:"Ürgüp viejo · concepto",
+    book_eyebrow:"Reserva",book_h:"Reserva una <em>habitación.</em>",book_lede:"Envía tus fechas y te respondemos rápido por WhatsApp. Pregúntanos lo que quieras: disponibilidad, precio, desayuno incluido.",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_in:"Entrada",label_out:"Salida",label_people:"Personas",
+    opt_1p:"1 persona",opt_2p:"2 personas",opt_3p:"3 personas",opt_4p:"4+ personas",
+    label_phone:"WhatsApp / Teléfono",ph_phone:"Un número donde localizarte",btn_submit:"Enviar solicitud de reserva",
+    foot_about:"Una pequeña pensión en pleno centro de Ürgüp: una auténtica casa de piedra tallada con kilims tejidos a mano y una cálida bienvenida, a pocos pasos del bazar, las bodegas y los restaurantes.",
+    foot_explore:"Explorar",foot_contact:"Contacto",foot_loc:"Centro de Ürgüp, Nevşehir",foot_wa:"WhatsApp · reservas",
+    foot_rights:"© 2026 Ürgüp local Pansiyon — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+    wa_msg:"Hola, quisiera solicitar una reserva en Ürgüp local Pansiyon:",wa_name:"Nombre",wa_in:"Entrada",wa_out:"Salida",wa_people:"Personas",wa_phone:"Teléfono",
+    alert_fill:"Por favor, introduce tu nombre, la fecha de entrada y tu número de teléfono."
+  },
+  "zh-CN":{
+    meta_title:"Ürgüp local Pansiyon — 于尔居普中心的石头小屋",
+    meta_desc:"位于卡帕多奇亚于尔居普的市中心，一家真正的凿石老屋民宿：手织基里姆地毯、热情的招待，步行即可到集市、酒庄与餐厅。",
+    nav_story:"这座屋子",nav_stay:"客房",nav_morning:"清晨",nav_location:"位置",nav_gallery:"相册",nav_book:"预订",
+    hero_eyebrow:"于尔居普中心 · 凿石老屋",
+    hero_title:"在于尔居普的心脏，<br><em>属于您的石头小屋。</em>",
+    hero_lede:"无需等巴士，也不必远赴山谷。集市、酒庄与餐厅就在门外；屋内是基里姆地毯、石墙，和一份熟悉的温暖。",
+    hero_cta1:"预订客房",hero_cta2:"认识这座屋子",scroll_hint:"向下滑",concept_tag:"概念图",
+    mk1l:"谷歌评分",mk2v:"市中心",mk2l:"于尔居普正中心 · 步行可达",mk3v:"凿石",mk3l:"一栋真正的于尔居普老屋",mk4v:"手工",mk4l:"基里姆地毯与热情招待",
+    story_eyebrow:"这座屋子",story_h:"不是酒店，是某个人的家。",story_sub:"坐落在于尔居普一条古老石巷里的小民宿，门上挂着一块手绘招牌。",
+    ph_story:"Ürgüp local Pansiyon · 入口（真实照片）",
+    story_lead:"推门而入，迎接您的不是前台，而是一间铺满基里姆地毯的温暖门厅。",
+    story_p1:"Ürgüp local Pansiyon 并不是大型旅馆——它是一栋真正的于尔居普凿石老屋。石砌的墙、手工铺就的石地板、门厅里的手织基里姆，还有一壶热茶。小，正是它的意义所在：谁来了、谁走了，主人都记得您的名字。",
+    story_p2:"它的位置，低调却最有力。清晨步行去集市，傍晚走到酒庄与餐厅；热气球、行程与接送，身处中心也让一切更方便。",
+    story_sign:"— Ürgüp local Pansiyon",
+    stay_eyebrow:"客房",stay_h:"简单、温暖，如石般清凉。",
+    stay_p1:"客房不事张扬——石墙自带的清凉、木质天花板，以及白天悄然渗入的柔光。不做奢华的姿态，只为寻找真正家的舒适的人。",
+    stay_p2:"洁净的白色床品，叠放其上的手织基里姆，还有一盏为夜晚而设的暖灯。安静得足以入眠；又正处于尔居普中心，足以醒来。",
+    stay_f1:"凿石墙面",stay_f2:"木质天花板",stay_f3:"手织基里姆",stay_f4:"安静的街巷",ph_stay:"客房 · 概念图",
+    morning_eyebrow:"清晨",morning_h:"以于尔居普的方式开始新一天。",
+    morning_p1:"卡帕多奇亚的清晨从容开始：石砌小院里的一杯酽茶、温热的面包，以及铜盘上一碟碟小菜的絮语。吃得饱足、不慌不忙地迎接一天，自有其乐趣。",
+    morning_p2:"想看热气球的人可以早起；只想休息的人尽可慵懒。因为身处中心，早餐后的第一步，早已踏进集市之中。",
+    morning_f1:"家常餐桌",morning_f2:"酽茶",morning_f3:"石砌小院",ph_morning:"早餐 · 概念图",
+    loc_eyebrow:"位置",loc_h:"一切都在步行之内。",loc_sub:"身处于尔居普中心，即使没有车，也让整个假期变得轻松。出了门，其余的早已在您脚下。",
+    loc_note:"距离为大致估算，会因步行速度相差几分钟。",
+    w1h:"共和广场 & 老集市",w1p:"于尔居普的心脏；咖啡馆、面包房、小店铺",w1t:"2–3 分钟",
+    w2h:"餐厅 & 前菜馆",w2p:"几条街外就有许多晚餐选择",w2t:"就在门口",
+    w3h:"酒庄",w3p:"于尔居普以葡萄酒闻名；步行前去品一杯",w3t:"5 分钟",
+    w4h:"泰门尼山丘",w4p:"俯瞰小镇的免费日落景致",w4t:"7 分钟",
+    w5h:"行程与热气球接送点",w5p:"身处中心，清晨接送非常方便",w5t:"中心",
+    gallery_eyebrow:"相册",gallery_h:"几帧画面。",gallery_sub:"由一张真实照片与概念图制作；正式上线后会替换为您自己的照片。",
+    ph_g1:"入口 · 真实照片",ph_g2:"客房 · 概念",ph_g3:"早餐 · 概念",ph_g4:"老于尔居普 · 概念",
+    book_eyebrow:"预订",book_h:"预订一间<em>客房。</em>",book_lede:"发送您的日期，我们会尽快通过 WhatsApp 回复。空房、价格、含早餐——有任何问题都欢迎询问。",
+    label_name:"您的姓名",ph_name:"您的全名",label_in:"入住",label_out:"退房",label_people:"人数",
+    opt_1p:"1 人",opt_2p:"2 人",opt_3p:"3 人",opt_4p:"4 人以上",
+    label_phone:"WhatsApp / 电话",ph_phone:"方便联系您的号码",btn_submit:"发送预订请求",
+    foot_about:"位于于尔居普市中心的一家小民宿：一栋真正的凿石老屋，手织基里姆地毯与热情招待，步行即可到集市、酒庄与餐厅。",
+    foot_explore:"探索",foot_contact:"联系",foot_loc:"于尔居普中心，内夫谢希尔",foot_wa:"WhatsApp · 预订",
+    foot_rights:"© 2026 Ürgüp local Pansiyon — 版权所有。",foot_demo:"示例 / 演示设计",
+    wa_msg:"您好，我想预订 Ürgüp local Pansiyon：",wa_name:"姓名",wa_in:"入住",wa_out:"退房",wa_people:"人数",wa_phone:"电话",
+    alert_fill:"请填写您的姓名、入住日期和电话号码。"
+  },
+  ko:{
+    meta_title:"Ürgüp local Pansiyon — 위르귀프 중심의 돌집",
+    meta_desc:"카파도키아 위르귀프 정중앙에 자리한 작은 게스트하우스: 손으로 짠 킬림과 따뜻한 환대가 있는 진짜 깎은 돌집으로, 시장과 와인 하우스, 식당까지 걸어서 갈 수 있습니다.",
+    nav_story:"이 집",nav_stay:"객실",nav_morning:"아침",nav_location:"위치",nav_gallery:"갤러리",nav_book:"예약",
+    hero_eyebrow:"위르귀프 중심 · 깎은 돌집",
+    hero_title:"위르귀프의 심장부,<br><em>당신의 돌집.</em>",
+    hero_lede:"버스를 기다릴 일도, 먼 계곡도 없습니다. 시장과 와인 하우스, 식당이 문 밖에; 안에는 킬림과 돌벽, 그리고 익숙한 온기가 있습니다.",
+    hero_cta1:"객실 예약",hero_cta2:"집을 만나다",scroll_hint:"아래로",concept_tag:"콘셉트 이미지",
+    mk1l:"구글 평점",mk2v:"중심",mk2l:"위르귀프 정중앙 · 도보 거리",mk3v:"깎은 돌",mk3l:"진짜 위르귀프 집",mk4v:"수작업",mk4l:"킬림과 따뜻한 환대",
+    story_eyebrow:"이 집",story_h:"호텔이 아니라, 누군가의 집.",story_sub:"위르귀프의 오래된 돌길 한편, 문 위에 손으로 그린 간판이 걸린 작은 게스트하우스.",
+    ph_story:"Ürgüp local Pansiyon · 입구 (실제 사진)",
+    story_lead:"문을 열고 들어서면 프런트가 아니라, 킬림이 깔린 따뜻한 현관이 맞이합니다.",
+    story_p1:"Ürgüp local Pansiyon은 큰 숙소가 아닙니다 — 깎은 돌로 지은 진짜 위르귀프 집입니다. 돌벽, 손으로 깐 돌바닥, 현관의 손으로 짠 킬림, 그리고 차 한 주전자. 작다는 것이 바로 핵심입니다: 누가 왔고 누가 떠났는지, 이름으로 기억됩니다.",
+    story_p2:"이 집의 위치는, 조용하지만 가장 강한 장점입니다. 아침엔 시장으로, 저녁엔 와인 하우스와 식당으로 걸어서 가고; 열기구·투어·픽업도 중심에 있으면 모든 것이 쉬워집니다.",
+    story_sign:"— Ürgüp local Pansiyon",
+    stay_eyebrow:"객실",stay_h:"소박하고 따뜻하며, 돌처럼 서늘한.",
+    stay_p1:"객실은 꾸미지 않았습니다 — 돌벽 특유의 서늘함, 나무 천장, 낮에 스며드는 부드러운 빛. 화려한 척이 아니라, 진짜 집의 편안함을 찾는 분을 위한 곳.",
+    stay_p2:"깨끗한 흰 침구, 그 위에 접어 둔 손으로 짠 킬림, 그리고 밤을 위한 따뜻한 램프. 잠들기엔 고요하고; 깨어나기엔 위르귀프 한복판.",
+    stay_f1:"깎은 돌벽",stay_f2:"나무 천장",stay_f3:"손으로 짠 킬림",stay_f4:"조용한 골목",ph_stay:"객실 · 콘셉트 이미지",
+    morning_eyebrow:"아침",morning_h:"위르귀프식으로 하루를 시작하세요.",
+    morning_p1:"카파도키아의 아침은 천천히 시작됩니다: 돌 안뜰에서 우린 차, 따뜻한 빵, 그리고 구리 쟁반에 놓인 작은 접시들의 이야기. 서두르지 않고 배부르게 하루를 여는 나름의 즐거움이 있습니다.",
+    morning_p2:"열기구를 보고 싶은 이에겐 이른 아침을; 쉬고 싶은 이에겐 느긋한 아침을. 중심에 있으니 아침 식사 후 내딛는 첫걸음이 이미 시장 안입니다.",
+    morning_f1:"집밥 상차림",morning_f2:"우린 차",morning_f3:"돌 안뜰",ph_morning:"아침 식사 · 콘셉트 이미지",
+    loc_eyebrow:"위치",loc_h:"모든 것이 걸어서 갈 거리.",loc_sub:"위르귀프 중심에 있으면 차가 없어도 여행 전체가 수월해집니다. 문을 나서세요; 나머지는 이미 발밑에 있습니다.",
+    loc_note:"거리는 대략적이며 걷는 속도에 따라 몇 분 차이가 납니다.",
+    w1h:"공화국 광장 & 옛 시장",w1p:"위르귀프의 심장; 카페, 빵집, 작은 상점들",w1t:"2–3분",
+    w2h:"식당 & 메제 하우스",w2p:"저녁 식사를 위한 선택지가 몇 골목 안에 가득",w2t:"문 앞",
+    w3h:"와인 하우스",w3p:"위르귀프는 포도밭으로 유명합니다; 걸어가 한 잔 시음",w3t:"5분",
+    w4h:"테멘니 언덕",w4p:"마을 위 무료 일몰 전망",w4t:"7분",
+    w5h:"투어 & 열기구 픽업 지점",w5p:"중심에 있어 아침 픽업이 매우 편리합니다",w5t:"중심",
+    gallery_eyebrow:"갤러리",gallery_h:"몇 장의 사진.",gallery_sub:"실제 사진 한 장과 콘셉트 이미지로 제작했습니다; 정식 오픈 시 여러분의 사진으로 교체합니다.",
+    ph_g1:"입구 · 실제 사진",ph_g2:"객실 · 콘셉트",ph_g3:"아침 식사 · 콘셉트",ph_g4:"옛 위르귀프 · 콘셉트",
+    book_eyebrow:"예약",book_h:"객실을 <em>예약하세요.</em>",book_lede:"날짜를 보내주시면 WhatsApp으로 빠르게 답장드립니다. 빈방, 요금, 조식 포함 여부 등 무엇이든 물어보세요.",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_in:"체크인",label_out:"체크아웃",label_people:"인원",
+    opt_1p:"1명",opt_2p:"2명",opt_3p:"3명",opt_4p:"4명 이상",
+    label_phone:"WhatsApp / 전화",ph_phone:"연락 가능한 번호",btn_submit:"예약 요청 보내기",
+    foot_about:"위르귀프 정중앙의 작은 게스트하우스: 손으로 짠 킬림과 따뜻한 환대가 있는 진짜 깎은 돌집으로, 시장과 와인 하우스, 식당까지 걸어서 갈 수 있습니다.",
+    foot_explore:"둘러보기",foot_contact:"연락처",foot_loc:"위르귀프 중심, 네브셰히르",foot_wa:"WhatsApp · 예약",
+    foot_rights:"© 2026 Ürgüp local Pansiyon — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    wa_msg:"안녕하세요, Ürgüp local Pansiyon 예약을 요청합니다:",wa_name:"성함",wa_in:"체크인",wa_out:"체크아웃",wa_people:"인원",wa_phone:"전화",
+    alert_fill:"성함, 체크인 날짜, 전화번호를 입력해 주세요."
+  }
+};
+
+// ==================== i18n MOTORU ====================
+const SUPPORTED = ['tr','en','es','zh-CN','ko'];
+let currentLang = 'tr';
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  if(dict.meta_title) document.title = dict.meta_title;
+  const md = document.querySelector('meta[name="description"]');
+  if(md && dict.meta_desc) md.setAttribute('content', dict.meta_desc);
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  try{ localStorage.setItem('ulp_lang', lang); }catch(e){}
+  if(typeof onScroll==='function') onScroll();
+}
+function initLang(){
+  let lang = null;
+  const url = new URLSearchParams(location.search).get('lang');
+  if(url && SUPPORTED.includes(url)) lang = url;
+  if(!lang){ try{ const s=localStorage.getItem('ulp_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click', ()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+// ==================== TEMA ====================
+(function(){
+  const btn = document.getElementById('themeBtn');
+  function set(t){ document.documentElement.setAttribute('data-theme',t); try{localStorage.setItem('ulp_theme',t);}catch(e){} }
+  if(btn) btn.addEventListener('click', ()=>{ const cur=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark'; set(cur==='light'?'dark':'light'); });
+})();
+
+// ==================== MOBİL MENÜ ====================
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+// ==================== NAV SCROLL + SCROLL-SPY (kilim dikişi) ====================
+const nav=document.getElementById('nav');
+const spy=[...document.querySelectorAll('.navlinks a[href^="#"]')].filter(a=>document.querySelector(a.getAttribute('href')));
+function onScroll(){
+  nav.classList.toggle('scrolled',window.scrollY>40);
+  const y=window.scrollY+140; let cur=null;
+  for(const a of spy){ const t=document.querySelector(a.getAttribute('href')); if(t && t.offsetTop<=y) cur=a; }
+  spy.forEach(a=>a.classList.toggle('cur',a===cur));
+}
+window.addEventListener('scroll',onScroll);window.addEventListener('resize',onScroll);onScroll();
+
+// ==================== REVEAL ====================
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.16});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ==================== GÖRSEL YÜKLEME ====================
+(function(){
+  const base='assets/images/';
+  function bg(el,file,heroCls){
+    if(!el) return;
+    const im=new Image();
+    im.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; if(heroCls) el.classList.add('has-img'); };
+    im.onerror=()=>{};
+    im.src=base+file;
+  }
+  bg(document.getElementById('heroPhoto'),'hero.jpg',true);
+  bg(document.getElementById('storyImg'),'story.jpg');
+  bg(document.getElementById('stayImg'),'room.jpg');
+  bg(document.getElementById('morningImg'),'breakfast.jpg');
+  document.querySelectorAll('.tile[data-img]').forEach(t=>bg(t,t.getAttribute('data-img')));
+})();
+
+// ==================== REZERVASYON → WHATSAPP ====================
+const WHATSAPP = "905077837750";
+function sendBooking(){
+  const d = I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const cin=document.getElementById('f-in').value;
+  const cout=document.getElementById('f-out').value;
+  const count=document.getElementById('f-count').value;
+  const phone=document.getElementById('f-phone').value.trim();
+  if(!name||!cin||!phone){ alert(d.alert_fill); return; }
+  const msg = d.wa_msg+"%0A%0A"+
+    d.wa_name+": "+encodeURIComponent(name)+"%0A"+
+    d.wa_in+": "+encodeURIComponent(cin)+"%0A"+
+    d.wa_out+": "+encodeURIComponent(cout)+"%0A"+
+    d.wa_people+": "+encodeURIComponent(count)+"%0A"+
+    d.wa_phone+": "+encodeURIComponent(phone);
+  window.open("https://wa.me/"+WHATSAPP+"?text="+msg,"_blank");
+}
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items = Array.from(document.querySelectorAll('.gallery .tile[data-img]'));
+  const lb = document.getElementById('lightbox');
+  if(!items.length || !lb) return;
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap');
+  const base = 'assets/images/';
+  let idx = 0;
+  const capOf = t => { const l = t.querySelector('.ph-label'); return l ? l.textContent.trim() : ''; };
+  function show(i){ idx = (i + items.length) % items.length; const t = items[idx]; img.src = base + t.getAttribute('data-img'); cap.textContent = capOf(t); }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>{ t.addEventListener('click',()=>open(i)); });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target === lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+// ==================== BAŞLAT ====================
+initLang();
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+</body>
+</html>

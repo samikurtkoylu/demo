@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta_title">Manolya Pansiyon — Kaymaklı, Kapadokya · Yeraltı Şehrinin Yanında</title>
+<meta name="description" data-i18n="meta_desc" content="Kaymaklı Yeraltı Şehri'nin yanı başında, tertemiz ve aydınlık odalarıyla küçük bir pansiyon. Kapadokya'yı gezmek için sakin ve merkezî bir üs.">
+<!-- Tema: boyamadan önce ayarla (FART / flash yok) -->
+<script>(function(){try{
+  var q=new URLSearchParams(location.search).get('theme');
+  var s=null;try{s=localStorage.getItem('manolya_theme')}catch(e){}
+  var m=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+  var t=(q==='light'||q==='dark')?q:((s==='light'||s==='dark')?s:m);
+  document.documentElement.setAttribute('data-theme',t);
+}catch(e){document.documentElement.setAttribute('data-theme','light')}})();</script>
+<style>
+  :root{
+    --serif:'Cormorant Garamond','Georgia','Times New Roman',serif;
+    --sans:'Optima','Gill Sans','Segoe UI',system-ui,-apple-system,sans-serif;
+    /* Manolya — GÜNDÜZ: manolya taçyaprağı kremi + erik kalbi + yaprak yeşili */
+    --bg:#f7f1e5;          /* sıcak manolya kremi */
+    --bg-2:#efe5d3;        /* yumuşak kum */
+    --surface:#fdfaf2;     /* taçyaprağı beyazı */
+    --text:#2d2621;        /* sıcak espresso */
+    --muted:#7c7062;       /* ılık taupe */
+    --line:rgba(45,38,33,.13);
+    --plum:#8c3a5c;        /* manolya kalbi — erik/magenta (aksan) */
+    --plum-2:#a44e70;
+    --leaf:#3f5f42;        /* manolya yaprağı yeşili (ikincil aksan) */
+    --leaf-2:#5a7c53;
+    --gold:#c2914f;        /* dal / polen altını */
+    --branch:rgba(45,38,33,.22);
+    --hero-ink:#fbf3e8;    /* hero metni */
+    --shadow:0 22px 60px rgba(60,30,45,.14);
+  }
+  html[data-theme="dark"]{
+    /* Manolya — AKŞAM: derin patlıcan gecesi + krem taçyaprağı + pembe hüzme */
+    --bg:#1f1720;          /* derin erik-siyah gece */
+    --bg-2:#181119;
+    --surface:#271f2b;
+    --text:#f0e5d8;        /* krem */
+    --muted:#b1a293;
+    --line:rgba(240,230,216,.13);
+    --plum:#df8fac;        /* akşam manolyası pembesi */
+    --plum-2:#ecabc3;
+    --leaf:#8aa87c;
+    --leaf-2:#a1bf90;
+    --gold:#d9b273;
+    --branch:rgba(240,230,216,.24);
+    --hero-ink:#fbf3e8;
+    --shadow:0 22px 60px rgba(0,0,0,.5);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html.lenis,html.lenis body{height:auto}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.68;overflow-x:hidden;transition:background .5s,color .5s}
+  html[lang="zh-CN"] body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',var(--sans)}
+  html[lang="ko"] body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',var(--sans)}
+  h1,h2,h3,.disp{font-family:var(--serif);font-weight:600;line-height:1.06;letter-spacing:-.01em}
+  html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,
+  html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:inherit;font-weight:700;letter-spacing:0}
+  .eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:.34em;font-size:.68rem;font-weight:600;color:var(--plum)}
+  html[data-theme="dark"] .eyebrow{color:var(--plum-2)}
+  html[lang="zh-CN"] .eyebrow,html[lang="ko"] .eyebrow{letter-spacing:.12em}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 30px}
+  section{padding:118px 0;position:relative}
+  .sec-head{max-width:640px;margin-bottom:56px}
+  .sec-head .eyebrow{display:block;margin-bottom:16px}
+  .sec-head h2{font-size:clamp(2.1rem,4.6vw,3.5rem);color:var(--text)}
+  .sec-head p{margin-top:18px;color:var(--muted);font-size:1.08rem;font-weight:400}
+
+  /* ---------- NAV — 21st.dev portu: "Dal & Tomurcuk" (aktif bölümde manolya tomurcuğu açar) ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:16px 30px;gap:16px;transition:.45s}
+  nav.scrolled{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-size:1.42rem;font-weight:600;letter-spacing:.01em;color:var(--text);flex:none}
+  .brand .mk{width:30px;height:30px;flex:none;color:var(--plum)}
+  .brand .mk .co{color:var(--gold)}
+  .navlinks{position:relative;display:flex;gap:26px;align-items:center;margin-left:auto}
+  .navlinks::after{content:"";position:absolute;left:6px;right:6px;bottom:-10px;height:1px;background:linear-gradient(90deg,transparent,var(--branch),var(--branch),transparent)}
+  .navlinks a{font-family:var(--sans);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);transition:.3s;position:relative;padding-bottom:2px}
+  html[lang="zh-CN"] .navlinks a,html[lang="ko"] .navlinks a{text-transform:none;letter-spacing:.02em;font-size:.92rem}
+  .navlinks a:hover{color:var(--text)}
+  .navlinks a.active{color:var(--plum)}
+  html[data-theme="dark"] .navlinks a.active{color:var(--plum-2)}
+  .nav-cta{border:1px solid var(--plum);color:var(--plum)!important;padding:9px 20px;border-radius:40px;font-size:.76rem!important;text-transform:uppercase;transition:.35s}
+  html[data-theme="dark"] .nav-cta{border-color:var(--plum-2);color:var(--plum-2)!important}
+  .nav-cta:hover{background:var(--plum);color:var(--surface)!important}
+  html[data-theme="dark"] .nav-cta:hover{background:var(--plum-2);color:#241019!important}
+  html[lang="zh-CN"] .nav-cta,html[lang="ko"] .nav-cta{text-transform:none}
+  /* the blooming bud marker */
+  .bud{position:absolute;bottom:-19px;left:0;width:18px;height:18px;pointer-events:none;opacity:0;transform:translateX(0);transition:transform .55s cubic-bezier(.2,.85,.25,1),opacity .4s}
+  .bud.on{opacity:1}
+  .bud svg{width:100%;height:100%;color:var(--plum);filter:drop-shadow(0 1px 3px rgba(140,58,92,.4))}
+  html[data-theme="dark"] .bud svg{color:var(--plum-2)}
+  .bud.on svg{animation:bloom .6s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes bloom{0%{transform:scale(.45) rotate(-18deg);opacity:.3}60%{transform:scale(1.12) rotate(4deg)}100%{transform:scale(1) rotate(0)}}
+  /* controls */
+  .navtools{display:flex;align-items:center;gap:14px;flex:none}
+  .langs{display:flex;align-items:center;gap:1px}
+  .langs button{background:none;border:none;color:var(--muted);font-family:var(--sans);font-size:.76rem;cursor:pointer;padding:5px 6px;transition:.25s;border-radius:3px;letter-spacing:.02em}
+  .langs button:hover{color:var(--text)}
+  .langs button.active{color:var(--plum);font-weight:700}
+  html[data-theme="dark"] .langs button.active{color:var(--plum-2)}
+  .langs .sep{color:var(--line);font-size:.7rem}
+  .theme-btn{background:none;border:1px solid var(--line);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);transition:.3s;flex:none}
+  .theme-btn:hover{border-color:var(--plum);color:var(--plum)}
+  .theme-btn svg{width:16px;height:16px}
+  .theme-btn .ic-sun{display:none}.theme-btn .ic-moon{display:block}
+  html[data-theme="dark"] .theme-btn .ic-sun{display:block}
+  html[data-theme="dark"] .theme-btn .ic-moon{display:none}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;color:var(--text);flex:none}
+  /* nav over hero (kaydırılmadan): hero görseli her iki temada da koyu → açık metin + gölge (marka HER kombinasyonda okunur) */
+  nav:not(.scrolled) .brand{color:var(--hero-ink)}
+  nav:not(.scrolled) .brand .mk{color:#e7a9c0}
+  nav:not(.scrolled) .navlinks a{color:rgba(251,243,232,.82)}
+  nav:not(.scrolled) .navlinks a:hover{color:#fff}
+  nav:not(.scrolled) .navlinks a.active{color:#f2c9a0}
+  nav:not(.scrolled) .navlinks::after{background:linear-gradient(90deg,transparent,rgba(251,243,232,.3),rgba(251,243,232,.3),transparent)}
+  nav:not(.scrolled) .nav-cta{border-color:rgba(251,243,232,.55);color:#fbf3e8!important}
+  nav:not(.scrolled) .nav-cta:hover{background:#fbf3e8;color:#2d2621!important}
+  nav:not(.scrolled) .langs button{color:rgba(251,243,232,.72)}
+  nav:not(.scrolled) .langs button.active{color:#f2c9a0}
+  nav:not(.scrolled) .langs .sep{color:rgba(251,243,232,.3)}
+  nav:not(.scrolled) .theme-btn{color:#fbf3e8;border-color:rgba(251,243,232,.4)}
+  nav:not(.scrolled) .theme-btn:hover{border-color:#f2c9a0;color:#f2c9a0}
+  nav:not(.scrolled) .menu-btn{color:#fbf3e8}
+  nav:not(.scrolled) .bud svg{color:#f2c9a0}
+  nav:not(.scrolled) .brand,nav:not(.scrolled) .navlinks a,nav:not(.scrolled) .langs button,nav:not(.scrolled) .nav-cta{text-shadow:0 1px 7px rgba(10,5,8,.6)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:flex-end;isolation:isolate}
+  .hero-photo{position:absolute;inset:0;z-index:0;background:linear-gradient(160deg,#7c3b52,#a44e70 45%,#c2914f);background-size:cover;background-position:center}
+  .hero-photo.has-img{animation:kenburns 40s ease-in-out infinite alternate;transform-origin:64% 42%}
+  @keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.13)}}
+  #hero-gradient{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:.6;
+    --gradient-color-1:#7c3b52; --gradient-color-2:#b56b82; --gradient-color-3:#c2914f; --gradient-color-4:#5c7d55}
+  .no-webgl #hero-gradient{display:none}
+  /* petal drift signature */
+  #petals{position:absolute;inset:0;z-index:3;pointer-events:none}
+  .hero::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+    background:linear-gradient(180deg,rgba(30,16,24,.42) 0%,rgba(30,16,24,.06) 34%,rgba(30,16,24,.72) 100%)}
+  .hero-inner{position:relative;z-index:6;width:100%;padding-bottom:12vh;padding-top:120px}
+  .hero .eyebrow{color:var(--gold)}
+  .hero h1{color:var(--hero-ink);font-size:clamp(2.7rem,7vw,6rem);max-width:15ch;margin-top:20px;text-shadow:0 4px 44px rgba(20,8,14,.5)}
+  .hero h1 em{font-style:italic;color:#f2c9a0}
+  .hero .lede{font-size:clamp(1.04rem,1.5vw,1.3rem);color:rgba(251,243,232,.94);max-width:50ch;margin-top:24px;font-weight:400;text-shadow:0 2px 22px rgba(20,8,14,.55)}
+  .hero-cta{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;align-items:center}
+  .btn-solid{background:var(--hero-ink);color:#2d2621;padding:15px 30px;border-radius:40px;font-family:var(--sans);font-weight:600;font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:9px;transition:.35s}
+  .btn-solid:hover{background:var(--gold);color:#241019;gap:14px}
+  .btn-line{color:var(--hero-ink);font-family:var(--sans);font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(251,243,232,.5);padding-bottom:4px;transition:.4s}
+  .btn-line:hover{border-color:var(--gold);color:#f2c9a0}
+  html[lang="zh-CN"] .btn-solid,html[lang="ko"] .btn-solid,html[lang="zh-CN"] .btn-line,html[lang="ko"] .btn-line{text-transform:none;letter-spacing:.02em}
+  .concept-badge{position:absolute;top:84px;right:22px;z-index:6;background:rgba(20,10,16,.5);color:rgba(251,243,232,.9);backdrop-filter:blur(6px);border:1px solid rgba(251,243,232,.22);padding:5px 12px;border-radius:30px;font-family:var(--sans);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase}
+  html[lang="zh-CN"] .concept-badge,html[lang="ko"] .concept-badge{letter-spacing:.04em}
+  .scrollhint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:6;font-family:var(--sans);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(251,243,232,.6);display:flex;flex-direction:column;align-items:center;gap:7px}
+  .scrollhint .l{width:1px;height:32px;background:linear-gradient(var(--gold),transparent);animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+  html[lang="zh-CN"] .scrollhint,html[lang="ko"] .scrollhint{letter-spacing:.08em}
+
+  /* ---------- STATS ---------- */
+  .stats{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:44px 30px}
+  .stat{text-align:center;padding:0 8px}
+  .stat .n{font-family:var(--serif);font-size:clamp(1.9rem,3.6vw,2.9rem);color:var(--plum);line-height:1;font-weight:600}
+  html[data-theme="dark"] .stat .n{color:var(--plum-2)}
+  .stat .n.sm{font-size:clamp(1.15rem,2.3vw,1.7rem);letter-spacing:.01em}
+  .stat .l{font-family:var(--sans);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:11px;line-height:1.4}
+  html[lang="zh-CN"] .stat .l,html[lang="ko"] .stat .l{text-transform:none;letter-spacing:.03em}
+  .stat+.stat{border-left:1px solid var(--line)}
+  @media(max-width:680px){.stats .wrap{grid-template-columns:1fr 1fr;gap:32px 16px}.stat:nth-child(3){border-left:none}}
+
+  /* ---------- STORY (decorative botanical, no photo) ---------- */
+  .story{background:var(--bg);overflow:hidden}
+  .story::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(46% 60% at 84% 24%,color-mix(in srgb,var(--plum) 14%,transparent),transparent 62%),
+              radial-gradient(40% 52% at 10% 84%,color-mix(in srgb,var(--leaf) 12%,transparent),transparent 60%);
+    background-size:170% 170%;animation:meshDrift 30s ease-in-out infinite alternate}
+  @keyframes meshDrift{from{background-position:0 0}to{background-position:100% 100%}}
+  .story .wrap{position:relative;z-index:1}
+  .story-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .story-text .lead{font-family:var(--serif);font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.36;font-style:italic;color:var(--text);margin-bottom:22px}
+  html[lang="zh-CN"] .story-text .lead,html[lang="ko"] .story-text .lead{font-style:normal}
+  .story-text p{color:var(--muted);margin-bottom:17px;font-size:1.04rem}
+  .story-text .sign{margin-top:14px;font-family:var(--serif);font-size:1.35rem;font-style:italic;color:var(--plum)}
+  html[data-theme="dark"] .story-text .sign{color:var(--plum-2)}
+  .botanical{position:relative;min-height:360px;display:flex;align-items:center;justify-content:center}
+  .botanical svg{width:100%;max-width:340px;height:auto;color:var(--plum);opacity:.9}
+  html[data-theme="dark"] .botanical svg{color:var(--plum-2)}
+  .botanical .leafc{color:var(--leaf)}
+  .botanical .goldc{color:var(--gold)}
+  @media(max-width:860px){.story-grid{grid-template-columns:1fr;gap:30px}.botanical{min-height:230px;order:-1}}
+
+  /* ---------- LOCATION / UNDERGROUND ---------- */
+  .location{background:var(--bg-2);overflow:hidden}
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .loc-visual{position:relative;border-radius:14px;overflow:hidden;min-height:440px;background:var(--surface) center/cover no-repeat;box-shadow:var(--shadow)}
+  .loc-visual .ph-label,.room-img .ph-label,.tile .ph-label,.exp-visual .ph-label{position:absolute;left:16px;bottom:14px;z-index:3;font-family:var(--sans);font-size:.72rem;letter-spacing:.03em;color:#fbf3e8;text-shadow:0 1px 10px rgba(0,0,0,.75);display:flex;align-items:center;gap:7px}
+  .loc-visual .ph-label svg,.room-img .ph-label svg{width:15px;height:15px;opacity:.85}
+  .ctag{position:absolute;top:14px;right:14px;z-index:3;background:rgba(20,10,16,.52);color:rgba(251,243,232,.92);backdrop-filter:blur(5px);border:1px solid rgba(251,243,232,.22);padding:4px 10px;border-radius:24px;font-family:var(--sans);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase}
+  html[lang="zh-CN"] .ctag,html[lang="ko"] .ctag{letter-spacing:.03em}
+  .loc-text p{color:var(--muted);font-size:1.06rem;margin-bottom:26px}
+  .loc-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .loc-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 18px}
+  .loc-card .lc-h{font-family:var(--serif);font-size:1.12rem;color:var(--text);font-weight:600;margin-bottom:3px}
+  .loc-card .lc-s{font-family:var(--sans);font-size:.84rem;color:var(--plum);letter-spacing:.03em;font-weight:600}
+  html[data-theme="dark"] .loc-card .lc-s{color:var(--plum-2)}
+  @media(max-width:860px){.loc-grid{grid-template-columns:1fr;gap:32px}.loc-visual{min-height:300px;order:-1}}
+
+  /* ---------- ROOMS (REAL photo) ---------- */
+  .rooms{background:var(--bg)}
+  .room-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+  .room-img{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:3/4;max-height:600px;background:var(--bg-2) center/cover no-repeat;cursor:pointer;box-shadow:var(--shadow);transition:transform .5s}
+  .room-img:hover{transform:translateY(-4px)}
+  .rtag{position:absolute;top:14px;left:14px;z-index:3;background:var(--leaf);color:#fbf3e8;padding:5px 12px;border-radius:24px;font-family:var(--sans);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
+  html[data-theme="dark"] .rtag{background:var(--leaf);color:#12200f}
+  html[lang="zh-CN"] .rtag,html[lang="ko"] .rtag{letter-spacing:.03em}
+  .room-body h3{font-size:clamp(1.7rem,3.2vw,2.4rem);color:var(--text);margin-bottom:8px}
+  .room-body .rp{color:var(--muted);font-size:1.05rem;margin-bottom:24px}
+  .feats{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+  .feats li{display:flex;align-items:flex-start;gap:10px;font-size:.98rem;color:var(--text)}
+  .feats svg{width:20px;height:20px;color:var(--leaf);flex:none;margin-top:2px}
+  html[data-theme="dark"] .feats svg{color:var(--leaf-2)}
+  .room-note{margin-top:26px;font-size:.92rem;color:var(--muted);font-style:italic}
+  @media(max-width:860px){.room-grid{grid-template-columns:1fr;gap:30px}.room-img{aspect-ratio:4/3;max-height:none}}
+
+  /* ---------- EXPLORE ---------- */
+  .explore{background:var(--bg-2);overflow:hidden}
+  .exp-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:center}
+  .exp-visual{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:var(--surface) center/cover no-repeat;box-shadow:var(--shadow)}
+  .exp-text p{color:var(--muted);font-size:1.06rem;margin-bottom:24px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:30px;padding:9px 16px;font-family:var(--sans);font-size:.86rem;color:var(--text)}
+  .chip b{color:var(--plum);font-weight:600}
+  html[data-theme="dark"] .chip b{color:var(--plum-2)}
+  @media(max-width:860px){.exp-grid{grid-template-columns:1fr;gap:30px}.exp-visual{order:-1}}
+
+  /* ---------- WHY band ---------- */
+  .why{background:var(--bg)}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
+  .why .wc .ic{width:34px;height:34px;color:var(--plum);margin-bottom:14px}
+  html[data-theme="dark"] .why .wc .ic{color:var(--plum-2)}
+  .why .wc h3{font-size:1.2rem;color:var(--text);margin-bottom:7px}
+  .why .wc p{font-size:.94rem;color:var(--muted)}
+  @media(max-width:820px){.why-grid{grid-template-columns:1fr 1fr;gap:30px}}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{background:var(--bg-2)}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .tile{aspect-ratio:3/4;border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0;background:var(--surface) center/cover no-repeat;cursor:pointer;transition:transform .5s,box-shadow .5s}
+  .tile:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .tile::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(20,10,16,.6),transparent 52%)}
+  .tile .ph-label{position:absolute;left:14px;bottom:12px;z-index:3}
+  @media(max-width:820px){.tiles{grid-template-columns:1fr 1fr}}
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(18,10,14,.94);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:6vh 6vw;opacity:0;transition:opacity .3s}
+  .lightbox.open{display:flex;opacity:1}
+  .lightbox img{max-width:100%;max-height:84vh;border-radius:8px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
+  .lb-close{position:absolute;top:16px;right:26px;background:none;border:none;color:#fbf3e8;font-size:2.4rem;line-height:1;cursor:pointer;opacity:.8}
+  .lb-close:hover{opacity:1}
+  .lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#fbf3e8;font-family:var(--sans);font-size:.78rem;letter-spacing:.08em}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(30,16,24,.5);border:1px solid rgba(251,243,232,.2);color:#fbf3e8;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .lb-nav:hover{background:var(--plum);border-color:var(--plum)}
+  .lb-prev{left:20px}.lb-next{right:20px}
+  @media(max-width:600px){.lb-nav{width:38px;height:38px}.lb-prev{left:6px}.lb-next{right:6px}}
+
+  /* ---------- BOOK ---------- */
+  .book{background:linear-gradient(180deg,var(--bg),var(--bg-2));position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--plum) 20%,transparent),transparent 68%);pointer-events:none}
+  .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;position:relative;z-index:2}
+  .book h2{font-size:clamp(2.2rem,4.4vw,3.4rem);color:var(--text)}
+  .book h2 em{font-style:italic;color:var(--plum)}
+  html[data-theme="dark"] .book h2 em{color:var(--plum-2)}
+  .book .lede{color:var(--muted);margin-top:16px;font-size:1.08rem;margin-bottom:26px}
+  .call-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px;box-shadow:var(--shadow)}
+  .call-card .cc-label{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--plum);margin-bottom:8px}
+  html[data-theme="dark"] .call-card .cc-label{color:var(--plum-2)}
+  html[lang="zh-CN"] .call-card .cc-label,html[lang="ko"] .call-card .cc-label{letter-spacing:.04em}
+  .call-card .cc-num{font-family:var(--serif);font-size:1.9rem;color:var(--text);font-weight:600}
+  .call-card .cc-row{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+  .cc-wa{display:inline-flex;align-items:center;gap:9px;background:#25a35a;color:#fff;padding:12px 20px;border-radius:40px;font-family:var(--sans);font-weight:600;font-size:.86rem}
+  .cc-wa svg{width:20px;height:20px}
+  .cc-tel{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);color:var(--text);padding:12px 20px;border-radius:40px;font-family:var(--sans);font-weight:600;font-size:.86rem}
+  .cc-tel:hover{border-color:var(--plum);color:var(--plum)}
+  .form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:34px;box-shadow:var(--shadow)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--plum);margin-bottom:7px}
+  html[data-theme="dark"] .field label{color:var(--plum-2)}
+  html[lang="zh-CN"] .field label,html[lang="ko"] .field label{letter-spacing:.03em}
+  .field input,.field select{width:100%;padding:13px 15px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-family:inherit;font-size:.95rem}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--plum)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .submit{width:100%;background:var(--plum);color:#fbf3e8;border:none;padding:16px;border-radius:40px;font-family:var(--sans);font-weight:600;font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.35s;margin-top:6px}
+  html[data-theme="dark"] .submit{background:var(--plum);color:#241019}
+  .submit:hover{background:var(--plum-2)}
+  html[lang="zh-CN"] .submit,html[lang="ko"] .submit{text-transform:none;letter-spacing:.02em}
+  .sent-panel{display:none;margin-top:16px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .sent-panel.show{display:block}
+  .sent-panel .sp-h{font-family:var(--serif);font-size:1.2rem;color:var(--plum);margin-bottom:6px}
+  html[data-theme="dark"] .sent-panel .sp-h{color:var(--plum-2)}
+  .sent-panel textarea{width:100%;min-height:120px;margin-top:10px;padding:12px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-family:inherit;font-size:.9rem;resize:vertical}
+  .sent-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .sent-actions button,.sent-actions a{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:40px;font-family:var(--sans);font-weight:600;font-size:.82rem;cursor:pointer;border:1px solid var(--line);background:none;color:var(--text)}
+  .sent-actions .wa-send{background:#25a35a;color:#fff;border-color:#25a35a}
+  @media(max-width:860px){.book-grid{grid-template-columns:1fr;gap:34px}}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--bg-2);color:var(--muted);padding:64px 0 30px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:44px}
+  .foot-brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--text);margin-bottom:16px}
+  .foot-brand .mk{width:30px;height:30px;color:var(--plum)}
+  .foot-brand .mk .co{color:var(--gold)}
+  footer p.fa{max-width:330px;font-size:.98rem}
+  footer h4{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--plum);margin-bottom:16px}
+  html[data-theme="dark"] footer h4{color:var(--plum-2)}
+  html[lang="zh-CN"] footer h4,html[lang="ko"] footer h4{letter-spacing:.04em}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px;font-size:.96rem;overflow-wrap:break-word}
+  footer a:hover{color:var(--text)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--sans);font-size:.78rem}
+  .demo-badge{background:var(--plum);color:#fbf3e8;padding:5px 13px;border-radius:24px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
+  html[data-theme="dark"] .demo-badge{color:#241019}
+  html[lang="zh-CN"] .demo-badge,html[lang="ko"] .demo-badge{text-transform:none}
+
+  /* ---------- MOBILE MENU ---------- */
+  .mobile-menu{position:fixed;inset:0;z-index:70;background:color-mix(in srgb,var(--bg) 97%,transparent);backdrop-filter:blur(10px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:26px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:var(--serif);font-size:1.85rem;font-weight:600;color:var(--text)}
+  .mobile-menu a.active{color:var(--plum)}
+  html[data-theme="dark"] .mobile-menu a.active{color:var(--plum-2)}
+  .mobile-menu .close{position:absolute;top:22px;right:24px;background:none;border:none;color:var(--text);cursor:pointer}
+  .mobile-menu .m-langs{display:flex;gap:9px;margin-top:16px}
+  .mobile-menu .m-langs button{background:none;border:1px solid var(--line);color:var(--muted);padding:8px 14px;border-radius:24px;font-family:var(--sans);font-size:.85rem;cursor:pointer}
+  .mobile-menu .m-langs button.active{color:var(--plum);border-color:var(--plum)}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:.85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  .scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--plum),var(--gold));box-shadow:0 0 12px color-mix(in srgb,var(--plum) 50%,transparent)}
+  @supports (animation-timeline:scroll()){.scroll-progress{animation:growProgress linear both;animation-timeline:scroll(root block)}}
+  @keyframes growProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .grain{position:fixed;inset:0;z-index:92;pointer-events:none;opacity:.045;mix-blend-mode:overlay}
+  .grain svg{width:100%;height:100%;display:block}
+
+  @media(max-width:820px){
+    .navlinks{display:none}.menu-btn{display:block}.langs{display:none}
+    section{padding:78px 0}
+    .form,.call-card{padding:26px}
+    .foot-grid{grid-template-columns:1fr;gap:30px}
+    .feats{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:opacity .3s!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg"><filter id="gr"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#gr)"/></svg></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a class="brand" href="#top" aria-label="Manolya Pansiyon">
+    <svg class="mk" viewBox="0 0 48 48" fill="none" aria-hidden="true"><g fill="currentColor"><ellipse cx="24" cy="11" rx="4.6" ry="9"/><ellipse cx="24" cy="37" rx="4.6" ry="9"/><ellipse cx="11" cy="24" rx="9" ry="4.6"/><ellipse cx="37" cy="24" rx="9" ry="4.6"/><ellipse cx="14.6" cy="14.6" rx="7" ry="4.4" transform="rotate(-45 14.6 14.6)"/><ellipse cx="33.4" cy="14.6" rx="7" ry="4.4" transform="rotate(45 33.4 14.6)"/><ellipse cx="14.6" cy="33.4" rx="7" ry="4.4" transform="rotate(45 14.6 33.4)"/><ellipse cx="33.4" cy="33.4" rx="7" ry="4.4" transform="rotate(-45 33.4 33.4)"/></g><circle class="co" cx="24" cy="24" r="4" fill="currentColor"/></svg>
+    Manolya
+  </a>
+  <div class="navlinks" id="navlinks">
+    <a href="#story" data-spy="story" data-i18n="nav_story">Hikâye</a>
+    <a href="#location" data-spy="location" data-i18n="nav_location">Konum</a>
+    <a href="#rooms" data-spy="rooms" data-i18n="nav_rooms">Odalar</a>
+    <a href="#explore" data-spy="explore" data-i18n="nav_explore">Keşfet</a>
+    <a href="#gallery" data-spy="gallery" data-i18n="nav_gallery">Galeri</a>
+    <a class="nav-cta" href="#book" data-i18n="nav_book">Rezervasyon</a>
+    <span class="bud" id="bud" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><g fill="currentColor"><ellipse cx="24" cy="11" rx="4.6" ry="9"/><ellipse cx="24" cy="37" rx="4.6" ry="9"/><ellipse cx="11" cy="24" rx="9" ry="4.6"/><ellipse cx="37" cy="24" rx="9" ry="4.6"/><ellipse cx="14.6" cy="14.6" rx="7" ry="4.4" transform="rotate(-45 14.6 14.6)"/><ellipse cx="33.4" cy="14.6" rx="7" ry="4.4" transform="rotate(45 33.4 14.6)"/></g></svg></span>
+  </div>
+  <div class="navtools">
+    <div class="langs" role="group" aria-label="Dil / Language">
+      <button data-lang="tr" class="active">TR</button><span class="sep">|</span>
+      <button data-lang="en">EN</button><span class="sep">|</span>
+      <button data-lang="es">ES</button><span class="sep">|</span>
+      <button data-lang="zh-CN">中文</button><span class="sep">|</span>
+      <button data-lang="ko">한국어</button>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="Tema değiştir">
+      <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+    </button>
+    <button class="menu-btn" aria-label="Menü" id="menuBtn"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose" aria-label="Kapat"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#story" data-i18n="nav_story">Hikâye</a>
+  <a href="#location" data-i18n="nav_location">Konum</a>
+  <a href="#rooms" data-i18n="nav_rooms">Odalar</a>
+  <a href="#explore" data-i18n="nav_explore">Keşfet</a>
+  <a href="#gallery" data-i18n="nav_gallery">Galeri</a>
+  <a href="#book" data-i18n="nav_book">Rezervasyon</a>
+  <div class="m-langs">
+    <button data-lang="tr" class="active">TR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="zh-CN">中文</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="hero-photo" id="heroPhoto"></div>
+  <canvas id="hero-gradient" aria-hidden="true"></canvas>
+  <canvas id="petals" aria-hidden="true"></canvas>
+  <span class="concept-badge" data-i18n="concept_badge">Konsept görsel</span>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="hero_eyebrow">Kaymaklı · Kapadokya</span>
+      <h1 data-i18n="hero_title" data-i18n-html="1">Yeraltı şehrinin yanında,<br><em>sıcacık bir ev.</em></h1>
+      <p class="lede" data-i18n="hero_lede">Kaymaklı'nın sessiz sokaklarında, tertemiz ve aydınlık odalarıyla sizi bekleyen küçük bir pansiyon. Kapadokya'yı gezmek için tam ortada; akşam dönünce huzurla dinlenmek için sakin.</p>
+      <div class="hero-cta">
+        <a class="btn-solid" href="#book"><span data-i18n="hero_cta1">Müsaitlik sor</span> <span aria-hidden="true">→</span></a>
+        <a class="btn-line" href="#rooms" data-i18n="hero_cta2">Odaları gör</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrollhint"><span data-i18n="scroll_hint">Aşağı in</span><span class="l"></span></div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n">5.0★</div><div class="l" data-i18n="stat1_l">Google misafir puanı</div></div>
+    <div class="stat"><div class="n sm" data-i18n="stat2_n">Yeraltı Şehri</div><div class="l" data-i18n="stat2_l">yürüme mesafesinde</div></div>
+    <div class="stat"><div class="n">~20<span style="font-size:.5em"> </span>dk</div><div class="l" data-i18n="stat3_l">Nevşehir merkez</div></div>
+    <div class="stat"><div class="n">~30<span style="font-size:.5em"> </span>dk</div><div class="l" data-i18n="stat4_l">Göreme · balon vadileri</div></div>
+  </div>
+</div>
+
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-text reveal">
+        <span class="eyebrow" style="display:block;margin-bottom:16px" data-i18n="story_eyebrow">Hoş geldiniz</span>
+        <p class="lead" data-i18n="story_lead">Manolya Pansiyon büyük bir otel değil — ve olmak da istemiyor.</p>
+        <p data-i18n="story_p1">Burada kalabalık lobiler, sıra beklenen resepsiyonlar yok. Sizi güler yüzle karşılayan bir ev sahibi, baştan aşağı hazırlanmış tertemiz bir oda ve Kapadokya'nın tam kalbinde sakin bir konum var. Sabah kapıdan çıkıp yeraltı şehrine yürüyor, akşam yorgun ama mutlu geri dönüyorsunuz.</p>
+        <p data-i18n="story_p2">Odalarımızı her misafirden önce özenle hazırlarız: beyaz, aydınlık ve sade. Gösterişten uzak ama tam ihtiyacınız olan — rahat bir yatak, sıcak su ve huzurlu bir gece uykusu.</p>
+        <p class="sign" data-i18n="story_sign">— Manolya Pansiyon</p>
+      </div>
+      <div class="botanical reveal" aria-hidden="true">
+        <svg viewBox="0 0 300 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="leafc" d="M150 350 C150 300 150 250 150 150" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+          <path class="leafc" d="M150 250 C120 240 96 250 84 274 C112 280 138 272 150 250Z" fill="currentColor" opacity=".4"/>
+          <path class="leafc" d="M150 210 C182 198 208 208 220 232 C190 240 164 232 150 210Z" fill="currentColor" opacity=".4"/>
+          <g fill="currentColor">
+            <ellipse cx="150" cy="86" rx="16" ry="42"/>
+            <ellipse cx="150" cy="86" rx="16" ry="42" transform="rotate(60 150 86)"/>
+            <ellipse cx="150" cy="86" rx="16" ry="42" transform="rotate(120 150 86)"/>
+            <ellipse cx="150" cy="86" rx="42" ry="16"/>
+            <ellipse cx="150" cy="86" rx="16" ry="42" transform="rotate(30 150 86)"/>
+            <ellipse cx="150" cy="86" rx="16" ry="42" transform="rotate(-30 150 86)"/>
+          </g>
+          <circle class="goldc" cx="150" cy="86" r="12" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div class="loc-visual reveal" id="locImg" data-img="underground.jpg">
+        <span class="ctag" data-i18n="concept_badge">Konsept görsel</span>
+        <span class="ph-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20V8l8-4 8 4v12"/><path d="M9 20v-6h6v6"/></svg><span data-i18n="ph_location">Kaymaklı Yeraltı Şehri</span></span>
+      </div>
+      <div class="loc-text reveal">
+        <span class="eyebrow" style="display:block;margin-bottom:16px" data-i18n="location_eyebrow">Konum</span>
+        <h2 style="font-size:clamp(2rem,4vw,3rem);margin-bottom:18px" data-i18n="location_h">Yeraltı şehri, kapınızın önünde.</h2>
+        <p data-i18n="location_p">Kaymaklı Yeraltı Şehri, Kapadokya'nın en geniş yer altı yerleşimlerinden biri — sekiz kata inen tünelleri, ahırları, kilisesi ve havalandırma bacalarıyla. Manolya Pansiyon bu tarihin hemen yanı başında; sabah turist otobüsleri gelmeden birkaç dakikalık yürüyüşle girişte olabilirsiniz.</p>
+        <div class="loc-cards">
+          <div class="loc-card"><div class="lc-h" data-i18n="loc1_h">Kaymaklı Yeraltı Şehri</div><div class="lc-s" data-i18n="loc1_s">yürüme mesafesi</div></div>
+          <div class="loc-card"><div class="lc-h" data-i18n="loc2_h">Derinkuyu Yeraltı Şehri</div><div class="lc-s" data-i18n="loc2_s">~10 km</div></div>
+          <div class="loc-card"><div class="lc-h" data-i18n="loc3_h">Nevşehir merkez</div><div class="lc-s" data-i18n="loc3_s">~20 dk</div></div>
+          <div class="loc-card"><div class="lc-h" data-i18n="loc4_h">Göreme · balon vadileri</div><div class="lc-s" data-i18n="loc4_s">~30 dk</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rooms" id="rooms">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="rooms_eyebrow">Odalar</span>
+      <h2 data-i18n="rooms_h">Sade, aydınlık, tertemiz.</h2>
+      <p data-i18n="rooms_sub">Gösteriş yok — sadece iyi dinlenmeniz için özenle hazırlanmış bir oda.</p>
+    </div>
+    <div class="room-grid">
+      <div class="room-img reveal" id="roomImg" data-img="room.jpg" data-cap="Manolya · üç yataklı oda">
+        <span class="rtag" data-i18n="room_real">Gerçek fotoğraf</span>
+        <span class="ph-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><span data-i18n="ph_room">Manolya · üç yataklı oda</span></span>
+      </div>
+      <div class="room-body reveal">
+        <h3 data-i18n="room_h">Üç yataklı ferah oda</h3>
+        <p class="rp" data-i18n="room_p">Beyaz duvarlar, bol ışık alan çift pencere ve zemine kadar inen zebra perdeler. Aile ya da arkadaş grupları için üç tek yatak, aralarında rahat bir geçiş. Sıcak, temiz ve sessiz.</p>
+        <ul class="feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="feat1">Aydınlık, ferah oda</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="feat2">Tertemiz nevresim</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="feat3">Isıtma & sıcak su</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="feat4">Sessiz sokak, huzurlu gece</span></li>
+        </ul>
+        <p class="room-note" data-i18n="room_note">Farklı yatak düzeni veya kişi sayısı için bize yazın — müsaitliğe göre birlikte ayarlarız.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="explore" id="explore">
+  <div class="wrap">
+    <div class="exp-grid">
+      <div class="exp-text reveal">
+        <span class="eyebrow" style="display:block;margin-bottom:16px" data-i18n="explore_eyebrow">Çevre</span>
+        <h2 style="font-size:clamp(2rem,4vw,3rem);margin-bottom:18px" data-i18n="explore_h">Bütün Kapadokya, buradan kısa bir yol.</h2>
+        <p data-i18n="explore_p">Kaymaklı, bölgeyi keşfetmek için sakin ve merkezî bir üs. Sabah balonlar için Göreme, gün batımı için Uçhisar kalesi, çömlek atölyeleri için Avanos, yürüyüş için Ihlara Vadisi — hepsi kısa sürüşlerle uzağınızda.</p>
+        <div class="chips">
+          <span class="chip"><b data-i18n="exp1_t">Göreme</b> <span data-i18n="exp1_s">~30 dk</span></span>
+          <span class="chip"><b data-i18n="exp2_t">Uçhisar Kalesi</b> <span data-i18n="exp2_s">~30 dk</span></span>
+          <span class="chip"><b data-i18n="exp3_t">Avanos</b> <span data-i18n="exp3_s">~40 dk</span></span>
+          <span class="chip"><b data-i18n="exp4_t">Derinkuyu</b> <span data-i18n="exp4_s">~10 km</span></span>
+          <span class="chip"><b data-i18n="exp5_t">Ihlara Vadisi</b> <span data-i18n="exp5_s">~45 dk</span></span>
+        </div>
+      </div>
+      <div class="exp-visual reveal" id="expImg" data-img="valleys.jpg">
+        <span class="ctag" data-i18n="concept_badge">Konsept görsel</span>
+        <span class="ph-label"><span data-i18n="ph_explore">Kapadokya vadileri · gün doğumu</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal" style="max-width:560px">
+      <span class="eyebrow" data-i18n="why_eyebrow">Neden Manolya</span>
+      <h2 data-i18n="why_h">Küçük ama tam yerinde.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="wc reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <h3 data-i18n="why1_h">Tam merkezde konum</h3>
+        <p data-i18n="why1_p">Yeraltı şehrinin yanı başı; bölgenin her köşesine kısa mesafe.</p>
+      </div>
+      <div class="wc reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2 4 4 8-8 4 4"/><path d="M3 20h18"/></svg>
+        <h3 data-i18n="why2_h">Tertemiz odalar</h3>
+        <p data-i18n="why2_p">Her misafirden önce baştan hazırlanan, aydınlık ve sade odalar.</p>
+      </div>
+      <div class="wc reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><path d="M9.5 11.5l1.8 1.8 3.5-3.6"/></svg>
+        <h3 data-i18n="why3_h">Sıcak, samimi karşılama</h3>
+        <p data-i18n="why3_p">Otel değil, ev; sizi tanıyan ve yolunuzu gösteren bir ev sahibi.</p>
+      </div>
+      <div class="wc reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.2l1-5.8L3.5 9.2l5.9-.9z"/></svg>
+        <h3 data-i18n="why4_h">5.0 Google puanı</h3>
+        <p data-i18n="why4_p">Bölgenin en yüksek notu; misafirlerin gönlünde iz bırakan bir konaklama.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="gallery_eyebrow">Galeri</span>
+      <h2 data-i18n="gallery_h">Manolya & Kaymaklı</h2>
+      <p data-i18n="gallery_sub">Gerçek oda fotoğrafımız ve bölgeyi anlatan konsept görseller — hangisinin ne olduğu açıkça işaretli.</p>
+    </div>
+    <div class="tiles reveal">
+      <div class="tile" data-img="room.jpg" data-cap="Manolya · üç yataklı oda"><span class="ctag" style="background:var(--leaf);border-color:transparent;color:#fbf3e8" data-i18n="room_real">Gerçek fotoğraf</span><span class="ph-label"><span data-i18n="g1">Üç yataklı oda</span></span></div>
+      <div class="tile" data-img="hero.jpg" data-cap="Kaymaklı · Kapadokya köyü akşamı"><span class="ctag" data-i18n="concept_badge">Konsept görsel</span><span class="ph-label"><span data-i18n="g2">Kapadokya köyü · akşam</span></span></div>
+      <div class="tile" data-img="underground.jpg" data-cap="Kaymaklı Yeraltı Şehri · konsept"><span class="ctag" data-i18n="concept_badge">Konsept görsel</span><span class="ph-label"><span data-i18n="g3">Yeraltı şehri</span></span></div>
+      <div class="tile" data-img="valleys.jpg" data-cap="Kapadokya vadileri · konsept"><span class="ctag" data-i18n="concept_badge">Konsept görsel</span><span class="ph-label"><span data-i18n="g4">Balon vadileri</span></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Kapat">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Önceki">&#8249;</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Sonraki">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="book_eyebrow">Rezervasyon</span>
+        <h2 style="margin-top:16px" data-i18n="book_h" data-i18n-html="1">Birkaç gece <em>ayırtın.</em></h2>
+        <p class="lede" data-i18n="book_lede">Tarihlerinizi yazın, WhatsApp'tan hızlıca dönelim. Müsaitlik, fiyat ve yol tarifi için buradayız.</p>
+        <div class="call-card">
+          <div class="cc-label" data-i18n="call_label">Doğrudan arayın / yazın</div>
+          <div class="cc-num">+90 531 724 75 43</div>
+          <div class="cc-row">
+            <a class="cc-wa" id="ccWa" href="https://wa.me/905317247543" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.6.7-.9 1.5-.8 2.4.2 1.2.9 2.3 1.9 3.3a8.5 8.5 0 0 0 3.9 2.3c1 .3 1.9.2 2.6-.3.4-.3.7-.8.8-1.2.1-.3.1-.6 0-.7z"/></svg>WhatsApp</a>
+            <a class="cc-tel" href="tel:+905317247543"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L7.6 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9z"/></svg><span data-i18n="call_now">Ara</span></a>
+          </div>
+          <p style="margin-top:14px;font-size:.86rem;color:var(--muted)" data-i18n="call_alt">Kaymaklı, Nevşehir · her mevsim açık</p>
+        </div>
+      </div>
+      <div class="form reveal">
+        <div class="field">
+          <label for="f-name" data-i18n="label_name">Adınız</label>
+          <input type="text" id="f-name" data-i18n-ph="ph_name" placeholder="Adınız ve soyadınız">
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-in" data-i18n="label_in">Giriş</label><input type="date" id="f-in"></div>
+          <div class="field"><label for="f-out" data-i18n="label_out">Çıkış</label><input type="date" id="f-out"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-count" data-i18n="label_people">Kişi</label>
+            <select id="f-count"><option data-i18n="opt_1p">1 kişi</option><option data-i18n="opt_2p">2 kişi</option><option data-i18n="opt_3p">3 kişi</option><option data-i18n="opt_4p">4+ kişi</option></select>
+          </div>
+          <div class="field"><label for="f-room" data-i18n="label_room">Oda</label>
+            <select id="f-room"><option data-i18n="opt_room1">Üç yataklı oda</option><option data-i18n="opt_room2">Çift kişilik</option><option data-i18n="opt_room3">Fark etmez / diğer</option></select>
+          </div>
+        </div>
+        <button class="submit" type="button" onclick="buildBooking()" data-i18n="btn_submit">Rezervasyon talebi oluştur</button>
+        <div class="sent-panel" id="sentPanel">
+          <div class="sp-h" data-i18n="sent_h">Mesajınız hazır</div>
+          <p style="font-size:.9rem;color:var(--muted)" data-i18n="sent_p">Aşağıdaki mesajı WhatsApp'tan gönderin veya kopyalayıp bize iletin.</p>
+          <textarea id="sentMsg" readonly></textarea>
+          <div class="sent-actions">
+            <a class="wa-send" id="waBtn" href="#" target="_blank" rel="noopener" style="display:none"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg><span data-i18n="sent_wa">WhatsApp'tan gönder</span></a>
+            <button id="copyBtn" onclick="copyMsg(false)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span data-i18n="sent_copy">Kopyala</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg class="mk" viewBox="0 0 48 48" fill="none" aria-hidden="true"><g fill="currentColor"><ellipse cx="24" cy="11" rx="4.6" ry="9"/><ellipse cx="24" cy="37" rx="4.6" ry="9"/><ellipse cx="11" cy="24" rx="9" ry="4.6"/><ellipse cx="37" cy="24" rx="9" ry="4.6"/><ellipse cx="14.6" cy="14.6" rx="7" ry="4.4" transform="rotate(-45 14.6 14.6)"/><ellipse cx="33.4" cy="14.6" rx="7" ry="4.4" transform="rotate(45 33.4 14.6)"/></g><circle class="co" cx="24" cy="24" r="4" fill="currentColor"/></svg>
+          Manolya Pansiyon
+        </div>
+        <p class="fa" data-i18n="foot_about">Kaymaklı Yeraltı Şehri'nin yanı başında, tertemiz ve aydınlık odalarıyla küçük bir pansiyon. Kapadokya'yı gezmek için sakin ve merkezî bir üs.</p>
+      </div>
+      <div>
+        <h4 data-i18n="foot_explore">Keşfet</h4>
+        <ul>
+          <li><a href="#story" data-i18n="nav_story">Hikâye</a></li>
+          <li><a href="#location" data-i18n="nav_location">Konum</a></li>
+          <li><a href="#rooms" data-i18n="nav_rooms">Odalar</a></li>
+          <li><a href="#book" data-i18n="nav_book">Rezervasyon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="foot_contact">İletişim</h4>
+        <ul>
+          <li data-i18n="foot_loc">Kaymaklı, Nevşehir</li>
+          <li><a href="tel:+905317247543">+90 531 724 75 43</a></li>
+          <li><a href="https://wa.me/905317247543" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li data-i18n="foot_hours">Her mevsim · sıcak karşılama</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot_rights">© 2026 Manolya Pansiyon — Tüm hakları saklıdır.</span>
+      <span class="demo-badge" data-i18n="foot_demo">Örnek / Demo Tasarım</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== GÖMÜLÜ SMOOTH SCROLL (Lenis tarzı, CDN'siz) ====================
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ setupPlainAnchors(); return; }
+  const LERP=0.085, WHEEL_MULT=0.9;
+  let target=window.scrollY, current=window.scrollY, running=false;
+  function clampTarget(){ const max=document.documentElement.scrollHeight-window.innerHeight; if(target<0)target=0; if(target>max)target=max; }
+  function loop(){ current+=(target-current)*LERP; if(Math.abs(target-current)<0.4){ current=target; window.scrollTo(0,current); running=false; return; } window.scrollTo(0,current); requestAnimationFrame(loop); }
+  function start(){ if(!running){ running=true; requestAnimationFrame(loop); } }
+  function isPrevented(el){ while(el&&el!==document.body){ const t=el.tagName; if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT'||t==='BUTTON') return true; if(el.hasAttribute&&el.hasAttribute('data-lenis-prevent')) return true; el=el.parentElement; } return false; }
+  window.addEventListener('wheel', function(e){ if(isPrevented(e.target)) return; e.preventDefault(); if(!running) current=window.scrollY; target=(running?target:window.scrollY)+e.deltaY*WHEEL_MULT; clampTarget(); start(); }, {passive:false});
+  window.addEventListener('scroll', function(){ if(!running){ target=window.scrollY; current=window.scrollY; } }, {passive:true});
+  window.addEventListener('resize', clampTarget);
+  function smoothTo(el){ const y=el.getBoundingClientRect().top+window.scrollY-64; target=y; clampTarget(); current=window.scrollY; start(); }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click', e=>{ const id=a.getAttribute('href'); if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); smoothTo(t); } } }); });
+  function setupPlainAnchors(){ document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click', e=>{ const id=a.getAttribute('href'); if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } } }); }); }
+})();
+</script>
+<script>
+// ==================== i18n ====================
+const I18N = {
+  tr:{
+    meta_title:"Manolya Pansiyon — Kaymaklı, Kapadokya · Yeraltı Şehrinin Yanında",
+    meta_desc:"Kaymaklı Yeraltı Şehri'nin yanı başında, tertemiz ve aydınlık odalarıyla küçük bir pansiyon. Kapadokya'yı gezmek için sakin ve merkezî bir üs.",
+    nav_story:"Hikâye",nav_location:"Konum",nav_rooms:"Odalar",nav_explore:"Keşfet",nav_gallery:"Galeri",nav_book:"Rezervasyon",
+    theme_aria:"Aydınlık / karanlık tema",concept_badge:"Konsept görsel",
+    hero_eyebrow:"Kaymaklı · Kapadokya",
+    hero_title:'Yeraltı şehrinin yanında,<br><em>sıcacık bir ev.</em>',
+    hero_lede:"Kaymaklı'nın sessiz sokaklarında, tertemiz ve aydınlık odalarıyla sizi bekleyen küçük bir pansiyon. Kapadokya'yı gezmek için tam ortada; akşam dönünce huzurla dinlenmek için sakin.",
+    hero_cta1:"Müsaitlik sor",hero_cta2:"Odaları gör",scroll_hint:"Aşağı in",
+    stat1_l:"Google misafir puanı",stat2_n:"Yeraltı Şehri",stat2_l:"yürüme mesafesinde",stat3_l:"Nevşehir merkez",stat4_l:"Göreme · balon vadileri",
+    story_eyebrow:"Hoş geldiniz",
+    story_lead:"Manolya Pansiyon büyük bir otel değil — ve olmak da istemiyor.",
+    story_p1:"Burada kalabalık lobiler, sıra beklenen resepsiyonlar yok. Sizi güler yüzle karşılayan bir ev sahibi, baştan aşağı hazırlanmış tertemiz bir oda ve Kapadokya'nın tam kalbinde sakin bir konum var. Sabah kapıdan çıkıp yeraltı şehrine yürüyor, akşam yorgun ama mutlu geri dönüyorsunuz.",
+    story_p2:"Odalarımızı her misafirden önce özenle hazırlarız: beyaz, aydınlık ve sade. Gösterişten uzak ama tam ihtiyacınız olan — rahat bir yatak, sıcak su ve huzurlu bir gece uykusu.",
+    story_sign:"— Manolya Pansiyon",
+    location_eyebrow:"Konum",location_h:"Yeraltı şehri, kapınızın önünde.",
+    location_p:"Kaymaklı Yeraltı Şehri, Kapadokya'nın en geniş yer altı yerleşimlerinden biri — sekiz kata inen tünelleri, ahırları, kilisesi ve havalandırma bacalarıyla. Manolya Pansiyon bu tarihin hemen yanı başında; sabah turist otobüsleri gelmeden birkaç dakikalık yürüyüşle girişte olabilirsiniz.",
+    ph_location:"Kaymaklı Yeraltı Şehri",
+    loc1_h:"Kaymaklı Yeraltı Şehri",loc1_s:"yürüme mesafesi",loc2_h:"Derinkuyu Yeraltı Şehri",loc2_s:"~10 km",loc3_h:"Nevşehir merkez",loc3_s:"~20 dk",loc4_h:"Göreme · balon vadileri",loc4_s:"~30 dk",
+    rooms_eyebrow:"Odalar",rooms_h:"Sade, aydınlık, tertemiz.",rooms_sub:"Gösteriş yok — sadece iyi dinlenmeniz için özenle hazırlanmış bir oda.",
+    room_real:"Gerçek fotoğraf",ph_room:"Manolya · üç yataklı oda",
+    room_h:"Üç yataklı ferah oda",
+    room_p:"Beyaz duvarlar, bol ışık alan çift pencere ve zemine kadar inen zebra perdeler. Aile ya da arkadaş grupları için üç tek yatak, aralarında rahat bir geçiş. Sıcak, temiz ve sessiz.",
+    feat1:"Aydınlık, ferah oda",feat2:"Tertemiz nevresim",feat3:"Isıtma & sıcak su",feat4:"Sessiz sokak, huzurlu gece",
+    room_note:"Farklı yatak düzeni veya kişi sayısı için bize yazın — müsaitliğe göre birlikte ayarlarız.",
+    explore_eyebrow:"Çevre",explore_h:"Bütün Kapadokya, buradan kısa bir yol.",
+    explore_p:"Kaymaklı, bölgeyi keşfetmek için sakin ve merkezî bir üs. Sabah balonlar için Göreme, gün batımı için Uçhisar kalesi, çömlek atölyeleri için Avanos, yürüyüş için Ihlara Vadisi — hepsi kısa sürüşlerle uzağınızda.",
+    ph_explore:"Kapadokya vadileri · gün doğumu",
+    exp1_t:"Göreme",exp1_s:"~30 dk",exp2_t:"Uçhisar Kalesi",exp2_s:"~30 dk",exp3_t:"Avanos",exp3_s:"~40 dk",exp4_t:"Derinkuyu",exp4_s:"~10 km",exp5_t:"Ihlara Vadisi",exp5_s:"~45 dk",
+    why_eyebrow:"Neden Manolya",why_h:"Küçük ama tam yerinde.",
+    why1_h:"Tam merkezde konum",why1_p:"Yeraltı şehrinin yanı başı; bölgenin her köşesine kısa mesafe.",
+    why2_h:"Tertemiz odalar",why2_p:"Her misafirden önce baştan hazırlanan, aydınlık ve sade odalar.",
+    why3_h:"Sıcak, samimi karşılama",why3_p:"Otel değil, ev; sizi tanıyan ve yolunuzu gösteren bir ev sahibi.",
+    why4_h:"5.0 Google puanı",why4_p:"Bölgenin en yüksek notu; misafirlerin gönlünde iz bırakan bir konaklama.",
+    gallery_eyebrow:"Galeri",gallery_h:"Manolya & Kaymaklı",gallery_sub:"Gerçek oda fotoğrafımız ve bölgeyi anlatan konsept görseller — hangisinin ne olduğu açıkça işaretli.",
+    g1:"Üç yataklı oda",g2:"Kapadokya köyü · akşam",g3:"Yeraltı şehri",g4:"Balon vadileri",
+    book_eyebrow:"Rezervasyon",book_h:'Birkaç gece <em>ayırtın.</em>',
+    book_lede:"Tarihlerinizi yazın, WhatsApp'tan hızlıca dönelim. Müsaitlik, fiyat ve yol tarifi için buradayız.",
+    call_label:"Doğrudan arayın / yazın",call_now:"Ara",call_alt:"Kaymaklı, Nevşehir · her mevsim açık",
+    label_name:"Adınız",ph_name:"Adınız ve soyadınız",label_in:"Giriş",label_out:"Çıkış",label_people:"Kişi",
+    opt_1p:"1 kişi",opt_2p:"2 kişi",opt_3p:"3 kişi",opt_4p:"4+ kişi",
+    label_room:"Oda",opt_room1:"Üç yataklı oda",opt_room2:"Çift kişilik",opt_room3:"Fark etmez / diğer",
+    btn_submit:"Rezervasyon talebi oluştur",
+    sent_h:"Mesajınız hazır",sent_p:"Aşağıdaki mesajı WhatsApp'tan gönderin veya kopyalayıp bize iletin.",sent_wa:"WhatsApp'tan gönder",sent_copy:"Kopyala",sent_copied:"Kopyalandı ✓",
+    foot_about:"Kaymaklı Yeraltı Şehri'nin yanı başında, tertemiz ve aydınlık odalarıyla küçük bir pansiyon. Kapadokya'yı gezmek için sakin ve merkezî bir üs.",
+    foot_explore:"Keşfet",foot_contact:"İletişim",foot_loc:"Kaymaklı, Nevşehir",foot_hours:"Her mevsim · sıcak karşılama",
+    foot_rights:"© 2026 Manolya Pansiyon — Tüm hakları saklıdır.",foot_demo:"Örnek / Demo Tasarım",
+    wa_msg:"Merhaba, Manolya Pansiyon için rezervasyon talebim var:",wa_name:"Ad",wa_in:"Giriş",wa_out:"Çıkış",wa_people:"Kişi",wa_room:"Oda",
+    alert_fill:"Lütfen adınızı ve giriş–çıkış tarihlerini girin."
+  },
+  en:{
+    meta_title:"Manolya Pansiyon — Kaymaklı, Cappadocia · Beside the Underground City",
+    meta_desc:"A small guesthouse right beside the Kaymaklı Underground City, with spotless, bright rooms. A calm, central base for exploring Cappadocia.",
+    nav_story:"Story",nav_location:"Location",nav_rooms:"Rooms",nav_explore:"Explore",nav_gallery:"Gallery",nav_book:"Book",
+    theme_aria:"Light / dark theme",concept_badge:"Concept image",
+    hero_eyebrow:"Kaymaklı · Cappadocia",
+    hero_title:'Beside the underground city,<br><em>a warm little home.</em>',
+    hero_lede:"On the quiet streets of Kaymaklı, a small guesthouse waits with spotless, bright rooms. Right in the heart of Cappadocia to explore by day; calm enough to truly rest each evening.",
+    hero_cta1:"Ask availability",hero_cta2:"See the rooms",scroll_hint:"Scroll down",
+    stat1_l:"Google guest rating",stat2_n:"Underground City",stat2_l:"within walking distance",stat3_l:"Nevşehir centre",stat4_l:"Göreme · balloon valleys",
+    story_eyebrow:"Welcome",
+    story_lead:"Manolya Pansiyon isn't a big hotel — and it doesn't want to be.",
+    story_p1:"No crowded lobbies, no queues at reception. Just a host who greets you warmly, a spotless room prepared from top to bottom, and a calm spot in the very heart of Cappadocia. In the morning you step out and walk to the underground city; in the evening you come back tired but happy.",
+    story_p2:"We prepare each room carefully before every guest: white, bright and simple. Nothing showy, but exactly what you need — a comfortable bed, hot water and a peaceful night's sleep.",
+    story_sign:"— Manolya Pansiyon",
+    location_eyebrow:"Location",location_h:"The underground city, right at your door.",
+    location_p:"The Kaymaklı Underground City is one of Cappadocia's largest subterranean settlements — with tunnels descending eight levels, stables, a church and ventilation shafts. Manolya Pansiyon sits right beside this history; you can be at the entrance in a few minutes' walk, before the tour buses arrive.",
+    ph_location:"Kaymaklı Underground City",
+    loc1_h:"Kaymaklı Underground City",loc1_s:"walking distance",loc2_h:"Derinkuyu Underground City",loc2_s:"~10 km",loc3_h:"Nevşehir centre",loc3_s:"~20 min",loc4_h:"Göreme · balloon valleys",loc4_s:"~30 min",
+    rooms_eyebrow:"Rooms",rooms_h:"Simple, bright, spotless.",rooms_sub:"Nothing showy — just a room prepared with care so you rest well.",
+    room_real:"Real photo",ph_room:"Manolya · triple room",
+    room_h:"Bright triple room",
+    room_p:"White walls, twin windows full of light and floor-length zebra blinds. Three single beds for a family or group of friends, with easy space between them. Warm, clean and quiet.",
+    feat1:"Bright, spacious room",feat2:"Fresh, clean linens",feat3:"Heating & hot water",feat4:"Quiet street, restful night",
+    room_note:"For a different bed layout or number of guests, just write to us — we'll arrange it together based on availability.",
+    explore_eyebrow:"Around",explore_h:"All of Cappadocia, a short drive from here.",
+    explore_p:"Kaymaklı is a calm, central base for exploring the region. Göreme for the morning balloons, Uçhisar castle for sunset, Avanos for the pottery workshops, the Ihlara Valley for a walk — all a short drive away.",
+    ph_explore:"Cappadocia valleys · sunrise",
+    exp1_t:"Göreme",exp1_s:"~30 min",exp2_t:"Uçhisar Castle",exp2_s:"~30 min",exp3_t:"Avanos",exp3_s:"~40 min",exp4_t:"Derinkuyu",exp4_s:"~10 km",exp5_t:"Ihlara Valley",exp5_s:"~45 min",
+    why_eyebrow:"Why Manolya",why_h:"Small, but exactly in the right place.",
+    why1_h:"Central location",why1_p:"Right beside the underground city; a short hop to every corner of the region.",
+    why2_h:"Spotless rooms",why2_p:"Bright, simple rooms prepared from scratch before every guest.",
+    why3_h:"A warm welcome",why3_p:"Not a hotel but a home; a host who knows you and points the way.",
+    why4_h:"5.0 Google rating",why4_p:"The highest score in the area; a stay that stays with its guests.",
+    gallery_eyebrow:"Gallery",gallery_h:"Manolya & Kaymaklı",gallery_sub:"Our real room photo and concept images of the region — each one clearly labelled.",
+    g1:"Triple room",g2:"Cappadocia village · dusk",g3:"Underground city",g4:"Balloon valleys",
+    book_eyebrow:"Booking",book_h:'Reserve a <em>few nights.</em>',
+    book_lede:"Send us your dates and we'll reply quickly on WhatsApp. We're here for availability, prices and directions.",
+    call_label:"Call or message directly",call_now:"Call",call_alt:"Kaymaklı, Nevşehir · open all seasons",
+    label_name:"Your name",ph_name:"Your full name",label_in:"Check-in",label_out:"Check-out",label_people:"Guests",
+    opt_1p:"1 guest",opt_2p:"2 guests",opt_3p:"3 guests",opt_4p:"4+ guests",
+    label_room:"Room",opt_room1:"Triple room",opt_room2:"Double",opt_room3:"No preference / other",
+    btn_submit:"Create booking request",
+    sent_h:"Your message is ready",sent_p:"Send the message below on WhatsApp, or copy it and pass it to us.",sent_wa:"Send on WhatsApp",sent_copy:"Copy",sent_copied:"Copied ✓",
+    foot_about:"A small guesthouse right beside the Kaymaklı Underground City, with spotless, bright rooms. A calm, central base for exploring Cappadocia.",
+    foot_explore:"Explore",foot_contact:"Contact",foot_loc:"Kaymaklı, Nevşehir",foot_hours:"All seasons · a warm welcome",
+    foot_rights:"© 2026 Manolya Pansiyon — All rights reserved.",foot_demo:"Sample / Demo Design",
+    wa_msg:"Hello, I'd like to request a booking at Manolya Pansiyon:",wa_name:"Name",wa_in:"Check-in",wa_out:"Check-out",wa_people:"Guests",wa_room:"Room",
+    alert_fill:"Please enter your name and check-in / check-out dates."
+  },
+  es:{
+    meta_title:"Manolya Pansiyon — Kaymaklı, Capadocia · Junto a la Ciudad Subterránea",
+    meta_desc:"Una pequeña pensión justo al lado de la Ciudad Subterránea de Kaymaklı, con habitaciones impecables y luminosas. Una base tranquila y central para descubrir Capadocia.",
+    nav_story:"Historia",nav_location:"Ubicación",nav_rooms:"Habitaciones",nav_explore:"Descubrir",nav_gallery:"Galería",nav_book:"Reservar",
+    theme_aria:"Tema claro / oscuro",concept_badge:"Imagen conceptual",
+    hero_eyebrow:"Kaymaklı · Capadocia",
+    hero_title:'Junto a la ciudad subterránea,<br><em>un hogar cálido.</em>',
+    hero_lede:"En las calles tranquilas de Kaymaklı, una pequeña pensión te espera con habitaciones impecables y luminosas. En pleno corazón de Capadocia para explorar de día; lo bastante serena para descansar de verdad cada noche.",
+    hero_cta1:"Consultar disponibilidad",hero_cta2:"Ver las habitaciones",scroll_hint:"Baja",
+    stat1_l:"Valoración Google",stat2_n:"Ciudad Subterránea",stat2_l:"a pie",stat3_l:"Centro de Nevşehir",stat4_l:"Göreme · valles de globos",
+    story_eyebrow:"Bienvenidos",
+    story_lead:"Manolya Pansiyon no es un gran hotel — y no quiere serlo.",
+    story_p1:"Sin vestíbulos abarrotados, sin colas en recepción. Solo un anfitrión que te recibe con calidez, una habitación impecable preparada de arriba abajo y un rincón sereno en el corazón mismo de Capadocia. Por la mañana sales y caminas a la ciudad subterránea; por la tarde vuelves cansado pero feliz.",
+    story_p2:"Preparamos cada habitación con esmero antes de cada huésped: blanca, luminosa y sencilla. Sin lujos innecesarios, pero justo lo que necesitas — una cama cómoda, agua caliente y una noche de sueño tranquilo.",
+    story_sign:"— Manolya Pansiyon",
+    location_eyebrow:"Ubicación",location_h:"La ciudad subterránea, en tu puerta.",
+    location_p:"La Ciudad Subterránea de Kaymaklı es uno de los mayores asentamientos subterráneos de Capadocia — con túneles que descienden ocho niveles, establos, una iglesia y pozos de ventilación. Manolya Pansiyon está justo al lado de esta historia; puedes llegar a la entrada en unos minutos a pie, antes de que lleguen los autobuses de turistas.",
+    ph_location:"Ciudad Subterránea de Kaymaklı",
+    loc1_h:"Ciudad Subterránea de Kaymaklı",loc1_s:"a pie",loc2_h:"Ciudad Subterránea de Derinkuyu",loc2_s:"~10 km",loc3_h:"Centro de Nevşehir",loc3_s:"~20 min",loc4_h:"Göreme · valles de globos",loc4_s:"~30 min",
+    rooms_eyebrow:"Habitaciones",rooms_h:"Sencilla, luminosa, impecable.",rooms_sub:"Sin ostentación — solo una habitación preparada con cuidado para que descanses bien.",
+    room_real:"Foto real",ph_room:"Manolya · habitación triple",
+    room_h:"Habitación triple luminosa",
+    room_p:"Paredes blancas, dos ventanas llenas de luz y estores cebra hasta el suelo. Tres camas individuales para una familia o un grupo de amigos, con espacio cómodo entre ellas. Cálida, limpia y silenciosa.",
+    feat1:"Habitación luminosa y amplia",feat2:"Ropa de cama impecable",feat3:"Calefacción y agua caliente",feat4:"Calle tranquila, noche serena",
+    room_note:"Para otra disposición de camas o número de huéspedes, escríbenos — lo organizamos juntos según disponibilidad.",
+    explore_eyebrow:"Alrededores",explore_h:"Toda Capadocia, a un corto trayecto.",
+    explore_p:"Kaymaklı es una base tranquila y central para descubrir la región. Göreme para los globos de la mañana, el castillo de Uçhisar para el atardecer, Avanos para los talleres de cerámica, el valle de Ihlara para caminar — todo a poca distancia en coche.",
+    ph_explore:"Valles de Capadocia · amanecer",
+    exp1_t:"Göreme",exp1_s:"~30 min",exp2_t:"Castillo de Uçhisar",exp2_s:"~30 min",exp3_t:"Avanos",exp3_s:"~40 min",exp4_t:"Derinkuyu",exp4_s:"~10 km",exp5_t:"Valle de Ihlara",exp5_s:"~45 min",
+    why_eyebrow:"Por qué Manolya",why_h:"Pequeña, pero justo en el lugar exacto.",
+    why1_h:"Ubicación céntrica",why1_p:"Junto a la ciudad subterránea; a un paso de cada rincón de la región.",
+    why2_h:"Habitaciones impecables",why2_p:"Habitaciones luminosas y sencillas, preparadas desde cero antes de cada huésped.",
+    why3_h:"Una acogida cálida",why3_p:"No un hotel sino un hogar; un anfitrión que te conoce y te muestra el camino.",
+    why4_h:"Valoración Google 5.0",why4_p:"La nota más alta de la zona; una estancia que deja huella en sus huéspedes.",
+    gallery_eyebrow:"Galería",gallery_h:"Manolya & Kaymaklı",gallery_sub:"Nuestra foto real de la habitación e imágenes conceptuales de la región — cada una claramente identificada.",
+    g1:"Habitación triple",g2:"Pueblo de Capadocia · atardecer",g3:"Ciudad subterránea",g4:"Valles de globos",
+    book_eyebrow:"Reserva",book_h:'Reserva <em>unas noches.</em>',
+    book_lede:"Envíanos tus fechas y te responderemos pronto por WhatsApp. Estamos aquí para disponibilidad, precios y cómo llegar.",
+    call_label:"Llama o escribe directamente",call_now:"Llamar",call_alt:"Kaymaklı, Nevşehir · abierto todo el año",
+    label_name:"Tu nombre",ph_name:"Tu nombre completo",label_in:"Entrada",label_out:"Salida",label_people:"Personas",
+    opt_1p:"1 persona",opt_2p:"2 personas",opt_3p:"3 personas",opt_4p:"4+ personas",
+    label_room:"Habitación",opt_room1:"Habitación triple",opt_room2:"Doble",opt_room3:"Indiferente / otra",
+    btn_submit:"Crear solicitud de reserva",
+    sent_h:"Tu mensaje está listo",sent_p:"Envía el mensaje de abajo por WhatsApp, o cópialo y pásanoslo.",sent_wa:"Enviar por WhatsApp",sent_copy:"Copiar",sent_copied:"Copiado ✓",
+    foot_about:"Una pequeña pensión justo al lado de la Ciudad Subterránea de Kaymaklı, con habitaciones impecables y luminosas. Una base tranquila y central para descubrir Capadocia.",
+    foot_explore:"Descubrir",foot_contact:"Contacto",foot_loc:"Kaymaklı, Nevşehir",foot_hours:"Todo el año · una acogida cálida",
+    foot_rights:"© 2026 Manolya Pansiyon — Todos los derechos reservados.",foot_demo:"Diseño de muestra / Demo",
+    wa_msg:"Hola, quisiera solicitar una reserva en Manolya Pansiyon:",wa_name:"Nombre",wa_in:"Entrada",wa_out:"Salida",wa_people:"Personas",wa_room:"Habitación",
+    alert_fill:"Introduce tu nombre y las fechas de entrada y salida."
+  },
+  "zh-CN":{
+    meta_title:"Manolya Pansiyon — 卡帕多奇亚·卡伊马克勒 · 地下城旁的小旅馆",
+    meta_desc:"紧邻卡伊马克勒地下城的一家小型家庭旅馆，房间洁净明亮。探索卡帕多奇亚的宁静而中心的落脚点。",
+    nav_story:"故事",nav_location:"位置",nav_rooms:"房间",nav_explore:"周边",nav_gallery:"相册",nav_book:"预订",
+    theme_aria:"浅色 / 深色主题",concept_badge:"概念图",
+    hero_eyebrow:"卡伊马克勒 · 卡帕多奇亚",
+    hero_title:'就在地下城旁，<br><em>一个温暖的家。</em>',
+    hero_lede:"在卡伊马克勒安静的街巷里，一家小旅馆以洁净明亮的房间等待您。地处卡帕多奇亚中心，白天出游便利；夜晚归来，宁静得足以让您真正休息。",
+    hero_cta1:"咨询空房",hero_cta2:"查看房间",scroll_hint:"向下滑",
+    stat1_l:"谷歌住客评分",stat2_n:"地下城",stat2_l:"步行可达",stat3_l:"内夫谢希尔市中心",stat4_l:"格雷梅 · 热气球山谷",
+    story_eyebrow:"欢迎光临",
+    story_lead:"Manolya Pansiyon 不是一家大酒店——它也无意成为大酒店。",
+    story_p1:"没有拥挤的大堂，没有排队的前台。只有热情迎接您的主人、一间从上到下精心整理的洁净房间，以及位于卡帕多奇亚心脏地带的宁静角落。清晨出门步行即到地下城，傍晚带着疲惫却满足的心情归来。",
+    story_p2:"每位客人到来前，我们都会用心准备房间：洁白、明亮、简约。没有浮华，却恰是您所需要的——一张舒适的床、热水，以及一夜安眠。",
+    story_sign:"— Manolya Pansiyon",
+    location_eyebrow:"位置",location_h:"地下城，就在您门前。",
+    location_p:"卡伊马克勒地下城是卡帕多奇亚最大的地下聚落之一——隧道深达八层，设有马厩、教堂和通风井。Manolya Pansiyon 就坐落在这段历史的旁边；在旅游大巴抵达之前，您步行几分钟即可到达入口。",
+    ph_location:"卡伊马克勒地下城",
+    loc1_h:"卡伊马克勒地下城",loc1_s:"步行可达",loc2_h:"代林库尤地下城",loc2_s:"~10 公里",loc3_h:"内夫谢希尔市中心",loc3_s:"~20 分钟",loc4_h:"格雷梅 · 热气球山谷",loc4_s:"~30 分钟",
+    rooms_eyebrow:"房间",rooms_h:"简约、明亮、洁净。",rooms_sub:"没有花哨——只有为您好好休息而用心准备的房间。",
+    room_real:"真实照片",ph_room:"Manolya · 三床房",
+    room_h:"明亮三床房",
+    room_p:"洁白的墙面、采光充足的双窗，以及垂至地面的斑马帘。三张单人床，适合一家人或朋友结伴，床间留有舒适的通道。温暖、干净、安静。",
+    feat1:"明亮宽敞的房间",feat2:"洁净的床品",feat3:"暖气与热水",feat4:"安静街道，安眠一夜",
+    room_note:"若需不同的床位安排或入住人数，请联系我们——我们会根据空房情况为您一同安排。",
+    explore_eyebrow:"周边",explore_h:"整个卡帕多奇亚，从这里一程即到。",
+    explore_p:"卡伊马克勒是探索本地区宁静而中心的落脚点。清晨看热气球去格雷梅，看日落去乌奇希萨尔城堡，看陶艺工坊去阿瓦诺斯，徒步去伊赫拉拉峡谷——都只需一小段车程。",
+    ph_explore:"卡帕多奇亚山谷 · 日出",
+    exp1_t:"格雷梅",exp1_s:"~30 分钟",exp2_t:"乌奇希萨尔城堡",exp2_s:"~30 分钟",exp3_t:"阿瓦诺斯",exp3_s:"~40 分钟",exp4_t:"代林库尤",exp4_s:"~10 公里",exp5_t:"伊赫拉拉峡谷",exp5_s:"~45 分钟",
+    why_eyebrow:"为何选择 Manolya",why_h:"虽小，却正好在对的位置。",
+    why1_h:"中心位置",why1_p:"紧邻地下城；到本地区各处都只需一小段路程。",
+    why2_h:"洁净的房间",why2_p:"每位客人到来前从头整理的明亮简约房间。",
+    why3_h:"温暖亲切的迎接",why3_p:"不是酒店，而是家；一位认得您、为您指路的主人。",
+    why4_h:"谷歌 5.0 评分",why4_p:"本地区最高分；一段让住客念念不忘的停留。",
+    gallery_eyebrow:"相册",gallery_h:"Manolya 与卡伊马克勒",gallery_sub:"我们的真实房间照片，以及描绘本地区的概念图——每张都清楚标注。",
+    g1:"三床房",g2:"卡帕多奇亚村落 · 黄昏",g3:"地下城",g4:"热气球山谷",
+    book_eyebrow:"预订",book_h:'预订 <em>几晚。</em>',
+    book_lede:"发送您的日期，我们会尽快通过 WhatsApp 回复。空房、价格与路线，我们都在。",
+    call_label:"直接致电 / 留言",call_now:"致电",call_alt:"卡伊马克勒，内夫谢希尔 · 全年营业",
+    label_name:"您的姓名",ph_name:"您的全名",label_in:"入住",label_out:"退房",label_people:"人数",
+    opt_1p:"1 人",opt_2p:"2 人",opt_3p:"3 人",opt_4p:"4 人以上",
+    label_room:"房间",opt_room1:"三床房",opt_room2:"双人房",opt_room3:"无所谓 / 其他",
+    btn_submit:"生成预订请求",
+    sent_h:"您的消息已就绪",sent_p:"通过 WhatsApp 发送以下消息，或复制后发给我们。",sent_wa:"通过 WhatsApp 发送",sent_copy:"复制",sent_copied:"已复制 ✓",
+    foot_about:"紧邻卡伊马克勒地下城的一家小型家庭旅馆，房间洁净明亮。探索卡帕多奇亚的宁静而中心的落脚点。",
+    foot_explore:"周边",foot_contact:"联系",foot_loc:"卡伊马克勒，内夫谢希尔",foot_hours:"全年 · 温暖的迎接",
+    foot_rights:"© 2026 Manolya Pansiyon — 版权所有。",foot_demo:"示例 / 演示设计",
+    wa_msg:"您好，我想预订 Manolya Pansiyon：",wa_name:"姓名",wa_in:"入住",wa_out:"退房",wa_people:"人数",wa_room:"房间",
+    alert_fill:"请填写您的姓名和入住 / 退房日期。"
+  },
+  ko:{
+    meta_title:"Manolya Pansiyon — 카이마클르, 카파도키아 · 지하도시 옆",
+    meta_desc:"카이마클르 지하도시 바로 옆, 깔끔하고 밝은 객실의 작은 게스트하우스. 카파도키아를 둘러보기 좋은 조용하고 중심적인 거점.",
+    nav_story:"이야기",nav_location:"위치",nav_rooms:"객실",nav_explore:"주변",nav_gallery:"갤러리",nav_book:"예약",
+    theme_aria:"라이트 / 다크 테마",concept_badge:"컨셉 이미지",
+    hero_eyebrow:"카이마클르 · 카파도키아",
+    hero_title:'지하도시 옆,<br><em>따뜻한 작은 집.</em>',
+    hero_lede:"카이마클르의 고요한 골목에서, 깔끔하고 밝은 객실로 여러분을 기다리는 작은 게스트하우스. 낮에는 카파도키아 한복판에서 둘러보고, 저녁에는 진짜로 쉴 수 있을 만큼 조용합니다.",
+    hero_cta1:"예약 가능 문의",hero_cta2:"객실 보기",scroll_hint:"아래로",
+    stat1_l:"구글 이용객 평점",stat2_n:"지하도시",stat2_l:"도보 거리",stat3_l:"네브셰히르 중심",stat4_l:"괴레메 · 열기구 계곡",
+    story_eyebrow:"환영합니다",
+    story_lead:"Manolya Pansiyon은 큰 호텔이 아닙니다 — 그럴 생각도 없습니다.",
+    story_p1:"붐비는 로비도, 줄 서는 프런트도 없습니다. 따뜻하게 맞아주는 주인, 구석구석 정성껏 준비한 깨끗한 객실, 그리고 카파도키아 한가운데의 고요한 자리가 있을 뿐입니다. 아침에 문을 나서 지하도시까지 걸어가고, 저녁이면 지치지만 행복하게 돌아옵니다.",
+    story_p2:"손님마다 오기 전에 객실을 정성껏 준비합니다: 하얗고, 밝고, 단순하게. 화려하지는 않지만 꼭 필요한 것 — 편안한 침대, 온수, 그리고 평온한 밤잠이 있습니다.",
+    story_sign:"— Manolya Pansiyon",
+    location_eyebrow:"위치",location_h:"지하도시가 바로 문 앞에.",
+    location_p:"카이마클르 지하도시는 카파도키아에서 가장 넓은 지하 정착지 중 하나로 — 여덟 층까지 내려가는 터널, 마구간, 교회, 환기 통로를 갖추고 있습니다. Manolya Pansiyon은 이 역사의 바로 옆에 있어, 관광버스가 도착하기 전 몇 분만 걸으면 입구에 닿을 수 있습니다.",
+    ph_location:"카이마클르 지하도시",
+    loc1_h:"카이마클르 지하도시",loc1_s:"도보 거리",loc2_h:"데린쿠유 지하도시",loc2_s:"~10 km",loc3_h:"네브셰히르 중심",loc3_s:"~20분",loc4_h:"괴레메 · 열기구 계곡",loc4_s:"~30분",
+    rooms_eyebrow:"객실",rooms_h:"단순하고, 밝고, 깨끗하게.",rooms_sub:"화려함은 없이 — 잘 쉬시도록 정성껏 준비한 객실만 있습니다.",
+    room_real:"실제 사진",ph_room:"Manolya · 트리플 룸",
+    room_h:"밝은 트리플 룸",
+    room_p:"하얀 벽, 빛이 가득 드는 두 개의 창, 바닥까지 내려오는 지브라 블라인드. 가족이나 친구 일행을 위한 싱글 침대 세 개, 그 사이로 여유로운 동선. 따뜻하고 깨끗하고 조용합니다.",
+    feat1:"밝고 넓은 객실",feat2:"깨끗한 침구",feat3:"난방 & 온수",feat4:"조용한 골목, 평온한 밤",
+    room_note:"다른 침대 배치나 인원이 필요하시면 연락 주세요 — 예약 상황에 맞춰 함께 조정해 드립니다.",
+    explore_eyebrow:"주변",explore_h:"카파도키아 전체가, 여기서 잠깐이면.",
+    explore_p:"카이마클르는 이 지역을 둘러보기 좋은 조용하고 중심적인 거점입니다. 아침 열기구는 괴레메, 일몰은 우치히사르 성, 도예 공방은 아바노스, 트레킹은 이흘라라 계곡 — 모두 짧은 드라이브 거리입니다.",
+    ph_explore:"카파도키아 계곡 · 일출",
+    exp1_t:"괴레메",exp1_s:"~30분",exp2_t:"우치히사르 성",exp2_s:"~30분",exp3_t:"아바노스",exp3_s:"~40분",exp4_t:"데린쿠유",exp4_s:"~10 km",exp5_t:"이흘라라 계곡",exp5_s:"~45분",
+    why_eyebrow:"왜 Manolya인가",why_h:"작지만, 딱 알맞은 자리에.",
+    why1_h:"중심적인 위치",why1_p:"지하도시 바로 옆; 지역 구석구석까지 짧은 거리.",
+    why2_h:"깨끗한 객실",why2_p:"손님마다 처음부터 준비하는 밝고 단순한 객실.",
+    why3_h:"따뜻한 환대",why3_p:"호텔이 아니라 집; 당신을 알아보고 길을 알려주는 주인.",
+    why4_h:"구글 5.0 평점",why4_p:"이 지역 최고 점수; 손님의 마음에 남는 머무름.",
+    gallery_eyebrow:"갤러리",gallery_h:"Manolya & 카이마클르",gallery_sub:"실제 객실 사진과 지역을 담은 컨셉 이미지 — 어느 것이 무엇인지 분명히 표시되어 있습니다.",
+    g1:"트리플 룸",g2:"카파도키아 마을 · 해질녘",g3:"지하도시",g4:"열기구 계곡",
+    book_eyebrow:"예약",book_h:'<em>며칠 밤</em>을 예약하세요.',
+    book_lede:"날짜를 보내주시면 WhatsApp으로 빠르게 답장드립니다. 예약 가능 여부, 요금, 오시는 길 모두 도와드립니다.",
+    call_label:"바로 전화 / 메시지",call_now:"전화",call_alt:"카이마클르, 네브셰히르 · 사계절 운영",
+    label_name:"성함",ph_name:"성함을 입력하세요",label_in:"체크인",label_out:"체크아웃",label_people:"인원",
+    opt_1p:"1명",opt_2p:"2명",opt_3p:"3명",opt_4p:"4명 이상",
+    label_room:"객실",opt_room1:"트리플 룸",opt_room2:"더블",opt_room3:"상관없음 / 기타",
+    btn_submit:"예약 요청 만들기",
+    sent_h:"메시지가 준비되었습니다",sent_p:"아래 메시지를 WhatsApp으로 보내시거나, 복사해서 저희에게 전달해 주세요.",sent_wa:"WhatsApp으로 보내기",sent_copy:"복사",sent_copied:"복사됨 ✓",
+    foot_about:"카이마클르 지하도시 바로 옆, 깔끔하고 밝은 객실의 작은 게스트하우스. 카파도키아를 둘러보기 좋은 조용하고 중심적인 거점.",
+    foot_explore:"주변",foot_contact:"연락처",foot_loc:"카이마클르, 네브셰히르",foot_hours:"사계절 · 따뜻한 환대",
+    foot_rights:"© 2026 Manolya Pansiyon — 모든 권리 보유.",foot_demo:"샘플 / 데모 디자인",
+    wa_msg:"안녕하세요, Manolya Pansiyon 예약을 요청합니다:",wa_name:"성함",wa_in:"체크인",wa_out:"체크아웃",wa_people:"인원",wa_room:"객실",
+    alert_fill:"성함과 체크인·체크아웃 날짜를 입력해 주세요."
+  }
+};
+
+const SUPPORTED=['tr','en','es','zh-CN','ko'];
+let currentLang='tr';
+function applyLang(lang){
+  if(!SUPPORTED.includes(lang)) lang='tr';
+  currentLang=lang;
+  const dict=I18N[lang];
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    if(dict[key]===undefined) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML=dict[key];
+    else el.textContent=dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key=el.getAttribute('data-i18n-ph');
+    if(dict[key]!==undefined) el.setAttribute('placeholder',dict[key]);
+  });
+  if(dict.meta_title) document.title=dict.meta_title;
+  const md=document.querySelector('meta[name="description"]');
+  if(md&&dict.meta_desc) md.setAttribute('content',dict.meta_desc);
+  const tb=document.getElementById('themeBtn');
+  if(tb&&dict.theme_aria) tb.setAttribute('aria-label',dict.theme_aria);
+  document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{ b.classList.toggle('active',b.getAttribute('data-lang')===lang); });
+  try{ localStorage.setItem('manolya_lang',lang); }catch(e){}
+  if(window.__reBud) requestAnimationFrame(window.__reBud);
+}
+function initLang(){
+  let lang=null;
+  const url=new URLSearchParams(location.search).get('lang');
+  if(url&&SUPPORTED.includes(url)) lang=url;
+  if(!lang){ try{ const s=localStorage.getItem('manolya_lang'); if(s&&SUPPORTED.includes(s)) lang=s; }catch(e){} }
+  if(!lang) lang='tr';
+  applyLang(lang);
+}
+document.querySelectorAll('.langs button, .m-langs button').forEach(b=>{
+  b.addEventListener('click',()=>{ applyLang(b.getAttribute('data-lang')); document.getElementById('mobileMenu').classList.remove('open'); });
+});
+
+// ==================== TEMA ====================
+function setTheme(t){ document.documentElement.setAttribute('data-theme',t); try{ localStorage.setItem('manolya_theme',t); }catch(e){} }
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const cur=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+  setTheme(cur);
+});
+
+// ==================== MOBİL MENÜ ====================
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+
+// ==================== NAV SCROLL ====================
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+window.addEventListener('scroll',onScroll);onScroll();
+
+// ==================== DAL & TOMURCUK NAV (21st.dev portu — aktif bölümde manolya tomurcuğu açar) ====================
+(function(){
+  const bud=document.getElementById('bud');
+  const links=Array.from(document.querySelectorAll('#navlinks a[data-spy]'));
+  const container=document.getElementById('navlinks');
+  let activeId=null;
+  function place(link){
+    if(!bud) return;
+    if(!link){ bud.classList.remove('on'); return; }
+    const cr=container.getBoundingClientRect();
+    const lr=link.getBoundingClientRect();
+    bud.style.transform='translateX('+(lr.left-cr.left+lr.width/2-9)+'px)';
+    bud.classList.remove('on'); void bud.offsetWidth; bud.classList.add('on');
+  }
+  function reBud(){
+    const dl=links.find(a=>a.getAttribute('data-spy')===activeId)||null;
+    place(dl);
+    links.forEach(a=>a.classList.toggle('active',a===dl));
+    document.querySelectorAll('.mobile-menu a').forEach(a=>{ const h=a.getAttribute('href'); a.classList.toggle('active',h==='#'+activeId); });
+  }
+  window.__reBud=reBud;
+  const ids=['story','location','rooms','explore','gallery','book'];
+  const spy=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ activeId=e.target.id; reBud(); } }); },{rootMargin:'-42% 0px -52% 0px'});
+  ids.forEach(id=>{ const el=document.getElementById(id); if(el) spy.observe(el); });
+  const hero=document.querySelector('.hero');
+  const heroSpy=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting&&e.intersectionRatio>.5){ activeId=null; reBud(); } }); },{threshold:[.5]});
+  if(hero) heroSpy.observe(hero);
+  links.forEach(a=>a.addEventListener('click',()=>{ activeId=a.getAttribute('data-spy'); reBud(); }));
+  window.addEventListener('resize',()=>requestAnimationFrame(reBud));
+  window.addEventListener('load',()=>setTimeout(reBud,200));
+})();
+
+// ==================== REVEAL ====================
+const io=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ==================== GÖRSEL YÜKLEME ====================
+(function(){
+  const base='assets/images/';
+  function tryImg(el,file){ const img=new Image(); img.onload=()=>{ el.style.backgroundImage=`url('${base}${file}')`; const l=el.querySelector('.ph-label'); if(l) l.style.display='none'; }; img.onerror=()=>{}; img.src=base+file; }
+  const hero=document.getElementById('heroPhoto');
+  if(hero){ const hi=new Image(); hi.onload=()=>{ hero.style.backgroundImage=`url('${base}hero.jpg')`; hero.classList.add('has-img'); }; hi.onerror=()=>{}; hi.src=base+'hero.jpg'; }
+  document.querySelectorAll('[data-img]').forEach(t=>tryImg(t,t.getAttribute('data-img')));
+})();
+
+// ==================== LIGHTBOX ====================
+(function(){
+  const items=Array.from(document.querySelectorAll('.tiles .tile[data-img]'));
+  const lb=document.getElementById('lightbox');
+  if(!items.length||!lb) return;
+  const img=document.getElementById('lbImg'), cap=document.getElementById('lbCap');
+  const base='assets/images/';
+  let idx=0;
+  function show(i){ idx=(i+items.length)%items.length; const t=items[idx]; img.src=base+t.getAttribute('data-img'); cap.textContent=t.getAttribute('data-cap')||''; }
+  function open(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  items.forEach((t,i)=>t.addEventListener('click',()=>open(i)));
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); show(idx-1); });
+  document.getElementById('lbNext').addEventListener('click',e=>{ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click',e=>{ if(e.target===lb) close(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(idx-1); else if(e.key==='ArrowRight') show(idx+1); });
+})();
+
+// ==================== REZERVASYON → WhatsApp mesajı ====================
+const WHATSAPP="905317247543";
+function buildMsg(){
+  const d=I18N[currentLang];
+  const name=document.getElementById('f-name').value.trim();
+  const cin=document.getElementById('f-in').value;
+  const cout=document.getElementById('f-out').value;
+  const count=document.getElementById('f-count').value;
+  const room=document.getElementById('f-room').value;
+  if(!name||!cin||!cout){ alert(d.alert_fill); return null; }
+  return d.wa_msg+"\n\n"+d.wa_name+": "+name+"\n"+d.wa_in+": "+cin+"\n"+d.wa_out+": "+cout+"\n"+d.wa_people+": "+count+"\n"+d.wa_room+": "+room;
+}
+function buildBooking(){
+  const msg=buildMsg();
+  if(msg===null) return;
+  document.getElementById('sentMsg').value=msg;
+  document.getElementById('sentPanel').classList.add('show');
+  const wa=document.getElementById('waBtn');
+  wa.style.display='inline-flex';
+  wa.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
+  copyMsg(true);
+}
+function copyMsg(silent){
+  const ta=document.getElementById('sentMsg'), d=I18N[currentLang];
+  const done=()=>{ const b=document.getElementById('copyBtn').querySelector('span'); b.textContent=d.sent_copied; setTimeout(()=>{ b.textContent=d.sent_copy; },2200); };
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(ta.value).then(done).catch(()=>{ if(!silent){ ta.select(); try{document.execCommand('copy');done();}catch(e){} } }); }
+  else { ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} }
+}
+
+// ==================== PETAL DRIFT (signature — manolya taçyaprakları süzülür) ====================
+(function(){
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cv=document.getElementById('petals'); if(!cv||reduce) return;
+  const ctx=cv.getContext('2d'); let W,H,petals=[],raf;
+  function size(){ const hero=document.querySelector('.hero'); W=cv.width=hero.clientWidth; H=cv.height=hero.clientHeight; }
+  size(); window.addEventListener('resize',size);
+  const COLORS=['rgba(251,236,224,0.9)','rgba(242,201,160,0.85)','rgba(223,143,172,0.7)','rgba(253,250,242,0.92)'];
+  function mk(){ return { x:Math.random()*W, y:Math.random()*-H, r:9+Math.random()*10, sp:0.35+Math.random()*0.55, sway:0.5+Math.random()*1.1, a:Math.random()*Math.PI*2, va:(-0.02+Math.random()*0.04), c:COLORS[(Math.random()*COLORS.length)|0], o:0.5+Math.random()*0.4 }; }
+  for(let i=0;i<9;i++){ const p=mk(); p.y=Math.random()*H; petals.push(p); }
+  function petalPath(p){
+    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.a); ctx.globalAlpha=p.o; ctx.fillStyle=p.c;
+    ctx.beginPath(); ctx.moveTo(0,-p.r); ctx.bezierCurveTo(p.r*0.8,-p.r*0.5,p.r*0.6,p.r*0.7,0,p.r); ctx.bezierCurveTo(-p.r*0.6,p.r*0.7,-p.r*0.8,-p.r*0.5,0,-p.r); ctx.fill();
+    ctx.restore();
+  }
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of petals){ p.y+=p.sp; p.x+=Math.sin(p.y/40)*p.sway*0.3; p.a+=p.va; petalPath(p); if(p.y>H+20){ Object.assign(p,mk()); p.y=-20; } }
+    raf=requestAnimationFrame(tick);
+  }
+  tick();
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden){ cancelAnimationFrame(raf); } else { raf=requestAnimationFrame(tick); } });
+})();
+
+// ==================== BAŞLAT ====================
+initLang();
+</script>
+<script>
+/*
+ *   Stripe WebGl Gradient Animation
+ *   All Credits to Stripe.com
+ *   ScrollObserver functionality to disable animation when not scrolled into view has been disabled and
+ *   commented out for now.
+ *   https://kevinhufnagl.com
+ */
+
+//Converting colors to proper format
+function normalizeColor(hexCode) {
+  return [
+    ((hexCode >> 16) & 255) / 255,
+    ((hexCode >> 8) & 255) / 255,
+    (255 & hexCode) / 255,
+  ];
+}
+["SCREEN", "LINEAR_LIGHT"].reduce(
+  (hexCode, t, n) =>
+    Object.assign(hexCode, {
+      [t]: n,
+    }),
+  {}
+);
+
+//Essential functionality of WebGl
+//t = width
+//n = height
+class MiniGl {
+  constructor(canvas, width, height, debug = false) {
+    const _miniGl = this,
+      debug_output =
+        -1 !== document.location.search.toLowerCase().indexOf("debug=webgl");
+    (_miniGl.canvas = canvas),
+      (_miniGl.gl = _miniGl.canvas.getContext("webgl", {
+        antialias: true,
+      })),
+      (_miniGl.meshes = []);
+    const context = _miniGl.gl;
+    width && height && this.setSize(width, height),
+      _miniGl.lastDebugMsg,
+      (_miniGl.debug =
+        debug && debug_output
+          ? function (e) {
+              const t = new Date();
+              t - _miniGl.lastDebugMsg > 1e3 && console.log("---"),
+                console.log(
+                  t.toLocaleTimeString() +
+                    Array(Math.max(0, 32 - e.length)).join(" ") +
+                    e +
+                    ": ",
+                  ...Array.from(arguments).slice(1)
+                ),
+                (_miniGl.lastDebugMsg = t);
+            }
+          : () => {}),
+      Object.defineProperties(_miniGl, {
+        Material: {
+          enumerable: false,
+          value: class {
+            constructor(vertexShaders, fragments, uniforms = {}) {
+              const material = this;
+              function getShaderByType(type, source) {
+                const shader = context.createShader(type);
+                return (
+                  context.shaderSource(shader, source),
+                  context.compileShader(shader),
+                  context.getShaderParameter(shader, context.COMPILE_STATUS) ||
+                    console.error(context.getShaderInfoLog(shader)),
+                  _miniGl.debug("Material.compileShaderSource", {
+                    source: source,
+                  }),
+                  shader
+                );
+              }
+              function getUniformVariableDeclarations(uniforms, type) {
+                return Object.entries(uniforms)
+                  .map(([uniform, value]) =>
+                    value.getDeclaration(uniform, type)
+                  )
+                  .join("\n");
+              }
+              (material.uniforms = uniforms), (material.uniformInstances = []);
+
+              const prefix =
+                "\n              precision highp float;\n            ";
+              (material.vertexSource = `\n              ${prefix}\n              attribute vec4 position;\n              attribute vec2 uv;\n              attribute vec2 uvNorm;\n              ${getUniformVariableDeclarations(
+                _miniGl.commonUniforms,
+                "vertex"
+              )}\n              ${getUniformVariableDeclarations(
+                uniforms,
+                "vertex"
+              )}\n              ${vertexShaders}\n            `),
+                (material.Source = `\n              ${prefix}\n              ${getUniformVariableDeclarations(
+                  _miniGl.commonUniforms,
+                  "fragment"
+                )}\n              ${getUniformVariableDeclarations(
+                  uniforms,
+                  "fragment"
+                )}\n              ${fragments}\n            `),
+                (material.vertexShader = getShaderByType(
+                  context.VERTEX_SHADER,
+                  material.vertexSource
+                )),
+                (material.fragmentShader = getShaderByType(
+                  context.FRAGMENT_SHADER,
+                  material.Source
+                )),
+                (material.program = context.createProgram()),
+                context.attachShader(material.program, material.vertexShader),
+                context.attachShader(material.program, material.fragmentShader),
+                context.linkProgram(material.program),
+                context.getProgramParameter(
+                  material.program,
+                  context.LINK_STATUS
+                ) || console.error(context.getProgramInfoLog(material.program)),
+                context.useProgram(material.program),
+                material.attachUniforms(void 0, _miniGl.commonUniforms),
+                material.attachUniforms(void 0, material.uniforms);
+            }
+            //t = uniform
+            attachUniforms(name, uniforms) {
+              //n  = material
+              const material = this;
+              void 0 === name
+                ? Object.entries(uniforms).forEach(([name, uniform]) => {
+                    material.attachUniforms(name, uniform);
+                  })
+                : "array" == uniforms.type
+                ? uniforms.value.forEach((uniform, i) =>
+                    material.attachUniforms(`${name}[${i}]`, uniform)
+                  )
+                : "struct" == uniforms.type
+                ? Object.entries(uniforms.value).forEach(([uniform, i]) =>
+                    material.attachUniforms(`${name}.${uniform}`, i)
+                  )
+                : (_miniGl.debug("Material.attachUniforms", {
+                    name: name,
+                    uniform: uniforms,
+                  }),
+                  material.uniformInstances.push({
+                    uniform: uniforms,
+                    location: context.getUniformLocation(
+                      material.program,
+                      name
+                    ),
+                  }));
+            }
+          },
+        },
+        Uniform: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = "float"), Object.assign(this, e);
+              (this.typeFn =
+                {
+                  float: "1f",
+                  int: "1i",
+                  vec2: "2fv",
+                  vec3: "3fv",
+                  vec4: "4fv",
+                  mat4: "Matrix4fv",
+                }[this.type] || "1f"),
+                this.update();
+            }
+            update(value) {
+              void 0 !== this.value &&
+                context[`uniform${this.typeFn}`](
+                  value,
+                  0 === this.typeFn.indexOf("Matrix")
+                    ? this.transpose
+                    : this.value,
+                  0 === this.typeFn.indexOf("Matrix") ? this.value : null
+                );
+            }
+            //e - name
+            //t - type
+            //n - length
+            getDeclaration(name, type, length) {
+              const uniform = this;
+              if (uniform.excludeFrom !== type) {
+                if ("array" === uniform.type)
+                  return (
+                    uniform.value[0].getDeclaration(
+                      name,
+                      type,
+                      uniform.value.length
+                    ) + `\nconst int ${name}_length = ${uniform.value.length};`
+                  );
+                if ("struct" === uniform.type) {
+                  let name_no_prefix = name.replace("u_", "");
+                  return (
+                    (name_no_prefix =
+                      name_no_prefix.charAt(0).toUpperCase() +
+                      name_no_prefix.slice(1)),
+                    `uniform struct ${name_no_prefix} 
+                                    {\n` +
+                      Object.entries(uniform.value)
+                        .map(([name, uniform]) =>
+                          uniform
+                            .getDeclaration(name, type)
+                            .replace(/^uniform/, "")
+                        )
+                        .join("") +
+                      `\n} ${name}${length > 0 ? `[${length}]` : ""};`
+                  );
+                }
+                return `uniform ${uniform.type} ${name}${
+                  length > 0 ? `[${length}]` : ""
+                };`;
+              }
+            }
+          },
+        },
+        PlaneGeometry: {
+          enumerable: !1,
+          value: class {
+            constructor(width, height, n, i, orientation) {
+              context.createBuffer(),
+                (this.attributes = {
+                  position: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 3,
+                  }),
+                  uv: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  uvNorm: new _miniGl.Attribute({
+                    target: context.ARRAY_BUFFER,
+                    size: 2,
+                  }),
+                  index: new _miniGl.Attribute({
+                    target: context.ELEMENT_ARRAY_BUFFER,
+                    size: 3,
+                    type: context.UNSIGNED_SHORT,
+                  }),
+                }),
+                this.setTopology(n, i),
+                this.setSize(width, height, orientation);
+            }
+            setTopology(e = 1, t = 1) {
+              const n = this;
+              (n.xSegCount = e),
+                (n.ySegCount = t),
+                (n.vertexCount = (n.xSegCount + 1) * (n.ySegCount + 1)),
+                (n.quadCount = n.xSegCount * n.ySegCount * 2),
+                (n.attributes.uv.values = new Float32Array(2 * n.vertexCount)),
+                (n.attributes.uvNorm.values = new Float32Array(
+                  2 * n.vertexCount
+                )),
+                (n.attributes.index.values = new Uint16Array(3 * n.quadCount));
+              for (let e = 0; e <= n.ySegCount; e++)
+                for (let t = 0; t <= n.xSegCount; t++) {
+                  const i = e * (n.xSegCount + 1) + t;
+                  if (
+                    ((n.attributes.uv.values[2 * i] = t / n.xSegCount),
+                    (n.attributes.uv.values[2 * i + 1] = 1 - e / n.ySegCount),
+                    (n.attributes.uvNorm.values[2 * i] =
+                      (t / n.xSegCount) * 2 - 1),
+                    (n.attributes.uvNorm.values[2 * i + 1] =
+                      1 - (e / n.ySegCount) * 2),
+                    t < n.xSegCount && e < n.ySegCount)
+                  ) {
+                    const s = e * n.xSegCount + t;
+                    (n.attributes.index.values[6 * s] = i),
+                      (n.attributes.index.values[6 * s + 1] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 2] = i + 1),
+                      (n.attributes.index.values[6 * s + 3] = i + 1),
+                      (n.attributes.index.values[6 * s + 4] =
+                        i + 1 + n.xSegCount),
+                      (n.attributes.index.values[6 * s + 5] =
+                        i + 2 + n.xSegCount);
+                  }
+                }
+              n.attributes.uv.update(),
+                n.attributes.uvNorm.update(),
+                n.attributes.index.update(),
+                _miniGl.debug("Geometry.setTopology", {
+                  uv: n.attributes.uv,
+                  uvNorm: n.attributes.uvNorm,
+                  index: n.attributes.index,
+                });
+            }
+            setSize(width = 1, height = 1, orientation = "xz") {
+              const geometry = this;
+              (geometry.width = width),
+                (geometry.height = height),
+                (geometry.orientation = orientation),
+                (geometry.attributes.position.values &&
+                  geometry.attributes.position.values.length ===
+                    3 * geometry.vertexCount) ||
+                  (geometry.attributes.position.values = new Float32Array(
+                    3 * geometry.vertexCount
+                  ));
+              const o = width / -2,
+                r = height / -2,
+                segment_width = width / geometry.xSegCount,
+                segment_height = height / geometry.ySegCount;
+              for (let yIndex = 0; yIndex <= geometry.ySegCount; yIndex++) {
+                const t = r + yIndex * segment_height;
+                for (let xIndex = 0; xIndex <= geometry.xSegCount; xIndex++) {
+                  const r = o + xIndex * segment_width,
+                    l = yIndex * (geometry.xSegCount + 1) + xIndex;
+                  (geometry.attributes.position.values[
+                    3 * l + "xyz".indexOf(orientation[0])
+                  ] = r),
+                    (geometry.attributes.position.values[
+                      3 * l + "xyz".indexOf(orientation[1])
+                    ] = -t);
+                }
+              }
+              geometry.attributes.position.update(),
+                _miniGl.debug("Geometry.setSize", {
+                  position: geometry.attributes.position,
+                });
+            }
+          },
+        },
+        Mesh: {
+          enumerable: !1,
+          value: class {
+            constructor(geometry, material) {
+              const mesh = this;
+              (mesh.geometry = geometry),
+                (mesh.material = material),
+                (mesh.wireframe = !1),
+                (mesh.attributeInstances = []),
+                Object.entries(mesh.geometry.attributes).forEach(
+                  ([e, attribute]) => {
+                    mesh.attributeInstances.push({
+                      attribute: attribute,
+                      location: attribute.attach(e, mesh.material.program),
+                    });
+                  }
+                ),
+                _miniGl.meshes.push(mesh),
+                _miniGl.debug("Mesh.constructor", {
+                  mesh: mesh,
+                });
+            }
+            draw() {
+              context.useProgram(this.material.program),
+                this.material.uniformInstances.forEach(
+                  ({ uniform: e, location: t }) => e.update(t)
+                ),
+                this.attributeInstances.forEach(
+                  ({ attribute: e, location: t }) => e.use(t)
+                ),
+                context.drawElements(
+                  this.wireframe ? context.LINES : context.TRIANGLES,
+                  this.geometry.attributes.index.values.length,
+                  context.UNSIGNED_SHORT,
+                  0
+                );
+            }
+            remove() {
+              _miniGl.meshes = _miniGl.meshes.filter((e) => e != this);
+            }
+          },
+        },
+        Attribute: {
+          enumerable: !1,
+          value: class {
+            constructor(e) {
+              (this.type = context.FLOAT),
+                (this.normalized = !1),
+                (this.buffer = context.createBuffer()),
+                Object.assign(this, e),
+                this.update();
+            }
+            update() {
+              void 0 !== this.values &&
+                (context.bindBuffer(this.target, this.buffer),
+                context.bufferData(
+                  this.target,
+                  this.values,
+                  context.STATIC_DRAW
+                ));
+            }
+            attach(e, t) {
+              const n = context.getAttribLocation(t, e);
+              return (
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(n),
+                  context.vertexAttribPointer(
+                    n,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  )),
+                n
+              );
+            }
+            use(e) {
+              context.bindBuffer(this.target, this.buffer),
+                this.target === context.ARRAY_BUFFER &&
+                  (context.enableVertexAttribArray(e),
+                  context.vertexAttribPointer(
+                    e,
+                    this.size,
+                    this.type,
+                    this.normalized,
+                    0,
+                    0
+                  ));
+            }
+          },
+        },
+      });
+    const a = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    _miniGl.commonUniforms = {
+      projectionMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      modelViewMatrix: new _miniGl.Uniform({
+        type: "mat4",
+        value: a,
+      }),
+      resolution: new _miniGl.Uniform({
+        type: "vec2",
+        value: [1, 1],
+      }),
+      aspectRatio: new _miniGl.Uniform({
+        type: "float",
+        value: 1,
+      }),
+    };
+  }
+  setSize(e = 640, t = 480) {
+    (this.width = e),
+      (this.height = t),
+      (this.canvas.width = e),
+      (this.canvas.height = t),
+      this.gl.viewport(0, 0, e, t),
+      (this.commonUniforms.resolution.value = [e, t]),
+      (this.commonUniforms.aspectRatio.value = e / t),
+      this.debug("MiniGL.setSize", {
+        width: e,
+        height: t,
+      });
+  }
+  //left, right, top, bottom, near, far
+  setOrthographicCamera(e = 0, t = 0, n = 0, i = -2e3, s = 2e3) {
+    (this.commonUniforms.projectionMatrix.value = [
+      2 / this.width,
+      0,
+      0,
+      0,
+      0,
+      2 / this.height,
+      0,
+      0,
+      0,
+      0,
+      2 / (i - s),
+      0,
+      e,
+      t,
+      n,
+      1,
+    ]),
+      this.debug(
+        "setOrthographicCamera",
+        this.commonUniforms.projectionMatrix.value
+      );
+  }
+  render() {
+    this.gl.clearColor(0, 0, 0, 0),
+      this.gl.clearDepth(1),
+      this.meshes.forEach((e) => e.draw());
+  }
+}
+
+//Sets initial properties
+function e(object, propertyName, val) {
+  return (
+    propertyName in object
+      ? Object.defineProperty(object, propertyName, {
+          value: val,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (object[propertyName] = val),
+    object
+  );
+}
+
+//Gradient object
+class Gradient {
+  constructor(...t) {
+    e(this, "el", void 0),
+      e(this, "cssVarRetries", 0),
+      e(this, "maxCssVarRetries", 200),
+      e(this, "angle", 0),
+      e(this, "isLoadedClass", !1),
+      e(this, "isScrolling", !1),
+      /*e(this, "isStatic", o.disableAmbientAnimations()),*/ e(
+        this,
+        "scrollingTimeout",
+        void 0
+      ),
+      e(this, "scrollingRefreshDelay", 200),
+      e(this, "isIntersecting", !1),
+      e(this, "shaderFiles", void 0),
+      e(this, "vertexShader", void 0),
+      e(this, "sectionColors", void 0),
+      e(this, "computedCanvasStyle", void 0),
+      e(this, "conf", void 0),
+      e(this, "uniforms", void 0),
+      e(this, "t", 1253106),
+      e(this, "last", 0),
+      e(this, "width", void 0),
+      e(this, "minWidth", 1111),
+      e(this, "height", 600),
+      e(this, "xSegCount", void 0),
+      e(this, "ySegCount", void 0),
+      e(this, "mesh", void 0),
+      e(this, "material", void 0),
+      e(this, "geometry", void 0),
+      e(this, "minigl", void 0),
+      e(this, "scrollObserver", void 0),
+      e(this, "amp", 320),
+      e(this, "seed", 5),
+      e(this, "freqX", 14e-5),
+      e(this, "freqY", 29e-5),
+      e(this, "freqDelta", 1e-5),
+      e(this, "activeColors", [1, 1, 1, 1]),
+      e(this, "isMetaKey", !1),
+      e(this, "isGradientLegendVisible", !1),
+      e(this, "isMouseDown", !1),
+      e(this, "handleScroll", () => {
+        clearTimeout(this.scrollingTimeout),
+          (this.scrollingTimeout = setTimeout(
+            this.handleScrollEnd,
+            this.scrollingRefreshDelay
+          )),
+          this.isGradientLegendVisible && this.hideGradientLegend(),
+          this.conf.playing && ((this.isScrolling = !0), this.pause());
+      }),
+      e(this, "handleScrollEnd", () => {
+        (this.isScrolling = !1), this.isIntersecting && this.play();
+      }),
+      e(this, "resize", () => {
+        (this.width = window.innerWidth),
+          this.minigl.setSize(this.width, this.height),
+          this.minigl.setOrthographicCamera(),
+          (this.xSegCount = Math.ceil(this.width * this.conf.density[0])),
+          (this.ySegCount = Math.ceil(this.height * this.conf.density[1])),
+          this.mesh.geometry.setTopology(this.xSegCount, this.ySegCount),
+          this.mesh.geometry.setSize(this.width, this.height),
+          (this.mesh.material.uniforms.u_shadow_power.value =
+            this.width < 600 ? 5 : 6);
+      }),
+      e(this, "handleMouseDown", (e) => {
+        this.isGradientLegendVisible &&
+          ((this.isMetaKey = e.metaKey),
+          (this.isMouseDown = !0),
+          !1 === this.conf.playing && requestAnimationFrame(this.animate));
+      }),
+      e(this, "handleMouseUp", () => {
+        this.isMouseDown = !1;
+      }),
+      e(this, "animate", (e) => {
+        if (!this.shouldSkipFrame(e) || this.isMouseDown) {
+          if (
+            ((this.t += Math.min(e - this.last, 1e3 / 15)),
+            (this.last = e),
+            this.isMouseDown)
+          ) {
+            let e = 160;
+            this.isMetaKey && (e = -160), (this.t += e);
+          }
+          (this.mesh.material.uniforms.u_time.value = this.t),
+            this.minigl.render();
+        }
+        if (0 !== this.last && this.isStatic)
+          return this.minigl.render(), void this.disconnect();
+        /*this.isIntersecting && */ (this.conf.playing || this.isMouseDown) &&
+          requestAnimationFrame(this.animate);
+      }),
+      e(this, "addIsLoadedClass", () => {
+        /*this.isIntersecting && */ !this.isLoadedClass &&
+          ((this.isLoadedClass = !0),
+          this.el.classList.add("isLoaded"),
+          setTimeout(() => {
+            this.el.parentElement.classList.add("isLoaded");
+          }, 3e3));
+      }),
+      e(this, "pause", () => {
+        this.conf.playing = false;
+      }),
+      e(this, "play", () => {
+        requestAnimationFrame(this.animate), (this.conf.playing = true);
+      }),
+      e(this, "initGradient", (selector) => {
+        this.el = document.querySelector(selector);
+        this.connect();
+        return this;
+      });
+  }
+  async connect() {
+    (this.shaderFiles = {
+      vertex:
+        "varying vec3 v_color;\n\nvoid main() {\n  float time = u_time * u_global.noiseSpeed;\n\n  vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;\n\n  vec2 st = 1. - uvNorm.xy;\n\n  //\n  // Tilting the plane\n  //\n\n  // Front-to-back tilt\n  float tilt = resolution.y / 2.0 * uvNorm.y;\n\n  // Left-to-right angle\n  float incline = resolution.x * uvNorm.x / 2.0 * u_vertDeform.incline;\n\n  // Up-down shift to offset incline\n  float offset = resolution.x / 2.0 * u_vertDeform.incline * mix(u_vertDeform.offsetBottom, u_vertDeform.offsetTop, uv.y);\n\n  //\n  // Vertex noise\n  //\n\n  float noise = snoise(vec3(\n    noiseCoord.x * u_vertDeform.noiseFreq.x + time * u_vertDeform.noiseFlow,\n    noiseCoord.y * u_vertDeform.noiseFreq.y,\n    time * u_vertDeform.noiseSpeed + u_vertDeform.noiseSeed\n  )) * u_vertDeform.noiseAmp;\n\n  // Fade noise to zero at edges\n  noise *= 1.0 - pow(abs(uvNorm.y), 2.0);\n\n  // Clamp to 0\n  noise = max(0.0, noise);\n\n  vec3 pos = vec3(\n    position.x,\n    position.y + tilt + incline + noise - offset,\n    position.z\n  );\n\n  //\n  // Vertex color, to be passed to fragment shader\n  //\n\n  if (u_active_colors[0] == 1.) {\n    v_color = u_baseColor;\n  }\n\n  for (int i = 0; i < u_waveLayers_length; i++) {\n    if (u_active_colors[i + 1] == 1.) {\n      WaveLayers layer = u_waveLayers[i];\n\n      float noise = smoothstep(\n        layer.noiseFloor,\n        layer.noiseCeil,\n        snoise(vec3(\n          noiseCoord.x * layer.noiseFreq.x + time * layer.noiseFlow,\n          noiseCoord.y * layer.noiseFreq.y,\n          time * layer.noiseSpeed + layer.noiseSeed\n        )) / 2.0 + 0.5\n      );\n\n      v_color = blendNormal(v_color, layer.color, pow(noise, 4.));\n    }\n  }\n\n  //\n  // Finish\n  //\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);\n}",
+      noise:
+        "//\n// Description : Array and textureless GLSL 2D/3D/4D simplex\n//               noise functions.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n//\n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 mod289(vec4 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec4 permute(vec4 x) {\n    return mod289(((x*34.0)+1.0)*x);\n}\n\nvec4 taylorInvSqrt(vec4 r)\n{\n  return 1.79284291400159 - 0.85373472095314 * r;\n}\n\nfloat snoise(vec3 v)\n{\n  const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;\n  const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);\n\n// First corner\n  vec3 i  = floor(v + dot(v, C.yyy) );\n  vec3 x0 =   v - i + dot(i, C.xxx) ;\n\n// Other corners\n  vec3 g = step(x0.yzx, x0.xyz);\n  vec3 l = 1.0 - g;\n  vec3 i1 = min( g.xyz, l.zxy );\n  vec3 i2 = max( g.xyz, l.zxy );\n\n  //   x0 = x0 - 0.0 + 0.0 * C.xxx;\n  //   x1 = x0 - i1  + 1.0 * C.xxx;\n  //   x2 = x0 - i2  + 2.0 * C.xxx;\n  //   x3 = x0 - 1.0 + 3.0 * C.xxx;\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y\n  vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y\n\n// Permutations\n  i = mod289(i);\n  vec4 p = permute( permute( permute(\n            i.z + vec4(0.0, i1.z, i2.z, 1.0 ))\n          + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))\n          + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));\n\n// Gradients: 7x7 points over a square, mapped onto an octahedron.\n// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)\n  float n_ = 0.142857142857; // 1.0/7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)\n\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)\n\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n\n  vec4 b0 = vec4( x.xy, y.xy );\n  vec4 b1 = vec4( x.zw, y.zw );\n\n  //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;\n  //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;\n  vec4 s0 = floor(b0)*2.0 + 1.0;\n  vec4 s1 = floor(b1)*2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n\n  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;\n  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;\n\n  vec3 p0 = vec3(a0.xy,h.x);\n  vec3 p1 = vec3(a0.zw,h.y);\n  vec3 p2 = vec3(a1.xy,h.z);\n  vec3 p3 = vec3(a1.zw,h.w);\n\n//Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n\n// Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),\n                                dot(p2,x2), dot(p3,x3) ) );\n}",
+      blend:
+        "//\n// https://github.com/jamieowen/glsl-blend\n//\n\n// Normal\n\nvec3 blendNormal(vec3 base, vec3 blend) {\n\treturn blend;\n}\n\nvec3 blendNormal(vec3 base, vec3 blend, float opacity) {\n\treturn (blendNormal(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Screen\n\nfloat blendScreen(float base, float blend) {\n\treturn 1.0-((1.0-base)*(1.0-blend));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend) {\n\treturn vec3(blendScreen(base.r,blend.r),blendScreen(base.g,blend.g),blendScreen(base.b,blend.b));\n}\n\nvec3 blendScreen(vec3 base, vec3 blend, float opacity) {\n\treturn (blendScreen(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Multiply\n\nvec3 blendMultiply(vec3 base, vec3 blend) {\n\treturn base*blend;\n}\n\nvec3 blendMultiply(vec3 base, vec3 blend, float opacity) {\n\treturn (blendMultiply(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Overlay\n\nfloat blendOverlay(float base, float blend) {\n\treturn base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n\treturn vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n\treturn (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Hard light\n\nvec3 blendHardLight(vec3 base, vec3 blend) {\n\treturn blendOverlay(blend,base);\n}\n\nvec3 blendHardLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendHardLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Soft light\n\nfloat blendSoftLight(float base, float blend) {\n\treturn (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend) {\n\treturn vec3(blendSoftLight(base.r,blend.r),blendSoftLight(base.g,blend.g),blendSoftLight(base.b,blend.b));\n}\n\nvec3 blendSoftLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendSoftLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color dodge\n\nfloat blendColorDodge(float base, float blend) {\n\treturn (blend==1.0)?blend:min(base/(1.0-blend),1.0);\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend) {\n\treturn vec3(blendColorDodge(base.r,blend.r),blendColorDodge(base.g,blend.g),blendColorDodge(base.b,blend.b));\n}\n\nvec3 blendColorDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Color burn\n\nfloat blendColorBurn(float base, float blend) {\n\treturn (blend==0.0)?blend:max((1.0-((1.0-base)/blend)),0.0);\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend) {\n\treturn vec3(blendColorBurn(base.r,blend.r),blendColorBurn(base.g,blend.g),blendColorBurn(base.b,blend.b));\n}\n\nvec3 blendColorBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendColorBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Vivid Light\n\nfloat blendVividLight(float base, float blend) {\n\treturn (blend<0.5)?blendColorBurn(base,(2.0*blend)):blendColorDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend) {\n\treturn vec3(blendVividLight(base.r,blend.r),blendVividLight(base.g,blend.g),blendVividLight(base.b,blend.b));\n}\n\nvec3 blendVividLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendVividLight(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Lighten\n\nfloat blendLighten(float base, float blend) {\n\treturn max(blend,base);\n}\n\nvec3 blendLighten(vec3 base, vec3 blend) {\n\treturn vec3(blendLighten(base.r,blend.r),blendLighten(base.g,blend.g),blendLighten(base.b,blend.b));\n}\n\nvec3 blendLighten(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLighten(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear burn\n\nfloat blendLinearBurn(float base, float blend) {\n\t// Note : Same implementation as BlendSubtractf\n\treturn max(base+blend-1.0,0.0);\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendSubtract\n\treturn max(base+blend-vec3(1.0),vec3(0.0));\n}\n\nvec3 blendLinearBurn(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearBurn(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear dodge\n\nfloat blendLinearDodge(float base, float blend) {\n\t// Note : Same implementation as BlendAddf\n\treturn min(base+blend,1.0);\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend) {\n\t// Note : Same implementation as BlendAdd\n\treturn min(base+blend,vec3(1.0));\n}\n\nvec3 blendLinearDodge(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearDodge(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// Linear light\n\nfloat blendLinearLight(float base, float blend) {\n\treturn blend<0.5?blendLinearBurn(base,(2.0*blend)):blendLinearDodge(base,(2.0*(blend-0.5)));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend) {\n\treturn vec3(blendLinearLight(base.r,blend.r),blendLinearLight(base.g,blend.g),blendLinearLight(base.b,blend.b));\n}\n\nvec3 blendLinearLight(vec3 base, vec3 blend, float opacity) {\n\treturn (blendLinearLight(base, blend) * opacity + base * (1.0 - opacity));\n}",
+      fragment:
+        "varying vec3 v_color;\n\nvoid main() {\n  vec3 color = v_color;\n  if (u_darken_top == 1.0) {\n    vec2 st = gl_FragCoord.xy/resolution.xy;\n    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;\n  }\n  gl_FragColor = vec4(color, 1.0);\n}",
+    }),
+      (this.conf = {
+        presetName: "",
+        wireframe: false,
+        density: [0.06, 0.16],
+        zoom: 1,
+        rotation: 0,
+        playing: true,
+      }),
+      document.querySelectorAll("canvas").length < 1
+        ? console.log("DID NOT LOAD HERO STRIPE CANVAS")
+        : ((this.minigl = new MiniGl(this.el, null, null, !0)),
+          requestAnimationFrame(() => {
+            this.el &&
+              ((this.computedCanvasStyle = getComputedStyle(this.el)),
+              this.waitForCssVars());
+          }));
+    /*
+            this.scrollObserver = await s.create(.1, !1),
+            this.scrollObserver.observe(this.el),
+            this.scrollObserver.onSeparate(() => {
+                window.removeEventListener("scroll", this.handleScroll), window.removeEventListener("mousedown", this.handleMouseDown), window.removeEventListener("mouseup", this.handleMouseUp), window.removeEventListener("keydown", this.handleKeyDown), this.isIntersecting = !1, this.conf.playing && this.pause()
+            }), 
+            this.scrollObserver.onIntersect(() => {
+                window.addEventListener("scroll", this.handleScroll), window.addEventListener("mousedown", this.handleMouseDown), window.addEventListener("mouseup", this.handleMouseUp), window.addEventListener("keydown", this.handleKeyDown), this.isIntersecting = !0, this.addIsLoadedClass(), this.play()
+            })*/
+  }
+  disconnect() {
+    this.scrollObserver &&
+      (window.removeEventListener("scroll", this.handleScroll),
+      window.removeEventListener("mousedown", this.handleMouseDown),
+      window.removeEventListener("mouseup", this.handleMouseUp),
+      window.removeEventListener("keydown", this.handleKeyDown),
+      this.scrollObserver.disconnect()),
+      window.removeEventListener("resize", this.resize);
+  }
+  initMaterial() {
+    this.uniforms = {
+      u_time: new this.minigl.Uniform({
+        value: 0,
+      }),
+      u_shadow_power: new this.minigl.Uniform({
+        value: 5,
+      }),
+      u_darken_top: new this.minigl.Uniform({
+        value: "" === this.el.dataset.jsDarkenTop ? 1 : 0,
+      }),
+      u_active_colors: new this.minigl.Uniform({
+        value: this.activeColors,
+        type: "vec4",
+      }),
+      u_global: new this.minigl.Uniform({
+        value: {
+          noiseFreq: new this.minigl.Uniform({
+            value: [this.freqX, this.freqY],
+            type: "vec2",
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 5e-6,
+          }),
+        },
+        type: "struct",
+      }),
+      u_vertDeform: new this.minigl.Uniform({
+        value: {
+          incline: new this.minigl.Uniform({
+            value: Math.sin(this.angle) / Math.cos(this.angle),
+          }),
+          offsetTop: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          offsetBottom: new this.minigl.Uniform({
+            value: -0.5,
+          }),
+          noiseFreq: new this.minigl.Uniform({
+            value: [3, 4],
+            type: "vec2",
+          }),
+          noiseAmp: new this.minigl.Uniform({
+            value: this.amp,
+          }),
+          noiseSpeed: new this.minigl.Uniform({
+            value: 10,
+          }),
+          noiseFlow: new this.minigl.Uniform({
+            value: 3,
+          }),
+          noiseSeed: new this.minigl.Uniform({
+            value: this.seed,
+          }),
+        },
+        type: "struct",
+        excludeFrom: "fragment",
+      }),
+      u_baseColor: new this.minigl.Uniform({
+        value: this.sectionColors[0],
+        type: "vec3",
+        excludeFrom: "fragment",
+      }),
+      u_waveLayers: new this.minigl.Uniform({
+        value: [],
+        excludeFrom: "fragment",
+        type: "array",
+      }),
+    };
+    for (let e = 1; e < this.sectionColors.length; e += 1)
+      this.uniforms.u_waveLayers.value.push(
+        new this.minigl.Uniform({
+          value: {
+            color: new this.minigl.Uniform({
+              value: this.sectionColors[e],
+              type: "vec3",
+            }),
+            noiseFreq: new this.minigl.Uniform({
+              value: [
+                2 + e / this.sectionColors.length,
+                3 + e / this.sectionColors.length,
+              ],
+              type: "vec2",
+            }),
+            noiseSpeed: new this.minigl.Uniform({
+              value: 11 + 0.3 * e,
+            }),
+            noiseFlow: new this.minigl.Uniform({
+              value: 6.5 + 0.3 * e,
+            }),
+            noiseSeed: new this.minigl.Uniform({
+              value: this.seed + 10 * e,
+            }),
+            noiseFloor: new this.minigl.Uniform({
+              value: 0.1,
+            }),
+            noiseCeil: new this.minigl.Uniform({
+              value: 0.63 + 0.07 * e,
+            }),
+          },
+          type: "struct",
+        })
+      );
+    return (
+      (this.vertexShader = [
+        this.shaderFiles.noise,
+        this.shaderFiles.blend,
+        this.shaderFiles.vertex,
+      ].join("\n\n")),
+      new this.minigl.Material(
+        this.vertexShader,
+        this.shaderFiles.fragment,
+        this.uniforms
+      )
+    );
+  }
+  initMesh() {
+    (this.material = this.initMaterial()),
+      (this.geometry = new this.minigl.PlaneGeometry()),
+      (this.mesh = new this.minigl.Mesh(this.geometry, this.material));
+  }
+  shouldSkipFrame(e) {
+    return (
+      !!window.document.hidden ||
+      !this.conf.playing ||
+      parseInt(e, 10) % 2 == 0 ||
+      void 0
+    );
+  }
+  updateFrequency(e) {
+    (this.freqX += e), (this.freqY += e);
+  }
+  toggleColor(index) {
+    this.activeColors[index] = 0 === this.activeColors[index] ? 1 : 0;
+  }
+  showGradientLegend() {
+    this.width > this.minWidth &&
+      ((this.isGradientLegendVisible = !0),
+      document.body.classList.add("isGradientLegendVisible"));
+  }
+  hideGradientLegend() {
+    (this.isGradientLegendVisible = !1),
+      document.body.classList.remove("isGradientLegendVisible");
+  }
+  init() {
+    this.initGradientColors(),
+      this.initMesh(),
+      this.resize(),
+      requestAnimationFrame(this.animate),
+      window.addEventListener("resize", this.resize);
+  }
+  /*
+   * Waiting for the css variables to become available, usually on page load before we can continue.
+   * Using default colors assigned below if no variables have been found after maxCssVarRetries
+   */
+  waitForCssVars() {
+    if (
+      this.computedCanvasStyle &&
+      -1 !==
+        this.computedCanvasStyle
+          .getPropertyValue("--gradient-color-1")
+          .indexOf("#")
+    )
+      this.init(), this.addIsLoadedClass();
+    else {
+      if (
+        ((this.cssVarRetries += 1), this.cssVarRetries > this.maxCssVarRetries)
+      ) {
+        return (
+          (this.sectionColors = [16711680, 16711680, 16711935, 65280, 255]),
+          void this.init()
+        );
+      }
+      requestAnimationFrame(() => this.waitForCssVars());
+    }
+  }
+  /*
+   * Initializes the four section colors by retrieving them from css variables.
+   */
+  initGradientColors() {
+    this.sectionColors = [
+      "--gradient-color-1",
+      "--gradient-color-2",
+      "--gradient-color-3",
+      "--gradient-color-4",
+    ]
+      .map((cssPropertyName) => {
+        let hex = this.computedCanvasStyle
+          .getPropertyValue(cssPropertyName)
+          .trim();
+        //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
+        if (4 === hex.length) {
+          const hexTemp = hex
+            .substr(1)
+            .split("")
+            .map((hexTemp) => hexTemp + hexTemp)
+            .join("");
+          hex = `#${hexTemp}`;
+        }
+        return hex && `0x${hex.substr(1)}`;
+      })
+      .filter(Boolean)
+      .map(normalizeColor);
+  }
+}
+
+/*
+ *Finally initializing the Gradient class, assigning a canvas to it and calling Gradient.connect() which initializes everything,
+ * Use Gradient.pause() and Gradient.play() for controls.
+ *
+ * Here are some default property values you can change anytime:
+ * Amplitude:    Gradient.amp = 0
+ * Colors:       Gradient.sectionColors (if you change colors, use normalizeColor(#hexValue)) before you assign it.
+ *
+ *
+ * Useful functions
+ * Gradient.toggleColor(index)
+ * Gradient.updateFrequency(freq)
+ */
+// var gradient = new Gradient();
+// gradient.initGradient("#gradient-canvas");
+
+
+/* ==================== HERO MESH ATMOSFERİ — whatamesh (MIT) · file:// güvenli ==================== */
+/* Yukarıdaki MiniGl + Gradient sınıfları unpkg.com/whatamesh/lib/Gradient.js'ten BİREBİR;
+   sadece ESM `export` çıkarıldı. Kaynak: github.com/jordienr/whatamesh · Stripe.com & kevinhufnagl.com */
+(function(){
+  if(!document.getElementById('hero-gradient')) return;
+  /* WebGL guard — whatamesh context hatasını asenkron rAF içinde fırlatır (try/catch yakalamaz); proaktif tespit */
+  try{ var _t=document.createElement('canvas'); if(!(_t.getContext('webgl')||_t.getContext('experimental-webgl'))){ document.body.classList.add('no-webgl'); return; } }catch(_e){ document.body.classList.add('no-webgl'); return; }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try {
+    var g = new Gradient();
+    g.initGradient('#hero-gradient');
+    /* whatamesh resize() yüksekliği güncellemez (varsayılan 600px) → viewport'a senkronla */
+    function syncHeight(){ try{ g.height = window.innerHeight; g.resize(); }catch(e){} }
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+    setTimeout(syncHeight, 120); setTimeout(syncHeight, 400);
+    if(reduce && typeof g.pause === 'function'){ setTimeout(function(){ try{ g.pause(); }catch(e){} }, 500); }
+  } catch(e){
+    console.error('hero mesh init hatasi:', e);
+    document.body.classList.add('no-webgl');
+  }
+})();
+</script>
+
+
+</body>
+</html>
